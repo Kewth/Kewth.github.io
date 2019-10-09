@@ -229,7 +229,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/09/类欧几里得/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/09/O(1)黑科技/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="John Doe">
@@ -248,7 +248,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/10/09/类欧几里得/" itemprop="url">类欧几里得</a></h1>
+                <a class="post-title-link" href="/2019/10/09/O(1)黑科技/" itemprop="url">O(1)黑科技</a></h1>
         
 
         <div class="post-meta">
@@ -260,7 +260,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-09T19:35:12+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-09T21:51:58+08:00">
                 2019-10-09
               </time>
             
@@ -300,17 +300,21 @@
       
         
           
-            <p>这里只是类欧几里得的一种：<br>快速求下式：<br>$$f(a, b, c, n) = \sum_{i=0}^n \lfloor \frac{ai+b}{c} \rfloor$$</p>
-<p>其中 a, b, c, n 都是正整数。</p>
-<h2 id="缩小-a-b-规模"><a href="#缩小-a-b-规模" class="headerlink" title="缩小 a, b 规模"></a>缩小 a, b 规模</h2><p>首先的目标是让 a, b 小于 c 。</p>
-<p>结论 1 ：<br>$$\lfloor \frac{Ax+B}{y} \rfloor =<br>\lfloor \frac{A(x%y)+B}{y} \rfloor + A\lfloor \frac{x}{y} \rfloor$$</p>
-<p>证明：<br>首先用到整除与取模的转换：<br>$\lfloor \frac{x}{y} \rfloor = \frac{x-x%y}{y}$ 。<br>得到原命题等价于：<br>$$\frac{Ax+B-(Ax+B)%y}{y} =<br>\frac{A(x%y)+B-(A(x%y)+B)%y}{y} + A\frac{x-x%y}{y}$$<br>$$Ax + B - (Ax+B)%y = A(x%y) + B - (A(x%y)+B)%y + A(x-x%y)$$<br>$$Ax - (Ax+B)%y = A(x%y) - (A(x%y)+B)%y + A(x-x%y)$$<br>$$Ax - (Ax+B)%y = A(x%y) - (Ax+B)%y + A(x-x%y)$$<br>$$Ax = A(x%y) + A(x-x%y)$$<br>$$Ax = A(x%y) + Ax - A(x%y)$$<br>得证。</p>
-<p>那么通过这个结论可以得知：<br>$$<br>\begin{equation}<br>\begin{aligned}<br>f(a, b, c, n) &amp;= \sum_{i=0}^n \lfloor \frac{ai+b}{c} \rfloor \<br>&amp;= \sum_{i=0}^n (\lfloor \frac{(a%c)i+b%c}{c} \rfloor +<br>i\lfloor \frac{a}{c} \rfloor + \lfloor \frac{b}{c} \rfloor) \<br>&amp;= f(a%c, b%c, c, n) + \sum_{i=0}^n (<br>i\lfloor \frac{a}{c} \rfloor + \lfloor \frac{b}{c} \rfloor) \<br>\end{aligned}<br>\end{equation}<br>$$</p>
-<p>后面那一段就是一个等差数列求和，于是 a, b 被转换为小于 c 。</p>
-<h2 id="转换成子问题减小规模"><a href="#转换成子问题减小规模" class="headerlink" title="转换成子问题减小规模"></a>转换成子问题减小规模</h2><p>整除除了用取模代替外，还有一种方法。</p>
-<p>结论 2 ：<br>$$\lfloor \frac{x}{y} \rfloor = \sum_{i=1}^{MAX} [i \leq \frac{x}{y}]$$<br>其中 MAX 是任意一个足够大的值。<br>证明？相当于从 1 开始数，感性理解即可。</p>
-<p>那么通过这个结论可以得知：<br>$$<br>\begin{equation}<br>\begin{aligned}<br>f(a, b, c, n) &amp;= \sum_{i=0}^n \lfloor \frac{ai+b}{c} \rfloor \<br>&amp;= \sum_{i=0}^n \sum_{j=1}^{(an+b)/c} [j \leq \frac{ai+b}{c}] \<br>&amp;= \sum_{i=0}^n \sum_{j=0}^{(an+b)/c-1} [j + 1 \leq \frac{ai+b}{c}] \<br>&amp;= \sum_{i=0}^n \sum_{j=0}^{(an+b)/c-1} [cj + c \leq ai+b] \<br>&amp;= \sum_{i=0}^n \sum_{j=0}^{(an+b)/c-1} [cj + c - 1 &lt; ai+b] \<br>&amp;= \sum_{i=0}^n \sum_{j=0}^{(an+b)/c-1} [\frac{cj+c-b-1}{a} &lt; i] \<br>&amp;= \sum_{j=0}^{(an+b)/c-1} \sum_{i=0}^n [\frac{cj+c-b-1}{a} &lt; i] \<br>&amp;= \sum_{j=0}^{(an+b)/c-1}<br>(n + 1 - \sum_{i=0}^n [i \leq \frac{cj+c-b-1}{a}]) \<br>&amp;= \sum_{j=0}^{(an+b)/c-1}<br>(n - \lfloor \frac{cj+c-b-1}{a} \rfloor) \<br>&amp;= n \lfloor \frac{an+b}{c} \rfloor -<br>\sum_{j=0}^{(an+b)/c-1} (\lfloor \frac{cj+c-b-1}{a} \rfloor) \<br>&amp;= n \lfloor \frac{an+b}{c} \rfloor - f(c, c-b-1, a, (an+b)/c-1)<br>\end{aligned}<br>\end{equation}<br>$$</p>
-<p>那么就得到了一个递归计算 f(a, b, c, n) 的算法，<br>a = 0 时上式不成立，因为上面的推导有除以 a 的步骤。<br>因此将 a = 0 作为终止状态，此时 f 的计算是常数数列求和。<br>复杂度是对数复杂度 log(a)，因为上面的过程规模的减小速度相当于 gcd 。</p>
+            <p>@CYJian 出了一道黑科技二合一，我就顺便跟着学了学。</p>
+<h2 id="O-1-gcd"><a href="#O-1-gcd" class="headerlink" title="O(1) gcd"></a>O(1) gcd</h2><p>在 O(V) 的预处理后可以做到 O(1) 查询 gcd ，其中 V 是权值的大小。</p>
+<p>主要利用到的一个性质是可以将任意 x 分解为三个数 a * b * c ，满足以下两个条件之一：</p>
+<ol>
+<li>a, b, c 都不超过 $\sqrt{x}$ 。</li>
+<li>a, b, c 全是质数。</li>
+</ol>
+<p>zzq 把满足这个性质的分解成为“迷之分解”，那我也这么叫吧。</p>
+<p>考虑证明一下，顺便构造一个“迷之分解”。</p>
+<p>找到 x 的最小质因子 p ，然后假设已知 x / p 的“迷之分解” A, B, C (A &lt;= B &lt;= C) 。<br>那么把 p 乘到 A 上就可以得到 x 的“迷之分解” A * p, B, C 。<br>分类讨论，如果 p 不超过 $\sqrt[4]{x}$ ，由于 A 是 A, B, C 三者中最小的，<br>一定满足 A 不超过 $\sqrt[3]{x/p}$ ，那么可得：</p>
+<p>$$A \cdot p \leq \sqrt[3]{x/p} \cdot p = \sqrt[3]{xp^2} \leq \sqrt{x}$$</p>
+<p>而如果 p 超过 $\sqrt[4]{x}$ ，由于 p 是最小质因子，<br>那么如果 x 的“迷之分解”有合数 C ， C 至少是 $p^2$ ，超过 $\sqrt{x}$ ，<br>那么 B 的大小就会比 p 小，与 p 是最小质因子矛盾，<br>因而此时 x 的“迷之分解”全是质数。</p>
+<p>“迷之分解”的分析就是这样，通过线性筛可以很好预处理出 O(V) 内的所有数的“迷之分解”。<br>然后只需预处理出 $O(\sqrt{V})$ 内两两的 gcd ，为了不带 log ，需要递推预处理。<br>此时求 gcd(x, y) 只需对于 x 的“迷之分解” A, B, C 依次对 y 求 gcd ，<br>以 A 为例，如果 A 不超过 $\sqrt{x}$ ，直接查表可以得到 gcd(A, y) ，<br>否则 A 为质数，简单讨论一下就可以得到 gcd(A, y) 了。</p>
+<h2 id="O-1-快速幂"><a href="#O-1-快速幂" class="headerlink" title="O(1) 快速幂"></a>O(1) 快速幂</h2><p>在 $O(\sqrt{p})$ 的预处理后可以做到对于一个固定的底数 O(1) 查询快速幂，<br>其中 p 是模数，或者是指数的范围。</p>
+<p>这个就简单得多，对于每个 $a^k$ 的指数 k 都可以表示为 $a \sqrt{p} + b$ 的形式，<br>满足 $a, b &lt; \sqrt{p}$ ，分别预处理即可，<br>即预处理 $a^0, a^1, a^2 … a^{\sqrt{p}}, a^{2\sqrt{p}}, a^{3\sqrt{p}} … a^p$ 。</p>
 
           
         
@@ -359,7 +363,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/09/逆序对/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/09/杜教筛/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="John Doe">
@@ -378,7 +382,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/10/09/逆序对/" itemprop="url">逆序对</a></h1>
+                <a class="post-title-link" href="/2019/10/09/杜教筛/" itemprop="url">杜教筛</a></h1>
         
 
         <div class="post-meta">
@@ -390,7 +394,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-09T17:37:15+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-09T20:16:37+08:00">
                 2019-10-09
               </time>
             
@@ -430,159 +434,22 @@
       
         
           
-            <p>在数列 a 中,逆序对即是满足 $i&lt; j;and;a_i&gt; a_j$ 的数对。<br>许多情况下你推式子推着推着就推出个 $\sum_{i=1}^n \sum_{j=i+1}^n a_i&gt; a_j$，<br>这就是逆序对的数量。</p>
-<h2 id="暴力"><a href="#暴力" class="headerlink" title="暴力"></a>暴力</h2><p>朴素的求法自然是 $O(n^2)$ 地枚举 i,j 统计，这里不再赘述。</p>
-<h2 id="归并"><a href="#归并" class="headerlink" title="归并"></a>归并</h2><p>前置技能：归并排序。</p>
-<p>这应该是最主流的求逆序对的方法了。</p>
-<p>要求一个区间内的逆序对数，假设已经递归求出两个子区间的逆序对数，<br>接下来要做的就是求一个在左区间，一个在右区间的逆序对数。</p>
-<p>考虑归并排序的过程，在两个指针比较大小时进行统计。</p>
-<p>设左右区间的当前比较指针（下标）为 p1, p2,<br>当找到第一个 p2 使 $a_{p1}&lt; a_{p2}$ 时，可知 $\forall i\in [p1max+1, p2),;a_{p1}&gt; a_{p2}$ 。<br>那么横跨两个子区间的以 p1 为左端点的逆序对就有 p2-p1max-1 个。<br>对所有 p1 统计和即可。</p>
-<p>值得注意的是，p2&gt;r（区间右端点）退出时，<br>此时左区间未处理的数对答案都有 r-p1max 的贡献因为此时左区间剩下的数都比右区间所有数大。</p>
-<p>复杂度 $O(n \cdot log_2n)$ 。</p>
-<h2 id="线段树-树状数组："><a href="#线段树-树状数组：" class="headerlink" title="线段树/树状数组："></a>线段树/树状数组：</h2><p>前置技能：线段树（或树状数组）。</p>
-<p>以线段树为例。</p>
-<h3 id="做法-1"><a href="#做法-1" class="headerlink" title="做法 1"></a>做法 1</h3><p>用线段树维护区间内有效数的个数。<br>之所以是有效的数，是因为要从小到大删数。<br>如果一个数 $a_i$ 是最小的，那么以其为右端点的逆序对就是 1 至 i-1 的数的个数。</p>
-<p>接下来呢？<br>在线段树中删掉最小的数（单点修改 -1），<br>那么第二小的数 $a_j$ 在此时就是最小的数，同样有 1 至 j-1 的数的个数（区间查询）的贡献。<br>以此类推从小到大一个个删数即可。</p>
-<p>复杂度$O(n \cdot log_2n)$。</p>
-<h3 id="做法-2"><a href="#做法-2" class="headerlink" title="做法 2"></a>做法 2</h3><p>离散化后用线段树维护一个桶。</p>
-<p>从左到右依次计算每个数为右端点的逆序对并加入桶，即对每个数求该数左边比该数大的数的个数。<br>设第 i 个数左边有 $f_i$ 个比 $a_i$ 大的数，那么 $f_i$ 的值即是当前线段树上 $a_i+1~a_{max}$ 的询问。</p>
-<p>同样复杂度是 $O(n \cdot log_2n)$。</p>
-<p>这种做法稍稍改变可以高效解决一种特殊的问题：</p>
-<p>对于 01 串求串中 1 的数量比 0 的数量大的区间的数量。</p>
-<p>比较容易想到的做法是将 0 看成 -1，区间中 1 比 0(-1) 多等价于区间和大于 0 。<br>区间和可以转换为前缀和 s，那么 l,r 这一区间和大于 0 等价于 $s_r - s_{l-1} &gt; 0 (r &gt;= l)$。<br>移项后即是 $s_r &gt; s_{(l-1)} (r &gt; (l-1))$，所以题目可以转换为求前缀和的逆序对，<br>复杂度 $O(n \cdot log_2n)$ 。</p>
-<p><strong>但是</strong> 这个问题有特殊性，由 01 串的至可知相邻两个前缀和的差值一定是 1 ，<br>利用这一个性质可以有更高效的方法。</p>
-<p>用做法 2 求逆序对，从左到右依次扫，对于当前 $a_i$ 一定比 $a_{i-1}$ 大 1 或者小 1，<br>利用到这个差值，比 $a_i$ 大的数相当于当前线段树 $a_i+1<del>a_{max}$ 的询问，<br>若 $a_i = a_{i-1}+1$ ，那么 $f_{i-1}$ 就是 $a_i</del>a_{maxn}$ 的询问，否则就是 $a_i+2~a_{max}$ 的询问。<br>那么 $f_i$ 与 $f_{i-1}$ 的差只在 $a_i$ 或 $a_i+2$ 中，长度为一，<br>完全没必要用线段树，用数组维护桶即可。</p>
-<p>复杂度 $O(n)$。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/09/莫比乌斯反演/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/10/09/莫比乌斯反演/" itemprop="url">莫比乌斯反演</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-09T17:36:53+08:00">
-                2019-10-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>（以下除号皆表示整除）<br>对于一些式子复杂度大的数论题，或许用莫比乌斯反演可以高效解决问题。</p>
+            <p>对于各种数论函数的前缀和，如果线性跑不过去，<br>那就可以尝试复杂度为 $ O(n^{2/3}) $ 的杜教筛，<br><del>听说还有 min_25 筛，洲阁筛等一堆乱七八糟的筛法</del></p>
 <p>前置技能：</p>
 <ul>
 <li>基本数论函数</li>
 <li>狄利克雷卷积</li>
+<li>整除分块</li>
 </ul>
-<p>莫比乌斯函数满足 $\mu * I = \epsilon $<br>即 $ \sum_{d|n}\mu(d) = [n = 1] $<br>表达式为：<br>$$ n = 0 : \mu(n) = 1 $$<br>$$ n = \prod_{p|n&amp;p,is,prime} p : \mu(n)=(-1)^k $$<br>$$ otherwise : \mu(n)=0 $$</p>
-<p>证明：<br><del>暂时不会</del></p>
-<p>莫比乌斯反演：<br>对于数论函数 f(n)，设 $ F(n) = \sum_{d|n}f(d) $<br>即 $ F = f * I $<br>则有 $ f(n) = \sum_{d|n}F(d)*\mu(\frac{n}{d}) $<br>即 $ f = F * \mu $</p>
-<p>证明：<br>$$ \because ; F = f<em>I $$<br>$$ \therefore ; F</em>\mu = f<em>I</em>\mu $$<br>$$ \because ; I<em>\mu = \epsilon $$<br>$$ \therefore ; F</em>\mu = f<em>\epsilon $$<br>$$ \therefore ; f = F</em>\mu $$</p>
-<p>莫比乌斯反演好像主要是用来推式子，F 比 f 好做的话，就可以试试莫比乌斯反演。</p>
+<p>设要求 $ S(n) = \sum_{i=1}^n f(i) $<br>找到函数 g, h 令 $ h = f * g $<br>则：<br>$$ \sum_{i=1}^n h(i) $$<br>$$ = \sum_{i=1}^n\sum_{d|i}f(\frac{i}{d})*g(d)$$<br>$$ = \sum_{d=1}^ng(d)*\sum_{i=d}^nf(\frac{i}{d})*[i|d]$$<br>$$ = \sum_{d=1}^ng(d)*\sum_{i=1}^{n/d}f(i)$$<br>$$ = \sum_{d=1}^ng(d)*S(\frac{n}{d})$$<br>$$ = g(1)*S(n) + \sum_{d=2}^ng(d)*S(\frac{n}{d})$$<br>所以 $S(n) = \sum_{i=1}^n h(i) - \sum_{d=2}^n g(d)*S(\frac{n}{d})$<br>如果 h 的前缀和容易求，那后面一大块就是整除分块的套路了<br>经分析得不考虑h的前缀和复杂度为 $O(n^{2/3})$ ，<br><del>其实我根本不知道怎么来的</del></p>
+<p><a href="https://www.luogu.org/problemnew/show/P4213" target="_blank" rel="noopener">洛谷模板P4213</a><br>欧拉函数的前缀和可以用莫比乌斯反演，光用杜教筛会被卡,作为例子，只贴出杜教筛的代码<br>实际应用中需要注意：</p>
+<ul>
+<li>一般要记录求得的 $ S(n) $</li>
+<li>一般先线性晒出前 maxn 的 S(n), maxn 的值一般在 $ \sqrt{n} $ 左右？</li>
+</ul>
+<p>很久以前写的代码，不用你们喷，我也知道很 shi ：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> GCC optimize(2)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">long</span> <span class="keyword">long</span> <span class="title">input</span><span class="params">()</span> </span>&#123; <span class="keyword">long</span> <span class="keyword">long</span> res; <span class="built_in">scanf</span>(<span class="string">"%lld"</span>,&amp;res); <span class="keyword">return</span> res; &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">5000000</span>;</span><br><span class="line"><span class="keyword">int</span> mu[maxn] , phi[maxn];</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> s_mu[maxn] , s_phi[maxn];</span><br><span class="line"><span class="keyword">bool</span> not_prime[maxn];</span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; prime;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	not_prime[<span class="number">1</span>] = <span class="literal">true</span>;</span><br><span class="line">	mu[<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">	phi[<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;maxn;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(<span class="keyword">not</span> not_prime[i])</span><br><span class="line">			mu[i] = <span class="number">-1</span> ,</span><br><span class="line">			phi[i] = i - <span class="number">1</span> ,</span><br><span class="line">			prime.push_back(i);</span><br><span class="line">		<span class="keyword">for</span>(uint j=<span class="number">0</span>;j&lt;prime.size();j++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">long</span> <span class="keyword">long</span> p = prime[j];</span><br><span class="line">			<span class="keyword">if</span>(i * p &gt;= maxn) <span class="keyword">break</span>;</span><br><span class="line">			not_prime[i * p] = <span class="literal">true</span>;</span><br><span class="line">			<span class="keyword">if</span>(i % p == <span class="number">0</span>)</span><br><span class="line">			&#123;</span><br><span class="line">				mu[i * p] = <span class="number">0</span>;</span><br><span class="line">				phi[i * p] = phi[i] * p;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			mu[i * p] = mu[i] * <span class="number">-1</span>;</span><br><span class="line">			phi[i * p] = phi[i] * (p - <span class="number">1</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	s_mu[<span class="number">1</span>] = mu[<span class="number">1</span>];</span><br><span class="line">	s_phi[<span class="number">1</span>] = phi[<span class="number">1</span>];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;maxn;i++)</span><br><span class="line">		s_mu[i] = s_mu[i - <span class="number">1</span>] + mu[i] ,</span><br><span class="line">		s_phi[i] = s_phi[i - <span class="number">1</span>] + phi[i] ;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">ans_mu</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(n &lt; maxn) <span class="keyword">return</span>  s_mu[n];</span><br><span class="line">	<span class="keyword">static</span> <span class="built_in">std</span>::<span class="built_in">unordered_map</span>&lt;<span class="keyword">long</span> <span class="keyword">long</span> , <span class="keyword">long</span> <span class="keyword">long</span>&gt; mp;</span><br><span class="line">	<span class="keyword">if</span>(mp.count(n)) <span class="keyword">return</span> mp[n];</span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">long</span> res = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> l=<span class="number">2</span>,r;l&lt;=n;l=r)</span><br><span class="line">	&#123;</span><br><span class="line">		r = n / (n / l) + <span class="number">1</span>;</span><br><span class="line">		res -= ans_mu(n / l) * (r - l);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> mp[n] = res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">ans_phi</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(n &lt; maxn) <span class="keyword">return</span> s_phi[n];</span><br><span class="line">	<span class="keyword">static</span> <span class="built_in">std</span>::<span class="built_in">unordered_map</span>&lt;<span class="keyword">long</span> <span class="keyword">long</span> , <span class="keyword">long</span> <span class="keyword">long</span>&gt; mp;</span><br><span class="line">	<span class="keyword">if</span>(mp.count(n)) <span class="keyword">return</span> mp[n];</span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">long</span> res = (n + <span class="number">1</span>) * n &gt;&gt; <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> l=<span class="number">2</span>,r;l&lt;=n;l=r)</span><br><span class="line">	&#123;</span><br><span class="line">		r = n / (n / l) + <span class="number">1</span>;</span><br><span class="line">		res -= ans_phi(n / l) * (r - l);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> mp[n] = res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> T = input();</span><br><span class="line">	init();</span><br><span class="line">	<span class="keyword">while</span>(T --)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> n = input();</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%lld %lld\n"</span>,ans_phi(n),ans_mu(n));</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 
           
         
@@ -662,7 +529,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-09T17:36:46+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-09T20:15:46+08:00">
                 2019-10-09
               </time>
             
@@ -718,8 +585,532 @@
 <h3 id="公式-6"><a href="#公式-6" class="headerlink" title="公式 6"></a>公式 6</h3><p>$$ \sum_{i=0}^n (C_n^i)^2 = C_{2n}^n $$</p>
 <h3 id="公式-7"><a href="#公式-7" class="headerlink" title="公式 7"></a>公式 7</h3><p>$$ C_{n+m}^k = \sum_{i=0}^k C_n^i * C_m^{k-i} $$</p>
 <p>从组合数学上的定义出发，在 n + m 个元素中选 k 个，<br>相当于先在前 n 个元素中选 i 个再在后 m 个元素中选 k - i 个。<br>枚举这个 i 把方案数相加就能得到最终方案数。</p>
-<h3 id="Lucas-定理"><a href="#Lucas-定理" class="headerlink" title="Lucas 定理"></a>Lucas 定理</h3><p>$$ C_n^m = C_{n/p}^{m/p} * C_{n ; mod ; p}^{m ; mod ; p} (mod ; p) $$</p>
+<h3 id="Lucas-定理"><a href="#Lucas-定理" class="headerlink" title="Lucas 定理"></a>Lucas 定理</h3><p>$$ C_n^m = C_{n/p}^{m/p} * C_{n \; mod \; p}^{m \; mod \; p} (mod \; p) $$</p>
 <p>常用于模数较小的组合数取模。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/09/莫比乌斯反演/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/10/09/莫比乌斯反演/" itemprop="url">莫比乌斯反演</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-09T20:15:22+08:00">
+                2019-10-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>（以下除号皆表示整除）<br>对于一些式子复杂度大的数论题，或许用莫比乌斯反演可以高效解决问题。</p>
+<p>前置技能：</p>
+<ul>
+<li>基本数论函数</li>
+<li>狄利克雷卷积</li>
+</ul>
+<p>莫比乌斯函数满足 $\mu * I = \epsilon $<br>即 $ \sum_{d|n}\mu(d) = [n = 1] $<br>表达式为：<br>$$ n = 0 : \mu(n) = 1 $$<br>$$ n = \prod_{p|n\&amp;p\,is\,prime} p : \mu(n)=(-1)^k $$<br>$$ otherwise : \mu(n)=0 $$</p>
+<p>证明：<br><del>暂时不会</del></p>
+<p>莫比乌斯反演：<br>对于数论函数 f(n)，设 $ F(n) = \sum_{d|n}f(d) $<br>即 $ F = f * I $<br>则有 $ f(n) = \sum_{d|n}F(d)*\mu(\frac{n}{d}) $<br>即 $ f = F * \mu $</p>
+<p>证明：<br>$$ \because \; F = f*I $$<br>$$ \therefore \; F*\mu = f*I*\mu $$<br>$$ \because \; I*\mu = \epsilon $$<br>$$ \therefore \; F*\mu = f*\epsilon $$<br>$$ \therefore \; f = F*\mu $$</p>
+<p>莫比乌斯反演好像主要是用来推式子，F 比 f 好做的话，就可以试试莫比乌斯反演。</p>
+<p>另外事实上只需要熟知 $\mu$ 函数的性质，直接推式子就行了，<br>绝大多数情况下（至少是我遇到的所有情况下）并不需要莫比乌斯反演。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/09/逆序对/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/10/09/逆序对/" itemprop="url">逆序对</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-09T20:12:11+08:00">
+                2019-10-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>在数列 a 中,逆序对即是满足 $i &lt; j$ 且 $a_i &gt; a_j$ 的数对。<br>许多情况下你推式子推着推着就推出个 $\sum_{i=1}^n \sum_{j=i+1}^n a_i&gt; a_j$，<br>这就是逆序对的数量。</p>
+<h2 id="暴力"><a href="#暴力" class="headerlink" title="暴力"></a>暴力</h2><p>朴素的求法自然是 $O(n^2)$ 地枚举 $i, j$ 统计，这里不再赘述。</p>
+<h2 id="归并"><a href="#归并" class="headerlink" title="归并"></a>归并</h2><p>前置技能：归并排序。</p>
+<p>这应该是最主流的求逆序对的方法了。</p>
+<p>要求一个区间内的逆序对数，假设已经递归求出两个子区间的逆序对数，<br>接下来要做的就是求一个在左区间，一个在右区间的逆序对数。</p>
+<p>考虑归并排序的过程，在两个指针比较大小时进行统计。</p>
+<p>设左右区间的当前比较指针（下标）为 p1, p2,<br>当找到第一个 p2 使 $a_{p1}&lt; a_{p2}$ 时，可知 $\forall i\in [p1max+1, p2),;a_{p1}&gt; a_{p2}$ 。<br>那么横跨两个子区间的以 p1 为左端点的逆序对就有 p2-p1max-1 个。<br>对所有 p1 统计和即可。</p>
+<p>值得注意的是，p2&gt;r（区间右端点）退出时，<br>此时左区间未处理的数对答案都有 r-p1max 的贡献因为此时左区间剩下的数都比右区间所有数大。</p>
+<p>复杂度 $O(n \cdot log_2n)$ 。</p>
+<h2 id="线段树-树状数组："><a href="#线段树-树状数组：" class="headerlink" title="线段树/树状数组："></a>线段树/树状数组：</h2><p>前置技能：线段树（或树状数组）。</p>
+<p>以线段树为例。</p>
+<h3 id="做法-1"><a href="#做法-1" class="headerlink" title="做法 1"></a>做法 1</h3><p>用线段树维护区间内有效数的个数。<br>之所以是有效的数，是因为要从小到大删数。<br>如果一个数 $a_i$ 是最小的，那么以其为右端点的逆序对就是 1 至 i-1 的数的个数。</p>
+<p>接下来呢？<br>在线段树中删掉最小的数（单点修改 -1），<br>那么第二小的数 $a_j$ 在此时就是最小的数，同样有 1 至 j-1 的数的个数（区间查询）的贡献。<br>以此类推从小到大一个个删数即可。</p>
+<p>复杂度$O(n \cdot log_2n)$。</p>
+<h3 id="做法-2"><a href="#做法-2" class="headerlink" title="做法 2"></a>做法 2</h3><p>离散化后用线段树维护一个桶。</p>
+<p>从左到右依次计算每个数为右端点的逆序对并加入桶，即对每个数求该数左边比该数大的数的个数。<br>设第 i 个数左边有 $f_i$ 个比 $a_i$ 大的数，那么 $f_i$ 的值即是当前线段树上 $a_i+1~a_{max}$ 的询问。</p>
+<p>同样复杂度是 $O(n \cdot log_2n)$。</p>
+<p>这种做法稍稍改变可以高效解决一种特殊的问题：</p>
+<p>对于 01 串求串中 1 的数量比 0 的数量大的区间的数量。</p>
+<p>比较容易想到的做法是将 0 看成 -1，区间中 1 比 0(-1) 多等价于区间和大于 0 。<br>区间和可以转换为前缀和 s，那么 l,r 这一区间和大于 0 等价于 $s_r - s_{l-1} &gt; 0 (r &gt;= l)$。<br>移项后即是 $s_r &gt; s_{l-1} \; (r &gt; l-1)$，所以题目可以转换为求前缀和的逆序对，<br>复杂度 $O(n \cdot log_2n)$ 。</p>
+<p><strong>但是</strong> 这个问题有特殊性，由 01 串的至可知相邻两个前缀和的差值一定是 1 ，<br>利用这一个性质可以有更高效的方法。</p>
+<p>用做法 2 求逆序对，从左到右依次扫，对于当前 $a_i$ 一定比 $a_{i-1}$ 大 1 或者小 1，<br>利用到这个差值，比 $a_i$ 大的数相当于当前线段树 $a_i+1<del>a_{max}$ 的询问，<br>若 $a_i = a_{i-1}+1$ ，那么 $f_{i-1}$ 就是 $a_i</del>a_{maxn}$ 的询问，否则就是 $a_i+2~a_{max}$ 的询问。<br>那么 $f_i$ 与 $f_{i-1}$ 的差只在 $a_i$ 或 $a_i+2$ 中，长度为一，<br>完全没必要用线段树，用数组维护桶即可。</p>
+<p>复杂度 $O(n)$。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/09/搬迁/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/10/09/搬迁/" itemprop="url">搬迁</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-09T20:07:43+08:00">
+                2019-10-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>没什么好说的，动态博客用烦了，搞了好多花里胡哨的东西，<br>还是沉下心来，好好写博客，<br>既然如此，就不打算做什么美化了，基本能用就行，勿喷。</p>
+<p>另外 hexo 的公式渲染有点 shit ，哪里的公式挂了还请提醒。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/09/类欧几里得/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/10/09/类欧几里得/" itemprop="url">类欧几里得</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-09T20:07:19+08:00">
+                2019-10-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>这里只是类欧几里得的一种：<br>快速求下式：<br>$$f(a, b, c, n) = \sum_{i=0}^n \lfloor \frac{ai+b}{c} \rfloor$$</p>
+<p>其中 a, b, c, n 都是正整数。</p>
+<h2 id="缩小-a-b-规模"><a href="#缩小-a-b-规模" class="headerlink" title="缩小 a, b 规模"></a>缩小 a, b 规模</h2><p>首先的目标是让 a, b 小于 c 。</p>
+<p>结论 1 ：<br>$$\lfloor \frac{Ax+B}{y} \rfloor =<br>\lfloor \frac{A(x\%y)+B}{y} \rfloor + A\lfloor \frac{x}{y} \rfloor$$</p>
+<p>证明：<br>首先用到整除与取模的转换：<br>$\lfloor \frac{x}{y} \rfloor = \frac{x-x\%y}{y}$ 。<br>得到原命题等价于：<br>$$\frac{Ax+B-(Ax+B)\%y}{y} =<br>\frac{A(x\%y)+B-(A(x\%y)+B)\%y}{y} + A\frac{x-x\%y}{y}$$<br>$$Ax + B - (Ax+B)\%y = A(x\%y) + B - (A(x\%y)+B)\%y + A(x-x\%y)$$<br>$$Ax - (Ax+B)\%y = A(x\%y) - (A(x\%y)+B)\%y + A(x-x\%y)$$<br>$$Ax - (Ax+B)\%y = A(x\%y) - (Ax+B)\%y + A(x-x\%y)$$<br>$$Ax = A(x\%y) + A(x-x\%y)$$<br>$$Ax = A(x\%y) + Ax - A(x\%y)$$<br>得证。</p>
+<p>那么通过这个结论可以得知：<br>$$<br>\begin{equation}<br>\begin{aligned}<br>f(a, b, c, n) &amp;= \sum_{i=0}^n \lfloor \frac{ai+b}{c} \rfloor \\<br>&amp;= \sum_{i=0}^n (\lfloor \frac{(a\%c)i+b\%c}{c} \rfloor +<br>i\lfloor \frac{a}{c} \rfloor + \lfloor \frac{b}{c} \rfloor) \\<br>&amp;= f(a\%c, b\%c, c, n) + \sum_{i=0}^n (<br>i\lfloor \frac{a}{c} \rfloor + \lfloor \frac{b}{c} \rfloor) \\<br>\end{aligned}<br>\end{equation}<br>$$</p>
+<p>后面那一段就是一个等差数列求和，于是 a, b 被转换为小于 c 。</p>
+<h2 id="转换成子问题减小规模"><a href="#转换成子问题减小规模" class="headerlink" title="转换成子问题减小规模"></a>转换成子问题减小规模</h2><p>整除除了用取模代替外，还有一种方法。</p>
+<p>结论 2 ：<br>$$\lfloor \frac{x}{y} \rfloor = \sum_{i=1}^{MAX} [i \leq \frac{x}{y}]$$<br>其中 MAX 是任意一个足够大的值。<br>证明？相当于从 1 开始数，感性理解即可。</p>
+<p>那么通过这个结论可以得知：<br>$$<br>\begin{equation}<br>\begin{aligned}<br>f(a, b, c, n) &amp;= \sum_{i=0}^n \lfloor \frac{ai+b}{c} \rfloor \\<br>&amp;= \sum_{i=0}^n \sum_{j=1}^{(an+b)/c} [j \leq \frac{ai+b}{c}] \\<br>&amp;= \sum_{i=0}^n \sum_{j=0}^{(an+b)/c-1} [j + 1 \leq \frac{ai+b}{c}] \\<br>&amp;= \sum_{i=0}^n \sum_{j=0}^{(an+b)/c-1} [cj + c \leq ai+b] \\<br>&amp;= \sum_{i=0}^n \sum_{j=0}^{(an+b)/c-1} [cj + c - 1 &lt; ai+b] \\<br>&amp;= \sum_{i=0}^n \sum_{j=0}^{(an+b)/c-1} [\frac{cj+c-b-1}{a} &lt; i] \\<br>&amp;= \sum_{j=0}^{(an+b)/c-1} \sum_{i=0}^n [\frac{cj+c-b-1}{a} &lt; i] \\<br>&amp;= \sum_{j=0}^{(an+b)/c-1}<br>(n + 1 - \sum_{i=0}^n [i \leq \frac{cj+c-b-1}{a}]) \\<br>&amp;= \sum_{j=0}^{(an+b)/c-1}<br>(n - \lfloor \frac{cj+c-b-1}{a} \rfloor) \\<br>&amp;= n \lfloor \frac{an+b}{c} \rfloor -<br>\sum_{j=0}^{(an+b)/c-1} (\lfloor \frac{cj+c-b-1}{a} \rfloor) \\<br>&amp;= n \lfloor \frac{an+b}{c} \rfloor - f(c, c-b-1, a, (an+b)/c-1)<br>\end{aligned}<br>\end{equation}<br>$$</p>
+<p>那么就得到了一个递归计算 f(a, b, c, n) 的算法，<br>a = 0 时上式不成立，因为上面的推导有除以 a 的步骤。<br>因此将 a = 0 作为终止状态，此时 f 的计算是常数数列求和。<br>复杂度是对数复杂度 log(a)，因为上面的过程规模的减小速度相当于 gcd 。</p>
 
           
         
@@ -862,141 +1253,6 @@
 <h2 id="真-例题"><a href="#真-例题" class="headerlink" title="真 - 例题"></a>真 - 例题</h2><p>这两道题就没有这么裸了。</p>
 <p><a href="https://www.luogu.org/problemnew/show/P3733" target="_blank" rel="noopener">洛谷八纵八横</a> （线段树分治 + 线性基）</p>
 <p><a href="https://www.lydsy.com/JudgeOnline/problem.php?id=4025" target="_blank" rel="noopener">BZOJ 二分图</a> （线段树分治 + 并查集）</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/09/杜教筛/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/10/09/杜教筛/" itemprop="url">杜教筛</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-09T17:35:30+08:00">
-                2019-10-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>对于各种数论函数的前缀和，如果线性跑不过去，<br>那就可以尝试复杂度为 $ O(n^{2/3}) $ 的杜教筛，<br><del>听说还有 min_25 筛，洲阁筛等一堆乱七八糟的筛法</del></p>
-<p>前置技能：</p>
-<ul>
-<li>基本数论函数</li>
-<li>狄利克雷卷积</li>
-<li>整除分块</li>
-</ul>
-<p>设要求 $ S(n) = \sum_{i=1}^n f(i) $<br>找到函数 g, h 令 $ h = f * g $<br>则：<br>$$ \sum_{i=1}^n h(i) $$<br>$$ = \sum_{i=1}^n\sum_{d|i}f(\frac{i}{d})<em>g(d)$$<br>$$ = \sum_{d=1}^ng(d)*\sum_{i=d}^nf(\frac{i}{d})</em>[i|d]$$<br>$$ = \sum_{d=1}^ng(d)<em>\sum_{i=1}^{n/d}f(i)$$<br>$$ = \sum_{d=1}^ng(d)</em>S(\frac{n}{d})$$<br>$$ = g(1)<em>S(n) + \sum_{d=2}^ng(d)</em>S(\frac{n}{d})$$<br>所以 $S(n) = \sum_{i=1}^n h(i) - \sum_{d=2}^n g(d)*S(\frac{n}{d})$<br>如果 h 的前缀和容易求，那后面一大块就是整除分块的套路了<br>经分析得不考虑h的前缀和复杂度为 $O(n^{2/3})$ ，<br><del>其实我根本不知道怎么来的</del></p>
-<p><a href="https://www.luogu.org/problemnew/show/P4213" target="_blank" rel="noopener">洛谷模板P4213</a><br>欧拉函数的前缀和可以用莫比乌斯反演，光用杜教筛会被卡,作为例子，只贴出杜教筛的代码<br>实际应用中需要注意：</p>
-<ul>
-<li>一般要记录求得的 $ S(n) $</li>
-<li>一般先线性晒出前 maxn 的 S(n), maxn 的值一般在 $ \sqrt{n} $ 左右？</li>
-</ul>
-<p>很久以前写的代码，不用你们喷，我也知道很 shi ：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> GCC optimize(2)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">long</span> <span class="keyword">long</span> <span class="title">input</span><span class="params">()</span> </span>&#123; <span class="keyword">long</span> <span class="keyword">long</span> res; <span class="built_in">scanf</span>(<span class="string">"%lld"</span>,&amp;res); <span class="keyword">return</span> res; &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">5000000</span>;</span><br><span class="line"><span class="keyword">int</span> mu[maxn] , phi[maxn];</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> s_mu[maxn] , s_phi[maxn];</span><br><span class="line"><span class="keyword">bool</span> not_prime[maxn];</span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; prime;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	not_prime[<span class="number">1</span>] = <span class="literal">true</span>;</span><br><span class="line">	mu[<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">	phi[<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;maxn;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(<span class="keyword">not</span> not_prime[i])</span><br><span class="line">			mu[i] = <span class="number">-1</span> ,</span><br><span class="line">			phi[i] = i - <span class="number">1</span> ,</span><br><span class="line">			prime.push_back(i);</span><br><span class="line">		<span class="keyword">for</span>(uint j=<span class="number">0</span>;j&lt;prime.size();j++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">long</span> <span class="keyword">long</span> p = prime[j];</span><br><span class="line">			<span class="keyword">if</span>(i * p &gt;= maxn) <span class="keyword">break</span>;</span><br><span class="line">			not_prime[i * p] = <span class="literal">true</span>;</span><br><span class="line">			<span class="keyword">if</span>(i % p == <span class="number">0</span>)</span><br><span class="line">			&#123;</span><br><span class="line">				mu[i * p] = <span class="number">0</span>;</span><br><span class="line">				phi[i * p] = phi[i] * p;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			mu[i * p] = mu[i] * <span class="number">-1</span>;</span><br><span class="line">			phi[i * p] = phi[i] * (p - <span class="number">1</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	s_mu[<span class="number">1</span>] = mu[<span class="number">1</span>];</span><br><span class="line">	s_phi[<span class="number">1</span>] = phi[<span class="number">1</span>];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;maxn;i++)</span><br><span class="line">		s_mu[i] = s_mu[i - <span class="number">1</span>] + mu[i] ,</span><br><span class="line">		s_phi[i] = s_phi[i - <span class="number">1</span>] + phi[i] ;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">ans_mu</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(n &lt; maxn) <span class="keyword">return</span>  s_mu[n];</span><br><span class="line">	<span class="keyword">static</span> <span class="built_in">std</span>::<span class="built_in">unordered_map</span>&lt;<span class="keyword">long</span> <span class="keyword">long</span> , <span class="keyword">long</span> <span class="keyword">long</span>&gt; mp;</span><br><span class="line">	<span class="keyword">if</span>(mp.count(n)) <span class="keyword">return</span> mp[n];</span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">long</span> res = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> l=<span class="number">2</span>,r;l&lt;=n;l=r)</span><br><span class="line">	&#123;</span><br><span class="line">		r = n / (n / l) + <span class="number">1</span>;</span><br><span class="line">		res -= ans_mu(n / l) * (r - l);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> mp[n] = res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">ans_phi</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(n &lt; maxn) <span class="keyword">return</span> s_phi[n];</span><br><span class="line">	<span class="keyword">static</span> <span class="built_in">std</span>::<span class="built_in">unordered_map</span>&lt;<span class="keyword">long</span> <span class="keyword">long</span> , <span class="keyword">long</span> <span class="keyword">long</span>&gt; mp;</span><br><span class="line">	<span class="keyword">if</span>(mp.count(n)) <span class="keyword">return</span> mp[n];</span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">long</span> res = (n + <span class="number">1</span>) * n &gt;&gt; <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> l=<span class="number">2</span>,r;l&lt;=n;l=r)</span><br><span class="line">	&#123;</span><br><span class="line">		r = n / (n / l) + <span class="number">1</span>;</span><br><span class="line">		res -= ans_phi(n / l) * (r - l);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> mp[n] = res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> T = input();</span><br><span class="line">	init();</span><br><span class="line">	<span class="keyword">while</span>(T --)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> n = input();</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%lld %lld\n"</span>,ans_phi(n),ans_mu(n));</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 
           
         
@@ -1319,262 +1575,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/09/数论函数玄学操作/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/10/09/数论函数玄学操作/" itemprop="url">数论函数玄学操作</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-09T17:35:02+08:00">
-                2019-10-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>数论函数推式子是真的玄学，<br>乱七八糟的一脸懵逼，<br>好不容易看懂了转身又 <del>tm</del> 忘了，<br>这里列出一些我见过的。</p>
-<h2 id="莫比乌斯函数与恒等函数卷积"><a href="#莫比乌斯函数与恒等函数卷积" class="headerlink" title="莫比乌斯函数与恒等函数卷积"></a>莫比乌斯函数与恒等函数卷积</h2><p>$$ \mu * I = \epsilon $$</p>
-<h3 id="证明"><a href="#证明" class="headerlink" title="证明"></a>证明</h3><p>莫比乌斯函数的构造意义。</p>
-<h2 id="欧拉函数与恒等函数卷积"><a href="#欧拉函数与恒等函数卷积" class="headerlink" title="欧拉函数与恒等函数卷积"></a>欧拉函数与恒等函数卷积</h2><p>$$ \phi * I = id $$</p>
-<h2 id="单位函数与恒等函数卷积"><a href="#单位函数与恒等函数卷积" class="headerlink" title="单位函数与恒等函数卷积"></a>单位函数与恒等函数卷积</h2><p>$$ id * I = \sigma $$</p>
-<h2 id="互质条件转换为莫比乌斯函数求和"><a href="#互质条件转换为莫比乌斯函数求和" class="headerlink" title="互质条件转换为莫比乌斯函数求和"></a>互质条件转换为莫比乌斯函数求和</h2><p>$$ [gcd(i, j) == 1] = \sum_{d|i,d|j} \mu(d) $$</p>
-<p>$$ \sum_{i=1}^n \sum_{j=1}^m f(i, j) [gcd(i, j) == 1]<br> = \sum_{d=1}^{min(n, m)} \mu(d) \sum_{i=1}^{n/d} \sum_{j=1}^{m/d} f(id, jd) $$</p>
-<h3 id="证明-1"><a href="#证明-1" class="headerlink" title="证明 1"></a>证明 1</h3><p>$$ \because [gcd(i, j) == 1] = \epsilon(gcd(i, j)) $$<br>$$ \because \epsilon = \mu * I $$<br>$$ \therefore [gcd(i, j) == 1] = \sum_{d|gcd(i, j)} \mu(d) $$<br>$$ \therefore [gcd(i, j) == 1] = \sum_{d|i,d|j} \mu(d) $$</p>
-<h3 id="证明-2"><a href="#证明-2" class="headerlink" title="证明 2"></a>证明 2</h3><p>通过容斥原理和莫比乌斯函数的定义可以得出。</p>
-<h2 id="约数个数函数转换为互质数对求和"><a href="#约数个数函数转换为互质数对求和" class="headerlink" title="约数个数函数转换为互质数对求和"></a>约数个数函数转换为互质数对求和</h2><p>$$ d(i * j) = \sum_{x|i} \sum_{y|j} [gcd(x, y) == 1] $$</p>
-<h2 id="约数个数函数求和"><a href="#约数个数函数求和" class="headerlink" title="约数个数函数求和"></a>约数个数函数求和</h2><p>$$ \sum_{i=1}^n d(i) = \sum_{i=1}^n \frac{n}{i} $$</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/09/拉格朗日插值法/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/10/09/拉格朗日插值法/" itemprop="url">拉格朗日插值法</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-09T17:34:56+08:00">
-                2019-10-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>已知函数 f(x) 上 n 个点 $(x_i, y_i)$ ，求 f(k) 。</p>
-<p>拉格朗日插值法的思路在于：<br>对于每个 $(x_i, y_i)$ 找到 $L_i(x)$ 使得 $L_i(x_i) = y_i, L_i(x_j) = 0$ ，<br>其中 $ x_j $ 是已知的 x 中任意一个不等于 $ x_i $ 的 x 。</p>
-<p>n 个点无法求出 f 这个函数，<br>但可以求出一个 n - 1 次多项式，<br>可以认为这个多项式近似于 f 。</p>
-<p>而由 L 的定义可知，<br>这个多项式 g 满足 $ g(x) = \sum_{i=1}^n L_i(x) $ 。<br>那么 f(k) 就可以近似地认为是 g(k) ，<br>代入上式即可 $ O(n^2) $ 求解。</p>
-<p>现在问题在于求 L 。<br>下面的 L 可以满足定义：</p>
-<p>$$ L_i(x) = y_i \cdot \prod\limits_{j≠i}\frac{x_j-x}{x_j-x_i}$$</p>
-<p>代入可得这对于任意 $ x_i $<br>可以使得 $ L_i(x_i)=y_i,L_i(x_j) = 0 $</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1625,7 +1625,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-count">29</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

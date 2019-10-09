@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="对于各种数论函数的前缀和，如果线性跑不过去，那就可以尝试复杂度为 $ O(n^{2/3}) $ 的杜教筛，听说还有 min_25 筛，洲阁筛等一堆乱七八糟的筛法 前置技能：  基本数论函数 狄利克雷卷积 整除分块  设要求 $ S(n) = \sum_{i=1}^n f(i) $找到函数 g, h 令 $ h = f * g $则：$$ \sum_{i=1}^n h(i) $$$$ = \sum_">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-10-09T09:35:30.227Z">
+<meta property="og:updated_time" content="2019-10-09T12:16:37.991Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="杜教筛">
 <meta name="twitter:description" content="对于各种数论函数的前缀和，如果线性跑不过去，那就可以尝试复杂度为 $ O(n^{2/3}) $ 的杜教筛，听说还有 min_25 筛，洲阁筛等一堆乱七八糟的筛法 前置技能：  基本数论函数 狄利克雷卷积 整除分块  设要求 $ S(n) = \sum_{i=1}^n f(i) $找到函数 g, h 令 $ h = f * g $则：$$ \sum_{i=1}^n h(i) $$$$ = \sum_">
@@ -261,7 +261,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-09T17:35:30+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-09T20:16:37+08:00">
                 2019-10-09
               </time>
             
@@ -306,7 +306,7 @@
 <li>狄利克雷卷积</li>
 <li>整除分块</li>
 </ul>
-<p>设要求 $ S(n) = \sum_{i=1}^n f(i) $<br>找到函数 g, h 令 $ h = f * g $<br>则：<br>$$ \sum_{i=1}^n h(i) $$<br>$$ = \sum_{i=1}^n\sum_{d|i}f(\frac{i}{d})<em>g(d)$$<br>$$ = \sum_{d=1}^ng(d)*\sum_{i=d}^nf(\frac{i}{d})</em>[i|d]$$<br>$$ = \sum_{d=1}^ng(d)<em>\sum_{i=1}^{n/d}f(i)$$<br>$$ = \sum_{d=1}^ng(d)</em>S(\frac{n}{d})$$<br>$$ = g(1)<em>S(n) + \sum_{d=2}^ng(d)</em>S(\frac{n}{d})$$<br>所以 $S(n) = \sum_{i=1}^n h(i) - \sum_{d=2}^n g(d)*S(\frac{n}{d})$<br>如果 h 的前缀和容易求，那后面一大块就是整除分块的套路了<br>经分析得不考虑h的前缀和复杂度为 $O(n^{2/3})$ ，<br><del>其实我根本不知道怎么来的</del></p>
+<p>设要求 $ S(n) = \sum_{i=1}^n f(i) $<br>找到函数 g, h 令 $ h = f * g $<br>则：<br>$$ \sum_{i=1}^n h(i) $$<br>$$ = \sum_{i=1}^n\sum_{d|i}f(\frac{i}{d})*g(d)$$<br>$$ = \sum_{d=1}^ng(d)*\sum_{i=d}^nf(\frac{i}{d})*[i|d]$$<br>$$ = \sum_{d=1}^ng(d)*\sum_{i=1}^{n/d}f(i)$$<br>$$ = \sum_{d=1}^ng(d)*S(\frac{n}{d})$$<br>$$ = g(1)*S(n) + \sum_{d=2}^ng(d)*S(\frac{n}{d})$$<br>所以 $S(n) = \sum_{i=1}^n h(i) - \sum_{d=2}^n g(d)*S(\frac{n}{d})$<br>如果 h 的前缀和容易求，那后面一大块就是整除分块的套路了<br>经分析得不考虑h的前缀和复杂度为 $O(n^{2/3})$ ，<br><del>其实我根本不知道怎么来的</del></p>
 <p><a href="https://www.luogu.org/problemnew/show/P4213" target="_blank" rel="noopener">洛谷模板P4213</a><br>欧拉函数的前缀和可以用莫比乌斯反演，光用杜教筛会被卡,作为例子，只贴出杜教筛的代码<br>实际应用中需要注意：</p>
 <ul>
 <li>一般要记录求得的 $ S(n) $</li>
@@ -339,8 +339,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/10/09/最长反链长/" rel="next" title="最长反链长">
-                <i class="fa fa-chevron-left"></i> 最长反链长
+              <a href="/2019/10/09/组合数公式/" rel="next" title="组合数公式">
+                <i class="fa fa-chevron-left"></i> 组合数公式
               </a>
             
           </div>
@@ -349,8 +349,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/10/09/线段树分治/" rel="prev" title="线段树分治">
-                线段树分治 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/10/09/O(1)黑科技/" rel="prev" title="O(1)黑科技">
+                O(1)黑科技 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -419,7 +419,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-count">29</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

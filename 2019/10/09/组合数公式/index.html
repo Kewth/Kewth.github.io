@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="$ C_n^m $ 在组合数学中的意义：在 n 个元素选 m 个元素的方案数。 公式公式 1$$ C_n^m = \frac{n!}{m! * (n-m)!} $$ 组合数的通项公式。 当要求组合数模一般模数时 ，通项公式的分母可能没有逆元导致不可行。 公式 2$$ C_n^m = C_n^{n-m} $$ 基本性质，可以由通项公式得出。 公式 3$$ C_n^m * C_m^k = C_n^k">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-10-09T09:36:46.794Z">
+<meta property="og:updated_time" content="2019-10-09T12:15:46.401Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="组合数公式">
 <meta name="twitter:description" content="$ C_n^m $ 在组合数学中的意义：在 n 个元素选 m 个元素的方案数。 公式公式 1$$ C_n^m = \frac{n!}{m! * (n-m)!} $$ 组合数的通项公式。 当要求组合数模一般模数时 ，通项公式的分母可能没有逆元导致不可行。 公式 2$$ C_n^m = C_n^{n-m} $$ 基本性质，可以由通项公式得出。 公式 3$$ C_n^m * C_m^k = C_n^k">
@@ -261,7 +261,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-09T17:36:46+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-09T20:15:46+08:00">
                 2019-10-09
               </time>
             
@@ -315,7 +315,7 @@
 <h3 id="公式-6"><a href="#公式-6" class="headerlink" title="公式 6"></a>公式 6</h3><p>$$ \sum_{i=0}^n (C_n^i)^2 = C_{2n}^n $$</p>
 <h3 id="公式-7"><a href="#公式-7" class="headerlink" title="公式 7"></a>公式 7</h3><p>$$ C_{n+m}^k = \sum_{i=0}^k C_n^i * C_m^{k-i} $$</p>
 <p>从组合数学上的定义出发，在 n + m 个元素中选 k 个，<br>相当于先在前 n 个元素中选 i 个再在后 m 个元素中选 k - i 个。<br>枚举这个 i 把方案数相加就能得到最终方案数。</p>
-<h3 id="Lucas-定理"><a href="#Lucas-定理" class="headerlink" title="Lucas 定理"></a>Lucas 定理</h3><p>$$ C_n^m = C_{n/p}^{m/p} * C_{n ; mod ; p}^{m ; mod ; p} (mod ; p) $$</p>
+<h3 id="Lucas-定理"><a href="#Lucas-定理" class="headerlink" title="Lucas 定理"></a>Lucas 定理</h3><p>$$ C_n^m = C_{n/p}^{m/p} * C_{n \; mod \; p}^{m \; mod \; p} (mod \; p) $$</p>
 <p>常用于模数较小的组合数取模。</p>
 
       
@@ -341,8 +341,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/10/09/线段树分治/" rel="next" title="线段树分治">
-                <i class="fa fa-chevron-left"></i> 线段树分治
+              <a href="/2019/10/09/莫比乌斯反演/" rel="next" title="莫比乌斯反演">
+                <i class="fa fa-chevron-left"></i> 莫比乌斯反演
               </a>
             
           </div>
@@ -351,8 +351,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/10/09/莫比乌斯反演/" rel="prev" title="莫比乌斯反演">
-                莫比乌斯反演 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/10/09/杜教筛/" rel="prev" title="杜教筛">
+                杜教筛 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -430,7 +430,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-count">29</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
