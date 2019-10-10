@@ -62,7 +62,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="（以下的除号皆表示整除） 用数论函数计算的时候，总会遇到这样一种问题：$ \sum_{i=1}^n f(\frac{n}{i}) $。$ O(n) $ 求往往无法满足需要。 但是打表可以发现， n/i 的取值对于一段连续的 i 是一致的，那么可以考虑一块一块求。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-10-10T10:40:08.468Z">
+<meta property="og:updated_time" content="2019-10-10T10:52:00.898Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="整除分块">
 <meta name="twitter:description" content="（以下的除号皆表示整除） 用数论函数计算的时候，总会遇到这样一种问题：$ \sum_{i=1}^n f(\frac{n}{i}) $。$ O(n) $ 求往往无法满足需要。 但是打表可以发现， n/i 的取值对于一段连续的 i 是一致的，那么可以考虑一块一块求。">
@@ -222,8 +222,12 @@
                 
               
 
-              <time title="Created: 2019-10-10 18:40:08" itemprop="dateCreated datePublished" datetime="2019-10-10T18:40:08+08:00">2019-10-10</time>
+              <time title="Created: 2019-10-10 10:00:04 / Modified: 18:52:00" itemprop="dateCreated datePublished" datetime="2019-10-10T10:00:04+08:00">2019-10-10</time>
             </span>
+          
+            
+
+            
           
 
           
@@ -241,25 +245,24 @@
 <p>用数论函数计算的时候，总会遇到这样一种问题：<br>$ \sum_{i=1}^n f(\frac{n}{i}) $。<br>$ O(n) $ 求往往无法满足需要。</p>
 <p>但是<del>打表</del>可以发现， n/i 的取值对于一段连续的 i 是一致的，<br>那么可以考虑一块一块求。</p>
 <a id="more"></a>
-
 <p>设已知当前块的左端点为 l ，如果知道右端点 r（左闭右开），意味着<br>$ \forall l&lt;=i&lt;r, \frac{n}{i} = \frac{n}{l} $ ，<br>这一块对答案的贡献就是<br>$ (r-l) \cdot f(\frac{n}{l}) $。</p>
 <p>结论是 $r = n / (n / l) + 1$ 。</p>
 <p>证明：</p>
 <ul>
 <li>对于 l 设 $ n / l = x $</li>
-<li>那么由 $ n \; mod \; l = n - n / l  \cdot  l = n - l  \cdot  x $ 可知 $ n - l  \cdot  x \geq 0 $</li>
+<li>那么由 $ n \\; mod \\; l = n - n / l  \cdot  l = n - l  \cdot  x $ 可知 $ n - l  \cdot  x \geq 0 $</li>
 <li>那么若 l + 1 满足 $ n / (l + 1) = n / l $ ，可知也有 $ n - (l + 1)  \cdot  x \geq 0 $</li>
 <li>即 $ n - l  \cdot  x \geq x $</li>
 <li>对于 k 若 $ n / k = n / l $ 而 $ n / (k + 1) != n / l $</li>
 <li>那么根据上式可得 k 满足 $ 0 \leq n - k  \cdot  x &lt; x $</li>
-<li>所以 $ n - k  \cdot  x = n \; mod \; x = n - n / x  \cdot  x $</li>
+<li>所以 $ n - k  \cdot  x = n \\; mod \\; x = n - n / x  \cdot  x $</li>
 <li>所以 $ k = n / x = n / (n / l) $</li>
-<li>由 k 的定义 $ n / k = n / l \; and \; n / (k + 1) != n / l $ 可知 k+1 即是要求的 r</li>
+<li>由 k 的定义 $ n / k = n / l \\; and \\; n / (k + 1) != n / l $ 可知 k+1 即是要求的 r</li>
 </ul>
 <p>那么可以枚举块，当前 l,r 可以求得，下一个块的 l 显然是当前 r。</p>
 <p>有时候会有点变化：</p>
 <p>要求 $ \sum_{i=1}^{min(n, m)} f(\frac{n}{i})  \cdot  f(\frac{m}{i}) $ 。</p>
-<p>还是会存在 $ \forall l&lt;=i&lt;r, \frac{n}{i} = \frac{n}{l} \&amp; \frac{m}{i} = \frac{m}{l} $ 。</p>
+<p>还是会存在 $ \forall l&lt;=i&lt;r, \frac{n}{i} = \frac{n}{l} \\&amp; \frac{m}{i} = \frac{m}{l} $ 。</p>
 <p>所以这样的区间的右端点为：$ r = min(n / (n / l), m / (m / l)) + 1 $ 。</p>
 <p>所以还是可以一块一块的枚举求和。</p>
 
@@ -278,8 +281,8 @@
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
               
-                <a href="/2019/10/10/拉格朗日插值法/" rel="next" title="拉格朗日插值法">
-                  <i class="fa fa-chevron-left"></i> 拉格朗日插值法
+                <a href="/2019/10/10/类欧几里得/" rel="next" title="类欧几里得">
+                  <i class="fa fa-chevron-left"></i> 类欧几里得
                 </a>
               
             </div>
@@ -288,8 +291,8 @@
 
             <div class="post-nav-prev post-nav-item">
               
-                <a href="/2019/10/10/类欧几里得/" rel="prev" title="类欧几里得">
-                  类欧几里得 <i class="fa fa-chevron-right"></i>
+                <a href="/2019/10/10/整体二分/" rel="prev" title="整体二分">
+                  整体二分 <i class="fa fa-chevron-right"></i>
                 </a>
               
             </div>

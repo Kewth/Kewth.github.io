@@ -62,7 +62,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="（以下除号皆表示整除）对于一些式子复杂度大的数论题，或许用莫比乌斯反演可以高效解决问题。 前置技能：  基本数论函数 狄利克雷卷积  莫比乌斯函数满足 $\mu * I = \epsilon $即 $ \sum_{d|n}\mu(d) = [n = 1] $ 表达式为：">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-10-10T10:42:35.411Z">
+<meta property="og:updated_time" content="2019-10-10T10:51:01.124Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="莫比乌斯反演">
 <meta name="twitter:description" content="（以下除号皆表示整除）对于一些式子复杂度大的数论题，或许用莫比乌斯反演可以高效解决问题。 前置技能：  基本数论函数 狄利克雷卷积  莫比乌斯函数满足 $\mu * I = \epsilon $即 $ \sum_{d|n}\mu(d) = [n = 1] $ 表达式为：">
@@ -222,8 +222,12 @@
                 
               
 
-              <time title="Created: 2019-10-10 18:42:35" itemprop="dateCreated datePublished" datetime="2019-10-10T18:42:35+08:00">2019-10-10</time>
+              <time title="Created: 2019-10-10 10:00:00 / Modified: 18:51:01" itemprop="dateCreated datePublished" datetime="2019-10-10T10:00:00+08:00">2019-10-10</time>
             </span>
+          
+            
+
+            
           
 
           
@@ -246,13 +250,10 @@
 <p>莫比乌斯函数满足 $\mu * I = \epsilon $<br>即 $ \sum_{d|n}\mu(d) = [n = 1] $</p>
 <p>表达式为：</p>
 <a id="more"></a>
-
-<p>$$ n = 0 : \mu(n) = 1 $$<br>$$ n = \prod_{p|n\&amp;p\,is\,prime} p : \mu(n)=(-1)^k $$<br>$$ otherwise : \mu(n)=0 $$</p>
-<p>证明：<br><del>暂时不会</del></p>
-<p>莫比乌斯反演：<br>对于数论函数 f(n)，设 $ F(n) = \sum_{d|n}f(d) $<br>即 $ F = f * I $<br>则有 $ f(n) = \sum_{d|n}F(d)*\mu(\frac{n}{d}) $<br>即 $ f = F * \mu $</p>
+<script type="math/tex; mode=display">n = 0 : \mu(n) = 1</script><script type="math/tex; mode=display">n = \prod_{p|n\\&p\\,is\\,prime} p : \mu(n)=(-1)^k</script><script type="math/tex; mode=display">otherwise : \mu(n)=0</script><p>证明：<br><del>暂时不会</del></p>
+<p>莫比乌斯反演：<br>对于数论函数 f(n)，设 $ F(n) = \sum_{d|n}f(d) $<br>即 $ F = f <em> I $<br>则有 $ f(n) = \sum_{d|n}F(d)</em>\mu(\frac{n}{d}) $<br>即 $ f = F * \mu $</p>
 <p>证明：</p>
-<p>$$ \because \; F = f*I $$<br>$$ \therefore \; F*\mu = f*I*\mu $$<br>$$ \because \; I*\mu = \epsilon $$<br>$$ \therefore \; F*\mu = f*\epsilon $$<br>$$ \therefore \; f = F*\mu $$</p>
-<p>莫比乌斯反演好像主要是用来推式子，F 比 f 好做的话，就可以试试莫比乌斯反演。</p>
+<script type="math/tex; mode=display">\because \\; F = f\*I</script><script type="math/tex; mode=display">\therefore \\; F\*\mu = f\*I\*\mu</script><script type="math/tex; mode=display">\because \\; I\*\mu = \epsilon</script><script type="math/tex; mode=display">\therefore \\; F\*\mu = f\*\epsilon</script><script type="math/tex; mode=display">\therefore \\; f = F\*\mu</script><p>莫比乌斯反演好像主要是用来推式子，F 比 f 好做的话，就可以试试莫比乌斯反演。</p>
 <p>另外事实上只需要熟知 $\mu$ 函数的性质，直接推式子就行了，<br>绝大多数情况下（至少是我遇到的所有情况下）并不需要莫比乌斯反演。</p>
 
     </div>
@@ -270,8 +271,8 @@
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
               
-                <a href="/2019/10/10/O(1)黑科技/" rel="next" title="O(1)黑科技">
-                  <i class="fa fa-chevron-left"></i> O(1)黑科技
+                <a href="/2019/10/09/逆序对/" rel="next" title="逆序对">
+                  <i class="fa fa-chevron-left"></i> 逆序对
                 </a>
               
             </div>
@@ -280,8 +281,8 @@
 
             <div class="post-nav-prev post-nav-item">
               
-                <a href="/2019/10/10/线段树分治/" rel="prev" title="线段树分治">
-                  线段树分治 <i class="fa fa-chevron-right"></i>
+                <a href="/2019/10/10/组合数公式/" rel="prev" title="组合数公式">
+                  组合数公式 <i class="fa fa-chevron-right"></i>
                 </a>
               
             </div>
