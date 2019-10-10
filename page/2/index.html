@@ -209,6 +209,7 @@
         </h1>
 
         <div class="post-meta">
+          
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -253,8 +254,7 @@
 1 3 // 1 连向 3
 2 3 // 2 连向 3
 3 4 // 3 连向 4
-3 5 // 3 连向 5
-</code></pre><p>这里不相交的最小链覆盖是 3 ，而实际的最小链覆盖是 2 。</p>
+3 5 // 3 连向 5</code></pre><p>这里不相交的最小链覆盖是 3 ，而实际的最小链覆盖是 2 。</p>
 <p>观察不相交的最小链覆盖 {1-3-5, 2, 4} 与最小链覆盖 {1-3-5, 2-3-4} 。</p>
 <p>发现由于不能相交， 1-3-5 这条链把 2-3-4 这条链切断了，<br>分成 2 和 4 两条链，因此比最小链覆盖多了一条链。</p>
 <p>如果可以让 2 跨过 1-3-5 与 4 相连呢？</p>
@@ -302,6 +302,7 @@
         </h1>
 
         <div class="post-meta">
+          
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -328,10 +329,17 @@
 
       
           <p>数论函数推式子是真的玄学，<br>乱七八糟的一脸懵逼，<br>好不容易看懂了转身又 <del>tm</del> 忘了，<br>这里列出一些我见过的。</p>
-<h2 id="莫比乌斯函数与恒等函数卷积"><a href="#莫比乌斯函数与恒等函数卷积" class="headerlink" title="莫比乌斯函数与恒等函数卷积"></a>莫比乌斯函数与恒等函数卷积</h2><script type="math/tex; mode=display">\mu * I = \epsilon</script><h3 id="证明"><a href="#证明" class="headerlink" title="证明"></a>证明</h3><p>莫比乌斯函数的构造意义。</p>
-<h2 id="欧拉函数与恒等函数卷积"><a href="#欧拉函数与恒等函数卷积" class="headerlink" title="欧拉函数与恒等函数卷积"></a>欧拉函数与恒等函数卷积</h2><script type="math/tex; mode=display">\phi * I = id</script><h2 id="单位函数与恒等函数卷积"><a href="#单位函数与恒等函数卷积" class="headerlink" title="单位函数与恒等函数卷积"></a>单位函数与恒等函数卷积</h2><script type="math/tex; mode=display">id * I = \sigma</script><h2 id="互质条件转换为莫比乌斯函数求和"><a href="#互质条件转换为莫比乌斯函数求和" class="headerlink" title="互质条件转换为莫比乌斯函数求和"></a>互质条件转换为莫比乌斯函数求和</h2><script type="math/tex; mode=display">[gcd(i, j) == 1] = \sum_{d|i,d|j} \mu(d)</script><script type="math/tex; mode=display">\sum_{i=1}^n \sum_{j=1}^m f(i, j) [gcd(i, j) == 1]
- = \sum_{d=1}^{min(n, m)} \mu(d) \sum_{i=1}^{n/d} \sum_{j=1}^{m/d} f(id, jd)</script><h3 id="证明-1"><a href="#证明-1" class="headerlink" title="证明 1"></a>证明 1</h3><script type="math/tex; mode=display">\because [gcd(i, j) == 1] = \epsilon(gcd(i, j))</script><script type="math/tex; mode=display">\because \epsilon = \mu * I</script><script type="math/tex; mode=display">\therefore [gcd(i, j) == 1] = \sum_{d|gcd(i, j)} \mu(d)</script><script type="math/tex; mode=display">\therefore [gcd(i, j) == 1] = \sum_{d|i,d|j} \mu(d)</script><h3 id="证明-2"><a href="#证明-2" class="headerlink" title="证明 2"></a>证明 2</h3><p>通过容斥原理和莫比乌斯函数的定义可以得出。</p>
-<h2 id="约数个数函数转换为互质数对求和"><a href="#约数个数函数转换为互质数对求和" class="headerlink" title="约数个数函数转换为互质数对求和"></a>约数个数函数转换为互质数对求和</h2><script type="math/tex; mode=display">d(i * j) = \sum_{x|i} \sum_{y|j} [gcd(x, y) == 1]</script><h2 id="约数个数函数求和"><a href="#约数个数函数求和" class="headerlink" title="约数个数函数求和"></a>约数个数函数求和</h2><script type="math/tex; mode=display">\sum_{i=1}^n d(i) = \sum_{i=1}^n \frac{n}{i}</script>
+<h2 id="莫比乌斯函数与恒等函数卷积"><a href="#莫比乌斯函数与恒等函数卷积" class="headerlink" title="莫比乌斯函数与恒等函数卷积"></a>莫比乌斯函数与恒等函数卷积</h2><p>$$ \mu * I = \epsilon $$</p>
+<h3 id="证明"><a href="#证明" class="headerlink" title="证明"></a>证明</h3><p>莫比乌斯函数的构造意义。</p>
+<h2 id="欧拉函数与恒等函数卷积"><a href="#欧拉函数与恒等函数卷积" class="headerlink" title="欧拉函数与恒等函数卷积"></a>欧拉函数与恒等函数卷积</h2><p>$$ \phi * I = id $$</p>
+<h2 id="单位函数与恒等函数卷积"><a href="#单位函数与恒等函数卷积" class="headerlink" title="单位函数与恒等函数卷积"></a>单位函数与恒等函数卷积</h2><p>$$ id * I = \sigma $$</p>
+<h2 id="互质条件转换为莫比乌斯函数求和"><a href="#互质条件转换为莫比乌斯函数求和" class="headerlink" title="互质条件转换为莫比乌斯函数求和"></a>互质条件转换为莫比乌斯函数求和</h2><p>$$ [gcd(i, j) == 1] = \sum_{d|i,d|j} \mu(d) $$</p>
+<p>$$ \sum_{i=1}^n \sum_{j=1}^m f(i, j) [gcd(i, j) == 1]<br> = \sum_{d=1}^{min(n, m)} \mu(d) \sum_{i=1}^{n/d} \sum_{j=1}^{m/d} f(id, jd) $$</p>
+<h3 id="证明-1"><a href="#证明-1" class="headerlink" title="证明 1"></a>证明 1</h3><p>$$ \because [gcd(i, j) == 1] = \epsilon(gcd(i, j)) $$<br>$$ \because \epsilon = \mu * I $$<br>$$ \therefore [gcd(i, j) == 1] = \sum_{d|gcd(i, j)} \mu(d) $$<br>$$ \therefore [gcd(i, j) == 1] = \sum_{d|i,d|j} \mu(d) $$</p>
+<h3 id="证明-2"><a href="#证明-2" class="headerlink" title="证明 2"></a>证明 2</h3><p>通过容斥原理和莫比乌斯函数的定义可以得出。</p>
+<h2 id="约数个数函数转换为互质数对求和"><a href="#约数个数函数转换为互质数对求和" class="headerlink" title="约数个数函数转换为互质数对求和"></a>约数个数函数转换为互质数对求和</h2><p>$$ d(i * j) = \sum_{x|i} \sum_{y|j} [gcd(x, y) == 1] $$</p>
+<h2 id="约数个数函数求和"><a href="#约数个数函数求和" class="headerlink" title="约数个数函数求和"></a>约数个数函数求和</h2><p>$$ \sum_{i=1}^n d(i) = \sum_{i=1}^n \frac{n}{i} $$</p>
+
         
       
     </div>
@@ -372,6 +380,7 @@
         </h1>
 
         <div class="post-meta">
+          
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -399,26 +408,45 @@
       
           <p>快速沃尔什变换，简称 FWT ，目前在 OI 中十分冷门。</p>
 <h2 id="用处"><a href="#用处" class="headerlink" title="用处"></a>用处</h2><p>多项式卷积一般是这样的：</p>
-<script type="math/tex; mode=display">C_i = \sum_{j + k = i} A_j \cdot B_k</script><p>这个可以用 FFT 快速求解。</p>
+<p>$$ C_i = \sum_{j + k = i} A_j \cdot B_k $$</p>
+<p>这个可以用 FFT 快速求解。</p>
 <p>然而还有一个诡异的卷积：</p>
-<script type="math/tex; mode=display">C_i = \sum_{j \oplus k = i} A_j \cdot B_k</script><p>其中 $ \oplus $ 是任意一种位运算。</p>
+<p>$$ C_i = \sum_{j \oplus k = i} A_j \cdot B_k $$</p>
+<p>其中 $ \oplus $ 是任意一种位运算。</p>
 <p>FWT 便是求这类卷积的快速算法。</p>
 <h2 id="构造"><a href="#构造" class="headerlink" title="构造"></a>构造</h2><p>FFT 的思想是把多项式转换成可以线性相乘的点值表示法 (DFT) ，<br>再把相乘的结果转换回系数表示法 (IDFT) 。</p>
 <p>同样的道理可以用在 FWT 上，用 DWT 将多项式转换成可以线性相乘的形式，即：</p>
-<script type="math/tex; mode=display">DWT(C)_i = DWT(A)_i \cdot DWT(B)_i</script><p>再用 IDWT 将相乘的结果转换回来。</p>
+<p>$$ DWT(C)_i = DWT(A)_i \cdot DWT(B)_i $$</p>
+<p>再用 IDWT 将相乘的结果转换回来。</p>
 <h2 id="DWT"><a href="#DWT" class="headerlink" title="DWT"></a>DWT</h2><p>目标是构造一个转移系数函数 f(i, j) ，满足：</p>
-<script type="math/tex; mode=display">DWT(A)_i = \sum_j A_j \cdot f(i, j)</script><p>考虑 f(i, j) 应满足什么样的性质。</p>
+<p>$$ DWT(A)_i = \sum_j A_j \cdot f(i, j) $$</p>
+<p>考虑 f(i, j) 应满足什么样的性质。</p>
 <p>首先根据 DWT 的性质：</p>
-<script type="math/tex; mode=display">DWT(C)_i = DWT(A)_i \cdot DWT(B)_i</script><script type="math/tex; mode=display">\sum_t C_t f(i, t) = \sum_j A_j f(i, j) \sum_k B_k f(i, k)</script><script type="math/tex; mode=display">\sum_t \sum_{j \oplus k = t} A_j B_k f(i, t) = \sum_j \sum_k A_j f(i, j) B_k f(i, k)</script><script type="math/tex; mode=display">\sum_t \sum_{j \oplus k = t} A_j B_k f(i, t) = \sum_t \sum_{j \oplus k = t} A_j f(i, j) B_k f(i, k)</script><p>由上式可得出：</p>
-<script type="math/tex; mode=display">\forall i, j, k: f(i, j) f(i, k) = f(i, j \oplus k)</script><p>这样还不够，为了让 DWT 快速进行，f(i, j) 还应满足以下性质：</p>
-<script type="math/tex; mode=display">f(i, j) = \prod_k f(i_k, j_k)</script><p>其中 $ i_k $ 表示 i 二进制下的第 k 位（ 0 或 1 ）。</p>
+<p>$$ DWT(C)_i = DWT(A)_i \cdot DWT(B)_i $$</p>
+<p>$$ \sum_t C_t f(i, t) = \sum_j A_j f(i, j) \sum_k B_k f(i, k) $$</p>
+<p>$$ \sum_t \sum_{j \oplus k = t} A_j B_k f(i, t) = \sum_j \sum_k A_j f(i, j) B_k f(i, k) $$</p>
+<p>$$ \sum_t \sum_{j \oplus k = t} A_j B_k f(i, t) = \sum_t \sum_{j \oplus k = t} A_j f(i, j) B_k f(i, k) $$</p>
+<p>由上式可得出：</p>
+<p>$$ \forall i, j, k: f(i, j) f(i, k) = f(i, j \oplus k) $$</p>
+<p>这样还不够，为了让 DWT 快速进行，f(i, j) 还应满足以下性质：</p>
+<p>$$ f(i, j) = \prod_k f(i_k, j_k) $$</p>
+<p>其中 $ i_k $ 表示 i 二进制下的第 k 位（ 0 或 1 ）。</p>
 <p>有了这个性质，就可已通过 f(0, 0), f(0, 1), f(1, 0), f(1, 1) 的值相乘得出所有 f 。<br>有了这个性质，就可以考虑分治求 DWT ：</p>
-<script type="math/tex; mode=display">DWT(A)_i = \sum_{j=0}^{n-1} A_j f(i, j)</script><script type="math/tex; mode=display">= \sum_{j=0}^{n/2-1} A_j f(i, j) + \sum_{j=n/2}^{n-1} A_j f(i, j)</script><script type="math/tex; mode=display">= \sum_{j=0}^{n/2-1} A_j \prod_k f(i_k, j_k) + \sum_{j=n/2}^{n-1} A_j \prod_k f(i_k, j_k)</script><script type="math/tex; mode=display">= \sum_{j=0}^{n/2-1} f(i_0, j_0) A_j \prod_{k \geq 1} f(i_k, j_k) + \sum_{j=n/2}^{n-1} A_j f(i_0, j_0) \prod_{k \geq 1} f(i_k, j_k)</script><script type="math/tex; mode=display">= f(i_0, 0) \sum_{j=0}^{n/2-1} A_j \prod_k f(i_k, j_k) + f(i_0, 1) \sum_{j=n/2}^{n-1} A_j \prod_k f(i_k, j_k)</script><p>规模减小了一半，递归或迭代地分治下去。<br>每次将 A 分成左右两半 A0, A1 ：</p>
-<script type="math/tex; mode=display">DWT(A)_i = f(0, 0) DWT(A0)_i + f(0, 1) DWT(A1)_i , i < n / 2</script><script type="math/tex; mode=display">DWT(A)_i = f(1, 0) DWT(A0)_i + f(1, 1) DWT(A1)_i , i \geq n / 2</script><p>想到 FFT 的蝴蝶变换没有？ <del>答：没有</del><br>迭代的 DWT 这里也有类似的蝴蝶变换：</p>
+<p>$$ DWT(A)<em>i = \sum</em>{j=0}^{n-1} A_j f(i, j) $$</p>
+<p>$$ = \sum_{j=0}^{n/2-1} A_j f(i, j) + \sum_{j=n/2}^{n-1} A_j f(i, j) $$</p>
+<p>$$ = \sum_{j=0}^{n/2-1} A_j \prod_k f(i_k, j_k) + \sum_{j=n/2}^{n-1} A_j \prod_k f(i_k, j_k) $$</p>
+<p>$$ = \sum_{j=0}^{n/2-1} f(i_0, j_0) A_j \prod_{k \geq 1} f(i_k, j_k) + \sum_{j=n/2}^{n-1} A_j f(i_0, j_0) \prod_{k \geq 1} f(i_k, j_k)$$</p>
+<p>$$ = f(i_0, 0) \sum_{j=0}^{n/2-1} A_j \prod_k f(i_k, j_k) + f(i_0, 1) \sum_{j=n/2}^{n-1} A_j \prod_k f(i_k, j_k) $$</p>
+<p>规模减小了一半，递归或迭代地分治下去。<br>每次将 A 分成左右两半 A0, A1 ：</p>
+<p>$$ DWT(A)_i = f(0, 0) DWT(A0)_i + f(0, 1) DWT(A1)_i , i &lt; n / 2 $$</p>
+<p>$$ DWT(A)_i = f(1, 0) DWT(A0)_i + f(1, 1) DWT(A1)_i , i \geq n / 2 $$</p>
+<p>想到 FFT 的蝴蝶变换没有？ <del>答：没有</del><br>迭代的 DWT 这里也有类似的蝴蝶变换：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> x = A[i], y = A[i + k];</span><br><span class="line">A[i] = f00 * x + f01 * y;</span><br><span class="line">A[i + k] = f10 * x + f11 * y;</span><br></pre></td></tr></table></figure>
+
 <p>DWT 的过程就是这样了，甚至不需要构造整个 f ，<br>只需要 f(0, 0), f(0, 1), f(1, 0), f(1, 1) 即可，<br>需要满足的就是 $ \forall i, j, k: f(i, j) f(i, k) = f(i, j \oplus k) $ 。</p>
 <h2 id="IDWT"><a href="#IDWT" class="headerlink" title="IDWT"></a>IDWT</h2><p>怎么将 DWT 的结果转换回来？<br>观察 DWT 的蝴蝶变换：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = f00 * x + f01 * y;</span><br><span class="line">b = f10 * x + f11 * y;</span><br></pre></td></tr></table></figure>
+
 <p>DWT 通过 x, y 求出 a, b,<br>IDWT 就是通过 a, b 求 x, y 。</p>
 <p>解二元一次方程就好了：<br>x = (f11 * a - f01 * b) / (f00 * f11 - f01 * f10)<br>y = (f10 * a - f00 * b) / (f01 * f10 - f00 * f11)  </p>
 <p>就是这么简单…</p>
@@ -438,19 +466,20 @@
 <p>可以自行验证，这些 f 满足上述性质。</p>
 <h2 id="实际意义"><a href="#实际意义" class="headerlink" title="实际意义"></a>实际意义</h2><p>一个多项式 A FFT 后的 A2(x) 实际意义就是 A 在 $ W_n^x $ 上的值（点值表示）。</p>
 <p>那么 A FWT 后的结果的现实意义呢？<br>这得分类来说。</p>
-<h3 id="按位或"><a href="#按位或" class="headerlink" title="按位或"></a>按位或</h3><p>A 在做按位或的 FWT 之后得到的 A2 满足：</p>
-<script type="math/tex; mode=display">A2(x) = \sum_{i|x=x} A(i)</script><p>也就是说 A2(x) 表示 x 的每个子集 i 的 A(i) 的和。<br>不难得到，A2(x) * B2(x) 的结果 C2(x) 就是 A, B 卷积后的 C 的变换：</p>
-<script type="math/tex; mode=display">A2(x) * B2(x) = \sum_{i|x=x} A(i) \sum_{j|x=x} B(j)</script><script type="math/tex; mode=display">A2(x) * B2(x) = \sum_{i|x=x} \sum_{j|x=x} A(i) B(j)</script><script type="math/tex; mode=display">A2(x) * B2(x) = \sum_{k|x=x} \sum_{i|j=k} A(i) B(j)</script><script type="math/tex; mode=display">A2(x) * B2(x) = \sum_{k|x=x} C(k)</script><script type="math/tex; mode=display">A2(x) * B2(x) = C2(x)</script><p>事实上，这也就是子集和变换。</p>
+<h3 id="按位或"><a href="#按位或" class="headerlink" title="按位或"></a>按位或</h3><p>A 在做按位或的 FWT 之后得到的 A2 满足：<br>$$ A2(x) = \sum_{i|x=x} A(i) $$</p>
+<p>也就是说 A2(x) 表示 x 的每个子集 i 的 A(i) 的和。<br>不难得到，A2(x) * B2(x) 的结果 C2(x) 就是 A, B 卷积后的 C 的变换：<br>$$ A2(x) * B2(x) = \sum_{i|x=x} A(i) \sum_{j|x=x} B(j) $$<br>$$ A2(x) * B2(x) = \sum_{i|x=x} \sum_{j|x=x} A(i) B(j) $$<br>$$ A2(x) * B2(x) = \sum_{k|x=x} \sum_{i|j=k} A(i) B(j) $$<br>$$ A2(x) * B2(x) = \sum_{k|x=x} C(k) $$<br>$$ A2(x) * B2(x) = C2(x) $$</p>
+<p>事实上，这也就是子集和变换。</p>
 <p><del>感性理解一下</del></p>
-<h3 id="按位与"><a href="#按位与" class="headerlink" title="按位与"></a>按位与</h3><p>和按位或类似的，A 在做按位与的 FWT 之后得到的 A2 满足：</p>
-<script type="math/tex; mode=display">A2(x) = \sum_{i\&x=x} A(i)</script><p>也就是说 A2(x) 表示每个包含 x 的集合 i 的 A(i) 的和。<br>不难得到，A2(x) * B2(x) 的结果 C2(x) 就是 A, B 卷积后的 C 的变换：</p>
-<script type="math/tex; mode=display">A2(x) * B2(x) = \sum_{i\&x=x} A(i) \sum_{j\&x=x} B(j)</script><script type="math/tex; mode=display">A2(x) * B2(x) = \sum_{i\&x=x} \sum_{j\&x=x} A(i) B(j)</script><script type="math/tex; mode=display">A2(x) * B2(x) = \sum_{k\&x=x} \sum_{i\&j=k} A(i) B(j)</script><script type="math/tex; mode=display">A2(x) * B2(x) = \sum_{k\&x=x} C(k)</script><script type="math/tex; mode=display">A2(x) * B2(x) = C2(x)</script><p><del>和按位或一个模子里刻出来的</del></p>
+<h3 id="按位与"><a href="#按位与" class="headerlink" title="按位与"></a>按位与</h3><p>和按位或类似的，A 在做按位与的 FWT 之后得到的 A2 满足：<br>$$ A2(x) = \sum_{i&amp;x=x} A(i) $$</p>
+<p>也就是说 A2(x) 表示每个包含 x 的集合 i 的 A(i) 的和。<br>不难得到，A2(x) * B2(x) 的结果 C2(x) 就是 A, B 卷积后的 C 的变换：<br>$$ A2(x) * B2(x) = \sum_{i&amp;x=x} A(i) \sum_{j&amp;x=x} B(j) $$<br>$$ A2(x) * B2(x) = \sum_{i&amp;x=x} \sum_{j&amp;x=x} A(i) B(j) $$<br>$$ A2(x) * B2(x) = \sum_{k&amp;x=x} \sum_{i&amp;j=k} A(i) B(j) $$<br>$$ A2(x) * B2(x) = \sum_{k&amp;x=x} C(k) $$<br>$$ A2(x) * B2(x) = C2(x) $$</p>
+<p><del>和按位或一个模子里刻出来的</del></p>
 <h2 id="子集卷积"><a href="#子集卷积" class="headerlink" title="子集卷积"></a>子集卷积</h2><p>两个多项式 A, B 的子集卷积 C 的意义如下：</p>
-<script type="math/tex; mode=display">C(x) = \sum_{y|z=x, y\&z=0} A(y) B(z)</script><p>也就是把 x 划分为两个子集 y, z 的 A(y) * B(z) 的和。</p>
-<p>转换成 $ \sum_{y|z=x} A(y) B(z) [y \&amp; z = 0] $ ，似乎是一个按位或卷积。<br>再转换成 $ \sum_{y|z=x} A(y) B(z) [bitcount(y) + bitcount(z) = bitcount(x)] $ 。</p>
-<p>此时需要考虑的就是 bitcount, 也就是集合大小。<br>集合大小是 $ O(log(n)) $ 的，可以考虑枚举大小，设：</p>
-<script type="math/tex; mode=display">A_i(x) = A(x) [bitcount(x) = i]</script><script type="math/tex; mode=display">B_j(x) = B(x) [bitcount(x) = j]</script><script type="math/tex; mode=display">C_k(x) = C(x) [bitcount(x) = k]</script><p>那么有：</p>
-<script type="math/tex; mode=display">C_k(x) = \sum_{y|z=x} A_i(y) B_j(z) [i + j = k]</script><script type="math/tex; mode=display">C_k(x) = \sum_{i+j=k} \sum_{y|z=x} A_i(y) B_j(z)</script><p>那么枚举 i, j 的值，将 $ A_i $ 和 $ B_j $ 卷积后贡献到 $ C_{i+j} $ 即可。</p>
+<p>$$ C(x) = \sum_{y|z=x, y&amp;z=0} A(y) B(z) $$</p>
+<p>也就是把 x 划分为两个子集 y, z 的 A(y) * B(z) 的和。</p>
+<p>转换成 $ \sum_{y|z=x} A(y) B(z) [y &amp; z = 0] $ ，似乎是一个按位或卷积。<br>再转换成 $ \sum_{y|z=x} A(y) B(z) [bitcount(y) + bitcount(z) = bitcount(x)] $ 。</p>
+<p>此时需要考虑的就是 bitcount, 也就是集合大小。<br>集合大小是 $ O(log(n)) $ 的，可以考虑枚举大小，设：<br>$$ A_i(x) = A(x) [bitcount(x) = i] $$<br>$$ B_j(x) = B(x) [bitcount(x) = j] $$<br>$$ C_k(x) = C(x) [bitcount(x) = k] $$</p>
+<p>那么有：<br>$$ C_k(x) = \sum_{y|z=x} A_i(y) B_j(z) [i + j = k] $$<br>$$ C_k(x) = \sum_{i+j=k} \sum_{y|z=x} A_i(y) B_j(z) $$</p>
+<p>那么枚举 i, j 的值，将 $ A_i $ 和 $ B_j $ 卷积后贡献到 $ C_{i+j} $ 即可。</p>
 <p>这样复杂度似乎是 $ O(n log^3n) $ 的，<br>但是事实上每个 $ A_i, B_j $ 都可以提前 FWT 后 $ O(n) $ 相乘，<br>再贡献到 C 后不进行逆变换，而是确定了 C 的值后在进行逆变换。</p>
 <p>复杂度 $ O(n log^2n) $</p>
 
@@ -494,6 +523,7 @@
         </h1>
 
         <div class="post-meta">
+          
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -535,7 +565,7 @@
 <p>然后就是晚上的 <del>自由欢乐时光</del> 认真自习。<br>终于成功把昨天的电影看了一半。<br>然后颓了一晚上也是没救了，没办法 T3 被卡常心态爆炸（这就是你颓废的理由？）。</p>
 <h2 id="Day2"><a href="#Day2" class="headerlink" title="Day2"></a>Day2</h2><p><del>成功拿到预期的暴力分 30，一大进步。</del></p>
 <p>第一题图染色，考场上脑子不清醒，很快想到 $ O(n^2) $ 的建图方式后，<br>竟然完全没有想到怎么计数，最后 $ O(n^n) $ 枚举染色方案可还行。<br>于是 40’ -&gt; 10’</p>
-<p>第二题又是一个计数，AC 自动机？我完全没想到，<br>我还以为是容斥，但是发现有有 5 种情况，容斥起来要 5 + 10 + 10 + 5 种情况加加减减，<br>没敢打，不过这次这题部分分给的挺全的，分了 10 个 subtask 还是不错的 ~~虽然我只拿了 20 ~~ 。</p>
+<p>第二题又是一个计数，AC 自动机？我完全没想到，<br>我还以为是容斥，但是发现有有 5 种情况，容斥起来要 5 + 10 + 10 + 5 种情况加加减减，<br>没敢打，不过这次这题部分分给的挺全的，分了 10 个 subtask 还是不错的 <del>虽然我只拿了 20 ~</del> 。</p>
 <p>第三题玄学最短路，要用最短路树（我想到了但是没啥用），这玩意前几天 czz 才讲，<br><del>果然又应验了我昨天说的，一考就连续考几次</del><br>暴力都很难打啊这题，到最后只能 <code>puts(&quot;-1&quot;)</code> 了，然而 subtask 数据捆绑。</p>
 <p>一考完就被 *** 拉去吃什么网红烤冷面（然而是热的），very nice but 量有点少。<br>然后 *** 就拉了一堆人去星巴克 666 ，讲真这是我第一次在星巴克喝咖啡，忍痛剁手。<br>晚上到宾馆就开始颓，终于看完了昨天的电影 <del>壮哉我大火影</del> 。</p>
 <h2 id="Day3"><a href="#Day3" class="headerlink" title="Day3"></a>Day3</h2><p>今天的题目巨难，听出题人说是因为他明天赶时间所以把明天的 <del>毒瘤</del> 题全放今天就有更多时间讲。</p>
@@ -596,6 +626,7 @@
         </h1>
 
         <div class="post-meta">
+          
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -632,14 +663,13 @@
 <p>T2 不想说了，心累，在变换过程中做除法就不会爆 long long ， AC 。</p>
 <p>T3 随机分治？感觉挺 6 但是没懂。<br>但是我还是通过奇技淫巧 AC 了。。。</p>
 <h3 id="爆掉这辣鸡交互"><a href="#爆掉这辣鸡交互" class="headerlink" title="爆掉这辣鸡交互"></a>爆掉这辣鸡交互</h3><p>我还真不信这交互器天衣无缝，再次看交互器，<br>交了几个错误的程序，发现我能得到的信息只有交互程序给出的信息，<br>再蠢也不会把重要信息放提示信息里头嘛，感觉似乎没办法了。<br>又交了一次， CE 了。。。<br>这时转机出现了，我看了眼编译信息， woc nice 大夫 g++ 给的编译信息真详细：</p>
-<pre><code>/sandbox/1/a.cpp:5:6: error: &#39;QCNT&#39; was not declared in this scope
-out,QCNT,&#39;\n&#39;;
+<pre><code>/sandbox/1/a.cpp:5:6: error: &apos;QCNT&apos; was not declared in this scope
+out,QCNT,&apos;\n&apos;;
   ^
 /sandbox/1/a.cpp:5:6: note: suggested alternative:
 In file included from /sandbox/1/a.cpp:2:0:
-/sandbox/1/c.h:74:5: note:   &#39;lkjjhkfdlhgkjdfgf5454::QCNT&#39;
-int QCNT;
-</code></pre><p>note 那一排暴露啦，这命名空间 lkjjhkfdlhgkjdfgf5454 也是没谁了（另外还发现了源码的位置 /sandbox/ ）。<br>但是出题人以为套一个乱七八糟的 namespace 就没事了？<br>然而还是被我发现了哈，于是通过这个 namespace 直接获取了交互器里存的答案，<br>成功 AC ，辣鸡交互器。</p>
+/sandbox/1/c.h:74:5: note:   &apos;lkjjhkfdlhgkjdfgf5454::QCNT&apos;
+int QCNT;</code></pre><p>note 那一排暴露啦，这命名空间 lkjjhkfdlhgkjdfgf5454 也是没谁了（另外还发现了源码的位置 /sandbox/ ）。<br>但是出题人以为套一个乱七八糟的 namespace 就没事了？<br>然而还是被我发现了哈，于是通过这个 namespace 直接获取了交互器里存的答案，<br>成功 AC ，辣鸡交互器。</p>
 <p>看了看提交记录，我是第二个玄学 AC 的，第一个的 AC 代码提交时还没有那 sb namespace ，<br>所以说，我是第一个发现这鬼畜 namespace 并通过它 AC 的 :)<br>然后从我 AC 后就陆续有人玄学 AC, 代码我都看了一遍，大同小异，全是用这 sb namespace 过的（变量名、注释都跟我的长一个样），<br>开创先河哈。</p>
 <p>后面再改改就是 65B 全场最短 AC 代码。</p>
 <p>后来又看了看，还有一名大佬用另一种方式爆掉了这辣鸡交互器。<br>比我 6 多了，竟然直接搞到了交互器判 AC 的方式给写 solve 函数上了， %%% 。</p>
@@ -647,8 +677,7 @@ int QCNT;
 <h2 id="Day10"><a href="#Day10" class="headerlink" title="Day10"></a>Day10</h2><h3 id="考试-1"><a href="#考试-1" class="headerlink" title="考试"></a>考试</h3><p>第一题乍一看要动态维护逆序对？感觉不太可做，后面直接交了暴力， 30 分。</p>
 <p>第二题字符串，感觉像是贪心，但是有一些情况不好判断，<br>最后打了字符串做状态的暴力 DP ，我估摸着复杂度是 $ O(n^3) $ ，<br>于是就只开了 30’ 的部分分的数据的大小的数组 n = 100 ，交了，果然是 30’ ，<br>然而我把数组开到 2000 （ 60’ 的范围）后就过了 60’ ，这。。。<br>60’ -&gt; 30’ <del>论复杂度分析的重要性。</del></p>
 <p>第三题式子题，乍一看似乎可做，然后简化简化简化，简化成了这样一个题意：</p>
-<pre><code>在正整数范围内解方程 x * phi(x) = 2m ，m 已知。
-</code></pre><p>我一看这么简洁的式子，枚举一下 2m 的因子应该差不多了，<br>一看数据范围： $ m \leq 10^{18} $ ，第一档暴力 10’ 范围： $ m \leq 10^9 $ 。。。<br>还多组数据，一共 100000 组。。。<br>连暴力都过不去啊我去。<br>最后实在没思路，就预处理了一部分 phi 再暴力去搞，结果爆零。。。</p>
+<pre><code>在正整数范围内解方程 x * phi(x) = 2m ，m 已知。</code></pre><p>我一看这么简洁的式子，枚举一下 2m 的因子应该差不多了，<br>一看数据范围： $ m \leq 10^{18} $ ，第一档暴力 10’ 范围： $ m \leq 10^9 $ 。。。<br>还多组数据，一共 100000 组。。。<br>连暴力都过不去啊我去。<br>最后实在没思路，就预处理了一部分 phi 再暴力去搞，结果爆零。。。</p>
 <h3 id="讲题-1"><a href="#讲题-1" class="headerlink" title="讲题"></a>讲题</h3><p>第一题其实真的容易，根本不要动态维护逆序对，<br>题目要求的只是使逆序对最小的一个循环的位置，<br>考虑一个数从最左边被扔到最右边后对逆序对数量的影响，其实是不会变的，<br>维护这个影响的数列，那么就是要求一个最小前缀和的位置，<br>每次修改就是交换两段区间，虽然逆序对数量会改变，但是根本不用管，相对的影响还是不变的，<br>那这玩意一个平衡树搞上去就好了。</p>
 <p>第二题我似乎摸到正解的前一半了，<br>贪心把能直接求的字母搞出来后对于剩下的求一个字典序最大后缀好像是，<br><del>那这玩意一个后缀数组搞上去就好了。</del><br>然而似乎还是要考虑一些情况，还没改出来。</p>
 <p>第三题数论神仙题（我竟然以为 T3 可做），<br>正解复杂度 $ O(log(m)) $ ，神仙做法，<br>什么二次剩余什么欧拉定理什么质因数玄学分解都用上了，<br>好难，出题人讲了两遍都没听懂。</p>
@@ -717,6 +746,7 @@ int QCNT;
         </h1>
 
         <div class="post-meta">
+          
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -748,7 +778,7 @@ int QCNT;
 <p>第一题是在 DAG 上 q 个询问，每次询问一个子图的路径数量（子图点数和 O(n) ），<br>我想了想部分分， DAG 上 DP 嘛，但是这样复杂度上界是 $ O(q m) $ ，<br>瓶颈在于边的枚举（菊花树卡爆），然而子图的点可能很少，<br>然后想到了更暴力的：邻接矩阵存图然后用枚举点代替枚举边，<br>事实上邻接矩阵存不下，那就开 set （map 也行）动态加，<br>这复杂度 $ O(q n^2 log(m)) $ 啊然而，然后我想了好久优化都没想出来，<br>最后想着得多骗点分，于是就把两个暴力结合在了一起：<br>每次询问比较 $ n^2 log(m) $ 和 $ m $ 哪个小就跑哪个。。。<br>看上去很鸡肋，然而我理性分析了一波复杂度卧槽好像是 $ O(q m \sqrt{m} log(m)) $ ，<br>应该能骗蛮多分，于是交了，然后 A 了。。。</p>
 <p>第二题又是个计数，感觉像容斥，容斥之后怎么搞就有点迷，<br>于是写了个 dp ，手玩样例感觉没错，然而一测大样例就 WA 了，<br>于是手玩了几组数据，才发现 dp 错了，区间相交的情况没考虑好，<br>最后实在没思路，就打了个大暴力，有 30’, 还不错（ 10 倍于前面两天的暴力分 3’ ）。</p>
 <p>第三题哇塞维护一棵树，一看就感觉是树剖 + 线段树或者 LCT 之类的数据结构题，<br>然而还是不会，又敲了一发大暴力 10’ 走人。。。</p>
-<h3 id="讲题"><a href="#讲题" class="headerlink" title="讲题"></a>讲题</h3><p>下午讲题，一看 ppt 下面一行字：—Claris<br>woc 今天见到真人了，那位 bzoj 4000+ ac 的神仙！<br>第一题正解是按度数大小关系连边，出题人说数据难造所以有这种带 log 的算法卡过去了。<br>第二题果然是容斥，但是要通过一个奇妙的矩形构造转换为轮廓线 DP 。<br>第三题出题人说并不是数据结构题？blabla 讲了一堆奇妙的做法，<br>然而有 4 个人用动态 DP 搞过去了，出题人想到了这一点还特意去卡了但是没卡掉。</p>
+<h3 id="讲题"><a href="#讲题" class="headerlink" title="讲题"></a>讲题</h3><p>下午讲题，一看 ppt 下面一行字：–Claris<br>woc 今天见到真人了，那位 bzoj 4000+ ac 的神仙！<br>第一题正解是按度数大小关系连边，出题人说数据难造所以有这种带 log 的算法卡过去了。<br>第二题果然是容斥，但是要通过一个奇妙的矩形构造转换为轮廓线 DP 。<br>第三题出题人说并不是数据结构题？blabla 讲了一堆奇妙的做法，<br>然而有 4 个人用动态 DP 搞过去了，出题人想到了这一点还特意去卡了但是没卡掉。</p>
 <h3 id="颓废"><a href="#颓废" class="headerlink" title="颓废"></a>颓废</h3><p>昨天没吃成必胜客来着，今天再次尝试，又剁一波手。<br>晚上真是诸事不利，tmd 这笔记本真的让人心累，<br>要啥没啥，网连续断了好几次，还真就不是网的问题，众人不断就我断，<br>什么 u 盘硬盘全没用，放我电脑上就读不到，<br>蓝牙更是做梦，键盘只能插线就算了还一老读不到，<br>还什么显像管出问题？动不动一些地方就全是红色的跟看恐怖片似的，<br>说优点倒也有，用个电脑火炉都省了，贼发热，那电风扇的声音时刻提醒你它还活着，<br>它要是太烫了还会自动关机，把你烤热了再降降温，贴心，<br>放歌听也很棒，我听快歌，它就一卡一卡的，一个字一个字给你放，根本不用怕听不清。<br>还能智能存储电量，充电线一拔就晓得要存储电量直接断电，不插上充电线不给开机，保证电池里的电永远满的。<br>别的什么还有一堆，懒得喷了，难受。</p>
 <h2 id="Day6"><a href="#Day6" class="headerlink" title="Day6"></a>Day6</h2><h3 id="考试-1"><a href="#考试-1" class="headerlink" title="考试"></a>考试</h3><p>前两天把 rp 用完了，今天全暴力都写挂。</p>
 <p>第一题我一开始推出个错误的结论，然后一想可以离线排序询问再预处理 dist 根据询问不断删除，删除不好搞换成加边弄个并查集维护联通块，<br>然而代码打完后一跑样例， WA 了，手玩样例才发现结论错了，这时候已经 9:30 了，凉凉，后面两题还没看。<br>最后打了大暴力 10’。</p>
@@ -811,6 +841,7 @@ int QCNT;
         </h1>
 
         <div class="post-meta">
+          
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -852,14 +883,8 @@ int QCNT;
 <p>那么在 mod p 意义下，有 $ a / b = a  \cdot  b^{-1} $ 。</p>
 <h2 id="逆元的求解"><a href="#逆元的求解" class="headerlink" title="逆元的求解"></a>逆元的求解</h2><p>事实上模数一般是 $ x^n $ 。</p>
 <p>此时可以用分治求多项式 a 的逆元 b。</p>
-<p>假设已经分治求得了 a 模 $ x^{n/2} $ （此处及以下除法表示向上取整）的逆元 c 。<br>那么有：</p>
-<script type="math/tex; mode=display">a  \cdot  c \equiv 1 (mod \; x^{n/2}) \;\;\;\;\; (1)</script><p>由 b 的定义可知：</p>
-<script type="math/tex; mode=display">a  \cdot  b \equiv 1 (mod \; x^n) \;\;\;\;\; (2)</script><p>转换为：</p>
-<script type="math/tex; mode=display">a  \cdot  b \equiv 1 (mod \; x^{n/2}) \;\;\;\;\; (3)</script><p>(3) - (1) 得：</p>
-<script type="math/tex; mode=display">b - c \equiv 0 (mod \; x^{n/2}) \;\;\;\;\; (4)</script><p>两边同时平方得：</p>
-<script type="math/tex; mode=display">b^2 - 2bc + c^2 \equiv 0 (mod \; x^n) \;\;\;\;\; (5)</script><p>两边同时乘 a 得：</p>
-<script type="math/tex; mode=display">b - 2c + c^2a \equiv 0 (mod \; x^n) \;\;\;\;\; (6)</script><p>移项，整理：</p>
-<script type="math/tex; mode=display">b = (2c - c^2a) \; mod \; x^n</script><p>(4) -&gt; (5) 中模数平方的原因：<br>左边多项式模 $ x^{n/2} $ 为 0 代表该多项式每一项最低次数为 n / 2 + 1 。<br>那么该多项平方后最低次数会是 n + 1 或 n + 2 ，<br>模 $ x^n $ 后仍为 0 。</p>
+<p>假设已经分治求得了 a 模 $ x^{n/2} $ （此处及以下除法表示向上取整）的逆元 c 。<br>那么有：<br>$$ a  \cdot  c \equiv 1 (mod ; x^{n/2}) ;;;;; (1)$$<br>由 b 的定义可知：<br>$$ a  \cdot  b \equiv 1 (mod ; x^n) ;;;;; (2)$$<br>转换为：<br>$$ a  \cdot  b \equiv 1 (mod ; x^{n/2}) ;;;;; (3)$$<br>(3) - (1) 得：<br>$$ b - c \equiv 0 (mod ; x^{n/2}) ;;;;; (4)$$<br>两边同时平方得：<br>$$ b^2 - 2bc + c^2 \equiv 0 (mod ; x^n) ;;;;; (5)$$<br>两边同时乘 a 得：<br>$$ b - 2c + c^2a \equiv 0 (mod ; x^n) ;;;;; (6)$$<br>移项，整理：<br>$$ b = (2c - c^2a) ; mod ; x^n $$</p>
+<p>(4) -&gt; (5) 中模数平方的原因：<br>左边多项式模 $ x^{n/2} $ 为 0 代表该多项式每一项最低次数为 n / 2 + 1 。<br>那么该多项平方后最低次数会是 n + 1 或 n + 2 ，<br>模 $ x^n $ 后仍为 0 。</p>
 <p>于是乎分治，直到 n == 1 ，此时多项式的取模为一个常数，逆元也就是整数的逆元。</p>
 <p>其中乘法使用 FFT ，则最终时间复杂度为 $ O(n \cdot log_2n) $ 。</p>
 
@@ -903,6 +928,7 @@ int QCNT;
         </h1>
 
         <div class="post-meta">
+          
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -976,6 +1002,7 @@ int QCNT;
         </h1>
 
         <div class="post-meta">
+          
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -1065,6 +1092,7 @@ int QCNT;
         </h1>
 
         <div class="post-meta">
+          
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -1092,9 +1120,11 @@ int QCNT;
       
           <h2 id="sl-LS"><a href="#sl-LS" class="headerlink" title="sl / LS"></a>sl / LS</h2><p>在你 ls 打累的时候开小火车。</p>
 <h3 id="安装方式"><a href="#安装方式" class="headerlink" title="安装方式"></a>安装方式</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo aptitude install sl</span><br></pre></td></tr></table></figure>
+
 <h2 id="lolcat"><a href="#lolcat" class="headerlink" title="lolcat"></a>lolcat</h2><p>用彩虹为输出着色！</p>
 <h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><p><img src="https://pic4.zhimg.com/v2-3bf6b7552162441dd638ac6d5fb3717b_r.jpg" alt="lolcat"></p>
 <h3 id="安装方式-1"><a href="#安装方式-1" class="headerlink" title="安装方式"></a>安装方式</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo aptitude install rubygems</span><br><span class="line">gem install lolcat</span><br></pre></td></tr></table></figure>
+
 <h3 id="管道处理"><a href="#管道处理" class="headerlink" title="管道处理"></a>管道处理</h3><p>非常有意思的是，将大多数 ncurses 程序的输出通过管道用 lolcat 后仍然可以正常运行！</p>
 <p>比如 <code>nano | lolcat</code> 可以打开一个彩虹编辑器；<br><code>ncdu | lolcat</code> 可以打开一个彩虹文件查看器；<br><code>sl | lolcat</code> 可以开彩虹火车；<br><code>nethack | lolcat</code> 可以玩彩虹游戏！</p>
 <h2 id="cowsay"><a href="#cowsay" class="headerlink" title="cowsay"></a>cowsay</h2><p>让一只奶牛（或者其它乱七八糟的东西）说出一句话！</p>
@@ -1107,43 +1137,51 @@ int QCNT;
          \  (oo)\_______
             (__)\       )\/\
                 ||----w |
-                ||     ||
-</code></pre><p>类似的你也可以用 <code>cowthink</code> 。</p>
+                ||     ||</code></pre><p>类似的你也可以用 <code>cowthink</code> 。</p>
 <h3 id="安装方式-2"><a href="#安装方式-2" class="headerlink" title="安装方式"></a>安装方式</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo aptitude install cowsay</span><br></pre></td></tr></table></figure>
+
 <h2 id="chafa"><a href="#chafa" class="headerlink" title="chafa"></a>chafa</h2><p>在终端里面打印图片或者视频！</p>
 <h3 id="示例-2"><a href="#示例-2" class="headerlink" title="示例"></a>示例</h3><p><img src="https://pic4.zhimg.com/v2-91254499e2880bbe3068ce2a3e086977_b.gif" alt="chafa"></p>
 <p>小诀窍：把终端字体调小并开全屏可以让图片更清晰（但是更慢）。<br>给你一图片自行意会（记住这张图是在终端上打印的！！！）：</p>
-<p><img src="http://kewth.gq/wp-content/uploads/2019/03/选区_017.png" alt="chafabig"></p>
+<p><img src="http://kewth.gq/wp-content/uploads/2019/03/%E9%80%89%E5%8C%BA_017.png" alt="chafabig"></p>
 <h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/hpjansson/chafa.git &amp;&amp; <span class="built_in">cd</span> chafa</span><br><span class="line">sudo aptitude install libmagickwand-dev</span><br><span class="line">./autogen.sh</span><br><span class="line">make</span><br><span class="line">sudo make install</span><br></pre></td></tr></table></figure>
+
 <p>这个安装过程相对比较麻烦，详细过程见 <a href="https://github.com/hpjansson/chafa" target="_blank" rel="noopener">Github</a> 。</p>
 <h2 id="img2txt-cacaview"><a href="#img2txt-cacaview" class="headerlink" title="img2txt / cacaview"></a>img2txt / cacaview</h2><p>在终端里用 ASCII 打印图片！</p>
 <p>或者用 cacaview 打开一个窗口查看。</p>
 <p>upd:<br>后来我才知道 w3m 也可以查看图片，和 cacaview 的效果一模一样。</p>
 <h3 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo aptitude install caca-utils</span><br></pre></td></tr></table></figure>
+
 <h2 id="w3m-lynx-browsh"><a href="#w3m-lynx-browsh" class="headerlink" title="w3m / lynx / browsh"></a>w3m / lynx / browsh</h2><p>在终端浏览网页！</p>
 <h3 id="示例-3"><a href="#示例-3" class="headerlink" title="示例"></a>示例</h3><p>w3m 和 lynx 大同小异，没有什么本质上的区别。<br>（别喷我，我这么说是拿 browsh 作参照）</p>
 <p>但是， browsh 不同，它内部调用 Firefox 渲染网页并处理后打印在终端，<br>因此 browsh 几乎能 <strong>在终端</strong> 支持任何现代浏览器支持的！</p>
 <p>只给出一张 browsh 浏览 youtubu 的图片：</p>
 <p><img src="https://oscimg.oschina.net/oscnet/cc8d81d3c93d858a0a3f39e08293e4b6535.jpg" alt="browsh"></p>
 <h3 id="安装-2"><a href="#安装-2" class="headerlink" title="安装"></a>安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># w3m</span></span><br><span class="line">sudo aptitude install w3m</span><br><span class="line"><span class="comment"># lynx</span></span><br><span class="line">sudo aptitude install lynx</span><br><span class="line"><span class="comment"># browsh</span></span><br><span class="line">wget https://github.com/browsh-org/browsh/releases/download/v1.5.0/browsh_1.5.0_linux_amd64.deb</span><br><span class="line">sudo dpkg -i ./browsh_1.5.0_linux_amd64.deb</span><br></pre></td></tr></table></figure>
+
 <h2 id="cmatrix"><a href="#cmatrix" class="headerlink" title="cmatrix"></a>cmatrix</h2><p>终端黑客风动画</p>
 <p><code>cmatrix | lolcat</code> 简直可以来当屏保。</p>
 <h3 id="安装-3"><a href="#安装-3" class="headerlink" title="安装"></a>安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo aptitude install cmatrix</span><br></pre></td></tr></table></figure>
+
 <h2 id="typespeed"><a href="#typespeed" class="headerlink" title="typespeed"></a>typespeed</h2><p>在终端 <del>玩打字游戏</del> 测试打字速度！</p>
-<h3 id="示例-4"><a href="#示例-4" class="headerlink" title="示例"></a>示例</h3><p><img src="http://kewth.gq/wp-content/uploads/2019/03/选区_027.png" alt="typespeed"></p>
+<h3 id="示例-4"><a href="#示例-4" class="headerlink" title="示例"></a>示例</h3><p><img src="http://kewth.gq/wp-content/uploads/2019/03/%E9%80%89%E5%8C%BA_027.png" alt="typespeed"></p>
 <h3 id="安装-4"><a href="#安装-4" class="headerlink" title="安装"></a>安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo aptitude install typespeed</span><br></pre></td></tr></table></figure>
+
 <h3 id="自定义词库"><a href="#自定义词库" class="headerlink" title="自定义词库"></a>自定义词库</h3><p>我是真的爱折腾，竟然自己找出了 typespeed 的词库位置并且自己加了词库。。。</p>
 <p>顺便夸一下 typespeed 的扩展性真的好，它考虑到了用户的自定义词库需求。</p>
 <p>只需要在 /usr/share/typespeed/words/ 目录下添加 words.xxx 文件（ xxx 随意填），<br>文件第一行是这个词库的名称，接下来每行一个单词就可以了。</p>
 <p>然后进入 typespeed 就能看到你自己的词库啦（ kewth’s xxx 就是我自己加的）：</p>
-<p><img src="http://kewth.gq/wp-content/uploads/2019/03/选区_028.png" alt="mywords"></p>
+<p><img src="http://kewth.gq/wp-content/uploads/2019/03/%E9%80%89%E5%8C%BA_028.png" alt="mywords"></p>
 <h2 id="nethack"><a href="#nethack" class="headerlink" title="nethack"></a>nethack</h2><p>世界上最棒的终端游戏（绝无夸大）！<br>nethack 太博大精深了，玩法不赘述。</p>
 <p>另外： <code>nethack | lolcat</code> 的效果真的很棒。</p>
 <h3 id="安装-5"><a href="#安装-5" class="headerlink" title="安装"></a>安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo aptitude install nethack</span><br></pre></td></tr></table></figure>
+
 <h2 id="task"><a href="#task" class="headerlink" title="task"></a>task</h2><p>全名 taskwarrior 。</p>
 <p>个人认为终端上最好用的 todo list manager 。<br>功能十分强大，可以简单上手，<br>如果愿意折腾也可以深入挖掘它的各种功能，最精细地管理你的任务计划。</p>
 <h3 id="安装-6"><a href="#安装-6" class="headerlink" title="安装"></a>安装</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo aptitude install taskwarrior</span><br></pre></td></tr></table></figure>
+
 <h3 id="简单上手"><a href="#简单上手" class="headerlink" title="简单上手"></a>简单上手</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">task add test1</span><br><span class="line">task add test2</span><br><span class="line">task start 1</span><br><span class="line">task long</span><br><span class="line">task <span class="keyword">done</span> 1</span><br><span class="line">task <span class="keyword">done</span> 2</span><br></pre></td></tr></table></figure>
+
 <h3 id="tasksh"><a href="#tasksh" class="headerlink" title="tasksh"></a>tasksh</h3><p>整合 taskwarrior 的交互命令行，里面可以直接敲 <code>add ...</code> 或 <code>list</code> 等命令。</p>
 
         

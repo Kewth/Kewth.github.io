@@ -212,6 +212,7 @@
         </h1>
 
         <div class="post-meta">
+          
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -250,10 +251,13 @@
 <p>莫比乌斯函数满足 $\mu * I = \epsilon $<br>即 $ \sum_{d|n}\mu(d) = [n = 1] $</p>
 <p>表达式为：</p>
 <a id="more"></a>
-<script type="math/tex; mode=display">n = 0 : \mu(n) = 1</script><script type="math/tex; mode=display">n = \prod_{p|n\\&p\\,is\\,prime} p : \mu(n)=(-1)^k</script><script type="math/tex; mode=display">otherwise : \mu(n)=0</script><p>证明：<br><del>暂时不会</del></p>
-<p>莫比乌斯反演：<br>对于数论函数 f(n)，设 $ F(n) = \sum_{d|n}f(d) $<br>即 $ F = f <em> I $<br>则有 $ f(n) = \sum_{d|n}F(d)</em>\mu(\frac{n}{d}) $<br>即 $ f = F * \mu $</p>
+
+<p>$$ n = 0 : \mu(n) = 1 $$<br>$$ n = \prod_{p|n\&amp;p\,is\,prime} p : \mu(n)=(-1)^k $$<br>$$ otherwise : \mu(n)=0 $$</p>
+<p>证明：<br><del>暂时不会</del></p>
+<p>莫比乌斯反演：<br>对于数论函数 f(n)，设 $ F(n) = \sum_{d|n}f(d) $<br>即 $ F = f * I $<br>则有 $ f(n) = \sum_{d|n}F(d)*\mu(\frac{n}{d}) $<br>即 $ f = F * \mu $</p>
 <p>证明：</p>
-<script type="math/tex; mode=display">\because \\; F = f\*I</script><script type="math/tex; mode=display">\therefore \\; F\*\mu = f\*I\*\mu</script><script type="math/tex; mode=display">\because \\; I\*\mu = \epsilon</script><script type="math/tex; mode=display">\therefore \\; F\*\mu = f\*\epsilon</script><script type="math/tex; mode=display">\therefore \\; f = F\*\mu</script><p>莫比乌斯反演好像主要是用来推式子，F 比 f 好做的话，就可以试试莫比乌斯反演。</p>
+<p>$$ \because \; F = f*I $$<br>$$ \therefore \; F*\mu = f*I*\mu $$<br>$$ \because \; I*\mu = \epsilon $$<br>$$ \therefore \; F*\mu = f*\epsilon $$<br>$$ \therefore \; f = F*\mu $$</p>
+<p>莫比乌斯反演好像主要是用来推式子，F 比 f 好做的话，就可以试试莫比乌斯反演。</p>
 <p>另外事实上只需要熟知 $\mu$ 函数的性质，直接推式子就行了，<br>绝大多数情况下（至少是我遇到的所有情况下）并不需要莫比乌斯反演。</p>
 
     </div>
