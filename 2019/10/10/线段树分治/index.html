@@ -55,18 +55,18 @@
   };
 </script>
 
-  <meta name="description" content="基本概念首先得知道链和反链是什么。 在 有向无环图（ DAG ） 中，链是满足任意两点 x, y 要么 x 可以到达 y 要么 y 可以到达 x 的点集 （即使只有一个点），反链是任意两点没有路径的 点集 。 那么最长反链，就是点的个数最多的反链。 定理不加证明地丢出两个定理：  最长反链长度 = 最小链覆盖（用最少的链覆盖所有顶点） 最长链长度 = 最小反链覆盖（用最少的反链覆盖所有顶点）  那">
+  <meta name="description" content="作用线段树通过维护序列，可以维护一个承载各种操作的时间轴。   通常用于辅助一些不支持删除操作的数据结构（线性基，并查集），这种情况可以用线段树分治维护操作影响的时间来巧妙地避开删除。 线段树结构线段树分治用到的线段树（以下简称线段树）是以询问的时间为键值，没有权值只有标记的线段树。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="最长反链长">
-<meta property="og:url" content="http://yoursite.com/2019/10/09/最长反链长/index.html">
+<meta property="og:title" content="线段树分治">
+<meta property="og:url" content="http://yoursite.com/2019/10/10/线段树分治/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="基本概念首先得知道链和反链是什么。 在 有向无环图（ DAG ） 中，链是满足任意两点 x, y 要么 x 可以到达 y 要么 y 可以到达 x 的点集 （即使只有一个点），反链是任意两点没有路径的 点集 。 那么最长反链，就是点的个数最多的反链。 定理不加证明地丢出两个定理：  最长反链长度 = 最小链覆盖（用最少的链覆盖所有顶点） 最长链长度 = 最小反链覆盖（用最少的反链覆盖所有顶点）  那">
+<meta property="og:description" content="作用线段树通过维护序列，可以维护一个承载各种操作的时间轴。   通常用于辅助一些不支持删除操作的数据结构（线性基，并查集），这种情况可以用线段树分治维护操作影响的时间来巧妙地避开删除。 线段树结构线段树分治用到的线段树（以下简称线段树）是以询问的时间为键值，没有权值只有标记的线段树。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-10-09T09:35:18.184Z">
+<meta property="og:updated_time" content="2019-10-10T10:46:20.408Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="最长反链长">
-<meta name="twitter:description" content="基本概念首先得知道链和反链是什么。 在 有向无环图（ DAG ） 中，链是满足任意两点 x, y 要么 x 可以到达 y 要么 y 可以到达 x 的点集 （即使只有一个点），反链是任意两点没有路径的 点集 。 那么最长反链，就是点的个数最多的反链。 定理不加证明地丢出两个定理：  最长反链长度 = 最小链覆盖（用最少的链覆盖所有顶点） 最长链长度 = 最小反链覆盖（用最少的反链覆盖所有顶点）  那">
-  <link rel="canonical" href="http://yoursite.com/2019/10/09/最长反链长/">
+<meta name="twitter:title" content="线段树分治">
+<meta name="twitter:description" content="作用线段树通过维护序列，可以维护一个承载各种操作的时间轴。   通常用于辅助一些不支持删除操作的数据结构（线性基，并查集），这种情况可以用线段树分治维护操作影响的时间来巧妙地避开删除。 线段树结构线段树分治用到的线段树（以下简称线段树）是以询问的时间为键值，没有权值只有标记的线段树。">
+  <link rel="canonical" href="http://yoursite.com/2019/10/10/线段树分治/">
 
 
 <script id="page-configurations">
@@ -80,7 +80,7 @@
   };
 </script>
 
-  <title>最长反链长 | Hexo</title>
+  <title>线段树分治 | Hexo</title>
   
 
 
@@ -194,7 +194,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/09/最长反链长/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/10/线段树分治/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="John Doe">
@@ -206,7 +206,7 @@
       <meta itemprop="name" content="Hexo">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">最长反链长
+        <h1 class="post-title" itemprop="name headline">线段树分治
 
           
         </h1>
@@ -222,7 +222,7 @@
                 
               
 
-              <time title="Created: 2019-10-09 17:35:18" itemprop="dateCreated datePublished" datetime="2019-10-09T17:35:18+08:00">2019-10-09</time>
+              <time title="Created: 2019-10-10 18:46:20" itemprop="dateCreated datePublished" datetime="2019-10-10T18:46:20+08:00">2019-10-10</time>
             </span>
           
 
@@ -237,33 +237,31 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p>首先得知道链和反链是什么。</p>
-<p>在 <strong>有向无环图（ DAG ）</strong> 中，<br>链是满足任意两点 x, y 要么 x 可以到达 y 要么 y 可以到达 x 的<strong>点集</strong> （即使只有一个点），<br>反链是任意两点没有路径的 <strong>点集</strong> 。</p>
-<p>那么最长反链，就是点的个数最多的反链。</p>
-<h2 id="定理"><a href="#定理" class="headerlink" title="定理"></a>定理</h2><p>不加证明地丢出两个定理：</p>
-<ol>
-<li>最长反链长度 = 最小链覆盖（用最少的链覆盖所有顶点）</li>
-<li>最长链长度 = 最小反链覆盖（用最少的反链覆盖所有顶点）</li>
-</ol>
-<p>那么要求的其实是最小链覆盖。</p>
-<h2 id="不相交"><a href="#不相交" class="headerlink" title="不相交"></a>不相交</h2><p>假设最小链覆盖不会相交，怎么求出这个最小链覆盖？</p>
-<p>把每个点 i 拆成 i1 和 i2 ，考虑建立二分图。<br>如果存在一条边 (x, y) ，那么就在二分图中建立 (x1, y2) 的边。<br>这样建立二分图之后，原图的点数 - 二分图最大匹配 = 原图的最小链覆盖<br>（链不相交）。</p>
-<p>这样为什么是对的呢？<br>一个点也可以看作是一个链，因此可以将每个点独立来看做初始状态。<br>然后每次在二分图中选出一条边，就是将两条链连接成一条链，<br>使用的链数就减少一个。</p>
-<p>而链不会相交，所以在二分图中选出的边也是不相交的，也就是二分图的最大匹配。</p>
-<h2 id="栗子"><a href="#栗子" class="headerlink" title="栗子"></a>栗子</h2><p>如果链可以相交呢？</p>
-<p>举个栗子：</p>
-<pre><code>5 4 // 五个点四条边
-1 3 // 1 连向 3
-2 3 // 2 连向 3
-3 4 // 3 连向 4
-3 5 // 3 连向 5
-</code></pre><p>这里不相交的最小链覆盖是 3 ，而实际的最小链覆盖是 2 。</p>
-<p>观察不相交的最小链覆盖 {1-3-5, 2, 4} 与最小链覆盖 {1-3-5, 2-3-4} 。</p>
-<p>发现由于不能相交， 1-3-5 这条链把 2-3-4 这条链切断了，<br>分成 2 和 4 两条链，因此比最小链覆盖多了一条链。</p>
-<p>如果可以让 2 跨过 1-3-5 与 4 相连呢？</p>
-<h2 id="相交"><a href="#相交" class="headerlink" title="相交"></a>相交</h2><p>将原图做一次 Floyd ，<br>之后就可以知道任意两点 x, y ，x 是否能到达 y 。</p>
-<p>把建立二分图的方法改造了一下，只要 x 能到达 y ，<br>就直接连一条边 (x, y)，这样就可以“跨过”其它链来连接两条链了。</p>
-<p>这个时候，原图最长反链长度 = 最小链覆盖 = 二分图最大匹配。</p>
+        <h2 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h2><p>线段树通过维护序列，可以维护一个承载各种操作的时间轴。  </p>
+<p>通常用于辅助一些不支持删除操作的数据结构（线性基，并查集），<br>这种情况可以用线段树分治维护操作影响的时间来巧妙地避开删除。</p>
+<h2 id="线段树结构"><a href="#线段树结构" class="headerlink" title="线段树结构"></a>线段树结构</h2><p>线段树分治用到的线段树（以下简称线段树）是以询问的时间为键值，<br>没有权值只有标记的线段树。</p>
+<a id="more"></a>
+
+<p>也就是线段树的一段区间对应的是一段询问（一段时间）。</p>
+<p>这样的线段树只需要支持区间修改（打标记）。<br>每一个操作都会影响一段时间，对应于线段树的区间修改。</p>
+<h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><p>这玩意需要一个例题才讲的清。<br>（由于线段树分治用于辅助其他数据结构，再看例题前得先会线性基）</p>
+<p>维护一个集合，每次操作可以加入一个数或删除一个已经存在与集合的数。<br>每次操作后要回答这个集合的最大异或和。<br>操作次数 1e5 。</p>
+<h3 id="暴力线性基"><a href="#暴力线性基" class="headerlink" title="暴力线性基"></a>暴力线性基</h3><p>如果只有插入没有删除，这题就是一遍线性基。</p>
+<p>但是不巧线性基不支持删除，所以只能在每次删除后重构线性基。<br>复杂度平方带对数，稳 T 。</p>
+<h3 id="时间轴"><a href="#时间轴" class="headerlink" title="时间轴"></a>时间轴</h3><p>将每次操作看做时间点，假设数 x 在时刻 l 被插入， r 被删除，<br>那么 x 只存在于 [l, r) 这段时间，<br>假如每个时刻开一个线性基，那么将 x 插入 [l, r) 的每个线性基，<br>这样就可以在最后通过线性基询问得到每个时刻的答案，<br>复杂度还是平方带对数，稳 T 的离线算法。</p>
+<h3 id="线段树优化"><a href="#线段树优化" class="headerlink" title="线段树优化"></a>线段树优化</h3><p>比较上述两种算法，<br>第一种复杂度瓶颈在于重构线性基，实在是没有什么优化空间，<br>但是第二种算法中，复杂度瓶颈在于将 x 插入到 [l, r) 的每个线性基，<br>这个操作相当于一个区间修改，可以用线段树优化。</p>
+<p>那么一个优秀的算法就出来了：<br>线段树每个节点维护一个 vector （相当于懒标记），插入 x 将直接加在线段树对应区间的 vector　内。<br>所有操作过后会得到一个只有懒标记的线段树，<br>然后考虑如何通过这样一颗线段树得出所有答案。</p>
+<h4 id="处理懒标记"><a href="#处理懒标记" class="headerlink" title="处理懒标记"></a>处理懒标记</h4><p>懒标记下传？<br>不存在的，因为懒标记是一个 vector, 下传的复杂度并不是 O(1) ，<br>不难验证下传所有懒标记会使复杂度重回 n 方。</p>
+<p>既然不能下传，那就进行 n 次单点查询？<br>一个道理，单点查询的复杂度并不是 log(n), 这样做同样对复杂度没有优化。</p>
+<p><del>那就没救了</del></p>
+<h4 id="分治"><a href="#分治" class="headerlink" title="分治"></a>分治</h4><p>线段树分治，不能只有线段树，还要分治啊。</p>
+<p>现在需要只把每个懒标记访问一遍就得出所有答案。</p>
+<p>dfs 整颗线段树（实际上就是分治），深度是 log 级别的，那么对每一个深度开一个线性基。<br>如能能让 dfs 每个节点时该深度线性基维护的是这个节点到根的所有懒标记，<br>最后 dfs 到每个叶子节点就可以得到该叶子节点到根的懒标记的线性基，也就可以求出这个叶子节点的答案。</p>
+<p>假设当前 dfs 到 u, 深度为 d, 深度对应的线性基已经是维护其到根的懒标记。<br>dfs 到一个新点 v 一定会使深度 + 1 ，将当前深度 d 的线性基拷贝到下个深度 d + 1 中。<br>那么 dfs 到 v 后再将 v 的懒标记加到 d + 1 的线性基中，d + 1 的线性基也就满足了要求。<br>通过这样的过程就能够做到只访问每个懒标记一遍。</p>
+<p>这就是线段树分治了。</p>
+<h2 id="真-例题"><a href="#真-例题" class="headerlink" title="真 - 例题"></a>真 - 例题</h2><p>这两道题就没有这么裸了。</p>
+<p><a href="https://www.luogu.org/problemnew/show/P3733" target="_blank" rel="noopener">洛谷八纵八横</a> （线段树分治 + 线性基）</p>
+<p><a href="https://www.lydsy.com/JudgeOnline/problem.php?id=4025" target="_blank" rel="noopener">BZOJ 二分图</a> （线段树分治 + 并查集）</p>
 
     </div>
 
@@ -280,8 +278,8 @@
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
               
-                <a href="/2019/10/09/数论函数玄学操作/" rel="next" title="数论函数玄学操作">
-                  <i class="fa fa-chevron-left"></i> 数论函数玄学操作
+                <a href="/2019/10/10/莫比乌斯反演/" rel="next" title="莫比乌斯反演">
+                  <i class="fa fa-chevron-left"></i> 莫比乌斯反演
                 </a>
               
             </div>
@@ -289,10 +287,6 @@
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
-              
-                <a href="/2019/10/09/搬迁/" rel="prev" title="搬迁">
-                  搬迁 <i class="fa fa-chevron-right"></i>
-                </a>
               
             </div>
           </div>
@@ -338,7 +332,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本概念"><span class="nav-number">1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#定理"><span class="nav-number">2.</span> <span class="nav-text">定理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#不相交"><span class="nav-number">3.</span> <span class="nav-text">不相交</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#栗子"><span class="nav-number">4.</span> <span class="nav-text">栗子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相交"><span class="nav-number">5.</span> <span class="nav-text">相交</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#作用"><span class="nav-number">1.</span> <span class="nav-text">作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线段树结构"><span class="nav-number">2.</span> <span class="nav-text">线段树结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#例题"><span class="nav-number">3.</span> <span class="nav-text">例题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#暴力线性基"><span class="nav-number">3.1.</span> <span class="nav-text">暴力线性基</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#时间轴"><span class="nav-number">3.2.</span> <span class="nav-text">时间轴</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线段树优化"><span class="nav-number">3.3.</span> <span class="nav-text">线段树优化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#处理懒标记"><span class="nav-number">3.3.1.</span> <span class="nav-text">处理懒标记</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分治"><span class="nav-number">3.3.2.</span> <span class="nav-text">分治</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#真-例题"><span class="nav-number">4.</span> <span class="nav-text">真 - 例题</span></a></li></ol></div>
         
       </div>
       <!--/noindex-->
