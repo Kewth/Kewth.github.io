@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="不久前学了整体二分，做了几道题，还在考试上派上用场过几次。觉得自己大概懂了整体二分，直到一次碰上了强制在线的毒瘤题。。。 基础大概讲讲整体二分吧。 整体二分大概用于这样一个场景：有多组询问，每个询问可以二分，但是每个询问二分的时间不能接受，而不同询问的二分有共同点，这时就可以用整体二分把多个询问一起二分。所以这是个离线算法。 流程大概是这样的：对于当前确定的区间 [L, R] ，取 M 为区间中点">
+<meta property="og:type" content="article">
+<meta property="og:title" content="整体二分">
+<meta property="og:url" content="http://yoursite.com/2019/10/10/整体二分/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="不久前学了整体二分，做了几道题，还在考试上派上用场过几次。觉得自己大概懂了整体二分，直到一次碰上了强制在线的毒瘤题。。。 基础大概讲讲整体二分吧。 整体二分大概用于这样一个场景：有多组询问，每个询问可以二分，但是每个询问二分的时间不能接受，而不同询问的二分有共同点，这时就可以用整体二分把多个询问一起二分。所以这是个离线算法。 流程大概是这样的：对于当前确定的区间 [L, R] ，取 M 为区间中点">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-10-10T08:56:38.204Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="整体二分">
+<meta name="twitter:description" content="不久前学了整体二分，做了几道题，还在考试上派上用场过几次。觉得自己大概懂了整体二分，直到一次碰上了强制在线的毒瘤题。。。 基础大概讲讲整体二分吧。 整体二分大概用于这样一个场景：有多组询问，每个询问可以二分，但是每个询问二分的时间不能接受，而不同询问的二分有共同点，这时就可以用整体二分把多个询问一起二分。所以这是个离线算法。 流程大概是这样的：对于当前确定的区间 [L, R] ，取 M 为区间中点">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/10/10/整体二分/">
+
+
+
+
+
+  <title>整体二分 | Hexo</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/10/整体二分/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">整体二分</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-10T16:56:38+08:00">
+                2019-10-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>不久前学了整体二分，做了几道题，还在考试上派上用场过几次。<br>觉得自己大概懂了整体二分，直到一次碰上了强制在线的毒瘤题。。。</p>
+<h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><p>大概讲讲整体二分吧。</p>
+<p>整体二分大概用于这样一个场景：<br>有多组询问，每个询问可以二分，但是每个询问二分的时间不能接受，<br>而不同询问的二分有共同点，这时就可以用整体二分把多个询问一起二分。<br>所以这是个离线算法。</p>
+<p>流程大概是这样的：<br>对于当前确定的区间 [L, R] ，取 M 为区间中点，<br>对于当前在确定在这个区间的每个询问进行 check ，<br>然后判断每个询问接下来是到 [L, M] 还是 [M + 1, R] 。<br>当 L = R 时，就得到了处理到这个区间的询问的答案。</p>
+<p>每个询问还是进行了 O(logV) 次 check ，<br>但是和直接二分不同的是，一般在每个区间内进行预处理后 check 可以做到 O(1) 或者 O(logn) 等，<br>一般需要数据结构维护（常见的有并查集，树状数组，线段树）。</p>
+<h2 id="栗子"><a href="#栗子" class="headerlink" title="栗子"></a>栗子</h2><p>就说静态区间第 k 大吧，当然可以用主席树搞，但是此处讨论整体二分。</p>
+<p>对于每个询问 [l, r] ，可以二分答案 x ，<br>然后 check 不超过 x 的数量，与 k 进行比较即可得出接下来该询问的答案区间。</p>
+<p>直接 check 是 O(V) 的，当然可以直接用数据结构维护，但是此处讨论整体二分。</p>
+<p>当前的答案区间是 [L, R] ，有若干询问的答案已经确定在这个区间内，<br>取中点 M ，维护值在 [L, M] 的每个数，对于每个询问就可以 O(logn) check 了，<br>然后如果询问 k 的答案在 [M + 1, R] ，那么 k 要减去当前 check 的值，以消去 [L, M] 的影响。<br>另外处理后要清空 [L, M] 的影响。</p>
+<p>这样做复杂度是 $O(q logV logn)$ 的。</p>
+<p>另一个实现是维护值在 [1, M] 的每个数，<br>二分到 [L, M] 前先把 [L, M] 的影响撤销掉，<br>二分到 [M + 1, R] 前只需在二分 [L, M] 时保证算上了 [L, M] 的贡献即可。<br>这样做的好处是避开了删除，有些用并查集的操作就可以实现了。</p>
+<p>这样做复杂度同样是 $O(q logV logn)$ 的。</p>
+<h2 id="带修"><a href="#带修" class="headerlink" title="带修"></a>带修</h2><p>就说带修区间第 k 大。</p>
+<p>将修改和查询统称为操作，只需保证操作在二分中的相对顺序，<br>处理答案在 [L, R] 的区间时按顺序做，碰到修改就修改，碰到查询就 check 。<br>但是修改哪来的答案？对于修改操作，只需将它放到它能影响的答案区间即可。<br>例如修改 $a_i = x$ ，分为两个操作：删除 $a_i$ 和添加 $a_i = x$ 。<br>前者的影响的区间需要包括 $a_i$ ，后者影响的区间需要包括 $x$ 。</p>
+<p>同样有两个实现，复杂度都是 $O(q logV logn)$ 。</p>
+<h2 id="在线"><a href="#在线" class="headerlink" title="在线"></a>在线</h2><p>毒瘤的地方来了，整体二分做强制在线。<br>这也是本文的真正讨论重点。</p>
+<p>还是拿静态区间第 k 大分别讨论上述的两种实现。</p>
+<h3 id="实现-1"><a href="#实现-1" class="headerlink" title="实现 1"></a>实现 1</h3><p>单独考虑一个询问 q ，观察它在整体二分中答案区间的移动过程。<br>假设当前二分到区间 [L, R] ，<br>q 能在整体二分中 O(logn) check 是因为权值在 [L, R] 的数被维护进了一个数据结构。<br>那如果 q 到达的所有可能答案区间的数据结构都提前构造好了，<br>q 就不需要整体二分，而可以直接在线询问。</p>
+<p>而所有可能的答案区间事实上形成了一个线段树的结构。<br>上面已经说到要求每个可能的答案区间的数据结构已经提前维护。<br>对应在线段树中就是线段树的每个节点都有数据结构维护该节点对应的答案区间。<br>在本题中就是要权值线段树套区间树状数组，<br>而为了节省空间开销，需要换成权值线段树套区间线段树。<br>这样把每个数先按取值找到对应的外层线段树，再按位置加到对应的内层线段树，<br>每个询问 (l, r, k) 就在外层线段树上二分，在内层线段树查询区间 [l, r] 的数的个数。</p>
+<p>时间复杂度依然是 $O(q logV logn)$ 的，但是空间复杂度为 $O(V + n logV logn)$ 。</p>
+<p>不难推广到更一般的情况，所有不带修的<strong>整体二分实现 1 + 数据结构 A</strong>，<br>都可以用<strong>线段树套数据结构 A</strong> 做到在线询问。<br>时间复杂度不变，但是空间开销会乘上 $O(n)$ ，<br>而当<strong>数据结构 A</strong> 支持动态开空间，即空间开销与修改次数 $q$ 成函数关系 $O(qk)$ 时，<br>这样就只会带来 $O(n logV k)$ 的额外空间开销。</p>
+<p>另外，这是可以支持带修的，对于修改操作，在线段树上找到影响的节点，<br>然后直接去修改节点上的<strong>数据结构 A</strong> 即可。</p>
+<h3 id="实现-2"><a href="#实现-2" class="headerlink" title="实现 2"></a>实现 2</h3><p>还是单独考虑一个询问 q ，此时它在整体二分中答案区间的移动过程固然还是线段树的形式。<br>但是不同的是，此时线段树的每个节点 [L, R] 需要保存维护 [1, R] 的数据结构，<br>换言之，不同节点之间相互不独立。<br>但既然所有需要的数据结构都是维护 [1, K] 这样的前缀形式，<br>不难想到可持久化，每个维护 [1, K] 的数据结构在维护 [1, K - 1] 的数据结构上修改即可。</p>
+<p>具体到静态区间第 k 大，按权值递增的顺序建可持久化区间线段树（树状数组难以可持久化）。<br>对于每个询问 (l, r, k) 二分答案 x 时只需要在第 x 颗区间线段树上查询 [l, r] 的数的个数。</p>
+<p>时间复杂度自然还是 $O(q logV logn)$ 的，空间复杂度为 $O(V + n logn)$ 。</p>
+<p>同样可以推广到更一般的情况，所有不带修的<strong>整体二分实现 2 + 数据结构 A</strong>，<br>都可以用<strong>可持久化数据结构 A</strong> 做到在线询问。<br>在可持久没有额外时间开销的前提下，时间复杂度不变，<br>否则若可持久化会带来 $O(k)$ 的额外时间复杂度，这样做的时间复杂度同样需要乘上 $O(k)$ 。<br>可持久化并查集就是个典型的例子。<br>同样空间复杂度也要乘上可持久化带来的额外开销。</p>
+<p>可惜的是，这不能很好的支持修改，因为每个修改影响到的历史版本是 $O(V)$ 级别的。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>事实上做到在线后，干脆抛弃了整体二分的“整体查询”的思想，其实就和整体二分没什么关系了。<br>那么整体二分究竟是个什么玩意？<br>事实上绝大多数整体二分都无法做到比直接数据结构的时间复杂度优秀，<br>而且经过上述的讨论不难发现绝大多数整体二分都能直接被数据结构替代，<br>也因此整体二分往往被归在“骗分”，“非正解”一类。</p>
+<p>不过整体二分明显的优势在于空间复杂度和实现难度。<br>不过有时经过整体二分的转换后，就可以使用无法可持久化，或者空间开销大的数据结构，<br>上面的树状数组就是很好的例子，无论是实现 1 还是实现 2 ，做到在线都必须换成线段树。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/10/10/拉格朗日插值法/" rel="next" title="拉格朗日插值法">
+                <i class="fa fa-chevron-left"></i> 拉格朗日插值法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/10/10/组合数公式/" rel="prev" title="组合数公式">
+                组合数公式 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">John Doe</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基础"><span class="nav-number">1.</span> <span class="nav-text">基础</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#栗子"><span class="nav-number">2.</span> <span class="nav-text">栗子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#带修"><span class="nav-number">3.</span> <span class="nav-text">带修</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在线"><span class="nav-number">4.</span> <span class="nav-text">在线</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#实现-1"><span class="nav-number">4.1.</span> <span class="nav-text">实现 1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现-2"><span class="nav-number">4.2.</span> <span class="nav-text">实现 2</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+</body>
+</html>

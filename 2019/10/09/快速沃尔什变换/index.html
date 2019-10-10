@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="快速沃尔什变换，简称 FWT ，目前在 OI 中十分冷门。 用处多项式卷积一般是这样的： $$ C_i = \sum_{j + k = i} A_j \cdot B_k $$ 这个可以用 FFT 快速求解。 然而还有一个诡异的卷积： $$ C_i = \sum_{j \oplus k = i} A_j \cdot B_k $$ 其中 $ \oplus $ 是任意一种位运算。 FWT 便是求这类卷积">
+<meta name="description" content="快速沃尔什变换，简称 FWT ，目前在 OI 中十分冷门。 用处多项式卷积一般是这样的： C_i = \sum_{j + k = i} A_j \cdot B_k这个可以用 FFT 快速求解。 然而还有一个诡异的卷积： C_i = \sum_{j \oplus k = i} A_j \cdot B_k其中 $ \oplus $ 是任意一种位运算。 FWT 便是求这类卷积的快速算法。 构造FFT 的">
 <meta property="og:type" content="article">
 <meta property="og:title" content="快速沃尔什变换">
 <meta property="og:url" content="http://yoursite.com/2019/10/09/快速沃尔什变换/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="快速沃尔什变换，简称 FWT ，目前在 OI 中十分冷门。 用处多项式卷积一般是这样的： $$ C_i = \sum_{j + k = i} A_j \cdot B_k $$ 这个可以用 FFT 快速求解。 然而还有一个诡异的卷积： $$ C_i = \sum_{j \oplus k = i} A_j \cdot B_k $$ 其中 $ \oplus $ 是任意一种位运算。 FWT 便是求这类卷积">
+<meta property="og:description" content="快速沃尔什变换，简称 FWT ，目前在 OI 中十分冷门。 用处多项式卷积一般是这样的： C_i = \sum_{j + k = i} A_j \cdot B_k这个可以用 FFT 快速求解。 然而还有一个诡异的卷积： C_i = \sum_{j \oplus k = i} A_j \cdot B_k其中 $ \oplus $ 是任意一种位运算。 FWT 便是求这类卷积的快速算法。 构造FFT 的">
 <meta property="og:locale" content="en">
 <meta property="og:updated_time" content="2019-10-09T09:34:33.154Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="快速沃尔什变换">
-<meta name="twitter:description" content="快速沃尔什变换，简称 FWT ，目前在 OI 中十分冷门。 用处多项式卷积一般是这样的： $$ C_i = \sum_{j + k = i} A_j \cdot B_k $$ 这个可以用 FFT 快速求解。 然而还有一个诡异的卷积： $$ C_i = \sum_{j \oplus k = i} A_j \cdot B_k $$ 其中 $ \oplus $ 是任意一种位运算。 FWT 便是求这类卷积">
+<meta name="twitter:description" content="快速沃尔什变换，简称 FWT ，目前在 OI 中十分冷门。 用处多项式卷积一般是这样的： C_i = \sum_{j + k = i} A_j \cdot B_k这个可以用 FFT 快速求解。 然而还有一个诡异的卷积： C_i = \sum_{j \oplus k = i} A_j \cdot B_k其中 $ \oplus $ 是任意一种位运算。 FWT 便是求这类卷积的快速算法。 构造FFT 的">
 
 
 
@@ -301,45 +301,26 @@
       
         <p>快速沃尔什变换，简称 FWT ，目前在 OI 中十分冷门。</p>
 <h2 id="用处"><a href="#用处" class="headerlink" title="用处"></a>用处</h2><p>多项式卷积一般是这样的：</p>
-<p>$$ C_i = \sum_{j + k = i} A_j \cdot B_k $$</p>
-<p>这个可以用 FFT 快速求解。</p>
+<script type="math/tex; mode=display">C_i = \sum_{j + k = i} A_j \cdot B_k</script><p>这个可以用 FFT 快速求解。</p>
 <p>然而还有一个诡异的卷积：</p>
-<p>$$ C_i = \sum_{j \oplus k = i} A_j \cdot B_k $$</p>
-<p>其中 $ \oplus $ 是任意一种位运算。</p>
+<script type="math/tex; mode=display">C_i = \sum_{j \oplus k = i} A_j \cdot B_k</script><p>其中 $ \oplus $ 是任意一种位运算。</p>
 <p>FWT 便是求这类卷积的快速算法。</p>
 <h2 id="构造"><a href="#构造" class="headerlink" title="构造"></a>构造</h2><p>FFT 的思想是把多项式转换成可以线性相乘的点值表示法 (DFT) ，<br>再把相乘的结果转换回系数表示法 (IDFT) 。</p>
 <p>同样的道理可以用在 FWT 上，用 DWT 将多项式转换成可以线性相乘的形式，即：</p>
-<p>$$ DWT(C)_i = DWT(A)_i \cdot DWT(B)_i $$</p>
-<p>再用 IDWT 将相乘的结果转换回来。</p>
+<script type="math/tex; mode=display">DWT(C)_i = DWT(A)_i \cdot DWT(B)_i</script><p>再用 IDWT 将相乘的结果转换回来。</p>
 <h2 id="DWT"><a href="#DWT" class="headerlink" title="DWT"></a>DWT</h2><p>目标是构造一个转移系数函数 f(i, j) ，满足：</p>
-<p>$$ DWT(A)_i = \sum_j A_j \cdot f(i, j) $$</p>
-<p>考虑 f(i, j) 应满足什么样的性质。</p>
+<script type="math/tex; mode=display">DWT(A)_i = \sum_j A_j \cdot f(i, j)</script><p>考虑 f(i, j) 应满足什么样的性质。</p>
 <p>首先根据 DWT 的性质：</p>
-<p>$$ DWT(C)_i = DWT(A)_i \cdot DWT(B)_i $$</p>
-<p>$$ \sum_t C_t f(i, t) = \sum_j A_j f(i, j) \sum_k B_k f(i, k) $$</p>
-<p>$$ \sum_t \sum_{j \oplus k = t} A_j B_k f(i, t) = \sum_j \sum_k A_j f(i, j) B_k f(i, k) $$</p>
-<p>$$ \sum_t \sum_{j \oplus k = t} A_j B_k f(i, t) = \sum_t \sum_{j \oplus k = t} A_j f(i, j) B_k f(i, k) $$</p>
-<p>由上式可得出：</p>
-<p>$$ \forall i, j, k: f(i, j) f(i, k) = f(i, j \oplus k) $$</p>
-<p>这样还不够，为了让 DWT 快速进行，f(i, j) 还应满足以下性质：</p>
-<p>$$ f(i, j) = \prod_k f(i_k, j_k) $$</p>
-<p>其中 $ i_k $ 表示 i 二进制下的第 k 位（ 0 或 1 ）。</p>
+<script type="math/tex; mode=display">DWT(C)_i = DWT(A)_i \cdot DWT(B)_i</script><script type="math/tex; mode=display">\sum_t C_t f(i, t) = \sum_j A_j f(i, j) \sum_k B_k f(i, k)</script><script type="math/tex; mode=display">\sum_t \sum_{j \oplus k = t} A_j B_k f(i, t) = \sum_j \sum_k A_j f(i, j) B_k f(i, k)</script><script type="math/tex; mode=display">\sum_t \sum_{j \oplus k = t} A_j B_k f(i, t) = \sum_t \sum_{j \oplus k = t} A_j f(i, j) B_k f(i, k)</script><p>由上式可得出：</p>
+<script type="math/tex; mode=display">\forall i, j, k: f(i, j) f(i, k) = f(i, j \oplus k)</script><p>这样还不够，为了让 DWT 快速进行，f(i, j) 还应满足以下性质：</p>
+<script type="math/tex; mode=display">f(i, j) = \prod_k f(i_k, j_k)</script><p>其中 $ i_k $ 表示 i 二进制下的第 k 位（ 0 或 1 ）。</p>
 <p>有了这个性质，就可已通过 f(0, 0), f(0, 1), f(1, 0), f(1, 1) 的值相乘得出所有 f 。<br>有了这个性质，就可以考虑分治求 DWT ：</p>
-<p>$$ DWT(A)<em>i = \sum</em>{j=0}^{n-1} A_j f(i, j) $$</p>
-<p>$$ = \sum_{j=0}^{n/2-1} A_j f(i, j) + \sum_{j=n/2}^{n-1} A_j f(i, j) $$</p>
-<p>$$ = \sum_{j=0}^{n/2-1} A_j \prod_k f(i_k, j_k) + \sum_{j=n/2}^{n-1} A_j \prod_k f(i_k, j_k) $$</p>
-<p>$$ = \sum_{j=0}^{n/2-1} f(i_0, j_0) A_j \prod_{k \geq 1} f(i_k, j_k) + \sum_{j=n/2}^{n-1} A_j f(i_0, j_0) \prod_{k \geq 1} f(i_k, j_k)$$</p>
-<p>$$ = f(i_0, 0) \sum_{j=0}^{n/2-1} A_j \prod_k f(i_k, j_k) + f(i_0, 1) \sum_{j=n/2}^{n-1} A_j \prod_k f(i_k, j_k) $$</p>
-<p>规模减小了一半，递归或迭代地分治下去。<br>每次将 A 分成左右两半 A0, A1 ：</p>
-<p>$$ DWT(A)_i = f(0, 0) DWT(A0)_i + f(0, 1) DWT(A1)_i , i &lt; n / 2 $$</p>
-<p>$$ DWT(A)_i = f(1, 0) DWT(A0)_i + f(1, 1) DWT(A1)_i , i \geq n / 2 $$</p>
-<p>想到 FFT 的蝴蝶变换没有？ <del>答：没有</del><br>迭代的 DWT 这里也有类似的蝴蝶变换：</p>
+<script type="math/tex; mode=display">DWT(A)_i = \sum_{j=0}^{n-1} A_j f(i, j)</script><script type="math/tex; mode=display">= \sum_{j=0}^{n/2-1} A_j f(i, j) + \sum_{j=n/2}^{n-1} A_j f(i, j)</script><script type="math/tex; mode=display">= \sum_{j=0}^{n/2-1} A_j \prod_k f(i_k, j_k) + \sum_{j=n/2}^{n-1} A_j \prod_k f(i_k, j_k)</script><script type="math/tex; mode=display">= \sum_{j=0}^{n/2-1} f(i_0, j_0) A_j \prod_{k \geq 1} f(i_k, j_k) + \sum_{j=n/2}^{n-1} A_j f(i_0, j_0) \prod_{k \geq 1} f(i_k, j_k)</script><script type="math/tex; mode=display">= f(i_0, 0) \sum_{j=0}^{n/2-1} A_j \prod_k f(i_k, j_k) + f(i_0, 1) \sum_{j=n/2}^{n-1} A_j \prod_k f(i_k, j_k)</script><p>规模减小了一半，递归或迭代地分治下去。<br>每次将 A 分成左右两半 A0, A1 ：</p>
+<script type="math/tex; mode=display">DWT(A)_i = f(0, 0) DWT(A0)_i + f(0, 1) DWT(A1)_i , i < n / 2</script><script type="math/tex; mode=display">DWT(A)_i = f(1, 0) DWT(A0)_i + f(1, 1) DWT(A1)_i , i \geq n / 2</script><p>想到 FFT 的蝴蝶变换没有？ <del>答：没有</del><br>迭代的 DWT 这里也有类似的蝴蝶变换：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> x = A[i], y = A[i + k];</span><br><span class="line">A[i] = f00 * x + f01 * y;</span><br><span class="line">A[i + k] = f10 * x + f11 * y;</span><br></pre></td></tr></table></figure>
-
 <p>DWT 的过程就是这样了，甚至不需要构造整个 f ，<br>只需要 f(0, 0), f(0, 1), f(1, 0), f(1, 1) 即可，<br>需要满足的就是 $ \forall i, j, k: f(i, j) f(i, k) = f(i, j \oplus k) $ 。</p>
 <h2 id="IDWT"><a href="#IDWT" class="headerlink" title="IDWT"></a>IDWT</h2><p>怎么将 DWT 的结果转换回来？<br>观察 DWT 的蝴蝶变换：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = f00 * x + f01 * y;</span><br><span class="line">b = f10 * x + f11 * y;</span><br></pre></td></tr></table></figure>
-
 <p>DWT 通过 x, y 求出 a, b,<br>IDWT 就是通过 a, b 求 x, y 。</p>
 <p>解二元一次方程就好了：<br>x = (f11 * a - f01 * b) / (f00 * f11 - f01 * f10)<br>y = (f10 * a - f00 * b) / (f01 * f10 - f00 * f11)  </p>
 <p>就是这么简单…</p>
@@ -359,20 +340,19 @@
 <p>可以自行验证，这些 f 满足上述性质。</p>
 <h2 id="实际意义"><a href="#实际意义" class="headerlink" title="实际意义"></a>实际意义</h2><p>一个多项式 A FFT 后的 A2(x) 实际意义就是 A 在 $ W_n^x $ 上的值（点值表示）。</p>
 <p>那么 A FWT 后的结果的现实意义呢？<br>这得分类来说。</p>
-<h3 id="按位或"><a href="#按位或" class="headerlink" title="按位或"></a>按位或</h3><p>A 在做按位或的 FWT 之后得到的 A2 满足：<br>$$ A2(x) = \sum_{i|x=x} A(i) $$</p>
-<p>也就是说 A2(x) 表示 x 的每个子集 i 的 A(i) 的和。<br>不难得到，A2(x) * B2(x) 的结果 C2(x) 就是 A, B 卷积后的 C 的变换：<br>$$ A2(x) * B2(x) = \sum_{i|x=x} A(i) \sum_{j|x=x} B(j) $$<br>$$ A2(x) * B2(x) = \sum_{i|x=x} \sum_{j|x=x} A(i) B(j) $$<br>$$ A2(x) * B2(x) = \sum_{k|x=x} \sum_{i|j=k} A(i) B(j) $$<br>$$ A2(x) * B2(x) = \sum_{k|x=x} C(k) $$<br>$$ A2(x) * B2(x) = C2(x) $$</p>
-<p>事实上，这也就是子集和变换。</p>
+<h3 id="按位或"><a href="#按位或" class="headerlink" title="按位或"></a>按位或</h3><p>A 在做按位或的 FWT 之后得到的 A2 满足：</p>
+<script type="math/tex; mode=display">A2(x) = \sum_{i|x=x} A(i)</script><p>也就是说 A2(x) 表示 x 的每个子集 i 的 A(i) 的和。<br>不难得到，A2(x) * B2(x) 的结果 C2(x) 就是 A, B 卷积后的 C 的变换：</p>
+<script type="math/tex; mode=display">A2(x) * B2(x) = \sum_{i|x=x} A(i) \sum_{j|x=x} B(j)</script><script type="math/tex; mode=display">A2(x) * B2(x) = \sum_{i|x=x} \sum_{j|x=x} A(i) B(j)</script><script type="math/tex; mode=display">A2(x) * B2(x) = \sum_{k|x=x} \sum_{i|j=k} A(i) B(j)</script><script type="math/tex; mode=display">A2(x) * B2(x) = \sum_{k|x=x} C(k)</script><script type="math/tex; mode=display">A2(x) * B2(x) = C2(x)</script><p>事实上，这也就是子集和变换。</p>
 <p><del>感性理解一下</del></p>
-<h3 id="按位与"><a href="#按位与" class="headerlink" title="按位与"></a>按位与</h3><p>和按位或类似的，A 在做按位与的 FWT 之后得到的 A2 满足：<br>$$ A2(x) = \sum_{i&amp;x=x} A(i) $$</p>
-<p>也就是说 A2(x) 表示每个包含 x 的集合 i 的 A(i) 的和。<br>不难得到，A2(x) * B2(x) 的结果 C2(x) 就是 A, B 卷积后的 C 的变换：<br>$$ A2(x) * B2(x) = \sum_{i&amp;x=x} A(i) \sum_{j&amp;x=x} B(j) $$<br>$$ A2(x) * B2(x) = \sum_{i&amp;x=x} \sum_{j&amp;x=x} A(i) B(j) $$<br>$$ A2(x) * B2(x) = \sum_{k&amp;x=x} \sum_{i&amp;j=k} A(i) B(j) $$<br>$$ A2(x) * B2(x) = \sum_{k&amp;x=x} C(k) $$<br>$$ A2(x) * B2(x) = C2(x) $$</p>
-<p><del>和按位或一个模子里刻出来的</del></p>
+<h3 id="按位与"><a href="#按位与" class="headerlink" title="按位与"></a>按位与</h3><p>和按位或类似的，A 在做按位与的 FWT 之后得到的 A2 满足：</p>
+<script type="math/tex; mode=display">A2(x) = \sum_{i\&x=x} A(i)</script><p>也就是说 A2(x) 表示每个包含 x 的集合 i 的 A(i) 的和。<br>不难得到，A2(x) * B2(x) 的结果 C2(x) 就是 A, B 卷积后的 C 的变换：</p>
+<script type="math/tex; mode=display">A2(x) * B2(x) = \sum_{i\&x=x} A(i) \sum_{j\&x=x} B(j)</script><script type="math/tex; mode=display">A2(x) * B2(x) = \sum_{i\&x=x} \sum_{j\&x=x} A(i) B(j)</script><script type="math/tex; mode=display">A2(x) * B2(x) = \sum_{k\&x=x} \sum_{i\&j=k} A(i) B(j)</script><script type="math/tex; mode=display">A2(x) * B2(x) = \sum_{k\&x=x} C(k)</script><script type="math/tex; mode=display">A2(x) * B2(x) = C2(x)</script><p><del>和按位或一个模子里刻出来的</del></p>
 <h2 id="子集卷积"><a href="#子集卷积" class="headerlink" title="子集卷积"></a>子集卷积</h2><p>两个多项式 A, B 的子集卷积 C 的意义如下：</p>
-<p>$$ C(x) = \sum_{y|z=x, y&amp;z=0} A(y) B(z) $$</p>
-<p>也就是把 x 划分为两个子集 y, z 的 A(y) * B(z) 的和。</p>
-<p>转换成 $ \sum_{y|z=x} A(y) B(z) [y &amp; z = 0] $ ，似乎是一个按位或卷积。<br>再转换成 $ \sum_{y|z=x} A(y) B(z) [bitcount(y) + bitcount(z) = bitcount(x)] $ 。</p>
-<p>此时需要考虑的就是 bitcount, 也就是集合大小。<br>集合大小是 $ O(log(n)) $ 的，可以考虑枚举大小，设：<br>$$ A_i(x) = A(x) [bitcount(x) = i] $$<br>$$ B_j(x) = B(x) [bitcount(x) = j] $$<br>$$ C_k(x) = C(x) [bitcount(x) = k] $$</p>
-<p>那么有：<br>$$ C_k(x) = \sum_{y|z=x} A_i(y) B_j(z) [i + j = k] $$<br>$$ C_k(x) = \sum_{i+j=k} \sum_{y|z=x} A_i(y) B_j(z) $$</p>
-<p>那么枚举 i, j 的值，将 $ A_i $ 和 $ B_j $ 卷积后贡献到 $ C_{i+j} $ 即可。</p>
+<script type="math/tex; mode=display">C(x) = \sum_{y|z=x, y\&z=0} A(y) B(z)</script><p>也就是把 x 划分为两个子集 y, z 的 A(y) * B(z) 的和。</p>
+<p>转换成 $ \sum_{y|z=x} A(y) B(z) [y \&amp; z = 0] $ ，似乎是一个按位或卷积。<br>再转换成 $ \sum_{y|z=x} A(y) B(z) [bitcount(y) + bitcount(z) = bitcount(x)] $ 。</p>
+<p>此时需要考虑的就是 bitcount, 也就是集合大小。<br>集合大小是 $ O(log(n)) $ 的，可以考虑枚举大小，设：</p>
+<script type="math/tex; mode=display">A_i(x) = A(x) [bitcount(x) = i]</script><script type="math/tex; mode=display">B_j(x) = B(x) [bitcount(x) = j]</script><script type="math/tex; mode=display">C_k(x) = C(x) [bitcount(x) = k]</script><p>那么有：</p>
+<script type="math/tex; mode=display">C_k(x) = \sum_{y|z=x} A_i(y) B_j(z) [i + j = k]</script><script type="math/tex; mode=display">C_k(x) = \sum_{i+j=k} \sum_{y|z=x} A_i(y) B_j(z)</script><p>那么枚举 i, j 的值，将 $ A_i $ 和 $ B_j $ 卷积后贡献到 $ C_{i+j} $ 即可。</p>
 <p>这样复杂度似乎是 $ O(n log^3n) $ 的，<br>但是事实上每个 $ A_i, B_j $ 都可以提前 FWT 后 $ O(n) $ 相乘，<br>再贡献到 C 后不进行逆变换，而是确定了 C 的值后在进行逆变换。</p>
 <p>复杂度 $ O(n log^2n) $</p>
 
@@ -409,8 +389,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/10/09/拉格朗日插值法/" rel="prev" title="拉格朗日插值法">
-                拉格朗日插值法 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/10/09/数论函数玄学操作/" rel="prev" title="数论函数玄学操作">
+                数论函数玄学操作 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -488,7 +468,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-count">30</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="已知函数 f(x) 上 n 个点 $(x_i, y_i)$ ，求 f(k) 。 拉格朗日插值法的思路在于：对于每个 $(x_i, y_i)$ 找到 $L_i(x)$ 使得 $L_i(x_i) = y_i, L_i(x_j) = 0$ ，其中 $ x_j $ 是已知的 x 中任意一个不等于 $ x_i $ 的 x 。 n 个点无法求出 f 这个函数，但可以求出一个 n - 1 次多项式，可以认为这个">
+<meta name="description" content="插点值已知函数 f(x) 上 n 个点 $(x_i, y_i)$ ，求 f(k) 。 拉格朗日插值法的思路在于：对于每个 $(x_i, y_i)$ 找到 $L_i(x)$ 使得 $L_i(x_i) = y_i, L_i(x_j) = 0$ ，其中 $ x_j $ 是已知的 x 中任意一个不等于 $ x_i $ 的 x 。 n 个点无法求出 f 这个函数，但可以求出一个 n - 1 次多项式，可以认">
 <meta property="og:type" content="article">
 <meta property="og:title" content="拉格朗日插值法">
-<meta property="og:url" content="http://yoursite.com/2019/10/09/拉格朗日插值法/index.html">
+<meta property="og:url" content="http://yoursite.com/2019/10/10/拉格朗日插值法/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="已知函数 f(x) 上 n 个点 $(x_i, y_i)$ ，求 f(k) 。 拉格朗日插值法的思路在于：对于每个 $(x_i, y_i)$ 找到 $L_i(x)$ 使得 $L_i(x_i) = y_i, L_i(x_j) = 0$ ，其中 $ x_j $ 是已知的 x 中任意一个不等于 $ x_i $ 的 x 。 n 个点无法求出 f 这个函数，但可以求出一个 n - 1 次多项式，可以认为这个">
+<meta property="og:description" content="插点值已知函数 f(x) 上 n 个点 $(x_i, y_i)$ ，求 f(k) 。 拉格朗日插值法的思路在于：对于每个 $(x_i, y_i)$ 找到 $L_i(x)$ 使得 $L_i(x_i) = y_i, L_i(x_j) = 0$ ，其中 $ x_j $ 是已知的 x 中任意一个不等于 $ x_i $ 的 x 。 n 个点无法求出 f 这个函数，但可以求出一个 n - 1 次多项式，可以认">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-10-09T09:34:56.557Z">
+<meta property="og:updated_time" content="2019-10-10T07:32:11.607Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="拉格朗日插值法">
-<meta name="twitter:description" content="已知函数 f(x) 上 n 个点 $(x_i, y_i)$ ，求 f(k) 。 拉格朗日插值法的思路在于：对于每个 $(x_i, y_i)$ 找到 $L_i(x)$ 使得 $L_i(x_i) = y_i, L_i(x_j) = 0$ ，其中 $ x_j $ 是已知的 x 中任意一个不等于 $ x_i $ 的 x 。 n 个点无法求出 f 这个函数，但可以求出一个 n - 1 次多项式，可以认为这个">
+<meta name="twitter:description" content="插点值已知函数 f(x) 上 n 个点 $(x_i, y_i)$ ，求 f(k) 。 拉格朗日插值法的思路在于：对于每个 $(x_i, y_i)$ 找到 $L_i(x)$ 使得 $L_i(x_i) = y_i, L_i(x_j) = 0$ ，其中 $ x_j $ 是已知的 x 中任意一个不等于 $ x_i $ 的 x 。 n 个点无法求出 f 这个函数，但可以求出一个 n - 1 次多项式，可以认">
 
 
 
@@ -119,7 +119,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/10/09/拉格朗日插值法/">
+  <link rel="canonical" href="http://yoursite.com/2019/10/10/拉格朗日插值法/">
 
 
 
@@ -232,7 +232,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/09/拉格朗日插值法/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/10/拉格朗日插值法/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="John Doe">
@@ -261,8 +261,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-09T17:34:56+08:00">
-                2019-10-09
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-10T15:32:11+08:00">
+                2019-10-10
               </time>
             
 
@@ -299,13 +299,20 @@
       
 
       
-        <p>已知函数 f(x) 上 n 个点 $(x_i, y_i)$ ，求 f(k) 。</p>
+        <h2 id="插点值"><a href="#插点值" class="headerlink" title="插点值"></a>插点值</h2><p>已知函数 f(x) 上 n 个点 $(x_i, y_i)$ ，求 f(k) 。</p>
 <p>拉格朗日插值法的思路在于：<br>对于每个 $(x_i, y_i)$ 找到 $L_i(x)$ 使得 $L_i(x_i) = y_i, L_i(x_j) = 0$ ，<br>其中 $ x_j $ 是已知的 x 中任意一个不等于 $ x_i $ 的 x 。</p>
 <p>n 个点无法求出 f 这个函数，<br>但可以求出一个 n - 1 次多项式，<br>可以认为这个多项式近似于 f 。</p>
 <p>而由 L 的定义可知，<br>这个多项式 g 满足 $ g(x) = \sum_{i=1}^n L_i(x) $ 。<br>那么 f(k) 就可以近似地认为是 g(k) ，<br>代入上式即可 $ O(n^2) $ 求解。</p>
 <p>现在问题在于求 L 。<br>下面的 L 可以满足定义：</p>
-<p>$$ L_i(x) = y_i \cdot \prod\limits_{j≠i}\frac{x_j-x}{x_j-x_i}$$</p>
-<p>代入可得这对于任意 $ x_i $<br>可以使得 $ L_i(x_i)=y_i,L_i(x_j) = 0 $</p>
+<script type="math/tex; mode=display">L_i(x) = y_i \cdot \prod\limits_{j≠i}\frac{x_j-x}{x_j-x_i}a</script><p>代入可得这对于任意 $ x_i $<br>可以使得 $ L_i(x_i)=y_i,L_i(x_j) = 0 $</p>
+<h2 id="插系数"><a href="#插系数" class="headerlink" title="插系数"></a>插系数</h2><p>已知多项式 f(x) 的 n 个点值，求 f(x) 。</p>
+<p>点值比较特殊的情况下可以使用 FFT 或者 NTT ，但有失一般性。</p>
+<p>先考虑插出一项 $x^k$ 的系数。</p>
+<p>首先依次考虑每个 $L_i(x)$ 的 $x^k$ 系数，最后累加即可。</p>
+<p>注意到分母和 $y_i$ 是常数可以直接算，考虑提出来，</p>
+<script type="math/tex; mode=display">L_i(x) = (y_i \cdot \prod\limits_{j≠i}\frac{1}{x_j-x_i})
+    (\prod\limits_{j≠i} (x_j - x))</script><p>那么只需要算分子部分，即上式右边的 $\prod$ 的 $x^k$ 系数即可。</p>
+<p>假设把这个连乘暴力拆开，其实 $x^k$ 的系数就是在之中选 $n - k - 1$ 个常数。<br>DP 预处理 $pre(i, j)$ 表示在 $\prod\limits_{j \leq i} (x - x_j)$ 中选 k 个常数的系数和，<br>同理 $suf(i, j)$ 表示在 $\prod\limits_{j \geq i} (x - x_j)$ 中选 k 个常数的系数和。<br>那么把 $pre(i - 1, k)$ 和 $suf(i + 1, k)$ 相乘就是上式的 $x^k$ 系数了。</p>
 
       
     </div>
@@ -330,8 +337,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/10/09/快速沃尔什变换/" rel="next" title="快速沃尔什变换">
-                <i class="fa fa-chevron-left"></i> 快速沃尔什变换
+              <a href="/2019/10/09/整除分块/" rel="next" title="整除分块">
+                <i class="fa fa-chevron-left"></i> 整除分块
               </a>
             
           </div>
@@ -340,8 +347,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/10/09/数论函数玄学操作/" rel="prev" title="数论函数玄学操作">
-                数论函数玄学操作 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/10/10/整体二分/" rel="prev" title="整体二分">
+                整体二分 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -394,8 +401,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -410,7 +426,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-count">30</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -437,6 +453,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#插点值"><span class="nav-number">1.</span> <span class="nav-text">插点值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#插系数"><span class="nav-number">2.</span> <span class="nav-text">插系数</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
