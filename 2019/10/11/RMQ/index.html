@@ -62,7 +62,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="总结求各种 RMQ 的常用技巧和方法。有了新的发现会更新。 以下 n 表示数列的大小，q 表示询问的次数，均以最大值为例。 一般性普通做法线段树当然是可以在线维护的，复杂度 $O(nlogn + qlogn)$ 。甚至还可以支持单点修改或区间修改。 但是如果只是静态询问的话，可以用 ST 表预处理后 $O(1)$ 在线处理询问，复杂度 $O(nlogn + q)$ 。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-10-11T11:30:13.461Z">
+<meta property="og:updated_time" content="2019-10-11T12:38:47.768Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RMQ">
 <meta name="twitter:description" content="总结求各种 RMQ 的常用技巧和方法。有了新的发现会更新。 以下 n 表示数列的大小，q 表示询问的次数，均以最大值为例。 一般性普通做法线段树当然是可以在线维护的，复杂度 $O(nlogn + qlogn)$ 。甚至还可以支持单点修改或区间修改。 但是如果只是静态询问的话，可以用 ST 表预处理后 $O(1)$ 在线处理询问，复杂度 $O(nlogn + q)$ 。">
@@ -223,7 +223,7 @@
                 
               
 
-              <time title="Created: 2019-10-11 19:00:00 / Modified: 19:30:13" itemprop="dateCreated datePublished" datetime="2019-10-11T19:00:00+08:00">2019-10-11</time>
+              <time title="Created: 2019-10-11 19:00:00 / Modified: 20:38:47" itemprop="dateCreated datePublished" datetime="2019-10-11T19:00:00+08:00">2019-10-11</time>
             </span>
           
             
@@ -247,25 +247,30 @@
 <h2 id="一般性普通做法"><a href="#一般性普通做法" class="headerlink" title="一般性普通做法"></a>一般性普通做法</h2><p>线段树当然是可以在线维护的，复杂度 $O(nlogn + qlogn)$ 。<br>甚至还可以支持单点修改或区间修改。</p>
 <p>但是如果只是静态询问的话，可以用 ST 表预处理后 $O(1)$ 在线处理询问，<br>复杂度 $O(nlogn + q)$ 。</p>
 <a id="more"></a>
-
 <p>这两个做法烂大街了，是基础中的基础，不是本文讨论重点。</p>
 <h2 id="区间定长特殊做法"><a href="#区间定长特殊做法" class="headerlink" title="区间定长特殊做法"></a>区间定长特殊做法</h2><p>即所有的询问区间的长度都为与询问无关的定值 $len$ 。<br>直接当做任意区间做，可以做到 $O(nlogn + qlogn)$ 或 $O(nloglen + q)$ 。</p>
 <p>这种情况下有更好理解的预处理方法，只需优先队列。<br>先把 $[1, l]$ 的数扔进优先队列里，之后不断把区间右移，<br>$[l, r]$ 右移的过程相当于加一个点 $r + 1$ 并删掉点 $l$ ，用优先队列维护即可。<br>复杂度 $O(nlogn + q)$ 。</p>
 <p>但这还不够，还有线性的预处理方法，用单调双端队列代替上面的优先队列。<br>同样是让区间不断右移，单调双端队列中的值是单调不增的，<br>那么最左边的值一定是最大值。<br>加点 $r + 1$ 前维护单调性，删点 $l$ 时判断是不是删的最大值，<br>如果是就删点最左边的点即可。<br>复杂度 $O(n + q)$ 。</p>
-<h2 id="随机询问期望做法"><a href="#随机询问期望做法" class="headerlink" title="随机询问期望做法"></a>随机询问期望做法</h2><p>这种情况下有个 $O(n + q)$ 的做法。</p>
+<h2 id="随机询问期望做法"><a href="#随机询问期望做法" class="headerlink" title="随机询问期望做法"></a>随机询问期望做法</h2><p>这种情况下有个 $O(n + q)$ 的在线做法。</p>
 <p>考虑分块，设块的大小为 $b$ ， $O(n)$ 预处理每个块的最大值。</p>
 <p>那么对于询问 $[l, r]$ ，若该区间跨过了多个块，问题就分为两个部分：</p>
 <ol>
 <li>求跨过的块区间的最大值。</li>
 <li>求两端点所在零散的块的最大值。</li>
 </ol>
-<p>第一个问题就是个子问题，并且数据规模到了 $O(\frac{n}{b})$ ，<br>为了保证询问 $O(1)$ ，可以用上面一般性的普通做法提到的 ST 表，<br>就可以 $O(\frac{n}{b} log\frac{n}{b})$ 进行预处理然后 $O(1)$ 询问。</p>
+<p>第一个问题就是个子问题，并且数据规模减小到了 $O(\frac{n}{b})$ ，<br>为了保证询问 $O(1)$ ，可以用上面一般性的普通做法提到的 ST 表，<br>就可以 $O(\frac{n}{b} log\frac{n}{b})$ 进行预处理然后 $O(1)$ 询问。</p>
 <p>第二个问题端点所在零散的块是该块的一段前缀或者后缀，<br>只需 $O(n)$ 对于每个块预处理前缀最大值和后缀最大值即可 $O(1)$ 询问。</p>
-<p>那么若询问区间在一个块内呢？<br>自然是暴力扫，但是这样的复杂度是 $O(b)$ 的。<br>但询问区间随机的情况下，不难得出两个端点在同一个块内的概率是 $\frac{b}{n}$ 。<br>那么这种情况询问的期望复杂度是 $O(\frac{b^2}{n})$ 的。</p>
+<p>那么若询问区间在同一个块内呢？<br>自然是暴力扫，但是这样的复杂度是 $O(b)$ 的。<br>但询问区间随机的情况下，不难得出两个端点在同一个块内的概率是 $\frac{b}{n}$ 。<br>那么这种情况询问的期望复杂度是 $O(\frac{b^2}{n})$ 的。</p>
 <p>总复杂度 $O(n + \frac{n}{b} log\frac{n}{b} + q + q \frac{b^2}{n})$ 。<br>当 $b$ 至少为 $O(logn)$ 时，预处理的 $O(\frac{n}{b} log\frac{n}{b})$ 不超过 $O(n)$ 。<br>当 $b$ 至多为 $O(\sqrt{n})$ 时，询问的 $O(q \frac{b^2}{n})$ 不超过 $O(q)$ 。<br>因此 $b$ 的大小取 $O(logn)$ 到 $O(\sqrt{n})$ 之间即可。</p>
+<h4 id="毒瘤活动"><a href="#毒瘤活动" class="headerlink" title="毒瘤活动"></a>毒瘤活动</h4><p>值得注意的是，虽然这个做法的复杂度仅适用于询问区间随机的情况，但是一般不会卡。</p>
+<p>来点有意思的娱乐活动，考虑怎么卡掉它，以及怎么防止被出题人卡。</p>
+<p>想要卡这个做法就要尽量让询问区间在一个块内，卡成 $O(b)$ 的询问复杂度。<br>但在不知道块的大小的情况下，假设给一个区间长 $len$ 的询问，实际块的大小为 $b$ ，<br>那么两个端点在同一个块内的概率大概是 $\frac{b-len+1}{b}$ ，期望复杂度就是 $O(\frac{(b-len+1)len}{b})$ 。</p>
+<p>现在出题人要在不知道 $b$ 的情况下希望上面的复杂度尽量大，选手要在不知道 $len$ 的情况下希望上面复杂度尽量小。<br><del>怎么感觉像博弈论</del></p>
+<p>最坏的情况是 $len = \frac{b}{2}$ 的时候，此时询问的期望复杂度为 $O(\frac{b}{4})$ 。<br>选手希望预处理和询问的复杂度最大值最小，也就是让它们相等，此时 $b$ 的最优取值大致为 $2\sqrt{\frac{n}{q} logn}$ ，<br>这里说是“大致”，是因为为了方便计算将 $O(log \frac{n}{b})$ 看做了 $O(logn)$ 。<br>将 $n, q$ 看做同阶的话，上述取值为 $2\sqrt{logn}$ ，此时复杂度为 $O(\frac{n\sqrt{logn}}{2})$ ，<br>也就是 $O(n\sqrt{logn})$ ，得出结论，在询问区间非随机的情况下，该算法最优可以做到严格 $O(n\sqrt{logn})$ 。</p>
+<p>关键这算法常数小，还好写，取 b 为 $O(\sqrt{logn})$ 的话，复杂度 $O((n + q)\sqrt{logn})$ 在绝大多数情况都足够了。</p>
 <h2 id="一般性标准做法"><a href="#一般性标准做法" class="headerlink" title="一般性标准做法"></a>一般性标准做法</h2><p>标准的 $O(n + q)$ RMQ 。</p>
 <p>离线的话可以建笛卡尔树将 RMQ 转换为 LCA ，然后用 Tarjan 处理。<br>明显的缺点是离线，并且空间开销较大。</p>
-<p>在线的话，不会，占坑，到时候填。</p>
+<p>在线的话，大致提一下，还是建笛卡尔树转 LCA ，然后求出树的欧拉序转为 +-1 RMQ 。<br>而 +-1 RMQ 也是通过分块实现 $O(n + q)$ 复杂度的。<br>整个过程十分复杂，在 OI 中实用性较低，具体做法留个坑，到时候再补。</p>
 
     </div>
 
@@ -336,7 +341,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一般性普通做法"><span class="nav-number">1.</span> <span class="nav-text">一般性普通做法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#区间定长特殊做法"><span class="nav-number">2.</span> <span class="nav-text">区间定长特殊做法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#随机询问期望做法"><span class="nav-number">3.</span> <span class="nav-text">随机询问期望做法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一般性标准做法"><span class="nav-number">4.</span> <span class="nav-text">一般性标准做法</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一般性普通做法"><span class="nav-number">1.</span> <span class="nav-text">一般性普通做法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#区间定长特殊做法"><span class="nav-number">2.</span> <span class="nav-text">区间定长特殊做法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#随机询问期望做法"><span class="nav-number">3.</span> <span class="nav-text">随机询问期望做法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#毒瘤活动"><span class="nav-number">3.0.1.</span> <span class="nav-text">毒瘤活动</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一般性标准做法"><span class="nav-number">4.</span> <span class="nav-text">一般性标准做法</span></a></li></ol></div>
         
       </div>
       <!--/noindex-->
