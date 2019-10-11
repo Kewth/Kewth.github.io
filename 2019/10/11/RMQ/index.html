@@ -247,6 +247,7 @@
 <h2 id="一般性普通做法"><a href="#一般性普通做法" class="headerlink" title="一般性普通做法"></a>一般性普通做法</h2><p>线段树当然是可以在线维护的，复杂度 $O(nlogn + qlogn)$ 。<br>甚至还可以支持单点修改或区间修改。</p>
 <p>但是如果只是静态询问的话，可以用 ST 表预处理后 $O(1)$ 在线处理询问，<br>复杂度 $O(nlogn + q)$ 。</p>
 <a id="more"></a>
+
 <p>这两个做法烂大街了，是基础中的基础，不是本文讨论重点。</p>
 <h2 id="区间定长特殊做法"><a href="#区间定长特殊做法" class="headerlink" title="区间定长特殊做法"></a>区间定长特殊做法</h2><p>即所有的询问区间的长度都为与询问无关的定值 $len$ 。<br>直接当做任意区间做，可以做到 $O(nlogn + qlogn)$ 或 $O(nloglen + q)$ 。</p>
 <p>这种情况下有更好理解的预处理方法，只需优先队列。<br>先把 $[1, l]$ 的数扔进优先队列里，之后不断把区间右移，<br>$[l, r]$ 右移的过程相当于加一个点 $r + 1$ 并删掉点 $l$ ，用优先队列维护即可。<br>复杂度 $O(nlogn + q)$ 。</p>
@@ -287,8 +288,8 @@
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
               
-                <a href="/2019/10/10/搬迁/" rel="next" title="搬迁">
-                  <i class="fa fa-chevron-left"></i> 搬迁
+                <a href="/2019/10/10/逆序对/" rel="next" title="逆序对">
+                  <i class="fa fa-chevron-left"></i> 逆序对
                 </a>
               
             </div>
