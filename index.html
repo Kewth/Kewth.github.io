@@ -308,7 +308,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-10-12 08:07:05" itemprop="dateModified" datetime="2019-10-12T08:07:05+08:00">2019-10-12</time>
+                <time title="Modified: 2019-10-12 14:11:59" itemprop="dateModified" datetime="2019-10-12T14:11:59+08:00">2019-10-12</time>
               </span>
             
           
@@ -324,9 +324,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>总结求各种 RMQ 的常用技巧和方法。<br>有了新的发现会更新。</p>
+          <p>总结求各种 RMQ 的常用技巧和方法。<br>RMQ 真是流皮，每次深入思考都会有新的发现，所以有了新的发现会更新。</p>
 <p>以下 n 表示数列的大小，q 表示询问的次数，均以最大值为例。</p>
-<h2 id="一般性普通做法"><a href="#一般性普通做法" class="headerlink" title="一般性普通做法"></a>一般性普通做法</h2><p>线段树当然是可以在线维护的，复杂度 $O(nlogn + qlogn)$ 。<br>甚至还可以支持单点修改或区间修改。</p>
+<h2 id="一般性普通做法"><a href="#一般性普通做法" class="headerlink" title="一般性普通做法"></a>一般性普通做法</h2><p>线段树当然是可以在线维护的，复杂度 $O(n + qlogn)$ 。<br>甚至还可以支持单点修改或区间修改。</p>
 <p>但是如果只是静态询问的话，可以用 ST 表预处理后 $O(1)$ 在线处理询问，<br>复杂度 $O(nlogn + q)$ 。</p>
           <!--noindex-->
           
@@ -421,7 +421,7 @@
 <p>这应该是最主流的求逆序对的方法了。</p>
 <p>要求一个区间内的逆序对数，假设已经递归求出两个子区间的逆序对数，<br>接下来要做的就是求一个在左区间，一个在右区间的逆序对数。</p>
 <p>考虑归并排序的过程，在两个指针比较大小时进行统计。</p>
-<p>设左右区间的当前比较指针（下标）为 p1, p2,<br>当找到第一个 p2 使 $a_{p1}&lt; a_{p2}$ 时，可知 $\forall i\in [p1max+1, p2),;a_{p1}&gt; a_{p2}$ 。<br>那么横跨两个子区间的以 p1 为左端点的逆序对就有 p2-p1max-1 个。<br>对所有 p1 统计和即可。</p>
+<p>设左右区间的当前比较指针（下标）为 p1, p2,<br>当找到第一个 p2 使 $a_{p1}&lt; a_{p2}$ 时，可知 $\forall i\in [p1max+1, p2),\;a_{p1}&gt; a_{p2}$ 。<br>那么横跨两个子区间的以 p1 为左端点的逆序对就有 p2-p1max-1 个。<br>对所有 p1 统计和即可。</p>
 <p>值得注意的是，p2&gt;r（区间右端点）退出时，<br>此时左区间未处理的数对答案都有 r-p1max 的贡献因为此时左区间剩下的数都比右区间所有数大。</p>
 <p>复杂度 $O(n \cdot log_2n)$ 。</p>
 <h2 id="线段树-树状数组："><a href="#线段树-树状数组：" class="headerlink" title="线段树/树状数组："></a>线段树/树状数组：</h2><p>前置技能：线段树（或树状数组）。</p>
@@ -434,7 +434,7 @@
 <p>同样复杂度是 $O(n \cdot log_2n)$。</p>
 <p>这种做法稍稍改变可以高效解决一种特殊的问题：</p>
 <p>对于 01 串求串中 1 的数量比 0 的数量大的区间的数量。</p>
-<p>比较容易想到的做法是将 0 看成 -1，区间中 1 比 0(-1) 多等价于区间和大于 0 。<br>区间和可以转换为前缀和 s，那么 l,r 这一区间和大于 0 等价于 $s_r - s_{l-1} &gt; 0 (r &gt;= l)$。<br>移项后即是 $s_r &gt; s_{l-1} \; (r &gt; l-1)$，所以题目可以转换为求前缀和的逆序对，<br>复杂度 $O(n \cdot log_2n)$ 。</p>
+<p>比较容易想到的做法是将 0 看成 -1，区间中 1 比 0(-1) 多等价于区间和大于 0 。<br>区间和可以转换为前缀和 s，那么 l,r 这一区间和大于 0 等价于 $s_r - s_{l-1} &gt; 0 (r &gt;= l)$。<br>移项后即是 $s_r &gt; s_{l-1} \\; (r &gt; l-1)$，所以题目可以转换为求前缀和的逆序对，<br>复杂度 $O(n \cdot log_2n)$ 。</p>
 <p><strong>但是</strong> 这个问题有特殊性，由 01 串的至可知相邻两个前缀和的差值一定是 1 ，<br>利用这一个性质可以有更高效的方法。</p>
 <p>用做法 2 求逆序对，从左到右依次扫，对于当前 $a_i$ 一定比 $a_{i-1}$ 大 1 或者小 1，<br>利用到这个差值，比 $a_i$ 大的数相当于当前线段树 $a_i+1$ 到 $a_{max}$ 的询问，<br>若 $a_i = a_{i-1}+1$ ，那么 $f_{i-1}$ 就是 $a_i$ 到 $a_{maxn}$ 的询问，否则就是 $a_i+2$ 到 $a_{max}$ 的询问。<br>那么 $f_i$ 与 $f_{i-1}$ 的差只在 $a_i$ 或 $a_i+2$ 中，长度为一，<br>完全没必要用线段树，用数组维护桶即可。</p>
 <p>复杂度 $O(n)$。</p>
@@ -840,8 +840,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>这里只是类欧几里得的一种：<br>快速求下式：<br>$$f(a, b, c, n) = \sum_{i=0}^n \lfloor \frac{ai+b}{c} \rfloor$$</p>
-<p>其中 a, b, c, n 都是正整数。</p>
+          <p>这里只是类欧几里得的一种：<br>快速求下式：</p>
+<script type="math/tex; mode=display">f(a, b, c, n) = \sum_{i=0}^n \lfloor \frac{ai+b}{c} \rfloor</script><p>其中 a, b, c, n 都是正整数。</p>
 <h2 id="缩小-a-b-规模"><a href="#缩小-a-b-规模" class="headerlink" title="缩小 a, b 规模"></a>缩小 a, b 规模</h2><p>首先的目标是让 a, b 小于 c 。</p>
           <!--noindex-->
           
@@ -1005,8 +1005,7 @@
 
       
           <p>$ C_n^m $ 在组合数学中的意义：在 n 个元素选 m 个元素的方案数。</p>
-<h2 id="公式"><a href="#公式" class="headerlink" title="公式"></a>公式</h2><h3 id="公式-1"><a href="#公式-1" class="headerlink" title="公式 1"></a>公式 1</h3><p>$$ C_n^m = \frac{n!}{m! * (n-m)!} $$</p>
-<p>组合数的通项公式。</p>
+<h2 id="公式"><a href="#公式" class="headerlink" title="公式"></a>公式</h2><h3 id="公式-1"><a href="#公式-1" class="headerlink" title="公式 1"></a>公式 1</h3><script type="math/tex; mode=display">C_n^m = \frac{n!}{m! * (n-m)!}</script><p>组合数的通项公式。</p>
 <p><strong>当要求组合数模一般模数时</strong> ，通项公式的分母可能没有逆元导致不可行。</p>
           <!--noindex-->
           

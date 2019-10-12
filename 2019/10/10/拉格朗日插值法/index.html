@@ -246,19 +246,17 @@
 <h2 id="插点值"><a href="#插点值" class="headerlink" title="插点值"></a>插点值</h2><p>已知函数 f(x) 上 n 个点 $(x_i, y_i)$ ，求 f(k) 。</p>
 <p>拉格朗日插值法的思路在于：<br>对于每个 $(x_i, y_i)$ 找到 $L_i(x)$ 使得 $L_i(x_i) = y_i, L_i(x_j) = 0$ ，<br>其中 $ x_j $ 是已知的 x 中任意一个不等于 $ x_i $ 的 x 。</p>
 <a id="more"></a>
-
 <p>n 个点无法求出 f 这个函数，<br>但可以求出一个 n - 1 次多项式，<br>可以认为这个多项式近似于 f 。</p>
 <p>而由 L 的定义可知，<br>这个多项式 g 满足 $ g(x) = \sum_{i=1}^n L_i(x) $ 。<br>那么 f(k) 就可以近似地认为是 g(k) ，<br>代入上式即可 $ O(n^2) $ 求解。</p>
 <p>现在问题在于求 L 。<br>下面的 L 可以满足定义：</p>
-<p>$$ L_i(x) = y_i \cdot \prod\limits_{j≠i}\frac{x_j-x}{x_j-x_i}a $$</p>
-<p>代入可得这对于任意 $ x_i $<br>可以使得 $ L_i(x_i)=y_i,L_i(x_j) = 0 $</p>
+<script type="math/tex; mode=display">L_i(x) = y_i \cdot \prod\limits_{j≠i}\frac{x_j-x}{x_j-x_i}a</script><p>代入可得这对于任意 $ x_i $<br>可以使得 $ L_i(x_i)=y_i,L_i(x_j) = 0 $</p>
 <h2 id="插系数"><a href="#插系数" class="headerlink" title="插系数"></a>插系数</h2><p>已知多项式 f(x) 的 n 个点值，求 f(x) 。</p>
 <p>点值比较特殊的情况下可以使用 FFT 或者 NTT ，但有失一般性。</p>
 <p>先考虑插出一项 $x^k$ 的系数。</p>
 <p>首先依次考虑每个 $L_i(x)$ 的 $x^k$ 系数，最后累加即可。</p>
 <p>注意到分母和 $y_i$ 是常数可以直接算，考虑提出来，</p>
-<p>$$ L_i(x) = (y_i \cdot \prod\limits_{j≠i}\frac{1}{x_j-x_i})<br>    (\prod\limits_{j≠i} (x_j - x)) $$</p>
-<p>那么只需要算分子部分，即上式右边的 $\prod$ 的 $x^k$ 系数即可。</p>
+<script type="math/tex; mode=display">L_i(x) = (y_i \cdot \prod\limits_{j≠i}\frac{1}{x_j-x_i})
+    (\prod\limits_{j≠i} (x_j - x))</script><p>那么只需要算分子部分，即上式右边的 $\prod$ 的 $x^k$ 系数即可。</p>
 <p>假设把这个连乘暴力拆开，其实 $x^k$ 的系数就是在之中选 $n - k - 1$ 个常数。<br>DP 预处理 $pre(i, j)$ 表示在 $\prod\limits_{j \leq i} (x - x_j)$ 中选 k 个常数的系数和，<br>同理 $suf(i, j)$ 表示在 $\prod\limits_{j \geq i} (x - x_j)$ 中选 k 个常数的系数和。<br>那么把 $pre(i - 1, k)$ 和 $suf(i + 1, k)$ 相乘就是上式的 $x^k$ 系数了。</p>
 
     </div>

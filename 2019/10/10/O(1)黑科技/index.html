@@ -250,12 +250,10 @@
 <li>a, b, c 全是质数。</li>
 </ol>
 <a id="more"></a>
-
 <p>zzq 把满足这个性质的分解成为“迷之分解”，那我也这么叫吧。</p>
 <p>考虑证明一下，顺便构造一个“迷之分解”。</p>
 <p>找到 x 的最小质因子 p ，然后假设已知 x / p 的“迷之分解” A, B, C (A &lt;= B &lt;= C) 。<br>那么把 p 乘到 A 上就可以得到 x 的“迷之分解” A * p, B, C 。<br>分类讨论，如果 p 不超过 $\sqrt[4]{x}$ ，由于 A 是 A, B, C 三者中最小的，<br>一定满足 A 不超过 $\sqrt[3]{x/p}$ ，那么可得：</p>
-<p>$$A \cdot p \leq \sqrt[3]{x/p} \cdot p = \sqrt[3]{xp^2} \leq \sqrt{x}$$</p>
-<p>而如果 p 超过 $\sqrt[4]{x}$ ，由于 p 是最小质因子，<br>那么如果 x 的“迷之分解”有合数 C ， C 至少是 $p^2$ ，超过 $\sqrt{x}$ ，<br>那么 B 的大小就会比 p 小，与 p 是最小质因子矛盾，<br>因而此时 x 的“迷之分解”全是质数。</p>
+<script type="math/tex; mode=display">A \cdot p \leq \sqrt[3]{x/p} \cdot p = \sqrt[3]{xp^2} \leq \sqrt{x}</script><p>而如果 p 超过 $\sqrt[4]{x}$ ，由于 p 是最小质因子，<br>那么如果 x 的“迷之分解”有合数 C ， C 至少是 $p^2$ ，超过 $\sqrt{x}$ ，<br>那么 B 的大小就会比 p 小，与 p 是最小质因子矛盾，<br>因而此时 x 的“迷之分解”全是质数。</p>
 <p>“迷之分解”的分析就是这样，通过线性筛可以很好预处理出 O(V) 内的所有数的“迷之分解”。<br>然后只需预处理出 $O(\sqrt{V})$ 内两两的 gcd ，为了不带 log ，需要递推预处理。<br>此时求 gcd(x, y) 只需对于 x 的“迷之分解” A, B, C 依次对 y 求 gcd ，<br>以 A 为例，如果 A 不超过 $\sqrt{x}$ ，直接查表可以得到 gcd(A, y) ，<br>否则 A 为质数，简单讨论一下就可以得到 gcd(A, y) 了。</p>
 <h2 id="O-1-快速幂"><a href="#O-1-快速幂" class="headerlink" title="O(1) 快速幂"></a>O(1) 快速幂</h2><p>在 $O(\sqrt{p})$ 的预处理后可以做到对于一个固定的底数 O(1) 查询快速幂，<br>其中 p 是模数，或者是指数的范围。</p>
 <p>这个就简单得多，对于每个 $a^k$ 的指数 k 都可以表示为 $a \sqrt{p} + b$ 的形式，<br>满足 $a, b &lt; \sqrt{p}$ ，分别预处理即可，<br>即预处理 $a^0, a^1, a^2 … a^{\sqrt{p}}, a^{2\sqrt{p}}, a^{3\sqrt{p}} … a^p$ 。</p>
