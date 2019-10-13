@@ -28,7 +28,7 @@
     scheme: 'Muse',
     version: '7.4.1',
     exturl: false,
-    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    sidebar: {"position":"left","display":"always","offset":12,"onmobile":false},
     copycode: {"enable":false,"show_result":false,"style":null},
     back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
     bookmark: {"enable":false,"color":"#222","save":"auto"},
@@ -55,17 +55,17 @@
   };
 </script>
 
-  <meta name="description" content="@CYJian 出了一道黑科技二合一，我就顺便跟着学了学。 O(1) gcd在 O(V) 的预处理后可以做到 O(1) 查询 gcd ，其中 V 是权值的大小。 主要利用到的一个性质是可以将任意 x 分解为三个数 a * b * c ，满足以下两个条件之一：  a, b, c 都不超过 $\sqrt{x}$ 。 a, b, c 全是质数。">
+  <meta name="description" content="@CYJian 出了一道黑科技二合一，我就顺便跟着学了学。O(1) gcd在 O(V) 的预处理后可以做到 O(1) 查询 gcd ，其中 V 是权值的大小。主要利用到的一个性质是可以将任意 x 分解为三个数 a * b * c ，满足以下两个条件之一： a, b, c 都不超过 $\sqrt{x}$ 。 a, b, c 全是质数。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="O(1)黑科技">
 <meta property="og:url" content="http://yoursite.com/2019/10/10/O(1)黑科技/index.html">
 <meta property="og:site_name" content="Kewth&#39;s Blog">
-<meta property="og:description" content="@CYJian 出了一道黑科技二合一，我就顺便跟着学了学。 O(1) gcd在 O(V) 的预处理后可以做到 O(1) 查询 gcd ，其中 V 是权值的大小。 主要利用到的一个性质是可以将任意 x 分解为三个数 a * b * c ，满足以下两个条件之一：  a, b, c 都不超过 $\sqrt{x}$ 。 a, b, c 全是质数。">
+<meta property="og:description" content="@CYJian 出了一道黑科技二合一，我就顺便跟着学了学。O(1) gcd在 O(V) 的预处理后可以做到 O(1) 查询 gcd ，其中 V 是权值的大小。主要利用到的一个性质是可以将任意 x 分解为三个数 a * b * c ，满足以下两个条件之一： a, b, c 都不超过 $\sqrt{x}$ 。 a, b, c 全是质数。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-10-13T11:47:47.172Z">
+<meta property="og:updated_time" content="2019-10-13T12:23:44.478Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="O(1)黑科技">
-<meta name="twitter:description" content="@CYJian 出了一道黑科技二合一，我就顺便跟着学了学。 O(1) gcd在 O(V) 的预处理后可以做到 O(1) 查询 gcd ，其中 V 是权值的大小。 主要利用到的一个性质是可以将任意 x 分解为三个数 a * b * c ，满足以下两个条件之一：  a, b, c 都不超过 $\sqrt{x}$ 。 a, b, c 全是质数。">
+<meta name="twitter:description" content="@CYJian 出了一道黑科技二合一，我就顺便跟着学了学。O(1) gcd在 O(V) 的预处理后可以做到 O(1) 查询 gcd ，其中 V 是权值的大小。主要利用到的一个性质是可以将任意 x 分解为三个数 a * b * c ，满足以下两个条件之一： a, b, c 都不超过 $\sqrt{x}$ 。 a, b, c 全是质数。">
   <link rel="canonical" href="http://yoursite.com/2019/10/10/O(1)黑科技/">
 
 
@@ -241,7 +241,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-10-13 19:47:47" itemprop="dateModified" datetime="2019-10-13T19:47:47+08:00">2019-10-13</time>
+                <time title="Modified: 2019-10-13 20:23:44" itemprop="dateModified" datetime="2019-10-13T20:23:44+08:00">2019-10-13</time>
               </span>
             
           
@@ -274,14 +274,12 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>@CYJian 出了一道黑科技二合一，我就顺便跟着学了学。</p>
-<h2 id="O-1-gcd"><a href="#O-1-gcd" class="headerlink" title="O(1) gcd"></a>O(1) gcd</h2><p>在 O(V) 的预处理后可以做到 O(1) 查询 gcd ，其中 V 是权值的大小。</p>
-<p>主要利用到的一个性质是可以将任意 x 分解为三个数 a * b * c ，满足以下两个条件之一：</p>
-<ol>
+        <p>@CYJian 出了一道黑科技二合一，我就顺便跟着学了学。</p><h2 id="O-1-gcd"><a href="#O-1-gcd" class="headerlink" title="O(1) gcd"></a>O(1) gcd</h2><p>在 O(V) 的预处理后可以做到 O(1) 查询 gcd ，其中 V 是权值的大小。</p><p>主要利用到的一个性质是可以将任意 x 分解为三个数 a * b * c ，满足以下两个条件之一：</p><ol>
 <li>a, b, c 都不超过 $\sqrt{x}$ 。</li>
 <li>a, b, c 全是质数。</li>
-</ol>
-<a id="more"></a>
+</ol><a id="more"></a>
+
+
 
 <p>zzq 把满足这个性质的分解成为“迷之分解”，那我也这么叫吧。</p>
 <p>考虑证明一下，顺便构造一个“迷之分解”。</p>
@@ -384,7 +382,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-count">31</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -393,7 +391,7 @@
       
       <div class="site-state-item site-state-categories">
         
-        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">categories</span>
         
       </div>
@@ -402,7 +400,7 @@
       
       <div class="site-state-item site-state-tags">
         
-        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">tags</span>
         
       </div>

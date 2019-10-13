@@ -28,7 +28,7 @@
     scheme: 'Muse',
     version: '7.4.1',
     exturl: false,
-    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    sidebar: {"position":"left","display":"always","offset":12,"onmobile":false},
     copycode: {"enable":false,"show_result":false,"style":null},
     back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
     bookmark: {"enable":false,"color":"#222","save":"auto"},
@@ -55,17 +55,17 @@
   };
 </script>
 
-  <meta name="description" content="原来拉格朗日插值不仅能插点值，还能插系数。 插点值已知函数 f(x) 上 n 个点 $(x_i, y_i)$ ，求 f(k) 。 拉格朗日插值法的思路在于：对于每个 $(x_i, y_i)$ 找到 $L_i(x)$ 使得 $L_i(x_i) = y_i, L_i(x_j) = 0$ ，其中 $ x_j $ 是已知的 x 中任意一个不等于 $ x_i $ 的 x 。">
+  <meta name="description" content="原来拉格朗日插值不仅能插点值，还能插系数。插点值已知函数 f(x) 上 n 个点 $(x_i, y_i)$ ，求 f(k) 。拉格朗日插值法的思路在于：对于每个 $(x_i, y_i)$ 找到 $L_i(x)$ 使得 $L_i(x_i) = y_i, L_i(x_j) = 0$ ，其中 $ x_j $ 是已知的 x 中任意一个不等于 $ x_i $ 的 x 。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="拉格朗日插值法">
 <meta property="og:url" content="http://yoursite.com/2019/10/10/拉格朗日插值法/index.html">
 <meta property="og:site_name" content="Kewth&#39;s Blog">
-<meta property="og:description" content="原来拉格朗日插值不仅能插点值，还能插系数。 插点值已知函数 f(x) 上 n 个点 $(x_i, y_i)$ ，求 f(k) 。 拉格朗日插值法的思路在于：对于每个 $(x_i, y_i)$ 找到 $L_i(x)$ 使得 $L_i(x_i) = y_i, L_i(x_j) = 0$ ，其中 $ x_j $ 是已知的 x 中任意一个不等于 $ x_i $ 的 x 。">
+<meta property="og:description" content="原来拉格朗日插值不仅能插点值，还能插系数。插点值已知函数 f(x) 上 n 个点 $(x_i, y_i)$ ，求 f(k) 。拉格朗日插值法的思路在于：对于每个 $(x_i, y_i)$ 找到 $L_i(x)$ 使得 $L_i(x_i) = y_i, L_i(x_j) = 0$ ，其中 $ x_j $ 是已知的 x 中任意一个不等于 $ x_i $ 的 x 。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-10-13T11:49:25.385Z">
+<meta property="og:updated_time" content="2019-10-13T12:23:54.118Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="拉格朗日插值法">
-<meta name="twitter:description" content="原来拉格朗日插值不仅能插点值，还能插系数。 插点值已知函数 f(x) 上 n 个点 $(x_i, y_i)$ ，求 f(k) 。 拉格朗日插值法的思路在于：对于每个 $(x_i, y_i)$ 找到 $L_i(x)$ 使得 $L_i(x_i) = y_i, L_i(x_j) = 0$ ，其中 $ x_j $ 是已知的 x 中任意一个不等于 $ x_i $ 的 x 。">
+<meta name="twitter:description" content="原来拉格朗日插值不仅能插点值，还能插系数。插点值已知函数 f(x) 上 n 个点 $(x_i, y_i)$ ，求 f(k) 。拉格朗日插值法的思路在于：对于每个 $(x_i, y_i)$ 找到 $L_i(x)$ 使得 $L_i(x_i) = y_i, L_i(x_j) = 0$ ，其中 $ x_j $ 是已知的 x 中任意一个不等于 $ x_i $ 的 x 。">
   <link rel="canonical" href="http://yoursite.com/2019/10/10/拉格朗日插值法/">
 
 
@@ -241,7 +241,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-10-13 19:49:25" itemprop="dateModified" datetime="2019-10-13T19:49:25+08:00">2019-10-13</time>
+                <time title="Modified: 2019-10-13 20:23:54" itemprop="dateModified" datetime="2019-10-13T20:23:54+08:00">2019-10-13</time>
               </span>
             
           
@@ -274,10 +274,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>原来拉格朗日插值不仅能插点值，还能插系数。</p>
-<h2 id="插点值"><a href="#插点值" class="headerlink" title="插点值"></a>插点值</h2><p>已知函数 f(x) 上 n 个点 $(x_i, y_i)$ ，求 f(k) 。</p>
-<p>拉格朗日插值法的思路在于：<br>对于每个 $(x_i, y_i)$ 找到 $L_i(x)$ 使得 $L_i(x_i) = y_i, L_i(x_j) = 0$ ，<br>其中 $ x_j $ 是已知的 x 中任意一个不等于 $ x_i $ 的 x 。</p>
-<a id="more"></a>
+        <p>原来拉格朗日插值不仅能插点值，还能插系数。</p><h2 id="插点值"><a href="#插点值" class="headerlink" title="插点值"></a>插点值</h2><p>已知函数 f(x) 上 n 个点 $(x_i, y_i)$ ，求 f(k) 。</p><p>拉格朗日插值法的思路在于：<br>对于每个 $(x_i, y_i)$ 找到 $L_i(x)$ 使得 $L_i(x_i) = y_i, L_i(x_j) = 0$ ，<br>其中 $ x_j $ 是已知的 x 中任意一个不等于 $ x_i $ 的 x 。</p><a id="more"></a>
+
 
 <p>n 个点无法求出 f 这个函数，<br>但可以求出一个 n - 1 次多项式，<br>可以认为这个多项式近似于 f 。</p>
 <p>而由 L 的定义可知，<br>这个多项式 g 满足 $ g(x) = \sum_{i=1}^n L_i(x) $ 。<br>那么 f(k) 就可以近似地认为是 g(k) ，<br>代入上式即可 $ O(n^2) $ 求解。</p>
@@ -385,7 +383,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-count">31</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -394,7 +392,7 @@
       
       <div class="site-state-item site-state-categories">
         
-        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">categories</span>
         
       </div>
@@ -403,7 +401,7 @@
       
       <div class="site-state-item site-state-tags">
         
-        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">tags</span>
         
       </div>

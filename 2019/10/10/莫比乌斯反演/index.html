@@ -28,7 +28,7 @@
     scheme: 'Muse',
     version: '7.4.1',
     exturl: false,
-    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    sidebar: {"position":"left","display":"always","offset":12,"onmobile":false},
     copycode: {"enable":false,"show_result":false,"style":null},
     back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
     bookmark: {"enable":false,"color":"#222","save":"auto"},
@@ -55,17 +55,17 @@
   };
 </script>
 
-  <meta name="description" content="（以下除号皆表示整除）对于一些式子复杂度大的数论题，或许用莫比乌斯反演可以高效解决问题。 前置技能：  基本数论函数 狄利克雷卷积  莫比乌斯函数满足 $\mu * I = \epsilon $即 $ \sum_{d|n}\mu(d) = [n = 1] $ 表达式为：">
+  <meta name="description" content="（以下除号皆表示整除）对于一些式子复杂度大的数论题，或许用莫比乌斯反演可以高效解决问题。前置技能： 基本数论函数 狄利克雷卷积 莫比乌斯函数满足 $\mu * I = \epsilon $即 $ \sum_{d|n}\mu(d) = [n = 1] $表达式为：$$ n = 0 : \mu(n) = 1 $$$$ n = \prod_{p|n\&amp;amp;p\,is\,prime} p : \mu(">
 <meta property="og:type" content="article">
 <meta property="og:title" content="莫比乌斯反演">
 <meta property="og:url" content="http://yoursite.com/2019/10/10/莫比乌斯反演/index.html">
 <meta property="og:site_name" content="Kewth&#39;s Blog">
-<meta property="og:description" content="（以下除号皆表示整除）对于一些式子复杂度大的数论题，或许用莫比乌斯反演可以高效解决问题。 前置技能：  基本数论函数 狄利克雷卷积  莫比乌斯函数满足 $\mu * I = \epsilon $即 $ \sum_{d|n}\mu(d) = [n = 1] $ 表达式为：">
+<meta property="og:description" content="（以下除号皆表示整除）对于一些式子复杂度大的数论题，或许用莫比乌斯反演可以高效解决问题。前置技能： 基本数论函数 狄利克雷卷积 莫比乌斯函数满足 $\mu * I = \epsilon $即 $ \sum_{d|n}\mu(d) = [n = 1] $表达式为：$$ n = 0 : \mu(n) = 1 $$$$ n = \prod_{p|n\&amp;amp;p\,is\,prime} p : \mu(">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-10-13T11:48:59.178Z">
+<meta property="og:updated_time" content="2019-10-13T12:24:11.455Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="莫比乌斯反演">
-<meta name="twitter:description" content="（以下除号皆表示整除）对于一些式子复杂度大的数论题，或许用莫比乌斯反演可以高效解决问题。 前置技能：  基本数论函数 狄利克雷卷积  莫比乌斯函数满足 $\mu * I = \epsilon $即 $ \sum_{d|n}\mu(d) = [n = 1] $ 表达式为：">
+<meta name="twitter:description" content="（以下除号皆表示整除）对于一些式子复杂度大的数论题，或许用莫比乌斯反演可以高效解决问题。前置技能： 基本数论函数 狄利克雷卷积 莫比乌斯函数满足 $\mu * I = \epsilon $即 $ \sum_{d|n}\mu(d) = [n = 1] $表达式为：$$ n = 0 : \mu(n) = 1 $$$$ n = \prod_{p|n\&amp;amp;p\,is\,prime} p : \mu(">
   <link rel="canonical" href="http://yoursite.com/2019/10/10/莫比乌斯反演/">
 
 
@@ -241,7 +241,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-10-13 19:48:59" itemprop="dateModified" datetime="2019-10-13T19:48:59+08:00">2019-10-13</time>
+                <time title="Modified: 2019-10-13 20:24:11" itemprop="dateModified" datetime="2019-10-13T20:24:11+08:00">2019-10-13</time>
               </span>
             
           
@@ -274,17 +274,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>（以下除号皆表示整除）<br>对于一些式子复杂度大的数论题，或许用莫比乌斯反演可以高效解决问题。</p>
-<p>前置技能：</p>
-<ul>
+        <p>（以下除号皆表示整除）<br>对于一些式子复杂度大的数论题，或许用莫比乌斯反演可以高效解决问题。</p><p>前置技能：</p><ul>
 <li>基本数论函数</li>
 <li>狄利克雷卷积</li>
-</ul>
-<p>莫比乌斯函数满足 $\mu * I = \epsilon $<br>即 $ \sum_{d|n}\mu(d) = [n = 1] $</p>
-<p>表达式为：</p>
-<a id="more"></a>
+</ul><p>莫比乌斯函数满足 $\mu * I = \epsilon $<br>即 $ \sum_{d|n}\mu(d) = [n = 1] $</p><p>表达式为：</p><p>$$ n = 0 : \mu(n) = 1 $$<br>$$ n = \prod_{p|n\&amp;p\,is\,prime} p : \mu(n)=(-1)^k $$<br>$$ otherwise : \mu(n)=0 $$</p><a id="more"></a>
 
-<p>$$ n = 0 : \mu(n) = 1 $$<br>$$ n = \prod_{p|n\&amp;p\,is\,prime} p : \mu(n)=(-1)^k $$<br>$$ otherwise : \mu(n)=0 $$</p>
+
+
+
+
 <p>证明：<br><del>暂时不会</del></p>
 <p>莫比乌斯反演：<br>对于数论函数 f(n)，设 $ F(n) = \sum_{d|n}f(d) $<br>即 $ F = f * I $<br>则有 $ f(n) = \sum_{d|n}F(d)*\mu(\frac{n}{d}) $<br>即 $ f = F * \mu $</p>
 <p>证明：</p>
@@ -382,7 +380,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-count">31</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -391,7 +389,7 @@
       
       <div class="site-state-item site-state-categories">
         
-        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">categories</span>
         
       </div>
@@ -400,7 +398,7 @@
       
       <div class="site-state-item site-state-tags">
         
-        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">tags</span>
         
       </div>

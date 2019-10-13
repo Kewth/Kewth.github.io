@@ -28,7 +28,7 @@
     scheme: 'Muse',
     version: '7.4.1',
     exturl: false,
-    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    sidebar: {"position":"left","display":"always","offset":12,"onmobile":false},
     copycode: {"enable":false,"show_result":false,"style":null},
     back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
     bookmark: {"enable":false,"color":"#222","save":"auto"},
@@ -55,17 +55,17 @@
   };
 </script>
 
-  <meta name="description" content="总结求各种 RMQ 的常用技巧和方法。RMQ 真是流皮，每次深入思考都会有新的发现，所以有了新的发现会更新。 以下 n 表示数列的大小，q 表示询问的次数，均以最大值为例。 一般性普通做法线段树当然是可以在线维护的，复杂度 $O(n + qlogn)$ 。甚至还可以支持单点修改或区间修改。 但是如果只是静态询问的话，可以用 ST 表预处理后 $O(1)$ 在线处理询问，复杂度 $O(nlogn +">
+  <meta name="description" content="总结求各种 RMQ 的常用技巧和方法。RMQ 真是流皮，每次深入思考都会有新的发现，所以有了新的发现会更新。以下 n 表示数列的大小，q 表示询问的次数，均以最大值为例。一般性普通做法线段树当然是可以在线维护的，复杂度 $O(n + qlogn)$ 。甚至还可以支持单点修改或区间修改。但是如果只是静态询问的话，可以用 ST 表预处理后 $O(1)$ 在线处理询问，复杂度 $O(nlogn + q)">
 <meta property="og:type" content="article">
 <meta property="og:title" content="RMQ">
 <meta property="og:url" content="http://yoursite.com/2019/10/11/RMQ/index.html">
 <meta property="og:site_name" content="Kewth&#39;s Blog">
-<meta property="og:description" content="总结求各种 RMQ 的常用技巧和方法。RMQ 真是流皮，每次深入思考都会有新的发现，所以有了新的发现会更新。 以下 n 表示数列的大小，q 表示询问的次数，均以最大值为例。 一般性普通做法线段树当然是可以在线维护的，复杂度 $O(n + qlogn)$ 。甚至还可以支持单点修改或区间修改。 但是如果只是静态询问的话，可以用 ST 表预处理后 $O(1)$ 在线处理询问，复杂度 $O(nlogn +">
+<meta property="og:description" content="总结求各种 RMQ 的常用技巧和方法。RMQ 真是流皮，每次深入思考都会有新的发现，所以有了新的发现会更新。以下 n 表示数列的大小，q 表示询问的次数，均以最大值为例。一般性普通做法线段树当然是可以在线维护的，复杂度 $O(n + qlogn)$ 。甚至还可以支持单点修改或区间修改。但是如果只是静态询问的话，可以用 ST 表预处理后 $O(1)$ 在线处理询问，复杂度 $O(nlogn + q)">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-10-13T11:46:05.282Z">
+<meta property="og:updated_time" content="2019-10-13T12:23:49.528Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RMQ">
-<meta name="twitter:description" content="总结求各种 RMQ 的常用技巧和方法。RMQ 真是流皮，每次深入思考都会有新的发现，所以有了新的发现会更新。 以下 n 表示数列的大小，q 表示询问的次数，均以最大值为例。 一般性普通做法线段树当然是可以在线维护的，复杂度 $O(n + qlogn)$ 。甚至还可以支持单点修改或区间修改。 但是如果只是静态询问的话，可以用 ST 表预处理后 $O(1)$ 在线处理询问，复杂度 $O(nlogn +">
+<meta name="twitter:description" content="总结求各种 RMQ 的常用技巧和方法。RMQ 真是流皮，每次深入思考都会有新的发现，所以有了新的发现会更新。以下 n 表示数列的大小，q 表示询问的次数，均以最大值为例。一般性普通做法线段树当然是可以在线维护的，复杂度 $O(n + qlogn)$ 。甚至还可以支持单点修改或区间修改。但是如果只是静态询问的话，可以用 ST 表预处理后 $O(1)$ 在线处理询问，复杂度 $O(nlogn + q)">
   <link rel="canonical" href="http://yoursite.com/2019/10/11/RMQ/">
 
 
@@ -241,7 +241,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-10-13 19:46:05" itemprop="dateModified" datetime="2019-10-13T19:46:05+08:00">2019-10-13</time>
+                <time title="Modified: 2019-10-13 20:23:49" itemprop="dateModified" datetime="2019-10-13T20:23:49+08:00">2019-10-13</time>
               </span>
             
           
@@ -274,13 +274,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>总结求各种 RMQ 的常用技巧和方法。<br>RMQ 真是流皮，每次深入思考都会有新的发现，所以有了新的发现会更新。</p>
-<p>以下 n 表示数列的大小，q 表示询问的次数，均以最大值为例。</p>
-<h2 id="一般性普通做法"><a href="#一般性普通做法" class="headerlink" title="一般性普通做法"></a>一般性普通做法</h2><p>线段树当然是可以在线维护的，复杂度 $O(n + qlogn)$ 。<br>甚至还可以支持单点修改或区间修改。</p>
-<p>但是如果只是静态询问的话，可以用 ST 表预处理后 $O(1)$ 在线处理询问，<br>复杂度 $O(nlogn + q)$ 。</p>
-<p>这两个做法烂大街了，是基础中的基础，不是本文讨论重点。</p>
-<a id="more"></a>
+        <p>总结求各种 RMQ 的常用技巧和方法。<br>RMQ 真是流皮，每次深入思考都会有新的发现，所以有了新的发现会更新。</p><p>以下 n 表示数列的大小，q 表示询问的次数，均以最大值为例。</p><h2 id="一般性普通做法"><a href="#一般性普通做法" class="headerlink" title="一般性普通做法"></a>一般性普通做法</h2><p>线段树当然是可以在线维护的，复杂度 $O(n + qlogn)$ 。<br>甚至还可以支持单点修改或区间修改。</p><p>但是如果只是静态询问的话，可以用 ST 表预处理后 $O(1)$ 在线处理询问，<br>复杂度 $O(nlogn + q)$ 。</p><a id="more"></a>
 
+
+
+<p>这两个做法烂大街了，是基础中的基础，不是本文讨论重点。</p>
 <h2 id="区间定长特殊做法"><a href="#区间定长特殊做法" class="headerlink" title="区间定长特殊做法"></a>区间定长特殊做法</h2><p>即所有的询问区间的长度都为与询问无关的定值 $len$ 。<br>直接当做任意区间做，可以做到 $O(n + qlogn)$ 或 $O(nloglen + q)$ 。</p>
 <p>这种情况下有更好理解的预处理方法，只需优先队列。<br>先把 $[1, l]$ 的数扔进优先队列里，之后不断把区间右移，<br>$[l, r]$ 右移的过程相当于加一个点 $r + 1$ 并删掉点 $l$ ，用优先队列维护即可。<br>复杂度 $O(nlogn + q)$ 。</p>
 <p>但这还不够，还有线性的预处理方法，用单调双端队列代替上面的优先队列。<br>同样是让区间不断右移，单调双端队列中的值是单调不增的，<br>那么最左边的值一定是最大值。<br>加点 $r + 1$ 前维护单调性，删点 $l$ 时判断是不是删的最大值，<br>如果是就删点最左边的点即可。<br>复杂度 $O(n + q)$ 。</p>
@@ -340,6 +338,10 @@
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2019/10/13/cometoj-12/" rel="prev" title="cometoj-12">
+                  cometoj-12 <i class="fa fa-chevron-right"></i>
+                </a>
               
             </div>
           </div>
@@ -404,7 +406,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-count">31</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -413,7 +415,7 @@
       
       <div class="site-state-item site-state-categories">
         
-        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">categories</span>
         
       </div>
@@ -422,7 +424,7 @@
       
       <div class="site-state-item site-state-tags">
         
-        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">tags</span>
         
       </div>

@@ -28,7 +28,7 @@
     scheme: 'Muse',
     version: '7.4.1',
     exturl: false,
-    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    sidebar: {"position":"left","display":"always","offset":12,"onmobile":false},
     copycode: {"enable":false,"show_result":false,"style":null},
     back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
     bookmark: {"enable":false,"color":"#222","save":"auto"},
@@ -55,17 +55,17 @@
   };
 </script>
 
-  <meta name="description" content="这里只是类欧几里得的一种：快速求下式：$$f(a, b, c, n) = \sum_{i=0}^n \lfloor \frac{ai+b}{c} \rfloor$$ 其中 a, b, c, n 都是正整数。 缩小 a, b 规模首先的目标是让 a, b 小于 c 。">
+  <meta name="description" content="这里只是类欧几里得的一种：快速求下式：$$f(a, b, c, n) = \sum_{i=0}^n \lfloor \frac{ai+b}{c} \rfloor$$其中 a, b, c, n 都是正整数。缩小 a, b 规模首先的目标是让 a, b 小于 c 。结论 1 ：$$\lfloor \frac{Ax+B}{y} \rfloor =\lfloor \frac{A(x\%y)+B}{y} \">
 <meta property="og:type" content="article">
 <meta property="og:title" content="类欧几里得">
 <meta property="og:url" content="http://yoursite.com/2019/10/10/类欧几里得/index.html">
 <meta property="og:site_name" content="Kewth&#39;s Blog">
-<meta property="og:description" content="这里只是类欧几里得的一种：快速求下式：$$f(a, b, c, n) = \sum_{i=0}^n \lfloor \frac{ai+b}{c} \rfloor$$ 其中 a, b, c, n 都是正整数。 缩小 a, b 规模首先的目标是让 a, b 小于 c 。">
+<meta property="og:description" content="这里只是类欧几里得的一种：快速求下式：$$f(a, b, c, n) = \sum_{i=0}^n \lfloor \frac{ai+b}{c} \rfloor$$其中 a, b, c, n 都是正整数。缩小 a, b 规模首先的目标是让 a, b 小于 c 。结论 1 ：$$\lfloor \frac{Ax+B}{y} \rfloor =\lfloor \frac{A(x\%y)+B}{y} \">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-10-13T11:48:43.175Z">
+<meta property="og:updated_time" content="2019-10-13T12:24:03.858Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="类欧几里得">
-<meta name="twitter:description" content="这里只是类欧几里得的一种：快速求下式：$$f(a, b, c, n) = \sum_{i=0}^n \lfloor \frac{ai+b}{c} \rfloor$$ 其中 a, b, c, n 都是正整数。 缩小 a, b 规模首先的目标是让 a, b 小于 c 。">
+<meta name="twitter:description" content="这里只是类欧几里得的一种：快速求下式：$$f(a, b, c, n) = \sum_{i=0}^n \lfloor \frac{ai+b}{c} \rfloor$$其中 a, b, c, n 都是正整数。缩小 a, b 规模首先的目标是让 a, b 小于 c 。结论 1 ：$$\lfloor \frac{Ax+B}{y} \rfloor =\lfloor \frac{A(x\%y)+B}{y} \">
   <link rel="canonical" href="http://yoursite.com/2019/10/10/类欧几里得/">
 
 
@@ -241,7 +241,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-10-13 19:48:43" itemprop="dateModified" datetime="2019-10-13T19:48:43+08:00">2019-10-13</time>
+                <time title="Modified: 2019-10-13 20:24:03" itemprop="dateModified" datetime="2019-10-13T20:24:03+08:00">2019-10-13</time>
               </span>
             
           
@@ -274,12 +274,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>这里只是类欧几里得的一种：<br>快速求下式：<br>$$f(a, b, c, n) = \sum_{i=0}^n \lfloor \frac{ai+b}{c} \rfloor$$</p>
-<p>其中 a, b, c, n 都是正整数。</p>
-<h2 id="缩小-a-b-规模"><a href="#缩小-a-b-规模" class="headerlink" title="缩小 a, b 规模"></a>缩小 a, b 规模</h2><p>首先的目标是让 a, b 小于 c 。</p>
-<a id="more"></a>
+        <p>这里只是类欧几里得的一种：<br>快速求下式：<br>$$f(a, b, c, n) = \sum_{i=0}^n \lfloor \frac{ai+b}{c} \rfloor$$</p><p>其中 a, b, c, n 都是正整数。</p><h2 id="缩小-a-b-规模"><a href="#缩小-a-b-规模" class="headerlink" title="缩小 a, b 规模"></a>缩小 a, b 规模</h2><p>首先的目标是让 a, b 小于 c 。</p><p>结论 1 ：<br>$$\lfloor \frac{Ax+B}{y} \rfloor =<br>\lfloor \frac{A(x\%y)+B}{y} \rfloor + A\lfloor \frac{x}{y} \rfloor$$</p><a id="more"></a>
 
-<p>结论 1 ：<br>$$\lfloor \frac{Ax+B}{y} \rfloor =<br>\lfloor \frac{A(x\%y)+B}{y} \rfloor + A\lfloor \frac{x}{y} \rfloor$$</p>
+
+
 <p>证明：<br>首先用到整除与取模的转换：<br>$\lfloor \frac{x}{y} \rfloor = \frac{x-x\%y}{y}$ 。<br>得到原命题等价于：<br>$$\frac{Ax+B-(Ax+B)\%y}{y} =<br>\frac{A(x\%y)+B-(A(x\%y)+B)\%y}{y} + A\frac{x-x\%y}{y}$$<br>$$Ax + B - (Ax+B)\%y = A(x\%y) + B - (A(x\%y)+B)\%y + A(x-x\%y)$$<br>$$Ax - (Ax+B)\%y = A(x\%y) - (A(x\%y)+B)\%y + A(x-x\%y)$$<br>$$Ax - (Ax+B)\%y = A(x\%y) - (Ax+B)\%y + A(x-x\%y)$$<br>$$Ax = A(x\%y) + A(x-x\%y)$$<br>$$Ax = A(x\%y) + Ax - A(x\%y)$$<br>得证。</p>
 <p>那么通过这个结论可以得知：<br>$$<br>\begin{equation}<br>\begin{aligned}<br>f(a, b, c, n) &amp;= \sum_{i=0}^n \lfloor \frac{ai+b}{c} \rfloor \\<br>&amp;= \sum_{i=0}^n (\lfloor \frac{(a\%c)i+b\%c}{c} \rfloor +<br>i\lfloor \frac{a}{c} \rfloor + \lfloor \frac{b}{c} \rfloor) \\<br>&amp;= f(a\%c, b\%c, c, n) + \sum_{i=0}^n (<br>i\lfloor \frac{a}{c} \rfloor + \lfloor \frac{b}{c} \rfloor) \\<br>\end{aligned}<br>\end{equation}<br>$$</p>
 <p>后面那一段就是一个等差数列求和，于是 a, b 被转换为小于 c 。</p>
@@ -380,7 +378,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-count">31</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -389,7 +387,7 @@
       
       <div class="site-state-item site-state-categories">
         
-        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">categories</span>
         
       </div>
@@ -398,7 +396,7 @@
       
       <div class="site-state-item site-state-tags">
         
-        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">tags</span>
         
       </div>
