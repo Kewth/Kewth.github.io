@@ -256,13 +256,14 @@
 <p>T2 不想说了，心累，在变换过程中做除法就不会爆 long long ， AC 。</p>
 <p>T3 随机分治？感觉挺 6 但是没懂。<br>但是我还是通过奇技淫巧 AC 了。。。</p>
 <h3 id="爆掉这辣鸡交互"><a href="#爆掉这辣鸡交互" class="headerlink" title="爆掉这辣鸡交互"></a>爆掉这辣鸡交互</h3><p>我还真不信这交互器天衣无缝，再次看交互器，<br>交了几个错误的程序，发现我能得到的信息只有交互程序给出的信息，<br>再蠢也不会把重要信息放提示信息里头嘛，感觉似乎没办法了。<br>又交了一次， CE 了。。。<br>这时转机出现了，我看了眼编译信息， woc nice 大夫 g++ 给的编译信息真详细：</p>
-<pre><code>/sandbox/1/a.cpp:5:6: error: &apos;QCNT&apos; was not declared in this scope
-out,QCNT,&apos;\n&apos;;
+<pre><code>/sandbox/1/a.cpp:5:6: error: &#39;QCNT&#39; was not declared in this scope
+out,QCNT,&#39;\n&#39;;
   ^
 /sandbox/1/a.cpp:5:6: note: suggested alternative:
 In file included from /sandbox/1/a.cpp:2:0:
-/sandbox/1/c.h:74:5: note:   &apos;lkjjhkfdlhgkjdfgf5454::QCNT&apos;
-int QCNT;</code></pre><p>note 那一排暴露啦，这命名空间 lkjjhkfdlhgkjdfgf5454 也是没谁了（另外还发现了源码的位置 /sandbox/ ）。<br>但是出题人以为套一个乱七八糟的 namespace 就没事了？<br>然而还是被我发现了哈，于是通过这个 namespace 直接获取了交互器里存的答案，<br>成功 AC ，辣鸡交互器。</p>
+/sandbox/1/c.h:74:5: note:   &#39;lkjjhkfdlhgkjdfgf5454::QCNT&#39;
+int QCNT;
+</code></pre><p>note 那一排暴露啦，这命名空间 lkjjhkfdlhgkjdfgf5454 也是没谁了（另外还发现了源码的位置 /sandbox/ ）。<br>但是出题人以为套一个乱七八糟的 namespace 就没事了？<br>然而还是被我发现了哈，于是通过这个 namespace 直接获取了交互器里存的答案，<br>成功 AC ，辣鸡交互器。</p>
 <p>看了看提交记录，我是第二个玄学 AC 的，第一个的 AC 代码提交时还没有那 sb namespace ，<br>所以说，我是第一个发现这鬼畜 namespace 并通过它 AC 的 :)<br>然后从我 AC 后就陆续有人玄学 AC, 代码我都看了一遍，大同小异，全是用这 sb namespace 过的（变量名、注释都跟我的长一个样），<br>开创先河哈。</p>
 <p>后面再改改就是 65B 全场最短 AC 代码。</p>
 <p>后来又看了看，还有一名大佬用另一种方式爆掉了这辣鸡交互器。<br>比我 6 多了，竟然直接搞到了交互器判 AC 的方式给写 solve 函数上了， %%% 。</p>
@@ -270,7 +271,8 @@ int QCNT;</code></pre><p>note 那一排暴露啦，这命名空间 lkjjhkfdlhgkj
 <h2 id="Day10"><a href="#Day10" class="headerlink" title="Day10"></a>Day10</h2><h3 id="考试-1"><a href="#考试-1" class="headerlink" title="考试"></a>考试</h3><p>第一题乍一看要动态维护逆序对？感觉不太可做，后面直接交了暴力， 30 分。</p>
 <p>第二题字符串，感觉像是贪心，但是有一些情况不好判断，<br>最后打了字符串做状态的暴力 DP ，我估摸着复杂度是 $ O(n^3) $ ，<br>于是就只开了 30’ 的部分分的数据的大小的数组 n = 100 ，交了，果然是 30’ ，<br>然而我把数组开到 2000 （ 60’ 的范围）后就过了 60’ ，这。。。<br>60’ -&gt; 30’ <del>论复杂度分析的重要性。</del></p>
 <p>第三题式子题，乍一看似乎可做，然后简化简化简化，简化成了这样一个题意：</p>
-<pre><code>在正整数范围内解方程 x * phi(x) = 2m ，m 已知。</code></pre><p>我一看这么简洁的式子，枚举一下 2m 的因子应该差不多了，<br>一看数据范围： $ m \leq 10^{18} $ ，第一档暴力 10’ 范围： $ m \leq 10^9 $ 。。。<br>还多组数据，一共 100000 组。。。<br>连暴力都过不去啊我去。<br>最后实在没思路，就预处理了一部分 phi 再暴力去搞，结果爆零。。。</p>
+<pre><code>在正整数范围内解方程 x * phi(x) = 2m ，m 已知。
+</code></pre><p>我一看这么简洁的式子，枚举一下 2m 的因子应该差不多了，<br>一看数据范围： $ m \leq 10^{18} $ ，第一档暴力 10’ 范围： $ m \leq 10^9 $ 。。。<br>还多组数据，一共 100000 组。。。<br>连暴力都过不去啊我去。<br>最后实在没思路，就预处理了一部分 phi 再暴力去搞，结果爆零。。。</p>
 <h3 id="讲题-1"><a href="#讲题-1" class="headerlink" title="讲题"></a>讲题</h3><p>第一题其实真的容易，根本不要动态维护逆序对，<br>题目要求的只是使逆序对最小的一个循环的位置，<br>考虑一个数从最左边被扔到最右边后对逆序对数量的影响，其实是不会变的，<br>维护这个影响的数列，那么就是要求一个最小前缀和的位置，<br>每次修改就是交换两段区间，虽然逆序对数量会改变，但是根本不用管，相对的影响还是不变的，<br>那这玩意一个平衡树搞上去就好了。</p>
 <p>第二题我似乎摸到正解的前一半了，<br>贪心把能直接求的字母搞出来后对于剩下的求一个字典序最大后缀好像是，<br><del>那这玩意一个后缀数组搞上去就好了。</del><br>然而似乎还是要考虑一些情况，还没改出来。</p>
 <p>第三题数论神仙题（我竟然以为 T3 可做），<br>正解复杂度 $ O(log(m)) $ ，神仙做法，<br>什么二次剩余什么欧拉定理什么质因数玄学分解都用上了，<br>好难，出题人讲了两遍都没听懂。</p>
@@ -391,7 +393,7 @@ int QCNT;</code></pre><p>note 那一排暴露啦，这命名空间 lkjjhkfdlhgkj
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">30</span>
+          <span class="site-state-item-count">31</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -409,7 +411,7 @@ int QCNT;</code></pre><p>note 那一排暴露啦，这命名空间 lkjjhkfdlhgkj
       
       <div class="site-state-item site-state-tags">
         
-        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">tags</span>
         
       </div>

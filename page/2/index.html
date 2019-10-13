@@ -193,6 +193,112 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/10/组合数公式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Kewth">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kewth's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            
+            <a href="/2019/10/10/组合数公式/" class="post-title-link" itemprop="url">组合数公式</a>
+          
+        </h1>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2019-10-10 10:00:01" itemprop="dateCreated datePublished" datetime="2019-10-10T10:00:01+08:00">2019-10-10</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-10-13 20:24:08" itemprop="dateModified" datetime="2019-10-13T20:24:08+08:00">2019-10-13</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>$ C_n^m $ 在组合数学中的意义：在 n 个元素选 m 个元素的方案数。</p><h2 id="公式"><a href="#公式" class="headerlink" title="公式"></a>公式</h2><h3 id="公式-1"><a href="#公式-1" class="headerlink" title="公式 1"></a>公式 1</h3><script type="math/tex; mode=display">C_n^m = \frac{n!}{m! * (n-m)!}</script><p>组合数的通项公式。</p><p><strong>当要求组合数模一般模数时</strong> ，通项公式的分母可能没有逆元导致不可行。</p><h3 id="公式-2"><a href="#公式-2" class="headerlink" title="公式 2"></a>公式 2</h3><script type="math/tex; mode=display">C_n^m = C_n^{n-m}</script><p>基本性质，可以由通项公式得出。</p>
+          <!--noindex-->
+          
+            <div class="post-button">
+              <a class="btn" href="/2019/10/10/组合数公式/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+    
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/10/莫比乌斯反演/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -272,7 +378,7 @@
           <p>（以下除号皆表示整除）<br>对于一些式子复杂度大的数论题，或许用莫比乌斯反演可以高效解决问题。</p><p>前置技能：</p><ul>
 <li>基本数论函数</li>
 <li>狄利克雷卷积</li>
-</ul><p>莫比乌斯函数满足 $\mu * I = \epsilon $<br>即 $ \sum_{d|n}\mu(d) = [n = 1] $</p><p>表达式为：</p><p>$$ n = 0 : \mu(n) = 1 $$<br>$$ n = \prod_{p|n\&amp;p\,is\,prime} p : \mu(n)=(-1)^k $$<br>$$ otherwise : \mu(n)=0 $$</p>
+</ul><p>莫比乌斯函数满足 $\mu * I = \epsilon $<br>即 $ \sum_{d|n}\mu(d) = [n = 1] $</p><p>表达式为：</p><script type="math/tex; mode=display">n = 0 : \mu(n) = 1</script><script type="math/tex; mode=display">n = \prod_{p|n\\&p\\,is\\,prime} p : \mu(n)=(-1)^k</script>
           <!--noindex-->
           
             <div class="post-button">
@@ -641,7 +747,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>数论函数推式子是真的玄学，<br>乱七八糟的一脸懵逼，<br>好不容易看懂了转身又 <del>tm</del> 忘了，<br>这里列出一些我见过的。</p><h2 id="莫比乌斯函数与恒等函数卷积"><a href="#莫比乌斯函数与恒等函数卷积" class="headerlink" title="莫比乌斯函数与恒等函数卷积"></a>莫比乌斯函数与恒等函数卷积</h2><p>$$ \mu * I = \epsilon $$</p><h3 id="证明"><a href="#证明" class="headerlink" title="证明"></a>证明</h3><p>莫比乌斯函数的构造意义。</p><h2 id="欧拉函数与恒等函数卷积"><a href="#欧拉函数与恒等函数卷积" class="headerlink" title="欧拉函数与恒等函数卷积"></a>欧拉函数与恒等函数卷积</h2><p>$$ \phi * I = id $$</p><h2 id="单位函数与恒等函数卷积"><a href="#单位函数与恒等函数卷积" class="headerlink" title="单位函数与恒等函数卷积"></a>单位函数与恒等函数卷积</h2><p>$$ id * I = \sigma $$</p>
+          <p>数论函数推式子是真的玄学，<br>乱七八糟的一脸懵逼，<br>好不容易看懂了转身又 <del>tm</del> 忘了，<br>这里列出一些我见过的。</p><h2 id="莫比乌斯函数与恒等函数卷积"><a href="#莫比乌斯函数与恒等函数卷积" class="headerlink" title="莫比乌斯函数与恒等函数卷积"></a>莫比乌斯函数与恒等函数卷积</h2><script type="math/tex; mode=display">\mu * I = \epsilon</script><h3 id="证明"><a href="#证明" class="headerlink" title="证明"></a>证明</h3><p>莫比乌斯函数的构造意义。</p><h2 id="欧拉函数与恒等函数卷积"><a href="#欧拉函数与恒等函数卷积" class="headerlink" title="欧拉函数与恒等函数卷积"></a>欧拉函数与恒等函数卷积</h2><script type="math/tex; mode=display">\phi * I = id</script><h2 id="单位函数与恒等函数卷积"><a href="#单位函数与恒等函数卷积" class="headerlink" title="单位函数与恒等函数卷积"></a>单位函数与恒等函数卷积</h2><script type="math/tex; mode=display">id * I = \sigma</script><h2 id="互质条件转换为莫比乌斯函数求和"><a href="#互质条件转换为莫比乌斯函数求和" class="headerlink" title="互质条件转换为莫比乌斯函数求和"></a>互质条件转换为莫比乌斯函数求和</h2>
           <!--noindex-->
           
             <div class="post-button">
@@ -718,7 +824,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>快速沃尔什变换，简称 FWT ，目前在 OI 中十分冷门。</p><h2 id="用处"><a href="#用处" class="headerlink" title="用处"></a>用处</h2><p>多项式卷积一般是这样的：</p><p>$$ C_i = \sum_{j + k = i} A_j \cdot B_k $$</p><p>这个可以用 FFT 快速求解。</p><p>然而还有一个诡异的卷积：</p><p>$$ C_i = \sum_{j \oplus k = i} A_j \cdot B_k $$</p>
+          <p>快速沃尔什变换，简称 FWT ，目前在 OI 中十分冷门。</p><h2 id="用处"><a href="#用处" class="headerlink" title="用处"></a>用处</h2><p>多项式卷积一般是这样的：</p><script type="math/tex; mode=display">C_i = \sum_{j + k = i} A_j \cdot B_k</script><p>这个可以用 FFT 快速求解。</p><p>然而还有一个诡异的卷积：</p><script type="math/tex; mode=display">C_i = \sum_{j \oplus k = i} A_j \cdot B_k</script><p>其中 $ \oplus $ 是任意一种位运算。</p>
           <!--noindex-->
           
             <div class="post-button">
@@ -975,88 +1081,11 @@
   
 
     
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/09/多项式运算/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Kewth">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Kewth's Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            
-            <a href="/2019/10/09/多项式运算/" class="post-title-link" itemprop="url">多项式的运算</a>
-          
-        </h1>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              
-                
-              
-
-              <time title="Created: 2019-10-09 17:33:33" itemprop="dateCreated datePublished" datetime="2019-10-09T17:33:33+08:00">2019-10-09</time>
-            </span>
-          
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>简单来说，形如 $ a_0 + a_1X + a_2X^2 + … + a_nX^n $ 的代数表达式叫做多项式，<br>可以记作 $ P(X) = a_0 + a_1X + a_2X^2 + … + a_nX^n $ （系数表示法），<br>a 叫做多项式的系数，X 是一个不定元，不表示任何值，<br>不定元在多项式中最大项的次数称作多项式的次数。</p>
-          <!--noindex-->
-          
-            <div class="post-button">
-              <a class="btn" href="/2019/10/09/多项式运算/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-    
   </div>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -1101,7 +1130,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">30</span>
+          <span class="site-state-item-count">31</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1119,7 +1148,7 @@
       
       <div class="site-state-item site-state-tags">
         
-        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">tags</span>
         
       </div>

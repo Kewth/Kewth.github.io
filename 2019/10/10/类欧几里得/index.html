@@ -55,17 +55,17 @@
   };
 </script>
 
-  <meta name="description" content="这里只是类欧几里得的一种：快速求下式：$$f(a, b, c, n) = \sum_{i=0}^n \lfloor \frac{ai+b}{c} \rfloor$$其中 a, b, c, n 都是正整数。缩小 a, b 规模首先的目标是让 a, b 小于 c 。结论 1 ：$$\lfloor \frac{Ax+B}{y} \rfloor =\lfloor \frac{A(x\%y)+B}{y} \">
+  <meta name="description" content="这里只是类欧几里得的一种：快速求下式：f(a, b, c, n) = \sum_{i=0}^n \lfloor \frac{ai+b}{c} \rfloor其中 a, b, c, n 都是正整数。缩小 a, b 规模首先的目标是让 a, b 小于 c 。结论 1 ：  \lfloor \frac{Ax+B}{y} \rfloor = \lfloor \frac{A(x\\%y)+B}{y} \rf">
 <meta property="og:type" content="article">
 <meta property="og:title" content="类欧几里得">
 <meta property="og:url" content="http://yoursite.com/2019/10/10/类欧几里得/index.html">
 <meta property="og:site_name" content="Kewth&#39;s Blog">
-<meta property="og:description" content="这里只是类欧几里得的一种：快速求下式：$$f(a, b, c, n) = \sum_{i=0}^n \lfloor \frac{ai+b}{c} \rfloor$$其中 a, b, c, n 都是正整数。缩小 a, b 规模首先的目标是让 a, b 小于 c 。结论 1 ：$$\lfloor \frac{Ax+B}{y} \rfloor =\lfloor \frac{A(x\%y)+B}{y} \">
+<meta property="og:description" content="这里只是类欧几里得的一种：快速求下式：f(a, b, c, n) = \sum_{i=0}^n \lfloor \frac{ai+b}{c} \rfloor其中 a, b, c, n 都是正整数。缩小 a, b 规模首先的目标是让 a, b 小于 c 。结论 1 ：  \lfloor \frac{Ax+B}{y} \rfloor = \lfloor \frac{A(x\\%y)+B}{y} \rf">
 <meta property="og:locale" content="en">
 <meta property="og:updated_time" content="2019-10-13T12:24:03.858Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="类欧几里得">
-<meta name="twitter:description" content="这里只是类欧几里得的一种：快速求下式：$$f(a, b, c, n) = \sum_{i=0}^n \lfloor \frac{ai+b}{c} \rfloor$$其中 a, b, c, n 都是正整数。缩小 a, b 规模首先的目标是让 a, b 小于 c 。结论 1 ：$$\lfloor \frac{Ax+B}{y} \rfloor =\lfloor \frac{A(x\%y)+B}{y} \">
+<meta name="twitter:description" content="这里只是类欧几里得的一种：快速求下式：f(a, b, c, n) = \sum_{i=0}^n \lfloor \frac{ai+b}{c} \rfloor其中 a, b, c, n 都是正整数。缩小 a, b 规模首先的目标是让 a, b 小于 c 。结论 1 ：  \lfloor \frac{Ax+B}{y} \rfloor = \lfloor \frac{A(x\\%y)+B}{y} \rf">
   <link rel="canonical" href="http://yoursite.com/2019/10/10/类欧几里得/">
 
 
@@ -274,17 +274,48 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>这里只是类欧几里得的一种：<br>快速求下式：<br>$$f(a, b, c, n) = \sum_{i=0}^n \lfloor \frac{ai+b}{c} \rfloor$$</p><p>其中 a, b, c, n 都是正整数。</p><h2 id="缩小-a-b-规模"><a href="#缩小-a-b-规模" class="headerlink" title="缩小 a, b 规模"></a>缩小 a, b 规模</h2><p>首先的目标是让 a, b 小于 c 。</p><p>结论 1 ：<br>$$\lfloor \frac{Ax+B}{y} \rfloor =<br>\lfloor \frac{A(x\%y)+B}{y} \rfloor + A\lfloor \frac{x}{y} \rfloor$$</p><a id="more"></a>
+        <p>这里只是类欧几里得的一种：<br>快速求下式：</p><script type="math/tex; mode=display">f(a, b, c, n) = \sum_{i=0}^n \lfloor \frac{ai+b}{c} \rfloor</script><p>其中 a, b, c, n 都是正整数。</p><h2 id="缩小-a-b-规模"><a href="#缩小-a-b-规模" class="headerlink" title="缩小 a, b 规模"></a>缩小 a, b 规模</h2><p>首先的目标是让 a, b 小于 c 。</p><p>结论 1 ：  </p><script type="math/tex; mode=display">\lfloor \frac{Ax+B}{y} \rfloor =
+\lfloor \frac{A(x\\%y)+B}{y} \rfloor + A\lfloor \frac{x}{y} \rfloor</script><a id="more"></a>
 
 
 
-<p>证明：<br>首先用到整除与取模的转换：<br>$\lfloor \frac{x}{y} \rfloor = \frac{x-x\%y}{y}$ 。<br>得到原命题等价于：<br>$$\frac{Ax+B-(Ax+B)\%y}{y} =<br>\frac{A(x\%y)+B-(A(x\%y)+B)\%y}{y} + A\frac{x-x\%y}{y}$$<br>$$Ax + B - (Ax+B)\%y = A(x\%y) + B - (A(x\%y)+B)\%y + A(x-x\%y)$$<br>$$Ax - (Ax+B)\%y = A(x\%y) - (A(x\%y)+B)\%y + A(x-x\%y)$$<br>$$Ax - (Ax+B)\%y = A(x\%y) - (Ax+B)\%y + A(x-x\%y)$$<br>$$Ax = A(x\%y) + A(x-x\%y)$$<br>$$Ax = A(x\%y) + Ax - A(x\%y)$$<br>得证。</p>
-<p>那么通过这个结论可以得知：<br>$$<br>\begin{equation}<br>\begin{aligned}<br>f(a, b, c, n) &amp;= \sum_{i=0}^n \lfloor \frac{ai+b}{c} \rfloor \\<br>&amp;= \sum_{i=0}^n (\lfloor \frac{(a\%c)i+b\%c}{c} \rfloor +<br>i\lfloor \frac{a}{c} \rfloor + \lfloor \frac{b}{c} \rfloor) \\<br>&amp;= f(a\%c, b\%c, c, n) + \sum_{i=0}^n (<br>i\lfloor \frac{a}{c} \rfloor + \lfloor \frac{b}{c} \rfloor) \\<br>\end{aligned}<br>\end{equation}<br>$$</p>
-<p>后面那一段就是一个等差数列求和，于是 a, b 被转换为小于 c 。</p>
+<p>证明：<br>首先用到整除与取模的转换：<br>$\lfloor \frac{x}{y} \rfloor = \frac{x-x\\%y}{y}$ 。<br>得到原命题等价于：  </p>
+<script type="math/tex; mode=display">\frac{Ax+B-(Ax+B)\\%y}{y} =
+\frac{A(x\\%y)+B-(A(x\\%y)+B)\\%y}{y} + A\frac{x-x\\%y}{y}</script><script type="math/tex; mode=display">Ax + B - (Ax+B)\\%y = A(x\\%y) + B - (A(x\\%y)+B)\\%y + A(x-x\\%y)</script><script type="math/tex; mode=display">Ax - (Ax+B)\\%y = A(x\\%y) - (A(x\\%y)+B)\\%y + A(x-x\\%y)</script><script type="math/tex; mode=display">Ax - (Ax+B)\\%y = A(x\\%y) - (Ax+B)\\%y + A(x-x\\%y)</script><script type="math/tex; mode=display">Ax = A(x\\%y) + A(x-x\\%y)</script><script type="math/tex; mode=display">Ax = A(x\\%y) + Ax - A(x\\%y)</script><p>得证。</p>
+<p>那么通过这个结论可以得知：  </p>
+<script type="math/tex; mode=display">
+\begin{equation}
+\begin{aligned}
+f(a, b, c, n) &= \sum_{i=0}^n \lfloor \frac{ai+b}{c} \rfloor \\\\
+&= \sum_{i=0}^n (\lfloor \frac{(a\\%c)i+b\\%c}{c} \rfloor +
+i\lfloor \frac{a}{c} \rfloor + \lfloor \frac{b}{c} \rfloor) \\\\
+&= f(a\\%c, b\\%c, c, n) + \sum_{i=0}^n (
+i\lfloor \frac{a}{c} \rfloor + \lfloor \frac{b}{c} \rfloor) \\\\
+\end{aligned}
+\end{equation}</script><p>后面那一段就是一个等差数列求和，于是 a, b 被转换为小于 c 。</p>
 <h2 id="转换成子问题减小规模"><a href="#转换成子问题减小规模" class="headerlink" title="转换成子问题减小规模"></a>转换成子问题减小规模</h2><p>整除除了用取模代替外，还有一种方法。</p>
-<p>结论 2 ：<br>$$\lfloor \frac{x}{y} \rfloor = \sum_{i=1}^{MAX} [i \leq \frac{x}{y}]$$<br>其中 MAX 是任意一个足够大的值。<br>证明？相当于从 1 开始数，感性理解即可。</p>
-<p>那么通过这个结论可以得知：<br>$$<br>\begin{equation}<br>\begin{aligned}<br>f(a, b, c, n) &amp;= \sum_{i=0}^n \lfloor \frac{ai+b}{c} \rfloor \\<br>&amp;= \sum_{i=0}^n \sum_{j=1}^{(an+b)/c} [j \leq \frac{ai+b}{c}] \\<br>&amp;= \sum_{i=0}^n \sum_{j=0}^{(an+b)/c-1} [j + 1 \leq \frac{ai+b}{c}] \\<br>&amp;= \sum_{i=0}^n \sum_{j=0}^{(an+b)/c-1} [cj + c \leq ai+b] \\<br>&amp;= \sum_{i=0}^n \sum_{j=0}^{(an+b)/c-1} [cj + c - 1 &lt; ai+b] \\<br>&amp;= \sum_{i=0}^n \sum_{j=0}^{(an+b)/c-1} [\frac{cj+c-b-1}{a} &lt; i] \\<br>&amp;= \sum_{j=0}^{(an+b)/c-1} \sum_{i=0}^n [\frac{cj+c-b-1}{a} &lt; i] \\<br>&amp;= \sum_{j=0}^{(an+b)/c-1}<br>(n + 1 - \sum_{i=0}^n [i \leq \frac{cj+c-b-1}{a}]) \\<br>&amp;= \sum_{j=0}^{(an+b)/c-1}<br>(n - \lfloor \frac{cj+c-b-1}{a} \rfloor) \\<br>&amp;= n \lfloor \frac{an+b}{c} \rfloor -<br>\sum_{j=0}^{(an+b)/c-1} (\lfloor \frac{cj+c-b-1}{a} \rfloor) \\<br>&amp;= n \lfloor \frac{an+b}{c} \rfloor - f(c, c-b-1, a, (an+b)/c-1)<br>\end{aligned}<br>\end{equation}<br>$$</p>
-<p>那么就得到了一个递归计算 f(a, b, c, n) 的算法，<br>a = 0 时上式不成立，因为上面的推导有除以 a 的步骤。<br>因此将 a = 0 作为终止状态，此时 f 的计算是常数数列求和。<br>复杂度是对数复杂度 log(a)，因为上面的过程规模的减小速度相当于 gcd 。</p>
+<p>结论 2 ：  </p>
+<script type="math/tex; mode=display">\lfloor \frac{x}{y} \rfloor = \sum_{i=1}^{MAX} [i \leq \frac{x}{y}]</script><p>其中 MAX 是任意一个足够大的值。<br>证明？相当于从 1 开始数，感性理解即可。</p>
+<p>那么通过这个结论可以得知：  </p>
+<script type="math/tex; mode=display">
+\begin{equation}
+\begin{aligned}
+f(a, b, c, n) &= \sum_{i=0}^n \lfloor \frac{ai+b}{c} \rfloor \\\\
+&= \sum_{i=0}^n \sum_{j=1}^{(an+b)/c} [j \leq \frac{ai+b}{c}] \\\\
+&= \sum_{i=0}^n \sum_{j=0}^{(an+b)/c-1} [j + 1 \leq \frac{ai+b}{c}] \\\\
+&= \sum_{i=0}^n \sum_{j=0}^{(an+b)/c-1} [cj + c \leq ai+b] \\\\
+&= \sum_{i=0}^n \sum_{j=0}^{(an+b)/c-1} [cj + c - 1 < ai+b] \\\\
+&= \sum_{i=0}^n \sum_{j=0}^{(an+b)/c-1} [\frac{cj+c-b-1}{a} < i] \\\\
+&= \sum_{j=0}^{(an+b)/c-1} \sum_{i=0}^n [\frac{cj+c-b-1}{a} < i] \\\\
+&= \sum_{j=0}^{(an+b)/c-1}
+(n + 1 - \sum_{i=0}^n [i \leq \frac{cj+c-b-1}{a}]) \\\\
+&= \sum_{j=0}^{(an+b)/c-1}
+(n - \lfloor \frac{cj+c-b-1}{a} \rfloor) \\\\
+&= n \lfloor \frac{an+b}{c} \rfloor -
+\sum_{j=0}^{(an+b)/c-1} (\lfloor \frac{cj+c-b-1}{a} \rfloor) \\\\
+&= n \lfloor \frac{an+b}{c} \rfloor - f(c, c-b-1, a, (an+b)/c-1)
+\end{aligned}
+\end{equation}</script><p>那么就得到了一个递归计算 f(a, b, c, n) 的算法，<br>a = 0 时上式不成立，因为上面的推导有除以 a 的步骤。<br>因此将 a = 0 作为终止状态，此时 f 的计算是常数数列求和。<br>复杂度是对数复杂度 log(a)，因为上面的过程规模的减小速度相当于 gcd 。</p>
 
     </div>
 
@@ -378,7 +409,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">30</span>
+          <span class="site-state-item-count">31</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -396,7 +427,7 @@
       
       <div class="site-state-item site-state-tags">
         
-        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">tags</span>
         
       </div>
