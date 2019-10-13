@@ -190,7 +190,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/10/莫比乌斯反演/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/09/逆序对/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="John Doe">
@@ -204,7 +204,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2019/10/10/莫比乌斯反演/" class="post-title-link" itemprop="url">莫比乌斯反演</a>
+            <a href="/2019/10/09/逆序对/" class="post-title-link" itemprop="url">逆序对</a>
           
         </h1>
 
@@ -220,11 +220,19 @@
                 
               
 
-              <time title="Created: 2019-10-10 10:00:00 / Modified: 18:51:01" itemprop="dateCreated datePublished" datetime="2019-10-10T10:00:00+08:00">2019-10-10</time>
+              <time title="Created: 2019-10-09 21:00:00" itemprop="dateCreated datePublished" datetime="2019-10-09T21:00:00+08:00">2019-10-09</time>
             </span>
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-10-13 15:48:51" itemprop="dateModified" datetime="2019-10-13T15:48:51+08:00">2019-10-13</time>
+              </span>
             
           
 
@@ -239,18 +247,14 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>（以下除号皆表示整除）<br>对于一些式子复杂度大的数论题，或许用莫比乌斯反演可以高效解决问题。</p>
-<p>前置技能：</p>
-<ul>
-<li>基本数论函数</li>
-<li>狄利克雷卷积</li>
-</ul>
-<p>莫比乌斯函数满足 $\mu * I = \epsilon $<br>即 $ \sum_{d|n}\mu(d) = [n = 1] $</p>
-<p>表达式为：</p>
+          <p>在数列 a 中,逆序对即是满足 $i &lt; j$ 且 $a_i &gt; a_j$ 的数对。<br>许多情况下你推式子推着推着就推出个 $\sum_{i=1}^n \sum_{j=i+1}^n a_i&gt; a_j$，<br>这就是逆序对的数量。</p>
+<h2 id="暴力"><a href="#暴力" class="headerlink" title="暴力"></a>暴力</h2><p>朴素的求法自然是 $O(n^2)$ 地枚举 $i, j$ 统计，这里不再赘述。</p>
+<h2 id="归并"><a href="#归并" class="headerlink" title="归并"></a>归并</h2><p>前置技能：归并排序。</p>
+<p>这应该是最主流的求逆序对的方法了。</p>
           <!--noindex-->
           
             <div class="post-button">
-              <a class="btn" href="/2019/10/10/莫比乌斯反演/#more" rel="contents">
+              <a class="btn" href="/2019/10/09/逆序对/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>

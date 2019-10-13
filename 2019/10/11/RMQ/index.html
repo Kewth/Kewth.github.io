@@ -62,7 +62,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="总结求各种 RMQ 的常用技巧和方法。RMQ 真是流皮，每次深入思考都会有新的发现，所以有了新的发现会更新。 以下 n 表示数列的大小，q 表示询问的次数，均以最大值为例。 一般性普通做法线段树当然是可以在线维护的，复杂度 $O(n + qlogn)$ 。甚至还可以支持单点修改或区间修改。 但是如果只是静态询问的话，可以用 ST 表预处理后 $O(1)$ 在线处理询问，复杂度 $O(nlogn +">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-10-12T06:11:59.404Z">
+<meta property="og:updated_time" content="2019-10-12T10:21:29.511Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RMQ">
 <meta name="twitter:description" content="总结求各种 RMQ 的常用技巧和方法。RMQ 真是流皮，每次深入思考都会有新的发现，所以有了新的发现会更新。 以下 n 表示数列的大小，q 表示询问的次数，均以最大值为例。 一般性普通做法线段树当然是可以在线维护的，复杂度 $O(n + qlogn)$ 。甚至还可以支持单点修改或区间修改。 但是如果只是静态询问的话，可以用 ST 表预处理后 $O(1)$ 在线处理询问，复杂度 $O(nlogn +">
@@ -234,7 +234,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-10-12 14:11:59" itemprop="dateModified" datetime="2019-10-12T14:11:59+08:00">2019-10-12</time>
+                <time title="Modified: 2019-10-12 18:21:29" itemprop="dateModified" datetime="2019-10-12T18:21:29+08:00">2019-10-12</time>
               </span>
             
           
@@ -254,10 +254,9 @@
 <p>以下 n 表示数列的大小，q 表示询问的次数，均以最大值为例。</p>
 <h2 id="一般性普通做法"><a href="#一般性普通做法" class="headerlink" title="一般性普通做法"></a>一般性普通做法</h2><p>线段树当然是可以在线维护的，复杂度 $O(n + qlogn)$ 。<br>甚至还可以支持单点修改或区间修改。</p>
 <p>但是如果只是静态询问的话，可以用 ST 表预处理后 $O(1)$ 在线处理询问，<br>复杂度 $O(nlogn + q)$ 。</p>
-<a id="more"></a>
-
 <p>这两个做法烂大街了，是基础中的基础，不是本文讨论重点。</p>
-<h2 id="区间定长特殊做法"><a href="#区间定长特殊做法" class="headerlink" title="区间定长特殊做法"></a>区间定长特殊做法</h2><p>即所有的询问区间的长度都为与询问无关的定值 $len$ 。<br>直接当做任意区间做，可以做到 $O(nlogn + qlogn)$ 或 $O(nloglen + q)$ 。</p>
+<a id="more"></a>
+<h2 id="区间定长特殊做法"><a href="#区间定长特殊做法" class="headerlink" title="区间定长特殊做法"></a>区间定长特殊做法</h2><p>即所有的询问区间的长度都为与询问无关的定值 $len$ 。<br>直接当做任意区间做，可以做到 $O(n + qlogn)$ 或 $O(nloglen + q)$ 。</p>
 <p>这种情况下有更好理解的预处理方法，只需优先队列。<br>先把 $[1, l]$ 的数扔进优先队列里，之后不断把区间右移，<br>$[l, r]$ 右移的过程相当于加一个点 $r + 1$ 并删掉点 $l$ ，用优先队列维护即可。<br>复杂度 $O(nlogn + q)$ 。</p>
 <p>但这还不够，还有线性的预处理方法，用单调双端队列代替上面的优先队列。<br>同样是让区间不断右移，单调双端队列中的值是单调不增的，<br>那么最左边的值一定是最大值。<br>加点 $r + 1$ 前维护单调性，删点 $l$ 时判断是不是删的最大值，<br>如果是就删点最左边的点即可。<br>复杂度 $O(n + q)$ 。</p>
 <h2 id="随机询问期望做法"><a href="#随机询问期望做法" class="headerlink" title="随机询问期望做法"></a>随机询问期望做法</h2><p>这种情况下有个 $O(n + q)$ 的在线做法。</p>
@@ -307,8 +306,8 @@
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
               
-                <a href="/2019/10/10/逆序对/" rel="next" title="逆序对">
-                  <i class="fa fa-chevron-left"></i> 逆序对
+                <a href="/2019/10/10/搬迁/" rel="next" title="搬迁">
+                  <i class="fa fa-chevron-left"></i> 搬迁
                 </a>
               
             </div>
