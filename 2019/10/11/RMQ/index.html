@@ -59,10 +59,10 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="RMQ">
 <meta property="og:url" content="http://yoursite.com/2019/10/11/RMQ/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="Kewth&#39;s Blog">
 <meta property="og:description" content="总结求各种 RMQ 的常用技巧和方法。RMQ 真是流皮，每次深入思考都会有新的发现，所以有了新的发现会更新。 以下 n 表示数列的大小，q 表示询问的次数，均以最大值为例。 一般性普通做法线段树当然是可以在线维护的，复杂度 $O(n + qlogn)$ 。甚至还可以支持单点修改或区间修改。 但是如果只是静态询问的话，可以用 ST 表预处理后 $O(1)$ 在线处理询问，复杂度 $O(nlogn +">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-10-12T10:21:29.511Z">
+<meta property="og:updated_time" content="2019-10-13T11:46:05.282Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RMQ">
 <meta name="twitter:description" content="总结求各种 RMQ 的常用技巧和方法。RMQ 真是流皮，每次深入思考都会有新的发现，所以有了新的发现会更新。 以下 n 表示数列的大小，q 表示询问的次数，均以最大值为例。 一般性普通做法线段树当然是可以在线维护的，复杂度 $O(n + qlogn)$ 。甚至还可以支持单点修改或区间修改。 但是如果只是静态询问的话，可以用 ST 表预处理后 $O(1)$ 在线处理询问，复杂度 $O(nlogn +">
@@ -80,7 +80,7 @@
   };
 </script>
 
-  <title>RMQ | Hexo</title>
+  <title>RMQ | Kewth's Blog</title>
   
 
 
@@ -102,7 +102,6 @@
   .use-motion .post-body,
   .use-motion .collection-header { opacity: initial; }
 
-  .use-motion .logo,
   .use-motion .site-title,
   .use-motion .site-subtitle {
     opacity: initial;
@@ -120,14 +119,14 @@
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
   <div class="site-meta">
 
     <div>
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Hexo</span>
+        <span class="site-title">Kewth's Blog</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -148,7 +147,7 @@
   <ul id="menu" class="menu">
       
       
-      
+        
         
         <li class="menu-item menu-item-home">
       
@@ -158,8 +157,10 @@
 
   </li>
       
+    
       
       
+        
         
         <li class="menu-item menu-item-archives">
       
@@ -168,6 +169,8 @@
     <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
 
   </li>
+      
+    
   </ul>
 
     
@@ -183,10 +186,10 @@
   </div>
 
 
-    <main id="main" class="main">
+    <main class="main">
       <div class="main-inner">
         <div class="content-wrap">
-          <div id="content" class="content">
+          <div class="content">
             
 
   <div class="posts-expand">
@@ -197,21 +200,25 @@
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/11/RMQ/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
+      <meta itemprop="name" content="Kewth">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
+      <meta itemprop="name" content="Kewth's Blog">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">RMQ
+        <h1 class="post-title" itemprop="name headline">
+          
+            RMQ
+            
 
           
         </h1>
 
         <div class="post-meta">
+
           
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -234,9 +241,26 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-10-12 18:21:29" itemprop="dateModified" datetime="2019-10-12T18:21:29+08:00">2019-10-12</time>
+                <time title="Modified: 2019-10-13 19:46:05" itemprop="dateModified" datetime="2019-10-13T19:46:05+08:00">2019-10-13</time>
               </span>
             
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -256,6 +280,7 @@
 <p>但是如果只是静态询问的话，可以用 ST 表预处理后 $O(1)$ 在线处理询问，<br>复杂度 $O(nlogn + q)$ 。</p>
 <p>这两个做法烂大街了，是基础中的基础，不是本文讨论重点。</p>
 <a id="more"></a>
+
 <h2 id="区间定长特殊做法"><a href="#区间定长特殊做法" class="headerlink" title="区间定长特殊做法"></a>区间定长特殊做法</h2><p>即所有的询问区间的长度都为与询问无关的定值 $len$ 。<br>直接当做任意区间做，可以做到 $O(n + qlogn)$ 或 $O(nloglen + q)$ 。</p>
 <p>这种情况下有更好理解的预处理方法，只需优先队列。<br>先把 $[1, l]$ 的数扔进优先队列里，之后不断把区间右移，<br>$[l, r]$ 右移的过程相当于加一个点 $r + 1$ 并删掉点 $l$ ，用优先队列维护即可。<br>复杂度 $O(nlogn + q)$ 。</p>
 <p>但这还不够，还有线性的预处理方法，用单调双端队列代替上面的优先队列。<br>同样是让区间不断右移，单调双端队列中的值是单调不增的，<br>那么最左边的值一定是最大值。<br>加点 $r + 1$ 前维护单调性，删点 $l$ 时判断是不是删的最大值，<br>如果是就删点最左边的点即可。<br>复杂度 $O(n + q)$ 。</p>
@@ -331,6 +356,9 @@
 
           </div>
           
+    
+    <div class="comments" id="gitalk-container"></div>
+  
 
         </div>
           
@@ -367,7 +395,7 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">John Doe</p>
+  <p class="site-author-name" itemprop="name">Kewth</p>
   <div class="site-description" itemprop="description"></div>
 </div>
 <div class="site-state-wrap motion-element">
@@ -379,6 +407,24 @@
           <span class="site-state-item-count">29</span>
           <span class="site-state-item-name">posts</span>
         </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">categories</span>
+        
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">tags</span>
+        
       </div>
     
   </nav>
@@ -396,17 +442,25 @@
       </div>
     </main>
 
-    <footer id="footer" class="footer">
+    <footer class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
-  <span class="with-love" id="animate">
+        
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">John Doe</span>
+  <span class="author" itemprop="copyrightHolder">Kewth</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0
+  </div>
   <span class="post-meta-divider">|</span>
-  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.4.1</div>
+  <div class="theme-info">
+      
+    Theme – <a href="https://muse.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.4.1
+  </div>
 
         
 
@@ -507,6 +561,32 @@
   NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
     MathJax.Hub.Typeset();
   }, window.MathJax);
+</script>
+
+    
+  
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID: '5a2fdd60fe2f91777a6b',
+      clientSecret: '9ddb762244fffc5caff2490a05e53dbca8ae4902',
+      repo: 'hexo-gitalk',
+      owner: 'Kewth',
+      admin: ['Kewth'],
+      id: '78c96c96f5cd78e5a3ee22e4a2a6e7e1',
+        language: 'zh-CN',
+      
+      distractionFreeMode: 'true'
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
 </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config("");
@@ -525,13 +605,6 @@
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
-
-    
-  
-
-  
-
-  
 
 </body>
 </html>

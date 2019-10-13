@@ -55,17 +55,17 @@
   };
 </script>
 
-  <meta name="description" content="NTT ，快速数论变换，功能与 FFT 完全一致，用来求多项式卷积。NTT 优点在于常数稍微小一点，没有精度误差。但是 NTT 系数必须是取模意义下的整数，且对模数有特殊要求。 FFT 的单位根建议前置 FFT 。 FFT 可以分治优化复杂度的原因是用到了单位根的如下性质：   W_{2n}^{2k} = W_n^kW_n^n = 1W_n^{k + n/2} + W_n^k = 0可是用单位根做">
+  <meta name="description" content="NTT ，快速数论变换，功能与 FFT 完全一致，用来求多项式卷积。NTT 优点在于常数稍微小一点，没有精度误差。但是 NTT 系数必须是取模意义下的整数，且对模数有特殊要求。FFT 的单位根建议前置 FFT 。FFT 可以分治优化复杂度的原因是用到了单位根的如下性质：  W_{2n}^{2k} = W_n^k">
 <meta property="og:type" content="article">
 <meta property="og:title" content="NTT">
 <meta property="og:url" content="http://yoursite.com/2019/10/09/NTT/index.html">
-<meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="NTT ，快速数论变换，功能与 FFT 完全一致，用来求多项式卷积。NTT 优点在于常数稍微小一点，没有精度误差。但是 NTT 系数必须是取模意义下的整数，且对模数有特殊要求。 FFT 的单位根建议前置 FFT 。 FFT 可以分治优化复杂度的原因是用到了单位根的如下性质：   W_{2n}^{2k} = W_n^kW_n^n = 1W_n^{k + n/2} + W_n^k = 0可是用单位根做">
+<meta property="og:site_name" content="Kewth&#39;s Blog">
+<meta property="og:description" content="NTT ，快速数论变换，功能与 FFT 完全一致，用来求多项式卷积。NTT 优点在于常数稍微小一点，没有精度误差。但是 NTT 系数必须是取模意义下的整数，且对模数有特殊要求。FFT 的单位根建议前置 FFT 。FFT 可以分治优化复杂度的原因是用到了单位根的如下性质：  W_{2n}^{2k} = W_n^k">
 <meta property="og:locale" content="en">
 <meta property="og:updated_time" content="2019-10-09T09:30:50.321Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="NTT">
-<meta name="twitter:description" content="NTT ，快速数论变换，功能与 FFT 完全一致，用来求多项式卷积。NTT 优点在于常数稍微小一点，没有精度误差。但是 NTT 系数必须是取模意义下的整数，且对模数有特殊要求。 FFT 的单位根建议前置 FFT 。 FFT 可以分治优化复杂度的原因是用到了单位根的如下性质：   W_{2n}^{2k} = W_n^kW_n^n = 1W_n^{k + n/2} + W_n^k = 0可是用单位根做">
+<meta name="twitter:description" content="NTT ，快速数论变换，功能与 FFT 完全一致，用来求多项式卷积。NTT 优点在于常数稍微小一点，没有精度误差。但是 NTT 系数必须是取模意义下的整数，且对模数有特殊要求。FFT 的单位根建议前置 FFT 。FFT 可以分治优化复杂度的原因是用到了单位根的如下性质：  W_{2n}^{2k} = W_n^k">
   <link rel="canonical" href="http://yoursite.com/2019/10/09/NTT/">
 
 
@@ -80,7 +80,7 @@
   };
 </script>
 
-  <title>NTT | Hexo</title>
+  <title>NTT | Kewth's Blog</title>
   
 
 
@@ -102,7 +102,6 @@
   .use-motion .post-body,
   .use-motion .collection-header { opacity: initial; }
 
-  .use-motion .logo,
   .use-motion .site-title,
   .use-motion .site-subtitle {
     opacity: initial;
@@ -120,14 +119,14 @@
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
   <div class="site-meta">
 
     <div>
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Hexo</span>
+        <span class="site-title">Kewth's Blog</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -148,7 +147,7 @@
   <ul id="menu" class="menu">
       
       
-      
+        
         
         <li class="menu-item menu-item-home">
       
@@ -158,8 +157,10 @@
 
   </li>
       
+    
       
       
+        
         
         <li class="menu-item menu-item-archives">
       
@@ -168,6 +169,8 @@
     <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
 
   </li>
+      
+    
   </ul>
 
     
@@ -183,10 +186,10 @@
   </div>
 
 
-    <main id="main" class="main">
+    <main class="main">
       <div class="main-inner">
         <div class="content-wrap">
-          <div id="content" class="content">
+          <div class="content">
             
 
   <div class="posts-expand">
@@ -197,21 +200,25 @@
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/09/NTT/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
+      <meta itemprop="name" content="Kewth">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
+      <meta itemprop="name" content="Kewth's Blog">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">NTT
+        <h1 class="post-title" itemprop="name headline">
+          
+            NTT
+            
 
           
         </h1>
 
         <div class="post-meta">
+
           
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -238,10 +245,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>NTT ，快速数论变换，功能与 <a href>FFT</a> 完全一致，用来求多项式卷积。<br>NTT 优点在于常数稍微小一点，没有精度误差。<br>但是 NTT 系数必须是取模意义下的整数，且对模数有特殊要求。</p>
-<h2 id="FFT-的单位根"><a href="#FFT-的单位根" class="headerlink" title="FFT 的单位根"></a>FFT 的单位根</h2><p>建议前置 <a href>FFT</a> 。</p>
-<p>FFT 可以分治优化复杂度的原因是用到了单位根的如下性质：  </p>
-<script type="math/tex; mode=display">W_{2n}^{2k} = W_n^k</script><script type="math/tex; mode=display">W_n^n = 1</script><script type="math/tex; mode=display">W_n^{k + n/2} + W_n^k = 0</script><p>可是用单位根做 FFT ，需要用到复数和浮点数，常数大而且有精度误差。<br>还有别的数有这样的性质来替换单位根吗？<br>遗憾的是，可以证明复数域下只有单位根有这样的性质。</p>
+        <p>NTT ，快速数论变换，功能与 <a href>FFT</a> 完全一致，用来求多项式卷积。<br>NTT 优点在于常数稍微小一点，没有精度误差。<br>但是 NTT 系数必须是取模意义下的整数，且对模数有特殊要求。</p><h2 id="FFT-的单位根"><a href="#FFT-的单位根" class="headerlink" title="FFT 的单位根"></a>FFT 的单位根</h2><p>建议前置 <a href>FFT</a> 。</p><p>FFT 可以分治优化复杂度的原因是用到了单位根的如下性质：  </p><script type="math/tex; mode=display">W_{2n}^{2k} = W_n^k</script><a id="more"></a>
+
+
+<script type="math/tex; mode=display">W_n^n = 1</script><script type="math/tex; mode=display">W_n^{k + n/2} + W_n^k = 0</script><p>可是用单位根做 FFT ，需要用到复数和浮点数，常数大而且有精度误差。<br>还有别的数有这样的性质来替换单位根吗？<br>遗憾的是，可以证明复数域下只有单位根有这样的性质。</p>
 <h2 id="取模"><a href="#取模" class="headerlink" title="取模"></a>取模</h2><p>实际计算多项式卷积时，常常要求对系数取模以避免不必要的麻烦。<br>那么这时候系数实际上是在模意义下的， FFT 将它转到复数域上运算，似乎没有必要。<br>模意义下什么数可以有单位根那样的性质？<br>有的，那就是原根。</p>
 <h2 id="原根"><a href="#原根" class="headerlink" title="原根"></a>原根</h2><p>对于某些模数 P ，模 P 意义下的原根 g 满足：<br>对任意 $ 0 \leq k \leq P - 2 $ ， $ g^k $ 互不相同。<br>有些模数可能不存在原根，这里先假设模数都有原根。</p>
 <p>假设系数是模 P 意义下的，P 是形如 $ 2^k + 1 $ 的质数，其原根为 g ，<br>设 $ G_n = g^{\frac{P-1}{n}} mod P $ ，其中 n 是小于 P 的 2 的整次幂 。<br>那么在模 P 意义下， G 满足：</p>
@@ -295,6 +302,9 @@
 
           </div>
           
+    
+    <div class="comments" id="gitalk-container"></div>
+  
 
         </div>
           
@@ -331,7 +341,7 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">John Doe</p>
+  <p class="site-author-name" itemprop="name">Kewth</p>
   <div class="site-description" itemprop="description"></div>
 </div>
 <div class="site-state-wrap motion-element">
@@ -343,6 +353,24 @@
           <span class="site-state-item-count">29</span>
           <span class="site-state-item-name">posts</span>
         </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">categories</span>
+        
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">tags</span>
+        
       </div>
     
   </nav>
@@ -360,17 +388,25 @@
       </div>
     </main>
 
-    <footer id="footer" class="footer">
+    <footer class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
-  <span class="with-love" id="animate">
+        
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">John Doe</span>
+  <span class="author" itemprop="copyrightHolder">Kewth</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0
+  </div>
   <span class="post-meta-divider">|</span>
-  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.4.1</div>
+  <div class="theme-info">
+      
+    Theme – <a href="https://muse.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.4.1
+  </div>
 
         
 
@@ -471,6 +507,32 @@
   NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
     MathJax.Hub.Typeset();
   }, window.MathJax);
+</script>
+
+    
+  
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID: '5a2fdd60fe2f91777a6b',
+      clientSecret: '9ddb762244fffc5caff2490a05e53dbca8ae4902',
+      repo: 'hexo-gitalk',
+      owner: 'Kewth',
+      admin: ['Kewth'],
+      id: '68cb1f0f3a38f2d815f0cfb558581602',
+        language: 'zh-CN',
+      
+      distractionFreeMode: 'true'
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
 </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config("");
@@ -489,13 +551,6 @@
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
-
-    
-  
-
-  
-
-  
 
 </body>
 </html>

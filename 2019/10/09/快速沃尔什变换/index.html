@@ -55,17 +55,17 @@
   };
 </script>
 
-  <meta name="description" content="快速沃尔什变换，简称 FWT ，目前在 OI 中十分冷门。 用处多项式卷积一般是这样的： C_i = \sum_{j + k = i} A_j \cdot B_k这个可以用 FFT 快速求解。 然而还有一个诡异的卷积： C_i = \sum_{j \oplus k = i} A_j \cdot B_k其中 $ \oplus $ 是任意一种位运算。 FWT 便是求这类卷积的快速算法。 构造FFT 的">
+  <meta name="description" content="快速沃尔什变换，简称 FWT ，目前在 OI 中十分冷门。用处多项式卷积一般是这样的：C_i = \sum_{j + k = i} A_j \cdot B_k这个可以用 FFT 快速求解。然而还有一个诡异的卷积：C_i = \sum_{j \oplus k = i} A_j \cdot B_k其中 $ \oplus $ 是任意一种位运算。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="快速沃尔什变换">
 <meta property="og:url" content="http://yoursite.com/2019/10/09/快速沃尔什变换/index.html">
-<meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="快速沃尔什变换，简称 FWT ，目前在 OI 中十分冷门。 用处多项式卷积一般是这样的： C_i = \sum_{j + k = i} A_j \cdot B_k这个可以用 FFT 快速求解。 然而还有一个诡异的卷积： C_i = \sum_{j \oplus k = i} A_j \cdot B_k其中 $ \oplus $ 是任意一种位运算。 FWT 便是求这类卷积的快速算法。 构造FFT 的">
+<meta property="og:site_name" content="Kewth&#39;s Blog">
+<meta property="og:description" content="快速沃尔什变换，简称 FWT ，目前在 OI 中十分冷门。用处多项式卷积一般是这样的：C_i = \sum_{j + k = i} A_j \cdot B_k这个可以用 FFT 快速求解。然而还有一个诡异的卷积：C_i = \sum_{j \oplus k = i} A_j \cdot B_k其中 $ \oplus $ 是任意一种位运算。">
 <meta property="og:locale" content="en">
 <meta property="og:updated_time" content="2019-10-09T09:34:33.154Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="快速沃尔什变换">
-<meta name="twitter:description" content="快速沃尔什变换，简称 FWT ，目前在 OI 中十分冷门。 用处多项式卷积一般是这样的： C_i = \sum_{j + k = i} A_j \cdot B_k这个可以用 FFT 快速求解。 然而还有一个诡异的卷积： C_i = \sum_{j \oplus k = i} A_j \cdot B_k其中 $ \oplus $ 是任意一种位运算。 FWT 便是求这类卷积的快速算法。 构造FFT 的">
+<meta name="twitter:description" content="快速沃尔什变换，简称 FWT ，目前在 OI 中十分冷门。用处多项式卷积一般是这样的：C_i = \sum_{j + k = i} A_j \cdot B_k这个可以用 FFT 快速求解。然而还有一个诡异的卷积：C_i = \sum_{j \oplus k = i} A_j \cdot B_k其中 $ \oplus $ 是任意一种位运算。">
   <link rel="canonical" href="http://yoursite.com/2019/10/09/快速沃尔什变换/">
 
 
@@ -80,7 +80,7 @@
   };
 </script>
 
-  <title>快速沃尔什变换 | Hexo</title>
+  <title>快速沃尔什变换 | Kewth's Blog</title>
   
 
 
@@ -102,7 +102,6 @@
   .use-motion .post-body,
   .use-motion .collection-header { opacity: initial; }
 
-  .use-motion .logo,
   .use-motion .site-title,
   .use-motion .site-subtitle {
     opacity: initial;
@@ -120,14 +119,14 @@
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
   <div class="site-meta">
 
     <div>
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Hexo</span>
+        <span class="site-title">Kewth's Blog</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -148,7 +147,7 @@
   <ul id="menu" class="menu">
       
       
-      
+        
         
         <li class="menu-item menu-item-home">
       
@@ -158,8 +157,10 @@
 
   </li>
       
+    
       
       
+        
         
         <li class="menu-item menu-item-archives">
       
@@ -168,6 +169,8 @@
     <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
 
   </li>
+      
+    
   </ul>
 
     
@@ -183,10 +186,10 @@
   </div>
 
 
-    <main id="main" class="main">
+    <main class="main">
       <div class="main-inner">
         <div class="content-wrap">
-          <div id="content" class="content">
+          <div class="content">
             
 
   <div class="posts-expand">
@@ -197,21 +200,25 @@
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/09/快速沃尔什变换/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
+      <meta itemprop="name" content="Kewth">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
+      <meta itemprop="name" content="Kewth's Blog">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">快速沃尔什变换
+        <h1 class="post-title" itemprop="name headline">
+          
+            快速沃尔什变换
+            
 
           
         </h1>
 
         <div class="post-meta">
+
           
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -238,11 +245,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>快速沃尔什变换，简称 FWT ，目前在 OI 中十分冷门。</p>
-<h2 id="用处"><a href="#用处" class="headerlink" title="用处"></a>用处</h2><p>多项式卷积一般是这样的：</p>
-<script type="math/tex; mode=display">C_i = \sum_{j + k = i} A_j \cdot B_k</script><p>这个可以用 FFT 快速求解。</p>
-<p>然而还有一个诡异的卷积：</p>
-<script type="math/tex; mode=display">C_i = \sum_{j \oplus k = i} A_j \cdot B_k</script><p>其中 $ \oplus $ 是任意一种位运算。</p>
+        <p>快速沃尔什变换，简称 FWT ，目前在 OI 中十分冷门。</p><h2 id="用处"><a href="#用处" class="headerlink" title="用处"></a>用处</h2><p>多项式卷积一般是这样的：</p><script type="math/tex; mode=display">C_i = \sum_{j + k = i} A_j \cdot B_k</script><p>这个可以用 FFT 快速求解。</p><p>然而还有一个诡异的卷积：</p><script type="math/tex; mode=display">C_i = \sum_{j \oplus k = i} A_j \cdot B_k</script><p>其中 $ \oplus $ 是任意一种位运算。</p><a id="more"></a>
+
+
+
+
 <p>FWT 便是求这类卷积的快速算法。</p>
 <h2 id="构造"><a href="#构造" class="headerlink" title="构造"></a>构造</h2><p>FFT 的思想是把多项式转换成可以线性相乘的点值表示法 (DFT) ，<br>再把相乘的结果转换回系数表示法 (IDFT) 。</p>
 <p>同样的道理可以用在 FWT 上，用 DWT 将多项式转换成可以线性相乘的形式，即：</p>
@@ -339,6 +346,9 @@
 
           </div>
           
+    
+    <div class="comments" id="gitalk-container"></div>
+  
 
         </div>
           
@@ -375,7 +385,7 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">John Doe</p>
+  <p class="site-author-name" itemprop="name">Kewth</p>
   <div class="site-description" itemprop="description"></div>
 </div>
 <div class="site-state-wrap motion-element">
@@ -387,6 +397,24 @@
           <span class="site-state-item-count">29</span>
           <span class="site-state-item-name">posts</span>
         </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">categories</span>
+        
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">tags</span>
+        
       </div>
     
   </nav>
@@ -404,17 +432,25 @@
       </div>
     </main>
 
-    <footer id="footer" class="footer">
+    <footer class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
-  <span class="with-love" id="animate">
+        
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">John Doe</span>
+  <span class="author" itemprop="copyrightHolder">Kewth</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0
+  </div>
   <span class="post-meta-divider">|</span>
-  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.4.1</div>
+  <div class="theme-info">
+      
+    Theme – <a href="https://muse.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.4.1
+  </div>
 
         
 
@@ -515,6 +551,32 @@
   NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
     MathJax.Hub.Typeset();
   }, window.MathJax);
+</script>
+
+    
+  
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID: '5a2fdd60fe2f91777a6b',
+      clientSecret: '9ddb762244fffc5caff2490a05e53dbca8ae4902',
+      repo: 'hexo-gitalk',
+      owner: 'Kewth',
+      admin: ['Kewth'],
+      id: 'c665ba166d8765dbba2b7ceac4340f1d',
+        language: 'zh-CN',
+      
+      distractionFreeMode: 'true'
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
 </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config("");
@@ -533,13 +595,6 @@
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
-
-    
-  
-
-  
-
-  
 
 </body>
 </html>

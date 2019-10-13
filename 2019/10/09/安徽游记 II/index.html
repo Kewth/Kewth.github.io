@@ -55,17 +55,17 @@
   };
 </script>
 
-  <meta name="description" content="12 天的培（kao）训（shi），坚持每日总结。 Day5 to Day8. Day5考试Nice 大夫今天又 A 掉一题！ 第一题是在 DAG 上 q 个询问，每次询问一个子图的路径数量（子图点数和 O(n) ），我想了想部分分， DAG 上 DP 嘛，但是这样复杂度上界是 $ O(q m) $ ，瓶颈在于边的枚举（菊花树卡爆），然而子图的点可能很少，然后想到了更暴力的：邻接矩阵存图然后用枚举">
+  <meta name="description" content="12 天的培（kao）训（shi），坚持每日总结。Day5 to Day8.Day5考试Nice 大夫今天又 A 掉一题！第一题是在 DAG 上 q 个询问，每次询问一个子图的路径数量（子图点数和 O(n) ），我想了想部分分， DAG 上 DP 嘛，但是这样复杂度上界是 $ O(q m) $ ，瓶颈在于边的枚举（菊花树卡爆），然而子图的点可能很少，然后想到了更暴力的：邻接矩阵存图然后用枚举点代替">
 <meta property="og:type" content="article">
 <meta property="og:title" content="安徽游记 II">
 <meta property="og:url" content="http://yoursite.com/2019/10/09/安徽游记 II/index.html">
-<meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="12 天的培（kao）训（shi），坚持每日总结。 Day5 to Day8. Day5考试Nice 大夫今天又 A 掉一题！ 第一题是在 DAG 上 q 个询问，每次询问一个子图的路径数量（子图点数和 O(n) ），我想了想部分分， DAG 上 DP 嘛，但是这样复杂度上界是 $ O(q m) $ ，瓶颈在于边的枚举（菊花树卡爆），然而子图的点可能很少，然后想到了更暴力的：邻接矩阵存图然后用枚举">
+<meta property="og:site_name" content="Kewth&#39;s Blog">
+<meta property="og:description" content="12 天的培（kao）训（shi），坚持每日总结。Day5 to Day8.Day5考试Nice 大夫今天又 A 掉一题！第一题是在 DAG 上 q 个询问，每次询问一个子图的路径数量（子图点数和 O(n) ），我想了想部分分， DAG 上 DP 嘛，但是这样复杂度上界是 $ O(q m) $ ，瓶颈在于边的枚举（菊花树卡爆），然而子图的点可能很少，然后想到了更暴力的：邻接矩阵存图然后用枚举点代替">
 <meta property="og:locale" content="en">
 <meta property="og:updated_time" content="2019-10-09T09:33:51.834Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="安徽游记 II">
-<meta name="twitter:description" content="12 天的培（kao）训（shi），坚持每日总结。 Day5 to Day8. Day5考试Nice 大夫今天又 A 掉一题！ 第一题是在 DAG 上 q 个询问，每次询问一个子图的路径数量（子图点数和 O(n) ），我想了想部分分， DAG 上 DP 嘛，但是这样复杂度上界是 $ O(q m) $ ，瓶颈在于边的枚举（菊花树卡爆），然而子图的点可能很少，然后想到了更暴力的：邻接矩阵存图然后用枚举">
+<meta name="twitter:description" content="12 天的培（kao）训（shi），坚持每日总结。Day5 to Day8.Day5考试Nice 大夫今天又 A 掉一题！第一题是在 DAG 上 q 个询问，每次询问一个子图的路径数量（子图点数和 O(n) ），我想了想部分分， DAG 上 DP 嘛，但是这样复杂度上界是 $ O(q m) $ ，瓶颈在于边的枚举（菊花树卡爆），然而子图的点可能很少，然后想到了更暴力的：邻接矩阵存图然后用枚举点代替">
   <link rel="canonical" href="http://yoursite.com/2019/10/09/安徽游记 II/">
 
 
@@ -80,7 +80,7 @@
   };
 </script>
 
-  <title>安徽游记 II | Hexo</title>
+  <title>安徽游记 II | Kewth's Blog</title>
   
 
 
@@ -102,7 +102,6 @@
   .use-motion .post-body,
   .use-motion .collection-header { opacity: initial; }
 
-  .use-motion .logo,
   .use-motion .site-title,
   .use-motion .site-subtitle {
     opacity: initial;
@@ -120,14 +119,14 @@
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
   <div class="site-meta">
 
     <div>
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Hexo</span>
+        <span class="site-title">Kewth's Blog</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -148,7 +147,7 @@
   <ul id="menu" class="menu">
       
       
-      
+        
         
         <li class="menu-item menu-item-home">
       
@@ -158,8 +157,10 @@
 
   </li>
       
+    
       
       
+        
         
         <li class="menu-item menu-item-archives">
       
@@ -168,6 +169,8 @@
     <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
 
   </li>
+      
+    
   </ul>
 
     
@@ -183,10 +186,10 @@
   </div>
 
 
-    <main id="main" class="main">
+    <main class="main">
       <div class="main-inner">
         <div class="content-wrap">
-          <div id="content" class="content">
+          <div class="content">
             
 
   <div class="posts-expand">
@@ -197,21 +200,25 @@
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/09/安徽游记 II/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
+      <meta itemprop="name" content="Kewth">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
+      <meta itemprop="name" content="Kewth's Blog">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">安徽游记 II
+        <h1 class="post-title" itemprop="name headline">
+          
+            安徽游记 II
+            
 
           
         </h1>
 
         <div class="post-meta">
+
           
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -238,10 +245,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>12 天的培（kao）训（shi），坚持每日总结。</p>
-<p>Day5 to Day8.</p>
-<h2 id="Day5"><a href="#Day5" class="headerlink" title="Day5"></a>Day5</h2><h3 id="考试"><a href="#考试" class="headerlink" title="考试"></a>考试</h3><p>Nice 大夫今天又 A 掉一题！</p>
-<p>第一题是在 DAG 上 q 个询问，每次询问一个子图的路径数量（子图点数和 O(n) ），<br>我想了想部分分， DAG 上 DP 嘛，但是这样复杂度上界是 $ O(q m) $ ，<br>瓶颈在于边的枚举（菊花树卡爆），然而子图的点可能很少，<br>然后想到了更暴力的：邻接矩阵存图然后用枚举点代替枚举边，<br>事实上邻接矩阵存不下，那就开 set （map 也行）动态加，<br>这复杂度 $ O(q n^2 log(m)) $ 啊然而，然后我想了好久优化都没想出来，<br>最后想着得多骗点分，于是就把两个暴力结合在了一起：<br>每次询问比较 $ n^2 log(m) $ 和 $ m $ 哪个小就跑哪个。。。<br>看上去很鸡肋，然而我理性分析了一波复杂度卧槽好像是 $ O(q m \sqrt{m} log(m)) $ ，<br>应该能骗蛮多分，于是交了，然后 A 了。。。</p>
+        <p>12 天的培（kao）训（shi），坚持每日总结。</p><p>Day5 to Day8.</p><h2 id="Day5"><a href="#Day5" class="headerlink" title="Day5"></a>Day5</h2><h3 id="考试"><a href="#考试" class="headerlink" title="考试"></a>考试</h3><p>Nice 大夫今天又 A 掉一题！</p><p>第一题是在 DAG 上 q 个询问，每次询问一个子图的路径数量（子图点数和 O(n) ），<br>我想了想部分分， DAG 上 DP 嘛，但是这样复杂度上界是 $ O(q m) $ ，<br>瓶颈在于边的枚举（菊花树卡爆），然而子图的点可能很少，<br>然后想到了更暴力的：邻接矩阵存图然后用枚举点代替枚举边，<br>事实上邻接矩阵存不下，那就开 set （map 也行）动态加，<br>这复杂度 $ O(q n^2 log(m)) $ 啊然而，然后我想了好久优化都没想出来，<br>最后想着得多骗点分，于是就把两个暴力结合在了一起：<br>每次询问比较 $ n^2 log(m) $ 和 $ m $ 哪个小就跑哪个。。。<br>看上去很鸡肋，然而我理性分析了一波复杂度卧槽好像是 $ O(q m \sqrt{m} log(m)) $ ，<br>应该能骗蛮多分，于是交了，然后 A 了。。。</p><a id="more"></a>
+
+
+
 <p>第二题又是个计数，感觉像容斥，容斥之后怎么搞就有点迷，<br>于是写了个 dp ，手玩样例感觉没错，然而一测大样例就 WA 了，<br>于是手玩了几组数据，才发现 dp 错了，区间相交的情况没考虑好，<br>最后实在没思路，就打了个大暴力，有 30’, 还不错（ 10 倍于前面两天的暴力分 3’ ）。</p>
 <p>第三题哇塞维护一棵树，一看就感觉是树剖 + 线段树或者 LCT 之类的数据结构题，<br>然而还是不会，又敲了一发大暴力 10’ 走人。。。</p>
 <h3 id="讲题"><a href="#讲题" class="headerlink" title="讲题"></a>讲题</h3><p>下午讲题，一看 ppt 下面一行字：—Claris<br>woc 今天见到真人了，那位 bzoj 4000+ ac 的神仙！<br>第一题正解是按度数大小关系连边，出题人说数据难造所以有这种带 log 的算法卡过去了。<br>第二题果然是容斥，但是要通过一个奇妙的矩形构造转换为轮廓线 DP 。<br>第三题出题人说并不是数据结构题？blabla 讲了一堆奇妙的做法，<br>然而有 4 个人用动态 DP 搞过去了，出题人想到了这一点还特意去卡了但是没卡掉。</p>
@@ -311,6 +318,9 @@
 
           </div>
           
+    
+    <div class="comments" id="gitalk-container"></div>
+  
 
         </div>
           
@@ -347,7 +357,7 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">John Doe</p>
+  <p class="site-author-name" itemprop="name">Kewth</p>
   <div class="site-description" itemprop="description"></div>
 </div>
 <div class="site-state-wrap motion-element">
@@ -359,6 +369,24 @@
           <span class="site-state-item-count">29</span>
           <span class="site-state-item-name">posts</span>
         </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">categories</span>
+        
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">tags</span>
+        
       </div>
     
   </nav>
@@ -376,17 +404,25 @@
       </div>
     </main>
 
-    <footer id="footer" class="footer">
+    <footer class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
-  <span class="with-love" id="animate">
+        
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">John Doe</span>
+  <span class="author" itemprop="copyrightHolder">Kewth</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0
+  </div>
   <span class="post-meta-divider">|</span>
-  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.4.1</div>
+  <div class="theme-info">
+      
+    Theme – <a href="https://muse.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.4.1
+  </div>
 
         
 
@@ -487,6 +523,32 @@
   NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
     MathJax.Hub.Typeset();
   }, window.MathJax);
+</script>
+
+    
+  
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID: '5a2fdd60fe2f91777a6b',
+      clientSecret: '9ddb762244fffc5caff2490a05e53dbca8ae4902',
+      repo: 'hexo-gitalk',
+      owner: 'Kewth',
+      admin: ['Kewth'],
+      id: 'dd8b107d2d4667448100615ebf5521f5',
+        language: 'zh-CN',
+      
+      distractionFreeMode: 'true'
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
 </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config("");
@@ -505,13 +567,6 @@
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
-
-    
-  
-
-  
-
-  
 
 </body>
 </html>

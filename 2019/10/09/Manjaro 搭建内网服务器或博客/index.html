@@ -55,17 +55,17 @@
   };
 </script>
 
-  <meta name="description" content="折腾了大半天，终于在本机搭了一个功能完备的服务器。当然要记录一下啊。不过这是搭建成功后的总结，可能有地方遗漏，有问题欢迎提出来。 静态页面博客这个用 hexo 和 jekyll 直接就可以做到，本地跑 server 不成问题，比较 easy ，不赘述，详见 hexo 或者 jekyll 的官网。 动态页面博客动态页面要能跑 php ，有数据库。 apache这里用 apache(httpd) 搭建">
+  <meta name="description" content="折腾了大半天，终于在本机搭了一个功能完备的服务器。当然要记录一下啊。不过这是搭建成功后的总结，可能有地方遗漏，有问题欢迎提出来。静态页面博客这个用 hexo 和 jekyll 直接就可以做到，本地跑 server 不成问题，比较 easy ，不赘述，详见 hexo 或者 jekyll 的官网。动态页面博客">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Manjaro 搭建内网博客">
 <meta property="og:url" content="http://yoursite.com/2019/10/09/Manjaro 搭建内网服务器或博客/index.html">
-<meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="折腾了大半天，终于在本机搭了一个功能完备的服务器。当然要记录一下啊。不过这是搭建成功后的总结，可能有地方遗漏，有问题欢迎提出来。 静态页面博客这个用 hexo 和 jekyll 直接就可以做到，本地跑 server 不成问题，比较 easy ，不赘述，详见 hexo 或者 jekyll 的官网。 动态页面博客动态页面要能跑 php ，有数据库。 apache这里用 apache(httpd) 搭建">
+<meta property="og:site_name" content="Kewth&#39;s Blog">
+<meta property="og:description" content="折腾了大半天，终于在本机搭了一个功能完备的服务器。当然要记录一下啊。不过这是搭建成功后的总结，可能有地方遗漏，有问题欢迎提出来。静态页面博客这个用 hexo 和 jekyll 直接就可以做到，本地跑 server 不成问题，比较 easy ，不赘述，详见 hexo 或者 jekyll 的官网。动态页面博客">
 <meta property="og:locale" content="en">
 <meta property="og:updated_time" content="2019-10-09T09:30:13.684Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Manjaro 搭建内网博客">
-<meta name="twitter:description" content="折腾了大半天，终于在本机搭了一个功能完备的服务器。当然要记录一下啊。不过这是搭建成功后的总结，可能有地方遗漏，有问题欢迎提出来。 静态页面博客这个用 hexo 和 jekyll 直接就可以做到，本地跑 server 不成问题，比较 easy ，不赘述，详见 hexo 或者 jekyll 的官网。 动态页面博客动态页面要能跑 php ，有数据库。 apache这里用 apache(httpd) 搭建">
+<meta name="twitter:description" content="折腾了大半天，终于在本机搭了一个功能完备的服务器。当然要记录一下啊。不过这是搭建成功后的总结，可能有地方遗漏，有问题欢迎提出来。静态页面博客这个用 hexo 和 jekyll 直接就可以做到，本地跑 server 不成问题，比较 easy ，不赘述，详见 hexo 或者 jekyll 的官网。动态页面博客">
   <link rel="canonical" href="http://yoursite.com/2019/10/09/Manjaro 搭建内网服务器或博客/">
 
 
@@ -80,7 +80,7 @@
   };
 </script>
 
-  <title>Manjaro 搭建内网博客 | Hexo</title>
+  <title>Manjaro 搭建内网博客 | Kewth's Blog</title>
   
 
 
@@ -102,7 +102,6 @@
   .use-motion .post-body,
   .use-motion .collection-header { opacity: initial; }
 
-  .use-motion .logo,
   .use-motion .site-title,
   .use-motion .site-subtitle {
     opacity: initial;
@@ -120,14 +119,14 @@
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
   <div class="site-meta">
 
     <div>
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Hexo</span>
+        <span class="site-title">Kewth's Blog</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -148,7 +147,7 @@
   <ul id="menu" class="menu">
       
       
-      
+        
         
         <li class="menu-item menu-item-home">
       
@@ -158,8 +157,10 @@
 
   </li>
       
+    
       
       
+        
         
         <li class="menu-item menu-item-archives">
       
@@ -168,6 +169,8 @@
     <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
 
   </li>
+      
+    
   </ul>
 
     
@@ -183,10 +186,10 @@
   </div>
 
 
-    <main id="main" class="main">
+    <main class="main">
       <div class="main-inner">
         <div class="content-wrap">
-          <div id="content" class="content">
+          <div class="content">
             
 
   <div class="posts-expand">
@@ -197,21 +200,25 @@
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/09/Manjaro 搭建内网服务器或博客/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
+      <meta itemprop="name" content="Kewth">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
+      <meta itemprop="name" content="Kewth's Blog">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">Manjaro 搭建内网博客
+        <h1 class="post-title" itemprop="name headline">
+          
+            Manjaro 搭建内网博客
+            
 
           
         </h1>
 
         <div class="post-meta">
+
           
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -238,9 +245,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>折腾了大半天，终于在本机搭了一个功能完备的服务器。<br>当然要记录一下啊。<br>不过这是搭建成功后的总结，可能有地方遗漏，有问题欢迎提出来。</p>
-<h2 id="静态页面博客"><a href="#静态页面博客" class="headerlink" title="静态页面博客"></a>静态页面博客</h2><p>这个用 hexo 和 jekyll 直接就可以做到，本地跑 server 不成问题，<br>比较 easy ，不赘述，详见 hexo 或者 jekyll 的官网。</p>
-<h2 id="动态页面博客"><a href="#动态页面博客" class="headerlink" title="动态页面博客"></a>动态页面博客</h2><p>动态页面要能跑 php ，有数据库。</p>
+        <p>折腾了大半天，终于在本机搭了一个功能完备的服务器。<br>当然要记录一下啊。<br>不过这是搭建成功后的总结，可能有地方遗漏，有问题欢迎提出来。</p><h2 id="静态页面博客"><a href="#静态页面博客" class="headerlink" title="静态页面博客"></a>静态页面博客</h2><p>这个用 hexo 和 jekyll 直接就可以做到，本地跑 server 不成问题，<br>比较 easy ，不赘述，详见 hexo 或者 jekyll 的官网。</p><h2 id="动态页面博客"><a href="#动态页面博客" class="headerlink" title="动态页面博客"></a>动态页面博客</h2><a id="more"></a>
+
+<p>动态页面要能跑 php ，有数据库。</p>
 <h2 id="apache"><a href="#apache" class="headerlink" title="apache"></a>apache</h2><p>这里用 apache(httpd) 搭建服务器：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S apache2</span><br></pre></td></tr></table></figure>
 <p>执行 <code>sudo httpd</code> 后打开 localhost ，就有一个东西了（虽然是空的）。<br>在 /srv/http/ 下新建 index.html 随便写点东西，是可以显示的。<br>路径具体查看 <code>httpd -S</code> 。</p>
@@ -313,6 +320,9 @@
 
           </div>
           
+    
+    <div class="comments" id="gitalk-container"></div>
+  
 
         </div>
           
@@ -349,7 +359,7 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">John Doe</p>
+  <p class="site-author-name" itemprop="name">Kewth</p>
   <div class="site-description" itemprop="description"></div>
 </div>
 <div class="site-state-wrap motion-element">
@@ -361,6 +371,24 @@
           <span class="site-state-item-count">29</span>
           <span class="site-state-item-name">posts</span>
         </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">categories</span>
+        
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">tags</span>
+        
       </div>
     
   </nav>
@@ -378,17 +406,25 @@
       </div>
     </main>
 
-    <footer id="footer" class="footer">
+    <footer class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
-  <span class="with-love" id="animate">
+        
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">John Doe</span>
+  <span class="author" itemprop="copyrightHolder">Kewth</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0
+  </div>
   <span class="post-meta-divider">|</span>
-  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.4.1</div>
+  <div class="theme-info">
+      
+    Theme – <a href="https://muse.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.4.1
+  </div>
 
         
 
@@ -489,6 +525,32 @@
   NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
     MathJax.Hub.Typeset();
   }, window.MathJax);
+</script>
+
+    
+  
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID: '5a2fdd60fe2f91777a6b',
+      clientSecret: '9ddb762244fffc5caff2490a05e53dbca8ae4902',
+      repo: 'hexo-gitalk',
+      owner: 'Kewth',
+      admin: ['Kewth'],
+      id: '1ee20673ff46adadd49b61e429a79141',
+        language: 'zh-CN',
+      
+      distractionFreeMode: 'true'
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
 </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config("");
@@ -507,13 +569,6 @@
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
-
-    
-  
-
-  
-
-  
 
 </body>
 </html>

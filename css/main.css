@@ -22,7 +22,7 @@ pre {
   font-size: 1em; /* 2 */
 }
 a {
-  background-color: transparent;
+  background: transparent;
 }
 abbr[title] {
   border-bottom: none; /* 1 */
@@ -206,7 +206,7 @@ span.exturl {
   word-wrap: break-word;
   border-bottom: 1px solid #999;
   color: #555;
-  outline: none;
+  outline: 0;
   text-decoration: none;
   cursor: pointer;
 }
@@ -248,8 +248,8 @@ dd {
   padding: 0;
 }
 kbd {
-  background-color: #f9f9f9;
-  background-image: linear-gradient(top, #eee, #fff, #eee);
+  background-color: #f5f5f5;
+  background-image: linear-gradient(#eee, #fff, #eee);
   border: 1px solid #ccc;
   border-radius: 0.2em;
   box-shadow: 0.1em 0.1em 0.2em rgba(0,0,0,0.1);
@@ -269,10 +269,10 @@ table {
   width: 100%;
 }
 table > tbody > tr:nth-of-type(odd) {
-  background-color: #f9f9f9;
+  background: #f9f9f9;
 }
 table > tbody > tr:hover {
-  background-color: #f5f5f5;
+  background: #f5f5f5;
 }
 caption,
 th,
@@ -328,16 +328,15 @@ td {
   background: #fff;
   display: inline-block;
   height: 2px;
-  left: 0px;
-  margin-top: 3px;
+  left: 0;
   position: relative;
-  top: 0px;
+  top: 0;
   transition: all 0.4s;
   vertical-align: top;
   width: 100%;
 }
-.toggle .toggle-line:first-child {
-  margin-top: 0;
+.toggle .toggle-line:not(:first-child) {
+  margin-top: 3px;
 }
 .toggle.toggle-arrow .toggle-line-first {
   left: 50%;
@@ -378,12 +377,12 @@ code {
   font-family: consolas, Menlo, monospace, "PingFang SC", "Microsoft YaHei";
 }
 code {
-  overflow-wrap: break-word;
-  word-wrap: break-word;
   background: #eee;
   border-radius: 3px;
   color: #555;
   padding: 2px 4px;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 }
 pre {
   overflow: auto;
@@ -415,7 +414,6 @@ pre code {
 }
 .highlight figcaption {
   background: #eee;
-  border-bottom: 1px solid #e9e9e9;
   color: #4d4d4c;
   line-height: 1em;
   margin: 0;
@@ -437,14 +435,14 @@ pre code {
   border-bottom-color: #4d4d4c;
 }
 .highlight .gutter pre {
-  background-color: #eff2f3;
+  background: #eff2f3;
   color: #869194;
   padding-left: 10px;
   padding-right: 10px;
   text-align: right;
 }
 .highlight .code pre {
-  background-color: #f7f7f7;
+  background: #f7f7f7;
   padding-left: 10px;
   width: 100%;
 }
@@ -541,7 +539,6 @@ pre .javascript .function {
 }
 .blockquote-center::before,
 .blockquote-center::after {
-  background-position: 0 -6px;
   background-repeat: no-repeat;
   background-size: 22px 22px;
   content: ' ';
@@ -553,6 +550,7 @@ pre .javascript .function {
 }
 .blockquote-center::before {
   background-image: url("../images/quote-l.svg");
+  background-position: 0 -6px;
   border-top: 1px solid #ccc;
   top: -20px;
 }
@@ -584,22 +582,22 @@ pre .javascript .function {
   padding: 0 2px;
 }
 .post-body .label.default {
-  background-color: #f0f0f0;
+  background: #f0f0f0;
 }
 .post-body .label.primary {
-  background-color: #efe6f7;
+  background: #efe6f7;
 }
 .post-body .label.info {
-  background-color: #e5f2f8;
+  background: #e5f2f8;
 }
 .post-body .label.success {
-  background-color: #e7f4e9;
+  background: #e7f4e9;
 }
 .post-body .label.warning {
-  background-color: #fcf6e1;
+  background: #fcf6e1;
 }
 .post-body .label.danger {
-  background-color: #fae8eb;
+  background: #fae8eb;
 }
 .post-body .tabs {
   margin-bottom: 20px;
@@ -627,7 +625,7 @@ pre .javascript .function {
 }
 .post-body .tabs ul.nav-tabs li.tab,
 .tabs-comment ul.nav-tabs li.tab {
-  background-color: #fff;
+  background: #fff;
   border-bottom: 1px solid #ddd;
   border-left: 1px solid transparent;
   border-right: 1px solid transparent;
@@ -810,7 +808,7 @@ pre .javascript .function {
 }
 .pagination {
   border-top: 1px solid #eee;
-  margin: 120px 0 40px;
+  margin: 120px 0 0;
   text-align: center;
 }
 .pagination .prev,
@@ -905,12 +903,12 @@ pre .javascript .function {
   width: 700px;
 }
 @media (min-width: 1200px) {
-  .container .main-inner {
+  .main-inner {
     width: 800px;
   }
 }
 @media (min-width: 1600px) {
-  .container .main-inner {
+  .main-inner {
     width: 900px;
   }
 }
@@ -924,12 +922,12 @@ pre .javascript .function {
   width: 700px;
 }
 @media (min-width: 1200px) {
-  .container .header-inner {
+  .header-inner {
     width: 800px;
   }
 }
 @media (min-width: 1600px) {
-  .container .header-inner {
+  .header-inner {
     width: 900px;
   }
 }
@@ -958,12 +956,6 @@ pre .javascript .function {
 .brand:hover {
   color: #fff;
 }
-.logo {
-  display: inline-block;
-  line-height: 36px;
-  margin-right: 5px;
-  vertical-align: top;
-}
 .site-title {
   display: inline-block;
   font-family: 'Lato', "PingFang SC", "Microsoft YaHei", sans-serif;
@@ -980,7 +972,6 @@ pre .javascript .function {
 .use-motion .brand {
   opacity: 0;
 }
-.use-motion .logo,
 .use-motion .site-title,
 .use-motion .site-subtitle,
 .use-motion .custom-logo-image {
@@ -1143,7 +1134,7 @@ pre .javascript .function {
   text-align: center;
 }
 .links-of-author {
-  margin-top: 20px;
+  margin-top: 15px;
 }
 .links-of-author a,
 .links-of-author span.exturl {
@@ -1156,7 +1147,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #c4abff;
+  background: #bbd908;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -1167,7 +1158,7 @@ pre .javascript .function {
 }
 .feed-link,
 .chat {
-  margin-top: 10px;
+  margin-top: 15px;
 }
 .feed-link a,
 .chat a {
@@ -1239,7 +1230,8 @@ pre .javascript .function {
   }
 }
 .sidebar-nav {
-  margin: 0 0 20px;
+  margin: 0;
+  padding-bottom: 20px;
   padding-left: 0;
 }
 .sidebar-nav li {
@@ -1355,11 +1347,10 @@ pre .javascript .function {
   white-space: nowrap;
 }
 .site-state-item {
-  border-left: 1px solid #333;
   padding: 0 15px;
 }
-.site-state-item:first-child {
-  border-left: none;
+.site-state-item:not(:first-child) {
+  border-left: 1px solid #333;
 }
 .site-state-item a {
   border-bottom: none;
@@ -1396,12 +1387,12 @@ pre .javascript .function {
   width: 700px;
 }
 @media (min-width: 1200px) {
-  .container .footer-inner {
+  .footer-inner {
     width: 800px;
   }
 }
 @media (min-width: 1600px) {
-  .container .footer-inner {
+  .footer-inner {
     width: 900px;
   }
 }
@@ -1762,9 +1753,6 @@ pre .javascript .function {
   table-layout: fixed;
   width: 100%;
 }
-.post-gallery-row {
-  display: table-row;
-}
 .post-gallery .post-gallery-img {
   border: 0;
   display: table-cell;
@@ -1776,9 +1764,8 @@ pre .javascript .function {
   max-height: 100%;
   max-width: 100%;
 }
-.fancybox-close,
-.fancybox-close:hover {
-  border: 0;
+.post-gallery-row {
+  display: table-row;
 }
 .posts-expand .post-header {
   font-size: 1.125em;
@@ -1798,7 +1785,7 @@ pre .javascript .function {
   vertical-align: top;
 }
 .posts-expand .post-title-link::before {
-  background-color: #000;
+  background: #000;
   bottom: 0;
   content: '';
   height: 2px;
@@ -1925,6 +1912,8 @@ pre .javascript .function {
 .post-tags a {
   display: inline-block;
   font-size: 0.8125em;
+}
+.post-tags a:not(:last-child) {
   margin-right: 10px;
 }
 .post-widgets {
@@ -1983,14 +1972,14 @@ pre .javascript .function {
 .category-all-page .category-list-child {
   padding-left: 10px;
 }
-#event-list {
+.event-list {
   padding: 0;
 }
-#event-list hr {
+.event-list hr {
   background: #222;
   margin: 20px 0 45px 0;
 }
-#event-list hr::after {
+.event-list hr::after {
   background: #222;
   color: #fff;
   content: 'NOW';
@@ -1999,18 +1988,20 @@ pre .javascript .function {
   padding: 0 5px;
   text-align: right;
 }
-#event-list li.event {
-  background: #f9f9f9;
+.event-list .event {
+  background: #222;
   margin: 20px 0;
   min-height: 40px;
-  padding-left: 10px;
+  padding: 15px 0 15px 10px;
 }
-#event-list li.event h2.event-summary {
+.event-list .event .event-summary {
+  color: #fff;
   margin: 0;
   padding-bottom: 3px;
 }
-#event-list li.event h2.event-summary::before {
-  color: #bbb;
+.event-list .event .event-summary::before {
+  animation: dot-flash 1s alternate infinite ease-in-out;
+  color: #fff;
   content: '\f111';
   display: inline-block;
   font-family: 'FontAwesome';
@@ -2018,15 +2009,15 @@ pre .javascript .function {
   margin-right: 25px;
   vertical-align: middle;
 }
-#event-list li.event span.event-relative-time {
+.event-list .event .event-relative-time {
   color: #bbb;
   display: inline-block;
   font-size: 12px;
   font-weight: 400;
   padding-left: 12px;
 }
-#event-list li.event span.event-details {
-  color: #bbb;
+.event-list .event .event-details {
+  color: #fff;
   display: block;
   line-height: 18px;
   margin-left: 56px;
@@ -2034,57 +2025,33 @@ pre .javascript .function {
   padding-top: 3px;
   text-indent: -24px;
 }
-#event-list li.event span.event-details::before {
-  color: #bbb;
+.event-list .event .event-details::before {
+  color: #fff;
   display: inline-block;
-  font-family: FontAwesome;
+  font-family: 'FontAwesome';
   margin-right: 9px;
   text-align: center;
   text-indent: 0;
   width: 14px;
 }
-#event-list li.event span.event-details.event-location::before {
+.event-list .event .event-details.event-location::before {
   content: '\f041';
 }
-#event-list li.event span.event-details.event-duration::before {
+.event-list .event .event-details.event-duration::before {
   content: '\f017';
 }
-#event-list li.event-past {
-  background: #fcfcfc;
-  padding: 15px 0 15px 10px;
+.event-list .event-past {
+  background: #f5f5f5;
 }
-#event-list li.event-past > * {
+.event-list .event-past .event-summary,
+.event-list .event-past .event-details {
+  color: #bbb;
   opacity: 0.9;
 }
-#event-list li.event-past h2.event-summary {
+.event-list .event-past .event-summary::before,
+.event-list .event-past .event-details::before {
+  animation: none;
   color: #bbb;
-}
-#event-list li.event-past h2.event-summary::before {
-  color: #dfdfdf;
-}
-#event-list li.event-now {
-  background: #222;
-  color: #fff;
-  padding: 15px 0 15px 10px;
-}
-#event-list li.event-now h2.event-summary::before {
-  animation: dot-flash 1s alternate infinite ease-in-out;
-  color: #fff;
-}
-#event-list li.event-now * {
-  color: #fff !important;
-}
-#event-list li.event-future {
-  background: #222;
-  color: #fff;
-  padding: 15px 0 15px 10px;
-}
-#event-list li.event-future h2.event-summary::before {
-  animation: dot-flash 1s alternate infinite ease-in-out;
-  color: #fff;
-}
-#event-list li.event-future * {
-  color: #fff !important;
 }
 @-moz-keyframes dot-flash {
   from {
@@ -2156,7 +2123,7 @@ ul.breadcrumb li + li:last-child {
 }
 @media (max-width: 767px) {
   .header-inner,
-  .container .main-inner,
+  .main-inner,
   .footer-inner {
     width: auto;
   }
@@ -2165,6 +2132,9 @@ ul.breadcrumb li + li:last-child {
   .header-inner {
     padding: 50px 0 35px;
   }
+}
+.main-inner {
+  padding-bottom: 60px;
 }
 embed {
   display: block;
@@ -2254,7 +2224,7 @@ embed {
   }
 }
 .menu .menu-item .badge {
-  background-color: #eee;
+  background: #eee;
   padding: 1px 4px;
 }
 .sidebar {
