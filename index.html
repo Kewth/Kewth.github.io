@@ -731,7 +731,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-10-13 20:23:44" itemprop="dateModified" datetime="2019-10-13T20:23:44+08:00">2019-10-13</time>
+                <time title="Modified: 2019-10-13 22:06:59" itemprop="dateModified" datetime="2019-10-13T22:06:59+08:00">2019-10-13</time>
               </span>
             
           
@@ -764,9 +764,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>@CYJian 出了一道黑科技二合一，我就顺便跟着学了学。</p><h2 id="O-1-gcd"><a href="#O-1-gcd" class="headerlink" title="O(1) gcd"></a>O(1) gcd</h2><p>在 O(V) 的预处理后可以做到 O(1) 查询 gcd ，其中 V 是权值的大小。</p><p>主要利用到的一个性质是可以将任意 x 分解为三个数 a * b * c ，满足以下两个条件之一：</p><ol>
-<li>a, b, c 都不超过 $\sqrt{x}$ 。</li>
-<li>a, b, c 全是质数。</li>
+          <p>@CYJian 出了一道黑科技二合一，我就顺便跟着学了学。</p><h2 id="O-1-gcd"><a href="#O-1-gcd" class="headerlink" title="O(1) gcd"></a>O(1) gcd</h2><p>在 O(V) 的预处理后可以做到 O(1) 查询 gcd ，其中 V 是权值的大小。</p><p>主要利用到的一个性质是可以将任意 x 分解为三个数 a * b * c ， a, b, c 分别满足以下两个条件之一：</p><ol>
+<li>不超过 $\sqrt{x}$ 。</li>
+<li>是质数。</li>
 </ol>
           <!--noindex-->
           
@@ -1085,8 +1085,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>这里只是类欧几里得的一种：<br>快速求下式：</p><script type="math/tex; mode=display">f(a, b, c, n) = \sum_{i=0}^n \lfloor \frac{ai+b}{c} \rfloor</script><p>其中 a, b, c, n 都是正整数。</p><h2 id="缩小-a-b-规模"><a href="#缩小-a-b-规模" class="headerlink" title="缩小 a, b 规模"></a>缩小 a, b 规模</h2><p>首先的目标是让 a, b 小于 c 。</p><p>结论 1 ：  </p><script type="math/tex; mode=display">\lfloor \frac{Ax+B}{y} \rfloor =
-\lfloor \frac{A(x\\%y)+B}{y} \rfloor + A\lfloor \frac{x}{y} \rfloor</script>
+          <p>这里只是类欧几里得的一种：<br>快速求下式：<br>$$f(a, b, c, n) = \sum_{i=0}^n \lfloor \frac{ai+b}{c} \rfloor$$</p><p>其中 a, b, c, n 都是正整数。</p><h2 id="缩小-a-b-规模"><a href="#缩小-a-b-规模" class="headerlink" title="缩小 a, b 规模"></a>缩小 a, b 规模</h2><p>首先的目标是让 a, b 小于 c 。</p><p>结论 1 ：<br>$$\lfloor \frac{Ax+B}{y} \rfloor =<br>\lfloor \frac{A(x\%y)+B}{y} \rfloor + A\lfloor \frac{x}{y} \rfloor$$</p>
           <!--noindex-->
           
             <div class="post-button">

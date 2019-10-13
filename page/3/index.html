@@ -471,7 +471,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>NTT ，快速数论变换，功能与 <a href>FFT</a> 完全一致，用来求多项式卷积。<br>NTT 优点在于常数稍微小一点，没有精度误差。<br>但是 NTT 系数必须是取模意义下的整数，且对模数有特殊要求。</p><h2 id="FFT-的单位根"><a href="#FFT-的单位根" class="headerlink" title="FFT 的单位根"></a>FFT 的单位根</h2><p>建议前置 <a href>FFT</a> 。</p><p>FFT 可以分治优化复杂度的原因是用到了单位根的如下性质：  </p><script type="math/tex; mode=display">W_{2n}^{2k} = W_n^k</script>
+          <p>NTT ，快速数论变换，功能与 <a href>FFT</a> 完全一致，用来求多项式卷积。<br>NTT 优点在于常数稍微小一点，没有精度误差。<br>但是 NTT 系数必须是取模意义下的整数，且对模数有特殊要求。</p><h2 id="FFT-的单位根"><a href="#FFT-的单位根" class="headerlink" title="FFT 的单位根"></a>FFT 的单位根</h2><p>建议前置 <a href>FFT</a> 。</p><p>FFT 可以分治优化复杂度的原因是用到了单位根的如下性质：<br>$$ W_{2n}^{2k} = W_n^k $$<br>$$ W_n^n = 1 $$<br>$$ W_n^{k + n/2} + W_n^k = 0 $$</p>
           <!--noindex-->
           
             <div class="post-button">
@@ -941,7 +941,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><img src="http://kewth.gq/wp-content/uploads/2019/07/2_054-1.png" alt="i3lock-fancy"></p><p>折腾了半天 i3lock ，不写篇博客可惜了。</p><p>i3lock 有啥好折腾的？不就是挂个壁纸锁屏嘛。<br>就是因为 i3lock 太鸡肋了折腾啊。<br>于是我试过了 i3lock 的各种民间 fork 版本，在此总结。</p><h2 id="i3lock"><a href="#i3lock" class="headerlink" title="i3lock"></a><a href="https://github.com/i3/i3lock" target="_blank" rel="noopener">i3lock</a></h2><p>官方版本 i3lock ，稳定可靠，但是鸡肋。</p><p>安装：<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo aptitude install i3lock</span><br></pre></td></tr></table></figure></p>
+          <p><img src="http://kewth.gq/wp-content/uploads/2019/07/2_054-1.png" alt="i3lock-fancy"></p><p>折腾了半天 i3lock ，不写篇博客可惜了。</p><p>i3lock 有啥好折腾的？不就是挂个壁纸锁屏嘛。<br>就是因为 i3lock 太鸡肋了折腾啊。<br>于是我试过了 i3lock 的各种民间 fork 版本，在此总结。</p><h2 id="i3lock"><a href="#i3lock" class="headerlink" title="i3lock"></a><a href="https://github.com/i3/i3lock" target="_blank" rel="noopener">i3lock</a></h2><p>官方版本 i3lock ，稳定可靠，但是鸡肋。</p><p>安装：</p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo aptitude install i3lock</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           
             <div class="post-button">
