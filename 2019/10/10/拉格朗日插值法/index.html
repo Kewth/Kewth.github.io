@@ -29,7 +29,7 @@
     version: '7.4.1',
     exturl: false,
     sidebar: {"position":"left","display":"always","offset":12,"onmobile":false},
-    copycode: {"enable":false,"show_result":false,"style":null},
+    copycode: {"enable":true,"show_result":true,"style":null},
     back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
     bookmark: {"enable":false,"color":"#222","save":"auto"},
     fancybox: false,
@@ -43,8 +43,8 @@
       hits: {"per_page":10},
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     },
-    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: '',
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     translation: {
       copy_button: 'Copy',
@@ -56,13 +56,14 @@
 </script>
 
   <meta name="description" content="原来拉格朗日插值不仅能插点值，还能插系数。插点值已知函数 f(x) 上 n 个点 $(x_i, y_i)$ ，求 f(k) 。拉格朗日插值法的思路在于：对于每个 $(x_i, y_i)$ 找到 $L_i(x)$ 使得 $L_i(x_i) = y_i, L_i(x_j) = 0$ ，其中 $ x_j $ 是已知的 x 中任意一个不等于 $ x_i $ 的 x 。">
+<meta name="keywords" content="多项式">
 <meta property="og:type" content="article">
 <meta property="og:title" content="拉格朗日插值法">
 <meta property="og:url" content="http://yoursite.com/2019/10/10/拉格朗日插值法/index.html">
 <meta property="og:site_name" content="Kewth&#39;s Blog">
 <meta property="og:description" content="原来拉格朗日插值不仅能插点值，还能插系数。插点值已知函数 f(x) 上 n 个点 $(x_i, y_i)$ ，求 f(k) 。拉格朗日插值法的思路在于：对于每个 $(x_i, y_i)$ 找到 $L_i(x)$ 使得 $L_i(x_i) = y_i, L_i(x_j) = 0$ ，其中 $ x_j $ 是已知的 x 中任意一个不等于 $ x_i $ 的 x 。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-10-13T12:23:54.118Z">
+<meta property="og:updated_time" content="2019-10-14T03:48:43.694Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="拉格朗日插值法">
 <meta name="twitter:description" content="原来拉格朗日插值不仅能插点值，还能插系数。插点值已知函数 f(x) 上 n 个点 $(x_i, y_i)$ ，求 f(k) 。拉格朗日插值法的思路在于：对于每个 $(x_i, y_i)$ 找到 $L_i(x)$ 使得 $L_i(x_i) = y_i, L_i(x_j) = 0$ ，其中 $ x_j $ 是已知的 x 中任意一个不等于 $ x_i $ 的 x 。">
@@ -162,6 +163,32 @@
       
         
         
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+
+  </li>
+      
+    
+      
+      
+        
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+
+  </li>
+      
+    
+      
+      
+        
+        
         <li class="menu-item menu-item-archives">
       
     
@@ -171,11 +198,41 @@
   </li>
       
     
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger">
+        
+          <i class="fa fa-search fa-fw"></i>
+        
+        Search
+        </a>
+      </li>
+    
   </ul>
 
     
 
 </nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="Searching..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
 </div>
     </header>
 
@@ -241,7 +298,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-10-13 20:23:54" itemprop="dateModified" datetime="2019-10-13T20:23:54+08:00">2019-10-13</time>
+                <time title="Modified: 2019-10-14 11:48:43" itemprop="dateModified" datetime="2019-10-14T11:48:43+08:00">2019-10-14</time>
               </span>
             
           
@@ -264,6 +321,14 @@
           
 
           
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+          
 
         </div>
       </header>
@@ -280,7 +345,7 @@
 <p>n 个点无法求出 f 这个函数，<br>但可以求出一个 n - 1 次多项式，<br>可以认为这个多项式近似于 f 。</p>
 <p>而由 L 的定义可知，<br>这个多项式 g 满足 $ g(x) = \sum_{i=1}^n L_i(x) $ 。<br>那么 f(k) 就可以近似地认为是 g(k) ，<br>代入上式即可 $ O(n^2) $ 求解。</p>
 <p>现在问题在于求 L 。<br>下面的 L 可以满足定义：</p>
-<p>$$ L_i(x) = y_i \cdot \prod\limits_{j≠i}\frac{x_j-x}{x_j-x_i}a $$</p>
+<p>$$ L_i(x) = y_i \cdot \prod\limits_{j≠i}\frac{x_j-x}{x_j-x_i} $$</p>
 <p>代入可得这对于任意 $ x_i $<br>可以使得 $ L_i(x_i)=y_i,L_i(x_j) = 0 $</p>
 <h2 id="插系数"><a href="#插系数" class="headerlink" title="插系数"></a>插系数</h2><p>已知多项式 f(x) 的 n 个点值，求 f(x) 。</p>
 <p>点值比较特殊的情况下可以使用 FFT 或者 NTT ，但有失一般性。</p>
@@ -290,6 +355,9 @@
 <p>$$ L_i(x) = (y_i \cdot \prod\limits_{j≠i}\frac{1}{x_j-x_i})<br>    (\prod\limits_{j≠i} (x_j - x)) $$</p>
 <p>那么只需要算分子部分，即上式右边的 $\prod$ 的 $x^k$ 系数即可。</p>
 <p>假设把这个连乘暴力拆开，其实 $x^k$ 的系数就是在之中选 $n - k - 1$ 个常数。<br>DP 预处理 $pre(i, j)$ 表示在 $\prod\limits_{j \leq i} (x - x_j)$ 中选 k 个常数的系数和，<br>同理 $suf(i, j)$ 表示在 $\prod\limits_{j \geq i} (x - x_j)$ 中选 k 个常数的系数和。<br>那么把 $pre(i - 1, k)$ 和 $suf(i + 1, k)$ 相乘就是上式的 $x^k$ 系数了。</p>
+<p>参考实现（未经过测试）：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 插出 L_i(x) 的 x^k 系数 */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">la</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> A = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n; j ++)</span><br><span class="line">		<span class="keyword">if</span>(i != j)</span><br><span class="line">			A *= X[i] - X[j];</span><br><span class="line">	<span class="keyword">int</span> B = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> l = <span class="number">0</span>; l &lt;= n - k - <span class="number">1</span>; l ++)</span><br><span class="line">		B += pre[i - <span class="number">1</span>][l] * suf[i + <span class="number">1</span>][n - k - <span class="number">1</span> - l];</span><br><span class="line">	<span class="keyword">return</span> B / A * X[i];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 初始化 suf 和 pre */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= n; i ++) &#123;</span><br><span class="line">		pre[i][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= i; j ++)</span><br><span class="line">			pre[i][j] = pre[i - <span class="number">1</span>][j] - pre[i - <span class="number">1</span>][j - <span class="number">1</span>] * X[i];</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = n + <span class="number">1</span>; i; i --) &#123;</span><br><span class="line">		suf[i][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n - i + <span class="number">1</span>; j ++)</span><br><span class="line">			suf[i][j] = suf[i + <span class="number">1</span>][j] - suf[i + <span class="number">1</span>][j - <span class="number">1</span>] * X[i];</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 
     </div>
 
@@ -300,6 +368,15 @@
       
 
       <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/多项式/" rel="tag"># 多项式</a>
+            
+          </div>
+        
 
         
 
@@ -392,24 +469,48 @@
       
       <div class="site-state-item site-state-categories">
         
+          
+            <a href="/categories/">
+          
+        
         <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">categories</span>
-        
+        </a>
       </div>
     
       
       
       <div class="site-state-item site-state-tags">
         
-        <span class="site-state-item-count">2</span>
-        <span class="site-state-item-name">tags</span>
+          
+            <a href="/tags/">
+          
         
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">tags</span>
+        </a>
       </div>
     
   </nav>
 </div>
 
 
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://ricardoships.github.io" title="https://ricardoships.github.io" rel="noopener" target="_blank">Ricardoships</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://luoyuyang.cf" title="https://luoyuyang.cf" rel="noopener" target="_blank">lyy</a>
+        </li>
+      
+    </ul>
+  </div>
 
       </div>
 
@@ -442,6 +543,29 @@
   </div>
 
         
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+  
+    <span class="post-meta-divider">|</span>
+  
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+  
+</div>
 
 
 
@@ -477,6 +601,8 @@
 
 
 
+
+  <script src="/js/local-search.js?v=7.4.1"></script>
 
 
 
