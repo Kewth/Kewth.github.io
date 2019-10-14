@@ -105,6 +105,7 @@
         <category>算法</category>
       </categories>
       <tags>
+        <tag>O(1)</tag>
         <tag>RMQ</tag>
         <tag>分块</tag>
         <tag>线段树</tag>
@@ -163,13 +164,11 @@
 <p>zzq 把满足这个性质的分解称为“迷之分解”，那我也这么叫吧。</p>
 <p>考虑证明一下，顺便构造一个“迷之分解”。</p>
 <p>找到 x 的最小质因子 p ，然后假设已知 x / p 的“迷之分解” A, B, C (A &lt;= B &lt;= C) 。<br>那么把 p 乘到 A 上就可以得到 x 的“迷之分解” A * p, B, C 。<br>分类讨论，如果 p 不超过 $\sqrt[4]{x}$ ，由于 A 是 A, B, C 三者中最小的，<br>一定满足 A 不超过 $\sqrt[3]{x/p}$ ，那么可得：</p>
-<p>$$A \cdot p \leq \sqrt[3]{x/p} \cdot p = \sqrt[3]{xp^2} \leq \sqrt{x}$$</p>
-<p>而如果 p 超过 $\sqrt[4]{x}$ ，由于 p 是最小质因子，<br>那么如果 x 的“迷之分解”有合数 C ， C 至少是 $p^2$ ，超过 $\sqrt{x}$ ，<br>那么 B 的大小就会比 p 小，与 p 是最小质因子矛盾，<br>因而此时 x 的“迷之分解”全是质数。</p>
-<p>“迷之分解”的分析就是这样，通过线性筛可以很好预处理出 O(V) 内的所有数的“迷之分解”。<br>只需筛出每个数的最小质因子即可按上述方法递推出“迷之分解”。<br>然后只需预处理出 $O(\sqrt{V})$ 内两两的 gcd ，为了不带 log ，需要递推预处理。<br>此时求 gcd(x, y) 只需对于 x 的“迷之分解” A, B, C 依次对 y 求 gcd （每次求 gcd 后把 y 除以该 gcd ），<br>以 A 为例，如果 A 不超过 $\sqrt{x}$ ，直接查表可以得到 gcd(A, y) ，<br>否则 A 为质数，简单讨论一下就可以得到 gcd(A, y) 了。</p>
+<script type="math/tex; mode=display">A \cdot p \leq \sqrt[3]{x/p} \cdot p = \sqrt[3]{xp^2} \leq \sqrt{x}</script><p>而如果 p 超过 $\sqrt[4]{x}$ ，由于 p 是最小质因子，<br>那么如果 x 的“迷之分解”有合数 C ， C 至少是 $p^2$ ，超过 $\sqrt{x}$ ，<br>那么 B 的大小就会比 p 小，与 p 是最小质因子矛盾，<br>因而此时 x 的“迷之分解”全是质数。</p>
+<p>“迷之分解”的分析就是这样，通过线性筛可以很好预处理出 O(V) 内的所有数的“迷之分解”。<br>只需筛出每个数的最小质因子即可按上述方法递推出“迷之分解”。<br>然后只需预处理出 $O(\sqrt{V})$ 内两两的 gcd ，为了不带 log ，需要递推预处理。<br>此时求 gcd(x, y) 只需对于 x 的“迷之分解” A, B, C 依次对 y 求 gcd （每次求 gcd 后把 y 除以该 gcd ），<br>以 A 为例，如果 A 不超过 $\sqrt{x}$ ，直接查表可以得到 gcd(A, y) （查的是 gcd(A mod y, A) ），<br>否则 A 为质数，简单讨论一下就可以得到 gcd(A, y) 了。</p>
 <p>关键部分参考实现：</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> magic[maxv][<span class="number">3</span>]; <span class="comment">// 每个数的“迷之分解”</span></span><br><span class="line"><span class="keyword">int</span> gcd[maxb][maxb]; <span class="comment">// 预处理的 gcd</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">GCD</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> res = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i ++) &#123;</span><br><span class="line">		<span class="keyword">int</span> X = magic[x][i];</span><br><span class="line">		<span class="keyword">int</span> d;</span><br><span class="line">		<span class="keyword">if</span>(X &lt; maxb)</span><br><span class="line">			d = gcd[X][y % X];</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(y % X)</span><br><span class="line">			d = <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			d = X;</span><br><span class="line">		res *= d;</span><br><span class="line">		y /= d;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="O-1-快速幂"><a href="#O-1-快速幂" class="headerlink" title="O(1) 快速幂"></a>O(1) 快速幂</h2><p>在 $O(\sqrt{p})$ 的预处理后可以做到对于一个固定的底数 O(1) 查询快速幂，<br>其中 p 是模数，或者是指数的范围。</p>
+<h2 id="O-1-快速幂"><a href="#O-1-快速幂" class="headerlink" title="O(1) 快速幂"></a>O(1) 快速幂</h2><p>在 $O(\sqrt{p})$ 的预处理后可以做到对于一个固定的底数 O(1) 查询快速幂，<br>其中 p 是模数（或者上式是 $\sqrt{\phi(p)}$ ），或者是指数的范围。</p>
 <p>这个就简单得多，对于每个 $a^k$ 的指数 k 都可以表示为 $a \sqrt{p} + b$ 的形式，<br>满足 $a, b &lt; \sqrt{p}$ ，分别预处理即可，<br>即预处理 $a^0, a^1, a^2 … a^{\sqrt{p}}, a^{2\sqrt{p}}, a^{3\sqrt{p}} … a^p$ 。</p>
 ]]></content>
       <categories>
@@ -179,6 +178,7 @@
         <tag>gcd/lcm</tag>
         <tag>快速幂</tag>
         <tag>黑科技</tag>
+        <tag>O(1)</tag>
       </tags>
   </entry>
   <entry>
@@ -262,7 +262,7 @@
 
 
 
-<p>证明：<br>首先用到整除与取模的转换：<br>$\lfloor \frac{x}{y} \rfloor = \frac{x-x\%y}{y}$ 。<br>得到原命题等价于：<br>$$\frac{Ax+B-(Ax+B)\%y}{y} =<br>\frac{A(x\%y)+B-(A(x\%y)+B)\%y}{y} + A\frac{x-x\%y}{y}$$<br>$$Ax + B - (Ax+B)\%y = A(x\%y) + B - (A(x\%y)+B)\%y + A(x-x\%y)$$<br>$$Ax - (Ax+B)\%y = A(x\%y) - (A(x\%y)+B)\%y + A(x-x\%y)$$<br>$$Ax - (Ax+B)\%y = A(x\%y) - (Ax+B)\%y + A(x-x\%y)$$<br>$$Ax = A(x\%y) + A(x-x\%y)$$<br>$$Ax = A(x\%y) + Ax - A(x\%y)$$<br>得证。</p>
+<p>证明：<br>首先用到整除与取模的转换：<br>$\lfloor \frac{x}{y} \rfloor = \frac{x-x\%y}{y}$ 。<br>得到原命题等价于：<br>$$\frac{Ax+B-(Ax+B)\%y}{y} =<br>\frac{A(x\%y)+B-(Ax+B)\%y}{y} + A\frac{x-x\%y}{y}$$<br>$$Ax + B - (Ax+B)\%y = A(x\%y) + B - (Ax+B)\%y + A(x-x\%y)$$<br>$$Ax - (Ax+B)\%y = A(x\%y) - (Ax+B)\%y + A(x-x\%y)$$<br>$$Ax = A(x\%y) + A(x-x\%y)$$<br>$$Ax = A(x\%y) + Ax - A(x\%y)$$<br>得证。</p>
 <p>那么通过这个结论可以得知：<br>$$<br>\begin{equation}<br>\begin{aligned}<br>f(a, b, c, n) &amp;= \sum_{i=0}^n \lfloor \frac{ai+b}{c} \rfloor \\<br>&amp;= \sum_{i=0}^n (\lfloor \frac{(a\%c)i+b\%c}{c} \rfloor +<br>i\lfloor \frac{a}{c} \rfloor + \lfloor \frac{b}{c} \rfloor) \\<br>&amp;= f(a\%c, b\%c, c, n) + \sum_{i=0}^n (<br>i\lfloor \frac{a}{c} \rfloor + \lfloor \frac{b}{c} \rfloor) \\<br>\end{aligned}<br>\end{equation}<br>$$</p>
 <p>后面那一段就是一个等差数列求和，于是 a, b 被转换为小于 c 。</p>
 <h2 id="转换成子问题减小规模"><a href="#转换成子问题减小规模" class="headerlink" title="转换成子问题减小规模"></a>转换成子问题减小规模</h2><p>整除除了用取模代替外，还有一种方法。</p>
@@ -398,7 +398,7 @@
 <p>这应该是最主流的求逆序对的方法了。</p>
 <p>要求一个区间内的逆序对数，假设已经递归求出两个子区间的逆序对数，<br>接下来要做的就是求一个在左区间，一个在右区间的逆序对数。</p>
 <p>考虑归并排序的过程，在两个指针比较大小时进行统计。</p>
-<p>设左右区间的当前比较指针（下标）为 p1, p2,<br>当找到第一个 p2 使 $a_{p1}&lt; a_{p2}$ 时，可知 $\forall i\in [p1max+1, p2),;a_{p1}&gt; a_{p2}$ 。<br>那么横跨两个子区间的以 p1 为左端点的逆序对就有 p2-p1max-1 个。<br>对所有 p1 统计和即可。</p>
+<p>设左右区间的当前比较指针（下标）为 p1, p2,<br>当找到第一个 p2 使 $a_{p1}&lt; a_{p2}$ 时，可知 $\forall i\in [p1max+1, p2),\;a_{p1}&gt; a_{p2}$ 。<br>那么横跨两个子区间的以 p1 为左端点的逆序对就有 p2-p1max-1 个。<br>对所有 p1 统计和即可。</p>
 <p>值得注意的是，p2&gt;r（区间右端点）退出时，<br>此时左区间未处理的数对答案都有 r-p1max 的贡献因为此时左区间剩下的数都比右区间所有数大。</p>
 <p>复杂度 $O(n \cdot log_2n)$ 。</p>
 <h2 id="线段树-树状数组："><a href="#线段树-树状数组：" class="headerlink" title="线段树/树状数组："></a>线段树/树状数组：</h2><p>前置技能：线段树（或树状数组）。</p>
