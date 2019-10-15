@@ -64,10 +64,10 @@
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://pic4.zhimg.com/v2-3bf6b7552162441dd638ac6d5fb3717b_r.jpg">
 <meta property="og:image" content="https://pic4.zhimg.com/v2-91254499e2880bbe3068ce2a3e086977_b.gif">
-<meta property="og:image" content="http://kewth.gq/wp-content/uploads/2019/03/选区_017.png">
+<meta property="og:image" content="http://kewth.gq/wp-content/uploads/2019/03/%E9%80%89%E5%8C%BA_017.png">
 <meta property="og:image" content="https://oscimg.oschina.net/oscnet/cc8d81d3c93d858a0a3f39e08293e4b6535.jpg">
-<meta property="og:image" content="http://kewth.gq/wp-content/uploads/2019/03/选区_027.png">
-<meta property="og:image" content="http://kewth.gq/wp-content/uploads/2019/03/选区_028.png">
+<meta property="og:image" content="http://kewth.gq/wp-content/uploads/2019/03/%E9%80%89%E5%8C%BA_027.png">
+<meta property="og:image" content="http://kewth.gq/wp-content/uploads/2019/03/%E9%80%89%E5%8C%BA_028.png">
 <meta property="og:updated_time" content="2019-10-09T09:31:58.034Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="终端（娱乐）工具">
@@ -292,6 +292,8 @@
 
 
 
+
+
 <p>比如 <code>nano | lolcat</code> 可以打开一个彩虹编辑器；<br><code>ncdu | lolcat</code> 可以打开一个彩虹文件查看器；<br><code>sl | lolcat</code> 可以开彩虹火车；<br><code>nethack | lolcat</code> 可以玩彩虹游戏！</p>
 <h2 id="cowsay"><a href="#cowsay" class="headerlink" title="cowsay"></a>cowsay</h2><p>让一只奶牛（或者其它乱七八糟的东西）说出一句话！</p>
 <h3 id="示例-1"><a href="#示例-1" class="headerlink" title="示例"></a>示例</h3><p>运行 <code>cowsay hiahiahia</code></p>
@@ -303,43 +305,51 @@
          \  (oo)\_______
             (__)\       )\/\
                 ||----w |
-                ||     ||
-</code></pre><p>类似的你也可以用 <code>cowthink</code> 。</p>
+                ||     ||</code></pre><p>类似的你也可以用 <code>cowthink</code> 。</p>
 <h3 id="安装方式-2"><a href="#安装方式-2" class="headerlink" title="安装方式"></a>安装方式</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo aptitude install cowsay</span><br></pre></td></tr></table></figure>
+
 <h2 id="chafa"><a href="#chafa" class="headerlink" title="chafa"></a>chafa</h2><p>在终端里面打印图片或者视频！</p>
 <h3 id="示例-2"><a href="#示例-2" class="headerlink" title="示例"></a>示例</h3><p><img src="https://pic4.zhimg.com/v2-91254499e2880bbe3068ce2a3e086977_b.gif" alt="chafa"></p>
 <p>小诀窍：把终端字体调小并开全屏可以让图片更清晰（但是更慢）。<br>给你一图片自行意会（记住这张图是在终端上打印的！！！）：</p>
-<p><img src="http://kewth.gq/wp-content/uploads/2019/03/选区_017.png" alt="chafabig"></p>
+<p><img src="http://kewth.gq/wp-content/uploads/2019/03/%E9%80%89%E5%8C%BA_017.png" alt="chafabig"></p>
 <h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/hpjansson/chafa.git &amp;&amp; <span class="built_in">cd</span> chafa</span><br><span class="line">sudo aptitude install libmagickwand-dev</span><br><span class="line">./autogen.sh</span><br><span class="line">make</span><br><span class="line">sudo make install</span><br></pre></td></tr></table></figure>
+
 <p>这个安装过程相对比较麻烦，详细过程见 <a href="https://github.com/hpjansson/chafa" target="_blank" rel="noopener">Github</a> 。</p>
 <h2 id="img2txt-cacaview"><a href="#img2txt-cacaview" class="headerlink" title="img2txt / cacaview"></a>img2txt / cacaview</h2><p>在终端里用 ASCII 打印图片！</p>
 <p>或者用 cacaview 打开一个窗口查看。</p>
 <p>upd:<br>后来我才知道 w3m 也可以查看图片，和 cacaview 的效果一模一样。</p>
 <h3 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo aptitude install caca-utils</span><br></pre></td></tr></table></figure>
+
 <h2 id="w3m-lynx-browsh"><a href="#w3m-lynx-browsh" class="headerlink" title="w3m / lynx / browsh"></a>w3m / lynx / browsh</h2><p>在终端浏览网页！</p>
 <h3 id="示例-3"><a href="#示例-3" class="headerlink" title="示例"></a>示例</h3><p>w3m 和 lynx 大同小异，没有什么本质上的区别。<br>（别喷我，我这么说是拿 browsh 作参照）</p>
 <p>但是， browsh 不同，它内部调用 Firefox 渲染网页并处理后打印在终端，<br>因此 browsh 几乎能 <strong>在终端</strong> 支持任何现代浏览器支持的！</p>
 <p>只给出一张 browsh 浏览 youtubu 的图片：</p>
 <p><img src="https://oscimg.oschina.net/oscnet/cc8d81d3c93d858a0a3f39e08293e4b6535.jpg" alt="browsh"></p>
 <h3 id="安装-2"><a href="#安装-2" class="headerlink" title="安装"></a>安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># w3m</span></span><br><span class="line">sudo aptitude install w3m</span><br><span class="line"><span class="comment"># lynx</span></span><br><span class="line">sudo aptitude install lynx</span><br><span class="line"><span class="comment"># browsh</span></span><br><span class="line">wget https://github.com/browsh-org/browsh/releases/download/v1.5.0/browsh_1.5.0_linux_amd64.deb</span><br><span class="line">sudo dpkg -i ./browsh_1.5.0_linux_amd64.deb</span><br></pre></td></tr></table></figure>
+
 <h2 id="cmatrix"><a href="#cmatrix" class="headerlink" title="cmatrix"></a>cmatrix</h2><p>终端黑客风动画</p>
 <p><code>cmatrix | lolcat</code> 简直可以来当屏保。</p>
 <h3 id="安装-3"><a href="#安装-3" class="headerlink" title="安装"></a>安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo aptitude install cmatrix</span><br></pre></td></tr></table></figure>
+
 <h2 id="typespeed"><a href="#typespeed" class="headerlink" title="typespeed"></a>typespeed</h2><p>在终端 <del>玩打字游戏</del> 测试打字速度！</p>
-<h3 id="示例-4"><a href="#示例-4" class="headerlink" title="示例"></a>示例</h3><p><img src="http://kewth.gq/wp-content/uploads/2019/03/选区_027.png" alt="typespeed"></p>
+<h3 id="示例-4"><a href="#示例-4" class="headerlink" title="示例"></a>示例</h3><p><img src="http://kewth.gq/wp-content/uploads/2019/03/%E9%80%89%E5%8C%BA_027.png" alt="typespeed"></p>
 <h3 id="安装-4"><a href="#安装-4" class="headerlink" title="安装"></a>安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo aptitude install typespeed</span><br></pre></td></tr></table></figure>
+
 <h3 id="自定义词库"><a href="#自定义词库" class="headerlink" title="自定义词库"></a>自定义词库</h3><p>我是真的爱折腾，竟然自己找出了 typespeed 的词库位置并且自己加了词库。。。</p>
 <p>顺便夸一下 typespeed 的扩展性真的好，它考虑到了用户的自定义词库需求。</p>
 <p>只需要在 /usr/share/typespeed/words/ 目录下添加 words.xxx 文件（ xxx 随意填），<br>文件第一行是这个词库的名称，接下来每行一个单词就可以了。</p>
 <p>然后进入 typespeed 就能看到你自己的词库啦（ kewth’s xxx 就是我自己加的）：</p>
-<p><img src="http://kewth.gq/wp-content/uploads/2019/03/选区_028.png" alt="mywords"></p>
+<p><img src="http://kewth.gq/wp-content/uploads/2019/03/%E9%80%89%E5%8C%BA_028.png" alt="mywords"></p>
 <h2 id="nethack"><a href="#nethack" class="headerlink" title="nethack"></a>nethack</h2><p>世界上最棒的终端游戏（绝无夸大）！<br>nethack 太博大精深了，玩法不赘述。</p>
 <p>另外： <code>nethack | lolcat</code> 的效果真的很棒。</p>
 <h3 id="安装-5"><a href="#安装-5" class="headerlink" title="安装"></a>安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo aptitude install nethack</span><br></pre></td></tr></table></figure>
+
 <h2 id="task"><a href="#task" class="headerlink" title="task"></a>task</h2><p>全名 taskwarrior 。</p>
 <p>个人认为终端上最好用的 todo list manager 。<br>功能十分强大，可以简单上手，<br>如果愿意折腾也可以深入挖掘它的各种功能，最精细地管理你的任务计划。</p>
 <h3 id="安装-6"><a href="#安装-6" class="headerlink" title="安装"></a>安装</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo aptitude install taskwarrior</span><br></pre></td></tr></table></figure>
+
 <h3 id="简单上手"><a href="#简单上手" class="headerlink" title="简单上手"></a>简单上手</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">task add test1</span><br><span class="line">task add test2</span><br><span class="line">task start 1</span><br><span class="line">task long</span><br><span class="line">task <span class="keyword">done</span> 1</span><br><span class="line">task <span class="keyword">done</span> 2</span><br></pre></td></tr></table></figure>
+
 <h3 id="tasksh"><a href="#tasksh" class="headerlink" title="tasksh"></a>tasksh</h3><p>整合 taskwarrior 的交互命令行，里面可以直接敲 <code>add ...</code> 或 <code>list</code> 等命令。</p>
 
     </div>
@@ -434,7 +444,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-count">32</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -460,7 +470,7 @@
             <a href="/tags/">
           
         
-        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-count">21</span>
         <span class="site-state-item-name">tags</span>
         </a>
       </div>
