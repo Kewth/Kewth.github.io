@@ -10,27 +10,23 @@
 
 <p>这里的函数相乘指的是狄利克雷卷积。</p>
 <h4 id="理论"><a href="#理论" class="headerlink" title="理论"></a>理论</h4><p>则由 $h = f \cdot g$ 可得（以下除号表示整除）：</p>
-<script type="math/tex; mode=display">
-\begin{equation}
-\begin{aligned}
-\sum_{i=1}^n h(i) &= \sum_{i=1}^n\sum_{d|i}f(\frac{i}{d})g(d) \\\\
-&= \sum_{d=1}^ng(d)\sum_{i=d}^nf(\frac{i}{d})[i|d] \\\\
-&= \sum_{d=1}^ng(d)\sum_{i=1}^{n/d}f(i) \\\\
-&= \sum_{d=1}^ng(d)S(\frac{n}{d}) \\\\
-&= g(1)S(n) + \sum_{d=2}^ng(d)S(\frac{n}{d}) \\\\
-\end{aligned}
-\end{equation}</script><p>所以 $S(n) = \sum_{i=1}^n h(i) - \sum_{d=2}^n g(d)S(\frac{n}{d})$ 。</p>
+<p>$$<br>\begin{equation}<br>\begin{aligned}<br>\sum_{i=1}^n h(i) &amp;= \sum_{i=1}^n\sum_{d|i}f(\frac{i}{d})g(d) \\<br>&amp;= \sum_{d=1}^ng(d)\sum_{i=d}^nf(\frac{i}{d})[i|d] \\<br>&amp;= \sum_{d=1}^ng(d)\sum_{i=1}^{n/d}f(i) \\<br>&amp;= \sum_{d=1}^ng(d)S(\frac{n}{d}) \\<br>&amp;= g(1)S(n) + \sum_{d=2}^ng(d)S(\frac{n}{d}) \\<br>\end{aligned}<br>\end{equation}<br>$$</p>
+<p>所以 $S(n) = \sum_{i=1}^n h(i) - \sum_{d=2}^n g(d)S(\frac{n}{d})$ 。</p>
 <p>前提是每个 $\sum_{i=1}^n h(i)$ 很容易求，那么接下来不考虑 $h$ ，<br>对于后面的部分可以整除分块，还需要快速求出 $g$ 的一段区间和，<br>然后就可以递推，由于形如 $\lfloor\frac{n}{d}\rfloor$ 的数只有 $O(\sqrt{n})$ 个，<br>可以只递推这 $O(\sqrt{n})$ 个 $S$ ，不考虑 $g, h$ 的计算复杂度，复杂度为 $O(n^{\frac{2}{3}})$ 。</p>
 <p>关于如何存储 $S$ ，直接用数组存需要 $O(n)$ 的空间，开 map 每次取用带一个 log ，<br>普通的离散化也会带一个 log 。</p>
 <p>观察 $\frac{n}{d}$ 的分布，当 $d \leq \sqrt{n}$ 时， $\frac{n}{d}$ 的值两两不同。<br>而当 $d &gt; \sqrt{n}$ 时， $\frac{n}{d}$ 的值都不超过 $\sqrt{n}$ 。<br>设 $m$ 是 $\frac{n}{d}$ 的不同取值个数，那么可以用如下的函数对 $x = \frac{n}{d}$ 进行离散化：</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">id</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> x &lt;= sqrt_of_n ? x : m - (n / x) + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <h4 id="实践"><a href="#实践" class="headerlink" title="实践"></a>实践</h4><p>举个简单的栗子：求 $\mu$ 的前缀和。</p>
 <p>首先根据 $\mu$ 的性质不难想到 $\mu \cdot I = \epsilon$ 。</p>
 <p>那么就将 $f = \mu, g = I, h = \epsilon$ 代入上去，得到：</p>
-<script type="math/tex; mode=display">S(n) = \sum_{i=1}^n \mu(i) = \sum_{i=1}^n \epsilon(i) - \sum_{d=2}^n I \cdot S(\frac{n}{d})</script><p>即</p>
-<script type="math/tex; mode=display">S(n) = 1 - \sum_{d=2}^n S(\frac{n}{d})</script><h4 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h4><p>但有时候无法构造合适的 $h = f \cdot g$ 使得 $g, h$ 的前缀和可以 $O(1)$ 算出。<br>这时候杜教筛是否就毫无用武之地呢？不见得。</p>
+<p>$$S(n) = \sum_{i=1}^n \mu(i) = \sum_{i=1}^n \epsilon(i) - \sum_{d=2}^n I \cdot S(\frac{n}{d})$$</p>
+<p>即</p>
+<p>$$S(n) = 1 - \sum_{d=2}^n S(\frac{n}{d})$$</p>
+<h4 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h4><p>但有时候无法构造合适的 $h = f \cdot g$ 使得 $g, h$ 的前缀和可以 $O(1)$ 算出。<br>这时候杜教筛是否就毫无用武之地呢？不见得。</p>
 <p>观察递推式，利用整除分块，设 $S_f, S_g, S_h$ 分别表示 $f, g, h$ 的前缀和，那么：</p>
-<script type="math/tex; mode=display">S_f(n) = S_h(n) - \sum_{i=2}^m (S_g(r_i) - S_g(r_{i-1})) S_f(\frac{n}{r_i})</script><p>其中 $m$ 是 $\frac{n}{d}$ 的不同取值个数， $r_i$ 是整除分块后对应第 $i$ 块的右端点。</p>
+<p>$$S_f(n) = S_h(n) - \sum_{i=2}^m (S_g(r_i) - S_g(r_{i-1})) S_f(\frac{n}{r_i})$$</p>
+<p>其中 $m$ 是 $\frac{n}{d}$ 的不同取值个数， $r_i$ 是整除分块后对应第 $i$ 块的右端点。</p>
 <p>首先不难发现需要用到的 $S_h$ 也都是形如 $\frac{n}{d}$ 的数，<br>那么只需要如果 $S_h$ 能够杜教筛（或者其他筛）筛出来就行了。</p>
 <p>再考虑 $S_g$ 需要的取值，由整除分块中的 $r = n / (n / l)$ 可知，$r_i$ 的取值也都是形如 $\frac{n}{d}$ 的数，<br>同理只要能筛 $S_g$ 就行了，不一定要 $O(1)$ 算。</p>
 <h2 id="min25"><a href="#min25" class="headerlink" title="min25"></a>min25</h2><p>min25 筛是扩展埃氏筛，也可以筛一类（更复杂的）<strong>积性函数</strong>的前缀和，并且通常是同类亚线性筛中最快的一个。<br>而且灵活运用 min25 可以处理一些特殊的关于质因子的问题。</p>
@@ -40,27 +36,25 @@
 <p>首先需要将 $f(i)$ 拆成若干完全积性函数的和，<br>只需考虑 $F$ ，也就是 $f(p^k)$ 的取值。<br>如果是关于 $p$ 的多项式，每个单项式对应的就是一个完全积性函数。</p>
 <p>假设现在要筛一个完全积性函数 $h$ ，要能快速计算出 $S_h = \sum_{i=1}^n h(i)$ 。<br>这一步的主要思想是，一个一个枚举质数 $p$ ，筛掉最小值因子为 $p$ 的合数的取值。<br>而合数 $x$ 的最小质因子为 $p$ 的必要条件是 $p^2 \leq x$ ，即 $p \leq \sqrt{x}$ 。<br>那么只需要枚举 $\sqrt{n}$ 以内的质数去筛即可。</p>
 <p>假设现在筛掉了前 $i - 1$ 个质因子得到一个这个值：</p>
-<script type="math/tex; mode=display">g(n, i - 1) = \sum_{x=1}^n [x \in Prime \\; or \\; minp(x) > P_{i-1}] h(x)</script><p>其中 $P_i$ 表示 $\sqrt{n}$ 以内第 $i$ 个质数。</p>
+<p>$$g(n, i - 1) = \sum_{x=1}^n [x \in Prime \; or \; minp(x) &gt; P_{i-1}] h(x)$$</p>
+<p>其中 $P_i$ 表示 $\sqrt{n}$ 以内第 $i$ 个质数。</p>
 <p>那么接下来要筛最小值因子为 $P_i$ 的数：</p>
-<script type="math/tex; mode=display">g(n, i) = g(n, i - 1) - \sum_{x=1}^n [minp(x) = P_i] h(x)</script><p>由于 $h$ 是完全积性函数，$P_i$ 可以直接提出来，得到：</p>
-<script type="math/tex; mode=display">
-\begin{equation}
-\begin{aligned}
-g(n, i) &= g(n, i - 1) - h(P_i) \sum_{x=1}^{n/P_i} [minp(x) \geq P_i] h(x) \\\\
-&= g(n, i - 1) - h(P_i) (g(\frac{n}{P_i}, i - 1) - \sum_{x=1}^{n/P_i} [x \in Prime \\; and \\; minp(x) < P_i] h(x)) \\\\
-&= g(n, i - 1) - h(P_i) (g(\frac{n}{P_i}, i - 1) - \sum_{j=1}^{i-1} h(P_j)) \\\\
-&= g(n, i - 1) - h(P_i) (g(\frac{n}{P_i}, i - 1) - ph_{i - 1}) \\\\
-\end{aligned}
-\end{equation}</script><p>其中 $ph_i$ 就是 $h$ 在前 $i$ 个质数上的取值和，注意 $P_i \leq \sqrt{n}$ ，这是可以直接筛的。</p>
+<p>$$g(n, i) = g(n, i - 1) - \sum_{x=1}^n [minp(x) = P_i] h(x)$$</p>
+<p>由于 $h$ 是完全积性函数，$P_i$ 可以直接提出来，得到：</p>
+<p>$$<br>\begin{equation}<br>\begin{aligned}<br>g(n, i) &amp;= g(n, i - 1) - h(P_i) \sum_{x=1}^{n/P_i} [minp(x) \geq P_i] h(x) \\<br>&amp;= g(n, i - 1) - h(P_i) (g(\frac{n}{P_i}, i - 1) - \sum_{x=1}^{n/P_i} [x \in Prime \; and \; minp(x) &lt; P_i] h(x)) \\<br>&amp;= g(n, i - 1) - h(P_i) (g(\frac{n}{P_i}, i - 1) - \sum_{j=1}^{i-1} h(P_j)) \\<br>&amp;= g(n, i - 1) - h(P_i) (g(\frac{n}{P_i}, i - 1) - ph_{i - 1}) \\<br>\end{aligned}<br>\end{equation}<br>$$</p>
+<p>其中 $ph_i$ 就是 $h$ 在前 $i$ 个质数上的取值和，注意 $P_i \leq \sqrt{n}$ ，这是可以直接筛的。</p>
 <p>那么上面的式子就是 $g$ 的递推式，不难发现第一维的取值都是 $\frac{n}{d}$ 的形式，第二维可以滚动。<br>直接按照递推式算，就可以在 $O(\sqrt{n} |P|)$ 的时间筛出需要的东西，也就是 $g(n, |P|)$ 。<br>这还是不够的，需要优化，由于最小质因子的取值在根号以内，所以递推时只需考虑满足 $n \geq P_i^2$ 的 $g(n, i)$ 。<br>当 $n &lt; P_i^2$ 时，随着 $i$ 的增大 $g(n, i)$ 的值不会改变，由于是滚动数组，直接 skip 掉就好了。</p>
 <h5 id="Step-2"><a href="#Step-2" class="headerlink" title="Step 2"></a>Step 2</h5><p>上面将每个完全积性函数的 $g(n, |P|)$ 加起来，得到 $S_F(n)$ ，表示 $f$ 在质数上的取值 $F$ 的前缀和。</p>
 <p>仍然利用最小质因子，不同的是，上一步从所有的取值开始从小到大把对应的最小质因子的合数的贡献给删掉的到质数的取值。<br>那这一步能不能反过来，从质数的取值开始，从大到小把对应的最小质因子的合数的贡献给加上最后得到所有数的取值？</p>
 <p>并不能，事实上是从空值开始，从大到小把对应的最小质因子的数的贡献加上最后得到所有数的取值，<br>合数可以递推并类似地利用积性函数的性质提出一个因子，质数则直接用上一步预处理的来算。</p>
 <p>那么假设现在以及算上了比第 $i$ 个更大的质数为最小质因子的数的值得到了这个：</p>
-<script type="math/tex; mode=display">S(n, i) = \sum_{x=1}^n [minp(x) > P_i] f(x)</script><p>不难推导出：</p>
-<script type="math/tex; mode=display">S(n, i)=S_F(n) - pf_i + \sum_{P_j < P_k \leq \sqrt{n}} \sum_{e>0,P_k^e \leq n}f(P_k^e)(S(\frac{n}{P_k^e}, k) + [e>1])</script><p>其中 $pf_i$ 就是 $f$ 在前 $i$ 个质数上的取值和，注意 $P_i \leq \sqrt{n}$ ，这是可以直接筛的。</p>
+<p>$$S(n, i) = \sum_{x=1}^n [minp(x) &gt; P_i] f(x)$$</p>
+<p>不难推导出：</p>
+<p>$$S(n, i)=S_F(n) - pf_i + \sum_{P_j &lt; P_k \leq \sqrt{n}} \sum_{e&gt;0,P_k^e \leq n}f(P_k^e)(S(\frac{n}{P_k^e}, k) + [e&gt;1])$$</p>
+<p>其中 $pf_i$ 就是 $f$ 在前 $i$ 个质数上的取值和，注意 $P_i \leq \sqrt{n}$ ，这是可以直接筛的。</p>
 <p>同样地第一维的取值都是 $\frac{n}{d}$ 的形式，但是第二维无法滚动，<br>但事实上后面的部分直接递归计算即可，以下是参考实现：</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> lolong;</span><br><span class="line"><span class="function">lolong <span class="title">S</span><span class="params">(lolong i, <span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(prime[j] &gt; i) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	lolong res = S_F[id(i)] - pf[j];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> k = j + <span class="number">1</span>; k &lt;= p <span class="keyword">and</span> <span class="number">1l</span>l * prime[k] * prime[k] &lt;= i; k ++) &#123;</span><br><span class="line">		<span class="keyword">int</span> e = <span class="number">1</span>;</span><br><span class="line">		lolong pr = prime[k];</span><br><span class="line">		<span class="keyword">while</span>(pr &lt;= i) &#123;</span><br><span class="line">			res += (prime[k] ^ e) * (S(i / pr, k) + (e &gt; <span class="number">1</span>));</span><br><span class="line">			pr *= prime[k];</span><br><span class="line">			e ++;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>复杂度似乎是 $O(\frac{n^{\frac{3}{4}}}{logn})$ 。</p>
 <h2 id="Powerful-number"><a href="#Powerful-number" class="headerlink" title="Powerful number"></a>Powerful number</h2><p>这个用得少，留坑，待填。</p>
 ]]></content>
