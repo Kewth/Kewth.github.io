@@ -58,7 +58,7 @@
 <p>复杂度似乎是 $O(\frac{n^{\frac{3}{4}}}{logn})$ 。</p>
 <h2 id="Powerful-number"><a href="#Powerful-number" class="headerlink" title="Powerful number"></a>Powerful number</h2><p>这个在 OI 中用得少，我也只是做过一道题，大概提一下。</p>
 <p>称 1 和每个质因子次数大于 1 的合数为 Powerful number 。<br>首先有个性质就是 $n$ 以内的 Powerful number 数量是 $O(\sqrt{n})$ 的。</p>
-<p>还是筛数论函数 $f$ 的前缀和 $S$ ，需要构造两个函数 $g, h$ 满足 $f = g \codt h$ 。<br>如果 $g$ 只在 Powerful number 上有值并且 $h$ 的前缀和 $S_h$ 容易求或者可以筛的话，<br>由 $S(n) = \sum_{i=1}^n \sum_{d|x} g(d) h(\frac{d}{x}) = \sum_{d=1}^n G(d) S_h(n/d)$<br>可以通过枚举 Powerful number 快速计算答案。</p>
+<p>还是筛数论函数 $f$ 的前缀和 $S$ ，需要构造两个函数 $g, h$ 满足 $f = g \cdot h$ 。<br>如果 $g$ 只在 Powerful number 上有值并且 $h$ 的前缀和 $S_h$ 容易求或者可以筛的话，<br>由 $S(n) = \sum_{i=1}^n \sum_{d|x} g(d) h(\frac{d}{x}) = \sum_{d=1}^n G(d) S_h(n/d)$<br>可以通过枚举 Powerful number 快速计算答案。</p>
 <p>至于枚举 Powerful number 的方法，注意到 Powerful number 的质因子都是 $\sqrt{n}$ 以内的，<br>这可以通过反证法证明，如果有大于 $\sqrt{n}$ 的质因子它的次数不可能超过 1 。<br>那么筛出 $\sqrt{n}$ 以内的质数，再通过搜索枚举每个质数的次数即可。</p>
 ]]></content>
       <categories>
@@ -177,13 +177,13 @@
         <category>算法</category>
       </categories>
       <tags>
-        <tag>O(1)</tag>
         <tag>RMQ</tag>
         <tag>分块</tag>
         <tag>线段树</tag>
         <tag>ST 表</tag>
         <tag>算法扩展</tag>
         <tag>随机</tag>
+        <tag>O(1)</tag>
       </tags>
   </entry>
   <entry>
@@ -251,10 +251,10 @@
         <category>算法</category>
       </categories>
       <tags>
+        <tag>O(1)</tag>
         <tag>gcd/lcm</tag>
         <tag>快速幂</tag>
         <tag>黑科技</tag>
-        <tag>O(1)</tag>
       </tags>
   </entry>
   <entry>
