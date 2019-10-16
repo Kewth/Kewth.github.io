@@ -1,6 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>莫队二次离线</title>
+    <url>/2019/10/16/%E8%8E%AB%E9%98%9F%E4%BA%8C%E6%AC%A1%E7%A6%BB%E7%BA%BF/</url>
+    <content><![CDATA[<p>莫队算法可以通过单点增量的方式以 $O(n\sqrt{n}K)$ （认为 $n, q$ 同阶）的复杂度离线处理若干区间信息询问。<br>其中每次单点增量，即每次端点移动的复杂度为 $O(K)$ 。<br>大多数情况下端点移动的复杂度是 $O(1)$ 的，这样的问题一般是统计区间内的“数”。<br>而统计区间内的“数对”这样的问题往往难以 $O(1)$ 处理端点移动。</p><a id="more"></a>
+<p>莫队二次离线或许能处理这样的问题。</p>
+<h2 id="什么用"><a href="#什么用" class="headerlink" title="什么用"></a>什么用</h2><p>一般莫队有 $O(n\sqrt{n})$ 次端点移动，如果要用数据结构维护信息的话，<br>就有 $O(n\sqrt{n})$ 次修改和 $O(n\sqrt{n})$ 次查询。</p>
+<p>而莫队二次离线能够优化为成 $O(n)$ 次修改和 $O(n\sqrt{n})$ 次查询，<br>从而允许使用一些修改复杂度大而查询复杂度小的方式来维护信息。<br>例如分块，如果能 $O(\sqrt{n})$ 修改和 $O(1)$ 查询的话，总的复杂度就是 $O(n\sqrt{n})$ 。</p>
+<p>但是有两个前提：</p>
+<ul>
+<li>维护的信息有一定可减性，换句话说必须保证每次询问 $[l, r]$ 与 $r + 1$ 产生的贡献时，<br>需要能够用 $[1, r]$ 与 $r + 1$ 产生的贡献减去（或者其他方式）$[1, l)$ 与 $r + 1$ 产生的贡献代替。</li>
+<li>维护的信息有一定可加性，换句话说在每次询问前在不知道当前的 Ans 的情况下可以得到 Ans 的改变量（或某种改变方式）。</li>
+</ul>
+<h2 id="怎么用"><a href="#怎么用" class="headerlink" title="怎么用"></a>怎么用</h2><p>考虑每次右端点右移的过程（右端点左移以及左端点移动是类似的）。</p>
+<p>每次右端点 $r$ 从 $r_0$ 移动到 $r_1$ 时，对于其中的每一个 $r$ ，都需要查询 $[l, r - 1]$ 与该点产生的贡献。<br>考虑差分，利用上面提到过的可减性，查询 $[1, r]$ 与 $r + 1$ 产生的贡献和 $[1, l)$ 与 $r + 1$ 产生的贡献。</p>
+<h4 id="Part-1"><a href="#Part-1" class="headerlink" title="Part 1"></a>Part 1</h4><p>$[1, r]$ 与 $r + 1$ 产生的贡献只与 $r$ 有关，可以记为 $f_r$ 。<br>那么预处理 $f_r$ 只需从小到大一个个加点维护当前的 $[1, r]$ 并询问出 $f_r$ 。<br>这个过程需要 $O(n)$ 次修改和 $O(n)$ 次查询。</p>
+<p>参考实现：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// a[i] 是第 i 个元素</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i ++) &#123;</span><br><span class="line">	f[i] = Query(a[i]);</span><br><span class="line">	Modify(a[i]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>另外如果需要卡常，可以将 $f$ 做一遍前缀和，这样后续查询 $[r_0, r_1]$ 总的贡献就可以 $O(1)$ 计算了（不影响复杂度）。</p>
+<h4 id="Part-2"><a href="#Part-2" class="headerlink" title="Part 2"></a>Part 2</h4><p>$[1, l)$ 与 $r + 1$ 产生的贡献可以二次离线，在 $l$ 处存下 $r + 1$ 之后再考虑计算。<br>这样做的空间复杂度是 $O(n\sqrt{n})$ 的，<br>但事实上每次只需把 $[r_0, r_1]$ 这个区间存进 $l$ 处而不是把每个数存进去就可以做到 $O(n)$ 的空间复杂度了，<br>这样询问的时候也只需求 $[r_0, r_1]$ 整体的贡献，常数上还能少一个 $O(n\sqrt{n})$ 的瓶颈。<br>离线处理上述的贡献，也和求 $f_r$ 的过程类似，每次从小到大一个个加点维护当前的 $[1, l)$ ，<br>并对于 $l$ 处存下的每一个数逐个询问 $[1, l)$ 与其产生的贡献即可。<br>这个过程需要 $O(n)$ 次修改和 $O(n\sqrt{n})$ 次查询。</p>
+<p>参考实现：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> l = <span class="number">1</span>, r = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= q; i ++) &#123;</span><br><span class="line">	<span class="keyword">int</span> L = query[i].l, R = query[i].r; <span class="comment">// 排序后的询问</span></span><br><span class="line">	<span class="keyword">if</span>(r &lt; R) &#123;</span><br><span class="line">		<span class="built_in">vector</span>[l].push_back(<span class="built_in">std</span>::make_pair(r + <span class="number">1</span>, R));</span><br><span class="line">		r = R;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i ++) &#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">auto</span> par : <span class="built_in">vector</span>[i])</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> k = par.first; k &lt;= par.second; k ++)</span><br><span class="line">			Query(a[k]); <span class="comment">// 这里用什么东西存一下结果就好了</span></span><br><span class="line">	Modify(a[i]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>分块</tag>
+        <tag>莫队</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>亚线性筛</title>
     <url>/2019/10/15/%E4%BA%9A%E7%BA%BF%E6%80%A7%E7%AD%9B/</url>
     <content><![CDATA[<p>亚线性筛，就是以低于线性的复杂度预处理一些线性信息的筛法统称。</p><p>目前我会杜教筛和 min25 还有 powerful number。</p><h2 id="杜教筛"><a href="#杜教筛" class="headerlink" title="杜教筛"></a>杜教筛</h2><p>杜教筛一般用于求一类数论函数的前缀和。</p><p>假设要求数论函数 $f(x)$ 的前缀和 $S(n) = \sum_{i=1}^n f(i)$ 。</p><p>杜教筛的关键在于构造两个合适的函数 $g, h$ 满足 $h = f \cdot g$ 。</p><a id="more"></a>
