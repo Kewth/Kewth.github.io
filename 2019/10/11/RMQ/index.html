@@ -56,14 +56,14 @@
 </script>
 
   <meta name="description" content="总结求各种 RMQ 的常用技巧和方法。RMQ 真是流皮，每次深入思考都会有新的发现，所以有了新的发现会更新。以下 n 表示数列的大小，q 表示询问的次数，均以最大值为例。一般性普通做法线段树当然是可以在线维护的，复杂度 $O(n + qlogn)$ 。甚至还可以支持单点修改或区间修改。但是如果只是静态询问的话，可以用 ST 表预处理后 $O(1)$ 在线处理询问，复杂度 $O(nlogn + q)">
-<meta name="keywords" content="RMQ,分块,线段树,ST 表,算法扩展,随机,O(1)">
+<meta name="keywords" content="O(1),RMQ,分块,线段树,ST 表,算法扩展,随机">
 <meta property="og:type" content="article">
 <meta property="og:title" content="RMQ">
 <meta property="og:url" content="http://yoursite.com/2019/10/11/RMQ/index.html">
 <meta property="og:site_name" content="Kewth&#39;s Blog">
 <meta property="og:description" content="总结求各种 RMQ 的常用技巧和方法。RMQ 真是流皮，每次深入思考都会有新的发现，所以有了新的发现会更新。以下 n 表示数列的大小，q 表示询问的次数，均以最大值为例。一般性普通做法线段树当然是可以在线维护的，复杂度 $O(n + qlogn)$ 。甚至还可以支持单点修改或区间修改。但是如果只是静态询问的话，可以用 ST 表预处理后 $O(1)$ 在线处理询问，复杂度 $O(nlogn + q)">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-10-14T11:01:21.705Z">
+<meta property="og:updated_time" content="2019-10-17T04:05:58.446Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RMQ">
 <meta name="twitter:description" content="总结求各种 RMQ 的常用技巧和方法。RMQ 真是流皮，每次深入思考都会有新的发现，所以有了新的发现会更新。以下 n 表示数列的大小，q 表示询问的次数，均以最大值为例。一般性普通做法线段树当然是可以在线维护的，复杂度 $O(n + qlogn)$ 。甚至还可以支持单点修改或区间修改。但是如果只是静态询问的话，可以用 ST 表预处理后 $O(1)$ 在线处理询问，复杂度 $O(nlogn + q)">
@@ -268,7 +268,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-10-14 19:01:21" itemprop="dateModified" datetime="2019-10-14T19:01:21+08:00">2019-10-14</time>
+                <time title="Modified: 2019-10-17 12:05:58" itemprop="dateModified" datetime="2019-10-17T12:05:58+08:00">2019-10-17</time>
               </span>
             
           
@@ -347,7 +347,7 @@
 <p>通过上面的各种讨论，相信读者已经明白分块 RMQ 的强大，以及线段树和 ST 表（尤其是后者）在 RMQ 的重要性。<br>分块什么这么多东西目的基本就是去平衡 ST 表 / 线段树的询问和预处理的复杂度。</p>
 <h2 id="一般性标准做法"><a href="#一般性标准做法" class="headerlink" title="一般性标准做法"></a>一般性标准做法</h2><p>标准的 $O(n + q)$ RMQ 。</p>
 <p>离线的话可以建笛卡尔树将 RMQ 转换为 LCA ，然后用 Tarjan 处理。<br>明显的缺点是离线，并且空间开销较大。</p>
-<p>在线的话，大致提一下，还是建笛卡尔树转 LCA ，然后求出树的欧拉序转为 +-1 RMQ 。<br>而 +-1 RMQ 也是通过分块实现 $O(n + q)$ 复杂度的。<br>整个过程十分复杂，在 OI 中实用性较低，具体做法留个坑，到时候再补。</p>
+<p>在线的话，大致提一下，还是建笛卡尔树转 LCA ，然后求出树的欧拉序转为 +-1 RMQ 。<br>（本质上是利用笛卡尔数进行现行离散化）<br>而 +-1 RMQ 也是通过分块实现 $O(n + q)$ 复杂度的。<br>整个过程十分复杂，在 OI 中实用性较低，具体做法留个坑，到时候再补。</p>
 
     </div>
 
@@ -363,6 +363,8 @@
           
           <div class="post-tags">
             
+              <a href="/tags/O-1/" rel="tag"># O(1)</a>
+            
               <a href="/tags/RMQ/" rel="tag"># RMQ</a>
             
               <a href="/tags/分块/" rel="tag"># 分块</a>
@@ -374,8 +376,6 @@
               <a href="/tags/算法扩展/" rel="tag"># 算法扩展</a>
             
               <a href="/tags/随机/" rel="tag"># 随机</a>
-            
-              <a href="/tags/O-1/" rel="tag"># O(1)</a>
             
           </div>
         
@@ -462,7 +462,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">33</span>
+          <span class="site-state-item-count">34</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -488,7 +488,7 @@
             <a href="/tags/">
           
         
-        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-count">25</span>
         <span class="site-state-item-name">tags</span>
         </a>
       </div>

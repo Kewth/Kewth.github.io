@@ -219,6 +219,112 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/10/整除分块/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Kewth">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kewth's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            
+            <a href="/2019/10/10/整除分块/" class="post-title-link" itemprop="url">整除分块</a>
+          
+        </h1>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2019-10-10 10:00:04" itemprop="dateCreated datePublished" datetime="2019-10-10T10:00:04+08:00">2019-10-10</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-10-13 20:24:01" itemprop="dateModified" datetime="2019-10-13T20:24:01+08:00">2019-10-13</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>（以下的除号皆表示整除）</p><p>用数论函数计算的时候，总会遇到这样一种问题：<br>$ \sum_{i=1}^n f(\frac{n}{i}) $。<br>$ O(n) $ 求往往无法满足需要。</p><p>但是<del>打表</del>可以发现， n/i 的取值对于一段连续的 i 是一致的，<br>那么可以考虑一块一块求。</p><p>设已知当前块的左端点为 l ，如果知道右端点 r（左闭右开），意味着<br>$ \forall l&lt;=i&lt;r, \frac{n}{i} = \frac{n}{l} $ ，<br>这一块对答案的贡献就是<br>$ (r-l) \cdot f(\frac{n}{l}) $。</p>
+          <!--noindex-->
+          
+            <div class="post-button">
+              <a class="btn" href="/2019/10/10/整除分块/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+    
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/10/类欧几里得/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1088,83 +1194,6 @@
   
 
     
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/09/安徽游记 I/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Kewth">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Kewth's Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            
-            <a href="/2019/10/09/安徽游记 I/" class="post-title-link" itemprop="url">安徽游记 I</a>
-          
-        </h1>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              
-                
-              
-
-              <time title="Created: 2019-10-09 17:34:25" itemprop="dateCreated datePublished" datetime="2019-10-09T17:34:25+08:00">2019-10-09</time>
-            </span>
-          
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>12 天的培（kao）训（shi），坚持每日总结。</p><p>Day0 to Day4.</p><h2 id="Day0"><a href="#Day0" class="headerlink" title="Day0"></a>Day0</h2><p>大清早的就出发了，地铁还是那么挤。<br>先从长沙坐到南京，高铁上干坐 6 个小时贼贼贼贼贼无聊。</p><p>中午幸好提前买了泡面，随便应付一下，坐了一上午不动也不会感觉饿。<br>%%% 在高铁上一餐吃 70rmb 的 lzk 。</p><p>到了南京还得等 1 小时转到芜湖，期间 UNO 现学现玩，<br>第一把就赢了，一定是传说中的新手的欧气附体，<br>但是这欧气来得快去的也飞快，后面再也没赢过 ，并且一度成为全场最富（一次拿了 20 张牌也是没谁了）。</p>
-          <!--noindex-->
-          
-            <div class="post-button">
-              <a class="btn" href="/2019/10/09/安徽游记 I/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-    
   </div>
 
   
@@ -1214,7 +1243,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">33</span>
+          <span class="site-state-item-count">34</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1240,7 +1269,7 @@
             <a href="/tags/">
           
         
-        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-count">25</span>
         <span class="site-state-item-name">tags</span>
         </a>
       </div>
