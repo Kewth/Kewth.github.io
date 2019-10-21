@@ -1,6 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>二次剩余</title>
+    <url>/2019/10/21/%E4%BA%8C%E6%AC%A1%E5%89%A9%E4%BD%99/</url>
+    <content><![CDATA[<p>二次剩余，<del>俗称模意义开根</del>。<br>也就是对于常数 $n$ 解这样一个方程：</p><p>$$x^2 \equiv n \; (mod \; p)$$</p><p>这里只介绍模数 $p$ 为奇素数的解法，也就是 Cipolla 算法。</p><p>以下运算皆指模 $p$ 意义下的运算。</p><h2 id="解的数量"><a href="#解的数量" class="headerlink" title="解的数量"></a>解的数量</h2><p>严格来讲，非 0 数 $n$ 是二次剩余当且仅当方程 $x^2 \equiv n$ 有解，也就是能开根。<br>上述方程无解的非 0 数 $n$ 称作非二次剩余。</p><a id="more"></a>
+
+
+
+
+<p>对于二次剩余 $n$ ，$x^2 \equiv n$ 有多少解？</p>
+<p>假设有多组解，对于任意两个不相等的解 $x_0, x_1$ ，有 $x_0^2 \equiv x_1^2$ 。<br>移项后平方差，得到 $(x_0 - x_1)(x_0 + x_1) \equiv 0$ 。</p>
+<p>由于 $p$ 是奇素数，且 $x_0 \ne x_1$ ， $x_0 - x_1$ 在模 $p$ 意义下是不会为 0 的。<br>故有 $x_0 + x_1 \equiv 0$ ，也就是说两个不相等的解一定是相反数，<br>换言之，该方程只有两个解，且它们互为相反数。<br>而当 $p$ 为奇素数时模意义的两个相反数不会相等，因为奇偶性不同。</p>
+<p>还可以知道，任意一对相反数都对应一个二次剩余，而且这些二次剩余是两两不同的。<br>也就说二次剩余的数量恰为 $\frac{p-1}{2}$ ，其他的非 0 数都是非二次剩余，数量也是 $\frac{p-1}{2}$ 。</p>
+<h2 id="欧拉准则"><a href="#欧拉准则" class="headerlink" title="欧拉准则"></a>欧拉准则</h2><p>如何快速判断一个数 $n$ 是否为二次剩余？</p>
+<p>以下讨论假定 n 不为 0 。</p>
+<p>观察费马小定理 $n^{p-1} \equiv 1$ ，由于 $p$ 是奇素数，可以得到 $n^{2(\frac{p-1}{2})} - 1\equiv 0$ ，<br>也就是说 $n^{\frac{p-1}{2}}$ 是 1 开根的结果，根据上面所说， 1 开根只有两个解 1 和 -1 。<br>那么 $n^{\frac{p-1}{2}}$ 只能是 1 或 -1 。</p>
+<p>若 $n$ 是二次剩余，则有 $n^{\frac{p-1}{2}} \equiv (x^2)^{\frac{p-1}{2}} \equiv x^{p-1} \equiv 1$ 。</p>
+<p>若 $n^{\frac{p-1}{2}} \equiv 1$ ，将 $n$ 表示为 $g^k$ ， 其中 $g$ 是模 $p$ 意义下的原根。<br>那么有 $g^{k\frac{p-1}{2}} \equiv 1$ 由于 $g$ 是原根，必有 $p-1|k\frac{p-1}{2}$ ，<br>也就是说 $k$ 一定是偶数，那么令 $x \equiv g^{\frac{k}{2}}$ 即是 $n$ 开根的结果，这说明 $n$ 是二次剩余。</p>
+<p>也就是说 $n^{\frac{p-1}{2}} \equiv 1$ 与 $n$ 是二次剩余是等价的，<br>由于 $n^{\frac{p-1}{2}}$ 不为 1 是只能是 -1 ，那么 $n^{frac{p-1}{2}} \equiv -1$ 与 $n$ 是非二次剩余等价。</p>
+<p><em>ps: 网上一堆伪证说若 $n$ 是非二次剩余，不存在 $x$ 使得上式为 1 ，但这只能说明上式为 -1 时 $n$ 是非二次剩余，并不能推翻“当 $n$ 是非二次剩余时上式为 1”</em></p>
+<h2 id="Cipolla"><a href="#Cipolla" class="headerlink" title="Cipolla"></a>Cipolla</h2><p>对于二次剩余解方程 $x^2 \equiv n$ 。</p>
+<p>找到一个 $a$ 满足 $a^2 - n$ 是非二次剩余，由于非二次剩余的数量接近 $\frac{p}{2}$ ，<br>通过随机 + 检验的方式期望约 2 次可以找到这样一个 $a$ 。</p>
+<p>接下来定义 $i^2 \equiv a^2 - n$ 。<br>但是 $a^2 - n$ 不是二次剩余，怎么找得到这样一个 $i$ ？</p>
+<p>类比实数域到复数域的推广，定义这样一个 $i$ ，然后可以将所有数表示为 $A+Bi$ 的形式，<br>其中 $A, B$ 都是模 $p$ 意义下的数，类似于实部和虚部。</p>
+<p>那么 $(a + i)^{p+1} \equiv n$ ，考虑证明。</p>
+<p><strong>引理 1</strong> ： $i^p \equiv -i$ 。</p>
+<p>证明： $i^p \equiv i(i^2)^{\frac{p-1}{2}} \equiv i(a^2 - n)^{\frac{p-1}{2}} \equiv -i $</p>
+<p><strong>引理 2</strong> ： $(A + B)^p \equiv A^p + B^p$ 。</p>
+<p>证明：二项式定理展开后，由于 $p$ 是质数，除了 $C_p^0, C_p^p$ 外的组合数分子上的阶乘没法消掉，模 $p$ 都会为 0 ，剩下来的就是 $C_p^0 A^0 B^p + C_p^p A^p B^0$ 。</p>
+<p>现在证明上述结论：</p>
+<p>$$(a + i)^{p+1} \equiv (a^p + i^p) (a + i) \equiv (a - i) (a + i) \equiv a^2 - i^2 \equiv n$$</p>
+<p>那么 $(a + i)^{\frac{p+1}{2}}$ 即是一个解，其相反数是另一个解。</p>
+<p>然而还剩最后一个问题， $(a + i)^{\frac{p+1}{2}}$ 的“虚部”一定为 0 吗？</p>
+<p>幸运的是，的确如此，假设存在 $(A + Bi)^2 \equiv n$ 且 $B \ne 0$ ，<br>那么有 $A^2 + B^2i^2 + 2ABi \equiv n$ ，即 $A^2 + B^2(a^2 - n) - n \equiv -2ABi$ 。<br>式子的左边“虚部”为 0 ，那么式子右边的虚部也一定为 0 ，也就是说 $AB \equiv 0$ 。<br>既然假设了 $B \ne 0$ 那么一定是 $A \equiv 0$ ，也就是说 $(Bi)^2 \equiv n$ 。<br>也就是 $i^2 \equiv nB^{-2}$ ，由于 $B^2$ 是个二次剩余，其逆元 $B^{-2}$ 一定也是二次剩余，乘上二次剩余 $n$ 后一定还是二次剩余，这与 $i^2$ 是个非二次剩余产生矛盾。</p>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>实现的时候弄个“复数”类（据说也可以不用）即可。</p>
+<p>参考实现：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> lolong;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> mod;</span><br><span class="line">lolong I_mul_I; <span class="comment">// 虚数单位的平方</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">complex</span> &#123;</span></span><br><span class="line">	lolong real, imag;</span><br><span class="line">	<span class="keyword">complex</span>(lolong real = <span class="number">0</span>, lolong imag = <span class="number">0</span>): real(real), imag(imag) &#123; &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">inline</span> <span class="keyword">bool</span> <span class="keyword">operator</span> == (<span class="keyword">complex</span> x, <span class="keyword">complex</span> y) &#123;</span><br><span class="line">	<span class="keyword">return</span> x.real == y.real <span class="keyword">and</span> x.imag == y.imag;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">inline</span> <span class="keyword">complex</span> <span class="keyword">operator</span> * (<span class="keyword">complex</span> x, <span class="keyword">complex</span> y) &#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">complex</span>((x.real * y.real + I_mul_I * x.imag % mod * y.imag) % mod,</span><br><span class="line">			(x.imag * y.real + x.real * y.imag) % mod);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">complex</span> <span class="title">power</span><span class="params">(<span class="keyword">complex</span> x, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">complex</span> res = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span>(k) &#123;</span><br><span class="line">		<span class="keyword">if</span>(k &amp; <span class="number">1</span>) res = res * x;</span><br><span class="line">		x = x * x;</span><br><span class="line">		k &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">check_if_residue</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> power(x, (mod - <span class="number">1</span>) &gt;&gt; <span class="number">1</span>) == <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> p, <span class="keyword">int</span> &amp;x0, <span class="keyword">int</span> &amp;x1)</span> </span>&#123;</span><br><span class="line">	mod = p;</span><br><span class="line"></span><br><span class="line">	lolong a = rand() % mod;</span><br><span class="line">	<span class="keyword">while</span>(!a <span class="keyword">or</span> check_if_residue((a * a + mod - n) % mod))</span><br><span class="line">		a = rand() % mod;</span><br><span class="line">	I_mul_I = (a * a + mod - n) % mod;</span><br><span class="line"></span><br><span class="line">	x0 = <span class="keyword">int</span>(power(<span class="keyword">complex</span>(a, <span class="number">1</span>), (mod + <span class="number">1</span>) &gt;&gt; <span class="number">1</span>).real);</span><br><span class="line">	x1 = mod - x0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>二次剩余</tag>
+        <tag>同余</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>LGR-061&XR-4</title>
     <url>/2019/10/20/LGR-061-XR-4/</url>
     <content><![CDATA[<p>开场 30min 才反应过来有场比赛。<br>不知道哪来的自信就去报了 Div.1 。。。</p><p>第一次打 IOI 赛制的网络赛，感觉海星，不像 ACM 一样必须 A 题，<br>打部分分的话就和平时训练的感觉一样，操作起来相对顺手。</p><p><del>但是打网络赛为什么要拿部分分呢，当然冲着 A 题去啊是吧</del></p><p>然而全场只能做出 A 题。并没有平时打 ACM 赛制的时候有签到题。<br>不过还好，反正我不适合打手速题。</p><a id="more"></a>
