@@ -4,7 +4,7 @@
 
 
 
-<html lang="en">
+<html lang="zh-CN">
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -14,7 +14,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.1">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.1">
   <link rel="mask-icon" href="/images/logo.svg?v=7.4.1" color="#222">
-  <link rel="alternate" href="/atom.xml" title="Kewth's Blog" type="application/atom+xml">
+  <link rel="alternate" href="/atom.xml" title="KeBlog" type="application/atom+xml">
 
 <link rel="stylesheet" href="/css/main.css?v=7.4.1">
 
@@ -48,9 +48,9 @@
     path: 'search.xml',
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     translation: {
-      copy_button: 'Copy',
-      copy_success: 'Copied',
-      copy_failure: 'Copy failed'
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
     },
     sidebarPadding: 40
   };
@@ -61,9 +61,9 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="拉格朗日插值法">
 <meta property="og:url" content="http://yoursite.com/2019/10/10/拉格朗日插值法/index.html">
-<meta property="og:site_name" content="Kewth&#39;s Blog">
+<meta property="og:site_name" content="KeBlog">
 <meta property="og:description" content="原来拉格朗日插值不仅能插点值，还能插系数。插点值已知函数 f(x) 上 n 个点 $(x_i, y_i)$ ，求 f(k) 。拉格朗日插值法的思路在于：对于每个 $(x_i, y_i)$ 找到 $L_i(x)$ 使得 $L_i(x_i) = y_i, L_i(x_j) = 0$ ，其中 $ x_j $ 是已知的 x 中任意一个不等于 $ x_i $ 的 x 。">
-<meta property="og:locale" content="en">
+<meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2019-10-14T03:48:43.694Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="拉格朗日插值法">
@@ -82,7 +82,7 @@
   };
 </script>
 
-  <title>拉格朗日插值法 | Kewth's Blog</title>
+  <title>拉格朗日插值法 | KeBlog</title>
   
 
 
@@ -128,14 +128,16 @@
     <div>
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Kewth's Blog</span>
+        <span class="site-title">KeBlog</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
+        <h1 class="site-subtitle" itemprop="description">The OI Blog of Kewth</h1>
+      
   </div>
 
   <div class="site-nav-toggle">
-    <div class="toggle" aria-label="Toggle navigation bar">
+    <div class="toggle" aria-label="切换导航栏">
       <span class="toggle-line toggle-line-first"></span>
       <span class="toggle-line toggle-line-middle"></span>
       <span class="toggle-line toggle-line-last"></span>
@@ -154,8 +156,17 @@
         <li class="menu-item menu-item-home">
       
     
+      
+      
+        
+      
+        
+      
+        
+      
+    
 
-    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
 
   </li>
       
@@ -167,8 +178,17 @@
         <li class="menu-item menu-item-about">
       
     
+      
+      
+        
+      
+        
+      
+        
+      
+    
 
-    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
 
   </li>
       
@@ -180,8 +200,19 @@
         <li class="menu-item menu-item-tags">
       
     
+      
+      
+        
+      
+        
+      
+        
+          
+        
+      
+    
 
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">26</span></a>
 
   </li>
       
@@ -193,8 +224,19 @@
         <li class="menu-item menu-item-categories">
       
     
+      
+      
+        
+      
+        
+          
+        
+      
+        
+      
+    
 
-    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">2</span></a>
 
   </li>
       
@@ -206,8 +248,19 @@
         <li class="menu-item menu-item-archives">
       
     
+      
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">35</span></a>
 
   </li>
       
@@ -238,17 +291,17 @@
       
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/10/拉格朗日插值法/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Kewth">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="HNFMS 现役 OIer">
       <meta itemprop="image" content="/images/avatar.jpeg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Kewth's Blog">
+      <meta itemprop="name" content="KeBlog">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
@@ -266,13 +319,13 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              <span class="post-meta-item-text">Posted on</span>
+              <span class="post-meta-item-text">发表于</span>
 
               
                 
               
 
-              <time title="Created: 2019-10-10 18:00:02" itemprop="dateCreated datePublished" datetime="2019-10-10T18:00:02+08:00">2019-10-10</time>
+              <time title="创建时间：2019-10-10 18:00:02" itemprop="dateCreated datePublished" datetime="2019-10-10T18:00:02+08:00">2019-10-10</time>
             </span>
           
             
@@ -282,8 +335,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-10-14 11:48:43" itemprop="dateModified" datetime="2019-10-14T11:48:43+08:00">2019-10-14</time>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-10-14 11:48:43" itemprop="dateModified" datetime="2019-10-14T11:48:43+08:00">2019-10-14</time>
               </span>
             
           
@@ -291,7 +344,7 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">In</span>
+              <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/算法/" itemprop="url" rel="index">
@@ -306,11 +359,11 @@
           
 
           
-            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
-              <span class="post-meta-item-text">Views: </span>
+              <span class="post-meta-item-text">阅读次数：</span>
               <span id="busuanzi_value_page_pv"></span>
             </span>
           
@@ -330,19 +383,17 @@
 <p>n 个点无法求出 f 这个函数，<br>但可以求出一个 n - 1 次多项式，<br>可以认为这个多项式近似于 f 。</p>
 <p>而由 L 的定义可知，<br>这个多项式 g 满足 $ g(x) = \sum_{i=1}^n L_i(x) $ 。<br>那么 f(k) 就可以近似地认为是 g(k) ，<br>代入上式即可 $ O(n^2) $ 求解。</p>
 <p>现在问题在于求 L 。<br>下面的 L 可以满足定义：</p>
-<p>$$ L_i(x) = y_i \cdot \prod\limits_{j≠i}\frac{x_j-x}{x_j-x_i} $$</p>
-<p>代入可得这对于任意 $ x_i $<br>可以使得 $ L_i(x_i)=y_i,L_i(x_j) = 0 $</p>
+<script type="math/tex; mode=display">L_i(x) = y_i \cdot \prod\limits_{j≠i}\frac{x_j-x}{x_j-x_i}</script><p>代入可得这对于任意 $ x_i $<br>可以使得 $ L_i(x_i)=y_i,L_i(x_j) = 0 $</p>
 <h2 id="插系数"><a href="#插系数" class="headerlink" title="插系数"></a>插系数</h2><p>已知多项式 f(x) 的 n 个点值，求 f(x) 。</p>
 <p>点值比较特殊的情况下可以使用 FFT 或者 NTT ，但有失一般性。</p>
 <p>先考虑插出一项 $x^k$ 的系数。</p>
 <p>首先依次考虑每个 $L_i(x)$ 的 $x^k$ 系数，最后累加即可。</p>
 <p>注意到分母和 $y_i$ 是常数可以直接算，考虑提出来，</p>
-<p>$$ L_i(x) = (y_i \cdot \prod\limits_{j≠i}\frac{1}{x_j-x_i})<br>    (\prod\limits_{j≠i} (x_j - x)) $$</p>
-<p>那么只需要算分子部分，即上式右边的 $\prod$ 的 $x^k$ 系数即可。</p>
+<script type="math/tex; mode=display">L_i(x) = (y_i \cdot \prod\limits_{j≠i}\frac{1}{x_j-x_i})
+    (\prod\limits_{j≠i} (x_j - x))</script><p>那么只需要算分子部分，即上式右边的 $\prod$ 的 $x^k$ 系数即可。</p>
 <p>假设把这个连乘暴力拆开，其实 $x^k$ 的系数就是在之中选 $n - k - 1$ 个常数。<br>DP 预处理 $pre(i, j)$ 表示在 $\prod\limits_{j \leq i} (x - x_j)$ 中选 k 个常数的系数和，<br>同理 $suf(i, j)$ 表示在 $\prod\limits_{j \geq i} (x - x_j)$ 中选 k 个常数的系数和。<br>那么把 $pre(i - 1, k)$ 和 $suf(i + 1, k)$ 相乘就是上式的 $x^k$ 系数了。</p>
 <p>参考实现（未经过测试）：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 插出 L_i(x) 的 x^k 系数 */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">la</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> A = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n; j ++)</span><br><span class="line">		<span class="keyword">if</span>(i != j)</span><br><span class="line">			A *= X[i] - X[j];</span><br><span class="line">	<span class="keyword">int</span> B = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> l = <span class="number">0</span>; l &lt;= n - k - <span class="number">1</span>; l ++)</span><br><span class="line">		B += pre[i - <span class="number">1</span>][l] * suf[i + <span class="number">1</span>][n - k - <span class="number">1</span> - l];</span><br><span class="line">	<span class="keyword">return</span> B / A * X[i];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 初始化 suf 和 pre */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= n; i ++) &#123;</span><br><span class="line">		pre[i][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= i; j ++)</span><br><span class="line">			pre[i][j] = pre[i - <span class="number">1</span>][j] - pre[i - <span class="number">1</span>][j - <span class="number">1</span>] * X[i];</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = n + <span class="number">1</span>; i; i --) &#123;</span><br><span class="line">		suf[i][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n - i + <span class="number">1</span>; j ++)</span><br><span class="line">			suf[i][j] = suf[i + <span class="number">1</span>][j] - suf[i + <span class="number">1</span>][j - <span class="number">1</span>] * X[i];</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 
     </div>
 
@@ -358,7 +409,7 @@
           
           <div class="post-tags">
             
-              <a href="/tags/多项式/" rel="tag"># 多项式</a>
+              <a href="/tags/多项式/" rel="tag"><i class="fa fa-tag"></i> 多项式</a>
             
           </div>
         
@@ -420,10 +471,10 @@
 
       <ul class="sidebar-nav motion-element">
         <li class="sidebar-nav-toc">
-          Table of Contents
+          文章目录
         </li>
         <li class="sidebar-nav-overview">
-          Overview
+          站点概览
         </li>
       </ul>
 
@@ -440,7 +491,7 @@
       src="/images/avatar.jpeg"
       alt="Kewth">
   <p class="site-author-name" itemprop="name">Kewth</p>
-  <div class="site-description" itemprop="description"></div>
+  <div class="site-description" itemprop="description">HNFMS 现役 OIer</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
@@ -449,7 +500,7 @@
           <a href="/archives/">
         
           <span class="site-state-item-count">35</span>
-          <span class="site-state-item-name">posts</span>
+          <span class="site-state-item-name">日志</span>
         </a>
       </div>
     
@@ -462,7 +513,7 @@
           
         
         <span class="site-state-item-count">2</span>
-        <span class="site-state-item-name">categories</span>
+        <span class="site-state-item-name">分类</span>
         </a>
       </div>
     
@@ -475,7 +526,7 @@
           
         
         <span class="site-state-item-count">26</span>
-        <span class="site-state-item-name">tags</span>
+        <span class="site-state-item-name">标签</span>
         </a>
       </div>
     
@@ -528,7 +579,7 @@
       
         
       
-        <a href="https://www.luogu.org/space/show?uid=52232" title="Luogu &rarr; https://www.luogu.org/space/show?uid=52232" rel="noopener" target="_blank"><i class="fa fa-fw fa-code"></i>Luogu</a>
+        <a href="https://www.luogu.org/space/show?uid=52232" title="Luogu &rarr; https://www.luogu.org/space/show?uid=52232" rel="noopener" target="_blank"><i class="fa fa-fw fa-code-fork"></i>Luogu</a>
       </span>
     
   </div>
@@ -573,16 +624,16 @@
   &copy; 
   <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
-    <i class="fa fa-user"></i>
+    <i class="fa fa-heartbeat"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Kewth</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0
   </div>
   <span class="post-meta-divider">|</span>
   <div class="theme-info">
       
-    Theme – <a href="https://muse.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.4.1
+    主题 – <a href="https://muse.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.4.1
   </div>
 
         
@@ -592,7 +643,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-user"></i>
       </span>
-      <span class="site-uv" title="Total Visitors">
+      <span class="site-uv" title="总访客量">
         <span id="busuanzi_value_site_uv"></span>
       </span>
     </span>
@@ -603,7 +654,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-eye"></i>
       </span>
-      <span class="site-pv" title="Total Views">
+      <span class="site-pv" title="总访问量">
         <span id="busuanzi_value_site_pv"></span>
       </span>
     </span>

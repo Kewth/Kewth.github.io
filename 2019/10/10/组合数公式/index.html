@@ -4,7 +4,7 @@
 
 
 
-<html lang="en">
+<html lang="zh-CN">
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -14,7 +14,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.1">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.1">
   <link rel="mask-icon" href="/images/logo.svg?v=7.4.1" color="#222">
-  <link rel="alternate" href="/atom.xml" title="Kewth's Blog" type="application/atom+xml">
+  <link rel="alternate" href="/atom.xml" title="KeBlog" type="application/atom+xml">
 
 <link rel="stylesheet" href="/css/main.css?v=7.4.1">
 
@@ -48,25 +48,25 @@
     path: 'search.xml',
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     translation: {
-      copy_button: 'Copy',
-      copy_success: 'Copied',
-      copy_failure: 'Copy failed'
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
     },
     sidebarPadding: 40
   };
 </script>
 
-  <meta name="description" content="$ C_n^m $ 在组合数学中的意义：在 n 个元素选 m 个元素的方案数。公式公式 1$$ C_n^m = \frac{n!}{m! * (n-m)!} $$组合数的通项公式。当要求组合数模一般模数时 ，通项公式的分母可能没有逆元导致不可行。公式 2$$ C_n^m = C_n^{n-m} $$基本性质，可以由通项公式得出。">
+  <meta name="description" content="$ C_n^m $ 在组合数学中的意义：在 n 个元素选 m 个元素的方案数。公式公式 1C_n^m = \frac{n!}{m! * (n-m)!}组合数的通项公式。当要求组合数模一般模数时 ，通项公式的分母可能没有逆元导致不可行。公式 2C_n^m = C_n^{n-m}基本性质，可以由通项公式得出。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="组合数公式">
 <meta property="og:url" content="http://yoursite.com/2019/10/10/组合数公式/index.html">
-<meta property="og:site_name" content="Kewth&#39;s Blog">
-<meta property="og:description" content="$ C_n^m $ 在组合数学中的意义：在 n 个元素选 m 个元素的方案数。公式公式 1$$ C_n^m = \frac{n!}{m! * (n-m)!} $$组合数的通项公式。当要求组合数模一般模数时 ，通项公式的分母可能没有逆元导致不可行。公式 2$$ C_n^m = C_n^{n-m} $$基本性质，可以由通项公式得出。">
-<meta property="og:locale" content="en">
+<meta property="og:site_name" content="KeBlog">
+<meta property="og:description" content="$ C_n^m $ 在组合数学中的意义：在 n 个元素选 m 个元素的方案数。公式公式 1C_n^m = \frac{n!}{m! * (n-m)!}组合数的通项公式。当要求组合数模一般模数时 ，通项公式的分母可能没有逆元导致不可行。公式 2C_n^m = C_n^{n-m}基本性质，可以由通项公式得出。">
+<meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2019-10-13T12:24:08.972Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="组合数公式">
-<meta name="twitter:description" content="$ C_n^m $ 在组合数学中的意义：在 n 个元素选 m 个元素的方案数。公式公式 1$$ C_n^m = \frac{n!}{m! * (n-m)!} $$组合数的通项公式。当要求组合数模一般模数时 ，通项公式的分母可能没有逆元导致不可行。公式 2$$ C_n^m = C_n^{n-m} $$基本性质，可以由通项公式得出。">
+<meta name="twitter:description" content="$ C_n^m $ 在组合数学中的意义：在 n 个元素选 m 个元素的方案数。公式公式 1C_n^m = \frac{n!}{m! * (n-m)!}组合数的通项公式。当要求组合数模一般模数时 ，通项公式的分母可能没有逆元导致不可行。公式 2C_n^m = C_n^{n-m}基本性质，可以由通项公式得出。">
   <link rel="canonical" href="http://yoursite.com/2019/10/10/组合数公式/">
 
 
@@ -81,7 +81,7 @@
   };
 </script>
 
-  <title>组合数公式 | Kewth's Blog</title>
+  <title>组合数公式 | KeBlog</title>
   
 
 
@@ -127,14 +127,16 @@
     <div>
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Kewth's Blog</span>
+        <span class="site-title">KeBlog</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
+        <h1 class="site-subtitle" itemprop="description">The OI Blog of Kewth</h1>
+      
   </div>
 
   <div class="site-nav-toggle">
-    <div class="toggle" aria-label="Toggle navigation bar">
+    <div class="toggle" aria-label="切换导航栏">
       <span class="toggle-line toggle-line-first"></span>
       <span class="toggle-line toggle-line-middle"></span>
       <span class="toggle-line toggle-line-last"></span>
@@ -153,8 +155,17 @@
         <li class="menu-item menu-item-home">
       
     
+      
+      
+        
+      
+        
+      
+        
+      
+    
 
-    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
 
   </li>
       
@@ -166,8 +177,17 @@
         <li class="menu-item menu-item-about">
       
     
+      
+      
+        
+      
+        
+      
+        
+      
+    
 
-    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
 
   </li>
       
@@ -179,8 +199,19 @@
         <li class="menu-item menu-item-tags">
       
     
+      
+      
+        
+      
+        
+      
+        
+          
+        
+      
+    
 
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">26</span></a>
 
   </li>
       
@@ -192,8 +223,19 @@
         <li class="menu-item menu-item-categories">
       
     
+      
+      
+        
+      
+        
+          
+        
+      
+        
+      
+    
 
-    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">2</span></a>
 
   </li>
       
@@ -205,8 +247,19 @@
         <li class="menu-item menu-item-archives">
       
     
+      
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">35</span></a>
 
   </li>
       
@@ -237,17 +290,17 @@
       
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/10/组合数公式/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Kewth">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="HNFMS 现役 OIer">
       <meta itemprop="image" content="/images/avatar.jpeg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Kewth's Blog">
+      <meta itemprop="name" content="KeBlog">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
@@ -265,13 +318,13 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              <span class="post-meta-item-text">Posted on</span>
+              <span class="post-meta-item-text">发表于</span>
 
               
                 
               
 
-              <time title="Created: 2019-10-10 10:00:01" itemprop="dateCreated datePublished" datetime="2019-10-10T10:00:01+08:00">2019-10-10</time>
+              <time title="创建时间：2019-10-10 10:00:01" itemprop="dateCreated datePublished" datetime="2019-10-10T10:00:01+08:00">2019-10-10</time>
             </span>
           
             
@@ -281,8 +334,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-10-13 20:24:08" itemprop="dateModified" datetime="2019-10-13T20:24:08+08:00">2019-10-13</time>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-10-13 20:24:08" itemprop="dateModified" datetime="2019-10-13T20:24:08+08:00">2019-10-13</time>
               </span>
             
           
@@ -290,7 +343,7 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">In</span>
+              <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/算法/" itemprop="url" rel="index">
@@ -305,11 +358,11 @@
           
 
           
-            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
-              <span class="post-meta-item-text">Views: </span>
+              <span class="post-meta-item-text">阅读次数：</span>
               <span id="busuanzi_value_page_pv"></span>
             </span>
           
@@ -323,24 +376,16 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>$ C_n^m $ 在组合数学中的意义：在 n 个元素选 m 个元素的方案数。</p><h2 id="公式"><a href="#公式" class="headerlink" title="公式"></a>公式</h2><h3 id="公式-1"><a href="#公式-1" class="headerlink" title="公式 1"></a>公式 1</h3><p>$$ C_n^m = \frac{n!}{m! * (n-m)!} $$</p><p>组合数的通项公式。</p><p><strong>当要求组合数模一般模数时</strong> ，通项公式的分母可能没有逆元导致不可行。</p><h3 id="公式-2"><a href="#公式-2" class="headerlink" title="公式 2"></a>公式 2</h3><p>$$ C_n^m = C_n^{n-m} $$</p><p>基本性质，可以由通项公式得出。</p><a id="more"></a>
+        <p>$ C_n^m $ 在组合数学中的意义：在 n 个元素选 m 个元素的方案数。</p><h2 id="公式"><a href="#公式" class="headerlink" title="公式"></a>公式</h2><h3 id="公式-1"><a href="#公式-1" class="headerlink" title="公式 1"></a>公式 1</h3><script type="math/tex; mode=display">C_n^m = \frac{n!}{m! * (n-m)!}</script><p>组合数的通项公式。</p><p><strong>当要求组合数模一般模数时</strong> ，通项公式的分母可能没有逆元导致不可行。</p><h3 id="公式-2"><a href="#公式-2" class="headerlink" title="公式 2"></a>公式 2</h3><script type="math/tex; mode=display">C_n^m = C_n^{n-m}</script><p>基本性质，可以由通项公式得出。</p><a id="more"></a>
 
 
 
-
-
-<h3 id="公式-3"><a href="#公式-3" class="headerlink" title="公式 3"></a>公式 3</h3><p>$$ C_n^m * C_m^k = C_n^k * C_{n-k}^{m-k} $$</p>
-<h3 id="公式-4"><a href="#公式-4" class="headerlink" title="公式 4"></a>公式 4</h3><p>$$ C_n^m = C_{n-1}^{m-1} + C_{n-1}^m $$</p>
-<p>组合数的基本递推式。</p>
+<h3 id="公式-3"><a href="#公式-3" class="headerlink" title="公式 3"></a>公式 3</h3><script type="math/tex; mode=display">C_n^m * C_m^k = C_n^k * C_{n-k}^{m-k}</script><h3 id="公式-4"><a href="#公式-4" class="headerlink" title="公式 4"></a>公式 4</h3><script type="math/tex; mode=display">C_n^m = C_{n-1}^{m-1} + C_{n-1}^m</script><p>组合数的基本递推式。</p>
 <p><strong>当要求组合数模一般模数时</strong> ，常用这种方法预处理组合数。</p>
-<h3 id="公式-5"><a href="#公式-5" class="headerlink" title="公式 5"></a>公式 5</h3><p>$$ \sum_{i=0}^n C_n^i = 2^n $$</p>
-<p>组合意义： n 个元素选任意元素的方案数。<br>每个数都可以选或不选，所以方案数为 $ 2^n $ 。</p>
+<h3 id="公式-5"><a href="#公式-5" class="headerlink" title="公式 5"></a>公式 5</h3><script type="math/tex; mode=display">\sum_{i=0}^n C_n^i = 2^n</script><p>组合意义： n 个元素选任意元素的方案数。<br>每个数都可以选或不选，所以方案数为 $ 2^n $ 。</p>
 <p>同样可以由二项式定理： $ (x + 1)^n = \sum_{i=0}^n C_n^i * x^i $ 得出。</p>
-<h3 id="公式-6"><a href="#公式-6" class="headerlink" title="公式 6"></a>公式 6</h3><p>$$ \sum_{i=0}^n (C_n^i)^2 = C_{2n}^n $$</p>
-<h3 id="公式-7"><a href="#公式-7" class="headerlink" title="公式 7"></a>公式 7</h3><p>$$ C_{n+m}^k = \sum_{i=0}^k C_n^i * C_m^{k-i} $$</p>
-<p>从组合数学上的定义出发，在 n + m 个元素中选 k 个，<br>相当于先在前 n 个元素中选 i 个再在后 m 个元素中选 k - i 个。<br>枚举这个 i 把方案数相加就能得到最终方案数。</p>
-<h3 id="Lucas-定理"><a href="#Lucas-定理" class="headerlink" title="Lucas 定理"></a>Lucas 定理</h3><p>$$ C_n^m % p = C_{n/p}^{m/p} * C_{n % p}^{m % p} % p $$</p>
-<p>常用于模数较小的组合数取模。</p>
+<h3 id="公式-6"><a href="#公式-6" class="headerlink" title="公式 6"></a>公式 6</h3><script type="math/tex; mode=display">\sum_{i=0}^n (C_n^i)^2 = C_{2n}^n</script><h3 id="公式-7"><a href="#公式-7" class="headerlink" title="公式 7"></a>公式 7</h3><script type="math/tex; mode=display">C_{n+m}^k = \sum_{i=0}^k C_n^i * C_m^{k-i}</script><p>从组合数学上的定义出发，在 n + m 个元素中选 k 个，<br>相当于先在前 n 个元素中选 i 个再在后 m 个元素中选 k - i 个。<br>枚举这个 i 把方案数相加就能得到最终方案数。</p>
+<h3 id="Lucas-定理"><a href="#Lucas-定理" class="headerlink" title="Lucas 定理"></a>Lucas 定理</h3><script type="math/tex; mode=display">C_n^m \% p = C_{n/p}^{m/p} * C_{n \% p}^{m \% p} \% p</script><p>常用于模数较小的组合数取模。</p>
 
     </div>
 
@@ -409,10 +454,10 @@
 
       <ul class="sidebar-nav motion-element">
         <li class="sidebar-nav-toc">
-          Table of Contents
+          文章目录
         </li>
         <li class="sidebar-nav-overview">
-          Overview
+          站点概览
         </li>
       </ul>
 
@@ -429,7 +474,7 @@
       src="/images/avatar.jpeg"
       alt="Kewth">
   <p class="site-author-name" itemprop="name">Kewth</p>
-  <div class="site-description" itemprop="description"></div>
+  <div class="site-description" itemprop="description">HNFMS 现役 OIer</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
@@ -438,7 +483,7 @@
           <a href="/archives/">
         
           <span class="site-state-item-count">35</span>
-          <span class="site-state-item-name">posts</span>
+          <span class="site-state-item-name">日志</span>
         </a>
       </div>
     
@@ -451,7 +496,7 @@
           
         
         <span class="site-state-item-count">2</span>
-        <span class="site-state-item-name">categories</span>
+        <span class="site-state-item-name">分类</span>
         </a>
       </div>
     
@@ -464,7 +509,7 @@
           
         
         <span class="site-state-item-count">26</span>
-        <span class="site-state-item-name">tags</span>
+        <span class="site-state-item-name">标签</span>
         </a>
       </div>
     
@@ -517,7 +562,7 @@
       
         
       
-        <a href="https://www.luogu.org/space/show?uid=52232" title="Luogu &rarr; https://www.luogu.org/space/show?uid=52232" rel="noopener" target="_blank"><i class="fa fa-fw fa-code"></i>Luogu</a>
+        <a href="https://www.luogu.org/space/show?uid=52232" title="Luogu &rarr; https://www.luogu.org/space/show?uid=52232" rel="noopener" target="_blank"><i class="fa fa-fw fa-code-fork"></i>Luogu</a>
       </span>
     
   </div>
@@ -562,16 +607,16 @@
   &copy; 
   <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
-    <i class="fa fa-user"></i>
+    <i class="fa fa-heartbeat"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Kewth</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0
   </div>
   <span class="post-meta-divider">|</span>
   <div class="theme-info">
       
-    Theme – <a href="https://muse.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.4.1
+    主题 – <a href="https://muse.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.4.1
   </div>
 
         
@@ -581,7 +626,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-user"></i>
       </span>
-      <span class="site-uv" title="Total Visitors">
+      <span class="site-uv" title="总访客量">
         <span id="busuanzi_value_site_uv"></span>
       </span>
     </span>
@@ -592,7 +637,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-eye"></i>
       </span>
-      <span class="site-pv" title="Total Views">
+      <span class="site-pv" title="总访问量">
         <span id="busuanzi_value_site_pv"></span>
       </span>
     </span>

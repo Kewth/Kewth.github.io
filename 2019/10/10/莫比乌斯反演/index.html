@@ -4,7 +4,7 @@
 
 
 
-<html lang="en">
+<html lang="zh-CN">
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -14,7 +14,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.1">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.1">
   <link rel="mask-icon" href="/images/logo.svg?v=7.4.1" color="#222">
-  <link rel="alternate" href="/atom.xml" title="Kewth's Blog" type="application/atom+xml">
+  <link rel="alternate" href="/atom.xml" title="KeBlog" type="application/atom+xml">
 
 <link rel="stylesheet" href="/css/main.css?v=7.4.1">
 
@@ -48,25 +48,25 @@
     path: 'search.xml',
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     translation: {
-      copy_button: 'Copy',
-      copy_success: 'Copied',
-      copy_failure: 'Copy failed'
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
     },
     sidebarPadding: 40
   };
 </script>
 
-  <meta name="description" content="（以下除号皆表示整除）对于一些式子复杂度大的数论题，或许用莫比乌斯反演可以高效解决问题。前置技能： 基本数论函数 狄利克雷卷积 莫比乌斯函数满足 $\mu * I = \epsilon $即 $ \sum_{d|n}\mu(d) = [n = 1] $表达式为：$$ n = 0 : \mu(n) = 1 $$$$ n = \prod_{p|n\&amp;amp;p\,is\,prime} p : \mu(">
+  <meta name="description" content="（以下除号皆表示整除）对于一些式子复杂度大的数论题，或许用莫比乌斯反演可以高效解决问题。前置技能： 基本数论函数 狄利克雷卷积 莫比乌斯函数满足 $\mu * I = \epsilon $即 $ \sum_{d|n}\mu(d) = [n = 1] $表达式为：n = 0 : \mu(n) = 1n = \prod_{p|n\\&amp;p\\,is\\,prime} p : \mu(n)=(-1)^k">
 <meta property="og:type" content="article">
 <meta property="og:title" content="莫比乌斯反演">
 <meta property="og:url" content="http://yoursite.com/2019/10/10/莫比乌斯反演/index.html">
-<meta property="og:site_name" content="Kewth&#39;s Blog">
-<meta property="og:description" content="（以下除号皆表示整除）对于一些式子复杂度大的数论题，或许用莫比乌斯反演可以高效解决问题。前置技能： 基本数论函数 狄利克雷卷积 莫比乌斯函数满足 $\mu * I = \epsilon $即 $ \sum_{d|n}\mu(d) = [n = 1] $表达式为：$$ n = 0 : \mu(n) = 1 $$$$ n = \prod_{p|n\&amp;amp;p\,is\,prime} p : \mu(">
-<meta property="og:locale" content="en">
+<meta property="og:site_name" content="KeBlog">
+<meta property="og:description" content="（以下除号皆表示整除）对于一些式子复杂度大的数论题，或许用莫比乌斯反演可以高效解决问题。前置技能： 基本数论函数 狄利克雷卷积 莫比乌斯函数满足 $\mu * I = \epsilon $即 $ \sum_{d|n}\mu(d) = [n = 1] $表达式为：n = 0 : \mu(n) = 1n = \prod_{p|n\\&amp;p\\,is\\,prime} p : \mu(n)=(-1)^k">
+<meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2019-10-13T12:24:11.455Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="莫比乌斯反演">
-<meta name="twitter:description" content="（以下除号皆表示整除）对于一些式子复杂度大的数论题，或许用莫比乌斯反演可以高效解决问题。前置技能： 基本数论函数 狄利克雷卷积 莫比乌斯函数满足 $\mu * I = \epsilon $即 $ \sum_{d|n}\mu(d) = [n = 1] $表达式为：$$ n = 0 : \mu(n) = 1 $$$$ n = \prod_{p|n\&amp;amp;p\,is\,prime} p : \mu(">
+<meta name="twitter:description" content="（以下除号皆表示整除）对于一些式子复杂度大的数论题，或许用莫比乌斯反演可以高效解决问题。前置技能： 基本数论函数 狄利克雷卷积 莫比乌斯函数满足 $\mu * I = \epsilon $即 $ \sum_{d|n}\mu(d) = [n = 1] $表达式为：n = 0 : \mu(n) = 1n = \prod_{p|n\\&amp;p\\,is\\,prime} p : \mu(n)=(-1)^k">
   <link rel="canonical" href="http://yoursite.com/2019/10/10/莫比乌斯反演/">
 
 
@@ -81,7 +81,7 @@
   };
 </script>
 
-  <title>莫比乌斯反演 | Kewth's Blog</title>
+  <title>莫比乌斯反演 | KeBlog</title>
   
 
 
@@ -127,14 +127,16 @@
     <div>
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Kewth's Blog</span>
+        <span class="site-title">KeBlog</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
+        <h1 class="site-subtitle" itemprop="description">The OI Blog of Kewth</h1>
+      
   </div>
 
   <div class="site-nav-toggle">
-    <div class="toggle" aria-label="Toggle navigation bar">
+    <div class="toggle" aria-label="切换导航栏">
       <span class="toggle-line toggle-line-first"></span>
       <span class="toggle-line toggle-line-middle"></span>
       <span class="toggle-line toggle-line-last"></span>
@@ -153,8 +155,17 @@
         <li class="menu-item menu-item-home">
       
     
+      
+      
+        
+      
+        
+      
+        
+      
+    
 
-    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
 
   </li>
       
@@ -166,8 +177,17 @@
         <li class="menu-item menu-item-about">
       
     
+      
+      
+        
+      
+        
+      
+        
+      
+    
 
-    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
 
   </li>
       
@@ -179,8 +199,19 @@
         <li class="menu-item menu-item-tags">
       
     
+      
+      
+        
+      
+        
+      
+        
+          
+        
+      
+    
 
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">26</span></a>
 
   </li>
       
@@ -192,8 +223,19 @@
         <li class="menu-item menu-item-categories">
       
     
+      
+      
+        
+      
+        
+          
+        
+      
+        
+      
+    
 
-    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">2</span></a>
 
   </li>
       
@@ -205,8 +247,19 @@
         <li class="menu-item menu-item-archives">
       
     
+      
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">35</span></a>
 
   </li>
       
@@ -237,17 +290,17 @@
       
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/10/莫比乌斯反演/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Kewth">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="HNFMS 现役 OIer">
       <meta itemprop="image" content="/images/avatar.jpeg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Kewth's Blog">
+      <meta itemprop="name" content="KeBlog">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
@@ -265,13 +318,13 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              <span class="post-meta-item-text">Posted on</span>
+              <span class="post-meta-item-text">发表于</span>
 
               
                 
               
 
-              <time title="Created: 2019-10-10 10:00:00" itemprop="dateCreated datePublished" datetime="2019-10-10T10:00:00+08:00">2019-10-10</time>
+              <time title="创建时间：2019-10-10 10:00:00" itemprop="dateCreated datePublished" datetime="2019-10-10T10:00:00+08:00">2019-10-10</time>
             </span>
           
             
@@ -281,8 +334,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-10-13 20:24:11" itemprop="dateModified" datetime="2019-10-13T20:24:11+08:00">2019-10-13</time>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-10-13 20:24:11" itemprop="dateModified" datetime="2019-10-13T20:24:11+08:00">2019-10-13</time>
               </span>
             
           
@@ -290,7 +343,7 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">In</span>
+              <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/算法/" itemprop="url" rel="index">
@@ -305,11 +358,11 @@
           
 
           
-            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
-              <span class="post-meta-item-text">Views: </span>
+              <span class="post-meta-item-text">阅读次数：</span>
               <span id="busuanzi_value_page_pv"></span>
             </span>
           
@@ -326,17 +379,15 @@
         <p>（以下除号皆表示整除）<br>对于一些式子复杂度大的数论题，或许用莫比乌斯反演可以高效解决问题。</p><p>前置技能：</p><ul>
 <li>基本数论函数</li>
 <li>狄利克雷卷积</li>
-</ul><p>莫比乌斯函数满足 $\mu * I = \epsilon $<br>即 $ \sum_{d|n}\mu(d) = [n = 1] $</p><p>表达式为：</p><p>$$ n = 0 : \mu(n) = 1 $$<br>$$ n = \prod_{p|n\&amp;p\,is\,prime} p : \mu(n)=(-1)^k $$<br>$$ otherwise : \mu(n)=0 $$</p><a id="more"></a>
+</ul><p>莫比乌斯函数满足 $\mu * I = \epsilon $<br>即 $ \sum_{d|n}\mu(d) = [n = 1] $</p><p>表达式为：</p><script type="math/tex; mode=display">n = 0 : \mu(n) = 1</script><script type="math/tex; mode=display">n = \prod_{p|n\\&p\\,is\\,prime} p : \mu(n)=(-1)^k</script><a id="more"></a>
 
 
 
 
-
-<p>证明：<br><del>暂时不会</del></p>
-<p>莫比乌斯反演：<br>对于数论函数 f(n)，设 $ F(n) = \sum_{d|n}f(d) $<br>即 $ F = f * I $<br>则有 $ f(n) = \sum_{d|n}F(d)*\mu(\frac{n}{d}) $<br>即 $ f = F * \mu $</p>
+<script type="math/tex; mode=display">otherwise : \mu(n)=0</script><p>证明：<br><del>暂时不会</del></p>
+<p>莫比乌斯反演：<br>对于数论函数 f(n)，设 $ F(n) = \sum_{d|n}f(d) $<br>即 $ F = f <em> I $<br>则有 $ f(n) = \sum_{d|n}F(d)</em>\mu(\frac{n}{d}) $<br>即 $ f = F * \mu $</p>
 <p>证明：</p>
-<p>$$ \because \; F = f*I $$<br>$$ \therefore \; F*\mu = f*I*\mu $$<br>$$ \because \; I*\mu = \epsilon $$<br>$$ \therefore \; F*\mu = f*\epsilon $$<br>$$ \therefore \; f = F*\mu $$</p>
-<p>莫比乌斯反演好像主要是用来推式子，F 比 f 好做的话，就可以试试莫比乌斯反演。</p>
+<script type="math/tex; mode=display">\because \\; F = f\*I</script><script type="math/tex; mode=display">\therefore \\; F\*\mu = f\*I\*\mu</script><script type="math/tex; mode=display">\because \\; I\*\mu = \epsilon</script><script type="math/tex; mode=display">\therefore \\; F\*\mu = f\*\epsilon</script><script type="math/tex; mode=display">\therefore \\; f = F\*\mu</script><p>莫比乌斯反演好像主要是用来推式子，F 比 f 好做的话，就可以试试莫比乌斯反演。</p>
 <p>另外事实上只需要熟知 $\mu$ 函数的性质，直接推式子就行了，<br>绝大多数情况下（至少是我遇到的所有情况下）并不需要莫比乌斯反演。</p>
 
     </div>
@@ -406,10 +457,10 @@
 
       <ul class="sidebar-nav motion-element">
         <li class="sidebar-nav-toc">
-          Table of Contents
+          文章目录
         </li>
         <li class="sidebar-nav-overview">
-          Overview
+          站点概览
         </li>
       </ul>
 
@@ -424,7 +475,7 @@
       src="/images/avatar.jpeg"
       alt="Kewth">
   <p class="site-author-name" itemprop="name">Kewth</p>
-  <div class="site-description" itemprop="description"></div>
+  <div class="site-description" itemprop="description">HNFMS 现役 OIer</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
@@ -433,7 +484,7 @@
           <a href="/archives/">
         
           <span class="site-state-item-count">35</span>
-          <span class="site-state-item-name">posts</span>
+          <span class="site-state-item-name">日志</span>
         </a>
       </div>
     
@@ -446,7 +497,7 @@
           
         
         <span class="site-state-item-count">2</span>
-        <span class="site-state-item-name">categories</span>
+        <span class="site-state-item-name">分类</span>
         </a>
       </div>
     
@@ -459,7 +510,7 @@
           
         
         <span class="site-state-item-count">26</span>
-        <span class="site-state-item-name">tags</span>
+        <span class="site-state-item-name">标签</span>
         </a>
       </div>
     
@@ -512,7 +563,7 @@
       
         
       
-        <a href="https://www.luogu.org/space/show?uid=52232" title="Luogu &rarr; https://www.luogu.org/space/show?uid=52232" rel="noopener" target="_blank"><i class="fa fa-fw fa-code"></i>Luogu</a>
+        <a href="https://www.luogu.org/space/show?uid=52232" title="Luogu &rarr; https://www.luogu.org/space/show?uid=52232" rel="noopener" target="_blank"><i class="fa fa-fw fa-code-fork"></i>Luogu</a>
       </span>
     
   </div>
@@ -557,16 +608,16 @@
   &copy; 
   <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
-    <i class="fa fa-user"></i>
+    <i class="fa fa-heartbeat"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Kewth</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0
   </div>
   <span class="post-meta-divider">|</span>
   <div class="theme-info">
       
-    Theme – <a href="https://muse.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.4.1
+    主题 – <a href="https://muse.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.4.1
   </div>
 
         
@@ -576,7 +627,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-user"></i>
       </span>
-      <span class="site-uv" title="Total Visitors">
+      <span class="site-uv" title="总访客量">
         <span id="busuanzi_value_site_uv"></span>
       </span>
     </span>
@@ -587,7 +638,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-eye"></i>
       </span>
-      <span class="site-pv" title="Total Views">
+      <span class="site-pv" title="总访问量">
         <span id="busuanzi_value_site_pv"></span>
       </span>
     </span>

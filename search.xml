@@ -89,12 +89,10 @@
 <h4 id="Part-1"><a href="#Part-1" class="headerlink" title="Part 1"></a>Part 1</h4><p>$[1, r]$ 与 $r + 1$ 产生的贡献只与 $r$ 有关，可以记为 $f_r$ 。<br>那么预处理 $f_r$ 只需从小到大一个个加点维护当前的 $[1, r]$ 并询问出 $f_r$ 。<br>这个过程需要 $O(n)$ 次修改和 $O(n)$ 次查询。</p>
 <p>参考实现：</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// a[i] 是第 i 个元素</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i ++) &#123;</span><br><span class="line">	f[i] = Query(a[i]);</span><br><span class="line">	Modify(a[i]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>另外如果需要卡常，可以将 $f$ 做一遍前缀和，这样后续查询 $[r_0, r_1]$ 总的贡献就可以 $O(1)$ 计算了（不影响复杂度）。</p>
 <h4 id="Part-2"><a href="#Part-2" class="headerlink" title="Part 2"></a>Part 2</h4><p>$[1, l)$ 与 $r + 1$ 产生的贡献可以二次离线，在 $l$ 处存下 $r + 1$ 之后再考虑计算。<br>这样做的空间复杂度是 $O(n\sqrt{n})$ 的，<br>但事实上每次只需把 $[r_0, r_1]$ 这个区间存进 $l$ 处而不是把每个数存进去就可以做到 $O(n)$ 的空间复杂度了，<br>这样询问的时候也只需求 $[r_0, r_1]$ 整体的贡献，常数上还能少一个 $O(n\sqrt{n})$ 的瓶颈。<br>离线处理上述的贡献，也和求 $f_r$ 的过程类似，每次从小到大一个个加点维护当前的 $[1, l)$ ，<br>并对于 $l$ 处存下的每一个数逐个询问 $[1, l)$ 与其产生的贡献即可。<br>这个过程需要 $O(n)$ 次修改和 $O(n\sqrt{n})$ 次查询。</p>
 <p>参考实现：</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> l = <span class="number">1</span>, r = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= q; i ++) &#123;</span><br><span class="line">	<span class="keyword">int</span> L = query[i].l, R = query[i].r; <span class="comment">// 排序后的询问</span></span><br><span class="line">	<span class="keyword">if</span>(r &lt; R) &#123;</span><br><span class="line">		<span class="built_in">vector</span>[l].push_back(<span class="built_in">std</span>::make_pair(r + <span class="number">1</span>, R));</span><br><span class="line">		r = R;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i ++) &#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">auto</span> par : <span class="built_in">vector</span>[i])</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> k = par.first; k &lt;= par.second; k ++)</span><br><span class="line">			Query(a[k]); <span class="comment">// 这里用什么东西存一下结果就好了</span></span><br><span class="line">	Modify(a[i]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 ]]></content>
       <categories>
         <category>算法</category>
@@ -114,23 +112,27 @@
 
 <p>这里的函数相乘指的是狄利克雷卷积。</p>
 <h4 id="理论"><a href="#理论" class="headerlink" title="理论"></a>理论</h4><p>则由 $h = f \cdot g$ 可得（以下除号表示整除）：</p>
-<p>$$<br>\begin{equation}<br>\begin{aligned}<br>\sum_{i=1}^n h(i) &amp;= \sum_{i=1}^n\sum_{d|i}f(\frac{i}{d})g(d) \\<br>&amp;= \sum_{d=1}^ng(d)\sum_{i=d}^nf(\frac{i}{d})[i|d] \\<br>&amp;= \sum_{d=1}^ng(d)\sum_{i=1}^{n/d}f(i) \\<br>&amp;= \sum_{d=1}^ng(d)S(\frac{n}{d}) \\<br>&amp;= g(1)S(n) + \sum_{d=2}^ng(d)S(\frac{n}{d}) \\<br>\end{aligned}<br>\end{equation}<br>$$</p>
-<p>所以 $S(n) = \sum_{i=1}^n h(i) - \sum_{d=2}^n g(d)S(\frac{n}{d})$ 。</p>
+<script type="math/tex; mode=display">
+\begin{equation}
+\begin{aligned}
+\sum_{i=1}^n h(i) &= \sum_{i=1}^n\sum_{d|i}f(\frac{i}{d})g(d) \\\\
+&= \sum_{d=1}^ng(d)\sum_{i=d}^nf(\frac{i}{d})[i|d] \\\\
+&= \sum_{d=1}^ng(d)\sum_{i=1}^{n/d}f(i) \\\\
+&= \sum_{d=1}^ng(d)S(\frac{n}{d}) \\\\
+&= g(1)S(n) + \sum_{d=2}^ng(d)S(\frac{n}{d}) \\\\
+\end{aligned}
+\end{equation}</script><p>所以 $S(n) = \sum_{i=1}^n h(i) - \sum_{d=2}^n g(d)S(\frac{n}{d})$ 。</p>
 <p>前提是每个 $\sum_{i=1}^n h(i)$ 很容易求，那么接下来不考虑 $h$ ，<br>对于后面的部分可以整除分块，还需要快速求出 $g$ 的一段区间和，<br>然后就可以递推，由于形如 $\lfloor\frac{n}{d}\rfloor$ 的数只有 $O(\sqrt{n})$ 个，<br>可以只递推这 $O(\sqrt{n})$ 个 $S$ ，不考虑 $g, h$ 的计算复杂度，复杂度为 $O(n^{\frac{2}{3}})$ 。</p>
 <p>关于如何存储 $S$ ，直接用数组存需要 $O(n)$ 的空间，开 map 每次取用带一个 log ，<br>普通的离散化也会带一个 log 。</p>
 <p>观察 $\frac{n}{d}$ 的分布，当 $d \leq \sqrt{n}$ 时， $\frac{n}{d}$ 的值两两不同。<br>而当 $d &gt; \sqrt{n}$ 时， $\frac{n}{d}$ 的值都不超过 $\sqrt{n}$ 。<br>设 $m$ 是 $\frac{n}{d}$ 的不同取值个数，那么可以用如下的函数对 $x = \frac{n}{d}$ 进行离散化：</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">id</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> x &lt;= sqrt_of_n ? x : m - (n / x) + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <h4 id="实践"><a href="#实践" class="headerlink" title="实践"></a>实践</h4><p>举个简单的栗子：求 $\mu$ 的前缀和。</p>
 <p>首先根据 $\mu$ 的性质不难想到 $\mu \cdot I = \epsilon$ 。</p>
 <p>那么就将 $f = \mu, g = I, h = \epsilon$ 代入上去，得到：</p>
-<p>$$S(n) = \sum_{i=1}^n \mu(i) = \sum_{i=1}^n \epsilon(i) - \sum_{d=2}^n I \cdot S(\frac{n}{d})$$</p>
-<p>即</p>
-<p>$$S(n) = 1 - \sum_{d=2}^n S(\frac{n}{d})$$</p>
-<h4 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h4><p>但有时候无法构造合适的 $h = f \cdot g$ 使得 $g, h$ 的前缀和可以 $O(1)$ 算出。<br>这时候杜教筛是否就毫无用武之地呢？不见得。</p>
+<script type="math/tex; mode=display">S(n) = \sum_{i=1}^n \mu(i) = \sum_{i=1}^n \epsilon(i) - \sum_{d=2}^n I \cdot S(\frac{n}{d})</script><p>即</p>
+<script type="math/tex; mode=display">S(n) = 1 - \sum_{d=2}^n S(\frac{n}{d})</script><h4 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h4><p>但有时候无法构造合适的 $h = f \cdot g$ 使得 $g, h$ 的前缀和可以 $O(1)$ 算出。<br>这时候杜教筛是否就毫无用武之地呢？不见得。</p>
 <p>观察递推式，利用整除分块，设 $S_f, S_g, S_h$ 分别表示 $f, g, h$ 的前缀和，那么：</p>
-<p>$$S_f(n) = S_h(n) - \sum_{i=2}^m (S_g(r_i) - S_g(r_{i-1})) S_f(\frac{n}{r_i})$$</p>
-<p>其中 $m$ 是 $\frac{n}{d}$ 的不同取值个数， $r_i$ 是整除分块后对应第 $i$ 块的右端点。</p>
+<script type="math/tex; mode=display">S_f(n) = S_h(n) - \sum_{i=2}^m (S_g(r_i) - S_g(r_{i-1})) S_f(\frac{n}{r_i})</script><p>其中 $m$ 是 $\frac{n}{d}$ 的不同取值个数， $r_i$ 是整除分块后对应第 $i$ 块的右端点。</p>
 <p>首先不难发现需要用到的 $S_h$ 也都是形如 $\frac{n}{d}$ 的数，<br>那么只需要如果 $S_h$ 能够杜教筛（或者其他筛）筛出来就行了。</p>
 <p>再考虑 $S_g$ 需要的取值，由整除分块中的 $r = n / (n / l)$ 可知，$r_i$ 的取值也都是形如 $\frac{n}{d}$ 的数，<br>同理只要能筛 $S_g$ 就行了，不一定要 $O(1)$ 算。</p>
 <h2 id="min25"><a href="#min25" class="headerlink" title="min25"></a>min25</h2><p>min25 筛是扩展埃氏筛，也可以筛一类（更复杂的）<strong>积性函数</strong>的前缀和，并且通常是同类亚线性筛中最快的一个。<br>而且灵活运用 min25 可以处理一些特殊的关于质因子的问题。</p>
@@ -140,25 +142,27 @@
 <p>首先需要将 $f(i)$ 拆成若干完全积性函数的和，<br>只需考虑 $F$ ，也就是 $f(p^k)$ 的取值。<br>如果是关于 $p$ 的多项式，每个单项式对应的就是一个完全积性函数。</p>
 <p>假设现在要筛一个完全积性函数 $h$ ，要能快速计算出 $S_h = \sum_{i=1}^n h(i)$ 。<br>这一步的主要思想是，一个一个枚举质数 $p$ ，筛掉最小值因子为 $p$ 的合数的取值。<br>而合数 $x$ 的最小质因子为 $p$ 的必要条件是 $p^2 \leq x$ ，即 $p \leq \sqrt{x}$ 。<br>那么只需要枚举 $\sqrt{n}$ 以内的质数去筛即可。</p>
 <p>假设现在筛掉了前 $i - 1$ 个质因子得到一个这个值：</p>
-<p>$$g(n, i - 1) = \sum_{x=1}^n [x \in Prime \; or \; minp(x) &gt; P_{i-1}] h(x)$$</p>
-<p>其中 $P_i$ 表示 $\sqrt{n}$ 以内第 $i$ 个质数。</p>
+<script type="math/tex; mode=display">g(n, i - 1) = \sum_{x=1}^n [x \in Prime \\; or \\; minp(x) > P_{i-1}] h(x)</script><p>其中 $P_i$ 表示 $\sqrt{n}$ 以内第 $i$ 个质数。</p>
 <p>那么接下来要筛最小值因子为 $P_i$ 的数：</p>
-<p>$$g(n, i) = g(n, i - 1) - \sum_{x=1}^n [minp(x) = P_i] h(x)$$</p>
-<p>由于 $h$ 是完全积性函数，$P_i$ 可以直接提出来，得到：</p>
-<p>$$<br>\begin{equation}<br>\begin{aligned}<br>g(n, i) &amp;= g(n, i - 1) - h(P_i) \sum_{x=1}^{n/P_i} [minp(x) \geq P_i] h(x) \\<br>&amp;= g(n, i - 1) - h(P_i) (g(\frac{n}{P_i}, i - 1) - \sum_{x=1}^{n/P_i} [x \in Prime \; and \; minp(x) &lt; P_i] h(x)) \\<br>&amp;= g(n, i - 1) - h(P_i) (g(\frac{n}{P_i}, i - 1) - \sum_{j=1}^{i-1} h(P_j)) \\<br>&amp;= g(n, i - 1) - h(P_i) (g(\frac{n}{P_i}, i - 1) - ph_{i - 1}) \\<br>\end{aligned}<br>\end{equation}<br>$$</p>
-<p>其中 $ph_i$ 就是 $h$ 在前 $i$ 个质数上的取值和，注意 $P_i \leq \sqrt{n}$ ，这是可以直接筛的。</p>
+<script type="math/tex; mode=display">g(n, i) = g(n, i - 1) - \sum_{x=1}^n [minp(x) = P_i] h(x)</script><p>由于 $h$ 是完全积性函数，$P_i$ 可以直接提出来，得到：</p>
+<script type="math/tex; mode=display">
+\begin{equation}
+\begin{aligned}
+g(n, i) &= g(n, i - 1) - h(P_i) \sum_{x=1}^{n/P_i} [minp(x) \geq P_i] h(x) \\\\
+&= g(n, i - 1) - h(P_i) (g(\frac{n}{P_i}, i - 1) - \sum_{x=1}^{n/P_i} [x \in Prime \\; and \\; minp(x) < P_i] h(x)) \\\\
+&= g(n, i - 1) - h(P_i) (g(\frac{n}{P_i}, i - 1) - \sum_{j=1}^{i-1} h(P_j)) \\\\
+&= g(n, i - 1) - h(P_i) (g(\frac{n}{P_i}, i - 1) - ph_{i - 1}) \\\\
+\end{aligned}
+\end{equation}</script><p>其中 $ph_i$ 就是 $h$ 在前 $i$ 个质数上的取值和，注意 $P_i \leq \sqrt{n}$ ，这是可以直接筛的。</p>
 <p>那么上面的式子就是 $g$ 的递推式，不难发现第一维的取值都是 $\frac{n}{d}$ 的形式，第二维可以滚动。<br>直接按照递推式算，就可以在 $O(\sqrt{n} |P|)$ 的时间筛出需要的东西，也就是 $g(n, |P|)$ 。<br>这还是不够的，需要优化，由于最小质因子的取值在根号以内，所以递推时只需考虑满足 $n \geq P_i^2$ 的 $g(n, i)$ 。<br>当 $n &lt; P_i^2$ 时，随着 $i$ 的增大 $g(n, i)$ 的值不会改变，由于是滚动数组，直接 skip 掉就好了。</p>
 <h5 id="Step-2"><a href="#Step-2" class="headerlink" title="Step 2"></a>Step 2</h5><p>上面将每个完全积性函数的 $g(n, |P|)$ 加起来，得到 $S_F(n)$ ，表示 $f$ 在质数上的取值 $F$ 的前缀和。</p>
 <p>仍然利用最小质因子，不同的是，上一步从所有的取值开始从小到大把对应的最小质因子的合数的贡献给删掉的到质数的取值。<br>那这一步能不能反过来，从质数的取值开始，从大到小把对应的最小质因子的合数的贡献给加上最后得到所有数的取值？</p>
 <p>并不能，事实上是从空值开始，从大到小把对应的最小质因子的数的贡献加上最后得到所有数的取值，<br>合数可以递推并类似地利用积性函数的性质提出一个因子，质数则直接用上一步预处理的来算。</p>
 <p>那么假设现在以及算上了比第 $i$ 个更大的质数为最小质因子的数的值得到了这个：</p>
-<p>$$S(n, i) = \sum_{x=1}^n [minp(x) &gt; P_i] f(x)$$</p>
-<p>不难推导出：</p>
-<p>$$S(n, i)=S_F(n) - pf_i + \sum_{P_j &lt; P_k \leq \sqrt{n}} \sum_{e&gt;0,P_k^e \leq n}f(P_k^e)(S(\frac{n}{P_k^e}, k) + [e&gt;1])$$</p>
-<p>其中 $pf_i$ 就是 $f$ 在前 $i$ 个质数上的取值和，注意 $P_i \leq \sqrt{n}$ ，这是可以直接筛的。</p>
+<script type="math/tex; mode=display">S(n, i) = \sum_{x=1}^n [minp(x) > P_i] f(x)</script><p>不难推导出：</p>
+<script type="math/tex; mode=display">S(n, i)=S_F(n) - pf_i + \sum_{P_j < P_k \leq \sqrt{n}} \sum_{e>0,P_k^e \leq n}f(P_k^e)(S(\frac{n}{P_k^e}, k) + [e>1])</script><p>其中 $pf_i$ 就是 $f$ 在前 $i$ 个质数上的取值和，注意 $P_i \leq \sqrt{n}$ ，这是可以直接筛的。</p>
 <p>同样地第一维的取值都是 $\frac{n}{d}$ 的形式，但是第二维无法滚动，<br>但事实上后面的部分直接递归计算即可，以下是参考实现：</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> lolong;</span><br><span class="line"><span class="function">lolong <span class="title">S</span><span class="params">(lolong i, <span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(prime[j] &gt; i) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	lolong res = S_F[id(i)] - pf[j];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> k = j + <span class="number">1</span>; k &lt;= p <span class="keyword">and</span> <span class="number">1l</span>l * prime[k] * prime[k] &lt;= i; k ++) &#123;</span><br><span class="line">		<span class="keyword">int</span> e = <span class="number">1</span>;</span><br><span class="line">		lolong pr = prime[k];</span><br><span class="line">		<span class="keyword">while</span>(pr &lt;= i) &#123;</span><br><span class="line">			res += (prime[k] ^ e) * (S(i / pr, k) + (e &gt; <span class="number">1</span>));</span><br><span class="line">			pr *= prime[k];</span><br><span class="line">			e ++;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>复杂度似乎是 $O(\frac{n^{\frac{3}{4}}}{logn})$ 。</p>
 <h2 id="Powerful-number"><a href="#Powerful-number" class="headerlink" title="Powerful number"></a>Powerful number</h2><p>这个在 OI 中用得少，我也只是做过一道题，大概提一下。</p>
 <p>称 1 和每个质因子次数大于 1 的合数为 Powerful number 。<br>首先有个性质就是 $n$ 以内的 Powerful number 数量是 $O(\sqrt{n})$ 的。</p>
@@ -187,7 +191,6 @@
 <p>skip 掉，直接开 E ，发现了个单调性，没想太多，直接码上去。<br>还是很轻松过了样例啊，交 WA 了。<br>静态查错无果，遂回去调 C 。</p>
 <p>冷静分析一波后发现 C 题神 tm 会爆 long long 。<br>这简单，改 int128 ，结果交 CE 了。<br>然后就到网上蒯 c++ 大整数模板，贴下来后，<br>样例都过不去了我天，然后我就去调那个模板，也是醉了。</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">Big n = <span class="number">10</span>, x = <span class="number">5</span>;</span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">clog</span> &lt;&lt; n &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">clog</span> &lt;&lt; n - x + x &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
-
 <p>上面代码第一行输出 10 ，第二行输出 20 。</p>
 <p>当时我心态就炸了，简直想去问候那个把模板贴他博客上的祖宗十八代。<br>写的这玩意连加减法都算不对心里没点 B 数吗也敢往网上放。</p>
 <p>服了，还是乖乖想不爆 long long 的解法吧。</p>
@@ -307,19 +310,17 @@
 <p>n 个点无法求出 f 这个函数，<br>但可以求出一个 n - 1 次多项式，<br>可以认为这个多项式近似于 f 。</p>
 <p>而由 L 的定义可知，<br>这个多项式 g 满足 $ g(x) = \sum_{i=1}^n L_i(x) $ 。<br>那么 f(k) 就可以近似地认为是 g(k) ，<br>代入上式即可 $ O(n^2) $ 求解。</p>
 <p>现在问题在于求 L 。<br>下面的 L 可以满足定义：</p>
-<p>$$ L_i(x) = y_i \cdot \prod\limits_{j≠i}\frac{x_j-x}{x_j-x_i} $$</p>
-<p>代入可得这对于任意 $ x_i $<br>可以使得 $ L_i(x_i)=y_i,L_i(x_j) = 0 $</p>
+<script type="math/tex; mode=display">L_i(x) = y_i \cdot \prod\limits_{j≠i}\frac{x_j-x}{x_j-x_i}</script><p>代入可得这对于任意 $ x_i $<br>可以使得 $ L_i(x_i)=y_i,L_i(x_j) = 0 $</p>
 <h2 id="插系数"><a href="#插系数" class="headerlink" title="插系数"></a>插系数</h2><p>已知多项式 f(x) 的 n 个点值，求 f(x) 。</p>
 <p>点值比较特殊的情况下可以使用 FFT 或者 NTT ，但有失一般性。</p>
 <p>先考虑插出一项 $x^k$ 的系数。</p>
 <p>首先依次考虑每个 $L_i(x)$ 的 $x^k$ 系数，最后累加即可。</p>
 <p>注意到分母和 $y_i$ 是常数可以直接算，考虑提出来，</p>
-<p>$$ L_i(x) = (y_i \cdot \prod\limits_{j≠i}\frac{1}{x_j-x_i})<br>    (\prod\limits_{j≠i} (x_j - x)) $$</p>
-<p>那么只需要算分子部分，即上式右边的 $\prod$ 的 $x^k$ 系数即可。</p>
+<script type="math/tex; mode=display">L_i(x) = (y_i \cdot \prod\limits_{j≠i}\frac{1}{x_j-x_i})
+    (\prod\limits_{j≠i} (x_j - x))</script><p>那么只需要算分子部分，即上式右边的 $\prod$ 的 $x^k$ 系数即可。</p>
 <p>假设把这个连乘暴力拆开，其实 $x^k$ 的系数就是在之中选 $n - k - 1$ 个常数。<br>DP 预处理 $pre(i, j)$ 表示在 $\prod\limits_{j \leq i} (x - x_j)$ 中选 k 个常数的系数和，<br>同理 $suf(i, j)$ 表示在 $\prod\limits_{j \geq i} (x - x_j)$ 中选 k 个常数的系数和。<br>那么把 $pre(i - 1, k)$ 和 $suf(i + 1, k)$ 相乘就是上式的 $x^k$ 系数了。</p>
 <p>参考实现（未经过测试）：</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* 插出 L_i(x) 的 x^k 系数 */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">la</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> A = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n; j ++)</span><br><span class="line">		<span class="keyword">if</span>(i != j)</span><br><span class="line">			A *= X[i] - X[j];</span><br><span class="line">	<span class="keyword">int</span> B = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> l = <span class="number">0</span>; l &lt;= n - k - <span class="number">1</span>; l ++)</span><br><span class="line">		B += pre[i - <span class="number">1</span>][l] * suf[i + <span class="number">1</span>][n - k - <span class="number">1</span> - l];</span><br><span class="line">	<span class="keyword">return</span> B / A * X[i];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 初始化 suf 和 pre */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= n; i ++) &#123;</span><br><span class="line">		pre[i][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= i; j ++)</span><br><span class="line">			pre[i][j] = pre[i - <span class="number">1</span>][j] - pre[i - <span class="number">1</span>][j - <span class="number">1</span>] * X[i];</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = n + <span class="number">1</span>; i; i --) &#123;</span><br><span class="line">		suf[i][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n - i + <span class="number">1</span>; j ++)</span><br><span class="line">			suf[i][j] = suf[i + <span class="number">1</span>][j] - suf[i + <span class="number">1</span>][j - <span class="number">1</span>] * X[i];</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 ]]></content>
       <categories>
         <category>算法</category>
@@ -342,12 +343,10 @@
 <p>zzq 把满足这个性质的分解称为“迷之分解”，那我也这么叫吧。</p>
 <p>考虑证明一下，顺便构造一个“迷之分解”。</p>
 <p>找到 x 的最小质因子 p ，然后假设已知 x / p 的“迷之分解” A, B, C (A &lt;= B &lt;= C) 。<br>那么把 p 乘到 A 上就可以得到 x 的“迷之分解” A * p, B, C 。<br>分类讨论，如果 p 不超过 $\sqrt[4]{x}$ ，由于 A 是 A, B, C 三者中最小的，<br>一定满足 A 不超过 $\sqrt[3]{x/p}$ ，那么可得：</p>
-<p>$$A \cdot p \leq \sqrt[3]{x/p} \cdot p = \sqrt[3]{xp^2} \leq \sqrt{x}$$</p>
-<p>而如果 p 超过 $\sqrt[4]{x}$ ，由于 p 是最小质因子，<br>那么如果 x 的“迷之分解”有合数 C ， C 至少是 $p^2$ ，超过 $\sqrt{x}$ ，<br>那么 B 的大小就会比 p 小，与 p 是最小质因子矛盾，<br>因而此时 x 的“迷之分解”全是质数。</p>
+<script type="math/tex; mode=display">A \cdot p \leq \sqrt[3]{x/p} \cdot p = \sqrt[3]{xp^2} \leq \sqrt{x}</script><p>而如果 p 超过 $\sqrt[4]{x}$ ，由于 p 是最小质因子，<br>那么如果 x 的“迷之分解”有合数 C ， C 至少是 $p^2$ ，超过 $\sqrt{x}$ ，<br>那么 B 的大小就会比 p 小，与 p 是最小质因子矛盾，<br>因而此时 x 的“迷之分解”全是质数。</p>
 <p>“迷之分解”的分析就是这样，通过线性筛可以很好预处理出 O(V) 内的所有数的“迷之分解”。<br>只需筛出每个数的最小质因子即可按上述方法递推出“迷之分解”。<br>然后只需预处理出 $O(\sqrt{V})$ 内两两的 gcd ，为了不带 log ，需要递推预处理。<br>此时求 gcd(x, y) 只需对于 x 的“迷之分解” A, B, C 依次对 y 求 gcd （每次求 gcd 后把 y 除以该 gcd ），<br>以 A 为例，如果 A 不超过 $\sqrt{x}$ ，直接查表可以得到 gcd(A, y) （查的是 gcd(A mod y, A) ），<br>否则 A 为质数，简单讨论一下就可以得到 gcd(A, y) 了。</p>
 <p>关键部分参考实现：</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> magic[maxv][<span class="number">3</span>]; <span class="comment">// 每个数的“迷之分解”</span></span><br><span class="line"><span class="keyword">int</span> gcd[maxb][maxb]; <span class="comment">// 预处理的 gcd</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">GCD</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> res = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i ++) &#123;</span><br><span class="line">		<span class="keyword">int</span> X = magic[x][i];</span><br><span class="line">		<span class="keyword">int</span> d;</span><br><span class="line">		<span class="keyword">if</span>(X &lt; maxb)</span><br><span class="line">			d = gcd[X][y % X];</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(y % X)</span><br><span class="line">			d = <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			d = X;</span><br><span class="line">		res *= d;</span><br><span class="line">		y /= d;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <h2 id="O-1-快速幂"><a href="#O-1-快速幂" class="headerlink" title="O(1) 快速幂"></a>O(1) 快速幂</h2><p>在 $O(\sqrt{p})$ 的预处理后可以做到对于一个固定的底数 O(1) 查询快速幂，<br>其中 p 是模数（或者上式是 $\sqrt{\phi(p)}$ ），或者是指数的范围。</p>
 <p>这个就简单得多，对于每个 $a^k$ 的指数 k 都可以表示为 $a \sqrt{p} + b$ 的形式，<br>满足 $a, b &lt; \sqrt{p}$ ，分别预处理即可，<br>即预处理 $a^0, a^1, a^2 … a^{\sqrt{p}}, a^{2\sqrt{p}}, a^{3\sqrt{p}} … a^p$ 。</p>
 ]]></content>
@@ -415,19 +414,19 @@
 <p>证明：</p>
 <ul>
 <li>对于 l 设 $ n / l = x $</li>
-<li>那么由 $ n \; mod \; l = n - n / l  \cdot  l = n - l  \cdot  x $ 可知 $ n - l  \cdot  x \geq 0 $</li>
+<li>那么由 $ n \\; mod \\; l = n - n / l  \cdot  l = n - l  \cdot  x $ 可知 $ n - l  \cdot  x \geq 0 $</li>
 <li>那么若 l + 1 满足 $ n / (l + 1) = n / l $ ，可知也有 $ n - (l + 1)  \cdot  x \geq 0 $</li>
 <li>即 $ n - l  \cdot  x \geq x $</li>
 <li>对于 k 若 $ n / k = n / l $ 而 $ n / (k + 1) != n / l $</li>
 <li>那么根据上式可得 k 满足 $ 0 \leq n - k  \cdot  x &lt; x $</li>
-<li>所以 $ n - k  \cdot  x = n \; mod \; x = n - n / x  \cdot  x $</li>
+<li>所以 $ n - k  \cdot  x = n \\; mod \\; x = n - n / x  \cdot  x $</li>
 <li>所以 $ k = n / x = n / (n / l) $</li>
-<li>由 k 的定义 $ n / k = n / l \; and \; n / (k + 1) != n / l $ 可知 k+1 即是要求的 r</li>
+<li>由 k 的定义 $ n / k = n / l \\; and \\; n / (k + 1) != n / l $ 可知 k+1 即是要求的 r</li>
 </ul>
 <p>那么可以枚举块，当前 l,r 可以求得，下一个块的 l 显然是当前 r。</p>
 <p>有时候会有点变化：</p>
 <p>要求 $ \sum_{i=1}^{min(n, m)} f(\frac{n}{i})  \cdot  f(\frac{m}{i}) $ 。</p>
-<p>还是会存在 $ \forall l&lt;=i&lt;r, \frac{n}{i} = \frac{n}{l} \&amp; \frac{m}{i} = \frac{m}{l} $ 。</p>
+<p>还是会存在 $ \forall l&lt;=i&lt;r, \frac{n}{i} = \frac{n}{l} \\&amp; \frac{m}{i} = \frac{m}{l} $ 。</p>
 <p>所以这样的区间的右端点为：$ r = min(n / (n / l), m / (m / l)) + 1 $ 。</p>
 <p>所以还是可以一块一块的枚举求和。</p>
 ]]></content>
@@ -438,17 +437,48 @@
   <entry>
     <title>类欧几里得</title>
     <url>/2019/10/10/%E7%B1%BB%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97/</url>
-    <content><![CDATA[<p>这里只是类欧几里得的一种：<br>快速求下式：<br>$$f(a, b, c, n) = \sum_{i=0}^n \lfloor \frac{ai+b}{c} \rfloor$$</p><p>其中 a, b, c, n 都是正整数。</p><h2 id="缩小-a-b-规模"><a href="#缩小-a-b-规模" class="headerlink" title="缩小 a, b 规模"></a>缩小 a, b 规模</h2><p>首先的目标是让 a, b 小于 c 。</p><p>结论 1 ：<br>$$\lfloor \frac{Ax+B}{y} \rfloor =<br>\lfloor \frac{A(x\%y)+B}{y} \rfloor + A\lfloor \frac{x}{y} \rfloor$$</p><a id="more"></a>
+    <content><![CDATA[<p>这里只是类欧几里得的一种：<br>快速求下式：</p><script type="math/tex; mode=display">f(a, b, c, n) = \sum_{i=0}^n \lfloor \frac{ai+b}{c} \rfloor</script><p>其中 a, b, c, n 都是正整数。</p><h2 id="缩小-a-b-规模"><a href="#缩小-a-b-规模" class="headerlink" title="缩小 a, b 规模"></a>缩小 a, b 规模</h2><p>首先的目标是让 a, b 小于 c 。</p><p>结论 1 ：  </p><script type="math/tex; mode=display">\lfloor \frac{Ax+B}{y} \rfloor =
+\lfloor \frac{A(x\\%y)+B}{y} \rfloor + A\lfloor \frac{x}{y} \rfloor</script><a id="more"></a>
 
 
 
-<p>证明：<br>首先用到整除与取模的转换：<br>$\lfloor \frac{x}{y} \rfloor = \frac{x-x\%y}{y}$ 。<br>得到原命题等价于：<br>$$\frac{Ax+B-(Ax+B)\%y}{y} =<br>\frac{A(x\%y)+B-(Ax+B)\%y}{y} + A\frac{x-x\%y}{y}$$<br>$$Ax + B - (Ax+B)\%y = A(x\%y) + B - (Ax+B)\%y + A(x-x\%y)$$<br>$$Ax - (Ax+B)\%y = A(x\%y) - (Ax+B)\%y + A(x-x\%y)$$<br>$$Ax = A(x\%y) + A(x-x\%y)$$<br>$$Ax = A(x\%y) + Ax - A(x\%y)$$<br>得证。</p>
-<p>那么通过这个结论可以得知：<br>$$<br>\begin{equation}<br>\begin{aligned}<br>f(a, b, c, n) &amp;= \sum_{i=0}^n \lfloor \frac{ai+b}{c} \rfloor \\<br>&amp;= \sum_{i=0}^n (\lfloor \frac{(a\%c)i+b\%c}{c} \rfloor +<br>i\lfloor \frac{a}{c} \rfloor + \lfloor \frac{b}{c} \rfloor) \\<br>&amp;= f(a\%c, b\%c, c, n) + \sum_{i=0}^n (<br>i\lfloor \frac{a}{c} \rfloor + \lfloor \frac{b}{c} \rfloor) \\<br>\end{aligned}<br>\end{equation}<br>$$</p>
-<p>后面那一段就是一个等差数列求和，于是 a, b 被转换为小于 c 。</p>
+<p>证明：<br>首先用到整除与取模的转换：<br>$\lfloor \frac{x}{y} \rfloor = \frac{x-x\\%y}{y}$ 。<br>得到原命题等价于：  </p>
+<script type="math/tex; mode=display">\frac{Ax+B-(Ax+B)\\%y}{y} =
+\frac{A(x\\%y)+B-(Ax+B)\\%y}{y} + A\frac{x-x\\%y}{y}</script><script type="math/tex; mode=display">Ax + B - (Ax+B)\\%y = A(x\\%y) + B - (Ax+B)\\%y + A(x-x\\%y)</script><script type="math/tex; mode=display">Ax - (Ax+B)\\%y = A(x\\%y) - (Ax+B)\\%y + A(x-x\\%y)</script><script type="math/tex; mode=display">Ax = A(x\\%y) + A(x-x\\%y)</script><script type="math/tex; mode=display">Ax = A(x\\%y) + Ax - A(x\\%y)</script><p>得证。</p>
+<p>那么通过这个结论可以得知：  </p>
+<script type="math/tex; mode=display">
+\begin{equation}
+\begin{aligned}
+f(a, b, c, n) &= \sum_{i=0}^n \lfloor \frac{ai+b}{c} \rfloor \\\\
+&= \sum_{i=0}^n (\lfloor \frac{(a\\%c)i+b\\%c}{c} \rfloor +
+i\lfloor \frac{a}{c} \rfloor + \lfloor \frac{b}{c} \rfloor) \\\\
+&= f(a\\%c, b\\%c, c, n) + \sum_{i=0}^n (
+i\lfloor \frac{a}{c} \rfloor + \lfloor \frac{b}{c} \rfloor) \\\\
+\end{aligned}
+\end{equation}</script><p>后面那一段就是一个等差数列求和，于是 a, b 被转换为小于 c 。</p>
 <h2 id="转换成子问题减小规模"><a href="#转换成子问题减小规模" class="headerlink" title="转换成子问题减小规模"></a>转换成子问题减小规模</h2><p>整除除了用取模代替外，还有一种方法。</p>
-<p>结论 2 ：<br>$$\lfloor \frac{x}{y} \rfloor = \sum_{i=1}^{MAX} [i \leq \frac{x}{y}]$$<br>其中 MAX 是任意一个足够大的值。<br>证明？相当于从 1 开始数，感性理解即可。</p>
-<p>那么通过这个结论可以得知：<br>$$<br>\begin{equation}<br>\begin{aligned}<br>f(a, b, c, n) &amp;= \sum_{i=0}^n \lfloor \frac{ai+b}{c} \rfloor \\<br>&amp;= \sum_{i=0}^n \sum_{j=1}^{(an+b)/c} [j \leq \frac{ai+b}{c}] \\<br>&amp;= \sum_{i=0}^n \sum_{j=0}^{(an+b)/c-1} [j + 1 \leq \frac{ai+b}{c}] \\<br>&amp;= \sum_{i=0}^n \sum_{j=0}^{(an+b)/c-1} [cj + c \leq ai+b] \\<br>&amp;= \sum_{i=0}^n \sum_{j=0}^{(an+b)/c-1} [cj + c - 1 &lt; ai+b] \\<br>&amp;= \sum_{i=0}^n \sum_{j=0}^{(an+b)/c-1} [\frac{cj+c-b-1}{a} &lt; i] \\<br>&amp;= \sum_{j=0}^{(an+b)/c-1} \sum_{i=0}^n [\frac{cj+c-b-1}{a} &lt; i] \\<br>&amp;= \sum_{j=0}^{(an+b)/c-1}<br>(n + 1 - \sum_{i=0}^n [i \leq \frac{cj+c-b-1}{a}]) \\<br>&amp;= \sum_{j=0}^{(an+b)/c-1}<br>(n - \lfloor \frac{cj+c-b-1}{a} \rfloor) \\<br>&amp;= n \lfloor \frac{an+b}{c} \rfloor -<br>\sum_{j=0}^{(an+b)/c-1} (\lfloor \frac{cj+c-b-1}{a} \rfloor) \\<br>&amp;= n \lfloor \frac{an+b}{c} \rfloor - f(c, c-b-1, a, (an+b)/c-1)<br>\end{aligned}<br>\end{equation}<br>$$</p>
-<p>那么就得到了一个递归计算 f(a, b, c, n) 的算法，<br>a = 0 时上式不成立，因为上面的推导有除以 a 的步骤。<br>因此将 a = 0 作为终止状态，此时 f 的计算是常数数列求和。<br>复杂度是对数复杂度 log(a)，因为上面的过程规模的减小速度相当于 gcd 。</p>
+<p>结论 2 ：  </p>
+<script type="math/tex; mode=display">\lfloor \frac{x}{y} \rfloor = \sum_{i=1}^{MAX} [i \leq \frac{x}{y}]</script><p>其中 MAX 是任意一个足够大的值。<br>证明？相当于从 1 开始数，感性理解即可。</p>
+<p>那么通过这个结论可以得知：  </p>
+<script type="math/tex; mode=display">
+\begin{equation}
+\begin{aligned}
+f(a, b, c, n) &= \sum_{i=0}^n \lfloor \frac{ai+b}{c} \rfloor \\\\
+&= \sum_{i=0}^n \sum_{j=1}^{(an+b)/c} [j \leq \frac{ai+b}{c}] \\\\
+&= \sum_{i=0}^n \sum_{j=0}^{(an+b)/c-1} [j + 1 \leq \frac{ai+b}{c}] \\\\
+&= \sum_{i=0}^n \sum_{j=0}^{(an+b)/c-1} [cj + c \leq ai+b] \\\\
+&= \sum_{i=0}^n \sum_{j=0}^{(an+b)/c-1} [cj + c - 1 < ai+b] \\\\
+&= \sum_{i=0}^n \sum_{j=0}^{(an+b)/c-1} [\frac{cj+c-b-1}{a} < i] \\\\
+&= \sum_{j=0}^{(an+b)/c-1} \sum_{i=0}^n [\frac{cj+c-b-1}{a} < i] \\\\
+&= \sum_{j=0}^{(an+b)/c-1}
+(n + 1 - \sum_{i=0}^n [i \leq \frac{cj+c-b-1}{a}]) \\\\
+&= \sum_{j=0}^{(an+b)/c-1}
+(n - \lfloor \frac{cj+c-b-1}{a} \rfloor) \\\\
+&= n \lfloor \frac{an+b}{c} \rfloor -
+\sum_{j=0}^{(an+b)/c-1} (\lfloor \frac{cj+c-b-1}{a} \rfloor) \\\\
+&= n \lfloor \frac{an+b}{c} \rfloor - f(c, c-b-1, a, (an+b)/c-1)
+\end{aligned}
+\end{equation}</script><p>那么就得到了一个递归计算 f(a, b, c, n) 的算法，<br>a = 0 时上式不成立，因为上面的推导有除以 a 的步骤。<br>因此将 a = 0 作为终止状态，此时 f 的计算是常数数列求和。<br>复杂度是对数复杂度 log(a)，因为上面的过程规模的减小速度相当于 gcd 。</p>
 ]]></content>
       <categories>
         <category>算法</category>
@@ -492,24 +522,16 @@
   <entry>
     <title>组合数公式</title>
     <url>/2019/10/10/%E7%BB%84%E5%90%88%E6%95%B0%E5%85%AC%E5%BC%8F/</url>
-    <content><![CDATA[<p>$ C_n^m $ 在组合数学中的意义：在 n 个元素选 m 个元素的方案数。</p><h2 id="公式"><a href="#公式" class="headerlink" title="公式"></a>公式</h2><h3 id="公式-1"><a href="#公式-1" class="headerlink" title="公式 1"></a>公式 1</h3><p>$$ C_n^m = \frac{n!}{m! * (n-m)!} $$</p><p>组合数的通项公式。</p><p><strong>当要求组合数模一般模数时</strong> ，通项公式的分母可能没有逆元导致不可行。</p><h3 id="公式-2"><a href="#公式-2" class="headerlink" title="公式 2"></a>公式 2</h3><p>$$ C_n^m = C_n^{n-m} $$</p><p>基本性质，可以由通项公式得出。</p><a id="more"></a>
+    <content><![CDATA[<p>$ C_n^m $ 在组合数学中的意义：在 n 个元素选 m 个元素的方案数。</p><h2 id="公式"><a href="#公式" class="headerlink" title="公式"></a>公式</h2><h3 id="公式-1"><a href="#公式-1" class="headerlink" title="公式 1"></a>公式 1</h3><script type="math/tex; mode=display">C_n^m = \frac{n!}{m! * (n-m)!}</script><p>组合数的通项公式。</p><p><strong>当要求组合数模一般模数时</strong> ，通项公式的分母可能没有逆元导致不可行。</p><h3 id="公式-2"><a href="#公式-2" class="headerlink" title="公式 2"></a>公式 2</h3><script type="math/tex; mode=display">C_n^m = C_n^{n-m}</script><p>基本性质，可以由通项公式得出。</p><a id="more"></a>
 
 
 
-
-
-<h3 id="公式-3"><a href="#公式-3" class="headerlink" title="公式 3"></a>公式 3</h3><p>$$ C_n^m * C_m^k = C_n^k * C_{n-k}^{m-k} $$</p>
-<h3 id="公式-4"><a href="#公式-4" class="headerlink" title="公式 4"></a>公式 4</h3><p>$$ C_n^m = C_{n-1}^{m-1} + C_{n-1}^m $$</p>
-<p>组合数的基本递推式。</p>
+<h3 id="公式-3"><a href="#公式-3" class="headerlink" title="公式 3"></a>公式 3</h3><script type="math/tex; mode=display">C_n^m * C_m^k = C_n^k * C_{n-k}^{m-k}</script><h3 id="公式-4"><a href="#公式-4" class="headerlink" title="公式 4"></a>公式 4</h3><script type="math/tex; mode=display">C_n^m = C_{n-1}^{m-1} + C_{n-1}^m</script><p>组合数的基本递推式。</p>
 <p><strong>当要求组合数模一般模数时</strong> ，常用这种方法预处理组合数。</p>
-<h3 id="公式-5"><a href="#公式-5" class="headerlink" title="公式 5"></a>公式 5</h3><p>$$ \sum_{i=0}^n C_n^i = 2^n $$</p>
-<p>组合意义： n 个元素选任意元素的方案数。<br>每个数都可以选或不选，所以方案数为 $ 2^n $ 。</p>
+<h3 id="公式-5"><a href="#公式-5" class="headerlink" title="公式 5"></a>公式 5</h3><script type="math/tex; mode=display">\sum_{i=0}^n C_n^i = 2^n</script><p>组合意义： n 个元素选任意元素的方案数。<br>每个数都可以选或不选，所以方案数为 $ 2^n $ 。</p>
 <p>同样可以由二项式定理： $ (x + 1)^n = \sum_{i=0}^n C_n^i * x^i $ 得出。</p>
-<h3 id="公式-6"><a href="#公式-6" class="headerlink" title="公式 6"></a>公式 6</h3><p>$$ \sum_{i=0}^n (C_n^i)^2 = C_{2n}^n $$</p>
-<h3 id="公式-7"><a href="#公式-7" class="headerlink" title="公式 7"></a>公式 7</h3><p>$$ C_{n+m}^k = \sum_{i=0}^k C_n^i * C_m^{k-i} $$</p>
-<p>从组合数学上的定义出发，在 n + m 个元素中选 k 个，<br>相当于先在前 n 个元素中选 i 个再在后 m 个元素中选 k - i 个。<br>枚举这个 i 把方案数相加就能得到最终方案数。</p>
-<h3 id="Lucas-定理"><a href="#Lucas-定理" class="headerlink" title="Lucas 定理"></a>Lucas 定理</h3><p>$$ C_n^m % p = C_{n/p}^{m/p} * C_{n % p}^{m % p} % p $$</p>
-<p>常用于模数较小的组合数取模。</p>
+<h3 id="公式-6"><a href="#公式-6" class="headerlink" title="公式 6"></a>公式 6</h3><script type="math/tex; mode=display">\sum_{i=0}^n (C_n^i)^2 = C_{2n}^n</script><h3 id="公式-7"><a href="#公式-7" class="headerlink" title="公式 7"></a>公式 7</h3><script type="math/tex; mode=display">C_{n+m}^k = \sum_{i=0}^k C_n^i * C_m^{k-i}</script><p>从组合数学上的定义出发，在 n + m 个元素中选 k 个，<br>相当于先在前 n 个元素中选 i 个再在后 m 个元素中选 k - i 个。<br>枚举这个 i 把方案数相加就能得到最终方案数。</p>
+<h3 id="Lucas-定理"><a href="#Lucas-定理" class="headerlink" title="Lucas 定理"></a>Lucas 定理</h3><script type="math/tex; mode=display">C_n^m \% p = C_{n/p}^{m/p} * C_{n \% p}^{m \% p} \% p</script><p>常用于模数较小的组合数取模。</p>
 ]]></content>
       <categories>
         <category>算法</category>
@@ -521,17 +543,15 @@
     <content><![CDATA[<p>（以下除号皆表示整除）<br>对于一些式子复杂度大的数论题，或许用莫比乌斯反演可以高效解决问题。</p><p>前置技能：</p><ul>
 <li>基本数论函数</li>
 <li>狄利克雷卷积</li>
-</ul><p>莫比乌斯函数满足 $\mu * I = \epsilon $<br>即 $ \sum_{d|n}\mu(d) = [n = 1] $</p><p>表达式为：</p><p>$$ n = 0 : \mu(n) = 1 $$<br>$$ n = \prod_{p|n\&amp;p\,is\,prime} p : \mu(n)=(-1)^k $$<br>$$ otherwise : \mu(n)=0 $$</p><a id="more"></a>
+</ul><p>莫比乌斯函数满足 $\mu * I = \epsilon $<br>即 $ \sum_{d|n}\mu(d) = [n = 1] $</p><p>表达式为：</p><script type="math/tex; mode=display">n = 0 : \mu(n) = 1</script><script type="math/tex; mode=display">n = \prod_{p|n\\&p\\,is\\,prime} p : \mu(n)=(-1)^k</script><a id="more"></a>
 
 
 
 
-
-<p>证明：<br><del>暂时不会</del></p>
-<p>莫比乌斯反演：<br>对于数论函数 f(n)，设 $ F(n) = \sum_{d|n}f(d) $<br>即 $ F = f * I $<br>则有 $ f(n) = \sum_{d|n}F(d)*\mu(\frac{n}{d}) $<br>即 $ f = F * \mu $</p>
+<script type="math/tex; mode=display">otherwise : \mu(n)=0</script><p>证明：<br><del>暂时不会</del></p>
+<p>莫比乌斯反演：<br>对于数论函数 f(n)，设 $ F(n) = \sum_{d|n}f(d) $<br>即 $ F = f <em> I $<br>则有 $ f(n) = \sum_{d|n}F(d)</em>\mu(\frac{n}{d}) $<br>即 $ f = F * \mu $</p>
 <p>证明：</p>
-<p>$$ \because \; F = f*I $$<br>$$ \therefore \; F*\mu = f*I*\mu $$<br>$$ \because \; I*\mu = \epsilon $$<br>$$ \therefore \; F*\mu = f*\epsilon $$<br>$$ \therefore \; f = F*\mu $$</p>
-<p>莫比乌斯反演好像主要是用来推式子，F 比 f 好做的话，就可以试试莫比乌斯反演。</p>
+<script type="math/tex; mode=display">\because \\; F = f\*I</script><script type="math/tex; mode=display">\therefore \\; F\*\mu = f\*I\*\mu</script><script type="math/tex; mode=display">\because \\; I\*\mu = \epsilon</script><script type="math/tex; mode=display">\therefore \\; F\*\mu = f\*\epsilon</script><script type="math/tex; mode=display">\therefore \\; f = F\*\mu</script><p>莫比乌斯反演好像主要是用来推式子，F 比 f 好做的话，就可以试试莫比乌斯反演。</p>
 <p>另外事实上只需要熟知 $\mu$ 函数的性质，直接推式子就行了，<br>绝大多数情况下（至少是我遇到的所有情况下）并不需要莫比乌斯反演。</p>
 ]]></content>
       <categories>
@@ -547,30 +567,23 @@
 
 <p>点值表示法有什么优点呢？</p>
 <p>考虑用点值表示法的 n 次多项式 a, b 相乘的积 c ，满足：</p>
-<p>$$ \forall k \in [0, n), cy_k = c(cx_k) = a(ax_k) * b(bx_k) = ay_k * by_k $$</p>
-<p>发现这样按定义计算 c 的复杂度为 O(n) 。</p>
+<script type="math/tex; mode=display">\forall k \in [0, n), cy_k = c(cx_k) = a(ax_k) * b(bx_k) = ay_k * by_k</script><p>发现这样按定义计算 c 的复杂度为 O(n) 。</p>
 <p>于是 FFT 的基本思路诞生了：<br>把系数表示法的多项式 a, b 转换成点值表示法，<br>在点值表示法的定义下求出 a, b 的积 c ，<br>最后将 c 转换为系数表示法。</p>
 <h2 id="DFT"><a href="#DFT" class="headerlink" title="DFT"></a>DFT</h2><p>将系数表示法转换成点值表示法的方法就是 DFT 。</p>
 <p>设要转换的是 $ n = 2^m $ 次多项式 A （次数不足用 0 补）。<br>利用到单位根的性质，<br>目标是求出  n 个形如 $ (w_n^k, A(w_n^k)) $ 的点值<br>（ $ w_n $ 表示 n 次单位根）。</p>
 <p>$ w_n^k $ 的性质：<br>在复平面里对应的向量的倾斜角 x 为 $ 2 \pi \frac{k}{n} $ ，<br>根据欧拉公式，其值为</p>
-<p>$$ w_n^k = e^{x i} = cos(x) + i * sin(x) ;, ; x = 2 \pi \frac{k}{n} $$</p>
-<p>考虑按次数的奇偶将 A 分成两个多项式 A1, A2 。</p>
-<p>$$ A1(x) = \sum_{k=0}^{n/2} a_{2k+1} x^{2k+1} = x \sum_{k=0}^{n/2} a_{2k+1} x^k = x S1(x^2) $$</p>
-<p>$$ A2(x) = \sum_{k=0}^{n/2} a_{2k} x^{2k} = \sum_{k=0}^{n/2} a_{2k} x^k = S2(x^2) $$</p>
-<p>那么有 $ A(x) = A1(x) + A2(x) = x S1(x^2) + S2(x^2) $ 。</p>
+<script type="math/tex; mode=display">w_n^k = e^{x i} = cos(x) + i * sin(x) \;, \; x = 2 \pi \frac{k}{n}</script><p>考虑按次数的奇偶将 A 分成两个多项式 A1, A2 。</p>
+<script type="math/tex; mode=display">A1(x) = \sum_{k=0}^{n/2} a_{2k+1} x^{2k+1} = x \sum_{k=0}^{n/2} a_{2k+1} x^k = x S1(x^2)</script><script type="math/tex; mode=display">A2(x) = \sum_{k=0}^{n/2} a_{2k} x^{2k} = \sum_{k=0}^{n/2} a_{2k} x^k = S2(x^2)</script><p>那么有 $ A(x) = A1(x) + A2(x) = x S1(x^2) + S2(x^2) $ 。</p>
 <p>考虑分治处理，假设已经分治求出 S1, S2 在 $ w_{n/2}, w_{n/2}^2, w_{n/2}^3, …, w_{n/2}^{n/2}$<br>的点值。那么根据 A 与 S1, S2 的关系可以求出 A 在<br>$ w_{n/2}^{1/2}, w_{n/2}^{2/2}, w_{n/2}^{3/2}, …, w_{n/2}^{n/4} $ 的点值。</p>
 <p>根据单位根的性质有 $ w_{n/2}^k = w_n^{2k} $ ，<br>那么相当于直接求出了 A 在<br>$ w_n, w_n^2, w_n^3, …, w_n^{n/2} $ 的点值：</p>
-<p>$$ A(w_n^k) = w_n^k S1(w_{n/2}^k) + S2(w_{n/2}^k) $$</p>
-<p>这只解决了一半，也就是 k 在 1 到 n / 2 的点值，<br>考虑 <del>用奇技淫巧</del> 求出 k 在 n / 2 + 1 到 n 的点值。<br>单位根的性质可以给出一个奇技淫巧：<br> $ w_n^{n/2+k} = -w_n^k $ ，那么就有：</p>
-<p>$$ A(w_n^{n/2+k}) = w_n^{n/2+k} S1(w_{n/2}^{n/2+k}) + S2(w_{n/2}^{n/2+k}) = - w_n^k S1(w_{n/2}^k) + S2(w_{n/2}^k) $$</p>
-<p>Ojbk, 分治过程完成。</p>
+<script type="math/tex; mode=display">A(w_n^k) = w_n^k S1(w_{n/2}^k) + S2(w_{n/2}^k)</script><p>这只解决了一半，也就是 k 在 1 到 n / 2 的点值，<br>考虑 <del>用奇技淫巧</del> 求出 k 在 n / 2 + 1 到 n 的点值。<br>单位根的性质可以给出一个奇技淫巧：<br> $ w_n^{n/2+k} = -w_n^k $ ，那么就有：</p>
+<script type="math/tex; mode=display">A(w_n^{n/2+k}) = w_n^{n/2+k} S1(w_{n/2}^{n/2+k}) + S2(w_{n/2}^{n/2+k}) = - w_n^k S1(w_{n/2}^k) + S2(w_{n/2}^k)</script><p>Ojbk, 分治过程完成。</p>
 <h2 id="IDFT"><a href="#IDFT" class="headerlink" title="IDFT"></a>IDFT</h2><p>将点值表示法转换成系数表示法的方法就是 IDFT 。</p>
 <p>贴个结论：<br>IDFT 的过程相当于 DFT 的过程中把所有单位根沿 x 轴对称得出的结果在最后除以 n 。</p>
 <p><del>原因不详</del> ，<br>可以去膜拜一下 <a href="http://blog.miskcoo.com/2015/04/polynomial-multiplication-and-fast-fourier-transform" target="_blank" rel="noopener">Miskcoo</a> 。</p>
 <h2 id="迭代实现"><a href="#迭代实现" class="headerlink" title="迭代实现"></a>迭代实现</h2><p>上述过程用递归实现常数较大，因而有一个迭代实现 FFT 的快速版本。</p>
 <h3 id="蝴蝶操作"><a href="#蝴蝶操作" class="headerlink" title="蝴蝶操作"></a>蝴蝶操作</h3><p>FFT 的每个值都是由子问题的两个值转化而来，且这两个值可以转换成两个需要的值（ FFT 复杂度的保证）。<br>若用一个数组 a 表示多项式。<br>那么蝴蝶操作形如：</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">complex</span> Wn; <span class="comment">// 单位根的幂</span></span><br><span class="line"><span class="keyword">complex</span> a0 = a[x], a1 = a[y];</span><br><span class="line">a[x] = a0 + a1 * Wn;</span><br><span class="line">a[y] = a1 + a0 * Wn;</span><br></pre></td></tr></table></figure>
-
 <p>这样取出了数组中两个值后再修改相应位置的两个值，就是蝴蝶操作。</p>
 <h3 id="Rader-排序"><a href="#Rader-排序" class="headerlink" title="Rader 排序"></a>Rader 排序</h3><p>Rader 排序的目的是让表示多项式的数组可以进行蝴蝶操作。</p>
 <p>盗图一张： <img src="https://cdn.luogu.org/upload/pic/23926.png" alt="luogu"></p>
@@ -580,7 +593,8 @@
 来观察一下最后序列的编号的二进制表示000, 100, 010, 110, 001, 101, 011, 111，
 是不是与原来 000, 001, 010, 011, 100, 101, 110, 111 相比，
 每个位置上的二进制位都反过来了？
-这样的变化叫做 Rader 排序。</code></pre>]]></content>
+这样的变化叫做 Rader 排序。
+</code></pre>]]></content>
       <categories>
         <category>算法</category>
       </categories>
@@ -594,7 +608,7 @@
 <p>这应该是最主流的求逆序对的方法了。</p>
 <p>要求一个区间内的逆序对数，假设已经递归求出两个子区间的逆序对数，<br>接下来要做的就是求一个在左区间，一个在右区间的逆序对数。</p>
 <p>考虑归并排序的过程，在两个指针比较大小时进行统计。</p>
-<p>设左右区间的当前比较指针（下标）为 p1, p2,<br>当找到第一个 p2 使 $a_{p1}&lt; a_{p2}$ 时，可知 $\forall i\in [p1max+1, p2),;a_{p1}&gt; a_{p2}$ 。<br>那么横跨两个子区间的以 p1 为左端点的逆序对就有 p2-p1max-1 个。<br>对所有 p1 统计和即可。</p>
+<p>设左右区间的当前比较指针（下标）为 p1, p2,<br>当找到第一个 p2 使 $a_{p1}&lt; a_{p2}$ 时，可知 $\forall i\in [p1max+1, p2),\;a_{p1}&gt; a_{p2}$ 。<br>那么横跨两个子区间的以 p1 为左端点的逆序对就有 p2-p1max-1 个。<br>对所有 p1 统计和即可。</p>
 <p>值得注意的是，p2&gt;r（区间右端点）退出时，<br>此时左区间未处理的数对答案都有 r-p1max 的贡献因为此时左区间剩下的数都比右区间所有数大。</p>
 <p>复杂度 $O(n \cdot log_2n)$ 。</p>
 <h2 id="线段树-树状数组："><a href="#线段树-树状数组：" class="headerlink" title="线段树/树状数组："></a>线段树/树状数组：</h2><p>前置技能：线段树（或树状数组）。</p>
@@ -641,7 +655,8 @@
 1 3 // 1 连向 3
 2 3 // 2 连向 3
 3 4 // 3 连向 4
-3 5 // 3 连向 5</code></pre><p>这里不相交的最小链覆盖是 3 ，而实际的最小链覆盖是 2 。</p>
+3 5 // 3 连向 5
+</code></pre><p>这里不相交的最小链覆盖是 3 ，而实际的最小链覆盖是 2 。</p>
 <p>观察不相交的最小链覆盖 {1-3-5, 2, 4} 与最小链覆盖 {1-3-5, 2-3-4} 。</p>
 <p>发现由于不能相交， 1-3-5 这条链把 2-3-4 这条链切断了，<br>分成 2 和 4 两条链，因此比最小链覆盖多了一条链。</p>
 <p>如果可以让 2 跨过 1-3-5 与 4 相连呢？</p>
@@ -653,63 +668,37 @@
   <entry>
     <title>数论函数玄学操作</title>
     <url>/2019/10/09/%E6%95%B0%E8%AE%BA%E5%87%BD%E6%95%B0%E7%8E%84%E5%AD%A6%E6%93%8D%E4%BD%9C/</url>
-    <content><![CDATA[<p>数论函数推式子是真的玄学，<br>乱七八糟的一脸懵逼，<br>好不容易看懂了转身又 <del>tm</del> 忘了，<br>这里列出一些我见过的。</p><h2 id="莫比乌斯函数与恒等函数卷积"><a href="#莫比乌斯函数与恒等函数卷积" class="headerlink" title="莫比乌斯函数与恒等函数卷积"></a>莫比乌斯函数与恒等函数卷积</h2><p>$$ \mu * I = \epsilon $$</p><h3 id="证明"><a href="#证明" class="headerlink" title="证明"></a>证明</h3><p>莫比乌斯函数的构造意义。</p><h2 id="欧拉函数与恒等函数卷积"><a href="#欧拉函数与恒等函数卷积" class="headerlink" title="欧拉函数与恒等函数卷积"></a>欧拉函数与恒等函数卷积</h2><p>$$ \phi * I = id $$</p><h2 id="单位函数与恒等函数卷积"><a href="#单位函数与恒等函数卷积" class="headerlink" title="单位函数与恒等函数卷积"></a>单位函数与恒等函数卷积</h2><p>$$ id * I = \sigma $$</p><a id="more"></a>
+    <content><![CDATA[<p>数论函数推式子是真的玄学，<br>乱七八糟的一脸懵逼，<br>好不容易看懂了转身又 <del>tm</del> 忘了，<br>这里列出一些我见过的。</p><h2 id="莫比乌斯函数与恒等函数卷积"><a href="#莫比乌斯函数与恒等函数卷积" class="headerlink" title="莫比乌斯函数与恒等函数卷积"></a>莫比乌斯函数与恒等函数卷积</h2><script type="math/tex; mode=display">\mu * I = \epsilon</script><h3 id="证明"><a href="#证明" class="headerlink" title="证明"></a>证明</h3><p>莫比乌斯函数的构造意义。</p><h2 id="欧拉函数与恒等函数卷积"><a href="#欧拉函数与恒等函数卷积" class="headerlink" title="欧拉函数与恒等函数卷积"></a>欧拉函数与恒等函数卷积</h2><script type="math/tex; mode=display">\phi * I = id</script><h2 id="单位函数与恒等函数卷积"><a href="#单位函数与恒等函数卷积" class="headerlink" title="单位函数与恒等函数卷积"></a>单位函数与恒等函数卷积</h2><script type="math/tex; mode=display">id * I = \sigma</script><h2 id="互质条件转换为莫比乌斯函数求和"><a href="#互质条件转换为莫比乌斯函数求和" class="headerlink" title="互质条件转换为莫比乌斯函数求和"></a>互质条件转换为莫比乌斯函数求和</h2><a id="more"></a>
 
-
-
-
-<h2 id="互质条件转换为莫比乌斯函数求和"><a href="#互质条件转换为莫比乌斯函数求和" class="headerlink" title="互质条件转换为莫比乌斯函数求和"></a>互质条件转换为莫比乌斯函数求和</h2><p>$$ [gcd(i, j) == 1] = \sum_{d|i,d|j} \mu(d) $$</p>
-<p>$$ \sum_{i=1}^n \sum_{j=1}^m f(i, j) [gcd(i, j) == 1]<br> = \sum_{d=1}^{min(n, m)} \mu(d) \sum_{i=1}^{n/d} \sum_{j=1}^{m/d} f(id, jd) $$</p>
-<h3 id="证明-1"><a href="#证明-1" class="headerlink" title="证明 1"></a>证明 1</h3><p>$$ \because [gcd(i, j) == 1] = \epsilon(gcd(i, j)) $$<br>$$ \because \epsilon = \mu * I $$<br>$$ \therefore [gcd(i, j) == 1] = \sum_{d|gcd(i, j)} \mu(d) $$<br>$$ \therefore [gcd(i, j) == 1] = \sum_{d|i,d|j} \mu(d) $$</p>
-<h3 id="证明-2"><a href="#证明-2" class="headerlink" title="证明 2"></a>证明 2</h3><p>通过容斥原理和莫比乌斯函数的定义可以得出。</p>
-<h2 id="约数个数函数转换为互质数对求和"><a href="#约数个数函数转换为互质数对求和" class="headerlink" title="约数个数函数转换为互质数对求和"></a>约数个数函数转换为互质数对求和</h2><p>$$ d(i * j) = \sum_{x|i} \sum_{y|j} [gcd(x, y) == 1] $$</p>
-<h2 id="约数个数函数求和"><a href="#约数个数函数求和" class="headerlink" title="约数个数函数求和"></a>约数个数函数求和</h2><p>$$ \sum_{i=1}^n d(i) = \sum_{i=1}^n \frac{n}{i} $$</p>
-]]></content>
+<script type="math/tex; mode=display">[gcd(i, j) == 1] = \sum_{d|i,d|j} \mu(d)</script><script type="math/tex; mode=display">\sum_{i=1}^n \sum_{j=1}^m f(i, j) [gcd(i, j) == 1]
+ = \sum_{d=1}^{min(n, m)} \mu(d) \sum_{i=1}^{n/d} \sum_{j=1}^{m/d} f(id, jd)</script><h3 id="证明-1"><a href="#证明-1" class="headerlink" title="证明 1"></a>证明 1</h3><script type="math/tex; mode=display">\because [gcd(i, j) == 1] = \epsilon(gcd(i, j))</script><script type="math/tex; mode=display">\because \epsilon = \mu * I</script><script type="math/tex; mode=display">\therefore [gcd(i, j) == 1] = \sum_{d|gcd(i, j)} \mu(d)</script><script type="math/tex; mode=display">\therefore [gcd(i, j) == 1] = \sum_{d|i,d|j} \mu(d)</script><h3 id="证明-2"><a href="#证明-2" class="headerlink" title="证明 2"></a>证明 2</h3><p>通过容斥原理和莫比乌斯函数的定义可以得出。</p>
+<h2 id="约数个数函数转换为互质数对求和"><a href="#约数个数函数转换为互质数对求和" class="headerlink" title="约数个数函数转换为互质数对求和"></a>约数个数函数转换为互质数对求和</h2><script type="math/tex; mode=display">d(i * j) = \sum_{x|i} \sum_{y|j} [gcd(x, y) == 1]</script><h2 id="约数个数函数求和"><a href="#约数个数函数求和" class="headerlink" title="约数个数函数求和"></a>约数个数函数求和</h2><script type="math/tex; mode=display">\sum_{i=1}^n d(i) = \sum_{i=1}^n \frac{n}{i}</script>]]></content>
   </entry>
   <entry>
     <title>快速沃尔什变换</title>
     <url>/2019/10/09/%E5%BF%AB%E9%80%9F%E6%B2%83%E5%B0%94%E4%BB%80%E5%8F%98%E6%8D%A2/</url>
-    <content><![CDATA[<p>快速沃尔什变换，简称 FWT ，目前在 OI 中十分冷门。</p><h2 id="用处"><a href="#用处" class="headerlink" title="用处"></a>用处</h2><p>多项式卷积一般是这样的：</p><p>$$ C_i = \sum_{j + k = i} A_j \cdot B_k $$</p><p>这个可以用 FFT 快速求解。</p><p>然而还有一个诡异的卷积：</p><p>$$ C_i = \sum_{j \oplus k = i} A_j \cdot B_k $$</p><a id="more"></a>
+    <content><![CDATA[<p>快速沃尔什变换，简称 FWT ，目前在 OI 中十分冷门。</p><h2 id="用处"><a href="#用处" class="headerlink" title="用处"></a>用处</h2><p>多项式卷积一般是这样的：</p><script type="math/tex; mode=display">C_i = \sum_{j + k = i} A_j \cdot B_k</script><p>这个可以用 FFT 快速求解。</p><p>然而还有一个诡异的卷积：</p><script type="math/tex; mode=display">C_i = \sum_{j \oplus k = i} A_j \cdot B_k</script><p>其中 $ \oplus $ 是任意一种位运算。</p><a id="more"></a>
 
 
 
 
-
-<p>其中 $ \oplus $ 是任意一种位运算。</p>
 <p>FWT 便是求这类卷积的快速算法。</p>
 <h2 id="构造"><a href="#构造" class="headerlink" title="构造"></a>构造</h2><p>FFT 的思想是把多项式转换成可以线性相乘的点值表示法 (DFT) ，<br>再把相乘的结果转换回系数表示法 (IDFT) 。</p>
 <p>同样的道理可以用在 FWT 上，用 DWT 将多项式转换成可以线性相乘的形式，即：</p>
-<p>$$ DWT(C)_i = DWT(A)_i \cdot DWT(B)_i $$</p>
-<p>再用 IDWT 将相乘的结果转换回来。</p>
+<script type="math/tex; mode=display">DWT(C)_i = DWT(A)_i \cdot DWT(B)_i</script><p>再用 IDWT 将相乘的结果转换回来。</p>
 <h2 id="DWT"><a href="#DWT" class="headerlink" title="DWT"></a>DWT</h2><p>目标是构造一个转移系数函数 f(i, j) ，满足：</p>
-<p>$$ DWT(A)_i = \sum_j A_j \cdot f(i, j) $$</p>
-<p>考虑 f(i, j) 应满足什么样的性质。</p>
+<script type="math/tex; mode=display">DWT(A)_i = \sum_j A_j \cdot f(i, j)</script><p>考虑 f(i, j) 应满足什么样的性质。</p>
 <p>首先根据 DWT 的性质：</p>
-<p>$$ DWT(C)_i = DWT(A)_i \cdot DWT(B)_i $$</p>
-<p>$$ \sum_t C_t f(i, t) = \sum_j A_j f(i, j) \sum_k B_k f(i, k) $$</p>
-<p>$$ \sum_t \sum_{j \oplus k = t} A_j B_k f(i, t) = \sum_j \sum_k A_j f(i, j) B_k f(i, k) $$</p>
-<p>$$ \sum_t \sum_{j \oplus k = t} A_j B_k f(i, t) = \sum_t \sum_{j \oplus k = t} A_j f(i, j) B_k f(i, k) $$</p>
-<p>由上式可得出：</p>
-<p>$$ \forall i, j, k: f(i, j) f(i, k) = f(i, j \oplus k) $$</p>
-<p>这样还不够，为了让 DWT 快速进行，f(i, j) 还应满足以下性质：</p>
-<p>$$ f(i, j) = \prod_k f(i_k, j_k) $$</p>
-<p>其中 $ i_k $ 表示 i 二进制下的第 k 位（ 0 或 1 ）。</p>
+<script type="math/tex; mode=display">DWT(C)_i = DWT(A)_i \cdot DWT(B)_i</script><script type="math/tex; mode=display">\sum_t C_t f(i, t) = \sum_j A_j f(i, j) \sum_k B_k f(i, k)</script><script type="math/tex; mode=display">\sum_t \sum_{j \oplus k = t} A_j B_k f(i, t) = \sum_j \sum_k A_j f(i, j) B_k f(i, k)</script><script type="math/tex; mode=display">\sum_t \sum_{j \oplus k = t} A_j B_k f(i, t) = \sum_t \sum_{j \oplus k = t} A_j f(i, j) B_k f(i, k)</script><p>由上式可得出：</p>
+<script type="math/tex; mode=display">\forall i, j, k: f(i, j) f(i, k) = f(i, j \oplus k)</script><p>这样还不够，为了让 DWT 快速进行，f(i, j) 还应满足以下性质：</p>
+<script type="math/tex; mode=display">f(i, j) = \prod_k f(i_k, j_k)</script><p>其中 $ i_k $ 表示 i 二进制下的第 k 位（ 0 或 1 ）。</p>
 <p>有了这个性质，就可已通过 f(0, 0), f(0, 1), f(1, 0), f(1, 1) 的值相乘得出所有 f 。<br>有了这个性质，就可以考虑分治求 DWT ：</p>
-<p>$$ DWT(A)<em>i = \sum</em>{j=0}^{n-1} A_j f(i, j) $$</p>
-<p>$$ = \sum_{j=0}^{n/2-1} A_j f(i, j) + \sum_{j=n/2}^{n-1} A_j f(i, j) $$</p>
-<p>$$ = \sum_{j=0}^{n/2-1} A_j \prod_k f(i_k, j_k) + \sum_{j=n/2}^{n-1} A_j \prod_k f(i_k, j_k) $$</p>
-<p>$$ = \sum_{j=0}^{n/2-1} f(i_0, j_0) A_j \prod_{k \geq 1} f(i_k, j_k) + \sum_{j=n/2}^{n-1} A_j f(i_0, j_0) \prod_{k \geq 1} f(i_k, j_k)$$</p>
-<p>$$ = f(i_0, 0) \sum_{j=0}^{n/2-1} A_j \prod_k f(i_k, j_k) + f(i_0, 1) \sum_{j=n/2}^{n-1} A_j \prod_k f(i_k, j_k) $$</p>
-<p>规模减小了一半，递归或迭代地分治下去。<br>每次将 A 分成左右两半 A0, A1 ：</p>
-<p>$$ DWT(A)_i = f(0, 0) DWT(A0)_i + f(0, 1) DWT(A1)_i , i &lt; n / 2 $$</p>
-<p>$$ DWT(A)_i = f(1, 0) DWT(A0)_i + f(1, 1) DWT(A1)_i , i \geq n / 2 $$</p>
-<p>想到 FFT 的蝴蝶变换没有？ <del>答：没有</del><br>迭代的 DWT 这里也有类似的蝴蝶变换：</p>
+<script type="math/tex; mode=display">DWT(A)_i = \sum_{j=0}^{n-1} A_j f(i, j)</script><script type="math/tex; mode=display">= \sum_{j=0}^{n/2-1} A_j f(i, j) + \sum_{j=n/2}^{n-1} A_j f(i, j)</script><script type="math/tex; mode=display">= \sum_{j=0}^{n/2-1} A_j \prod_k f(i_k, j_k) + \sum_{j=n/2}^{n-1} A_j \prod_k f(i_k, j_k)</script><script type="math/tex; mode=display">= \sum_{j=0}^{n/2-1} f(i_0, j_0) A_j \prod_{k \geq 1} f(i_k, j_k) + \sum_{j=n/2}^{n-1} A_j f(i_0, j_0) \prod_{k \geq 1} f(i_k, j_k)</script><script type="math/tex; mode=display">= f(i_0, 0) \sum_{j=0}^{n/2-1} A_j \prod_k f(i_k, j_k) + f(i_0, 1) \sum_{j=n/2}^{n-1} A_j \prod_k f(i_k, j_k)</script><p>规模减小了一半，递归或迭代地分治下去。<br>每次将 A 分成左右两半 A0, A1 ：</p>
+<script type="math/tex; mode=display">DWT(A)_i = f(0, 0) DWT(A0)_i + f(0, 1) DWT(A1)_i , i < n / 2</script><script type="math/tex; mode=display">DWT(A)_i = f(1, 0) DWT(A0)_i + f(1, 1) DWT(A1)_i , i \geq n / 2</script><p>想到 FFT 的蝴蝶变换没有？ <del>答：没有</del><br>迭代的 DWT 这里也有类似的蝴蝶变换：</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> x = A[i], y = A[i + k];</span><br><span class="line">A[i] = f00 * x + f01 * y;</span><br><span class="line">A[i + k] = f10 * x + f11 * y;</span><br></pre></td></tr></table></figure>
-
 <p>DWT 的过程就是这样了，甚至不需要构造整个 f ，<br>只需要 f(0, 0), f(0, 1), f(1, 0), f(1, 1) 即可，<br>需要满足的就是 $ \forall i, j, k: f(i, j) f(i, k) = f(i, j \oplus k) $ 。</p>
 <h2 id="IDWT"><a href="#IDWT" class="headerlink" title="IDWT"></a>IDWT</h2><p>怎么将 DWT 的结果转换回来？<br>观察 DWT 的蝴蝶变换：</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">a = f00 * x + f01 * y;</span><br><span class="line">b = f10 * x + f11 * y;</span><br></pre></td></tr></table></figure>
-
 <p>DWT 通过 x, y 求出 a, b,<br>IDWT 就是通过 a, b 求 x, y 。</p>
 <p>解二元一次方程就好了：<br>x = (f11 * a - f01 * b) / (f00 * f11 - f01 * f10)<br>y = (f10 * a - f00 * b) / (f01 * f10 - f00 * f11)  </p>
 <p>就是这么简单…</p>
@@ -729,20 +718,19 @@
 <p>可以自行验证，这些 f 满足上述性质。</p>
 <h2 id="实际意义"><a href="#实际意义" class="headerlink" title="实际意义"></a>实际意义</h2><p>一个多项式 A FFT 后的 A2(x) 实际意义就是 A 在 $ W_n^x $ 上的值（点值表示）。</p>
 <p>那么 A FWT 后的结果的现实意义呢？<br>这得分类来说。</p>
-<h3 id="按位或"><a href="#按位或" class="headerlink" title="按位或"></a>按位或</h3><p>A 在做按位或的 FWT 之后得到的 A2 满足：<br>$$ A2(x) = \sum_{i|x=x} A(i) $$</p>
-<p>也就是说 A2(x) 表示 x 的每个子集 i 的 A(i) 的和。<br>不难得到，A2(x) * B2(x) 的结果 C2(x) 就是 A, B 卷积后的 C 的变换：<br>$$ A2(x) * B2(x) = \sum_{i|x=x} A(i) \sum_{j|x=x} B(j) $$<br>$$ A2(x) * B2(x) = \sum_{i|x=x} \sum_{j|x=x} A(i) B(j) $$<br>$$ A2(x) * B2(x) = \sum_{k|x=x} \sum_{i|j=k} A(i) B(j) $$<br>$$ A2(x) * B2(x) = \sum_{k|x=x} C(k) $$<br>$$ A2(x) * B2(x) = C2(x) $$</p>
-<p>事实上，这也就是子集和变换。</p>
+<h3 id="按位或"><a href="#按位或" class="headerlink" title="按位或"></a>按位或</h3><p>A 在做按位或的 FWT 之后得到的 A2 满足：</p>
+<script type="math/tex; mode=display">A2(x) = \sum_{i|x=x} A(i)</script><p>也就是说 A2(x) 表示 x 的每个子集 i 的 A(i) 的和。<br>不难得到，A2(x) * B2(x) 的结果 C2(x) 就是 A, B 卷积后的 C 的变换：</p>
+<script type="math/tex; mode=display">A2(x) * B2(x) = \sum_{i|x=x} A(i) \sum_{j|x=x} B(j)</script><script type="math/tex; mode=display">A2(x) * B2(x) = \sum_{i|x=x} \sum_{j|x=x} A(i) B(j)</script><script type="math/tex; mode=display">A2(x) * B2(x) = \sum_{k|x=x} \sum_{i|j=k} A(i) B(j)</script><script type="math/tex; mode=display">A2(x) * B2(x) = \sum_{k|x=x} C(k)</script><script type="math/tex; mode=display">A2(x) * B2(x) = C2(x)</script><p>事实上，这也就是子集和变换。</p>
 <p><del>感性理解一下</del></p>
-<h3 id="按位与"><a href="#按位与" class="headerlink" title="按位与"></a>按位与</h3><p>和按位或类似的，A 在做按位与的 FWT 之后得到的 A2 满足：<br>$$ A2(x) = \sum_{i&amp;x=x} A(i) $$</p>
-<p>也就是说 A2(x) 表示每个包含 x 的集合 i 的 A(i) 的和。<br>不难得到，A2(x) * B2(x) 的结果 C2(x) 就是 A, B 卷积后的 C 的变换：<br>$$ A2(x) * B2(x) = \sum_{i&amp;x=x} A(i) \sum_{j&amp;x=x} B(j) $$<br>$$ A2(x) * B2(x) = \sum_{i&amp;x=x} \sum_{j&amp;x=x} A(i) B(j) $$<br>$$ A2(x) * B2(x) = \sum_{k&amp;x=x} \sum_{i&amp;j=k} A(i) B(j) $$<br>$$ A2(x) * B2(x) = \sum_{k&amp;x=x} C(k) $$<br>$$ A2(x) * B2(x) = C2(x) $$</p>
-<p><del>和按位或一个模子里刻出来的</del></p>
+<h3 id="按位与"><a href="#按位与" class="headerlink" title="按位与"></a>按位与</h3><p>和按位或类似的，A 在做按位与的 FWT 之后得到的 A2 满足：</p>
+<script type="math/tex; mode=display">A2(x) = \sum_{i\&x=x} A(i)</script><p>也就是说 A2(x) 表示每个包含 x 的集合 i 的 A(i) 的和。<br>不难得到，A2(x) * B2(x) 的结果 C2(x) 就是 A, B 卷积后的 C 的变换：</p>
+<script type="math/tex; mode=display">A2(x) * B2(x) = \sum_{i\&x=x} A(i) \sum_{j\&x=x} B(j)</script><script type="math/tex; mode=display">A2(x) * B2(x) = \sum_{i\&x=x} \sum_{j\&x=x} A(i) B(j)</script><script type="math/tex; mode=display">A2(x) * B2(x) = \sum_{k\&x=x} \sum_{i\&j=k} A(i) B(j)</script><script type="math/tex; mode=display">A2(x) * B2(x) = \sum_{k\&x=x} C(k)</script><script type="math/tex; mode=display">A2(x) * B2(x) = C2(x)</script><p><del>和按位或一个模子里刻出来的</del></p>
 <h2 id="子集卷积"><a href="#子集卷积" class="headerlink" title="子集卷积"></a>子集卷积</h2><p>两个多项式 A, B 的子集卷积 C 的意义如下：</p>
-<p>$$ C(x) = \sum_{y|z=x, y&amp;z=0} A(y) B(z) $$</p>
-<p>也就是把 x 划分为两个子集 y, z 的 A(y) * B(z) 的和。</p>
-<p>转换成 $ \sum_{y|z=x} A(y) B(z) [y &amp; z = 0] $ ，似乎是一个按位或卷积。<br>再转换成 $ \sum_{y|z=x} A(y) B(z) [bitcount(y) + bitcount(z) = bitcount(x)] $ 。</p>
-<p>此时需要考虑的就是 bitcount, 也就是集合大小。<br>集合大小是 $ O(log(n)) $ 的，可以考虑枚举大小，设：<br>$$ A_i(x) = A(x) [bitcount(x) = i] $$<br>$$ B_j(x) = B(x) [bitcount(x) = j] $$<br>$$ C_k(x) = C(x) [bitcount(x) = k] $$</p>
-<p>那么有：<br>$$ C_k(x) = \sum_{y|z=x} A_i(y) B_j(z) [i + j = k] $$<br>$$ C_k(x) = \sum_{i+j=k} \sum_{y|z=x} A_i(y) B_j(z) $$</p>
-<p>那么枚举 i, j 的值，将 $ A_i $ 和 $ B_j $ 卷积后贡献到 $ C_{i+j} $ 即可。</p>
+<script type="math/tex; mode=display">C(x) = \sum_{y|z=x, y\&z=0} A(y) B(z)</script><p>也就是把 x 划分为两个子集 y, z 的 A(y) * B(z) 的和。</p>
+<p>转换成 $ \sum_{y|z=x} A(y) B(z) [y \&amp; z = 0] $ ，似乎是一个按位或卷积。<br>再转换成 $ \sum_{y|z=x} A(y) B(z) [bitcount(y) + bitcount(z) = bitcount(x)] $ 。</p>
+<p>此时需要考虑的就是 bitcount, 也就是集合大小。<br>集合大小是 $ O(log(n)) $ 的，可以考虑枚举大小，设：</p>
+<script type="math/tex; mode=display">A_i(x) = A(x) [bitcount(x) = i]</script><script type="math/tex; mode=display">B_j(x) = B(x) [bitcount(x) = j]</script><script type="math/tex; mode=display">C_k(x) = C(x) [bitcount(x) = k]</script><p>那么有：</p>
+<script type="math/tex; mode=display">C_k(x) = \sum_{y|z=x} A_i(y) B_j(z) [i + j = k]</script><script type="math/tex; mode=display">C_k(x) = \sum_{i+j=k} \sum_{y|z=x} A_i(y) B_j(z)</script><p>那么枚举 i, j 的值，将 $ A_i $ 和 $ B_j $ 卷积后贡献到 $ C_{i+j} $ 即可。</p>
 <p>这样复杂度似乎是 $ O(n log^3n) $ 的，<br>但是事实上每个 $ A_i, B_j $ 都可以提前 FWT 后 $ O(n) $ 相乘，<br>再贡献到 C 后不进行逆变换，而是确定了 C 的值后在进行逆变换。</p>
 <p>复杂度 $ O(n log^2n) $</p>
 ]]></content>
@@ -766,7 +754,7 @@
 <p>然后就是晚上的 <del>自由欢乐时光</del> 认真自习。<br>终于成功把昨天的电影看了一半。<br>然后颓了一晚上也是没救了，没办法 T3 被卡常心态爆炸（这就是你颓废的理由？）。</p>
 <h2 id="Day2"><a href="#Day2" class="headerlink" title="Day2"></a>Day2</h2><p><del>成功拿到预期的暴力分 30，一大进步。</del></p>
 <p>第一题图染色，考场上脑子不清醒，很快想到 $ O(n^2) $ 的建图方式后，<br>竟然完全没有想到怎么计数，最后 $ O(n^n) $ 枚举染色方案可还行。<br>于是 40’ -&gt; 10’</p>
-<p>第二题又是一个计数，AC 自动机？我完全没想到，<br>我还以为是容斥，但是发现有有 5 种情况，容斥起来要 5 + 10 + 10 + 5 种情况加加减减，<br>没敢打，不过这次这题部分分给的挺全的，分了 10 个 subtask 还是不错的 <del>虽然我只拿了 20 ~</del> 。</p>
+<p>第二题又是一个计数，AC 自动机？我完全没想到，<br>我还以为是容斥，但是发现有有 5 种情况，容斥起来要 5 + 10 + 10 + 5 种情况加加减减，<br>没敢打，不过这次这题部分分给的挺全的，分了 10 个 subtask 还是不错的 ~~虽然我只拿了 20 ~~ 。</p>
 <p>第三题玄学最短路，要用最短路树（我想到了但是没啥用），这玩意前几天 czz 才讲，<br><del>果然又应验了我昨天说的，一考就连续考几次</del><br>暴力都很难打啊这题，到最后只能 <code>puts(&quot;-1&quot;)</code> 了，然而 subtask 数据捆绑。</p>
 <p>一考完就被 *** 拉去吃什么网红烤冷面（然而是热的），very nice but 量有点少。<br>然后 *** 就拉了一堆人去星巴克 666 ，讲真这是我第一次在星巴克喝咖啡，忍痛剁手。<br>晚上到宾馆就开始颓，终于看完了昨天的电影 <del>壮哉我大火影</del> 。</p>
 <h2 id="Day3"><a href="#Day3" class="headerlink" title="Day3"></a>Day3</h2><p>今天的题目巨难，听出题人说是因为他明天赶时间所以把明天的 <del>毒瘤</del> 题全放今天就有更多时间讲。</p>
@@ -802,13 +790,14 @@
 <p>T2 不想说了，心累，在变换过程中做除法就不会爆 long long ， AC 。</p>
 <p>T3 随机分治？感觉挺 6 但是没懂。<br>但是我还是通过奇技淫巧 AC 了。。。</p>
 <h3 id="爆掉这辣鸡交互"><a href="#爆掉这辣鸡交互" class="headerlink" title="爆掉这辣鸡交互"></a>爆掉这辣鸡交互</h3><p>我还真不信这交互器天衣无缝，再次看交互器，<br>交了几个错误的程序，发现我能得到的信息只有交互程序给出的信息，<br>再蠢也不会把重要信息放提示信息里头嘛，感觉似乎没办法了。<br>又交了一次， CE 了。。。<br>这时转机出现了，我看了眼编译信息， woc nice 大夫 g++ 给的编译信息真详细：</p>
-<pre><code>/sandbox/1/a.cpp:5:6: error: &apos;QCNT&apos; was not declared in this scope
-out,QCNT,&apos;\n&apos;;
+<pre><code>/sandbox/1/a.cpp:5:6: error: &#39;QCNT&#39; was not declared in this scope
+out,QCNT,&#39;\n&#39;;
   ^
 /sandbox/1/a.cpp:5:6: note: suggested alternative:
 In file included from /sandbox/1/a.cpp:2:0:
-/sandbox/1/c.h:74:5: note:   &apos;lkjjhkfdlhgkjdfgf5454::QCNT&apos;
-int QCNT;</code></pre><p>note 那一排暴露啦，这命名空间 lkjjhkfdlhgkjdfgf5454 也是没谁了（另外还发现了源码的位置 /sandbox/ ）。<br>但是出题人以为套一个乱七八糟的 namespace 就没事了？<br>然而还是被我发现了哈，于是通过这个 namespace 直接获取了交互器里存的答案，<br>成功 AC ，辣鸡交互器。</p>
+/sandbox/1/c.h:74:5: note:   &#39;lkjjhkfdlhgkjdfgf5454::QCNT&#39;
+int QCNT;
+</code></pre><p>note 那一排暴露啦，这命名空间 lkjjhkfdlhgkjdfgf5454 也是没谁了（另外还发现了源码的位置 /sandbox/ ）。<br>但是出题人以为套一个乱七八糟的 namespace 就没事了？<br>然而还是被我发现了哈，于是通过这个 namespace 直接获取了交互器里存的答案，<br>成功 AC ，辣鸡交互器。</p>
 <p>看了看提交记录，我是第二个玄学 AC 的，第一个的 AC 代码提交时还没有那 sb namespace ，<br>所以说，我是第一个发现这鬼畜 namespace 并通过它 AC 的 :)<br>然后从我 AC 后就陆续有人玄学 AC, 代码我都看了一遍，大同小异，全是用这 sb namespace 过的（变量名、注释都跟我的长一个样），<br>开创先河哈。</p>
 <p>后面再改改就是 65B 全场最短 AC 代码。</p>
 <p>后来又看了看，还有一名大佬用另一种方式爆掉了这辣鸡交互器。<br>比我 6 多了，竟然直接搞到了交互器判 AC 的方式给写 solve 函数上了， %%% 。</p>
@@ -816,7 +805,8 @@ int QCNT;</code></pre><p>note 那一排暴露啦，这命名空间 lkjjhkfdlhgkj
 <h2 id="Day10"><a href="#Day10" class="headerlink" title="Day10"></a>Day10</h2><h3 id="考试-1"><a href="#考试-1" class="headerlink" title="考试"></a>考试</h3><p>第一题乍一看要动态维护逆序对？感觉不太可做，后面直接交了暴力， 30 分。</p>
 <p>第二题字符串，感觉像是贪心，但是有一些情况不好判断，<br>最后打了字符串做状态的暴力 DP ，我估摸着复杂度是 $ O(n^3) $ ，<br>于是就只开了 30’ 的部分分的数据的大小的数组 n = 100 ，交了，果然是 30’ ，<br>然而我把数组开到 2000 （ 60’ 的范围）后就过了 60’ ，这。。。<br>60’ -&gt; 30’ <del>论复杂度分析的重要性。</del></p>
 <p>第三题式子题，乍一看似乎可做，然后简化简化简化，简化成了这样一个题意：</p>
-<pre><code>在正整数范围内解方程 x * phi(x) = 2m ，m 已知。</code></pre><p>我一看这么简洁的式子，枚举一下 2m 的因子应该差不多了，<br>一看数据范围： $ m \leq 10^{18} $ ，第一档暴力 10’ 范围： $ m \leq 10^9 $ 。。。<br>还多组数据，一共 100000 组。。。<br>连暴力都过不去啊我去。<br>最后实在没思路，就预处理了一部分 phi 再暴力去搞，结果爆零。。。</p>
+<pre><code>在正整数范围内解方程 x * phi(x) = 2m ，m 已知。
+</code></pre><p>我一看这么简洁的式子，枚举一下 2m 的因子应该差不多了，<br>一看数据范围： $ m \leq 10^{18} $ ，第一档暴力 10’ 范围： $ m \leq 10^9 $ 。。。<br>还多组数据，一共 100000 组。。。<br>连暴力都过不去啊我去。<br>最后实在没思路，就预处理了一部分 phi 再暴力去搞，结果爆零。。。</p>
 <h3 id="讲题-1"><a href="#讲题-1" class="headerlink" title="讲题"></a>讲题</h3><p>第一题其实真的容易，根本不要动态维护逆序对，<br>题目要求的只是使逆序对最小的一个循环的位置，<br>考虑一个数从最左边被扔到最右边后对逆序对数量的影响，其实是不会变的，<br>维护这个影响的数列，那么就是要求一个最小前缀和的位置，<br>每次修改就是交换两段区间，虽然逆序对数量会改变，但是根本不用管，相对的影响还是不变的，<br>那这玩意一个平衡树搞上去就好了。</p>
 <p>第二题我似乎摸到正解的前一半了，<br>贪心把能直接求的字母搞出来后对于剩下的求一个字典序最大后缀好像是，<br><del>那这玩意一个后缀数组搞上去就好了。</del><br>然而似乎还是要考虑一些情况，还没改出来。</p>
 <p>第三题数论神仙题（我竟然以为 T3 可做），<br>正解复杂度 $ O(log(m)) $ ，神仙做法，<br>什么二次剩余什么欧拉定理什么质因数玄学分解都用上了，<br>好难，出题人讲了两遍都没听懂。</p>
@@ -855,7 +845,7 @@ int QCNT;</code></pre><p>note 那一排暴露啦，这命名空间 lkjjhkfdlhgkj
 
 <p>第二题又是个计数，感觉像容斥，容斥之后怎么搞就有点迷，<br>于是写了个 dp ，手玩样例感觉没错，然而一测大样例就 WA 了，<br>于是手玩了几组数据，才发现 dp 错了，区间相交的情况没考虑好，<br>最后实在没思路，就打了个大暴力，有 30’, 还不错（ 10 倍于前面两天的暴力分 3’ ）。</p>
 <p>第三题哇塞维护一棵树，一看就感觉是树剖 + 线段树或者 LCT 之类的数据结构题，<br>然而还是不会，又敲了一发大暴力 10’ 走人。。。</p>
-<h3 id="讲题"><a href="#讲题" class="headerlink" title="讲题"></a>讲题</h3><p>下午讲题，一看 ppt 下面一行字：–Claris<br>woc 今天见到真人了，那位 bzoj 4000+ ac 的神仙！<br>第一题正解是按度数大小关系连边，出题人说数据难造所以有这种带 log 的算法卡过去了。<br>第二题果然是容斥，但是要通过一个奇妙的矩形构造转换为轮廓线 DP 。<br>第三题出题人说并不是数据结构题？blabla 讲了一堆奇妙的做法，<br>然而有 4 个人用动态 DP 搞过去了，出题人想到了这一点还特意去卡了但是没卡掉。</p>
+<h3 id="讲题"><a href="#讲题" class="headerlink" title="讲题"></a>讲题</h3><p>下午讲题，一看 ppt 下面一行字：—Claris<br>woc 今天见到真人了，那位 bzoj 4000+ ac 的神仙！<br>第一题正解是按度数大小关系连边，出题人说数据难造所以有这种带 log 的算法卡过去了。<br>第二题果然是容斥，但是要通过一个奇妙的矩形构造转换为轮廓线 DP 。<br>第三题出题人说并不是数据结构题？blabla 讲了一堆奇妙的做法，<br>然而有 4 个人用动态 DP 搞过去了，出题人想到了这一点还特意去卡了但是没卡掉。</p>
 <h3 id="颓废"><a href="#颓废" class="headerlink" title="颓废"></a>颓废</h3><p>昨天没吃成必胜客来着，今天再次尝试，又剁一波手。<br>晚上真是诸事不利，tmd 这笔记本真的让人心累，<br>要啥没啥，网连续断了好几次，还真就不是网的问题，众人不断就我断，<br>什么 u 盘硬盘全没用，放我电脑上就读不到，<br>蓝牙更是做梦，键盘只能插线就算了还一老读不到，<br>还什么显像管出问题？动不动一些地方就全是红色的跟看恐怖片似的，<br>说优点倒也有，用个电脑火炉都省了，贼发热，那电风扇的声音时刻提醒你它还活着，<br>它要是太烫了还会自动关机，把你烤热了再降降温，贴心，<br>放歌听也很棒，我听快歌，它就一卡一卡的，一个字一个字给你放，根本不用怕听不清。<br>还能智能存储电量，充电线一拔就晓得要存储电量直接断电，不插上充电线不给开机，保证电池里的电永远满的。<br>别的什么还有一堆，懒得喷了，难受。</p>
 <h2 id="Day6"><a href="#Day6" class="headerlink" title="Day6"></a>Day6</h2><h3 id="考试-1"><a href="#考试-1" class="headerlink" title="考试"></a>考试</h3><p>前两天把 rp 用完了，今天全暴力都写挂。</p>
 <p>第一题我一开始推出个错误的结论，然后一想可以离线排序询问再预处理 dist 根据询问不断删除，删除不好搞换成加边弄个并查集维护联通块，<br>然而代码打完后一跑样例， WA 了，手玩样例才发现结论错了，这时候已经 9:30 了，凉凉，后面两题还没看。<br>最后打了大暴力 10’。</p>
@@ -898,8 +888,14 @@ int QCNT;</code></pre><p>note 那一排暴露啦，这命名空间 lkjjhkfdlhgkj
 <p>那么在 mod p 意义下，有 $ a / b = a  \cdot  b^{-1} $ 。</p>
 <h2 id="逆元的求解"><a href="#逆元的求解" class="headerlink" title="逆元的求解"></a>逆元的求解</h2><p>事实上模数一般是 $ x^n $ 。</p>
 <p>此时可以用分治求多项式 a 的逆元 b。</p>
-<p>假设已经分治求得了 a 模 $ x^{n/2} $ （此处及以下除法表示向上取整）的逆元 c 。<br>那么有：<br>$$ a  \cdot  c \equiv 1 (mod ; x^{n/2}) ;;;;; (1)$$<br>由 b 的定义可知：<br>$$ a  \cdot  b \equiv 1 (mod ; x^n) ;;;;; (2)$$<br>转换为：<br>$$ a  \cdot  b \equiv 1 (mod ; x^{n/2}) ;;;;; (3)$$<br>(3) - (1) 得：<br>$$ b - c \equiv 0 (mod ; x^{n/2}) ;;;;; (4)$$<br>两边同时平方得：<br>$$ b^2 - 2bc + c^2 \equiv 0 (mod ; x^n) ;;;;; (5)$$<br>两边同时乘 a 得：<br>$$ b - 2c + c^2a \equiv 0 (mod ; x^n) ;;;;; (6)$$<br>移项，整理：<br>$$ b = (2c - c^2a) ; mod ; x^n $$</p>
-<p>(4) -&gt; (5) 中模数平方的原因：<br>左边多项式模 $ x^{n/2} $ 为 0 代表该多项式每一项最低次数为 n / 2 + 1 。<br>那么该多项平方后最低次数会是 n + 1 或 n + 2 ，<br>模 $ x^n $ 后仍为 0 。</p>
+<p>假设已经分治求得了 a 模 $ x^{n/2} $ （此处及以下除法表示向上取整）的逆元 c 。<br>那么有：</p>
+<script type="math/tex; mode=display">a  \cdot  c \equiv 1 (mod \; x^{n/2}) \;\;\;\;\; (1)</script><p>由 b 的定义可知：</p>
+<script type="math/tex; mode=display">a  \cdot  b \equiv 1 (mod \; x^n) \;\;\;\;\; (2)</script><p>转换为：</p>
+<script type="math/tex; mode=display">a  \cdot  b \equiv 1 (mod \; x^{n/2}) \;\;\;\;\; (3)</script><p>(3) - (1) 得：</p>
+<script type="math/tex; mode=display">b - c \equiv 0 (mod \; x^{n/2}) \;\;\;\;\; (4)</script><p>两边同时平方得：</p>
+<script type="math/tex; mode=display">b^2 - 2bc + c^2 \equiv 0 (mod \; x^n) \;\;\;\;\; (5)</script><p>两边同时乘 a 得：</p>
+<script type="math/tex; mode=display">b - 2c + c^2a \equiv 0 (mod \; x^n) \;\;\;\;\; (6)</script><p>移项，整理：</p>
+<script type="math/tex; mode=display">b = (2c - c^2a) \; mod \; x^n</script><p>(4) -&gt; (5) 中模数平方的原因：<br>左边多项式模 $ x^{n/2} $ 为 0 代表该多项式每一项最低次数为 n / 2 + 1 。<br>那么该多项平方后最低次数会是 n + 1 或 n + 2 ，<br>模 $ x^n $ 后仍为 0 。</p>
 <p>于是乎分治，直到 n == 1 ，此时多项式的取模为一个常数，逆元也就是整数的逆元。</p>
 <p>其中乘法使用 FFT ，则最终时间复杂度为 $ O(n \cdot log_2n) $ 。</p>
 ]]></content>
@@ -941,8 +937,6 @@ int QCNT;</code></pre><p>note 那一排暴露啦，这命名空间 lkjjhkfdlhgkj
 
 
 
-
-
 <p>比如 <code>nano | lolcat</code> 可以打开一个彩虹编辑器；<br><code>ncdu | lolcat</code> 可以打开一个彩虹文件查看器；<br><code>sl | lolcat</code> 可以开彩虹火车；<br><code>nethack | lolcat</code> 可以玩彩虹游戏！</p>
 <h2 id="cowsay"><a href="#cowsay" class="headerlink" title="cowsay"></a>cowsay</h2><p>让一只奶牛（或者其它乱七八糟的东西）说出一句话！</p>
 <h3 id="示例-1"><a href="#示例-1" class="headerlink" title="示例"></a>示例</h3><p>运行 <code>cowsay hiahiahia</code></p>
@@ -954,70 +948,59 @@ int QCNT;</code></pre><p>note 那一排暴露啦，这命名空间 lkjjhkfdlhgkj
          \  (oo)\_______
             (__)\       )\/\
                 ||----w |
-                ||     ||</code></pre><p>类似的你也可以用 <code>cowthink</code> 。</p>
+                ||     ||
+</code></pre><p>类似的你也可以用 <code>cowthink</code> 。</p>
 <h3 id="安装方式-2"><a href="#安装方式-2" class="headerlink" title="安装方式"></a>安装方式</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo aptitude install cowsay</span><br></pre></td></tr></table></figure>
-
 <h2 id="chafa"><a href="#chafa" class="headerlink" title="chafa"></a>chafa</h2><p>在终端里面打印图片或者视频！</p>
 <h3 id="示例-2"><a href="#示例-2" class="headerlink" title="示例"></a>示例</h3><p><img src="https://pic4.zhimg.com/v2-91254499e2880bbe3068ce2a3e086977_b.gif" alt="chafa"></p>
 <p>小诀窍：把终端字体调小并开全屏可以让图片更清晰（但是更慢）。<br>给你一图片自行意会（记住这张图是在终端上打印的！！！）：</p>
-<p><img src="http://kewth.gq/wp-content/uploads/2019/03/%E9%80%89%E5%8C%BA_017.png" alt="chafabig"></p>
+<p><img src="http://kewth.gq/wp-content/uploads/2019/03/选区_017.png" alt="chafabig"></p>
 <h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/hpjansson/chafa.git &amp;&amp; <span class="built_in">cd</span> chafa</span><br><span class="line">sudo aptitude install libmagickwand-dev</span><br><span class="line">./autogen.sh</span><br><span class="line">make</span><br><span class="line">sudo make install</span><br></pre></td></tr></table></figure>
-
 <p>这个安装过程相对比较麻烦，详细过程见 <a href="https://github.com/hpjansson/chafa" target="_blank" rel="noopener">Github</a> 。</p>
 <h2 id="img2txt-cacaview"><a href="#img2txt-cacaview" class="headerlink" title="img2txt / cacaview"></a>img2txt / cacaview</h2><p>在终端里用 ASCII 打印图片！</p>
 <p>或者用 cacaview 打开一个窗口查看。</p>
 <p>upd:<br>后来我才知道 w3m 也可以查看图片，和 cacaview 的效果一模一样。</p>
 <h3 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo aptitude install caca-utils</span><br></pre></td></tr></table></figure>
-
 <h2 id="w3m-lynx-browsh"><a href="#w3m-lynx-browsh" class="headerlink" title="w3m / lynx / browsh"></a>w3m / lynx / browsh</h2><p>在终端浏览网页！</p>
 <h3 id="示例-3"><a href="#示例-3" class="headerlink" title="示例"></a>示例</h3><p>w3m 和 lynx 大同小异，没有什么本质上的区别。<br>（别喷我，我这么说是拿 browsh 作参照）</p>
 <p>但是， browsh 不同，它内部调用 Firefox 渲染网页并处理后打印在终端，<br>因此 browsh 几乎能 <strong>在终端</strong> 支持任何现代浏览器支持的！</p>
 <p>只给出一张 browsh 浏览 youtubu 的图片：</p>
 <p><img src="https://oscimg.oschina.net/oscnet/cc8d81d3c93d858a0a3f39e08293e4b6535.jpg" alt="browsh"></p>
 <h3 id="安装-2"><a href="#安装-2" class="headerlink" title="安装"></a>安装</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># w3m</span></span><br><span class="line">sudo aptitude install w3m</span><br><span class="line"><span class="comment"># lynx</span></span><br><span class="line">sudo aptitude install lynx</span><br><span class="line"><span class="comment"># browsh</span></span><br><span class="line">wget https://github.com/browsh-org/browsh/releases/download/v1.5.0/browsh_1.5.0_linux_amd64.deb</span><br><span class="line">sudo dpkg -i ./browsh_1.5.0_linux_amd64.deb</span><br></pre></td></tr></table></figure>
-
 <h2 id="cmatrix"><a href="#cmatrix" class="headerlink" title="cmatrix"></a>cmatrix</h2><p>终端黑客风动画</p>
 <p><code>cmatrix | lolcat</code> 简直可以来当屏保。</p>
 <h3 id="安装-3"><a href="#安装-3" class="headerlink" title="安装"></a>安装</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo aptitude install cmatrix</span><br></pre></td></tr></table></figure>
-
 <h2 id="typespeed"><a href="#typespeed" class="headerlink" title="typespeed"></a>typespeed</h2><p>在终端 <del>玩打字游戏</del> 测试打字速度！</p>
-<h3 id="示例-4"><a href="#示例-4" class="headerlink" title="示例"></a>示例</h3><p><img src="http://kewth.gq/wp-content/uploads/2019/03/%E9%80%89%E5%8C%BA_027.png" alt="typespeed"></p>
+<h3 id="示例-4"><a href="#示例-4" class="headerlink" title="示例"></a>示例</h3><p><img src="http://kewth.gq/wp-content/uploads/2019/03/选区_027.png" alt="typespeed"></p>
 <h3 id="安装-4"><a href="#安装-4" class="headerlink" title="安装"></a>安装</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo aptitude install typespeed</span><br></pre></td></tr></table></figure>
-
 <h3 id="自定义词库"><a href="#自定义词库" class="headerlink" title="自定义词库"></a>自定义词库</h3><p>我是真的爱折腾，竟然自己找出了 typespeed 的词库位置并且自己加了词库。。。</p>
 <p>顺便夸一下 typespeed 的扩展性真的好，它考虑到了用户的自定义词库需求。</p>
 <p>只需要在 /usr/share/typespeed/words/ 目录下添加 words.xxx 文件（ xxx 随意填），<br>文件第一行是这个词库的名称，接下来每行一个单词就可以了。</p>
 <p>然后进入 typespeed 就能看到你自己的词库啦（ kewth’s xxx 就是我自己加的）：</p>
-<p><img src="http://kewth.gq/wp-content/uploads/2019/03/%E9%80%89%E5%8C%BA_028.png" alt="mywords"></p>
+<p><img src="http://kewth.gq/wp-content/uploads/2019/03/选区_028.png" alt="mywords"></p>
 <h2 id="nethack"><a href="#nethack" class="headerlink" title="nethack"></a>nethack</h2><p>世界上最棒的终端游戏（绝无夸大）！<br>nethack 太博大精深了，玩法不赘述。</p>
 <p>另外： <code>nethack | lolcat</code> 的效果真的很棒。</p>
 <h3 id="安装-5"><a href="#安装-5" class="headerlink" title="安装"></a>安装</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo aptitude install nethack</span><br></pre></td></tr></table></figure>
-
 <h2 id="task"><a href="#task" class="headerlink" title="task"></a>task</h2><p>全名 taskwarrior 。</p>
 <p>个人认为终端上最好用的 todo list manager 。<br>功能十分强大，可以简单上手，<br>如果愿意折腾也可以深入挖掘它的各种功能，最精细地管理你的任务计划。</p>
 <h3 id="安装-6"><a href="#安装-6" class="headerlink" title="安装"></a>安装</h3><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo aptitude install taskwarrior</span><br></pre></td></tr></table></figure>
-
 <h3 id="简单上手"><a href="#简单上手" class="headerlink" title="简单上手"></a>简单上手</h3><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">task add test1</span><br><span class="line">task add test2</span><br><span class="line">task start 1</span><br><span class="line">task long</span><br><span class="line">task <span class="keyword">done</span> 1</span><br><span class="line">task <span class="keyword">done</span> 2</span><br></pre></td></tr></table></figure>
-
 <h3 id="tasksh"><a href="#tasksh" class="headerlink" title="tasksh"></a>tasksh</h3><p>整合 taskwarrior 的交互命令行，里面可以直接敲 <code>add ...</code> 或 <code>list</code> 等命令。</p>
 ]]></content>
   </entry>
   <entry>
     <title>NTT</title>
     <url>/2019/10/09/NTT/</url>
-    <content><![CDATA[<p>NTT ，快速数论变换，功能与 <a href>FFT</a> 完全一致，用来求多项式卷积。<br>NTT 优点在于常数稍微小一点，没有精度误差。<br>但是 NTT 系数必须是取模意义下的整数，且对模数有特殊要求。</p><h2 id="FFT-的单位根"><a href="#FFT-的单位根" class="headerlink" title="FFT 的单位根"></a>FFT 的单位根</h2><p>建议前置 <a href>FFT</a> 。</p><p>FFT 可以分治优化复杂度的原因是用到了单位根的如下性质：<br>$$ W_{2n}^{2k} = W_n^k $$<br>$$ W_n^n = 1 $$<br>$$ W_n^{k + n/2} + W_n^k = 0 $$</p><a id="more"></a>
+    <content><![CDATA[<p>NTT ，快速数论变换，功能与 <a href>FFT</a> 完全一致，用来求多项式卷积。<br>NTT 优点在于常数稍微小一点，没有精度误差。<br>但是 NTT 系数必须是取模意义下的整数，且对模数有特殊要求。</p><h2 id="FFT-的单位根"><a href="#FFT-的单位根" class="headerlink" title="FFT 的单位根"></a>FFT 的单位根</h2><p>建议前置 <a href>FFT</a> 。</p><p>FFT 可以分治优化复杂度的原因是用到了单位根的如下性质：  </p><script type="math/tex; mode=display">W_{2n}^{2k} = W_n^k</script><a id="more"></a>
 
 
-<p>可是用单位根做 FFT ，需要用到复数和浮点数，常数大而且有精度误差。<br>还有别的数有这样的性质来替换单位根吗？<br>遗憾的是，可以证明复数域下只有单位根有这样的性质。</p>
+<script type="math/tex; mode=display">W_n^n = 1</script><script type="math/tex; mode=display">W_n^{k + n/2} + W_n^k = 0</script><p>可是用单位根做 FFT ，需要用到复数和浮点数，常数大而且有精度误差。<br>还有别的数有这样的性质来替换单位根吗？<br>遗憾的是，可以证明复数域下只有单位根有这样的性质。</p>
 <h2 id="取模"><a href="#取模" class="headerlink" title="取模"></a>取模</h2><p>实际计算多项式卷积时，常常要求对系数取模以避免不必要的麻烦。<br>那么这时候系数实际上是在模意义下的， FFT 将它转到复数域上运算，似乎没有必要。<br>模意义下什么数可以有单位根那样的性质？<br>有的，那就是原根。</p>
 <h2 id="原根"><a href="#原根" class="headerlink" title="原根"></a>原根</h2><p>对于某些模数 P ，模 P 意义下的原根 g 满足：<br>对任意 $ 0 \leq k \leq P - 2 $ ， $ g^k $ 互不相同。<br>有些模数可能不存在原根，这里先假设模数都有原根。</p>
 <p>假设系数是模 P 意义下的，P 是形如 $ 2^k + 1 $ 的质数，其原根为 g ，<br>设 $ G_n = g^{\frac{P-1}{n}} mod P $ ，其中 n 是小于 P 的 2 的整次幂 。<br>那么在模 P 意义下， G 满足：</p>
-<p>$$ G_{2n}^{2k} = G_n^k $$</p>
-<p>由 G 定义可证：<br>$ G_{2n}^{2k} = g^{\frac{P-1}{2n}2k} = g^{\frac{P-1}{n}k} = G_n^k$</p>
-<p>$$ G_n^n = 1 $$</p>
-<p>由 G 定义可得：<br>$ G_n^n = g^{\frac{P-1}{n}n} = g^{P-1}  $<br>由费马小定理：<br>$ G_n^n =  g^{P-1} = 1 $</p>
-<p>$$ G_n^{k + n/2} + G_n^k = 0 $$</p>
-<p>有第一条性质可得：<br>$ G_n^{n/2} = G_2^1 = g^{\frac{P-1}{2}} $<br>因为 $ (g^{\frac{P-1}{2}})^2 = g^{P-1} = 1 $<br>根据原根的性质：<br>$ g^{\frac{P-1}{2}} \neq g^{P-1} $<br>那么 $ g^{\frac{P-1}{2}} = -1 $ （即 P - 1）。<br>那么可以证得：<br>$ G_n^{k + n/2} = G_n^k G_n^{n/2} = G_n^k(-1) $<br>于是 $ G_n^{k + n/2} + G_n^k = 0 $</p>
+<script type="math/tex; mode=display">G_{2n}^{2k} = G_n^k</script><p>由 G 定义可证：<br>$ G_{2n}^{2k} = g^{\frac{P-1}{2n}2k} = g^{\frac{P-1}{n}k} = G_n^k$</p>
+<script type="math/tex; mode=display">G_n^n = 1</script><p>由 G 定义可得：<br>$ G_n^n = g^{\frac{P-1}{n}n} = g^{P-1}  $<br>由费马小定理：<br>$ G_n^n =  g^{P-1} = 1 $</p>
+<script type="math/tex; mode=display">G_n^{k + n/2} + G_n^k = 0</script><p>有第一条性质可得：<br>$ G_n^{n/2} = G_2^1 = g^{\frac{P-1}{2}} $<br>因为 $ (g^{\frac{P-1}{2}})^2 = g^{P-1} = 1 $<br>根据原根的性质：<br>$ g^{\frac{P-1}{2}} \neq g^{P-1} $<br>那么 $ g^{\frac{P-1}{2}} = -1 $ （即 P - 1）。<br>那么可以证得：<br>$ G_n^{k + n/2} = G_n^k G_n^{n/2} = G_n^k(-1) $<br>于是 $ G_n^{k + n/2} + G_n^k = 0 $</p>
 <h2 id="NTT"><a href="#NTT" class="headerlink" title="NTT"></a>NTT</h2><p>于是 NTT 的算法思路就呼之欲出了：把 $ W_n $ 全部替换为 $ G_n $ 即可。<br>这样就可以算出模 P 意义下的多项式卷积了。<br>其中 n 必须是 2 的整次幂，不足的补零即可。</p>
 <p>现在唯一的问题是，模数 P 要满足什么条件，以及如何求模 P 意义下的原根 g 。<br>然而我并不想深入展开，大多数情况下模数都是 998244353 ，其原根为 3 。<br>一般 NTT 只会用这个模数，不会有毒瘤出题人卡这个模数的（我不对这句话负责）。</p>
 ]]></content>
@@ -1062,48 +1045,37 @@ int QCNT;</code></pre><p>note 那一排暴露啦，这命名空间 lkjjhkfdlhgkj
 
 <h2 id="开始和结束"><a href="#开始和结束" class="headerlink" title="开始和结束"></a>开始和结束</h2><p>调用 initscr 初始化窗口，endwin 结束窗口。</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;curses.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function">WINDOW *<span class="title">initscr</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">endwin</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br></pre></td></tr></table></figure>
-
 <h2 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h2><p>调用 initscr 后调用 endwin 前，printf, std::cout 等标准输出不会显示在屏幕上。<br>而输出到屏幕上需要 ncurses 提供的相应函数。</p>
 <h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">addch</span><span class="params">(<span class="keyword">const</span> chtype char_to_add)</span></span>;   <span class="comment">// 当前位置添加字符</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">addstr</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *string_to_add)</span></span>;    <span class="comment">// 当前位置添加字符串</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">printw</span><span class="params">(<span class="keyword">char</span> *format, ...)</span></span>;   <span class="comment">// 类似于 printf</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">refresh</span><span class="params">(<span class="keyword">void</span>)</span></span>;    <span class="comment">// 强制刷新物理屏幕</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">beep</span><span class="params">(<span class="keyword">void</span>)</span></span>;   <span class="comment">// 终端响铃</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">flash</span><span class="params">(<span class="keyword">void</span>)</span></span>;   <span class="comment">// 屏幕闪烁</span></span><br></pre></td></tr></table></figure>
-
 <h2 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h2><p>调用 scanf, getchar, cin 等标准输入函数同样无效。</p>
 <h3 id="函数-1"><a href="#函数-1" class="headerlink" title="函数"></a>函数</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">cbreak</span><span class="params">()</span></span>;   <span class="comment">// 字符一键入，直接传给程序（不用按下回车）</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">nocbreak</span><span class="params">()</span></span>;  <span class="comment">// 关闭 cbreak</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">echo</span><span class="params">(<span class="keyword">void</span>)</span></span>; <span class="comment">// 开启输入回显</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">noecho</span><span class="params">(<span class="keyword">void</span>)</span></span>; <span class="comment">// 关闭输入回显</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getch</span><span class="params">(<span class="keyword">void</span>)</span></span>; <span class="comment">// 读入一个字符</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">scanw</span><span class="params">(<span class="keyword">char</span> *format, ...)</span></span>; <span class="comment">// 类似于 scanf</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">clear</span><span class="params">(<span class="keyword">void</span>)</span></span>; <span class="comment">// 清屏</span></span><br></pre></td></tr></table></figure>
-
 <p>输入函数通常是阻塞的，但是通过调用 nodelay(stdscr, TRUE); 可以关闭阻塞。<br>此时若输入函数未读取到内容会返回 ERR 。</p>
 <h2 id="光标"><a href="#光标" class="headerlink" title="光标"></a>光标</h2><p>控制光标。<br>调用 initscr 后调用 endwin 前，输出终端控制符改变光标是无效的。</p>
 <h3 id="函数及示例"><a href="#函数及示例" class="headerlink" title="函数及示例"></a>函数及示例</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">move</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>; <span class="comment">// 将光标移动到 [x] 行 [y] 列，左上角为 0 行 0 列</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">curs_set</span><span class="params">(<span class="keyword">int</span> visiblility)</span></span>; <span class="comment">// 参数为 0 表示隐藏光标，1 表示显示光标</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getyx</span><span class="params">(WINDOW* win, <span class="keyword">int</span> &amp;x, <span class="keyword">int</span> &amp;y)</span></span>; <span class="comment">// 获取指定窗口光标位置，示例如下</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">move_up</span><span class="params">()</span> </span>&#123; <span class="comment">// 将光标上移</span></span><br><span class="line">	<span class="keyword">int</span> x, y;</span><br><span class="line">	getyx(stdscr, x, y); <span class="comment">// stdscr 表示标准屏幕</span></span><br><span class="line">	move(x - <span class="number">1</span>, y);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <h3 id="指定位置输出"><a href="#指定位置输出" class="headerlink" title="指定位置输出"></a>指定位置输出</h3><p>在指定位置输出不必先 move 再 printw ，<br>ncurses 提供了 mv 函数前缀在指定位置输出。<br>例如 <code>mvprintw(1, 2, &quot;%d&quot;, 2)</code> 在 1 行 2 列输出 3 。<br>类似的有 mvaddch, mvaddstr 等。</p>
 <h2 id="颜色"><a href="#颜色" class="headerlink" title="颜色"></a>颜色</h2><h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><p>首先需要调用 has_color() 查看当前运行环境是否支持彩色。<br>调用 start_color() 初始化颜色，成功则返回 OK 。</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">has_colors</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">start_color</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br></pre></td></tr></table></figure>
-
 <p>成功后会初始化全局变量 COLORS 表示终端支持的颜色数量<br>还会有 COLOT_WHITE, COLOR_RED 等 8 个表示颜色的变量。</p>
 <h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>例如希望打印白底黑字的信息：</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *info)</span> </span>&#123;</span><br><span class="line">	init_pair(<span class="number">1</span>, COLOR_BLACK, COLOR_WHITE);</span><br><span class="line">		<span class="comment">// 的一个参数表示编号，后面两个分别表示字体和背景颜色</span></span><br><span class="line">	attron(COLOR_PAIR(<span class="number">1</span>));</span><br><span class="line">		<span class="comment">// attron 是一个设置函数，COLOR_PAIR 返回指定编号的颜色信息</span></span><br><span class="line">	addstr(info);</span><br><span class="line">	attroff(COLOR_PAIR(<span class="number">1</span>));</span><br><span class="line">		<span class="comment">// attroff 关闭设置（若接下来需要用其他颜色可以不调用 attroff 而直接使用 attron 覆盖设置</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <h3 id="错误示例"><a href="#错误示例" class="headerlink" title="错误示例"></a>错误示例</h3><p>值得注意的是，必须保证 init_pair 的编号不与其他已初始化的编号重复<br>一个错误的调用如下：</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> *info = <span class="string">"ERROR CODE"</span>;</span><br><span class="line">init_pair(<span class="number">1</span>, COLOR_BLACK, COLOR_WHITE);</span><br><span class="line">attron(COLOR_PAIR(<span class="number">1</span>));</span><br><span class="line">addstr(info); <span class="comment">// 打印白底黑字</span></span><br><span class="line">init_pair(<span class="number">1</span>, COLOR_BLACK, COLOR_RED);</span><br><span class="line">attron(COLOR_PAIR(<span class="number">1</span>));</span><br><span class="line">addstr(info); <span class="comment">// 打印白底红字</span></span><br></pre></td></tr></table></figure>
-
 <p>上述代码的期望打印出白字和黑字两种不同的颜色，<br>但事实上只会打印出红色一种。<br>解决方案便是将白底红字的 pair 编号设为 2 。</p>
 <h2 id="窗口"><a href="#窗口" class="headerlink" title="窗口"></a>窗口</h2><p>ncurses 有窗口类 WINDOW 并提供了 stdscr 作为默认窗口。<br>有时一个窗口无法满足需要，此时需要自己新建窗口。</p>
 <h3 id="新建窗口"><a href="#新建窗口" class="headerlink" title="新建窗口"></a>新建窗口</h3><p>调用 newwin 来新建窗口。</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 从 ([x], [y]) 开始新建 [line] 行 [column] 列的窗口。</span></span><br><span class="line"><span class="function">WINDOW *<span class="title">newwin</span><span class="params">(<span class="keyword">int</span> line, <span class="keyword">int</span> column, <span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>;</span><br></pre></td></tr></table></figure>
-
 <p>新建的窗口</p>
 <h3 id="通用输出"><a href="#通用输出" class="headerlink" title="通用输出"></a>通用输出</h3><p>addch, printw 等输出方式只输出到 stdscr 。<br>ncurses 提供了 w 前缀来输出到指定窗口。<br>例如 <code>wprintw(win, &quot;%d&quot;, 1)</code> 在 [win] 窗口输出 1 。<br>但是自己新建的窗口与 stdscr 不同，<br>若想在屏幕上显示需要调用 <code>wrefresh(win)</code> 刷新窗口。</p>
 <p>若想在窗口中指定位置输出，可以用 mvw 前缀函数。<br>例如 <code>mvwprintw(win, 1, 2, &quot;%d&quot;, 3)</code> 在 [win] 窗口的 1 行 2 列（ <strong>相对位置</strong> ）输出 3 。</p>
 <h3 id="子窗口"><a href="#子窗口" class="headerlink" title="子窗口"></a>子窗口</h3><p>调用 subwin 创建子窗口。</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 从 ([x], [y]) 开始新建 [line] 行 [column] 列属于 [parent] 的子窗口。</span></span><br><span class="line"><span class="function">WINDOW *<span class="title">subwin</span><span class="params">(WINDOW *parent, <span class="keyword">int</span> line, <span class="keyword">int</span> column, <span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>;</span><br></pre></td></tr></table></figure>
-
 <p>子窗口与普通窗口的区别在于它与其父窗口共用屏幕储存空间，<br>子窗口修改时父窗口会直接受到影响。<br>比如新建了 stdscr 的子窗口 win ，<br>那么输出到 win 后想显示在屏幕不调用 wrefresh 而是调用 touchwin(stdscr) 。<br>touchwin 用于标记一个窗口被修改。</p>
 <h3 id="销毁窗口"><a href="#销毁窗口" class="headerlink" title="销毁窗口"></a>销毁窗口</h3><p>调用 delwin 销毁窗口。</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">delwin</span><span class="params">(WINDOW *win)</span></span>; <span class="comment">// 销毁 [win] 窗口</span></span><br></pre></td></tr></table></figure>
-
 <p>窗口销毁后其在屏幕上对应的内容不会改变。</p>
 <h2 id="离开"><a href="#离开" class="headerlink" title="离开"></a>离开</h2><p>有时候可能需要离开 ncurses 回到行缓冲模式做些事情而且需要在之后回到 ncurses 。<br>例如 Vim 里面输入 :!ls 就会退出 ncurses 运行 ls 命令，并在用户敲下回车后回到 ncurses。</p>
 <p>调用 def_prog_mode 暂存，调用 reset_prog_mode 恢复。</p>
 <h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	initscr();</span><br><span class="line">	printw(<span class="string">"Hello World !!!\n"</span>);</span><br><span class="line">	getch(); <span class="comment">// 等待用户输入</span></span><br><span class="line">	def_prog_mode(); <span class="comment">// 存储当前tty 模式</span></span><br><span class="line">	endwin(); <span class="comment">// 退出 ncurses 模式</span></span><br><span class="line">	system(<span class="string">"sh"</span>); <span class="comment">// 返回普通的行缓冲模式</span></span><br><span class="line">	reset_prog_mode(); <span class="comment">// 返回到 def_prog_mode() 存储的 tty 模式</span></span><br><span class="line">	refresh(); <span class="comment">// 刷新屏幕（必须！）</span></span><br><span class="line">	getch(); <span class="comment">// 等待用户输入</span></span><br><span class="line">	endwin(); <span class="comment">// 退出 ncurses 模式</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <h2 id="输出中文等非-ASCII-字符"><a href="#输出中文等非-ASCII-字符" class="headerlink" title="输出中文等非 ASCII 字符"></a>输出中文等非 ASCII 字符</h2><p>事实上 ncurses 并不支持直接输出中文，<br>这意味着调用 printw(“中文”) 会是一堆乱码。<br>解决方案如下：</p>
 <h3 id="安装库"><a href="#安装库" class="headerlink" title="安装库"></a>安装库</h3><p>这需要另一个库。<br>通过 <code>sudo aptitude install libncurses5 libncursesw5 libncursesw5-dbg libncursesw5-dev</code> 安装</p>
 <h3 id="头文件"><a href="#头文件" class="headerlink" title="头文件"></a>头文件</h3><p>一定是 <code>#include &lt;ncurses.h&gt;</code> 而不是 <code>#include &lt;curses.h&gt;</code> 。<br>另外在 main.cpp <code>#include &lt;locale.h&gt;</code> 。</p>
@@ -1119,39 +1091,28 @@ int QCNT;</code></pre><p>note 那一排暴露啦，这命名空间 lkjjhkfdlhgkj
 <p>动态页面要能跑 php ，有数据库。</p>
 <h2 id="apache"><a href="#apache" class="headerlink" title="apache"></a>apache</h2><p>这里用 apache(httpd) 搭建服务器：</p>
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo pacman -S apache2</span><br></pre></td></tr></table></figure>
-
 <p>执行 <code>sudo httpd</code> 后打开 localhost ，就有一个东西了（虽然是空的）。<br>在 /srv/http/ 下新建 index.html 随便写点东西，是可以显示的。<br>路径具体查看 <code>httpd -S</code> 。</p>
 <p>启动服务：</p>
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo systemctl start httpd</span><br></pre></td></tr></table></figure>
-
 <h2 id="php"><a href="#php" class="headerlink" title="php"></a>php</h2><p>安装 php （ manjaro18.x 预装了 php7.x ，但还是要一些其他的东西）：</p>
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo pacman -S php php-apache php-fpm</span><br></pre></td></tr></table></figure>
-
 <p>这时 apache 还是不支持 php 的，需要在配置里加上几行。<br>打开 /etc/httpd/conf/httpd.conf ，加入：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">LoadModule php7_module modules/libphp7.so</span><br><span class="line">AddType application/x-httpd-php-source .phps</span><br><span class="line">AddType application/x-httpd-php .php</span><br><span class="line">DirectoryIndex index.php index.html index.htm</span><br></pre></td></tr></table></figure>
-
 <p>开启 php 服务：  </p>
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo systemctl start php-fpm</span><br></pre></td></tr></table></figure>
-
 <p>编写 index.php 试试，也可以运行了。<br>如果出了问题，找到配置里的</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">LoadModule mpm_event_module modules/mod_mpm_event.so</span><br></pre></td></tr></table></figure>
-
 <p>改成（应该就在下面被注释了）</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">LoadModule mpm_prefork_module modules/mod_mpm_prefork.so</span><br></pre></td></tr></table></figure>
-
 <h2 id="mysql"><a href="#mysql" class="headerlink" title="mysql"></a>mysql</h2><p>我跑 mysql 的服务会卡死，不知道为什么，<br>所以我用 mariadb （mysql 的一个衍生似乎是）替代。</p>
 <p>安装：</p>
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo pacman -S mariadb mariadb-client</span><br></pre></td></tr></table></figure>
-
 <p>初始化（注册一个账号）：</p>
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo mysql_install_db --user=mysql --basedir=/usr --datadir=/var/lib/mysql</span><br><span class="line">sudo mysql_secure_installation</span><br></pre></td></tr></table></figure>
-
 <p>启动服务：</p>
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo systemctl start mysqld</span><br></pre></td></tr></table></figure>
-
 <p>试试能不能登上：</p>
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">mysql -u&lt;用户名&gt; -p</span><br></pre></td></tr></table></figure>
-
 <p>让 php 支持 mysql 的调用，在 /etc/php/php.ini 找到 ;extension=mysqli 把分号去掉就行了。</p>
 <h2 id="使用-wordpress"><a href="#使用-wordpress" class="headerlink" title="使用 wordpress"></a>使用 wordpress</h2><p>Typecho 用 php7.2 似乎安装会出问题，<br>还是建议用 wordpress ，更加成熟，<br>安装方式在 wordpress 官网上把包下下来解压到 /srv/http/ ，<br>回了正常运行，需要改变 /srv/http 的权限，让 wordpress 能够对其做出修改。<br>这里不赘述，嫌麻烦可以 <code>chmod 777 -R /srv/http</code> 。</p>
 <p>然后进入 localhost 按照步骤来就行了。</p>
@@ -1180,24 +1141,18 @@ int QCNT;</code></pre><p>note 那一排暴露啦，这命名空间 lkjjhkfdlhgkj
 <h3 id="锁屏"><a href="#锁屏" class="headerlink" title="锁屏"></a>锁屏</h3><p>i3 默认没有锁屏，为了防机惨，锁屏还是很有必要的。</p>
 <p>下载 i3lock: <code>sudo aptitude install i3lock</code>.<br>直接 <code>i3lcok</code> 就可以锁屏，<code>i3lock -i (YOUR_PNG)</code> 还可以设置锁屏壁纸。<br>需要快捷键锁屏的话，加上一句配置就行了：  </p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">bindsym $mod+Tab exec i3lock # Win+Tab 锁屏</span><br></pre></td></tr></table></figure>
-
 <h3 id="工作区"><a href="#工作区" class="headerlink" title="工作区"></a>工作区</h3><p>i3 对工作区的数量没有限制，工作区的名字甚至可以有字母。<br>i3 默认配置里只提供了切换到 1 至 10 的快捷键，<br>但是有时候“切换到下一个工作区”和“切换到上一个工作区”可能更方便。<br>加上两句：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">bindsym $mod+comma workspace prev # Win+逗号</span><br><span class="line">bindsym $mod+period workspace next # Win+句号</span><br></pre></td></tr></table></figure>
-
 <p>另外，默认配置里，把一个窗口移动到某工作区的时候仍会停留在原工作区，<br>想改变这点，<br>把 <code>move container to workspace x</code> 后面加上 <code>; workspace x</code> 即可。</p>
 <h3 id="i3bar"><a href="#i3bar" class="headerlink" title="i3bar"></a>i3bar</h3><p>个人超喜欢 i3bar ，因为它可以接受任何一个程序的输出。<br>这意味着你可以完全自由地定制 i3bar 。</p>
 <p>找到 <code>bar {</code> 这行。<br>bar 的模式有三种：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mode hide # Auto display</span><br><span class="line">mode invisible # Never display</span><br><span class="line">mode dock # Alway display</span><br></pre></td></tr></table></figure>
-
 <p>位置有两种：  </p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">position top</span><br><span class="line">position bottom</span><br></pre></td></tr></table></figure>
-
 <p>重点来了，定义处理程序这一项：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">status_command i3status</span><br></pre></td></tr></table></figure>
-
 <p>可以看到默认使用 i3status 作为处理，i3status 本身也可以配置，<br>但是如果想自由配置，你可以写个程序，输出一个 json ，接口比较复杂，<br>在此不赘述，你可以在 ~/.config/i3status/config 里加几行：  </p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">general &#123;</span><br><span class="line">	   output_format = &quot;i3bar&quot;</span><br><span class="line">	   colors = true</span><br><span class="line">	   interval = 5</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>再运行 <code>i3status</code> 依葫芦画瓢就是了。</p>
 <h3 id="i3-gaps"><a href="#i3-gaps" class="headerlink" title="i3-gaps"></a>i3-gaps</h3><p>如果你希望窗口平铺之间会有间隙，i3-gaps 会满足你。<br>如果你用 Debian, Ubuntu ，<br>去 github 上搜 i3-gaps-deb clone 下来后运行 i3-gaps-deb 就行了。<br>如果用 Arch ，软件包管理器里有，直接下。</p>
 <h3 id="透明"><a href="#透明" class="headerlink" title="透明"></a>透明</h3><p>也许你给终端模拟器设置了透明度，很遗憾，在 i3 上没用。<br>解决方案是下载 compton ，运行 <code>compton -b</code> 即可。</p>
@@ -1240,63 +1195,35 @@ int QCNT;</code></pre><p>note 那一排暴露啦，这命名空间 lkjjhkfdlhgkj
   <entry>
     <title>i3lock</title>
     <url>/2019/10/09/i3lock/</url>
-    <content><![CDATA[<p><img src="http://kewth.gq/wp-content/uploads/2019/07/2_054-1.png" alt="i3lock-fancy"></p><p>折腾了半天 i3lock ，不写篇博客可惜了。</p><p>i3lock 有啥好折腾的？不就是挂个壁纸锁屏嘛。<br>就是因为 i3lock 太鸡肋了折腾啊。<br>于是我试过了 i3lock 的各种民间 fork 版本，在此总结。</p><h2 id="i3lock"><a href="#i3lock" class="headerlink" title="i3lock"></a><a href="https://github.com/i3/i3lock" target="_blank" rel="noopener">i3lock</a></h2><p>官方版本 i3lock ，稳定可靠，但是鸡肋。</p><p>安装：</p><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo aptitude install i3lock</span><br></pre></td></tr></table></figure><a id="more"></a>
+    <content><![CDATA[<p><img src="http://kewth.gq/wp-content/uploads/2019/07/2_054-1.png" alt="i3lock-fancy"></p><p>折腾了半天 i3lock ，不写篇博客可惜了。</p><p>i3lock 有啥好折腾的？不就是挂个壁纸锁屏嘛。<br>就是因为 i3lock 太鸡肋了折腾啊。<br>于是我试过了 i3lock 的各种民间 fork 版本，在此总结。</p><h2 id="i3lock"><a href="#i3lock" class="headerlink" title="i3lock"></a><a href="https://github.com/i3/i3lock" target="_blank" rel="noopener">i3lock</a></h2><p>官方版本 i3lock ，稳定可靠，但是鸡肋。</p><p>安装：<br><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo aptitude install i3lock</span><br></pre></td></tr></table></figure></p><a id="more"></a>
 
 
 
 
-
-
-<p>使用：</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">i3lock</span><br></pre></td></tr></table></figure>
-
+<p>使用：<br><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">i3lock</span><br></pre></td></tr></table></figure></p>
 <h2 id="i3lock-lixxia"><a href="#i3lock-lixxia" class="headerlink" title="i3lock-lixxia"></a><a href="https://github.com/Lixxia/i3lock" target="_blank" rel="noopener">i3lock-lixxia</a></h2><p>最友好，最简单的一个 i3lock fork ，<br>优化了中间显示的圆形框，并支持一些颜色自定义。</p>
-<p>安装：</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo aptitude remove i3lock</span><br><span class="line">sudo aptitude install pkg-config libxcb1-dev libxcb1 libgl2ps-dev libx11-dev libglc0 libglc-dev libcairo2-dev libcairo-gobject2 libcairo2-dev libxkbfile-dev libxkbfile1 libxkbcommon-dev libxkbcommon-x11-dev libxcb-xkb-dev libxcb-dpms0-dev libxcb-damage0-dev libpam0g-dev libev-dev libxcb-image0-dev libxcb-util0-dev libxcb-composite0-dev libxcb-xinerama0-dev</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/Lixxia/i3lock.git</span><br><span class="line"><span class="built_in">cd</span> i3lock</span><br><span class="line">autoreconf -<span class="keyword">fi</span></span><br><span class="line">mkdir -p build &amp;&amp; <span class="built_in">cd</span> build</span><br><span class="line">../configure</span><br><span class="line">make &amp;&amp; sudo make install</span><br></pre></td></tr></table></figure>
-
+<p>安装：<br><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo aptitude remove i3lock</span><br><span class="line">sudo aptitude install pkg-config libxcb1-dev libxcb1 libgl2ps-dev libx11-dev libglc0 libglc-dev libcairo2-dev libcairo-gobject2 libcairo2-dev libxkbfile-dev libxkbfile1 libxkbcommon-dev libxkbcommon-x11-dev libxcb-xkb-dev libxcb-dpms0-dev libxcb-damage0-dev libpam0g-dev libev-dev libxcb-image0-dev libxcb-util0-dev libxcb-composite0-dev libxcb-xinerama0-dev</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/Lixxia/i3lock.git</span><br><span class="line"><span class="built_in">cd</span> i3lock</span><br><span class="line">autoreconf -<span class="keyword">fi</span></span><br><span class="line">mkdir -p build &amp;&amp; <span class="built_in">cd</span> build</span><br><span class="line">../configure</span><br><span class="line">make &amp;&amp; sudo make install</span><br></pre></td></tr></table></figure></p>
 <p>顺带一提，只有这个 fork 给出了靠谱的源码安装方式，<br>其他 fork 甚至 i3lock 本身的安装方式都给得很不靠谱。</p>
-<p>使用：</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">i3lock</span><br></pre></td></tr></table></figure>
-
+<p>使用：<br><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">i3lock</span><br></pre></td></tr></table></figure></p>
 <h2 id="i3lock-blur"><a href="#i3lock-blur" class="headerlink" title="i3lock-blur"></a><a href="https://github.com/karulont/i3lock-blur" target="_blank" rel="noopener">i3lock-blur</a></h2><p>支持模糊背景，毛玻璃特效。</p>
-<p>安装：</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo aptitude remove i3lock</span><br><span class="line">sudo aptitude install pkg-config libxcb1-dev libxcb1 libgl2ps-dev libx11-dev libglc0 libglc-dev libcairo2-dev libcairo-gobject2 libcairo2-dev libxkbfile-dev libxkbfile1 libxkbcommon-dev libxkbcommon-x11-dev libxcb-xkb-dev libxcb-dpms0-dev libxcb-damage0-dev libpam0g-dev libev-dev libxcb-image0-dev libxcb-util0-dev libxcb-composite0-dev libxcb-xinerama0-dev</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/karulont/i3lock-blur.git</span><br><span class="line"><span class="built_in">cd</span> i3lock-blur</span><br><span class="line">autoreconf -<span class="keyword">fi</span></span><br><span class="line">mkdir -p build &amp;&amp; <span class="built_in">cd</span> build</span><br><span class="line">../configure</span><br><span class="line">make &amp;&amp; sudo make install</span><br></pre></td></tr></table></figure>
-
+<p>安装：<br><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo aptitude remove i3lock</span><br><span class="line">sudo aptitude install pkg-config libxcb1-dev libxcb1 libgl2ps-dev libx11-dev libglc0 libglc-dev libcairo2-dev libcairo-gobject2 libcairo2-dev libxkbfile-dev libxkbfile1 libxkbcommon-dev libxkbcommon-x11-dev libxcb-xkb-dev libxcb-dpms0-dev libxcb-damage0-dev libpam0g-dev libev-dev libxcb-image0-dev libxcb-util0-dev libxcb-composite0-dev libxcb-xinerama0-dev</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/karulont/i3lock-blur.git</span><br><span class="line"><span class="built_in">cd</span> i3lock-blur</span><br><span class="line">autoreconf -<span class="keyword">fi</span></span><br><span class="line">mkdir -p build &amp;&amp; <span class="built_in">cd</span> build</span><br><span class="line">../configure</span><br><span class="line">make &amp;&amp; sudo make install</span><br></pre></td></tr></table></figure></p>
 <p>再顺带一提，只有这个 fork 直接给出了需要安装那些库。</p>
-<p>使用：</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">i3lock --fuzzy</span><br></pre></td></tr></table></figure>
-
+<p>使用：<br><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">i3lock --fuzzy</span><br></pre></td></tr></table></figure></p>
 <h2 id="i3lockr"><a href="#i3lockr" class="headerlink" title="i3lockr"></a><a href="https://github.com/owenthewizard/i3lockr" target="_blank" rel="noopener">i3lockr</a></h2><p>支持模糊背景，毛玻璃特效。</p>
-<p>安装：</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">wget https://github.com/owenthewizard/i3lockr/releases/download/v1.0.0-final/i3lockr</span><br><span class="line">sudo mv i3lockr /usr/<span class="built_in">local</span>/bin</span><br></pre></td></tr></table></figure>
-
-<p>使用：</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">i3lockr --blur=25</span><br></pre></td></tr></table></figure>
-
+<p>安装：<br><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">wget https://github.com/owenthewizard/i3lockr/releases/download/v1.0.0-final/i3lockr</span><br><span class="line">sudo mv i3lockr /usr/<span class="built_in">local</span>/bin</span><br></pre></td></tr></table></figure></p>
+<p>使用：<br><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">i3lockr --blur=25</span><br></pre></td></tr></table></figure></p>
 <h2 id="i3lock-color"><a href="#i3lock-color" class="headerlink" title="i3lock-color"></a><a href="https://github.com/PandorasFox/i3lock-color" target="_blank" rel="noopener">i3lock-color</a></h2><p>对于颜色的自定义十分全面。</p>
-<p>安装：</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo aptitude remove i3lock</span><br><span class="line">sudo aptitude install pkg-config libxcb1-dev libxcb1 libgl2ps-dev libx11-dev libglc0 libglc-dev libcairo2-dev libcairo-gobject2 libcairo2-dev libxkbfile-dev libxkbfile1 libxkbcommon-dev libxkbcommon-x11-dev libxcb-xkb-dev libxcb-dpms0-dev libxcb-damage0-dev libpam0g-dev libev-dev libxcb-image0-dev libxcb-util0-dev libxcb-composite0-dev libxcb-xinerama0-dev</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/PandorasFox/i3lock-color</span><br><span class="line"><span class="built_in">cd</span> i3lock-color</span><br><span class="line">autoreconf -<span class="keyword">fi</span></span><br><span class="line">mkdir -p build &amp;&amp; <span class="built_in">cd</span> build</span><br><span class="line">../configure</span><br><span class="line">make &amp;&amp; sudo make install</span><br></pre></td></tr></table></figure>
-
-<p>使用：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">i3lock</span><br></pre></td></tr></table></figure>
-
+<p>安装：<br><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo aptitude remove i3lock</span><br><span class="line">sudo aptitude install pkg-config libxcb1-dev libxcb1 libgl2ps-dev libx11-dev libglc0 libglc-dev libcairo2-dev libcairo-gobject2 libcairo2-dev libxkbfile-dev libxkbfile1 libxkbcommon-dev libxkbcommon-x11-dev libxcb-xkb-dev libxcb-dpms0-dev libxcb-damage0-dev libpam0g-dev libev-dev libxcb-image0-dev libxcb-util0-dev libxcb-composite0-dev libxcb-xinerama0-dev</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/PandorasFox/i3lock-color</span><br><span class="line"><span class="built_in">cd</span> i3lock-color</span><br><span class="line">autoreconf -<span class="keyword">fi</span></span><br><span class="line">mkdir -p build &amp;&amp; <span class="built_in">cd</span> build</span><br><span class="line">../configure</span><br><span class="line">make &amp;&amp; sudo make install</span><br></pre></td></tr></table></figure></p>
+<p>使用：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">i3lock</span><br></pre></td></tr></table></figure></p>
 <h2 id="i3lock-fancy"><a href="#i3lock-fancy" class="headerlink" title="i3lock-fancy"></a><a href="https://github.com/meskarune/i3lock-fancy" target="_blank" rel="noopener">i3lock-fancy</a></h2><p>重头戏，star 最多的 fork ，甚至比 i3lock 本身更多，被广泛使用。</p>
-<p>安装：</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo aptitude install i3lock-fancy</span><br></pre></td></tr></table></figure>
-
-<p>使用：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">i3lock-fancy</span><br></pre></td></tr></table></figure>
-
+<p>安装：<br><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo aptitude install i3lock-fancy</span><br></pre></td></tr></table></figure></p>
+<p>使用：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">i3lock-fancy</span><br></pre></td></tr></table></figure></p>
 <p>依赖 i3lock ，实际上是产生了背景图片再调用 i3lock 。<br>默认使用模糊背景，用起来没什么问题，但是事实上，<br>圆形框的颜色并不是最正确的，而是兼容的。</p>
-<p>源码里有这样一条：</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment"># try to use a forked version of i3lock with prepared parameters</span></span><br><span class="line"><span class="keyword">if</span> ! i3lock -n <span class="string">"<span class="variable">$&#123;PARAM[@]&#125;</span>"</span> -i <span class="string">"<span class="variable">$IMAGE</span>"</span> &gt; /dev/null 2&gt;&amp;1; <span class="keyword">then</span></span><br><span class="line">    <span class="comment"># We have failed, lets get back to stock one</span></span><br><span class="line">    i3lock -n -i <span class="string">"<span class="variable">$IMAGE</span>"</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
-
+<p>源码里有这样一条：<br><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment"># try to use a forked version of i3lock with prepared parameters</span></span><br><span class="line"><span class="keyword">if</span> ! i3lock -n <span class="string">"<span class="variable">$&#123;PARAM[@]&#125;</span>"</span> -i <span class="string">"<span class="variable">$IMAGE</span>"</span> &gt; /dev/null 2&gt;&amp;1; <span class="keyword">then</span></span><br><span class="line">    <span class="comment"># We have failed, lets get back to stock one</span></span><br><span class="line">    i3lock -n -i <span class="string">"<span class="variable">$IMAGE</span>"</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure></p>
 <p>bash -x i3lock-fancy 就知道，<br>if 上的命令往往失败了，执行的是 if 里头的命令。</p>
 <p>事实上这需要 i3lock-color 。<br>那么，安装 i3lock-color 代替 i3lock 后，执行 i3lock-fancy ，<br>会发现圆形框的颜色与背景更加配了。</p>
 <h2 id="关于模糊背景"><a href="#关于模糊背景" class="headerlink" title="关于模糊背景"></a>关于模糊背景</h2><p>事实上，如果你用了 compton 再用 i3lock ，效果十分差劲。<br>解决这个方案，可以在调用 i3lock 前 kill compton ，结束后重新启动 compton 。</p>
-<p>拿 i3lock-fancy 举例，把之前展示的代码改成这样：</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment"># try to use a forked version of i3lock with prepared parameters</span></span><br><span class="line">pkill compton</span><br><span class="line"><span class="keyword">if</span> ! i3lock -n <span class="string">"<span class="variable">$&#123;PARAM[@]&#125;</span>"</span> -i <span class="string">"<span class="variable">$IMAGE</span>"</span> &gt; /dev/null 2&gt;&amp;1; <span class="keyword">then</span></span><br><span class="line">    <span class="comment"># We have failed, lets get back to stock one</span></span><br><span class="line">    i3lock -n -i <span class="string">"<span class="variable">$IMAGE</span>"</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line">compton -i 0.8 -b</span><br></pre></td></tr></table></figure>
-
+<p>拿 i3lock-fancy 举例，把之前展示的代码改成这样：<br><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment"># try to use a forked version of i3lock with prepared parameters</span></span><br><span class="line">pkill compton</span><br><span class="line"><span class="keyword">if</span> ! i3lock -n <span class="string">"<span class="variable">$&#123;PARAM[@]&#125;</span>"</span> -i <span class="string">"<span class="variable">$IMAGE</span>"</span> &gt; /dev/null 2&gt;&amp;1; <span class="keyword">then</span></span><br><span class="line">    <span class="comment"># We have failed, lets get back to stock one</span></span><br><span class="line">    i3lock -n -i <span class="string">"<span class="variable">$IMAGE</span>"</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line">compton -i 0.8 -b</span><br></pre></td></tr></table></figure></p>
 <p>其次，用模糊背景通常会比较慢，尤其是 i3lock-fancy ，需等上 3 秒左右。<br>那么如果调用 i3lock-fancy 之后你又做了一些别的操作，比如关闭一个窗口，<br>这时锁屏了，你会发现背景和原来的不一样。 :)</p>
 ]]></content>
   </entry>
@@ -1305,16 +1232,12 @@ int QCNT;</code></pre><p>note 那一排暴露啦，这命名空间 lkjjhkfdlhgkj
     <url>/2019/10/09/hello-world/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><a id="more"></a>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
 <p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
 <h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
 <p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
 <h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
 <p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
 <h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
 <p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
 ]]></content>
   </entry>

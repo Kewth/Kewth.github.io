@@ -4,7 +4,7 @@
 
 
 
-<html lang="en">
+<html lang="zh-CN">
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -14,7 +14,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.1">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.1">
   <link rel="mask-icon" href="/images/logo.svg?v=7.4.1" color="#222">
-  <link rel="alternate" href="/atom.xml" title="Kewth's Blog" type="application/atom+xml">
+  <link rel="alternate" href="/atom.xml" title="KeBlog" type="application/atom+xml">
 
 <link rel="stylesheet" href="/css/main.css?v=7.4.1">
 
@@ -48,22 +48,25 @@
     path: 'search.xml',
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     translation: {
-      copy_button: 'Copy',
-      copy_success: 'Copied',
-      copy_failure: 'Copy failed'
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
     },
     sidebarPadding: 40
   };
 </script>
 
-  <meta property="og:type" content="website">
+  <meta name="description" content="HNFMS 现役 OIer">
+<meta property="og:type" content="website">
 <meta property="og:title" content="标签">
 <meta property="og:url" content="http://yoursite.com/tags/index.html">
-<meta property="og:site_name" content="Kewth&#39;s Blog">
-<meta property="og:locale" content="en">
+<meta property="og:site_name" content="KeBlog">
+<meta property="og:description" content="HNFMS 现役 OIer">
+<meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2019-10-14T08:08:05.731Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="标签">
+<meta name="twitter:description" content="HNFMS 现役 OIer">
   <link rel="canonical" href="http://yoursite.com/tags/">
 
 
@@ -79,7 +82,7 @@
 </script>
 
   <title>
-      标签 | Kewth's Blog
+      标签 | KeBlog
     
   </title>
   
@@ -127,14 +130,16 @@
     <div>
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Kewth's Blog</span>
+        <span class="site-title">KeBlog</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
+        <h1 class="site-subtitle" itemprop="description">The OI Blog of Kewth</h1>
+      
   </div>
 
   <div class="site-nav-toggle">
-    <div class="toggle" aria-label="Toggle navigation bar">
+    <div class="toggle" aria-label="切换导航栏">
       <span class="toggle-line toggle-line-first"></span>
       <span class="toggle-line toggle-line-middle"></span>
       <span class="toggle-line toggle-line-last"></span>
@@ -153,8 +158,17 @@
         <li class="menu-item menu-item-home">
       
     
+      
+      
+        
+      
+        
+      
+        
+      
+    
 
-    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
 
   </li>
       
@@ -166,8 +180,17 @@
         <li class="menu-item menu-item-about">
       
     
+      
+      
+        
+      
+        
+      
+        
+      
+    
 
-    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
 
   </li>
       
@@ -179,8 +202,19 @@
         <li class="menu-item menu-item-tags">
       
     
+      
+      
+        
+      
+        
+      
+        
+          
+        
+      
+    
 
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">26</span></a>
 
   </li>
       
@@ -192,8 +226,19 @@
         <li class="menu-item menu-item-categories">
       
     
+      
+      
+        
+      
+        
+          
+        
+      
+        
+      
+    
 
-    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">2</span></a>
 
   </li>
       
@@ -205,8 +250,19 @@
         <li class="menu-item menu-item-archives">
       
     
+      
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">35</span></a>
 
   </li>
       
@@ -255,7 +311,7 @@
     
     
     
-    <div class="post-block" lang="en">
+    <div class="post-block" lang="zh-CN">
       <header class="post-header">
 
 <h2 class="post-title" itemprop="name headline">标签
@@ -276,7 +332,7 @@
       <div class="post-body">
           <div class="tag-cloud">
             <div class="tag-cloud-title">
-              26 tags in total
+              目前共计 26 个标签
             </div>
             <div class="tag-cloud-tags">
               <a href="/tags/O-1/" style="font-size: 30px; color: #111">O(1)</a> <a href="/tags/RMQ/" style="font-size: 12px; color: #ccc">RMQ</a> <a href="/tags/ST-表/" style="font-size: 12px; color: #ccc">ST 表</a> <a href="/tags/XR/" style="font-size: 12px; color: #ccc">XR</a> <a href="/tags/codeforce/" style="font-size: 12px; color: #ccc">codeforce</a> <a href="/tags/cometoj/" style="font-size: 12px; color: #ccc">cometoj</a> <a href="/tags/gcd-lcm/" style="font-size: 12px; color: #ccc">gcd/lcm</a> <a href="/tags/min25/" style="font-size: 12px; color: #ccc">min25</a> <a href="/tags/二分/" style="font-size: 12px; color: #ccc">二分</a> <a href="/tags/二次剩余/" style="font-size: 12px; color: #ccc">二次剩余</a> <a href="/tags/分块/" style="font-size: 30px; color: #111">分块</a> <a href="/tags/同余/" style="font-size: 12px; color: #ccc">同余</a> <a href="/tags/多项式/" style="font-size: 12px; color: #ccc">多项式</a> <a href="/tags/快速幂/" style="font-size: 12px; color: #ccc">快速幂</a> <a href="/tags/数论/" style="font-size: 30px; color: #111">数论</a> <a href="/tags/杜教筛/" style="font-size: 12px; color: #ccc">杜教筛</a> <a href="/tags/欧几里得/" style="font-size: 12px; color: #ccc">欧几里得</a> <a href="/tags/洛谷/" style="font-size: 12px; color: #ccc">洛谷</a> <a href="/tags/离线/" style="font-size: 12px; color: #ccc">离线</a> <a href="/tags/筛法/" style="font-size: 12px; color: #ccc">筛法</a> <a href="/tags/算法扩展/" style="font-size: 30px; color: #111">算法扩展</a> <a href="/tags/线段树/" style="font-size: 12px; color: #ccc">线段树</a> <a href="/tags/莫队/" style="font-size: 12px; color: #ccc">莫队</a> <a href="/tags/逆序对/" style="font-size: 12px; color: #ccc">逆序对</a> <a href="/tags/随机/" style="font-size: 12px; color: #ccc">随机</a> <a href="/tags/黑科技/" style="font-size: 12px; color: #ccc">黑科技</a>
@@ -321,10 +377,10 @@
 
       <ul class="sidebar-nav motion-element">
         <li class="sidebar-nav-toc">
-          Table of Contents
+          文章目录
         </li>
         <li class="sidebar-nav-overview">
-          Overview
+          站点概览
         </li>
       </ul>
 
@@ -339,7 +395,7 @@
       src="/images/avatar.jpeg"
       alt="Kewth">
   <p class="site-author-name" itemprop="name">Kewth</p>
-  <div class="site-description" itemprop="description"></div>
+  <div class="site-description" itemprop="description">HNFMS 现役 OIer</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
@@ -348,7 +404,7 @@
           <a href="/archives/">
         
           <span class="site-state-item-count">35</span>
-          <span class="site-state-item-name">posts</span>
+          <span class="site-state-item-name">日志</span>
         </a>
       </div>
     
@@ -361,7 +417,7 @@
           
         
         <span class="site-state-item-count">2</span>
-        <span class="site-state-item-name">categories</span>
+        <span class="site-state-item-name">分类</span>
         </a>
       </div>
     
@@ -374,7 +430,7 @@
           
         
         <span class="site-state-item-count">26</span>
-        <span class="site-state-item-name">tags</span>
+        <span class="site-state-item-name">标签</span>
         </a>
       </div>
     
@@ -427,7 +483,7 @@
       
         
       
-        <a href="https://www.luogu.org/space/show?uid=52232" title="Luogu &rarr; https://www.luogu.org/space/show?uid=52232" rel="noopener" target="_blank"><i class="fa fa-fw fa-code"></i>Luogu</a>
+        <a href="https://www.luogu.org/space/show?uid=52232" title="Luogu &rarr; https://www.luogu.org/space/show?uid=52232" rel="noopener" target="_blank"><i class="fa fa-fw fa-code-fork"></i>Luogu</a>
       </span>
     
   </div>
@@ -472,16 +528,16 @@
   &copy; 
   <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
-    <i class="fa fa-user"></i>
+    <i class="fa fa-heartbeat"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Kewth</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0
   </div>
   <span class="post-meta-divider">|</span>
   <div class="theme-info">
       
-    Theme – <a href="https://muse.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.4.1
+    主题 – <a href="https://muse.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.4.1
   </div>
 
         
@@ -491,7 +547,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-user"></i>
       </span>
-      <span class="site-uv" title="Total Visitors">
+      <span class="site-uv" title="总访客量">
         <span id="busuanzi_value_site_uv"></span>
       </span>
     </span>
@@ -502,7 +558,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-eye"></i>
       </span>
-      <span class="site-pv" title="Total Views">
+      <span class="site-pv" title="总访问量">
         <span id="busuanzi_value_site_pv"></span>
       </span>
     </span>

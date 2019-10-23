@@ -4,7 +4,7 @@
 
 
 
-<html lang="en">
+<html lang="zh-CN">
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -14,7 +14,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.1">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.1">
   <link rel="mask-icon" href="/images/logo.svg?v=7.4.1" color="#222">
-  <link rel="alternate" href="/atom.xml" title="Kewth's Blog" type="application/atom+xml">
+  <link rel="alternate" href="/atom.xml" title="KeBlog" type="application/atom+xml">
 
 <link rel="stylesheet" href="/css/main.css?v=7.4.1">
 
@@ -48,9 +48,9 @@
     path: 'search.xml',
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     translation: {
-      copy_button: 'Copy',
-      copy_success: 'Copied',
-      copy_failure: 'Copy failed'
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
     },
     sidebarPadding: 40
   };
@@ -60,9 +60,9 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="FFT">
 <meta property="og:url" content="http://yoursite.com/2019/10/09/FFT/index.html">
-<meta property="og:site_name" content="Kewth&#39;s Blog">
+<meta property="og:site_name" content="KeBlog">
 <meta property="og:description" content="前置知识首先要知道关于 多项式 的一些知识。其次要对复数有一些了解。点值表示法从 多项式 中，已经知道了多项式乘法的朴素算法时间复杂度为 $ O(n^2) $ 。原因在于多项式是用系数表示法定义的。重新定义 n 次多项式 a 为满足 $ \forall k \in [0, n), a(x_k) = y_k $ 的多项式，于是可以用 n 个点 $ (x_k, y_k) $ 表示这个多项式 a ，这种">
-<meta property="og:locale" content="en">
+<meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://cdn.luogu.org/upload/pic/23926.png">
 <meta property="og:updated_time" content="2019-10-13T11:47:38.672Z">
 <meta name="twitter:card" content="summary">
@@ -83,7 +83,7 @@
   };
 </script>
 
-  <title>FFT | Kewth's Blog</title>
+  <title>FFT | KeBlog</title>
   
 
 
@@ -129,14 +129,16 @@
     <div>
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Kewth's Blog</span>
+        <span class="site-title">KeBlog</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
+        <h1 class="site-subtitle" itemprop="description">The OI Blog of Kewth</h1>
+      
   </div>
 
   <div class="site-nav-toggle">
-    <div class="toggle" aria-label="Toggle navigation bar">
+    <div class="toggle" aria-label="切换导航栏">
       <span class="toggle-line toggle-line-first"></span>
       <span class="toggle-line toggle-line-middle"></span>
       <span class="toggle-line toggle-line-last"></span>
@@ -155,8 +157,17 @@
         <li class="menu-item menu-item-home">
       
     
+      
+      
+        
+      
+        
+      
+        
+      
+    
 
-    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
 
   </li>
       
@@ -168,8 +179,17 @@
         <li class="menu-item menu-item-about">
       
     
+      
+      
+        
+      
+        
+      
+        
+      
+    
 
-    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
 
   </li>
       
@@ -181,8 +201,19 @@
         <li class="menu-item menu-item-tags">
       
     
+      
+      
+        
+      
+        
+      
+        
+          
+        
+      
+    
 
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">26</span></a>
 
   </li>
       
@@ -194,8 +225,19 @@
         <li class="menu-item menu-item-categories">
       
     
+      
+      
+        
+      
+        
+          
+        
+      
+        
+      
+    
 
-    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">2</span></a>
 
   </li>
       
@@ -207,8 +249,19 @@
         <li class="menu-item menu-item-archives">
       
     
+      
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">35</span></a>
 
   </li>
       
@@ -239,17 +292,17 @@
       
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/09/FFT/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Kewth">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="HNFMS 现役 OIer">
       <meta itemprop="image" content="/images/avatar.jpeg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Kewth's Blog">
+      <meta itemprop="name" content="KeBlog">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
@@ -267,13 +320,13 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              <span class="post-meta-item-text">Posted on</span>
+              <span class="post-meta-item-text">发表于</span>
 
               
                 
               
 
-              <time title="Created: 2019-10-09 21:00:00" itemprop="dateCreated datePublished" datetime="2019-10-09T21:00:00+08:00">2019-10-09</time>
+              <time title="创建时间：2019-10-09 21:00:00" itemprop="dateCreated datePublished" datetime="2019-10-09T21:00:00+08:00">2019-10-09</time>
             </span>
           
             
@@ -283,8 +336,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-10-13 19:47:38" itemprop="dateModified" datetime="2019-10-13T19:47:38+08:00">2019-10-13</time>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-10-13 19:47:38" itemprop="dateModified" datetime="2019-10-13T19:47:38+08:00">2019-10-13</time>
               </span>
             
           
@@ -292,7 +345,7 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">In</span>
+              <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/算法/" itemprop="url" rel="index">
@@ -307,11 +360,11 @@
           
 
           
-            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
-              <span class="post-meta-item-text">Views: </span>
+              <span class="post-meta-item-text">阅读次数：</span>
               <span id="busuanzi_value_page_pv"></span>
             </span>
           
@@ -331,30 +384,23 @@
 
 <p>点值表示法有什么优点呢？</p>
 <p>考虑用点值表示法的 n 次多项式 a, b 相乘的积 c ，满足：</p>
-<p>$$ \forall k \in [0, n), cy_k = c(cx_k) = a(ax_k) * b(bx_k) = ay_k * by_k $$</p>
-<p>发现这样按定义计算 c 的复杂度为 O(n) 。</p>
+<script type="math/tex; mode=display">\forall k \in [0, n), cy_k = c(cx_k) = a(ax_k) * b(bx_k) = ay_k * by_k</script><p>发现这样按定义计算 c 的复杂度为 O(n) 。</p>
 <p>于是 FFT 的基本思路诞生了：<br>把系数表示法的多项式 a, b 转换成点值表示法，<br>在点值表示法的定义下求出 a, b 的积 c ，<br>最后将 c 转换为系数表示法。</p>
 <h2 id="DFT"><a href="#DFT" class="headerlink" title="DFT"></a>DFT</h2><p>将系数表示法转换成点值表示法的方法就是 DFT 。</p>
 <p>设要转换的是 $ n = 2^m $ 次多项式 A （次数不足用 0 补）。<br>利用到单位根的性质，<br>目标是求出  n 个形如 $ (w_n^k, A(w_n^k)) $ 的点值<br>（ $ w_n $ 表示 n 次单位根）。</p>
 <p>$ w_n^k $ 的性质：<br>在复平面里对应的向量的倾斜角 x 为 $ 2 \pi \frac{k}{n} $ ，<br>根据欧拉公式，其值为</p>
-<p>$$ w_n^k = e^{x i} = cos(x) + i * sin(x) ;, ; x = 2 \pi \frac{k}{n} $$</p>
-<p>考虑按次数的奇偶将 A 分成两个多项式 A1, A2 。</p>
-<p>$$ A1(x) = \sum_{k=0}^{n/2} a_{2k+1} x^{2k+1} = x \sum_{k=0}^{n/2} a_{2k+1} x^k = x S1(x^2) $$</p>
-<p>$$ A2(x) = \sum_{k=0}^{n/2} a_{2k} x^{2k} = \sum_{k=0}^{n/2} a_{2k} x^k = S2(x^2) $$</p>
-<p>那么有 $ A(x) = A1(x) + A2(x) = x S1(x^2) + S2(x^2) $ 。</p>
+<script type="math/tex; mode=display">w_n^k = e^{x i} = cos(x) + i * sin(x) \;, \; x = 2 \pi \frac{k}{n}</script><p>考虑按次数的奇偶将 A 分成两个多项式 A1, A2 。</p>
+<script type="math/tex; mode=display">A1(x) = \sum_{k=0}^{n/2} a_{2k+1} x^{2k+1} = x \sum_{k=0}^{n/2} a_{2k+1} x^k = x S1(x^2)</script><script type="math/tex; mode=display">A2(x) = \sum_{k=0}^{n/2} a_{2k} x^{2k} = \sum_{k=0}^{n/2} a_{2k} x^k = S2(x^2)</script><p>那么有 $ A(x) = A1(x) + A2(x) = x S1(x^2) + S2(x^2) $ 。</p>
 <p>考虑分治处理，假设已经分治求出 S1, S2 在 $ w_{n/2}, w_{n/2}^2, w_{n/2}^3, …, w_{n/2}^{n/2}$<br>的点值。那么根据 A 与 S1, S2 的关系可以求出 A 在<br>$ w_{n/2}^{1/2}, w_{n/2}^{2/2}, w_{n/2}^{3/2}, …, w_{n/2}^{n/4} $ 的点值。</p>
 <p>根据单位根的性质有 $ w_{n/2}^k = w_n^{2k} $ ，<br>那么相当于直接求出了 A 在<br>$ w_n, w_n^2, w_n^3, …, w_n^{n/2} $ 的点值：</p>
-<p>$$ A(w_n^k) = w_n^k S1(w_{n/2}^k) + S2(w_{n/2}^k) $$</p>
-<p>这只解决了一半，也就是 k 在 1 到 n / 2 的点值，<br>考虑 <del>用奇技淫巧</del> 求出 k 在 n / 2 + 1 到 n 的点值。<br>单位根的性质可以给出一个奇技淫巧：<br> $ w_n^{n/2+k} = -w_n^k $ ，那么就有：</p>
-<p>$$ A(w_n^{n/2+k}) = w_n^{n/2+k} S1(w_{n/2}^{n/2+k}) + S2(w_{n/2}^{n/2+k}) = - w_n^k S1(w_{n/2}^k) + S2(w_{n/2}^k) $$</p>
-<p>Ojbk, 分治过程完成。</p>
+<script type="math/tex; mode=display">A(w_n^k) = w_n^k S1(w_{n/2}^k) + S2(w_{n/2}^k)</script><p>这只解决了一半，也就是 k 在 1 到 n / 2 的点值，<br>考虑 <del>用奇技淫巧</del> 求出 k 在 n / 2 + 1 到 n 的点值。<br>单位根的性质可以给出一个奇技淫巧：<br> $ w_n^{n/2+k} = -w_n^k $ ，那么就有：</p>
+<script type="math/tex; mode=display">A(w_n^{n/2+k}) = w_n^{n/2+k} S1(w_{n/2}^{n/2+k}) + S2(w_{n/2}^{n/2+k}) = - w_n^k S1(w_{n/2}^k) + S2(w_{n/2}^k)</script><p>Ojbk, 分治过程完成。</p>
 <h2 id="IDFT"><a href="#IDFT" class="headerlink" title="IDFT"></a>IDFT</h2><p>将点值表示法转换成系数表示法的方法就是 IDFT 。</p>
 <p>贴个结论：<br>IDFT 的过程相当于 DFT 的过程中把所有单位根沿 x 轴对称得出的结果在最后除以 n 。</p>
 <p><del>原因不详</del> ，<br>可以去膜拜一下 <a href="http://blog.miskcoo.com/2015/04/polynomial-multiplication-and-fast-fourier-transform" target="_blank" rel="noopener">Miskcoo</a> 。</p>
 <h2 id="迭代实现"><a href="#迭代实现" class="headerlink" title="迭代实现"></a>迭代实现</h2><p>上述过程用递归实现常数较大，因而有一个迭代实现 FFT 的快速版本。</p>
 <h3 id="蝴蝶操作"><a href="#蝴蝶操作" class="headerlink" title="蝴蝶操作"></a>蝴蝶操作</h3><p>FFT 的每个值都是由子问题的两个值转化而来，且这两个值可以转换成两个需要的值（ FFT 复杂度的保证）。<br>若用一个数组 a 表示多项式。<br>那么蝴蝶操作形如：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">complex</span> Wn; <span class="comment">// 单位根的幂</span></span><br><span class="line"><span class="keyword">complex</span> a0 = a[x], a1 = a[y];</span><br><span class="line">a[x] = a0 + a1 * Wn;</span><br><span class="line">a[y] = a1 + a0 * Wn;</span><br></pre></td></tr></table></figure>
-
 <p>这样取出了数组中两个值后再修改相应位置的两个值，就是蝴蝶操作。</p>
 <h3 id="Rader-排序"><a href="#Rader-排序" class="headerlink" title="Rader 排序"></a>Rader 排序</h3><p>Rader 排序的目的是让表示多项式的数组可以进行蝴蝶操作。</p>
 <p>盗图一张： <img src="https://cdn.luogu.org/upload/pic/23926.png" alt="luogu"></p>
@@ -364,7 +410,8 @@
 来观察一下最后序列的编号的二进制表示000, 100, 010, 110, 001, 101, 011, 111，
 是不是与原来 000, 001, 010, 011, 100, 101, 110, 111 相比，
 每个位置上的二进制位都反过来了？
-这样的变化叫做 Rader 排序。</code></pre>
+这样的变化叫做 Rader 排序。
+</code></pre>
     </div>
 
     
@@ -432,10 +479,10 @@
 
       <ul class="sidebar-nav motion-element">
         <li class="sidebar-nav-toc">
-          Table of Contents
+          文章目录
         </li>
         <li class="sidebar-nav-overview">
-          Overview
+          站点概览
         </li>
       </ul>
 
@@ -452,7 +499,7 @@
       src="/images/avatar.jpeg"
       alt="Kewth">
   <p class="site-author-name" itemprop="name">Kewth</p>
-  <div class="site-description" itemprop="description"></div>
+  <div class="site-description" itemprop="description">HNFMS 现役 OIer</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
@@ -461,7 +508,7 @@
           <a href="/archives/">
         
           <span class="site-state-item-count">35</span>
-          <span class="site-state-item-name">posts</span>
+          <span class="site-state-item-name">日志</span>
         </a>
       </div>
     
@@ -474,7 +521,7 @@
           
         
         <span class="site-state-item-count">2</span>
-        <span class="site-state-item-name">categories</span>
+        <span class="site-state-item-name">分类</span>
         </a>
       </div>
     
@@ -487,7 +534,7 @@
           
         
         <span class="site-state-item-count">26</span>
-        <span class="site-state-item-name">tags</span>
+        <span class="site-state-item-name">标签</span>
         </a>
       </div>
     
@@ -540,7 +587,7 @@
       
         
       
-        <a href="https://www.luogu.org/space/show?uid=52232" title="Luogu &rarr; https://www.luogu.org/space/show?uid=52232" rel="noopener" target="_blank"><i class="fa fa-fw fa-code"></i>Luogu</a>
+        <a href="https://www.luogu.org/space/show?uid=52232" title="Luogu &rarr; https://www.luogu.org/space/show?uid=52232" rel="noopener" target="_blank"><i class="fa fa-fw fa-code-fork"></i>Luogu</a>
       </span>
     
   </div>
@@ -585,16 +632,16 @@
   &copy; 
   <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
-    <i class="fa fa-user"></i>
+    <i class="fa fa-heartbeat"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Kewth</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0
   </div>
   <span class="post-meta-divider">|</span>
   <div class="theme-info">
       
-    Theme – <a href="https://muse.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.4.1
+    主题 – <a href="https://muse.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.4.1
   </div>
 
         
@@ -604,7 +651,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-user"></i>
       </span>
-      <span class="site-uv" title="Total Visitors">
+      <span class="site-uv" title="总访客量">
         <span id="busuanzi_value_site_uv"></span>
       </span>
     </span>
@@ -615,7 +662,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-eye"></i>
       </span>
-      <span class="site-pv" title="Total Views">
+      <span class="site-pv" title="总访问量">
         <span id="busuanzi_value_site_pv"></span>
       </span>
     </span>

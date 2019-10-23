@@ -4,7 +4,7 @@
 
 
 
-<html lang="en">
+<html lang="zh-CN">
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -14,7 +14,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.1">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.1">
   <link rel="mask-icon" href="/images/logo.svg?v=7.4.1" color="#222">
-  <link rel="alternate" href="/atom.xml" title="Kewth's Blog" type="application/atom+xml">
+  <link rel="alternate" href="/atom.xml" title="KeBlog" type="application/atom+xml">
 
 <link rel="stylesheet" href="/css/main.css?v=7.4.1">
 
@@ -48,9 +48,9 @@
     path: 'search.xml',
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     translation: {
-      copy_button: 'Copy',
-      copy_success: 'Copied',
-      copy_failure: 'Copy failed'
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
     },
     sidebarPadding: 40
   };
@@ -61,9 +61,9 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="O(1)黑科技">
 <meta property="og:url" content="http://yoursite.com/2019/10/10/O(1)黑科技/index.html">
-<meta property="og:site_name" content="Kewth&#39;s Blog">
+<meta property="og:site_name" content="KeBlog">
 <meta property="og:description" content="@CYJian 出了一道黑科技二合一，我就顺便跟着学了学。O(1) gcd在 O(V) 的预处理后可以做到 O(1) 查询 gcd ，其中 V 是权值的大小。主要利用到的一个性质是可以将任意 x 分解为三个数 a * b * c ， a, b, c 分别满足以下两个条件之一： 不超过 $\sqrt{x}$ 。 是质数。">
-<meta property="og:locale" content="en">
+<meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2019-10-14T11:42:50.438Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="O(1)黑科技">
@@ -82,7 +82,7 @@
   };
 </script>
 
-  <title>O(1)黑科技 | Kewth's Blog</title>
+  <title>O(1)黑科技 | KeBlog</title>
   
 
 
@@ -128,14 +128,16 @@
     <div>
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Kewth's Blog</span>
+        <span class="site-title">KeBlog</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
+        <h1 class="site-subtitle" itemprop="description">The OI Blog of Kewth</h1>
+      
   </div>
 
   <div class="site-nav-toggle">
-    <div class="toggle" aria-label="Toggle navigation bar">
+    <div class="toggle" aria-label="切换导航栏">
       <span class="toggle-line toggle-line-first"></span>
       <span class="toggle-line toggle-line-middle"></span>
       <span class="toggle-line toggle-line-last"></span>
@@ -154,8 +156,17 @@
         <li class="menu-item menu-item-home">
       
     
+      
+      
+        
+      
+        
+      
+        
+      
+    
 
-    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
 
   </li>
       
@@ -167,8 +178,17 @@
         <li class="menu-item menu-item-about">
       
     
+      
+      
+        
+      
+        
+      
+        
+      
+    
 
-    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
 
   </li>
       
@@ -180,8 +200,19 @@
         <li class="menu-item menu-item-tags">
       
     
+      
+      
+        
+      
+        
+      
+        
+          
+        
+      
+    
 
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">26</span></a>
 
   </li>
       
@@ -193,8 +224,19 @@
         <li class="menu-item menu-item-categories">
       
     
+      
+      
+        
+      
+        
+          
+        
+      
+        
+      
+    
 
-    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">2</span></a>
 
   </li>
       
@@ -206,8 +248,19 @@
         <li class="menu-item menu-item-archives">
       
     
+      
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">35</span></a>
 
   </li>
       
@@ -238,17 +291,17 @@
       
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/10/O(1)黑科技/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Kewth">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="HNFMS 现役 OIer">
       <meta itemprop="image" content="/images/avatar.jpeg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Kewth's Blog">
+      <meta itemprop="name" content="KeBlog">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
@@ -266,13 +319,13 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              <span class="post-meta-item-text">Posted on</span>
+              <span class="post-meta-item-text">发表于</span>
 
               
                 
               
 
-              <time title="Created: 2019-10-10 18:00:01" itemprop="dateCreated datePublished" datetime="2019-10-10T18:00:01+08:00">2019-10-10</time>
+              <time title="创建时间：2019-10-10 18:00:01" itemprop="dateCreated datePublished" datetime="2019-10-10T18:00:01+08:00">2019-10-10</time>
             </span>
           
             
@@ -282,8 +335,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-10-14 19:42:50" itemprop="dateModified" datetime="2019-10-14T19:42:50+08:00">2019-10-14</time>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-10-14 19:42:50" itemprop="dateModified" datetime="2019-10-14T19:42:50+08:00">2019-10-14</time>
               </span>
             
           
@@ -291,7 +344,7 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">In</span>
+              <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/算法/" itemprop="url" rel="index">
@@ -306,11 +359,11 @@
           
 
           
-            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
-              <span class="post-meta-item-text">Views: </span>
+              <span class="post-meta-item-text">阅读次数：</span>
               <span id="busuanzi_value_page_pv"></span>
             </span>
           
@@ -335,12 +388,10 @@
 <p>zzq 把满足这个性质的分解称为“迷之分解”，那我也这么叫吧。</p>
 <p>考虑证明一下，顺便构造一个“迷之分解”。</p>
 <p>找到 x 的最小质因子 p ，然后假设已知 x / p 的“迷之分解” A, B, C (A &lt;= B &lt;= C) 。<br>那么把 p 乘到 A 上就可以得到 x 的“迷之分解” A * p, B, C 。<br>分类讨论，如果 p 不超过 $\sqrt[4]{x}$ ，由于 A 是 A, B, C 三者中最小的，<br>一定满足 A 不超过 $\sqrt[3]{x/p}$ ，那么可得：</p>
-<p>$$A \cdot p \leq \sqrt[3]{x/p} \cdot p = \sqrt[3]{xp^2} \leq \sqrt{x}$$</p>
-<p>而如果 p 超过 $\sqrt[4]{x}$ ，由于 p 是最小质因子，<br>那么如果 x 的“迷之分解”有合数 C ， C 至少是 $p^2$ ，超过 $\sqrt{x}$ ，<br>那么 B 的大小就会比 p 小，与 p 是最小质因子矛盾，<br>因而此时 x 的“迷之分解”全是质数。</p>
+<script type="math/tex; mode=display">A \cdot p \leq \sqrt[3]{x/p} \cdot p = \sqrt[3]{xp^2} \leq \sqrt{x}</script><p>而如果 p 超过 $\sqrt[4]{x}$ ，由于 p 是最小质因子，<br>那么如果 x 的“迷之分解”有合数 C ， C 至少是 $p^2$ ，超过 $\sqrt{x}$ ，<br>那么 B 的大小就会比 p 小，与 p 是最小质因子矛盾，<br>因而此时 x 的“迷之分解”全是质数。</p>
 <p>“迷之分解”的分析就是这样，通过线性筛可以很好预处理出 O(V) 内的所有数的“迷之分解”。<br>只需筛出每个数的最小质因子即可按上述方法递推出“迷之分解”。<br>然后只需预处理出 $O(\sqrt{V})$ 内两两的 gcd ，为了不带 log ，需要递推预处理。<br>此时求 gcd(x, y) 只需对于 x 的“迷之分解” A, B, C 依次对 y 求 gcd （每次求 gcd 后把 y 除以该 gcd ），<br>以 A 为例，如果 A 不超过 $\sqrt{x}$ ，直接查表可以得到 gcd(A, y) （查的是 gcd(A mod y, A) ），<br>否则 A 为质数，简单讨论一下就可以得到 gcd(A, y) 了。</p>
 <p>关键部分参考实现：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> magic[maxv][<span class="number">3</span>]; <span class="comment">// 每个数的“迷之分解”</span></span><br><span class="line"><span class="keyword">int</span> gcd[maxb][maxb]; <span class="comment">// 预处理的 gcd</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">GCD</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> res = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i ++) &#123;</span><br><span class="line">		<span class="keyword">int</span> X = magic[x][i];</span><br><span class="line">		<span class="keyword">int</span> d;</span><br><span class="line">		<span class="keyword">if</span>(X &lt; maxb)</span><br><span class="line">			d = gcd[X][y % X];</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(y % X)</span><br><span class="line">			d = <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			d = X;</span><br><span class="line">		res *= d;</span><br><span class="line">		y /= d;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <h2 id="O-1-快速幂"><a href="#O-1-快速幂" class="headerlink" title="O(1) 快速幂"></a>O(1) 快速幂</h2><p>在 $O(\sqrt{p})$ 的预处理后可以做到对于一个固定的底数 O(1) 查询快速幂，<br>其中 p 是模数（或者上式是 $\sqrt{\phi(p)}$ ），或者是指数的范围。</p>
 <p>这个就简单得多，对于每个 $a^k$ 的指数 k 都可以表示为 $a \sqrt{p} + b$ 的形式，<br>满足 $a, b &lt; \sqrt{p}$ ，分别预处理即可，<br>即预处理 $a^0, a^1, a^2 … a^{\sqrt{p}}, a^{2\sqrt{p}}, a^{3\sqrt{p}} … a^p$ 。</p>
 
@@ -358,13 +409,13 @@
           
           <div class="post-tags">
             
-              <a href="/tags/gcd-lcm/" rel="tag"># gcd/lcm</a>
+              <a href="/tags/gcd-lcm/" rel="tag"><i class="fa fa-tag"></i> gcd/lcm</a>
             
-              <a href="/tags/快速幂/" rel="tag"># 快速幂</a>
+              <a href="/tags/快速幂/" rel="tag"><i class="fa fa-tag"></i> 快速幂</a>
             
-              <a href="/tags/黑科技/" rel="tag"># 黑科技</a>
+              <a href="/tags/黑科技/" rel="tag"><i class="fa fa-tag"></i> 黑科技</a>
             
-              <a href="/tags/O-1/" rel="tag"># O(1)</a>
+              <a href="/tags/O-1/" rel="tag"><i class="fa fa-tag"></i> O(1)</a>
             
           </div>
         
@@ -426,10 +477,10 @@
 
       <ul class="sidebar-nav motion-element">
         <li class="sidebar-nav-toc">
-          Table of Contents
+          文章目录
         </li>
         <li class="sidebar-nav-overview">
-          Overview
+          站点概览
         </li>
       </ul>
 
@@ -446,7 +497,7 @@
       src="/images/avatar.jpeg"
       alt="Kewth">
   <p class="site-author-name" itemprop="name">Kewth</p>
-  <div class="site-description" itemprop="description"></div>
+  <div class="site-description" itemprop="description">HNFMS 现役 OIer</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
@@ -455,7 +506,7 @@
           <a href="/archives/">
         
           <span class="site-state-item-count">35</span>
-          <span class="site-state-item-name">posts</span>
+          <span class="site-state-item-name">日志</span>
         </a>
       </div>
     
@@ -468,7 +519,7 @@
           
         
         <span class="site-state-item-count">2</span>
-        <span class="site-state-item-name">categories</span>
+        <span class="site-state-item-name">分类</span>
         </a>
       </div>
     
@@ -481,7 +532,7 @@
           
         
         <span class="site-state-item-count">26</span>
-        <span class="site-state-item-name">tags</span>
+        <span class="site-state-item-name">标签</span>
         </a>
       </div>
     
@@ -534,7 +585,7 @@
       
         
       
-        <a href="https://www.luogu.org/space/show?uid=52232" title="Luogu &rarr; https://www.luogu.org/space/show?uid=52232" rel="noopener" target="_blank"><i class="fa fa-fw fa-code"></i>Luogu</a>
+        <a href="https://www.luogu.org/space/show?uid=52232" title="Luogu &rarr; https://www.luogu.org/space/show?uid=52232" rel="noopener" target="_blank"><i class="fa fa-fw fa-code-fork"></i>Luogu</a>
       </span>
     
   </div>
@@ -579,16 +630,16 @@
   &copy; 
   <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
-    <i class="fa fa-user"></i>
+    <i class="fa fa-heartbeat"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Kewth</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0
   </div>
   <span class="post-meta-divider">|</span>
   <div class="theme-info">
       
-    Theme – <a href="https://muse.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.4.1
+    主题 – <a href="https://muse.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.4.1
   </div>
 
         
@@ -598,7 +649,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-user"></i>
       </span>
-      <span class="site-uv" title="Total Visitors">
+      <span class="site-uv" title="总访客量">
         <span id="busuanzi_value_site_uv"></span>
       </span>
     </span>
@@ -609,7 +660,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-eye"></i>
       </span>
-      <span class="site-pv" title="Total Views">
+      <span class="site-pv" title="总访问量">
         <span id="busuanzi_value_site_pv"></span>
       </span>
     </span>
