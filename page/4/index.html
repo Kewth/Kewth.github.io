@@ -337,7 +337,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>折腾了大半天，终于在本机搭了一个功能完备的服务器。<br>当然要记录一下啊。<br>不过这是搭建成功后的总结，可能有地方遗漏，有问题欢迎提出来。</p><h2 id="静态页面博客"><a href="#静态页面博客" class="headerlink" title="静态页面博客"></a>静态页面博客</h2><p>这个用 hexo 和 jekyll 直接就可以做到，本地跑 server 不成问题，<br>比较 easy ，不赘述，详见 hexo 或者 jekyll 的官网。</p><h2 id="动态页面博客"><a href="#动态页面博客" class="headerlink" title="动态页面博客"></a>动态页面博客</h2>
+          <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S apache2</span><br></pre></td></tr></table></figure><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl start httpd</span><br></pre></td></tr></table></figure><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S php php-apache php-fpm</span><br></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">LoadModule php7_module modules/libphp7.so</span><br><span class="line">AddType application/x-httpd-php-source .phps</span><br><span class="line">AddType application/x-httpd-php .php</span><br><span class="line">DirectoryIndex index.php index.html index.htm</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           
             <div class="post-button">
@@ -414,15 +414,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="历程"><a href="#历程" class="headerlink" title="历程"></a>历程</h2><ul>
-<li>最先用的是 Ubuntu 16.04 自带的 Unity 。</li>
-<li>更新 Ubuntu 后用的 Ubuntu 18.04 自带的 Gnome 。</li>
-<li>用了 Gnome 后学会了折腾，各种配置堆上。</li>
-<li>后来发现 Gnome 太卡太吃内存，并且才知道系统可以换桌面，<br>于是在 master 安利下换上 xfce 。</li>
-<li>xfce 很稳定很流畅，但是太丑，可玩性太低，于是换上高大上的 KDE 。</li>
-<li>中途还换过 enlightenment ，但是 enlightenment 的稳定性实在不敢恭维。</li>
-<li>最后用上了 i3 ，原因不详。</li>
-</ul>
+          <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bindsym $mod+Tab exec i3lock # Win+Tab 锁屏</span><br></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bindsym $mod+comma workspace prev # Win+逗号</span><br><span class="line">bindsym $mod+period workspace next # Win+句号</span><br></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mode hide # Auto display</span><br><span class="line">mode invisible # Never display</span><br><span class="line">mode dock # Alway display</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           
             <div class="post-button">
@@ -499,16 +491,118 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>先喷一句，没有大样例，差评。<br>再喷一句，数据水，好评。</p><p>预计 80’ ，实际 110’ 。</p><p>我真是个奇葩实际分比预计分高。。。</p><h2 id="Day0"><a href="#Day0" class="headerlink" title="Day0-"></a>Day0-</h2><p>省选前三天教练每天给我们推一道题，都是主席树应用（教练曰“线段树模板”）。<br>都是看了题解的思路才做出来的，自己想就找不到用主席树维护的地方。</p><p>不知道为什么这三天效率都挺高，这三天我 A 的题目估计有我平常一个星期的 A 题数。。。</p>
-          <!--noindex-->
           
-            <div class="post-button">
-              <a class="btn" href="/2019/10/09/HNOI2019/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
+先喷一句，没有大样例，差评。  
+再喷一句，数据水，好评。
+
+预计 80' ，实际 110' 。
+
+我真是个奇葩实际分比预计分高。。。
+
+## Day0-
+
+省选前三天教练每天给我们推一道题，都是主席树应用（教练曰“线段树模板”）。  
+都是看了题解的思路才做出来的，自己想就找不到用主席树维护的地方。
+
+不知道为什么这三天效率都挺高，这三天我 A 的题目估计有我平常一个星期的 A 题数。。。
+
+然而还没来得及复习每个知识点，省选就来了。
+
+## Day1
+
+预计 70' ，实际 40' 。
+
+### fish
+
+我看到这题的时候就意识到我只能打暴力了。  
+计算几何？我对这块一片空白。  
+好吧，硬要说思路我大概想得到枚举线段，按斜率搞个什么数据结构？  
+然后真的不会，敲暴力滚粗。
+
+预计 20' ，实际 20' 。
+
+### jojo
+
+前缀和后缀相同？求 KMP 的 fail 数组嘛。  
+暴力求，一次加几个字符就求几次 fail, 全加起来就是答案。  
+可持久化？版本树像个 AC 自动机，但是没管这么多，无脑写了个可持久化数组。  
+因为是把每个字符暴力求的，只能过前 50' 。
+结果我后面 30' tm TLE 了？ $ O(n log(n)) $ 的时空复杂度跑 1e5 要 6 秒？
+
+预计 50' ，实际 20' 。
+
+### polygon
+
+什么鬼畜题啊，简化一波题意。  
+把线段看做一个区间，除 (x, x + 1) 外每个区间一定可以划分成两个子区间。  
+然后把每个区间看做一个点，相当于有了一个满二叉树。  
+然后旋转操作就相当于把一个点 blablabla 换一下位置。  
+旋转次数可以贪心，方案数不会，大概要 DP ？  
+然后想着就求旋转次数吧，看看数据范围。。。  
+沃日 90% 的数据都要求方案数？小 W 的心情得多差啊。。。  
+当时我还没打其他题，感觉比较亏，就先做前面的题了，结果最后都没打。
+
+预计 0' ，实际 0' 。
+
+### Watering
+
+下午直接去机房颓废，死神 vs 火影真好玩。  
+还有被 lyy 安利太阳系争夺战，画风清新，内容硬核。
+
+## Day2
+
+emm, 我是来测数据湿度的。。。  
+结果真被我水过去了。。。
+
+预计 10' ，实际 70' 。
+
+所以说有想法就要实现 ~~不然就没事干了~~ 2333 。
+
+### tour
+
+u = v 或者 s[u] = s[v] 且 u, v 相邻的时候 (u, v) 一定是可行的。  
+其他点对 (u, v) 可行当且仅当 s[u] = s[v] 且存在 u -> u2, v -> v2 且 (u2, v2) 可行。  
+DP ？有环。  
+然后就只能把一个点对看做一个点，对于新的点建图，如果从初始的可行点能跑到 (u, v) 则 (u, v) 可行。  
+点数 $ O(n^2) $ ，边数 $ O(m^2) $ ，复杂度 $ O(n^2 + m^2 + q) $ 。  
+然而第一档暴力 m 就有 1e4 ， **纯随机数据开O2** 本地测了一下跑 5s, 真棒。
+
+预计 0' ，实际 30' 。
+
+### dance
+
+好迷啊，看了看 n = 1 有 40' ，就去想 n = 1 怎么做，  
+推了推就是个式子： $ ans_i = \sum_{j=0} C_L^{i+j k} W^{i+j k} $ 。
+把每个 $ C_L^x W^x $ 算一遍，快速幂复杂度 $ O(L log(L)) $ ，  
+然而 L 有 1e8 。。。  
+线性都跑不过去吧这，但我实在没别的思路，就想试试线性。  
+做法就是预处理，预处理 L 以内的逆元和 $ W_i $ ，再线性求一排的组合数。  
+时空复杂度都是 $ O(L) $ ， **开 O2** 本地测试 17s, 就算不 TLE 都得 MLE 。
+
+预计 0' ，实际 30' （考完后再放本地测可以水 40' woc）。
+
+看了看实际的 L 只有 1e7 到 2e7 左右，真棒。
+至于空间，我还算有点脑子搞了波动态开空间，不然直接开 1e8 的数组肯定得炸。
+
+### sequence
+
+b 是整数的话还能枚举枚举。分数？没救了感觉。  
+于是只打了 10' 的整数 DP 。
+
+预计 10' ，实际 10' 。
+
+### Watering
+
+下午本来打算去黄兴街打游戏的，先去麦克唐纳德吃中饭，吃完后发现就已经 3 点多了没什么时间。  
+于是放弃了 xbox 又回到机房颓废，死神 vs 火影昨天已经玩熟练了，打起来比较轻松。
+
+## Day3+
+
+省选完了，结果并不想想象的那样，即使运气眷顾了我还是 wei 的一批。  
+实力不够啊，说啥都是扯淡。
+
+常规欠下的帐也该还了，滚回去学文化课啦，接受作业的洗礼。
+
         
       
     </div>
@@ -576,7 +670,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><img src="http://kewth.gq/wp-content/uploads/2019/07/2_054-1.png" alt="i3lock-fancy"></p><p>折腾了半天 i3lock ，不写篇博客可惜了。</p><p>i3lock 有啥好折腾的？不就是挂个壁纸锁屏嘛。<br>就是因为 i3lock 太鸡肋了折腾啊。<br>于是我试过了 i3lock 的各种民间 fork 版本，在此总结。</p><h2 id="i3lock"><a href="#i3lock" class="headerlink" title="i3lock"></a><a href="https://github.com/i3/i3lock" target="_blank" rel="noopener">i3lock</a></h2><p>官方版本 i3lock ，稳定可靠，但是鸡肋。</p><p>安装：<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo aptitude install i3lock</span><br></pre></td></tr></table></figure></p>
+          <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo aptitude install i3lock</span><br></pre></td></tr></table></figure><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">i3lock</span><br></pre></td></tr></table></figure><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sudo aptitude remove i3lock</span><br><span class="line">sudo aptitude install pkg-config libxcb1-dev libxcb1 libgl2ps-dev libx11-dev libglc0 libglc-dev libcairo2-dev libcairo-gobject2 libcairo2-dev libxkbfile-dev libxkbfile1 libxkbcommon-dev libxkbcommon-x11-dev libxcb-xkb-dev libxcb-dpms0-dev libxcb-damage0-dev libpam0g-dev libev-dev libxcb-image0-dev libxcb-util0-dev libxcb-composite0-dev libxcb-xinerama0-dev</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/Lixxia/i3lock.git</span><br><span class="line"><span class="built_in">cd</span> i3lock</span><br><span class="line">autoreconf -<span class="keyword">fi</span></span><br><span class="line">mkdir -p build &amp;&amp; <span class="built_in">cd</span> build</span><br><span class="line">../configure</span><br><span class="line">make &amp;&amp; sudo make install</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           
             <div class="post-button">
@@ -653,16 +747,34 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-          <!--noindex-->
-          
-            <div class="post-button">
-              <a class="btn" href="/2019/10/09/hello-world/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
+          Welcome to [Hexo](https://hexo.io/)! This is your very first post. Check [documentation](https://hexo.io/docs/) for more info. If you get any problems when using Hexo, you can find the answer in [troubleshooting](https://hexo.io/docs/troubleshooting.html) or you can ask me on [GitHub](https://github.com/hexojs/hexo/issues).
+
+## Quick Start
+
+### Create a new post
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+
+More info: [Writing](https://hexo.io/docs/writing.html)
+
+### Run server
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+More info: [Server](https://hexo.io/docs/server.html)
+
+### Generate static files
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+More info: [Generating](https://hexo.io/docs/generating.html)
+
+### Deploy to remote sites
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+More info: [Deployment](https://hexo.io/docs/deployment.html)
+
         
       
     </div>

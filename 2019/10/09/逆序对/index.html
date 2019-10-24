@@ -56,18 +56,18 @@
   };
 </script>
 
-  <meta name="description" content="在数列 a 中,逆序对即是满足 $i &amp;lt; j$ 且 $a_i &amp;gt; a_j$ 的数对。许多情况下你推式子推着推着就推出个 $\sum_{i=1}^n \sum_{j=i+1}^n a_i&amp;gt; a_j$，这就是逆序对的数量。暴力朴素的求法自然是 $O(n^2)$ 地枚举 $i, j$ 统计，这里不再赘述。">
+  <meta name="description" content="在数列 a 中,逆序对即是满足 $i &amp;lt; j$ 且 $a_i &amp;gt; a_j$ 的数对。 许多情况下你推式子推着推着就推出个 $\sum_{i=1}^n \sum_{j=i+1}^n a_i&amp;gt; a_j$， 这就是逆序对的数量。  ## 暴力  朴素的求法自然是 $O(n^2)$ 地枚举 $i, j$ 统计，这里不再赘述。  ## 归并  前置技能：归并排序。  这应该是最主流的求逆序对的方法了。">
 <meta name="keywords" content="逆序对">
 <meta property="og:type" content="article">
 <meta property="og:title" content="逆序对">
 <meta property="og:url" content="http://yoursite.com/2019/10/09/逆序对/index.html">
 <meta property="og:site_name" content="KeBlog">
-<meta property="og:description" content="在数列 a 中,逆序对即是满足 $i &amp;lt; j$ 且 $a_i &amp;gt; a_j$ 的数对。许多情况下你推式子推着推着就推出个 $\sum_{i=1}^n \sum_{j=i+1}^n a_i&amp;gt; a_j$，这就是逆序对的数量。暴力朴素的求法自然是 $O(n^2)$ 地枚举 $i, j$ 统计，这里不再赘述。">
+<meta property="og:description" content="在数列 a 中,逆序对即是满足 $i &amp;lt; j$ 且 $a_i &amp;gt; a_j$ 的数对。 许多情况下你推式子推着推着就推出个 $\sum_{i=1}^n \sum_{j=i+1}^n a_i&amp;gt; a_j$， 这就是逆序对的数量。  ## 暴力  朴素的求法自然是 $O(n^2)$ 地枚举 $i, j$ 统计，这里不再赘述。  ## 归并  前置技能：归并排序。  这应该是最主流的求逆序对的方法了。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2019-10-14T10:57:22.312Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="逆序对">
-<meta name="twitter:description" content="在数列 a 中,逆序对即是满足 $i &amp;lt; j$ 且 $a_i &amp;gt; a_j$ 的数对。许多情况下你推式子推着推着就推出个 $\sum_{i=1}^n \sum_{j=i+1}^n a_i&amp;gt; a_j$，这就是逆序对的数量。暴力朴素的求法自然是 $O(n^2)$ 地枚举 $i, j$ 统计，这里不再赘述。">
+<meta name="twitter:description" content="在数列 a 中,逆序对即是满足 $i &amp;lt; j$ 且 $a_i &amp;gt; a_j$ 的数对。 许多情况下你推式子推着推着就推出个 $\sum_{i=1}^n \sum_{j=i+1}^n a_i&amp;gt; a_j$， 这就是逆序对的数量。  ## 暴力  朴素的求法自然是 $O(n^2)$ 地枚举 $i, j$ 统计，这里不再赘述。  ## 归并  前置技能：归并排序。  这应该是最主流的求逆序对的方法了。">
   <link rel="canonical" href="http://yoursite.com/2019/10/09/逆序对/">
 
 
@@ -377,29 +377,83 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>在数列 a 中,逆序对即是满足 $i &lt; j$ 且 $a_i &gt; a_j$ 的数对。<br>许多情况下你推式子推着推着就推出个 $\sum_{i=1}^n \sum_{j=i+1}^n a_i&gt; a_j$，<br>这就是逆序对的数量。</p><h2 id="暴力"><a href="#暴力" class="headerlink" title="暴力"></a>暴力</h2><p>朴素的求法自然是 $O(n^2)$ 地枚举 $i, j$ 统计，这里不再赘述。</p><a id="more"></a>
+        
+在数列 a 中,逆序对即是满足 $i < j$ 且 $a_i > a_j$ 的数对。
+许多情况下你推式子推着推着就推出个 $\sum_{i=1}^n \sum_{j=i+1}^n a_i> a_j$，
+这就是逆序对的数量。
 
-<h2 id="归并"><a href="#归并" class="headerlink" title="归并"></a>归并</h2><p>前置技能：归并排序。</p>
-<p>这应该是最主流的求逆序对的方法了。</p>
-<p>要求一个区间内的逆序对数，假设已经递归求出两个子区间的逆序对数，<br>接下来要做的就是求一个在左区间，一个在右区间的逆序对数。</p>
-<p>考虑归并排序的过程，在两个指针比较大小时进行统计。</p>
-<p>设左右区间的当前比较指针（下标）为 p1, p2,<br>当找到第一个 p2 使 $a_{p1}&lt; a_{p2}$ 时，可知 $\forall i\in [p1max+1, p2),\;a_{p1}&gt; a_{p2}$ 。<br>那么横跨两个子区间的以 p1 为左端点的逆序对就有 p2-p1max-1 个。<br>对所有 p1 统计和即可。</p>
-<p>值得注意的是，p2&gt;r（区间右端点）退出时，<br>此时左区间未处理的数对答案都有 r-p1max 的贡献因为此时左区间剩下的数都比右区间所有数大。</p>
-<p>复杂度 $O(n \cdot log_2n)$ 。</p>
-<h2 id="线段树-树状数组："><a href="#线段树-树状数组：" class="headerlink" title="线段树/树状数组："></a>线段树/树状数组：</h2><p>前置技能：线段树（或树状数组）。</p>
-<p>以线段树为例。</p>
-<h3 id="做法-1"><a href="#做法-1" class="headerlink" title="做法 1"></a>做法 1</h3><p>用线段树维护区间内有效数的个数。<br>之所以是有效的数，是因为要从小到大删数。<br>如果一个数 $a_i$ 是最小的，那么以其为右端点的逆序对就是 1 至 i-1 的数的个数。</p>
-<p>接下来呢？<br>在线段树中删掉最小的数（单点修改 -1），<br>那么第二小的数 $a_j$ 在此时就是最小的数，同样有 1 至 j-1 的数的个数（区间查询）的贡献。<br>以此类推从小到大一个个删数即可。</p>
-<p>复杂度$O(n \cdot log_2n)$。</p>
-<h3 id="做法-2"><a href="#做法-2" class="headerlink" title="做法 2"></a>做法 2</h3><p>离散化后用线段树维护一个桶。</p>
-<p>从左到右依次计算每个数为右端点的逆序对并加入桶，即对每个数求该数左边比该数大的数的个数。<br>设第 i 个数左边有 $f_i$ 个比 $a_i$ 大的数，那么 $f_i$ 的值即是当前线段树上 $a_i+1~a_{max}$ 的询问。</p>
-<p>同样复杂度是 $O(n \cdot log_2n)$。</p>
-<p>这种做法稍稍改变可以高效解决一种特殊的问题：</p>
-<p>对于 01 串求串中 1 的数量比 0 的数量大的区间的数量。</p>
-<p>比较容易想到的做法是将 0 看成 -1，区间中 1 比 0(-1) 多等价于区间和大于 0 。<br>区间和可以转换为前缀和 s，那么 l,r 这一区间和大于 0 等价于 $s_r - s_{l-1} &gt; 0 (r &gt;= l)$。<br>移项后即是 $s_r &gt; s_{l-1} (r &gt; l-1)$，所以题目可以转换为求前缀和的逆序对，<br>复杂度 $O(n \cdot log_2n)$ 。</p>
-<p><strong>但是</strong> 这个问题有特殊性，由 01 串的至可知相邻两个前缀和的差值一定是 1 ，<br>利用这一个性质可以有更高效的方法。</p>
-<p>用做法 2 求逆序对，从左到右依次扫，对于当前 $a_i$ 一定比 $a_{i-1}$ 大 1 或者小 1，<br>利用到这个差值，比 $a_i$ 大的数相当于当前线段树 $a_i+1$ 到 $a_{max}$ 的询问，<br>若 $a_i = a_{i-1}+1$ ，那么 $f_{i-1}$ 就是 $a_i$ 到 $a_{maxn}$ 的询问，否则就是 $a_i+2$ 到 $a_{max}$ 的询问。<br>那么 $f_i$ 与 $f_{i-1}$ 的差只在 $a_i$ 或 $a_i+2$ 中，长度为一，<br>完全没必要用线段树，用数组维护桶即可。</p>
-<p>复杂度 $O(n)$。</p>
+## 暴力
+
+朴素的求法自然是 $O(n^2)$ 地枚举 $i, j$ 统计，这里不再赘述。
+
+## 归并
+
+前置技能：归并排序。
+
+这应该是最主流的求逆序对的方法了。
+
+要求一个区间内的逆序对数，假设已经递归求出两个子区间的逆序对数，
+接下来要做的就是求一个在左区间，一个在右区间的逆序对数。
+
+考虑归并排序的过程，在两个指针比较大小时进行统计。
+
+设左右区间的当前比较指针（下标）为 p1, p2,
+当找到第一个 p2 使 $a_{p1}< a_{p2}$ 时，可知 $\forall i\in [p1max+1, p2),\;a_{p1}> a_{p2}$ 。
+那么横跨两个子区间的以 p1 为左端点的逆序对就有 p2-p1max-1 个。
+对所有 p1 统计和即可。
+
+值得注意的是，p2>r（区间右端点）退出时，
+此时左区间未处理的数对答案都有 r-p1max 的贡献因为此时左区间剩下的数都比右区间所有数大。
+
+复杂度 $O(n \cdot log_2n)$ 。
+
+## 线段树/树状数组：
+
+前置技能：线段树（或树状数组）。
+
+以线段树为例。
+
+### 做法 1
+
+用线段树维护区间内有效数的个数。
+之所以是有效的数，是因为要从小到大删数。
+如果一个数 $a_i$ 是最小的，那么以其为右端点的逆序对就是 1 至 i-1 的数的个数。
+
+接下来呢？
+在线段树中删掉最小的数（单点修改 -1），
+那么第二小的数 $a_j$ 在此时就是最小的数，同样有 1 至 j-1 的数的个数（区间查询）的贡献。
+以此类推从小到大一个个删数即可。
+
+复杂度$O(n \cdot log_2n)$。
+
+### 做法 2
+
+离散化后用线段树维护一个桶。
+
+从左到右依次计算每个数为右端点的逆序对并加入桶，即对每个数求该数左边比该数大的数的个数。
+设第 i 个数左边有 $f_i$ 个比 $a_i$ 大的数，那么 $f_i$ 的值即是当前线段树上 $a_i+1~a_{max}$ 的询问。
+
+同样复杂度是 $O(n \cdot log_2n)$。
+
+这种做法稍稍改变可以高效解决一种特殊的问题：
+
+对于 01 串求串中 1 的数量比 0 的数量大的区间的数量。
+
+比较容易想到的做法是将 0 看成 -1，区间中 1 比 0(-1) 多等价于区间和大于 0 。
+区间和可以转换为前缀和 s，那么 l,r 这一区间和大于 0 等价于 $s_r - s_{l-1} > 0 (r >= l)$。
+移项后即是 $s_r > s_{l-1} (r > l-1)$，所以题目可以转换为求前缀和的逆序对，
+复杂度 $O(n \cdot log_2n)$ 。
+
+**但是** 这个问题有特殊性，由 01 串的至可知相邻两个前缀和的差值一定是 1 ，
+利用这一个性质可以有更高效的方法。
+
+用做法 2 求逆序对，从左到右依次扫，对于当前 $a_i$ 一定比 $a_{i-1}$ 大 1 或者小 1，
+利用到这个差值，比 $a_i$ 大的数相当于当前线段树 $a_i+1$ 到 $a_{max}$ 的询问，
+若 $a_i = a_{i-1}+1$ ，那么 $f_{i-1}$ 就是 $a_i$ 到 $a_{maxn}$ 的询问，否则就是 $a_i+2$ 到 $a_{max}$ 的询问。
+那么 $f_i$ 与 $f_{i-1}$ 的差只在 $a_i$ 或 $a_i+2$ 中，长度为一，
+完全没必要用线段树，用数组维护桶即可。
+
+复杂度 $O(n)$。
 
     </div>
 
@@ -486,8 +540,6 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#暴力"><span class="nav-number">1.</span> <span class="nav-text">暴力</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#归并"><span class="nav-number">2.</span> <span class="nav-text">归并</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线段树-树状数组："><span class="nav-number">3.</span> <span class="nav-text">线段树/树状数组：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#做法-1"><span class="nav-number">3.1.</span> <span class="nav-text">做法 1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#做法-2"><span class="nav-number">3.2.</span> <span class="nav-text">做法 2</span></a></li></ol></li></ol></div>
-        
       </div>
       <!--/noindex-->
 
