@@ -64,7 +64,7 @@
 <meta property="og:site_name" content="KeBlog">
 <meta property="og:description" content="二次剩余，俗称模意义开根。也就是对于常数 $n$ 解这样一个方程：$$x^2 \equiv n \; (mod \; p)$$这里只介绍模数 $p$ 为奇素数的解法，也就是 Cipolla 算法。以下运算皆指模 $p$ 意义下的运算。解的数量严格来讲，非 0 数 $n$ 是二次剩余当且仅当方程 $x^2 \equiv n$ 有解，也就是能开根。上述方程无解的非 0 数 $n$ 称作非二次剩余。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-23T11:18:31.825Z">
+<meta property="og:updated_time" content="2019-10-25T23:52:43.487Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="二次剩余">
 <meta name="twitter:description" content="二次剩余，俗称模意义开根。也就是对于常数 $n$ 解这样一个方程：$$x^2 \equiv n \; (mod \; p)$$这里只介绍模数 $p$ 为奇素数的解法，也就是 Cipolla 算法。以下运算皆指模 $p$ 意义下的运算。解的数量严格来讲，非 0 数 $n$ 是二次剩余当且仅当方程 $x^2 \equiv n$ 有解，也就是能开根。上述方程无解的非 0 数 $n$ 称作非二次剩余。">
@@ -336,7 +336,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-10-23 19:18:31" itemprop="dateModified" datetime="2019-10-23T19:18:31+08:00">2019-10-23</time>
+                <time title="修改时间：2019-10-26 07:52:43" itemprop="dateModified" datetime="2019-10-26T07:52:43+08:00">2019-10-26</time>
               </span>
             
           
@@ -391,7 +391,7 @@
 <p>观察费马小定理 $n^{p-1} \equiv 1$ ，由于 $p$ 是奇素数，可以得到 $n^{2(\frac{p-1}{2})} - 1\equiv 0$ ，<br>也就是说 $n^{\frac{p-1}{2}}$ 是 1 开根的结果，根据上面所说， 1 开根只有两个解 1 和 -1 。<br>那么 $n^{\frac{p-1}{2}}$ 只能是 1 或 -1 。</p>
 <p>若 $n$ 是二次剩余，则有 $n^{\frac{p-1}{2}} \equiv (x^2)^{\frac{p-1}{2}} \equiv x^{p-1} \equiv 1$ 。</p>
 <p>若 $n^{\frac{p-1}{2}} \equiv 1$ ，将 $n$ 表示为 $g^k$ ， 其中 $g$ 是模 $p$ 意义下的原根。<br>那么有 $g^{k\frac{p-1}{2}} \equiv 1$ 由于 $g$ 是原根，必有 $p-1|k\frac{p-1}{2}$ ，<br>也就是说 $k$ 一定是偶数，那么令 $x \equiv g^{\frac{k}{2}}$ 即是 $n$ 开根的结果，这说明 $n$ 是二次剩余。</p>
-<p>也就是说 $n^{\frac{p-1}{2}} \equiv 1$ 与 $n$ 是二次剩余是等价的，<br>由于 $n^{\frac{p-1}{2}}$ 不为 1 是只能是 -1 ，那么 $n^{frac{p-1}{2}} \equiv -1$ 与 $n$ 是非二次剩余等价。</p>
+<p>也就是说 $n^{\frac{p-1}{2}} \equiv 1$ 与 $n$ 是二次剩余是等价的，<br>由于 $n^{\frac{p-1}{2}}$ 不为 1 是只能是 -1 ，那么 $n^{\frac{p-1}{2}} \equiv -1$ 与 $n$ 是非二次剩余等价。</p>
 <p><em>ps: 网上一堆伪证说若 $n$ 是非二次剩余，不存在 $x$ 使得上式为 1 ，但这只能说明上式为 -1 时 $n$ 是非二次剩余，并不能推翻“当 $n$ 是非二次剩余时上式为 1”</em></p>
 <h2 id="Cipolla"><a href="#Cipolla" class="headerlink" title="Cipolla"></a>Cipolla</h2><p>对于二次剩余解方程 $x^2 \equiv n$ 。</p>
 <p>找到一个 $a$ 满足 $a^2 - n$ 是非二次剩余，由于非二次剩余的数量接近 $\frac{p}{2}$ ，<br>通过随机 + 检验的方式期望约 2 次可以找到这样一个 $a$ 。</p>
