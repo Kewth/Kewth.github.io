@@ -213,7 +213,7 @@
       
     
 
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">26</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">30</span></a>
 
   </li>
       
@@ -384,13 +384,13 @@
 
 <p>点值表示法有什么优点呢？</p>
 <p>考虑用点值表示法的 n 次多项式 a, b 相乘的积 c ，满足：</p>
-<p>$$ \forall k \in [0, n), cy_k = c(cx_k) = a(ax_k) * b(bx_k) = ay_k * by_k $$</p>
+<p>$$ \forall k \in [0, n), cy_k = c(cx_k) = a(ax_k) <em> b(bx_k) = ay_k </em> by_k $$</p>
 <p>发现这样按定义计算 c 的复杂度为 O(n) 。</p>
 <p>于是 FFT 的基本思路诞生了：<br>把系数表示法的多项式 a, b 转换成点值表示法，<br>在点值表示法的定义下求出 a, b 的积 c ，<br>最后将 c 转换为系数表示法。</p>
 <h2 id="DFT"><a href="#DFT" class="headerlink" title="DFT"></a>DFT</h2><p>将系数表示法转换成点值表示法的方法就是 DFT 。</p>
 <p>设要转换的是 $ n = 2^m $ 次多项式 A （次数不足用 0 补）。<br>利用到单位根的性质，<br>目标是求出  n 个形如 $ (w_n^k, A(w_n^k)) $ 的点值<br>（ $ w_n $ 表示 n 次单位根）。</p>
 <p>$ w_n^k $ 的性质：<br>在复平面里对应的向量的倾斜角 x 为 $ 2 \pi \frac{k}{n} $ ，<br>根据欧拉公式，其值为</p>
-<p>$$ w_n^k = e^{x i} = cos(x) + i * sin(x) ;, ; x = 2 \pi \frac{k}{n} $$</p>
+<p>$$ w_n^k = e^{x i} = cos(x) + i * sin(x) \;, \; x = 2 \pi \frac{k}{n} $$</p>
 <p>考虑按次数的奇偶将 A 分成两个多项式 A1, A2 。</p>
 <p>$$ A1(x) = \sum_{k=0}^{n/2} a_{2k+1} x^{2k+1} = x \sum_{k=0}^{n/2} a_{2k+1} x^k = x S1(x^2) $$</p>
 <p>$$ A2(x) = \sum_{k=0}^{n/2} a_{2k} x^{2k} = \sum_{k=0}^{n/2} a_{2k} x^k = S2(x^2) $$</p>
@@ -539,7 +539,7 @@
             <a href="/tags/">
           
         
-        <span class="site-state-item-count">26</span>
+        <span class="site-state-item-count">30</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
