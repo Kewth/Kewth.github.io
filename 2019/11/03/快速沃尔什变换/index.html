@@ -64,7 +64,7 @@
 <meta property="og:site_name" content="KeBlog">
 <meta property="og:description" content="快速沃尔什变换，简称 FWT ，目前在 OI 中十分冷门。用处多项式卷积一般是这样的：$$ C_i = \sum_{j + k = i} A_j \cdot B_k $$这个可以用 FFT 快速求解。然而还有一个诡异的卷积：$$ C_i = \sum_{j \oplus k = i} A_j \cdot B_k $$">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-11-03T09:36:01.793Z">
+<meta property="og:updated_time" content="2019-11-04T03:36:53.692Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="快速沃尔什变换">
 <meta name="twitter:description" content="快速沃尔什变换，简称 FWT ，目前在 OI 中十分冷门。用处多项式卷积一般是这样的：$$ C_i = \sum_{j + k = i} A_j \cdot B_k $$这个可以用 FFT 快速求解。然而还有一个诡异的卷积：$$ C_i = \sum_{j \oplus k = i} A_j \cdot B_k $$">
@@ -212,7 +212,7 @@
       
     
 
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">30</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">33</span></a>
 
   </li>
       
@@ -260,7 +260,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">36</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">37</span></a>
 
   </li>
       
@@ -325,11 +325,19 @@
                 
               
 
-              <time title="创建时间：2019-11-03 17:35:00 / 修改时间：17:36:01" itemprop="dateCreated datePublished" datetime="2019-11-03T17:35:00+08:00">2019-11-03</time>
+              <time title="创建时间：2019-11-03 17:35:00" itemprop="dateCreated datePublished" datetime="2019-11-03T17:35:00+08:00">2019-11-03</time>
             </span>
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-11-04 11:36:53" itemprop="dateModified" datetime="2019-11-04T11:36:53+08:00">2019-11-04</time>
+              </span>
             
           
             <span class="post-meta-item">
@@ -427,14 +435,14 @@
 <li>异或： f00 = 1, f01 = 1, f10 = 1, f01 = -1</li>
 </ul>
 <p>可以自行验证，这些 f 满足上述性质。</p>
-<h2 id="实际意义"><a href="#实际意义" class="headerlink" title="实际意义"></a>实际意义</h2><p>一个多项式 A FFT 后的 A2(x) 实际意义就是 A 在 $ W_n^x $ 上的值（点值表示）。</p>
+<h2 id="实际意义"><a href="#实际意义" class="headerlink" title="实际意义"></a>实际意义</h2><p>一个多项式 A FFT 后的 $A2_x$ 实际意义就是 A 在 $ W_n^x $ 上的值（点值表示）。</p>
 <p>那么 A FWT 后的结果的现实意义呢？<br>这得分类来说。</p>
-<h3 id="按位或"><a href="#按位或" class="headerlink" title="按位或"></a>按位或</h3><p>A 在做按位或的 FWT 之后得到的 A2 满足：<br>$$ A2(x) = \sum_{i|x=x} A(i) $$</p>
-<p>也就是说 A2(x) 表示 x 的每个子集 i 的 A(i) 的和。<br>不难得到，A2(x) * B2(x) 的结果 C2(x) 就是 A, B 卷积后的 C 的变换：<br>$$ A2(x) \cdot B2(x) = \sum_{i|x=x} A(i) \sum_{j|x=x} B(j) $$<br>$$ A2(x) \cdot B2(x) = \sum_{i|x=x} \sum_{j|x=x} A(i) B(j) $$<br>$$ A2(x) \cdot B2(x) = \sum_{k|x=x} \sum_{i|j=k} A(i) B(j) $$<br>$$ A2(x) \cdot B2(x) = \sum_{k|x=x} C(k) $$<br>$$ A2(x) \cdot B2(x) = C2(x) $$</p>
-<p>事实上，这也就是子集和变换。</p>
+<h3 id="按位或"><a href="#按位或" class="headerlink" title="按位或"></a>按位或</h3><p>A 在做按位或的 FWT 之后得到的 A2 满足：<br>$$ A2_x = \sum_{i|x=x} A_i $$</p>
+<p>也就是说 $A2_x$ 表示 x 的每个子集 i 的 $A_i$ 的和。<br>不难得到，$A2_x \cdot B2_x$ 的结果 $C2_x$ 就是 A, B 卷积后的 C 的变换：<br>$$ A2_x \cdot B2_x = \sum_{i|x=x} A_i \sum_{j|x=x} B_j $$<br>$$ A2_x \cdot B2_x = \sum_{i|x=x} \sum_{j|x=x} A_i B_j $$<br>$$ A2_x \cdot B2_x = \sum_{k|x=x} \sum_{i|j=k} A_i B_j $$<br>$$ A2_x \cdot B2_x = \sum_{k|x=x} C_k $$<br>$$ A2_x \cdot B2_x = C2_x $$</p>
+<p>事实上，这也就是子集和变换 FMT 。</p>
 <p><del>感性理解一下</del></p>
-<h3 id="按位与"><a href="#按位与" class="headerlink" title="按位与"></a>按位与</h3><p>和按位或类似的，A 在做按位与的 FWT 之后得到的 A2 满足：<br>$$ A2(x) = \sum_{i\&amp;x=x} A(i) $$</p>
-<p>也就是说 A2(x) 表示每个包含 x 的集合 i 的 A(i) 的和。<br>不难得到，A2(x) * B2(x) 的结果 C2(x) 就是 A, B 卷积后的 C 的变换：<br>$$ A2(x) \cdot B2(x) = \sum_{i\&amp;x=x} A(i) \sum_{j\&amp;x=x} B(j) $$<br>$$ A2(x) \cdot B2(x) = \sum_{i\&amp;x=x} \sum_{j\&amp;x=x} A(i) B(j) $$<br>$$ A2(x) \cdot B2(x) = \sum_{k\&amp;x=x} \sum_{i\&amp;j=k} A(i) B(j) $$<br>$$ A2(x) \cdot B2(x) = \sum_{k\&amp;x=x} C(k) $$<br>$$ A2(x) \cdot B2(x) = C2(x) $$</p>
+<h3 id="按位与"><a href="#按位与" class="headerlink" title="按位与"></a>按位与</h3><p>和按位或类似的，A 在做按位与的 FWT 之后得到的 A2 满足：<br>$$ A2_x = \sum_{i\&amp;x=x} A_i $$</p>
+<p>也就是说 $A2_x$ 表示每个包含 x 的集合 i 的 $A_i$ 的和。<br>不难得到，$A2_x \cdot B2_x$ 的结果 $C2_x$ 就是 A, B 卷积后的 C 的变换：<br>$$ A2_x \cdot B2_x = \sum_{i\&amp;x=x} A_i \sum_{j\&amp;x=x} B_j $$<br>$$ A2_x \cdot B2_x = \sum_{i\&amp;x=x} \sum_{j\&amp;x=x} A_i B_j $$<br>$$ A2_x \cdot B2_x = \sum_{k\&amp;x=x} \sum_{i\&amp;j=k} A_i B_j $$<br>$$ A2_x \cdot B2_x = \sum_{k\&amp;x=x} C_k $$<br>$$ A2_x \cdot B2_x = C2_x $$</p>
 <p><del>和按位或一个模子里刻出来的</del></p>
 <h2 id="子集卷积"><a href="#子集卷积" class="headerlink" title="子集卷积"></a>子集卷积</h2><p>两个多项式 A, B 的子集卷积 C 的意义如下：</p>
 <p>$$ C(x) = \sum_{y|z=x, y\&amp;z=0} A(y) B(z) $$</p>
@@ -485,6 +493,10 @@
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2019/11/05/中国剩余定理/" rel="prev" title="中国剩余定理">
+                  中国剩余定理 <i class="fa fa-chevron-right"></i>
+                </a>
               
             </div>
           </div>
@@ -552,7 +564,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">36</span>
+          <span class="site-state-item-count">37</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -578,7 +590,7 @@
             <a href="/tags/">
           
         
-        <span class="site-state-item-count">30</span>
+        <span class="site-state-item-count">33</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>

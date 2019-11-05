@@ -1,6 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>中国剩余定理</title>
+    <url>/2019/11/05/%E4%B8%AD%E5%9B%BD%E5%89%A9%E4%BD%99%E5%AE%9A%E7%90%86/</url>
+    <content><![CDATA[<p>relearn 了一遍 exCRT ，发现之前学的可能是假的（这种情况出现不止一次了 233 ）。</p><p>简单来说，中国剩余定理（以下简称 CRT ）主要用于解线性同余方程组：</p><p>$$<br>\begin{equation}<br>\left\{<br>\begin{aligned}<br>x \equiv a_1 (mod \; m_1) \\\<br>x \equiv a_2 (mod \; m_2) \\\<br>… \\\<br>x \equiv a_n (mod \; m_n) \\\<br>\end{aligned}<br>\right.<br>\end{equation}<br>$$</p><a id="more"></a>
+
+
+<h2 id="CRT"><a href="#CRT" class="headerlink" title="CRT"></a>CRT</h2><p>普通的 CRT 用于解决模数两两互质的情况（这个条件比较苛刻，实践中往往需要 exCRT ）。</p>
+<p>CRT 的主要思想是构造，对于每个方程组构造一个 $b_i$ 使得 $b_i$ 在其他所有模数下为 0 ，仅在模 $m_i$ 意义下为 1 。<br>感觉这个构造思路有点想拉格朗日插值法，那么不难得出：</p>
+<p>$$ b_i = \prod_{i \ne j} m_j (\prod_{i \ne j} m_j)_{m_i}^{-1} $$</p>
+<p>其中 $(\prod_{i \ne j} m_j)_{m_i}^{-1}$ 是 $\prod_{i \ne j} m_j$ 在模 $m_i$ 意义下的逆元。</p>
+<p>那么整个方程组的一个解就是 $\sum_{i=1}^n b_i a_i$ ，通解就是：</p>
+<p>$$ x \equiv \sum_{i=1}^n b_i a_i (mod \; \prod_{i=1}^n m_i) $$</p>
+<h2 id="exCRT"><a href="#exCRT" class="headerlink" title="exCRT"></a>exCRT</h2><p>CRT 只适用于模数两两互质的情况，因为用到了模数之间的逆元，而模数不互质是没有逆元的。</p>
+<p>exCRT 的主要思想是两两合并，考虑 $n=2$ 的情况：</p>
+<p>$$<br>\begin{equation}<br>\left\{<br>\begin{aligned}<br>x \equiv a_1 (mod \; m_1) \\\<br>x \equiv a_2 (mod \; m_2) \\\<br>\end{aligned}<br>\right.<br>\end{equation}<br>$$</p>
+<p>那么此时方程组的解 $x$ 需要满足存在 $i, j$ 使得：</p>
+<p>$$ x = a_1 + i m_1 = a2 + j m_2 $$</p>
+<p>对于右边的等式 $a_1 + i m_1 = a2 + j m_2$ ，是关于 $i, j$ 的二元一次方程，<br>那么用扩展欧几里得解出一组解 $i=i_0, j=j_0$ 再回代到等式中即可求得一个 $x = x_0$ 。<br>而通解的话，根据 exgcd 的通解 $i \equiv i_0 (mod\frac{m_2}{gcd(m_1, m_2)})$ ，可以得到 $x$ 的通解：</p>
+<p>$$ x \equiv x_0 (mod\; lcm(m_1, m_2)) $$</p>
+<p>那么据此可以将任意两个同余方程合并为一个，也就可以通过两两合并的方式将整个同余方程组合并为一个方程。</p>
+<p>无解的话，当且仅当 exgcd 解 $i, j$ 的时候无解，只要有两个方程无法合并那么整个方程组都无法合并。</p>
+]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>CRT</tag>
+        <tag>exCRT</tag>
+        <tag>中国剩余定理</tag>
+        <tag>同余</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>快速沃尔什变换</title>
     <url>/2019/11/03/%E5%BF%AB%E9%80%9F%E6%B2%83%E5%B0%94%E4%BB%80%E5%8F%98%E6%8D%A2/</url>
     <content><![CDATA[<p>快速沃尔什变换，简称 FWT ，目前在 OI 中十分冷门。</p><h2 id="用处"><a href="#用处" class="headerlink" title="用处"></a>用处</h2><p>多项式卷积一般是这样的：</p><p>$$ C_i = \sum_{j + k = i} A_j \cdot B_k $$</p><p>这个可以用 FFT 快速求解。</p><p>然而还有一个诡异的卷积：</p><p>$$ C_i = \sum_{j \oplus k = i} A_j \cdot B_k $$</p><a id="more"></a>
@@ -61,14 +93,14 @@
 <li>异或： f00 = 1, f01 = 1, f10 = 1, f01 = -1</li>
 </ul>
 <p>可以自行验证，这些 f 满足上述性质。</p>
-<h2 id="实际意义"><a href="#实际意义" class="headerlink" title="实际意义"></a>实际意义</h2><p>一个多项式 A FFT 后的 A2(x) 实际意义就是 A 在 $ W_n^x $ 上的值（点值表示）。</p>
+<h2 id="实际意义"><a href="#实际意义" class="headerlink" title="实际意义"></a>实际意义</h2><p>一个多项式 A FFT 后的 $A2_x$ 实际意义就是 A 在 $ W_n^x $ 上的值（点值表示）。</p>
 <p>那么 A FWT 后的结果的现实意义呢？<br>这得分类来说。</p>
-<h3 id="按位或"><a href="#按位或" class="headerlink" title="按位或"></a>按位或</h3><p>A 在做按位或的 FWT 之后得到的 A2 满足：<br>$$ A2(x) = \sum_{i|x=x} A(i) $$</p>
-<p>也就是说 A2(x) 表示 x 的每个子集 i 的 A(i) 的和。<br>不难得到，A2(x) * B2(x) 的结果 C2(x) 就是 A, B 卷积后的 C 的变换：<br>$$ A2(x) \cdot B2(x) = \sum_{i|x=x} A(i) \sum_{j|x=x} B(j) $$<br>$$ A2(x) \cdot B2(x) = \sum_{i|x=x} \sum_{j|x=x} A(i) B(j) $$<br>$$ A2(x) \cdot B2(x) = \sum_{k|x=x} \sum_{i|j=k} A(i) B(j) $$<br>$$ A2(x) \cdot B2(x) = \sum_{k|x=x} C(k) $$<br>$$ A2(x) \cdot B2(x) = C2(x) $$</p>
-<p>事实上，这也就是子集和变换。</p>
+<h3 id="按位或"><a href="#按位或" class="headerlink" title="按位或"></a>按位或</h3><p>A 在做按位或的 FWT 之后得到的 A2 满足：<br>$$ A2_x = \sum_{i|x=x} A_i $$</p>
+<p>也就是说 $A2_x$ 表示 x 的每个子集 i 的 $A_i$ 的和。<br>不难得到，$A2_x \cdot B2_x$ 的结果 $C2_x$ 就是 A, B 卷积后的 C 的变换：<br>$$ A2_x \cdot B2_x = \sum_{i|x=x} A_i \sum_{j|x=x} B_j $$<br>$$ A2_x \cdot B2_x = \sum_{i|x=x} \sum_{j|x=x} A_i B_j $$<br>$$ A2_x \cdot B2_x = \sum_{k|x=x} \sum_{i|j=k} A_i B_j $$<br>$$ A2_x \cdot B2_x = \sum_{k|x=x} C_k $$<br>$$ A2_x \cdot B2_x = C2_x $$</p>
+<p>事实上，这也就是子集和变换 FMT 。</p>
 <p><del>感性理解一下</del></p>
-<h3 id="按位与"><a href="#按位与" class="headerlink" title="按位与"></a>按位与</h3><p>和按位或类似的，A 在做按位与的 FWT 之后得到的 A2 满足：<br>$$ A2(x) = \sum_{i\&amp;x=x} A(i) $$</p>
-<p>也就是说 A2(x) 表示每个包含 x 的集合 i 的 A(i) 的和。<br>不难得到，A2(x) * B2(x) 的结果 C2(x) 就是 A, B 卷积后的 C 的变换：<br>$$ A2(x) \cdot B2(x) = \sum_{i\&amp;x=x} A(i) \sum_{j\&amp;x=x} B(j) $$<br>$$ A2(x) \cdot B2(x) = \sum_{i\&amp;x=x} \sum_{j\&amp;x=x} A(i) B(j) $$<br>$$ A2(x) \cdot B2(x) = \sum_{k\&amp;x=x} \sum_{i\&amp;j=k} A(i) B(j) $$<br>$$ A2(x) \cdot B2(x) = \sum_{k\&amp;x=x} C(k) $$<br>$$ A2(x) \cdot B2(x) = C2(x) $$</p>
+<h3 id="按位与"><a href="#按位与" class="headerlink" title="按位与"></a>按位与</h3><p>和按位或类似的，A 在做按位与的 FWT 之后得到的 A2 满足：<br>$$ A2_x = \sum_{i\&amp;x=x} A_i $$</p>
+<p>也就是说 $A2_x$ 表示每个包含 x 的集合 i 的 $A_i$ 的和。<br>不难得到，$A2_x \cdot B2_x$ 的结果 $C2_x$ 就是 A, B 卷积后的 C 的变换：<br>$$ A2_x \cdot B2_x = \sum_{i\&amp;x=x} A_i \sum_{j\&amp;x=x} B_j $$<br>$$ A2_x \cdot B2_x = \sum_{i\&amp;x=x} \sum_{j\&amp;x=x} A_i B_j $$<br>$$ A2_x \cdot B2_x = \sum_{k\&amp;x=x} \sum_{i\&amp;j=k} A_i B_j $$<br>$$ A2_x \cdot B2_x = \sum_{k\&amp;x=x} C_k $$<br>$$ A2_x \cdot B2_x = C2_x $$</p>
 <p><del>和按位或一个模子里刻出来的</del></p>
 <h2 id="子集卷积"><a href="#子集卷积" class="headerlink" title="子集卷积"></a>子集卷积</h2><p>两个多项式 A, B 的子集卷积 C 的意义如下：</p>
 <p>$$ C(x) = \sum_{y|z=x, y\&amp;z=0} A(y) B(z) $$</p>
@@ -167,8 +199,8 @@
         <category>算法</category>
       </categories>
       <tags>
-        <tag>二次剩余</tag>
         <tag>同余</tag>
+        <tag>二次剩余</tag>
       </tags>
   </entry>
   <entry>
@@ -404,13 +436,13 @@
         <category>算法</category>
       </categories>
       <tags>
-        <tag>O(1)</tag>
         <tag>RMQ</tag>
         <tag>分块</tag>
         <tag>线段树</tag>
         <tag>ST 表</tag>
         <tag>算法扩展</tag>
         <tag>随机</tag>
+        <tag>O(1)</tag>
       </tags>
   </entry>
   <entry>
@@ -478,10 +510,10 @@
         <category>算法</category>
       </categories>
       <tags>
+        <tag>O(1)</tag>
         <tag>gcd/lcm</tag>
         <tag>快速幂</tag>
         <tag>黑科技</tag>
-        <tag>O(1)</tag>
       </tags>
   </entry>
   <entry>
