@@ -1,6 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>cometoj-14</title>
+    <url>/2019/11/08/cometoj-14/</url>
+    <content><![CDATA[<p>万年卡 E 题系列。</p><p>这次 A 竟然不是字符串，<del>开始我已经准备了字符串的输入输出等一堆东西结果发现没卵用</del><br>花 1min49 AC ，好像在这之前已经有 12 个人 A 了。</p><p>B 第一眼看上去是个 DP ，再看一眼（看成最小值最大）以为是二分，发现是让最大值最大而且还只有三个段后。。。<br><strong>大力分类讨论</strong>！<br>果然是个分类讨论就巨多细节，判无解判边界判大小 blabla ，结果交 WA 了两发，在 16min AC 。<br>（ B 最快的 6min 就 A 了，16min 这时候 C 的一血都被拿了的说）</p><a id="more"></a>
+
+
+<p>C 维护一个序列？结果每次需要把所有序列复制一份并对复制的那一部分进行修改？<br>一脸懵逼.jpg<br>（然而水群的时候大佬们都说这题怎么怎么显然，和什么什么题一模一样）<br>还好看清楚了数据范围只有 2000 ，就去想单独考虑序列上每个点，这样就很好维护，<br>一个点每次复制就是权值翻倍，复制的位置被修改就是权值加上 修改值 乘 序列数量。<br>好像花了和 B 差不多的时间，在 33min AC 。</p>
+<p>D 题感觉很神，乍一看什么可追溯化数据结构，可一想哪有对线段树可追溯化的，还是追溯一段操作区间。<br>然后就感觉很不可做，但<del>看了 E 发现是个图论更不可做</del>还是头铁硬肝。<br>发现区间覆盖的性质还是很优秀的，然后 yy 了一个扫描线 + set + 树状数组的做法，<br>树状数组维护每个操作对当前扫描线上的询问的影响，<br>然后 set 维护一个蛇皮东西，扫描线扫过的操作执行后的区间覆盖长什么样子，<br>每次区间覆盖就可以直接在 set 上 lower_bound 到位置再换掉旧的覆盖。<br>（后来听人讲这就是 odt 。。。）  </p>
+<p>在 81min 打完过了样例，仔细检查了检查，一交，WA 了。<br>懵逼，静态差错无果，对拍无果，查了半个小时，实在没发现什么错，<br>还以为我题目读错了，读了四五遍题感觉实在是没有什么坑，<br>抱着自闭的心态再交了一发， woc AC 了。<br>一脸懵逼.jpg<br>我感觉我什么地方都没改啊怎么突然从 WA 到 AC 啊！！！</p>
+<p>比完后查了查，发现是这样一句话：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"%d\n"</span>, i);</span><br><span class="line"><span class="comment">// 等价于 std::cerr &lt;&lt; i &lt;&lt; std::endl;</span></span><br></pre></td></tr></table></figure>
+
+<p>神 tm 我输出到标准错误流竟然就 WA 了？！<br>后面还 test 了一波，发现在 cometoj 上只要有标准错误流就会 WA/RE 。<br>引以为戒，祭奠为此逝去的半个小时。</p>
+<p>最后就在整个后半场卡 E 了，回头看了看每场 cometoj 常规赛都卡 E ，能 A 掉 ABCD ，<br>发现唯一一次拿到奖是因为那次只有 8 个人 A 掉了 D 。。</p>
+<p><del>写总结好累了，以后打比赛就不写了吧。。</del></p>
+]]></content>
+      <categories>
+        <category>总结</category>
+      </categories>
+      <tags>
+        <tag>cometoj</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>中国剩余定理</title>
     <url>/2019/11/05/%E4%B8%AD%E5%9B%BD%E5%89%A9%E4%BD%99%E5%AE%9A%E7%90%86/</url>
     <content><![CDATA[<p>relearn 了一遍 exCRT ，发现之前学的可能是假的（这种情况出现不止一次了 233 ）。</p><p>简单来说，中国剩余定理（以下简称 CRT ）主要用于解线性同余方程组：</p><p>$$<br>\begin{equation}<br>\left\{<br>\begin{aligned}<br>x \equiv a_1 (mod \; m_1) \\\<br>x \equiv a_2 (mod \; m_2) \\\<br>… \\\<br>x \equiv a_n (mod \; m_n) \\\<br>\end{aligned}<br>\right.<br>\end{equation}<br>$$</p><a id="more"></a>
@@ -26,10 +49,10 @@
         <category>算法</category>
       </categories>
       <tags>
+        <tag>同余</tag>
         <tag>CRT</tag>
         <tag>exCRT</tag>
         <tag>中国剩余定理</tag>
-        <tag>同余</tag>
       </tags>
   </entry>
   <entry>
@@ -158,7 +181,7 @@
   <entry>
     <title>二次剩余</title>
     <url>/2019/10/21/%E4%BA%8C%E6%AC%A1%E5%89%A9%E4%BD%99/</url>
-    <content><![CDATA[<p>二次剩余，<del>俗称模意义开根</del>。<br>也就是对于常数 $n$ 解这样一个方程：</p><p>$$x^2 \equiv n \\; (mod \\; p)$$</p><p>这里只介绍模数 $p$ 为奇素数的解法，也就是 Cipolla 算法。</p><p>以下运算皆指模 $p$ 意义下的运算。</p><h2 id="解的数量"><a href="#解的数量" class="headerlink" title="解的数量"></a>解的数量</h2><p>严格来讲，非 0 数 $n$ 是二次剩余当且仅当方程 $x^2 \equiv n$ 有解，也就是能开根。<br>上述方程无解的非 0 数 $n$ 称作非二次剩余。</p><a id="more"></a>
+    <content><![CDATA[<p>二次剩余，<del>俗称模意义开根</del>。<br>也就是对于常数 $n$ 解这样一个方程：</p><p>$$x^2 \equiv n \; (mod \; p)$$</p><p>这里只介绍模数 $p$ 为奇素数的解法，也就是 Cipolla 算法。</p><p>以下运算皆指模 $p$ 意义下的运算。</p><h2 id="解的数量"><a href="#解的数量" class="headerlink" title="解的数量"></a>解的数量</h2><p>严格来讲，非 0 数 $n$ 是二次剩余当且仅当方程 $x^2 \equiv n$ 有解，也就是能开根。<br>上述方程无解的非 0 数 $n$ 称作非二次剩余。</p><a id="more"></a>
 
 
 
@@ -194,13 +217,17 @@
 
 <h2 id="BSGS"><a href="#BSGS" class="headerlink" title="BSGS"></a>BSGS</h2><p>值得一提的是，模意义开根（甚至可以推广到开 $k$ 次方根）是可以通过原根转换为求对数问题从而使用 BSGS 的。<br>不过复杂度 $O(\sqrt{p})$ 远不如 Cipolla 的 $O(logp)$ 优秀，但很多情况下也足够了。</p>
 <p>具体地，将 $x$ 表示为 $g^y$ ，其中 $g$ 是原根，方程变为 $(g^y)^k \equiv n$ ，即 $(g^k)^y \equiv n$ ，解出 $y$ 即可。</p>
+<h2 id="非二次剩余开根"><a href="#非二次剩余开根" class="headerlink" title="非二次剩余开根"></a>非二次剩余开根</h2><p>事实上，大多数情况需要开根的数并不是个二次剩余。</p>
+<p>比如有一个递推式，为了化简需要开根，但是这时候被开根的数是个任意数。</p>
+<p>比如 <a href="https://cometoj.com/contest/72/problem/Ｄ?problem_id=4033" target="_blank" rel="noopener">这个</a> 还有 <a href="http://www.51nod.com/Challenge/ProblemSubmitDetail.html#judgeId=826009" target="_blank" rel="noopener">这个</a> 。</p>
+<p>其实很简单，像 Cipolla 那样直接扩域，把这个非二次剩余设为虚数单位即可。<br>但当然这仅适用于对仅仅一个非二次剩余开根的情况，如果式子需要同时对若干非二次剩余开根，扩域的代价（大概）会呈指数级别增长，即每一次复数乘法的复杂度会很大。</p>
 ]]></content>
       <categories>
         <category>算法</category>
       </categories>
       <tags>
-        <tag>同余</tag>
         <tag>二次剩余</tag>
+        <tag>同余</tag>
       </tags>
   </entry>
   <entry>
@@ -269,7 +296,7 @@
 
 <p>这里的函数相乘指的是狄利克雷卷积。</p>
 <h4 id="理论"><a href="#理论" class="headerlink" title="理论"></a>理论</h4><p>则由 $h = f \cdot g$ 可得（以下除号表示整除）：</p>
-<p>$$<br>\begin{equation}<br>\begin{aligned}<br>\sum_{i=1}^n h(i) &amp;= \sum_{i=1}^n\sum_{d|i}f(\frac{i}{d})g(d) \\\<br>&amp;= \sum_{d=1}^ng(d)\sum_{i=d}^nf(\frac{i}{d})[i|d] \\\<br>&amp;= \sum_{d=1}^ng(d)\sum_{i=1}^{n/d}f(i) \\\<br>&amp;= \sum_{d=1}^ng(d)S(\frac{n}{d}) \\\<br>&amp;= g(1)S(n) + \sum_{d=2}^ng(d)S(\frac{n}{d}) \\\<br>\end{aligned}<br>\end{equation}<br>$$</p>
+<p>$$<br>\begin{equation}<br>\begin{aligned}<br>\sum_{i=1}^n h(i) &amp;= \sum_{i=1}^n\sum_{d|i}f(\frac{i}{d})g(d) \\<br>&amp;= \sum_{d=1}^ng(d)\sum_{i=d}^nf(\frac{i}{d})[i|d] \\<br>&amp;= \sum_{d=1}^ng(d)\sum_{i=1}^{n/d}f(i) \\<br>&amp;= \sum_{d=1}^ng(d)S(\frac{n}{d}) \\<br>&amp;= g(1)S(n) + \sum_{d=2}^ng(d)S(\frac{n}{d}) \\<br>\end{aligned}<br>\end{equation}<br>$$</p>
 <p>所以 $S(n) = \sum_{i=1}^n h(i) - \sum_{d=2}^n g(d)S(\frac{n}{d})$ 。</p>
 <p>前提是每个 $\sum_{i=1}^n h(i)$ 很容易求，那么接下来不考虑 $h$ ，<br>对于后面的部分可以整除分块，还需要快速求出 $g$ 的一段区间和，<br>然后就可以递推，由于形如 $\lfloor\frac{n}{d}\rfloor$ 的数只有 $O(\sqrt{n})$ 个，<br>可以只递推这 $O(\sqrt{n})$ 个 $S$ ，不考虑 $g, h$ 的计算复杂度，复杂度为 $O(n^{\frac{2}{3}})$ 。</p>
 <p>关于如何存储 $S$ ，直接用数组存需要 $O(n)$ 的空间，开 map 每次取用带一个 log ，<br>普通的离散化也会带一个 log 。</p>
@@ -295,12 +322,12 @@
 <p>首先需要将 $f(i)$ 拆成若干完全积性函数的和，<br>只需考虑 $F$ ，也就是 $f(p^k)$ 的取值。<br>如果是关于 $p$ 的多项式，每个单项式对应的就是一个完全积性函数。</p>
 <p>假设现在要筛一个完全积性函数 $h$ ，要能快速计算出 $S_h = \sum_{i=1}^n h(i)$ 。<br>这一步的主要思想是，一个一个枚举质数 $p$ ，筛掉最小值因子为 $p$ 的合数的取值。<br>而合数 $x$ 的最小质因子为 $p$ 的必要条件是 $p^2 \leq x$ ，即 $p \leq \sqrt{x}$ 。<br>那么只需要枚举 $\sqrt{n}$ 以内的质数去筛即可。</p>
 <p>假设现在筛掉了前 $i - 1$ 个质因子得到一个这个值：</p>
-<p>$$g(n, i - 1) = \sum_{x=1}^n [x \in Prime \\; or \\; minp(x) &gt; P_{i-1}] h(x)$$</p>
+<p>$$g(n, i - 1) = \sum_{x=1}^n [x \in Prime \; or \; minp(x) &gt; P_{i-1}] h(x)$$</p>
 <p>其中 $P_i$ 表示 $\sqrt{n}$ 以内第 $i$ 个质数。</p>
 <p>那么接下来要筛最小值因子为 $P_i$ 的数：</p>
 <p>$$g(n, i) = g(n, i - 1) - \sum_{x=1}^n [minp(x) = P_i] h(x)$$</p>
 <p>由于 $h$ 是完全积性函数，$P_i$ 可以直接提出来，得到：</p>
-<p>$$<br>\begin{equation}<br>\begin{aligned}<br>g(n, i) &amp;= g(n, i - 1) - h(P_i) \sum_{x=1}^{n/P_i} [minp(x) \geq P_i] h(x) \\\<br>&amp;= g(n, i - 1) - h(P_i) (g(\frac{n}{P_i}, i - 1) - \sum_{x=1}^{n/P_i} [x \in Prime \\; and \\; minp(x) &lt; P_i] h(x)) \\\<br>&amp;= g(n, i - 1) - h(P_i) (g(\frac{n}{P_i}, i - 1) - \sum_{j=1}^{i-1} h(P_j)) \\\<br>&amp;= g(n, i - 1) - h(P_i) (g(\frac{n}{P_i}, i - 1) - ph_{i - 1}) \\\<br>\end{aligned}<br>\end{equation}<br>$$</p>
+<p>$$<br>\begin{equation}<br>\begin{aligned}<br>g(n, i) &amp;= g(n, i - 1) - h(P_i) \sum_{x=1}^{n/P_i} [minp(x) \geq P_i] h(x) \\<br>&amp;= g(n, i - 1) - h(P_i) (g(\frac{n}{P_i}, i - 1) - \sum_{x=1}^{n/P_i} [x \in Prime \; and \; minp(x) &lt; P_i] h(x)) \\<br>&amp;= g(n, i - 1) - h(P_i) (g(\frac{n}{P_i}, i - 1) - \sum_{j=1}^{i-1} h(P_j)) \\<br>&amp;= g(n, i - 1) - h(P_i) (g(\frac{n}{P_i}, i - 1) - ph_{i - 1}) \\<br>\end{aligned}<br>\end{equation}<br>$$</p>
 <p>其中 $ph_i$ 就是 $h$ 在前 $i$ 个质数上的取值和，注意 $P_i \leq \sqrt{n}$ ，这是可以直接筛的。</p>
 <p>那么上面的式子就是 $g$ 的递推式，不难发现第一维的取值都是 $\frac{n}{d}$ 的形式，第二维可以滚动。<br>直接按照递推式算，就可以在 $O(\sqrt{n} |P|)$ 的时间筛出需要的东西，也就是 $g(n, |P|)$ 。<br>这还是不够的，需要优化，由于最小质因子的取值在根号以内，所以递推时只需考虑满足 $n \geq P_i^2$ 的 $g(n, i)$ 。<br>当 $n &lt; P_i^2$ 时，随着 $i$ 的增大 $g(n, i)$ 的值不会改变，由于是滚动数组，直接 skip 掉就好了。</p>
 <h5 id="Step-2"><a href="#Step-2" class="headerlink" title="Step 2"></a>Step 2</h5><p>上面将每个完全积性函数的 $g(n, |P|)$ 加起来，得到 $S_F(n)$ ，表示 $f$ 在质数上的取值 $F$ 的前缀和。</p>
@@ -436,13 +463,13 @@
         <category>算法</category>
       </categories>
       <tags>
+        <tag>O(1)</tag>
         <tag>RMQ</tag>
         <tag>分块</tag>
         <tag>线段树</tag>
         <tag>ST 表</tag>
         <tag>算法扩展</tag>
         <tag>随机</tag>
-        <tag>O(1)</tag>
       </tags>
   </entry>
   <entry>
@@ -510,10 +537,10 @@
         <category>算法</category>
       </categories>
       <tags>
-        <tag>O(1)</tag>
         <tag>gcd/lcm</tag>
         <tag>快速幂</tag>
         <tag>黑科技</tag>
+        <tag>O(1)</tag>
       </tags>
   </entry>
   <entry>
@@ -570,19 +597,19 @@
 <p>证明：</p>
 <ul>
 <li>对于 l 设 $ n / l = x $</li>
-<li>那么由 $ n \\; mod \\; l = n - n / l  \cdot  l = n - l  \cdot  x $ 可知 $ n - l  \cdot  x \geq 0 $</li>
+<li>那么由 $ n \; mod \; l = n - n / l  \cdot  l = n - l  \cdot  x $ 可知 $ n - l  \cdot  x \geq 0 $</li>
 <li>那么若 l + 1 满足 $ n / (l + 1) = n / l $ ，可知也有 $ n - (l + 1)  \cdot  x \geq 0 $</li>
 <li>即 $ n - l  \cdot  x \geq x $</li>
 <li>对于 k 若 $ n / k = n / l $ 而 $ n / (k + 1) != n / l $</li>
 <li>那么根据上式可得 k 满足 $ 0 \leq n - k  \cdot  x &lt; x $</li>
-<li>所以 $ n - k  \cdot  x = n \\; mod \\; x = n - n / x  \cdot  x $</li>
+<li>所以 $ n - k  \cdot  x = n \; mod \; x = n - n / x  \cdot  x $</li>
 <li>所以 $ k = n / x = n / (n / l) $</li>
-<li>由 k 的定义 $ n / k = n / l \\; and \\; n / (k + 1) != n / l $ 可知 k+1 即是要求的 r</li>
+<li>由 k 的定义 $ n / k = n / l \; and \; n / (k + 1) != n / l $ 可知 k+1 即是要求的 r</li>
 </ul>
 <p>那么可以枚举块，当前 l,r 可以求得，下一个块的 l 显然是当前 r。</p>
 <p>有时候会有点变化：</p>
 <p>要求 $ \sum_{i=1}^{min(n, m)} f(\frac{n}{i})  \cdot  f(\frac{m}{i}) $ 。</p>
-<p>还是会存在 $ \forall l&lt;=i&lt;r, \frac{n}{i} = \frac{n}{l} \\&amp; \frac{m}{i} = \frac{m}{l} $ 。</p>
+<p>还是会存在 $ \forall l&lt;=i&lt;r, \frac{n}{i} = \frac{n}{l} \&amp; \frac{m}{i} = \frac{m}{l} $ 。</p>
 <p>所以这样的区间的右端点为：$ r = min(n / (n / l), m / (m / l)) + 1 $ 。</p>
 <p>所以还是可以一块一块的枚举求和。</p>
 ]]></content>
@@ -593,16 +620,16 @@
   <entry>
     <title>类欧几里得</title>
     <url>/2019/10/10/%E7%B1%BB%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97/</url>
-    <content><![CDATA[<p>这里只是类欧几里得的一种：<br>快速求下式：<br>$$f(a, b, c, n) = \sum_{i=0}^n \lfloor \frac{ai+b}{c} \rfloor$$</p><p>其中 a, b, c, n 都是正整数。</p><h2 id="缩小-a-b-规模"><a href="#缩小-a-b-规模" class="headerlink" title="缩小 a, b 规模"></a>缩小 a, b 规模</h2><p>首先的目标是让 a, b 小于 c 。</p><p>结论 1 ：<br>$$\lfloor \frac{Ax+B}{y} \rfloor =<br>\lfloor \frac{A(x\\%y)+B}{y} \rfloor + A\lfloor \frac{x}{y} \rfloor$$</p><a id="more"></a>
+    <content><![CDATA[<p>这里只是类欧几里得的一种：<br>快速求下式：<br>$$f(a, b, c, n) = \sum_{i=0}^n \lfloor \frac{ai+b}{c} \rfloor$$</p><p>其中 a, b, c, n 都是正整数。</p><h2 id="缩小-a-b-规模"><a href="#缩小-a-b-规模" class="headerlink" title="缩小 a, b 规模"></a>缩小 a, b 规模</h2><p>首先的目标是让 a, b 小于 c 。</p><p>结论 1 ：<br>$$\lfloor \frac{Ax+B}{y} \rfloor =<br>\lfloor \frac{A(x\%y)+B}{y} \rfloor + A\lfloor \frac{x}{y} \rfloor$$</p><a id="more"></a>
 
 
 
-<p>证明：<br>首先用到整除与取模的转换：<br>$\lfloor \frac{x}{y} \rfloor = \frac{x-x\\%y}{y}$ 。<br>得到原命题等价于：<br>$$\frac{Ax+B-(Ax+B)\\%y}{y} =<br>\frac{A(x\\%y)+B-(Ax+B)\\%y}{y} + A\frac{x-x\\%y}{y}$$<br>$$Ax + B - (Ax+B)\\%y = A(x\\%y) + B - (Ax+B)\\%y + A(x-x\\%y)$$<br>$$Ax - (Ax+B)\\%y = A(x\\%y) - (Ax+B)\\%y + A(x-x\\%y)$$<br>$$Ax = A(x\\%y) + A(x-x\\%y)$$<br>$$Ax = A(x\\%y) + Ax - A(x\\%y)$$<br>得证。</p>
-<p>那么通过这个结论可以得知：<br>$$<br>\begin{equation}<br>\begin{aligned}<br>f(a, b, c, n) &amp;= \sum_{i=0}^n \lfloor \frac{ai+b}{c} \rfloor \\\<br>&amp;= \sum_{i=0}^n (\lfloor \frac{(a\\%c)i+b\\%c}{c} \rfloor +<br>i\lfloor \frac{a}{c} \rfloor + \lfloor \frac{b}{c} \rfloor) \\\<br>&amp;= f(a\\%c, b\\%c, c, n) + \sum_{i=0}^n (<br>i\lfloor \frac{a}{c} \rfloor + \lfloor \frac{b}{c} \rfloor) \\\<br>\end{aligned}<br>\end{equation}<br>$$</p>
+<p>证明：<br>首先用到整除与取模的转换：<br>$\lfloor \frac{x}{y} \rfloor = \frac{x-x\%y}{y}$ 。<br>得到原命题等价于：<br>$$\frac{Ax+B-(Ax+B)\%y}{y} =<br>\frac{A(x\%y)+B-(Ax+B)\%y}{y} + A\frac{x-x\%y}{y}$$<br>$$Ax + B - (Ax+B)\%y = A(x\%y) + B - (Ax+B)\%y + A(x-x\%y)$$<br>$$Ax - (Ax+B)\%y = A(x\%y) - (Ax+B)\%y + A(x-x\%y)$$<br>$$Ax = A(x\%y) + A(x-x\%y)$$<br>$$Ax = A(x\%y) + Ax - A(x\%y)$$<br>得证。</p>
+<p>那么通过这个结论可以得知：<br>$$<br>\begin{equation}<br>\begin{aligned}<br>f(a, b, c, n) &amp;= \sum_{i=0}^n \lfloor \frac{ai+b}{c} \rfloor \\<br>&amp;= \sum_{i=0}^n (\lfloor \frac{(a\%c)i+b\%c}{c} \rfloor +<br>i\lfloor \frac{a}{c} \rfloor + \lfloor \frac{b}{c} \rfloor) \\<br>&amp;= f(a\%c, b\%c, c, n) + \sum_{i=0}^n (<br>i\lfloor \frac{a}{c} \rfloor + \lfloor \frac{b}{c} \rfloor) \\<br>\end{aligned}<br>\end{equation}<br>$$</p>
 <p>后面那一段就是一个等差数列求和，于是 a, b 被转换为小于 c 。</p>
 <h2 id="转换成子问题减小规模"><a href="#转换成子问题减小规模" class="headerlink" title="转换成子问题减小规模"></a>转换成子问题减小规模</h2><p>整除除了用取模代替外，还有一种方法。</p>
 <p>结论 2 ：<br>$$\lfloor \frac{x}{y} \rfloor = \sum_{i=1}^{MAX} [i \leq \frac{x}{y}]$$<br>其中 MAX 是任意一个足够大的值。<br>证明？相当于从 1 开始数，感性理解即可。</p>
-<p>那么通过这个结论可以得知：<br>$$<br>\begin{equation}<br>\begin{aligned}<br>f(a, b, c, n) &amp;= \sum_{i=0}^n \lfloor \frac{ai+b}{c} \rfloor \\\<br>&amp;= \sum_{i=0}^n \sum_{j=1}^{(an+b)/c} [j \leq \frac{ai+b}{c}] \\\<br>&amp;= \sum_{i=0}^n \sum_{j=0}^{(an+b)/c-1} [j + 1 \leq \frac{ai+b}{c}] \\\<br>&amp;= \sum_{i=0}^n \sum_{j=0}^{(an+b)/c-1} [cj + c \leq ai+b] \\\<br>&amp;= \sum_{i=0}^n \sum_{j=0}^{(an+b)/c-1} [cj + c - 1 &lt; ai+b] \\\<br>&amp;= \sum_{i=0}^n \sum_{j=0}^{(an+b)/c-1} [\frac{cj+c-b-1}{a} &lt; i] \\\<br>&amp;= \sum_{j=0}^{(an+b)/c-1} \sum_{i=0}^n [\frac{cj+c-b-1}{a} &lt; i] \\\<br>&amp;= \sum_{j=0}^{(an+b)/c-1}<br>(n + 1 - \sum_{i=0}^n [i \leq \frac{cj+c-b-1}{a}]) \\\<br>&amp;= \sum_{j=0}^{(an+b)/c-1}<br>(n - \lfloor \frac{cj+c-b-1}{a} \rfloor) \\\<br>&amp;= n \lfloor \frac{an+b}{c} \rfloor -<br>\sum_{j=0}^{(an+b)/c-1} (\lfloor \frac{cj+c-b-1}{a} \rfloor) \\\<br>&amp;= n \lfloor \frac{an+b}{c} \rfloor - f(c, c-b-1, a, (an+b)/c-1)<br>\end{aligned}<br>\end{equation}<br>$$</p>
+<p>那么通过这个结论可以得知：<br>$$<br>\begin{equation}<br>\begin{aligned}<br>f(a, b, c, n) &amp;= \sum_{i=0}^n \lfloor \frac{ai+b}{c} \rfloor \\<br>&amp;= \sum_{i=0}^n \sum_{j=1}^{(an+b)/c} [j \leq \frac{ai+b}{c}] \\<br>&amp;= \sum_{i=0}^n \sum_{j=0}^{(an+b)/c-1} [j + 1 \leq \frac{ai+b}{c}] \\<br>&amp;= \sum_{i=0}^n \sum_{j=0}^{(an+b)/c-1} [cj + c \leq ai+b] \\<br>&amp;= \sum_{i=0}^n \sum_{j=0}^{(an+b)/c-1} [cj + c - 1 &lt; ai+b] \\<br>&amp;= \sum_{i=0}^n \sum_{j=0}^{(an+b)/c-1} [\frac{cj+c-b-1}{a} &lt; i] \\<br>&amp;= \sum_{j=0}^{(an+b)/c-1} \sum_{i=0}^n [\frac{cj+c-b-1}{a} &lt; i] \\<br>&amp;= \sum_{j=0}^{(an+b)/c-1}<br>(n + 1 - \sum_{i=0}^n [i \leq \frac{cj+c-b-1}{a}]) \\<br>&amp;= \sum_{j=0}^{(an+b)/c-1}<br>(n - \lfloor \frac{cj+c-b-1}{a} \rfloor) \\<br>&amp;= n \lfloor \frac{an+b}{c} \rfloor -<br>\sum_{j=0}^{(an+b)/c-1} (\lfloor \frac{cj+c-b-1}{a} \rfloor) \\<br>&amp;= n \lfloor \frac{an+b}{c} \rfloor - f(c, c-b-1, a, (an+b)/c-1)<br>\end{aligned}<br>\end{equation}<br>$$</p>
 <p>那么就得到了一个递归计算 f(a, b, c, n) 的算法，<br>a = 0 时上式不成立，因为上面的推导有除以 a 的步骤。<br>因此将 a = 0 作为终止状态，此时 f 的计算是常数数列求和。<br>复杂度是对数复杂度 log(a)，因为上面的过程规模的减小速度相当于 gcd 。</p>
 ]]></content>
       <categories>
@@ -653,7 +680,7 @@
 
 
 
-<h3 id="公式-3"><a href="#公式-3" class="headerlink" title="公式 3"></a>公式 3</h3><p>$$ C_n^m <em> C_m^k = C_n^k </em> C_{n-k}^{m-k} $$</p>
+<h3 id="公式-3"><a href="#公式-3" class="headerlink" title="公式 3"></a>公式 3</h3><p>$$ C_n^m * C_m^k = C_n^k * C_{n-k}^{m-k} $$</p>
 <h3 id="公式-4"><a href="#公式-4" class="headerlink" title="公式 4"></a>公式 4</h3><p>$$ C_n^m = C_{n-1}^{m-1} + C_{n-1}^m $$</p>
 <p>组合数的基本递推式。</p>
 <p><strong>当要求组合数模一般模数时</strong> ，常用这种方法预处理组合数。</p>
@@ -663,7 +690,7 @@
 <h3 id="公式-6"><a href="#公式-6" class="headerlink" title="公式 6"></a>公式 6</h3><p>$$ \sum_{i=0}^n (C_n^i)^2 = C_{2n}^n $$</p>
 <h3 id="公式-7"><a href="#公式-7" class="headerlink" title="公式 7"></a>公式 7</h3><p>$$ C_{n+m}^k = \sum_{i=0}^k C_n^i * C_m^{k-i} $$</p>
 <p>从组合数学上的定义出发，在 n + m 个元素中选 k 个，<br>相当于先在前 n 个元素中选 i 个再在后 m 个元素中选 k - i 个。<br>枚举这个 i 把方案数相加就能得到最终方案数。</p>
-<h3 id="Lucas-定理"><a href="#Lucas-定理" class="headerlink" title="Lucas 定理"></a>Lucas 定理</h3><p>$$ C_n^m \% p = C_{n/p}^{m/p} * C_{n \% p}^{m \% p} \% p $$</p>
+<h3 id="Lucas-定理"><a href="#Lucas-定理" class="headerlink" title="Lucas 定理"></a>Lucas 定理</h3><p>$$ C_n^m % p = C_{n/p}^{m/p} * C_{n % p}^{m % p} % p $$</p>
 <p>常用于模数较小的组合数取模。</p>
 ]]></content>
       <categories>
@@ -676,16 +703,16 @@
     <content><![CDATA[<p>（以下除号皆表示整除）<br>对于一些式子复杂度大的数论题，或许用莫比乌斯反演可以高效解决问题。</p><p>前置技能：</p><ul>
 <li>基本数论函数</li>
 <li>狄利克雷卷积</li>
-</ul><p>莫比乌斯函数满足 $\mu * I = \epsilon $<br>即 $ \sum_{d|n}\mu(d) = [n = 1] $</p><p>表达式为：</p><p>$$ n = 0 : \mu(n) = 1 $$<br>$$ n = \prod_{p|n\\&amp;p\\,is\\,prime} p : \mu(n)=(-1)^k $$<br>$$ otherwise : \mu(n)=0 $$</p><a id="more"></a>
+</ul><p>莫比乌斯函数满足 $\mu * I = \epsilon $<br>即 $ \sum_{d|n}\mu(d) = [n = 1] $</p><p>表达式为：</p><p>$$ n = 0 : \mu(n) = 1 $$<br>$$ n = \prod_{p|n\&amp;p\,is\,prime} p : \mu(n)=(-1)^k $$<br>$$ otherwise : \mu(n)=0 $$</p><a id="more"></a>
 
 
 
 
 
 <p>证明：<br><del>暂时不会</del></p>
-<p>莫比乌斯反演：<br>对于数论函数 f(n)，设 $ F(n) = \sum_{d|n}f(d) $<br>即 $ F = f <em> I $<br>则有 $ f(n) = \sum_{d|n}F(d)</em>\mu(\frac{n}{d}) $<br>即 $ f = F * \mu $</p>
+<p>莫比乌斯反演：<br>对于数论函数 f(n)，设 $ F(n) = \sum_{d|n}f(d) $<br>即 $ F = f * I $<br>则有 $ f(n) = \sum_{d|n}F(d)*\mu(\frac{n}{d}) $<br>即 $ f = F * \mu $</p>
 <p>证明：</p>
-<p>$$ \because \\; F = f*I $$<br>$$ \therefore \\; F*\mu = f*I*\mu $$<br>$$ \because \\; I*\mu = \epsilon $$<br>$$ \therefore \\; F*\mu = f*\epsilon $$<br>$$ \therefore \\; f = F*\mu $$</p>
+<p>$$ \because \; F = f*I $$<br>$$ \therefore \; F*\mu = f*I*\mu $$<br>$$ \because \; I*\mu = \epsilon $$<br>$$ \therefore \; F*\mu = f*\epsilon $$<br>$$ \therefore \; f = F*\mu $$</p>
 <p>莫比乌斯反演好像主要是用来推式子，F 比 f 好做的话，就可以试试莫比乌斯反演。</p>
 <p>另外事实上只需要熟知 $\mu$ 函数的性质，直接推式子就行了，<br>绝大多数情况下（至少是我遇到的所有情况下）并不需要莫比乌斯反演。</p>
 ]]></content>
@@ -702,13 +729,13 @@
 
 <p>点值表示法有什么优点呢？</p>
 <p>考虑用点值表示法的 n 次多项式 a, b 相乘的积 c ，满足：</p>
-<p>$$ \forall k \in [0, n), cy_k = c(cx_k) = a(ax_k) <em> b(bx_k) = ay_k </em> by_k $$</p>
+<p>$$ \forall k \in [0, n), cy_k = c(cx_k) = a(ax_k) * b(bx_k) = ay_k * by_k $$</p>
 <p>发现这样按定义计算 c 的复杂度为 O(n) 。</p>
 <p>于是 FFT 的基本思路诞生了：<br>把系数表示法的多项式 a, b 转换成点值表示法，<br>在点值表示法的定义下求出 a, b 的积 c ，<br>最后将 c 转换为系数表示法。</p>
 <h2 id="DFT"><a href="#DFT" class="headerlink" title="DFT"></a>DFT</h2><p>将系数表示法转换成点值表示法的方法就是 DFT 。</p>
 <p>设要转换的是 $ n = 2^m $ 次多项式 A （次数不足用 0 补）。<br>利用到单位根的性质，<br>目标是求出  n 个形如 $ (w_n^k, A(w_n^k)) $ 的点值<br>（ $ w_n $ 表示 n 次单位根）。</p>
 <p>$ w_n^k $ 的性质：<br>在复平面里对应的向量的倾斜角 x 为 $ 2 \pi \frac{k}{n} $ ，<br>根据欧拉公式，其值为</p>
-<p>$$ w_n^k = e^{x i} = cos(x) + i * sin(x) \;, \; x = 2 \pi \frac{k}{n} $$</p>
+<p>$$ w_n^k = e^{x i} = cos(x) + i * sin(x) ;, ; x = 2 \pi \frac{k}{n} $$</p>
 <p>考虑按次数的奇偶将 A 分成两个多项式 A1, A2 。</p>
 <p>$$ A1(x) = \sum_{k=0}^{n/2} a_{2k+1} x^{2k+1} = x \sum_{k=0}^{n/2} a_{2k+1} x^k = x S1(x^2) $$</p>
 <p>$$ A2(x) = \sum_{k=0}^{n/2} a_{2k} x^{2k} = \sum_{k=0}^{n/2} a_{2k} x^k = S2(x^2) $$</p>
@@ -749,7 +776,7 @@
 <p>这应该是最主流的求逆序对的方法了。</p>
 <p>要求一个区间内的逆序对数，假设已经递归求出两个子区间的逆序对数，<br>接下来要做的就是求一个在左区间，一个在右区间的逆序对数。</p>
 <p>考虑归并排序的过程，在两个指针比较大小时进行统计。</p>
-<p>设左右区间的当前比较指针（下标）为 p1, p2,<br>当找到第一个 p2 使 $a_{p1}&lt; a_{p2}$ 时，可知 $\forall i\in [p1max+1, p2),\;a_{p1}&gt; a_{p2}$ 。<br>那么横跨两个子区间的以 p1 为左端点的逆序对就有 p2-p1max-1 个。<br>对所有 p1 统计和即可。</p>
+<p>设左右区间的当前比较指针（下标）为 p1, p2,<br>当找到第一个 p2 使 $a_{p1}&lt; a_{p2}$ 时，可知 $\forall i\in [p1max+1, p2),;a_{p1}&gt; a_{p2}$ 。<br>那么横跨两个子区间的以 p1 为左端点的逆序对就有 p2-p1max-1 个。<br>对所有 p1 统计和即可。</p>
 <p>值得注意的是，p2&gt;r（区间右端点）退出时，<br>此时左区间未处理的数对答案都有 r-p1max 的贡献因为此时左区间剩下的数都比右区间所有数大。</p>
 <p>复杂度 $O(n \cdot log_2n)$ 。</p>
 <h2 id="线段树-树状数组："><a href="#线段树-树状数组：" class="headerlink" title="线段树/树状数组："></a>线段树/树状数组：</h2><p>前置技能：线段树（或树状数组）。</p>
@@ -972,7 +999,7 @@ int QCNT;</code></pre><p>note 那一排暴露啦，这命名空间 lkjjhkfdlhgkj
 <p>那么在 mod p 意义下，有 $ a / b = a  \cdot  b^{-1} $ 。</p>
 <h2 id="逆元的求解"><a href="#逆元的求解" class="headerlink" title="逆元的求解"></a>逆元的求解</h2><p>事实上模数一般是 $ x^n $ 。</p>
 <p>此时可以用分治求多项式 a 的逆元 b。</p>
-<p>假设已经分治求得了 a 模 $ x^{n/2} $ （此处及以下除法表示向上取整）的逆元 c 。<br>那么有：<br>$$ a  \cdot  c \equiv 1 (mod \; x^{n/2}) \;\;\;\;\; (1)$$<br>由 b 的定义可知：<br>$$ a  \cdot  b \equiv 1 (mod \; x^n) \;\;\;\;\; (2)$$<br>转换为：<br>$$ a  \cdot  b \equiv 1 (mod \; x^{n/2}) \;\;\;\;\; (3)$$<br>(3) - (1) 得：<br>$$ b - c \equiv 0 (mod \; x^{n/2}) \;\;\;\;\; (4)$$<br>两边同时平方得：<br>$$ b^2 - 2bc + c^2 \equiv 0 (mod \; x^n) \;\;\;\;\; (5)$$<br>两边同时乘 a 得：<br>$$ b - 2c + c^2a \equiv 0 (mod \; x^n) \;\;\;\;\; (6)$$<br>移项，整理：<br>$$ b = (2c - c^2a) \; mod \; x^n $$</p>
+<p>假设已经分治求得了 a 模 $ x^{n/2} $ （此处及以下除法表示向上取整）的逆元 c 。<br>那么有：<br>$$ a  \cdot  c \equiv 1 (mod ; x^{n/2}) ;;;;; (1)$$<br>由 b 的定义可知：<br>$$ a  \cdot  b \equiv 1 (mod ; x^n) ;;;;; (2)$$<br>转换为：<br>$$ a  \cdot  b \equiv 1 (mod ; x^{n/2}) ;;;;; (3)$$<br>(3) - (1) 得：<br>$$ b - c \equiv 0 (mod ; x^{n/2}) ;;;;; (4)$$<br>两边同时平方得：<br>$$ b^2 - 2bc + c^2 \equiv 0 (mod ; x^n) ;;;;; (5)$$<br>两边同时乘 a 得：<br>$$ b - 2c + c^2a \equiv 0 (mod ; x^n) ;;;;; (6)$$<br>移项，整理：<br>$$ b = (2c - c^2a) ; mod ; x^n $$</p>
 <p>(4) -&gt; (5) 中模数平方的原因：<br>左边多项式模 $ x^{n/2} $ 为 0 代表该多项式每一项最低次数为 n / 2 + 1 。<br>那么该多项平方后最低次数会是 n + 1 或 n + 2 ，<br>模 $ x^n $ 后仍为 0 。</p>
 <p>于是乎分治，直到 n == 1 ，此时多项式的取模为一个常数，逆元也就是整数的逆元。</p>
 <p>其中乘法使用 FFT ，则最终时间复杂度为 $ O(n \cdot log_2n) $ 。</p>
@@ -1247,7 +1274,7 @@ int QCNT;</code></pre><p>note 那一排暴露啦，这命名空间 lkjjhkfdlhgkj
 <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p><code>sudo aptitude install i3-wm</code> 后注销重进选择 i3 即可。</p>
 <p>然后你会发现弹出个窗口，接下来黑屏，没有动静。<br>WTF ?<br>其实 i3 已经开了，只是没背景而已，按 win+Enter 打开终端。</p>
 <h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>弹出一个菜单给你设置？想多了，要配置就写 ~/.config/i3/config 去吧。</p>
-<p>\$mod 是 i3 的灵魂，每一个快捷键最好都以 \$mod 开头，<br>一般 \$mod 被设置成 Mod4 ，也就是 Win 键。<br>bindsym 是绑定快捷键，注释很详细，自己看，下面列出一些重要的配置。</p>
+<p>$mod 是 i3 的灵魂，每一个快捷键最好都以 $mod 开头，<br>一般 $mod 被设置成 Mod4 ，也就是 Win 键。<br>bindsym 是绑定快捷键，注释很详细，自己看，下面列出一些重要的配置。</p>
 <h3 id="方向"><a href="#方向" class="headerlink" title="方向"></a>方向</h3><p>i3 默认把 jkl; 做方向键，也许你会更喜欢 hjkl ，自己替换掉就是了。<br>另外分号不是 ; 而是 semicolon 。</p>
 <h3 id="壁纸"><a href="#壁纸" class="headerlink" title="壁纸"></a>壁纸</h3><p>i3 默认没有壁纸，因为它是个平铺式的窗口管理器。<br>但壁纸是第一生产力啊，不要壁纸怎么行。</p>
 <p>下载 feh: <code>sudo aptitude install feh</code>.<br><code>feh --bg-fill (YOUR_IMG)</code> 就可以设置壁纸了，至于实现原理，你不会想知道的。</p>

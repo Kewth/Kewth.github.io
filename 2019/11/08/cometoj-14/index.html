@@ -56,19 +56,19 @@
   };
 </script>
 
-  <meta name="description" content="快速沃尔什变换，简称 FWT ，目前在 OI 中十分冷门。用处多项式卷积一般是这样的：$$ C_i = \sum_{j + k = i} A_j \cdot B_k $$这个可以用 FFT 快速求解。然而还有一个诡异的卷积：$$ C_i = \sum_{j \oplus k = i} A_j \cdot B_k $$">
-<meta name="keywords" content="位运算,卷积,FWT,子集卷积">
+  <meta name="description" content="万年卡 E 题系列。这次 A 竟然不是字符串，开始我已经准备了字符串的输入输出等一堆东西结果发现没卵用花 1min49 AC ，好像在这之前已经有 12 个人 A 了。B 第一眼看上去是个 DP ，再看一眼（看成最小值最大）以为是二分，发现是让最大值最大而且还只有三个段后。。。大力分类讨论！果然是个分类讨论就巨多细节，判无解判边界判大小 blabla ，结果交 WA 了两发，在 16min AC">
+<meta name="keywords" content="cometoj">
 <meta property="og:type" content="article">
-<meta property="og:title" content="快速沃尔什变换">
-<meta property="og:url" content="http://yoursite.com/2019/11/03/快速沃尔什变换/index.html">
+<meta property="og:title" content="cometoj-14">
+<meta property="og:url" content="http://yoursite.com/2019/11/08/cometoj-14/index.html">
 <meta property="og:site_name" content="KeBlog">
-<meta property="og:description" content="快速沃尔什变换，简称 FWT ，目前在 OI 中十分冷门。用处多项式卷积一般是这样的：$$ C_i = \sum_{j + k = i} A_j \cdot B_k $$这个可以用 FFT 快速求解。然而还有一个诡异的卷积：$$ C_i = \sum_{j \oplus k = i} A_j \cdot B_k $$">
+<meta property="og:description" content="万年卡 E 题系列。这次 A 竟然不是字符串，开始我已经准备了字符串的输入输出等一堆东西结果发现没卵用花 1min49 AC ，好像在这之前已经有 12 个人 A 了。B 第一眼看上去是个 DP ，再看一眼（看成最小值最大）以为是二分，发现是让最大值最大而且还只有三个段后。。。大力分类讨论！果然是个分类讨论就巨多细节，判无解判边界判大小 blabla ，结果交 WA 了两发，在 16min AC">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-11-04T03:36:53.692Z">
+<meta property="og:updated_time" content="2019-11-09T03:13:54.783Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="快速沃尔什变换">
-<meta name="twitter:description" content="快速沃尔什变换，简称 FWT ，目前在 OI 中十分冷门。用处多项式卷积一般是这样的：$$ C_i = \sum_{j + k = i} A_j \cdot B_k $$这个可以用 FFT 快速求解。然而还有一个诡异的卷积：$$ C_i = \sum_{j \oplus k = i} A_j \cdot B_k $$">
-  <link rel="canonical" href="http://yoursite.com/2019/11/03/快速沃尔什变换/">
+<meta name="twitter:title" content="cometoj-14">
+<meta name="twitter:description" content="万年卡 E 题系列。这次 A 竟然不是字符串，开始我已经准备了字符串的输入输出等一堆东西结果发现没卵用花 1min49 AC ，好像在这之前已经有 12 个人 A 了。B 第一眼看上去是个 DP ，再看一眼（看成最小值最大）以为是二分，发现是让最大值最大而且还只有三个段后。。。大力分类讨论！果然是个分类讨论就巨多细节，判无解判边界判大小 blabla ，结果交 WA 了两发，在 16min AC">
+  <link rel="canonical" href="http://yoursite.com/2019/11/08/cometoj-14/">
 
 
 <script id="page-configurations">
@@ -82,7 +82,7 @@
   };
 </script>
 
-  <title>快速沃尔什变换 | KeBlog</title>
+  <title>cometoj-14 | KeBlog</title>
   
 
 
@@ -292,7 +292,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/03/快速沃尔什变换/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/08/cometoj-14/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Kewth">
@@ -306,7 +306,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            快速沃尔什变换
+            cometoj-14
             
 
           
@@ -325,7 +325,7 @@
                 
               
 
-              <time title="创建时间：2019-11-03 17:35:00" itemprop="dateCreated datePublished" datetime="2019-11-03T17:35:00+08:00">2019-11-03</time>
+              <time title="创建时间：2019-11-08 22:43:00" itemprop="dateCreated datePublished" datetime="2019-11-08T22:43:00+08:00">2019-11-08</time>
             </span>
           
             
@@ -336,7 +336,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-11-04 11:36:53" itemprop="dateModified" datetime="2019-11-04T11:36:53+08:00">2019-11-04</time>
+                <time title="修改时间：2019-11-09 11:13:54" itemprop="dateModified" datetime="2019-11-09T11:13:54+08:00">2019-11-09</time>
               </span>
             
           
@@ -347,8 +347,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
+                  <a href="/categories/总结/" itemprop="url" rel="index">
+                    <span itemprop="name">总结</span>
                   </a>
                 </span>
 
@@ -377,82 +377,18 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>快速沃尔什变换，简称 FWT ，目前在 OI 中十分冷门。</p><h2 id="用处"><a href="#用处" class="headerlink" title="用处"></a>用处</h2><p>多项式卷积一般是这样的：</p><p>$$ C_i = \sum_{j + k = i} A_j \cdot B_k $$</p><p>这个可以用 FFT 快速求解。</p><p>然而还有一个诡异的卷积：</p><p>$$ C_i = \sum_{j \oplus k = i} A_j \cdot B_k $$</p><a id="more"></a>
+        <p>万年卡 E 题系列。</p><p>这次 A 竟然不是字符串，<del>开始我已经准备了字符串的输入输出等一堆东西结果发现没卵用</del><br>花 1min49 AC ，好像在这之前已经有 12 个人 A 了。</p><p>B 第一眼看上去是个 DP ，再看一眼（看成最小值最大）以为是二分，发现是让最大值最大而且还只有三个段后。。。<br><strong>大力分类讨论</strong>！<br>果然是个分类讨论就巨多细节，判无解判边界判大小 blabla ，结果交 WA 了两发，在 16min AC 。<br>（ B 最快的 6min 就 A 了，16min 这时候 C 的一血都被拿了的说）</p><a id="more"></a>
 
 
+<p>C 维护一个序列？结果每次需要把所有序列复制一份并对复制的那一部分进行修改？<br>一脸懵逼.jpg<br>（然而水群的时候大佬们都说这题怎么怎么显然，和什么什么题一模一样）<br>还好看清楚了数据范围只有 2000 ，就去想单独考虑序列上每个点，这样就很好维护，<br>一个点每次复制就是权值翻倍，复制的位置被修改就是权值加上 修改值 乘 序列数量。<br>好像花了和 B 差不多的时间，在 33min AC 。</p>
+<p>D 题感觉很神，乍一看什么可追溯化数据结构，可一想哪有对线段树可追溯化的，还是追溯一段操作区间。<br>然后就感觉很不可做，但<del>看了 E 发现是个图论更不可做</del>还是头铁硬肝。<br>发现区间覆盖的性质还是很优秀的，然后 yy 了一个扫描线 + set + 树状数组的做法，<br>树状数组维护每个操作对当前扫描线上的询问的影响，<br>然后 set 维护一个蛇皮东西，扫描线扫过的操作执行后的区间覆盖长什么样子，<br>每次区间覆盖就可以直接在 set 上 lower_bound 到位置再换掉旧的覆盖。<br>（后来听人讲这就是 odt 。。。）  </p>
+<p>在 81min 打完过了样例，仔细检查了检查，一交，WA 了。<br>懵逼，静态差错无果，对拍无果，查了半个小时，实在没发现什么错，<br>还以为我题目读错了，读了四五遍题感觉实在是没有什么坑，<br>抱着自闭的心态再交了一发， woc AC 了。<br>一脸懵逼.jpg<br>我感觉我什么地方都没改啊怎么突然从 WA 到 AC 啊！！！</p>
+<p>比完后查了查，发现是这样一句话：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"%d\n"</span>, i);</span><br><span class="line"><span class="comment">// 等价于 std::cerr &lt;&lt; i &lt;&lt; std::endl;</span></span><br></pre></td></tr></table></figure>
 
-
-
-<p>其中 $ \oplus $ 是任意一种位运算。</p>
-<p>FWT 便是求这类卷积的快速算法。</p>
-<h2 id="构造"><a href="#构造" class="headerlink" title="构造"></a>构造</h2><p>FFT 的思想是把多项式转换成可以线性相乘的点值表示法 (DFT) ，<br>再把相乘的结果转换回系数表示法 (IDFT) 。</p>
-<p>同样的道理可以用在 FWT 上，用 DWT 将多项式转换成可以线性相乘的形式，即：</p>
-<p>$$ DWT(C)_i = DWT(A)_i \cdot DWT(B)_i $$</p>
-<p>再用 IDWT 将相乘的结果转换回来。</p>
-<h2 id="DWT"><a href="#DWT" class="headerlink" title="DWT"></a>DWT</h2><p>目标是构造一个转移系数函数 f(i, j) ，满足：</p>
-<p>$$ DWT(A)_i = \sum_j A_j \cdot f(i, j) $$</p>
-<p>考虑 f(i, j) 应满足什么样的性质。</p>
-<p>首先根据 DWT 的性质：</p>
-<p>$$ DWT(C)_i = DWT(A)_i \cdot DWT(B)_i $$</p>
-<p>$$ \sum_t C_t f(i, t) = \sum_j A_j f(i, j) \sum_k B_k f(i, k) $$</p>
-<p>$$ \sum_t \sum_{j \oplus k = t} A_j B_k f(i, t) = \sum_j \sum_k A_j f(i, j) B_k f(i, k) $$</p>
-<p>$$ \sum_t \sum_{j \oplus k = t} A_j B_k f(i, t) = \sum_t \sum_{j \oplus k = t} A_j f(i, j) B_k f(i, k) $$</p>
-<p>由上式可得出：</p>
-<p>$$ \forall i, j, k: f(i, j) f(i, k) = f(i, j \oplus k) $$</p>
-<p>这样还不够，为了让 DWT 快速进行，f(i, j) 还应满足以下性质：</p>
-<p>$$ f(i, j) = \prod_k f(i_k, j_k) $$</p>
-<p>其中 $ i_k $ 表示 i 二进制下的第 k 位（ 0 或 1 ）。</p>
-<p>有了这个性质，就可已通过 f(0, 0), f(0, 1), f(1, 0), f(1, 1) 的值相乘得出所有 f 。<br>有了这个性质，就可以考虑分治求 DWT ：</p>
-<p>$$DWT(A)_i = \sum_{j=0}^{n-1} A_j f(i, j)$$</p>
-<p>$$ = \sum_{j=0}^{n/2-1} A_j f(i, j) + \sum_{j=n/2}^{n-1} A_j f(i, j) $$</p>
-<p>$$ = \sum_{j=0}^{n/2-1} A_j \prod_k f(i_k, j_k) + \sum_{j=n/2}^{n-1} A_j \prod_k f(i_k, j_k) $$</p>
-<p>$$ = \sum_{j=0}^{n/2-1} f(i_0, j_0) A_j \prod_{k \geq 1} f(i_k, j_k) + \sum_{j=n/2}^{n-1} A_j f(i_0, j_0) \prod_{k \geq 1} f(i_k, j_k)$$</p>
-<p>$$ = f(i_0, 0) \sum_{j=0}^{n/2-1} A_j \prod_k f(i_k, j_k) + f(i_0, 1) \sum_{j=n/2}^{n-1} A_j \prod_k f(i_k, j_k) $$</p>
-<p>规模减小了一半，递归或迭代地分治下去。<br>每次将 A 分成左右两半 A0, A1 ：</p>
-<p>$$ DWT(A)_i = f(0, 0) DWT(A0)_i + f(0, 1) DWT(A1)_i , i &lt; n / 2 $$</p>
-<p>$$ DWT(A)_i = f(1, 0) DWT(A0)_i + f(1, 1) DWT(A1)_i , i \geq n / 2 $$</p>
-<p>想到 FFT 的蝴蝶变换没有？ <del>答：没有</del><br>迭代的 DWT 这里也有类似的蝴蝶变换：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> x = A[i], y = A[i + k];</span><br><span class="line">A[i] = f00 * x + f01 * y;</span><br><span class="line">A[i + k] = f10 * x + f11 * y;</span><br></pre></td></tr></table></figure>
-
-<p>DWT 的过程就是这样了，甚至不需要构造整个 f ，<br>只需要 f(0, 0), f(0, 1), f(1, 0), f(1, 1) 即可，<br>需要满足的就是 $ \forall i, j, k: f(i, j) f(i, k) = f(i, j \oplus k) $ 。</p>
-<h2 id="IDWT"><a href="#IDWT" class="headerlink" title="IDWT"></a>IDWT</h2><p>怎么将 DWT 的结果转换回来？<br>观察 DWT 的蝴蝶变换：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = f00 * x + f01 * y;</span><br><span class="line">b = f10 * x + f11 * y;</span><br></pre></td></tr></table></figure>
-
-<p>DWT 通过 x, y 求出 a, b,<br>IDWT 就是通过 a, b 求 x, y 。</p>
-<p>解二元一次方程就好了：<br>x = (f11 * a - f01 * b) / (f00 * f11 - f01 * f10)<br>y = (f10 * a - f00 * b) / (f01 * f10 - f00 * f11)  </p>
-<p>就是这么简单…</p>
-<p>个屁啊。</p>
-<p>考虑 f 的构造，<br>要满足 DWT 的性质把所有的 f 设为 0 不就可以了？<br>要满足 DWT 的性质把所有的 f 设为 1 不就可以了？</p>
-<p>这样且不是对于任何位运算都会有相同的结果？</p>
-<p><del>Naive.</del></p>
-<p>再看看 IDWT ，分母里边是不是有 (f01 * f11 - f01 * f10) ？<br>不幸的是把 f 全部设为 0 或者全设为 1 这个分母都是 0 ，<br>这意味着 IDWT 的二元一次方程无解，转过去就转不回来了。</p>
-<p>因此 f 的构造还要满足一个条件： <code>f01 * f11 != f01 * f10</code> 。</p>
-<h2 id="f-的构造"><a href="#f-的构造" class="headerlink" title="f 的构造"></a>f 的构造</h2><p>f 需要满足的性质已经讲的很详细了。</p>
-<p>这里给出常用位运算中 f 的构造：</p>
-<ul>
-<li>按位或： f00 = 1, f01 = 0, f10 = 1, f11 = 1</li>
-<li>按位与： f00 = 1, f01 = 1, f10 = 0, f11 = 1</li>
-<li>异或： f00 = 1, f01 = 1, f10 = 1, f01 = -1</li>
-</ul>
-<p>可以自行验证，这些 f 满足上述性质。</p>
-<h2 id="实际意义"><a href="#实际意义" class="headerlink" title="实际意义"></a>实际意义</h2><p>一个多项式 A FFT 后的 $A2_x$ 实际意义就是 A 在 $ W_n^x $ 上的值（点值表示）。</p>
-<p>那么 A FWT 后的结果的现实意义呢？<br>这得分类来说。</p>
-<h3 id="按位或"><a href="#按位或" class="headerlink" title="按位或"></a>按位或</h3><p>A 在做按位或的 FWT 之后得到的 A2 满足：<br>$$ A2_x = \sum_{i|x=x} A_i $$</p>
-<p>也就是说 $A2_x$ 表示 x 的每个子集 i 的 $A_i$ 的和。<br>不难得到，$A2_x \cdot B2_x$ 的结果 $C2_x$ 就是 A, B 卷积后的 C 的变换：<br>$$ A2_x \cdot B2_x = \sum_{i|x=x} A_i \sum_{j|x=x} B_j $$<br>$$ A2_x \cdot B2_x = \sum_{i|x=x} \sum_{j|x=x} A_i B_j $$<br>$$ A2_x \cdot B2_x = \sum_{k|x=x} \sum_{i|j=k} A_i B_j $$<br>$$ A2_x \cdot B2_x = \sum_{k|x=x} C_k $$<br>$$ A2_x \cdot B2_x = C2_x $$</p>
-<p>事实上，这也就是子集和变换 FMT 。</p>
-<p><del>感性理解一下</del></p>
-<h3 id="按位与"><a href="#按位与" class="headerlink" title="按位与"></a>按位与</h3><p>和按位或类似的，A 在做按位与的 FWT 之后得到的 A2 满足：<br>$$ A2_x = \sum_{i\&amp;x=x} A_i $$</p>
-<p>也就是说 $A2_x$ 表示每个包含 x 的集合 i 的 $A_i$ 的和。<br>不难得到，$A2_x \cdot B2_x$ 的结果 $C2_x$ 就是 A, B 卷积后的 C 的变换：<br>$$ A2_x \cdot B2_x = \sum_{i\&amp;x=x} A_i \sum_{j\&amp;x=x} B_j $$<br>$$ A2_x \cdot B2_x = \sum_{i\&amp;x=x} \sum_{j\&amp;x=x} A_i B_j $$<br>$$ A2_x \cdot B2_x = \sum_{k\&amp;x=x} \sum_{i\&amp;j=k} A_i B_j $$<br>$$ A2_x \cdot B2_x = \sum_{k\&amp;x=x} C_k $$<br>$$ A2_x \cdot B2_x = C2_x $$</p>
-<p><del>和按位或一个模子里刻出来的</del></p>
-<h2 id="子集卷积"><a href="#子集卷积" class="headerlink" title="子集卷积"></a>子集卷积</h2><p>两个多项式 A, B 的子集卷积 C 的意义如下：</p>
-<p>$$ C(x) = \sum_{y|z=x, y\&amp;z=0} A(y) B(z) $$</p>
-<p>也就是把 x 划分为两个子集 y, z 的 A(y) * B(z) 的和。</p>
-<p>转换成 $ \sum_{y|z=x} A(y) B(z) [y \&amp; z = 0] $ ，似乎是一个按位或卷积。<br>再转换成 $ \sum_{y|z=x} A(y) B(z) [bitcount(y) + bitcount(z) = bitcount(x)] $ 。</p>
-<p>此时需要考虑的就是 bitcount, 也就是集合大小。<br>集合大小是 $ O(log(n)) $ 的，可以考虑枚举大小，设：<br>$$ A_i(x) = A(x) [bitcount(x) = i] $$<br>$$ B_j(x) = B(x) [bitcount(x) = j] $$<br>$$ C_k(x) = C(x) [bitcount(x) = k] $$</p>
-<p>那么有：<br>$$ C_k(x) = \sum_{y|z=x} A_i(y) B_j(z) [i + j = k] $$<br>$$ C_k(x) = \sum_{i+j=k} \sum_{y|z=x} A_i(y) B_j(z) $$</p>
-<p>那么枚举 i, j 的值，将 $ A_i $ 和 $ B_j $ 卷积后贡献到 $ C_{i+j} $ 即可。</p>
-<p>这样复杂度似乎是 $ O(n log^3n) $ 的，<br>但是事实上每个 $ A_i, B_j $ 都可以提前 FWT 后 $ O(n) $ 相乘，<br>再贡献到 C 后不进行逆变换，而是确定了 C 的值后在进行逆变换。</p>
-<p>复杂度 $ O(n log^2n) $</p>
+<p>神 tm 我输出到标准错误流竟然就 WA 了？！<br>后面还 test 了一波，发现在 cometoj 上只要有标准错误流就会 WA/RE 。<br>引以为戒，祭奠为此逝去的半个小时。</p>
+<p>最后就在整个后半场卡 E 了，回头看了看每场 cometoj 常规赛都卡 E ，能 A 掉 ABCD ，<br>发现唯一一次拿到奖是因为那次只有 8 个人 A 掉了 D 。。</p>
+<p><del>写总结好累了，以后打比赛就不写了吧。。</del></p>
 
     </div>
 
@@ -468,13 +404,7 @@
           
           <div class="post-tags">
             
-              <a href="/tags/位运算/" rel="tag"><i class="fa fa-tag"></i> 位运算</a>
-            
-              <a href="/tags/卷积/" rel="tag"><i class="fa fa-tag"></i> 卷积</a>
-            
-              <a href="/tags/FWT/" rel="tag"><i class="fa fa-tag"></i> FWT</a>
-            
-              <a href="/tags/子集卷积/" rel="tag"><i class="fa fa-tag"></i> 子集卷积</a>
+              <a href="/tags/cometoj/" rel="tag"><i class="fa fa-tag"></i> cometoj</a>
             
           </div>
         
@@ -484,8 +414,8 @@
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
               
-                <a href="/2019/10/25/cometoj-13/" rel="next" title="cometoj-13">
-                  <i class="fa fa-chevron-left"></i> cometoj-13
+                <a href="/2019/11/05/中国剩余定理/" rel="next" title="中国剩余定理">
+                  <i class="fa fa-chevron-left"></i> 中国剩余定理
                 </a>
               
             </div>
@@ -493,10 +423,6 @@
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
-              
-                <a href="/2019/11/05/中国剩余定理/" rel="prev" title="中国剩余定理">
-                  中国剩余定理 <i class="fa fa-chevron-right"></i>
-                </a>
               
             </div>
           </div>
@@ -545,8 +471,6 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#用处"><span class="nav-number">1.</span> <span class="nav-text">用处</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构造"><span class="nav-number">2.</span> <span class="nav-text">构造</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DWT"><span class="nav-number">3.</span> <span class="nav-text">DWT</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IDWT"><span class="nav-number">4.</span> <span class="nav-text">IDWT</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#f-的构造"><span class="nav-number">5.</span> <span class="nav-text">f 的构造</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实际意义"><span class="nav-number">6.</span> <span class="nav-text">实际意义</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#按位或"><span class="nav-number">6.1.</span> <span class="nav-text">按位或</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#按位与"><span class="nav-number">6.2.</span> <span class="nav-text">按位与</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#子集卷积"><span class="nav-number">7.</span> <span class="nav-text">子集卷积</span></a></li></ol></div>
-        
       </div>
       <!--/noindex-->
 
@@ -842,7 +766,7 @@
       repo: 'hexo-gitalk',
       owner: 'Kewth',
       admin: ['Kewth'],
-      id: '4d4b3cee3cc1cbe3c0767f746aea6a89',
+      id: 'a88a501b932e32a5154fa984d479365f',
         language: 'zh-CN',
       
       distractionFreeMode: 'true'

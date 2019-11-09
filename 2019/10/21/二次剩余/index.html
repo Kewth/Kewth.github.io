@@ -56,18 +56,18 @@
   };
 </script>
 
-  <meta name="description" content="二次剩余，俗称模意义开根。也就是对于常数 $n$ 解这样一个方程：$$x^2 \equiv n \\; (mod \\; p)$$这里只介绍模数 $p$ 为奇素数的解法，也就是 Cipolla 算法。以下运算皆指模 $p$ 意义下的运算。解的数量严格来讲，非 0 数 $n$ 是二次剩余当且仅当方程 $x^2 \equiv n$ 有解，也就是能开根。上述方程无解的非 0 数 $n$ 称作非二次剩余。">
-<meta name="keywords" content="同余,二次剩余">
+  <meta name="description" content="二次剩余，俗称模意义开根。也就是对于常数 $n$ 解这样一个方程：$$x^2 \equiv n \; (mod \; p)$$这里只介绍模数 $p$ 为奇素数的解法，也就是 Cipolla 算法。以下运算皆指模 $p$ 意义下的运算。解的数量严格来讲，非 0 数 $n$ 是二次剩余当且仅当方程 $x^2 \equiv n$ 有解，也就是能开根。上述方程无解的非 0 数 $n$ 称作非二次剩余。">
+<meta name="keywords" content="二次剩余,同余">
 <meta property="og:type" content="article">
 <meta property="og:title" content="二次剩余">
 <meta property="og:url" content="http://yoursite.com/2019/10/21/二次剩余/index.html">
 <meta property="og:site_name" content="KeBlog">
-<meta property="og:description" content="二次剩余，俗称模意义开根。也就是对于常数 $n$ 解这样一个方程：$$x^2 \equiv n \\; (mod \\; p)$$这里只介绍模数 $p$ 为奇素数的解法，也就是 Cipolla 算法。以下运算皆指模 $p$ 意义下的运算。解的数量严格来讲，非 0 数 $n$ 是二次剩余当且仅当方程 $x^2 \equiv n$ 有解，也就是能开根。上述方程无解的非 0 数 $n$ 称作非二次剩余。">
+<meta property="og:description" content="二次剩余，俗称模意义开根。也就是对于常数 $n$ 解这样一个方程：$$x^2 \equiv n \; (mod \; p)$$这里只介绍模数 $p$ 为奇素数的解法，也就是 Cipolla 算法。以下运算皆指模 $p$ 意义下的运算。解的数量严格来讲，非 0 数 $n$ 是二次剩余当且仅当方程 $x^2 \equiv n$ 有解，也就是能开根。上述方程无解的非 0 数 $n$ 称作非二次剩余。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-25T23:52:43.487Z">
+<meta property="og:updated_time" content="2019-11-05T13:39:51.004Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="二次剩余">
-<meta name="twitter:description" content="二次剩余，俗称模意义开根。也就是对于常数 $n$ 解这样一个方程：$$x^2 \equiv n \\; (mod \\; p)$$这里只介绍模数 $p$ 为奇素数的解法，也就是 Cipolla 算法。以下运算皆指模 $p$ 意义下的运算。解的数量严格来讲，非 0 数 $n$ 是二次剩余当且仅当方程 $x^2 \equiv n$ 有解，也就是能开根。上述方程无解的非 0 数 $n$ 称作非二次剩余。">
+<meta name="twitter:description" content="二次剩余，俗称模意义开根。也就是对于常数 $n$ 解这样一个方程：$$x^2 \equiv n \; (mod \; p)$$这里只介绍模数 $p$ 为奇素数的解法，也就是 Cipolla 算法。以下运算皆指模 $p$ 意义下的运算。解的数量严格来讲，非 0 数 $n$ 是二次剩余当且仅当方程 $x^2 \equiv n$ 有解，也就是能开根。上述方程无解的非 0 数 $n$ 称作非二次剩余。">
   <link rel="canonical" href="http://yoursite.com/2019/10/21/二次剩余/">
 
 
@@ -260,7 +260,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">37</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">38</span></a>
 
   </li>
       
@@ -336,7 +336,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-10-26 07:52:43" itemprop="dateModified" datetime="2019-10-26T07:52:43+08:00">2019-10-26</time>
+                <time title="修改时间：2019-11-05 21:39:51" itemprop="dateModified" datetime="2019-11-05T21:39:51+08:00">2019-11-05</time>
               </span>
             
           
@@ -377,7 +377,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>二次剩余，<del>俗称模意义开根</del>。<br>也就是对于常数 $n$ 解这样一个方程：</p><p>$$x^2 \equiv n \\; (mod \\; p)$$</p><p>这里只介绍模数 $p$ 为奇素数的解法，也就是 Cipolla 算法。</p><p>以下运算皆指模 $p$ 意义下的运算。</p><h2 id="解的数量"><a href="#解的数量" class="headerlink" title="解的数量"></a>解的数量</h2><p>严格来讲，非 0 数 $n$ 是二次剩余当且仅当方程 $x^2 \equiv n$ 有解，也就是能开根。<br>上述方程无解的非 0 数 $n$ 称作非二次剩余。</p><a id="more"></a>
+        <p>二次剩余，<del>俗称模意义开根</del>。<br>也就是对于常数 $n$ 解这样一个方程：</p><p>$$x^2 \equiv n \; (mod \; p)$$</p><p>这里只介绍模数 $p$ 为奇素数的解法，也就是 Cipolla 算法。</p><p>以下运算皆指模 $p$ 意义下的运算。</p><h2 id="解的数量"><a href="#解的数量" class="headerlink" title="解的数量"></a>解的数量</h2><p>严格来讲，非 0 数 $n$ 是二次剩余当且仅当方程 $x^2 \equiv n$ 有解，也就是能开根。<br>上述方程无解的非 0 数 $n$ 称作非二次剩余。</p><a id="more"></a>
 
 
 
@@ -413,6 +413,10 @@
 
 <h2 id="BSGS"><a href="#BSGS" class="headerlink" title="BSGS"></a>BSGS</h2><p>值得一提的是，模意义开根（甚至可以推广到开 $k$ 次方根）是可以通过原根转换为求对数问题从而使用 BSGS 的。<br>不过复杂度 $O(\sqrt{p})$ 远不如 Cipolla 的 $O(logp)$ 优秀，但很多情况下也足够了。</p>
 <p>具体地，将 $x$ 表示为 $g^y$ ，其中 $g$ 是原根，方程变为 $(g^y)^k \equiv n$ ，即 $(g^k)^y \equiv n$ ，解出 $y$ 即可。</p>
+<h2 id="非二次剩余开根"><a href="#非二次剩余开根" class="headerlink" title="非二次剩余开根"></a>非二次剩余开根</h2><p>事实上，大多数情况需要开根的数并不是个二次剩余。</p>
+<p>比如有一个递推式，为了化简需要开根，但是这时候被开根的数是个任意数。</p>
+<p>比如 <a href="https://cometoj.com/contest/72/problem/Ｄ?problem_id=4033" target="_blank" rel="noopener">这个</a> 还有 <a href="http://www.51nod.com/Challenge/ProblemSubmitDetail.html#judgeId=826009" target="_blank" rel="noopener">这个</a> 。</p>
+<p>其实很简单，像 Cipolla 那样直接扩域，把这个非二次剩余设为虚数单位即可。<br>但当然这仅适用于对仅仅一个非二次剩余开根的情况，如果式子需要同时对若干非二次剩余开根，扩域的代价（大概）会呈指数级别增长，即每一次复数乘法的复杂度会很大。</p>
 
     </div>
 
@@ -428,9 +432,9 @@
           
           <div class="post-tags">
             
-              <a href="/tags/同余/" rel="tag"><i class="fa fa-tag"></i> 同余</a>
-            
               <a href="/tags/二次剩余/" rel="tag"><i class="fa fa-tag"></i> 二次剩余</a>
+            
+              <a href="/tags/同余/" rel="tag"><i class="fa fa-tag"></i> 同余</a>
             
           </div>
         
@@ -501,7 +505,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#解的数量"><span class="nav-number">1.</span> <span class="nav-text">解的数量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#欧拉准则"><span class="nav-number">2.</span> <span class="nav-text">欧拉准则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cipolla"><span class="nav-number">3.</span> <span class="nav-text">Cipolla</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现"><span class="nav-number">4.</span> <span class="nav-text">实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BSGS"><span class="nav-number">5.</span> <span class="nav-text">BSGS</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#解的数量"><span class="nav-number">1.</span> <span class="nav-text">解的数量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#欧拉准则"><span class="nav-number">2.</span> <span class="nav-text">欧拉准则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cipolla"><span class="nav-number">3.</span> <span class="nav-text">Cipolla</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现"><span class="nav-number">4.</span> <span class="nav-text">实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BSGS"><span class="nav-number">5.</span> <span class="nav-text">BSGS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#非二次剩余开根"><span class="nav-number">6.</span> <span class="nav-text">非二次剩余开根</span></a></li></ol></div>
         
       </div>
       <!--/noindex-->
@@ -520,7 +524,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">37</span>
+          <span class="site-state-item-count">38</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

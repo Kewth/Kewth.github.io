@@ -259,7 +259,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">37</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">38</span></a>
 
   </li>
       
@@ -363,7 +363,7 @@
 <p>那么在 mod p 意义下，有 $ a / b = a  \cdot  b^{-1} $ 。</p>
 <h2 id="逆元的求解"><a href="#逆元的求解" class="headerlink" title="逆元的求解"></a>逆元的求解</h2><p>事实上模数一般是 $ x^n $ 。</p>
 <p>此时可以用分治求多项式 a 的逆元 b。</p>
-<p>假设已经分治求得了 a 模 $ x^{n/2} $ （此处及以下除法表示向上取整）的逆元 c 。<br>那么有：<br>$$ a  \cdot  c \equiv 1 (mod \; x^{n/2}) \;\;\;\;\; (1)$$<br>由 b 的定义可知：<br>$$ a  \cdot  b \equiv 1 (mod \; x^n) \;\;\;\;\; (2)$$<br>转换为：<br>$$ a  \cdot  b \equiv 1 (mod \; x^{n/2}) \;\;\;\;\; (3)$$<br>(3) - (1) 得：<br>$$ b - c \equiv 0 (mod \; x^{n/2}) \;\;\;\;\; (4)$$<br>两边同时平方得：<br>$$ b^2 - 2bc + c^2 \equiv 0 (mod \; x^n) \;\;\;\;\; (5)$$<br>两边同时乘 a 得：<br>$$ b - 2c + c^2a \equiv 0 (mod \; x^n) \;\;\;\;\; (6)$$<br>移项，整理：<br>$$ b = (2c - c^2a) \; mod \; x^n $$</p>
+<p>假设已经分治求得了 a 模 $ x^{n/2} $ （此处及以下除法表示向上取整）的逆元 c 。<br>那么有：<br>$$ a  \cdot  c \equiv 1 (mod ; x^{n/2}) ;;;;; (1)$$<br>由 b 的定义可知：<br>$$ a  \cdot  b \equiv 1 (mod ; x^n) ;;;;; (2)$$<br>转换为：<br>$$ a  \cdot  b \equiv 1 (mod ; x^{n/2}) ;;;;; (3)$$<br>(3) - (1) 得：<br>$$ b - c \equiv 0 (mod ; x^{n/2}) ;;;;; (4)$$<br>两边同时平方得：<br>$$ b^2 - 2bc + c^2 \equiv 0 (mod ; x^n) ;;;;; (5)$$<br>两边同时乘 a 得：<br>$$ b - 2c + c^2a \equiv 0 (mod ; x^n) ;;;;; (6)$$<br>移项，整理：<br>$$ b = (2c - c^2a) ; mod ; x^n $$</p>
 <p>(4) -&gt; (5) 中模数平方的原因：<br>左边多项式模 $ x^{n/2} $ 为 0 代表该多项式每一项最低次数为 n / 2 + 1 。<br>那么该多项平方后最低次数会是 n + 1 或 n + 2 ，<br>模 $ x^n $ 后仍为 0 。</p>
 <p>于是乎分治，直到 n == 1 ，此时多项式的取模为一个常数，逆元也就是整数的逆元。</p>
 <p>其中乘法使用 FFT ，则最终时间复杂度为 $ O(n \cdot log_2n) $ 。</p>
@@ -463,7 +463,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">37</span>
+          <span class="site-state-item-count">38</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
