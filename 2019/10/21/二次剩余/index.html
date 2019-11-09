@@ -57,14 +57,14 @@
 </script>
 
   <meta name="description" content="二次剩余，俗称模意义开根。也就是对于常数 $n$ 解这样一个方程：$$x^2 \equiv n \; (mod \; p)$$这里只介绍模数 $p$ 为奇素数的解法，也就是 Cipolla 算法。以下运算皆指模 $p$ 意义下的运算。解的数量严格来讲，非 0 数 $n$ 是二次剩余当且仅当方程 $x^2 \equiv n$ 有解，也就是能开根。上述方程无解的非 0 数 $n$ 称作非二次剩余。">
-<meta name="keywords" content="二次剩余,同余">
+<meta name="keywords" content="同余,二次剩余">
 <meta property="og:type" content="article">
 <meta property="og:title" content="二次剩余">
 <meta property="og:url" content="http://yoursite.com/2019/10/21/二次剩余/index.html">
 <meta property="og:site_name" content="KeBlog">
 <meta property="og:description" content="二次剩余，俗称模意义开根。也就是对于常数 $n$ 解这样一个方程：$$x^2 \equiv n \; (mod \; p)$$这里只介绍模数 $p$ 为奇素数的解法，也就是 Cipolla 算法。以下运算皆指模 $p$ 意义下的运算。解的数量严格来讲，非 0 数 $n$ 是二次剩余当且仅当方程 $x^2 \equiv n$ 有解，也就是能开根。上述方程无解的非 0 数 $n$ 称作非二次剩余。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-11-05T13:39:51.004Z">
+<meta property="og:updated_time" content="2019-11-09T04:13:05.393Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="二次剩余">
 <meta name="twitter:description" content="二次剩余，俗称模意义开根。也就是对于常数 $n$ 解这样一个方程：$$x^2 \equiv n \; (mod \; p)$$这里只介绍模数 $p$ 为奇素数的解法，也就是 Cipolla 算法。以下运算皆指模 $p$ 意义下的运算。解的数量严格来讲，非 0 数 $n$ 是二次剩余当且仅当方程 $x^2 \equiv n$ 有解，也就是能开根。上述方程无解的非 0 数 $n$ 称作非二次剩余。">
@@ -336,7 +336,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-11-05 21:39:51" itemprop="dateModified" datetime="2019-11-05T21:39:51+08:00">2019-11-05</time>
+                <time title="修改时间：2019-11-09 12:13:05" itemprop="dateModified" datetime="2019-11-09T12:13:05+08:00">2019-11-09</time>
               </span>
             
           
@@ -406,7 +406,7 @@
 <p>$$(a + i)^{p+1} \equiv (a^p + i^p) (a + i) \equiv (a - i) (a + i) \equiv a^2 - i^2 \equiv n$$</p>
 <p>那么 $(a + i)^{\frac{p+1}{2}}$ 即是一个解，其相反数是另一个解。</p>
 <p>然而还剩最后一个问题， $(a + i)^{\frac{p+1}{2}}$ 的“虚部”一定为 0 吗？</p>
-<p>幸运的是，的确如此，假设存在 $(A + Bi)^2 \equiv n$ 且 $B \ne 0$ ，<br>那么有 $A^2 + B^2i^2 + 2ABi \equiv n$ ，即 $A^2 + B^2(a^2 - n) - n \equiv -2ABi$ 。<br>式子的左边“虚部”为 0 ，那么式子右边的虚部也一定为 0 ，也就是说 $AB \equiv 0$ 。<br>既然假设了 $B \ne 0$ 那么一定是 $A \equiv 0$ ，也就是说 $(Bi)^2 \equiv n$ 。<br>也就是 $i^2 \equiv nB^{-2}$ ，由于 $B^2$ 是个二次剩余，其逆元 $B^{-2}$ 一定也是二次剩余，乘上二次剩余 $n$ 后一定还是二次剩余，这与 $i^2$ 是个非二次剩余产生矛盾。</p>
+<p>幸运的是，的确如此，假设存在 $(A + Bi)^2 \equiv n$ 且 $B \ne 0$ ，<br>那么有 $A^2 + B^2i^2 + 2ABi \equiv n$ ，即 $A^2 + B^2(a^2 - n) - n \equiv -2ABi$ 。<br>式子的左边“虚部”为 0 ，那么式子右边的“虚部”也一定为 0 ，也就是说 $AB \equiv 0$ 。<br>既然假设了 $B \ne 0$ 那么一定是 $A \equiv 0$ ，也就是说 $(Bi)^2 \equiv n$ 。<br>也就是 $i^2 \equiv nB^{-2}$ ，由于 $B^2$ 是个二次剩余，其逆元 $B^{-2}$ 一定也是二次剩余，乘上二次剩余 $n$ 后一定还是二次剩余，这与 $i^2$ 是个非二次剩余产生矛盾。</p>
 <h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>实现的时候弄个“复数”类（据说也可以不用）即可。</p>
 <p>参考实现：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> lolong;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> mod;</span><br><span class="line">lolong I_mul_I; <span class="comment">// 虚数单位的平方</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">complex</span> &#123;</span></span><br><span class="line">	lolong real, imag;</span><br><span class="line">	<span class="keyword">complex</span>(lolong real = <span class="number">0</span>, lolong imag = <span class="number">0</span>): real(real), imag(imag) &#123; &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">inline</span> <span class="keyword">bool</span> <span class="keyword">operator</span> == (<span class="keyword">complex</span> x, <span class="keyword">complex</span> y) &#123;</span><br><span class="line">	<span class="keyword">return</span> x.real == y.real <span class="keyword">and</span> x.imag == y.imag;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">inline</span> <span class="keyword">complex</span> <span class="keyword">operator</span> * (<span class="keyword">complex</span> x, <span class="keyword">complex</span> y) &#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">complex</span>((x.real * y.real + I_mul_I * x.imag % mod * y.imag) % mod,</span><br><span class="line">			(x.imag * y.real + x.real * y.imag) % mod);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">complex</span> <span class="title">power</span><span class="params">(<span class="keyword">complex</span> x, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">complex</span> res = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span>(k) &#123;</span><br><span class="line">		<span class="keyword">if</span>(k &amp; <span class="number">1</span>) res = res * x;</span><br><span class="line">		x = x * x;</span><br><span class="line">		k &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">check_if_residue</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> power(x, (mod - <span class="number">1</span>) &gt;&gt; <span class="number">1</span>) == <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> p, <span class="keyword">int</span> &amp;x0, <span class="keyword">int</span> &amp;x1)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(n == <span class="number">0</span>) &#123;</span><br><span class="line">		x0 = x1 = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	mod = p;</span><br><span class="line"></span><br><span class="line">	lolong a = rand() % mod;</span><br><span class="line">	<span class="keyword">while</span>(!a <span class="keyword">or</span> check_if_residue((a * a + mod - n) % mod))</span><br><span class="line">		a = rand() % mod;</span><br><span class="line">	I_mul_I = (a * a + mod - n) % mod;</span><br><span class="line"></span><br><span class="line">	x0 = <span class="keyword">int</span>(power(<span class="keyword">complex</span>(a, <span class="number">1</span>), (mod + <span class="number">1</span>) &gt;&gt; <span class="number">1</span>).real);</span><br><span class="line">	x1 = mod - x0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -417,6 +417,13 @@
 <p>比如有一个递推式，为了化简需要开根，但是这时候被开根的数是个任意数。</p>
 <p>比如 <a href="https://cometoj.com/contest/72/problem/Ｄ?problem_id=4033" target="_blank" rel="noopener">这个</a> 还有 <a href="http://www.51nod.com/Challenge/ProblemSubmitDetail.html#judgeId=826009" target="_blank" rel="noopener">这个</a> 。</p>
 <p>其实很简单，像 Cipolla 那样直接扩域，把这个非二次剩余设为虚数单位即可。<br>但当然这仅适用于对仅仅一个非二次剩余开根的情况，如果式子需要同时对若干非二次剩余开根，扩域的代价（大概）会呈指数级别增长，即每一次复数乘法的复杂度会很大。</p>
+<h2 id="扩域后指数取模"><a href="#扩域后指数取模" class="headerlink" title="扩域后指数取模"></a>扩域后指数取模</h2><p>（以下前提是模数是质数）</p>
+<p>扩域后，费马小定理在复数上是不成立的，也就是说 $(A+Bi)^p$ 不一定同余于 $A+Bi$ 。</p>
+<p>但有时需要对一个幂的指数取模，还是扩域后的，或者有时候需要对一个扩域后的数求逆元，怎么办？</p>
+<p>比如 <a href="http://www.51nod.com/Challenge/ProblemSubmitDetail.html#judgeId=826009" target="_blank" rel="noopener">这个</a> 。</p>
+<p>根据 Cipolla 中提到的公式 $(a + i)^{p+1} \equiv n$ ，推广一下可以得到 $(A+Bi)^{p+1} \equiv A^2-B^2i^2$ 。</p>
+<p>注意到此时 $A^2 - B^2 i^2$ 虚部为 0 ，设 $x \equiv A^2 - B^2 i^2$ 虚部为零的数是满足费马小定理的，<br>也就是说 $x^p \equiv x$ ，即 $x^{p-1} \equiv 1$，那么有 $((A+Bi)^{p+1})^{p-1} \equiv 1$ 。<br>也就说指数对 $p^2 - 1$ 取模即可，换句话说，扩域后的复数 $x$ 满足：</p>
+<p>$$ x^{p^2} \equiv x $$</p>
 
     </div>
 
@@ -432,9 +439,9 @@
           
           <div class="post-tags">
             
-              <a href="/tags/二次剩余/" rel="tag"><i class="fa fa-tag"></i> 二次剩余</a>
-            
               <a href="/tags/同余/" rel="tag"><i class="fa fa-tag"></i> 同余</a>
+            
+              <a href="/tags/二次剩余/" rel="tag"><i class="fa fa-tag"></i> 二次剩余</a>
             
           </div>
         
@@ -505,7 +512,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#解的数量"><span class="nav-number">1.</span> <span class="nav-text">解的数量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#欧拉准则"><span class="nav-number">2.</span> <span class="nav-text">欧拉准则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cipolla"><span class="nav-number">3.</span> <span class="nav-text">Cipolla</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现"><span class="nav-number">4.</span> <span class="nav-text">实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BSGS"><span class="nav-number">5.</span> <span class="nav-text">BSGS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#非二次剩余开根"><span class="nav-number">6.</span> <span class="nav-text">非二次剩余开根</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#解的数量"><span class="nav-number">1.</span> <span class="nav-text">解的数量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#欧拉准则"><span class="nav-number">2.</span> <span class="nav-text">欧拉准则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cipolla"><span class="nav-number">3.</span> <span class="nav-text">Cipolla</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现"><span class="nav-number">4.</span> <span class="nav-text">实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BSGS"><span class="nav-number">5.</span> <span class="nav-text">BSGS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#非二次剩余开根"><span class="nav-number">6.</span> <span class="nav-text">非二次剩余开根</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#扩域后指数取模"><span class="nav-number">7.</span> <span class="nav-text">扩域后指数取模</span></a></li></ol></div>
         
       </div>
       <!--/noindex-->

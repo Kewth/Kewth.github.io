@@ -360,7 +360,7 @@
 <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p><code>sudo aptitude install i3-wm</code> 后注销重进选择 i3 即可。</p>
 <p>然后你会发现弹出个窗口，接下来黑屏，没有动静。<br>WTF ?<br>其实 i3 已经开了，只是没背景而已，按 win+Enter 打开终端。</p>
 <h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>弹出一个菜单给你设置？想多了，要配置就写 ~/.config/i3/config 去吧。</p>
-<p>$mod 是 i3 的灵魂，每一个快捷键最好都以 $mod 开头，<br>一般 $mod 被设置成 Mod4 ，也就是 Win 键。<br>bindsym 是绑定快捷键，注释很详细，自己看，下面列出一些重要的配置。</p>
+<p>\$mod 是 i3 的灵魂，每一个快捷键最好都以 \$mod 开头，<br>一般 \$mod 被设置成 Mod4 ，也就是 Win 键。<br>bindsym 是绑定快捷键，注释很详细，自己看，下面列出一些重要的配置。</p>
 <h3 id="方向"><a href="#方向" class="headerlink" title="方向"></a>方向</h3><p>i3 默认把 jkl; 做方向键，也许你会更喜欢 hjkl ，自己替换掉就是了。<br>另外分号不是 ; 而是 semicolon 。</p>
 <h3 id="壁纸"><a href="#壁纸" class="headerlink" title="壁纸"></a>壁纸</h3><p>i3 默认没有壁纸，因为它是个平铺式的窗口管理器。<br>但壁纸是第一生产力啊，不要壁纸怎么行。</p>
 <p>下载 feh: <code>sudo aptitude install feh</code>.<br><code>feh --bg-fill (YOUR_IMG)</code> 就可以设置壁纸了，至于实现原理，你不会想知道的。</p>

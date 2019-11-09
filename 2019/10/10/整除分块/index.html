@@ -384,19 +384,19 @@
 <p>证明：</p>
 <ul>
 <li>对于 l 设 $ n / l = x $</li>
-<li>那么由 $ n \; mod \; l = n - n / l  \cdot  l = n - l  \cdot  x $ 可知 $ n - l  \cdot  x \geq 0 $</li>
+<li>那么由 $ n \\; mod \\; l = n - n / l  \cdot  l = n - l  \cdot  x $ 可知 $ n - l  \cdot  x \geq 0 $</li>
 <li>那么若 l + 1 满足 $ n / (l + 1) = n / l $ ，可知也有 $ n - (l + 1)  \cdot  x \geq 0 $</li>
 <li>即 $ n - l  \cdot  x \geq x $</li>
 <li>对于 k 若 $ n / k = n / l $ 而 $ n / (k + 1) != n / l $</li>
 <li>那么根据上式可得 k 满足 $ 0 \leq n - k  \cdot  x &lt; x $</li>
-<li>所以 $ n - k  \cdot  x = n \; mod \; x = n - n / x  \cdot  x $</li>
+<li>所以 $ n - k  \cdot  x = n \\; mod \\; x = n - n / x  \cdot  x $</li>
 <li>所以 $ k = n / x = n / (n / l) $</li>
-<li>由 k 的定义 $ n / k = n / l \; and \; n / (k + 1) != n / l $ 可知 k+1 即是要求的 r</li>
+<li>由 k 的定义 $ n / k = n / l \\; and \\; n / (k + 1) != n / l $ 可知 k+1 即是要求的 r</li>
 </ul>
 <p>那么可以枚举块，当前 l,r 可以求得，下一个块的 l 显然是当前 r。</p>
 <p>有时候会有点变化：</p>
 <p>要求 $ \sum_{i=1}^{min(n, m)} f(\frac{n}{i})  \cdot  f(\frac{m}{i}) $ 。</p>
-<p>还是会存在 $ \forall l&lt;=i&lt;r, \frac{n}{i} = \frac{n}{l} \&amp; \frac{m}{i} = \frac{m}{l} $ 。</p>
+<p>还是会存在 $ \forall l&lt;=i&lt;r, \frac{n}{i} = \frac{n}{l} \\&amp; \frac{m}{i} = \frac{m}{l} $ 。</p>
 <p>所以这样的区间的右端点为：$ r = min(n / (n / l), m / (m / l)) + 1 $ 。</p>
 <p>所以还是可以一块一块的枚举求和。</p>
 
