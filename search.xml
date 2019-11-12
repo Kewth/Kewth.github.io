@@ -327,12 +327,12 @@
 <p>min25 筛可大致分为两步。</p>
 <h5 id="Step-1"><a href="#Step-1" class="headerlink" title="Step 1"></a>Step 1</h5><p>第一步处理的是 $f$ 在质数上的取值的和。<br>令 $F(x) = [x \in Prime] f(x)$ ，那么这一步的目标是筛出 $F$ 的前缀和。<br>准确地讲，是 $F$ 的前缀和函数 $S_F$ 在每个形如 $\frac{n}{d}$ 的数上的取值。</p>
 <p>首先需要将 $f(i)$ 拆成若干完全积性函数的和，<br>只需考虑 $F$ ，也就是 $f(p^k)$ 的取值。<br>如果是关于 $p$ 的多项式，每个单项式对应的就是一个完全积性函数。</p>
-<p>假设现在要筛一个完全积性函数 $h$ ，要能快速计算出 $S_h = \sum_{i=1}^n h(i)$ 。<br>这一步的主要思想是，一个一个枚举质数 $p$ ，筛掉最小值因子为 $p$ 的合数的取值。<br>而合数 $x$ 的最小质因子为 $p$ 的必要条件是 $p^2 \leq x$ ，即 $p \leq \sqrt{x}$ 。<br>那么只需要枚举 $\sqrt{n}$ 以内的质数去筛即可。</p>
+<p>假设现在要筛一个完全积性函数 $h$ ，要能快速计算出 $S_h = \sum_{i=1}^n h(i)$ 。<br>这一步的主要思想是，一个一个枚举质数 $p$ ，筛掉最小质因子为 $p$ 的合数的取值。<br>而合数 $x$ 的最小质因子为 $p$ 的必要条件是 $p^2 \leq x$ ，即 $p \leq \sqrt{x}$ 。<br>那么只需要枚举 $\sqrt{n}$ 以内的质数去筛即可。</p>
 <p>假设现在筛掉了前 $i - 1$ 个质因子得到一个这个值：</p>
 <p>$$g(n, i - 1) = \sum_{x=1}^n [x \in Prime \; or \; minp(x) &gt; P_{i-1}] h(x)$$</p>
 <p>其中 $P_i$ 表示 $\sqrt{n}$ 以内第 $i$ 个质数。</p>
-<p>那么接下来要筛最小值因子为 $P_i$ 的数：</p>
-<p>$$g(n, i) = g(n, i - 1) - \sum_{x=1}^n [minp(x) = P_i] h(x)$$</p>
+<p>那么接下来要筛最小质因子为 $P_i$ 的合数：</p>
+<p>$$g(n, i) = g(n, i - 1) - \sum_{x=1}^n [minp(x) = P_i \; and \; x \notin Prime] h(x)$$</p>
 <p>由于 $h$ 是完全积性函数，$P_i$ 可以直接提出来，得到：</p>
 <p>$$<br>\begin{equation}<br>\begin{aligned}<br>g(n, i) &amp;= g(n, i - 1) - h(P_i) \sum_{x=1}^{n/P_i} [minp(x) \geq P_i] h(x) \\\<br>&amp;= g(n, i - 1) - h(P_i) (g(\frac{n}{P_i}, i - 1) - \sum_{x=1}^{n/P_i} [x \in Prime \; and \; minp(x) &lt; P_i] h(x)) \\\<br>&amp;= g(n, i - 1) - h(P_i) (g(\frac{n}{P_i}, i - 1) - \sum_{j=1}^{i-1} h(P_j)) \\\<br>&amp;= g(n, i - 1) - h(P_i) (g(\frac{n}{P_i}, i - 1) - ph_{i - 1}) \\\<br>\end{aligned}<br>\end{equation}<br>$$</p>
 <p>其中 $ph_i$ 就是 $h$ 在前 $i$ 个质数上的取值和，注意 $P_i \leq \sqrt{n}$ ，这是可以直接筛的。</p>
@@ -348,7 +348,8 @@
 <p>同样地第一维的取值都是 $\frac{n}{d}$ 的形式，但是第二维无法滚动，<br>但事实上后面的部分直接递归计算即可，以下是参考实现：</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> lolong;</span><br><span class="line"><span class="function">lolong <span class="title">S</span><span class="params">(lolong i, <span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(prime[j] &gt; i) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	lolong res = S_F[id(i)] - pf[j];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> k = j + <span class="number">1</span>; k &lt;= p <span class="keyword">and</span> <span class="number">1l</span>l * prime[k] * prime[k] &lt;= i; k ++) &#123;</span><br><span class="line">		<span class="keyword">int</span> e = <span class="number">1</span>;</span><br><span class="line">		lolong pr = prime[k];</span><br><span class="line">		<span class="keyword">while</span>(pr &lt;= i) &#123;</span><br><span class="line">			res += (prime[k] ^ e) * (S(i / pr, k) + (e &gt; <span class="number">1</span>));</span><br><span class="line">			pr *= prime[k];</span><br><span class="line">			e ++;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>复杂度似乎是 $O(\frac{n^{\frac{3}{4}}}{logn})$ 。</p>
+<p>复杂度似乎是 $O(\frac{n^{\frac{3}{4}}}{logn})$ ，大概是能跑 $10^11$ 的。</p>
+<p>另外 min25 筛还有个树状数组的优化版本，也是 min25 本人引入的，复杂度 $O(n^{\frac{2}{3}})$ ，<br>大概能跑 $10^13$ ？<br>但很不常见，网上可供学习的资料很少，有兴趣可以直接看 <a href="https://min-25.hatenablog.com/entry/2018/11/11/172216" target="_blank" rel="noopener">min25 的博客</a>。</p>
 <h2 id="Powerful-number"><a href="#Powerful-number" class="headerlink" title="Powerful number"></a>Powerful number</h2><p>这个在 OI 中用得少，我也只是做过一道题，大概提一下。</p>
 <p>称 1 和每个质因子次数大于 1 的合数为 Powerful number 。<br>首先有个性质就是 $n$ 以内的 Powerful number 数量是 $O(\sqrt{n})$ 的。</p>
 <p>还是筛数论函数 $f$ 的前缀和 $S$ ，需要构造两个函数 $g, h$ 满足 $f = g \cdot h$ 。<br>如果 $g$ 只在 Powerful number 上有值并且 $h$ 的前缀和 $S_h$ 容易求或者可以筛的话，<br>由 $S(n) = \sum_{i=1}^n \sum_{d|x} g(d) h(\frac{d}{x}) = \sum_{d=1}^n G(d) S_h(n/d)$<br>可以通过枚举 Powerful number 快速计算答案。</p>
@@ -470,13 +471,13 @@
         <category>算法</category>
       </categories>
       <tags>
+        <tag>O(1)</tag>
         <tag>RMQ</tag>
         <tag>分块</tag>
         <tag>线段树</tag>
         <tag>ST 表</tag>
         <tag>算法扩展</tag>
         <tag>随机</tag>
-        <tag>O(1)</tag>
       </tags>
   </entry>
   <entry>
@@ -544,10 +545,10 @@
         <category>算法</category>
       </categories>
       <tags>
-        <tag>O(1)</tag>
         <tag>gcd/lcm</tag>
         <tag>快速幂</tag>
         <tag>黑科技</tag>
+        <tag>O(1)</tag>
       </tags>
   </entry>
   <entry>
@@ -837,22 +838,6 @@
 <h2 id="相交"><a href="#相交" class="headerlink" title="相交"></a>相交</h2><p>将原图做一次 Floyd ，<br>之后就可以知道任意两点 x, y ，x 是否能到达 y 。</p>
 <p>把建立二分图的方法改造了一下，只要 x 能到达 y ，<br>就直接连一条边 (x, y)，这样就可以“跨过”其它链来连接两条链了。</p>
 <p>这个时候，原图最长反链长度 = 最小链覆盖 = 二分图最大匹配。</p>
-]]></content>
-  </entry>
-  <entry>
-    <title>数论函数玄学操作</title>
-    <url>/2019/10/09/%E6%95%B0%E8%AE%BA%E5%87%BD%E6%95%B0%E7%8E%84%E5%AD%A6%E6%93%8D%E4%BD%9C/</url>
-    <content><![CDATA[<p>数论函数推式子是真的玄学，<br>乱七八糟的一脸懵逼，<br>好不容易看懂了转身又 <del>tm</del> 忘了，<br>这里列出一些我见过的。</p><h2 id="莫比乌斯函数与恒等函数卷积"><a href="#莫比乌斯函数与恒等函数卷积" class="headerlink" title="莫比乌斯函数与恒等函数卷积"></a>莫比乌斯函数与恒等函数卷积</h2><p>$$ \mu * I = \epsilon $$</p><h3 id="证明"><a href="#证明" class="headerlink" title="证明"></a>证明</h3><p>莫比乌斯函数的构造意义。</p><h2 id="欧拉函数与恒等函数卷积"><a href="#欧拉函数与恒等函数卷积" class="headerlink" title="欧拉函数与恒等函数卷积"></a>欧拉函数与恒等函数卷积</h2><p>$$ \phi * I = id $$</p><h2 id="单位函数与恒等函数卷积"><a href="#单位函数与恒等函数卷积" class="headerlink" title="单位函数与恒等函数卷积"></a>单位函数与恒等函数卷积</h2><p>$$ id * I = \sigma $$</p><a id="more"></a>
-
-
-
-
-<h2 id="互质条件转换为莫比乌斯函数求和"><a href="#互质条件转换为莫比乌斯函数求和" class="headerlink" title="互质条件转换为莫比乌斯函数求和"></a>互质条件转换为莫比乌斯函数求和</h2><p>$$ [gcd(i, j) == 1] = \sum_{d|i,d|j} \mu(d) $$</p>
-<p>$$ \sum_{i=1}^n \sum_{j=1}^m f(i, j) [gcd(i, j) == 1]<br> = \sum_{d=1}^{min(n, m)} \mu(d) \sum_{i=1}^{n/d} \sum_{j=1}^{m/d} f(id, jd) $$</p>
-<h3 id="证明-1"><a href="#证明-1" class="headerlink" title="证明 1"></a>证明 1</h3><p>$$ \because [gcd(i, j) == 1] = \epsilon(gcd(i, j)) $$<br>$$ \because \epsilon = \mu * I $$<br>$$ \therefore [gcd(i, j) == 1] = \sum_{d|gcd(i, j)} \mu(d) $$<br>$$ \therefore [gcd(i, j) == 1] = \sum_{d|i,d|j} \mu(d) $$</p>
-<h3 id="证明-2"><a href="#证明-2" class="headerlink" title="证明 2"></a>证明 2</h3><p>通过容斥原理和莫比乌斯函数的定义可以得出。</p>
-<h2 id="约数个数函数转换为互质数对求和"><a href="#约数个数函数转换为互质数对求和" class="headerlink" title="约数个数函数转换为互质数对求和"></a>约数个数函数转换为互质数对求和</h2><p>$$ d(i * j) = \sum_{x|i} \sum_{y|j} [gcd(x, y) == 1] $$</p>
-<h2 id="约数个数函数求和"><a href="#约数个数函数求和" class="headerlink" title="约数个数函数求和"></a>约数个数函数求和</h2><p>$$ \sum_{i=1}^n d(i) = \sum_{i=1}^n \frac{n}{i} $$</p>
 ]]></content>
   </entry>
   <entry>
@@ -1425,5 +1410,28 @@ int QCNT;</code></pre><p>note 那一排暴露啦，这命名空间 lkjjhkfdlhgkj
 
 <p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
 ]]></content>
+  </entry>
+  <entry>
+    <title>数论函数玄学操作</title>
+    <url>/2019/10/09/%E6%95%B0%E8%AE%BA%E5%87%BD%E6%95%B0%E7%8E%84%E5%AD%A6%E6%93%8D%E4%BD%9C/</url>
+    <content><![CDATA[<p>数论函数推式子是真的玄学，<br>乱七八糟的一脸懵逼，<br>好不容易看懂了转身又 <del>tm</del> 忘了，<br>这里列出一些我见过的。</p><p>持续更新。</p><p>update: 证明都删掉了，这是篇整理，目的是让结论更一目了然。<del>需要证明联系我我免费讲解</del></p><h2 id="常见数论函数卷积"><a href="#常见数论函数卷积" class="headerlink" title="常见数论函数卷积"></a>常见数论函数卷积</h2><p>$$ \mu \cdot I = \epsilon $$</p><p>$$ \phi \cdot I = id $$</p><a id="more"></a>
+
+
+
+
+<p>$$ \mu \cdot id = \phi $$</p>
+<p>$$ id \cdot I = \sigma $$</p>
+<h2 id="常见数论函数-f-ij-化简"><a href="#常见数论函数-f-ij-化简" class="headerlink" title="常见数论函数 f(ij) 化简"></a>常见数论函数 f(ij) 化简</h2><p>$$ d(i \cdot j) = \sum_{x|i} \sum_{y|j} [gcd(x, y) = 1] $$</p>
+<p>$$ \phi(i \cdot j) = \phi(i) \phi(j) \frac{gcd(i, j)}{\phi(gcd(i, j))} $$</p>
+<h2 id="常见数论函数求和"><a href="#常见数论函数求和" class="headerlink" title="常见数论函数求和"></a>常见数论函数求和</h2><p>$$ \sum_{i=1}^n d(i) = \sum_{i=1}^n \lfloor \frac{n}{i} \rfloor $$</p>
+<h2 id="互质条件转换"><a href="#互质条件转换" class="headerlink" title="互质条件转换"></a>互质条件转换</h2><p>$$ [gcd(i, j) = 1] = \sum_{d|i,d|j} \mu(d) $$</p>
+<p>$$ \sum_{i=1}^n \sum_{j=1}^m f(i, j) [gcd(i, j) = 1]<br> = \sum_{d=1}^{min(n, m)} \mu(d) \sum_{i=1}^{n/d} \sum_{j=1}^{m/d} f(id, jd) $$</p>
+]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>数论</tag>
+      </tags>
   </entry>
 </search>
