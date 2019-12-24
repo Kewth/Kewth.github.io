@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="zh-CN">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.1">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.1">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.1">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.1" color="#222">
+  <link rel="alternate" href="/atom.xml" title="KeBlog" type="application/atom+xml">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.1">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.4.1',
+    exturl: false,
+    sidebar: {"position":"left","display":"always","offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="先喷一句，没有大样例，差评。再喷一句，数据水，好评。预计 80’ ，实际 110’ 。我真是个奇葩实际分比预计分高。。。Day0-省选前三天教练每天给我们推一道题，都是主席树应用（教练曰“线段树模板”）。都是看了题解的思路才做出来的，自己想就找不到用主席树维护的地方。不知道为什么这三天效率都挺高，这三天我 A 的题目估计有我平常一个星期的 A 题数。。。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HNOI2019">
+<meta property="og:url" content="http://yoursite.com/2019/12/06/HNOI2019/index.html">
+<meta property="og:site_name" content="KeBlog">
+<meta property="og:description" content="先喷一句，没有大样例，差评。再喷一句，数据水，好评。预计 80’ ，实际 110’ 。我真是个奇葩实际分比预计分高。。。Day0-省选前三天教练每天给我们推一道题，都是主席树应用（教练曰“线段树模板”）。都是看了题解的思路才做出来的，自己想就找不到用主席树维护的地方。不知道为什么这三天效率都挺高，这三天我 A 的题目估计有我平常一个星期的 A 题数。。。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-12-06T12:37:17.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HNOI2019">
+<meta name="twitter:description" content="先喷一句，没有大样例，差评。再喷一句，数据水，好评。预计 80’ ，实际 110’ 。我真是个奇葩实际分比预计分高。。。Day0-省选前三天教练每天给我们推一道题，都是主席树应用（教练曰“线段树模板”）。都是看了题解的思路才做出来的，自己想就找不到用主席树维护的地方。不知道为什么这三天效率都挺高，这三天我 A 的题目估计有我平常一个星期的 A 题数。。。">
+  <link rel="canonical" href="http://yoursite.com/2019/12/06/HNOI2019/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>HNOI2019 | KeBlog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">KeBlog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description">The OI Algorithm Blog of Kewth</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+        
+        
+        <li class="menu-item menu-item-home">
+      
+    
+      
+      
+        
+      
+        
+      
+        
+      
+    
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+      
+    
+      
+      
+        
+        
+        <li class="menu-item menu-item-about">
+      
+    
+      
+      
+        
+      
+        
+      
+        
+      
+    
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+      
+    
+      
+      
+        
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+      
+      
+        
+      
+        
+      
+        
+          
+        
+      
+    
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">38</span></a>
+
+  </li>
+      
+    
+      
+      
+        
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+      
+      
+        
+      
+        
+          
+        
+      
+        
+      
+    
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">3</span></a>
+
+  </li>
+      
+    
+      
+      
+        
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+      
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">39</span></a>
+
+  </li>
+      
+    
+  </ul>
+
+    
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/06/HNOI2019/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Kewth">
+      <meta itemprop="description" content="HNFMS 现役 OIer">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KeBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            HNOI2019
+            
+
+          
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-12-06 20:38:52 / 修改时间：20:37:17" itemprop="dateCreated datePublished" datetime="2019-12-06T20:38:52+08:00">2019-12-06</time>
+            </span>
+          
+            
+
+            
+          
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>先喷一句，没有大样例，差评。<br>再喷一句，数据水，好评。</p><p>预计 80’ ，实际 110’ 。</p><p>我真是个奇葩实际分比预计分高。。。</p><h2 id="Day0"><a href="#Day0" class="headerlink" title="Day0-"></a>Day0-</h2><p>省选前三天教练每天给我们推一道题，都是主席树应用（教练曰“线段树模板”）。<br>都是看了题解的思路才做出来的，自己想就找不到用主席树维护的地方。</p><p>不知道为什么这三天效率都挺高，这三天我 A 的题目估计有我平常一个星期的 A 题数。。。</p><a id="more"></a>
+
+
+
+
+<p>然而还没来得及复习每个知识点，省选就来了。</p>
+<h2 id="Day1"><a href="#Day1" class="headerlink" title="Day1"></a>Day1</h2><p>预计 70’ ，实际 40’ 。</p>
+<h3 id="fish"><a href="#fish" class="headerlink" title="fish"></a>fish</h3><p>我看到这题的时候就意识到我只能打暴力了。<br>计算几何？我对这块一片空白。<br>好吧，硬要说思路我大概想得到枚举线段，按斜率搞个什么数据结构？<br>然后真的不会，敲暴力滚粗。</p>
+<p>预计 20’ ，实际 20’ 。</p>
+<h3 id="jojo"><a href="#jojo" class="headerlink" title="jojo"></a>jojo</h3><p>前缀和后缀相同？求 KMP 的 fail 数组嘛。<br>暴力求，一次加几个字符就求几次 fail, 全加起来就是答案。<br>可持久化？版本树像个 AC 自动机，但是没管这么多，无脑写了个可持久化数组。<br>因为是把每个字符暴力求的，只能过前 50’ 。<br>结果我后面 30’ tm TLE 了？ $ O(n log(n)) $ 的时空复杂度跑 1e5 要 6 秒？</p>
+<p>预计 50’ ，实际 20’ 。</p>
+<h3 id="polygon"><a href="#polygon" class="headerlink" title="polygon"></a>polygon</h3><p>什么鬼畜题啊，简化一波题意。<br>把线段看做一个区间，除 (x, x + 1) 外每个区间一定可以划分成两个子区间。<br>然后把每个区间看做一个点，相当于有了一个满二叉树。<br>然后旋转操作就相当于把一个点 blablabla 换一下位置。<br>旋转次数可以贪心，方案数不会，大概要 DP ？<br>然后想着就求旋转次数吧，看看数据范围。。。<br>沃日 90% 的数据都要求方案数？小 W 的心情得多差啊。。。<br>当时我还没打其他题，感觉比较亏，就先做前面的题了，结果最后都没打。</p>
+<p>预计 0’ ，实际 0’ 。</p>
+<h3 id="Watering"><a href="#Watering" class="headerlink" title="Watering"></a>Watering</h3><p>下午直接去机房颓废，死神 vs 火影真好玩。<br>还有被 lyy 安利太阳系争夺战，画风清新，内容硬核。</p>
+<h2 id="Day2"><a href="#Day2" class="headerlink" title="Day2"></a>Day2</h2><p>emm, 我是来测数据湿度的。。。<br>结果真被我水过去了。。。</p>
+<p>预计 10’ ，实际 70’ 。</p>
+<p>所以说有想法就要实现 <del>不然就没事干了</del> 2333 。</p>
+<h3 id="tour"><a href="#tour" class="headerlink" title="tour"></a>tour</h3><p>u = v 或者 s[u] = s[v] 且 u, v 相邻的时候 (u, v) 一定是可行的。<br>其他点对 (u, v) 可行当且仅当 s[u] = s[v] 且存在 u -&gt; u2, v -&gt; v2 且 (u2, v2) 可行。<br>DP ？有环。<br>然后就只能把一个点对看做一个点，对于新的点建图，如果从初始的可行点能跑到 (u, v) 则 (u, v) 可行。<br>点数 $ O(n^2) $ ，边数 $ O(m^2) $ ，复杂度 $ O(n^2 + m^2 + q) $ 。<br>然而第一档暴力 m 就有 1e4 ， <strong>纯随机数据开O2</strong> 本地测了一下跑 5s, 真棒。</p>
+<p>预计 0’ ，实际 30’ 。</p>
+<h3 id="dance"><a href="#dance" class="headerlink" title="dance"></a>dance</h3><p>好迷啊，看了看 n = 1 有 40’ ，就去想 n = 1 怎么做，<br>推了推就是个式子： $ ans_i = \sum_{j=0} C_L^{i+j k} W^{i+j k} $ 。<br>把每个 $ C_L^x W^x $ 算一遍，快速幂复杂度 $ O(L log(L)) $ ，<br>然而 L 有 1e8 。。。<br>线性都跑不过去吧这，但我实在没别的思路，就想试试线性。<br>做法就是预处理，预处理 L 以内的逆元和 $ W_i $ ，再线性求一排的组合数。<br>时空复杂度都是 $ O(L) $ ， <strong>开 O2</strong> 本地测试 17s, 就算不 TLE 都得 MLE 。</p>
+<p>预计 0’ ，实际 30’ （考完后再放本地测可以水 40’ woc）。</p>
+<p>看了看实际的 L 只有 1e7 到 2e7 左右，真棒。<br>至于空间，我还算有点脑子搞了波动态开空间，不然直接开 1e8 的数组肯定得炸。</p>
+<h3 id="sequence"><a href="#sequence" class="headerlink" title="sequence"></a>sequence</h3><p>b 是整数的话还能枚举枚举。分数？没救了感觉。<br>于是只打了 10’ 的整数 DP 。</p>
+<p>预计 10’ ，实际 10’ 。</p>
+<h3 id="Watering-1"><a href="#Watering-1" class="headerlink" title="Watering"></a>Watering</h3><p>下午本来打算去黄兴街打游戏的，先去麦克唐纳德吃中饭，吃完后发现就已经 3 点多了没什么时间。<br>于是放弃了 xbox 又回到机房颓废，死神 vs 火影昨天已经玩熟练了，打起来比较轻松。</p>
+<h2 id="Day3"><a href="#Day3" class="headerlink" title="Day3+"></a>Day3+</h2><p>省选完了，结果并不想想象的那样，即使运气眷顾了我还是 wei 的一批。<br>实力不够啊，说啥都是扯淡。</p>
+<p>常规欠下的帐也该还了，滚回去学文化课啦，接受作业的洗礼。</p>
+
+    </div>
+
+    
+    
+    
+        
+      
+
+      <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2019/12/06/hello-world/" rel="next" title="Hello World">
+                  <i class="fa fa-chevron-left"></i> Hello World
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2019/12/06/最长反链长/" rel="prev" title="最长反链长">
+                  最长反链长 <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    
+    <div class="comments" id="gitalk-container"></div>
+  
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Day0"><span class="nav-number">1.</span> <span class="nav-text">Day0-</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Day1"><span class="nav-number">2.</span> <span class="nav-text">Day1</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#fish"><span class="nav-number">2.1.</span> <span class="nav-text">fish</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jojo"><span class="nav-number">2.2.</span> <span class="nav-text">jojo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#polygon"><span class="nav-number">2.3.</span> <span class="nav-text">polygon</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Watering"><span class="nav-number">2.4.</span> <span class="nav-text">Watering</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Day2"><span class="nav-number">3.</span> <span class="nav-text">Day2</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#tour"><span class="nav-number">3.1.</span> <span class="nav-text">tour</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dance"><span class="nav-number">3.2.</span> <span class="nav-text">dance</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sequence"><span class="nav-number">3.3.</span> <span class="nav-text">sequence</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Watering-1"><span class="nav-number">3.4.</span> <span class="nav-text">Watering</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Day3"><span class="nav-number">4.</span> <span class="nav-text">Day3+</span></a></li></ol></div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="/images/avatar.jpeg"
+      alt="Kewth">
+  <p class="site-author-name" itemprop="name">Kewth</p>
+  <div class="site-description" itemprop="description">HNFMS 现役 OIer</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">39</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        <span class="site-state-item-count">38</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+</div>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://github.com/Kewth" title="GitHub &rarr; https://github.com/Kewth" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:Kewth.K.D@outlook.com" title="E-Mail &rarr; mailto:Kewth.K.D@outlook.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="qq:1344205350" title="QQ &rarr; qq:1344205350" rel="noopener" target="_blank"><i class="fa fa-fw fa-qq"></i>QQ</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://www.luogu.org/space/show?uid=52232" title="Luogu &rarr; https://www.luogu.org/space/show?uid=52232" rel="noopener" target="_blank"><i class="fa fa-fw fa-code-fork"></i>Luogu</a>
+      </span>
+    
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      Links | 友链
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://ricardoships.github.io" title="https://ricardoships.github.io" rel="noopener" target="_blank">Ricardoships</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://luoyuyang.cf" title="https://luoyuyang.cf" rel="noopener" target="_blank">lyy</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://zrz-orz.github.io" title="https://zrz-orz.github.io" rel="noopener" target="_blank">zrz_orz</a>
+        </li>
+      
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heartbeat"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Kewth</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">
+      
+    主题 – <a href="https://muse.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.4.1
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+  
+    <span class="post-meta-divider">|</span>
+  
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.4.1"></script><script src="/js/motion.js?v=7.4.1"></script>
+<script src="/js/schemes/muse.js?v=7.4.1"></script>
+<script src="/js/next-boot.js?v=7.4.1"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+    
+      
+<script type="text/x-mathjax-config">
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
+    MathJax.Hub.Typeset();
+  }, window.MathJax);
+</script>
+
+    
+  
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID: '5a2fdd60fe2f91777a6b',
+      clientSecret: '9ddb762244fffc5caff2490a05e53dbca8ae4902',
+      repo: 'hexo-gitalk',
+      owner: 'Kewth',
+      admin: ['Kewth'],
+      id: 'dbfc26feb803f329d94664ae1fc63a7d',
+        language: 'zh-CN',
+      
+      distractionFreeMode: 'true'
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+</body>
+</html>
