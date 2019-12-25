@@ -64,12 +64,10 @@
 <meta property="og:site_name" content="KeBlog">
 <meta property="og:description" content="Day -inf (12.06)thuwc 的报名网站反应是真的慢，中午特意请假去机房填表，结果被这反应速度折服了，一中午还没填完。好事是，借着这个，我得以手动翘掉了下午的语文课，又跑去机房填表，网站太慢了，就趁着加载的间隙打了一道题，边听歌边填表边打题，十分舒适。然后实在是太慢了一节语文课还是不够，算上盖章一不小心把物理课也翘了一半，回来的时候正好全班人围在门口看老师做实验。目测今年分数线不高，">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://yoursite.com/images/thuwc.png">
-<meta property="og:updated_time" content="2019-12-24T14:16:31.869Z">
+<meta property="og:updated_time" content="2019-12-25T11:35:12.108Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="THUWC2020">
 <meta name="twitter:description" content="Day -inf (12.06)thuwc 的报名网站反应是真的慢，中午特意请假去机房填表，结果被这反应速度折服了，一中午还没填完。好事是，借着这个，我得以手动翘掉了下午的语文课，又跑去机房填表，网站太慢了，就趁着加载的间隙打了一道题，边听歌边填表边打题，十分舒适。然后实在是太慢了一节语文课还是不够，算上盖章一不小心把物理课也翘了一半，回来的时候正好全班人围在门口看老师做实验。目测今年分数线不高，">
-<meta name="twitter:image" content="http://yoursite.com/images/thuwc.png">
   <link rel="canonical" href="http://yoursite.com/2019/12/06/THUWC2020/">
 
 
@@ -338,7 +336,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-24 22:16:31" itemprop="dateModified" datetime="2019-12-24T22:16:31+08:00">2019-12-24</time>
+                <time title="修改时间：2019-12-25 19:35:12" itemprop="dateModified" datetime="2019-12-25T19:35:12+08:00">2019-12-25</time>
               </span>
             
           
@@ -434,8 +432,14 @@
 <p>我 (wo) 带 (diao) 你 (ni) 们 (ma) 打 (de)。</p>
 <p>学习手册看得我一脸懵逼，看了整整 1 个小时才大概看懂意思，到这时候还没开始打代码。</p>
 <p>然后看 T1 直接就是 Cache 一致性协议，出现在学习手册的最后一页，好像还综合了只读、替换、读写一堆乱七八糟的。<br>最骚的是不久后管理发了通知：</p>
-<p><img src="/images/thuwc.png" alt="通知"></p>
-<p>这直接让我以为 T1 是最难的，果断弃掉，开始码 T2 。</p>
+<!-- ![通知](/images/thuwc.png) -->
+
+<p>（数据已删除）</p>
+<blockquote>
+<h1 id="提示"><a href="#提示" class="headerlink" title="提示"></a>提示</h1><p>请选手注意，题目顺序与作答难度并没有直接联系。</p>
+<p>此外，请任何对第一题有疑问的选手认真阅读和理解学习手册。我们保证手册中对于状态转移的描述是正确的，涉及了<strong>所有可能</strong>的情况。</p>
+</blockquote>
+<p>这是暗示啊！这直接让我以为 T1 是最难的，果断弃掉，开始码 T2 。</p>
 <p>码了前面 6 个子任务，把实现逻辑优化了一下，同样的逻辑用同样的调用，<br>只有不同的逻辑（也就是使用的替换算法 R ）用 6 个不同的函数，<br>框架打完后写起来就贼方便，敲完了 6 个子任务后就先弃了第 7 个去肝交互了。</p>
 <p>T3 交互直接在 T2 的框架上魔改，然后 6 个函数加个参数照样用，过了两个样例然而不停 WA 。<br>真的自闭了，后面一直在 debug 查错，肝到最后 5min 深感绝望，此时我还只有 T2 的 40’ ，<br>大概是凉了吧。</p>
 <p>好在最后 3min 的时候通过静态差错发现魔改的时候漏了一个地方，T2 是没有 index 的，默认都是 0 ，<br>而在 R = 1 的最简单的那个子任务上 index 仍然默认是 0 没有改过来，哇塞这 B 玩意害死我了，改成 index 后就成功过了 pretest 。</p>
@@ -541,7 +545,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Day-inf-12-06"><span class="nav-number">1.</span> <span class="nav-text">Day -inf (12.06)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Day-1-12-19"><span class="nav-number">2.</span> <span class="nav-text">Day -1 (12.19)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Day-0-12-20"><span class="nav-number">3.</span> <span class="nav-text">Day 0 (12.20)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Day-1-12-21"><span class="nav-number">4.</span> <span class="nav-text">Day 1 (12.21)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Day2-12-22"><span class="nav-number">5.</span> <span class="nav-text">Day2 (12.22)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#上"><span class="nav-number">5.1.</span> <span class="nav-text">上</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#下"><span class="nav-number">5.2.</span> <span class="nav-text">下</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Day3-12-24"><span class="nav-number">6.</span> <span class="nav-text">Day3 (12.24)</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Day-inf-12-06"><span class="nav-number">1.</span> <span class="nav-text">Day -inf (12.06)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Day-1-12-19"><span class="nav-number">2.</span> <span class="nav-text">Day -1 (12.19)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Day-0-12-20"><span class="nav-number">3.</span> <span class="nav-text">Day 0 (12.20)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Day-1-12-21"><span class="nav-number">4.</span> <span class="nav-text">Day 1 (12.21)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Day2-12-22"><span class="nav-number">5.</span> <span class="nav-text">Day2 (12.22)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#上"><span class="nav-number">5.1.</span> <span class="nav-text">上</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#下"><span class="nav-number">5.2.</span> <span class="nav-text">下</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#提示"><span class="nav-number"></span> <span class="nav-text">提示</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Day3-12-24"><span class="nav-number">1.</span> <span class="nav-text">Day3 (12.24)</span></a></li></ol></div>
         
       </div>
       <!--/noindex-->
