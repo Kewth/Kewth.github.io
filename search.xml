@@ -16,7 +16,7 @@
 <p>注意到分母和 $y_i$ 是常数可以直接算，考虑提出来，</p>
 <p>$$ L_i(x) = (y_i \cdot \prod\limits_{j \ne i}\frac{1}{x_j-x_i})<br>    (\prod\limits_{j \ne i} (x_j - x)) $$</p>
 <p>那么只需要算分子部分，即上式右边的 $\prod$ 的 $x^k$ 系数即可。</p>
-<p>假设把这个连乘暴力拆开，其实 $x^k$ 的系数就是在之中选 $n - k - 1$ 个常数。<br>DP 预处理 $pre(i, k)$ 表示在 $\prod\limits_{j \leq i} (x - x_j)$ 中选 k 个常数的系数和，<br>同理 $suf(i, k)$ 表示在 $\prod\limits_{j \geq i} (x - x_j)$ 中选 k 个常数的系数和。<br>那么把 $pre(i - 1, k)$ 和 $suf(i + 1, k)$ 相乘就是上式的 $x^k$ 系数了。</p>
+<p>假设把这个连乘暴力拆开，其实 $x^k$ 的系数就是在之中选 $n - k - 1$ 个常数。<br>DP 预处理 $pre(i, k)$ 表示在 $\prod\limits_{j \leq i} (x - x_j)$ 中选 k 个常数的系数和，<br>同理 $suf(i, k)$ 表示在 $\prod\limits_{j \geq i} (x - x_j)$ 中选 k 个常数的系数和。<br>那么枚举 $p + q = n - k - 1$ 把 $pre(i - 1, p)$ 和 $suf(i + 1, q)$ 相乘就是上式的 $x^k$ 系数了。</p>
 <p>时间复杂度 $O(n^2)$ 。</p>
 <p>参考实现（未经过测试）：</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* 插出 L_i(x) 的 x^k 系数 */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">la</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> A = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n; j ++)</span><br><span class="line">		<span class="keyword">if</span>(i != j)</span><br><span class="line">			A *= X[i] - X[j];</span><br><span class="line">	<span class="keyword">int</span> B = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> l = <span class="number">0</span>; l &lt;= n - k - <span class="number">1</span>; l ++)</span><br><span class="line">		B += pre[i - <span class="number">1</span>][l] * suf[i + <span class="number">1</span>][n - k - <span class="number">1</span> - l];</span><br><span class="line">	<span class="keyword">return</span> B / A * X[i];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 初始化 suf 和 pre */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= n; i ++) &#123;</span><br><span class="line">		pre[i][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= i; j ++)</span><br><span class="line">			pre[i][j] = pre[i - <span class="number">1</span>][j] - pre[i - <span class="number">1</span>][j - <span class="number">1</span>] * X[i];</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = n + <span class="number">1</span>; i; i --) &#123;</span><br><span class="line">		suf[i][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n - i + <span class="number">1</span>; j ++)</span><br><span class="line">			suf[i][j] = suf[i + <span class="number">1</span>][j] - suf[i + <span class="number">1</span>][j - <span class="number">1</span>] * X[i];</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -32,7 +32,7 @@
 <p>其分子是个与 $i$ 无关的多项式，可以 $O(n^2)$ 暴力预处理，而其分母是个简单的一次二项式。<br>那么可以用短除法来进行多项式除二项式，复杂度 $O(n)$ 。</p>
 <p>综上，忽略逆元的计算复杂度的前提下这个算法的复杂度为 $O(n^2)$ ，否则在模 $P$ 意义下复杂度为 $O(n^2logP)$ 。<br>但是很多情况下逆元是可以预处理的，例如当满足 $x_i=i$ 时，要用到的逆元的值域范围是 $[-n, n]$ ，线性或者暴力预处理即可。</p>
 <p>参考实现（未经过测试）：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">la</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">	tmp[<span class="number">0</span>] = <span class="number">1</span>; <span class="comment">// tmp 表示 n 个二项式相乘的多项式</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i ++) &#123;</span><br><span class="line">		tmp[i] = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j = i; j; j --)</span><br><span class="line">			tmp[j] = tmp[j - <span class="number">1</span>] - X[i] * tmp[j];</span><br><span class="line">		tmp[<span class="number">0</span>] *= - X[i];</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i ++) &#123;</span><br><span class="line">		ll A = Y[i]; <span class="comment">// A 表示 L_i 的常数部分</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n; j ++)</span><br><span class="line">			<span class="keyword">if</span>(i != j)</span><br><span class="line">				A /= i - j;</span><br><span class="line"></span><br><span class="line">		tmp2[n] = tmp[n]; <span class="comment">// tmp2 表示将 tmp 除以一个二项式的结果</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j = n; j; j --) &#123;</span><br><span class="line">			ll t = tmp2[j];</span><br><span class="line">			get[j - <span class="number">1</span>] += t * A; <span class="comment">// get 表示 f(x) 的系数</span></span><br><span class="line">			tmp2[j - <span class="number">1</span>] = tmp[j - <span class="number">1</span>] + t * i;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 此时应有 tmp2[0] = 0 ，否则说明除法有余数</span></span><br><span class="line">		assert(tmp2[<span class="number">0</span>] = <span class="number">0</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">la</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">	tmp[<span class="number">0</span>] = <span class="number">1</span>; <span class="comment">// tmp 表示 n 个二项式相乘的多项式</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i ++) &#123;</span><br><span class="line">		tmp[i] = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j = i; j; j --)</span><br><span class="line">			tmp[j] = tmp[j - <span class="number">1</span>] - X[i] * tmp[j];</span><br><span class="line">		tmp[<span class="number">0</span>] *= - X[i];</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i ++) &#123;</span><br><span class="line">		ll A = Y[i]; <span class="comment">// A 表示 L_i 的常数部分</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n; j ++)</span><br><span class="line">			<span class="keyword">if</span>(i != j)</span><br><span class="line">				A /= i - j;</span><br><span class="line"></span><br><span class="line">		tmp2[n] = tmp[n]; <span class="comment">// tmp2 表示将 tmp 除以一个二项式的结果</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j = n; j; j --) &#123;</span><br><span class="line">			ll t = tmp2[j];</span><br><span class="line">			get[j - <span class="number">1</span>] += t * A; <span class="comment">// get 表示 f(x) 的系数</span></span><br><span class="line">			tmp2[j - <span class="number">1</span>] = tmp[j - <span class="number">1</span>] + t * i;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 此时应有 tmp2[0] = 0 ，否则说明除法有余数</span></span><br><span class="line">		assert(tmp2[<span class="number">0</span>] == <span class="number">0</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 ]]></content>
       <categories>
@@ -982,38 +982,6 @@
       </tags>
   </entry>
   <entry>
-    <title>HNOI2019</title>
-    <url>/2019/10/01/HNOI2019/</url>
-    <content><![CDATA[<p>先喷一句，没有大样例，差评。<br>再喷一句，数据水，好评。</p><p>预计 80’ ，实际 110’ 。</p><p>我真是个奇葩实际分比预计分高。。。</p><h2 id="Day0"><a href="#Day0" class="headerlink" title="Day0-"></a>Day0-</h2><p>省选前三天教练每天给我们推一道题，都是主席树应用（教练曰“线段树模板”）。<br>都是看了题解的思路才做出来的，自己想就找不到用主席树维护的地方。</p><p>不知道为什么这三天效率都挺高，这三天我 A 的题目估计有我平常一个星期的 A 题数。。。</p><a id="more"></a>
-
-
-
-
-<p>然而还没来得及复习每个知识点，省选就来了。</p>
-<h2 id="Day1"><a href="#Day1" class="headerlink" title="Day1"></a>Day1</h2><p>预计 70’ ，实际 40’ 。</p>
-<h3 id="fish"><a href="#fish" class="headerlink" title="fish"></a>fish</h3><p>我看到这题的时候就意识到我只能打暴力了。<br>计算几何？我对这块一片空白。<br>好吧，硬要说思路我大概想得到枚举线段，按斜率搞个什么数据结构？<br>然后真的不会，敲暴力滚粗。</p>
-<p>预计 20’ ，实际 20’ 。</p>
-<h3 id="jojo"><a href="#jojo" class="headerlink" title="jojo"></a>jojo</h3><p>前缀和后缀相同？求 KMP 的 fail 数组嘛。<br>暴力求，一次加几个字符就求几次 fail, 全加起来就是答案。<br>可持久化？版本树像个 AC 自动机，但是没管这么多，无脑写了个可持久化数组。<br>因为是把每个字符暴力求的，只能过前 50’ 。<br>结果我后面 30’ tm TLE 了？ $ O(n log(n)) $ 的时空复杂度跑 1e5 要 6 秒？</p>
-<p>预计 50’ ，实际 20’ 。</p>
-<h3 id="polygon"><a href="#polygon" class="headerlink" title="polygon"></a>polygon</h3><p>什么鬼畜题啊，简化一波题意。<br>把线段看做一个区间，除 (x, x + 1) 外每个区间一定可以划分成两个子区间。<br>然后把每个区间看做一个点，相当于有了一个满二叉树。<br>然后旋转操作就相当于把一个点 blablabla 换一下位置。<br>旋转次数可以贪心，方案数不会，大概要 DP ？<br>然后想着就求旋转次数吧，看看数据范围。。。<br>沃日 90% 的数据都要求方案数？小 W 的心情得多差啊。。。<br>当时我还没打其他题，感觉比较亏，就先做前面的题了，结果最后都没打。</p>
-<p>预计 0’ ，实际 0’ 。</p>
-<h3 id="Watering"><a href="#Watering" class="headerlink" title="Watering"></a>Watering</h3><p>下午直接去机房颓废，死神 vs 火影真好玩。<br>还有被 lyy 安利太阳系争夺战，画风清新，内容硬核。</p>
-<h2 id="Day2"><a href="#Day2" class="headerlink" title="Day2"></a>Day2</h2><p>emm, 我是来测数据湿度的。。。<br>结果真被我水过去了。。。</p>
-<p>预计 10’ ，实际 70’ 。</p>
-<p>所以说有想法就要实现 <del>不然就没事干了</del> 2333 。</p>
-<h3 id="tour"><a href="#tour" class="headerlink" title="tour"></a>tour</h3><p>u = v 或者 s[u] = s[v] 且 u, v 相邻的时候 (u, v) 一定是可行的。<br>其他点对 (u, v) 可行当且仅当 s[u] = s[v] 且存在 u -&gt; u2, v -&gt; v2 且 (u2, v2) 可行。<br>DP ？有环。<br>然后就只能把一个点对看做一个点，对于新的点建图，如果从初始的可行点能跑到 (u, v) 则 (u, v) 可行。<br>点数 $ O(n^2) $ ，边数 $ O(m^2) $ ，复杂度 $ O(n^2 + m^2 + q) $ 。<br>然而第一档暴力 m 就有 1e4 ， <strong>纯随机数据开O2</strong> 本地测了一下跑 5s, 真棒。</p>
-<p>预计 0’ ，实际 30’ 。</p>
-<h3 id="dance"><a href="#dance" class="headerlink" title="dance"></a>dance</h3><p>好迷啊，看了看 n = 1 有 40’ ，就去想 n = 1 怎么做，<br>推了推就是个式子： $ ans_i = \sum_{j=0} C_L^{i+j k} W^{i+j k} $ 。<br>把每个 $ C_L^x W^x $ 算一遍，快速幂复杂度 $ O(L log(L)) $ ，<br>然而 L 有 1e8 。。。<br>线性都跑不过去吧这，但我实在没别的思路，就想试试线性。<br>做法就是预处理，预处理 L 以内的逆元和 $ W_i $ ，再线性求一排的组合数。<br>时空复杂度都是 $ O(L) $ ， <strong>开 O2</strong> 本地测试 17s, 就算不 TLE 都得 MLE 。</p>
-<p>预计 0’ ，实际 30’ （考完后再放本地测可以水 40’ woc）。</p>
-<p>看了看实际的 L 只有 1e7 到 2e7 左右，真棒。<br>至于空间，我还算有点脑子搞了波动态开空间，不然直接开 1e8 的数组肯定得炸。</p>
-<h3 id="sequence"><a href="#sequence" class="headerlink" title="sequence"></a>sequence</h3><p>b 是整数的话还能枚举枚举。分数？没救了感觉。<br>于是只打了 10’ 的整数 DP 。</p>
-<p>预计 10’ ，实际 10’ 。</p>
-<h3 id="Watering-1"><a href="#Watering-1" class="headerlink" title="Watering"></a>Watering</h3><p>下午本来打算去黄兴街打游戏的，先去麦克唐纳德吃中饭，吃完后发现就已经 3 点多了没什么时间。<br>于是放弃了 xbox 又回到机房颓废，死神 vs 火影昨天已经玩熟练了，打起来比较轻松。</p>
-<h2 id="Day3"><a href="#Day3" class="headerlink" title="Day3+"></a>Day3+</h2><p>省选完了，结果并不想想象的那样，即使运气眷顾了我还是 wei 的一批。<br>实力不够啊，说啥都是扯淡。</p>
-<p>常规欠下的帐也该还了，滚回去学文化课啦，接受作业的洗礼。</p>
-]]></content>
-  </entry>
-  <entry>
     <title>Manjaro 搭建内网博客</title>
     <url>/2019/10/01/Manjaro%20%E6%90%AD%E5%BB%BA%E5%86%85%E7%BD%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%88%96%E5%8D%9A%E5%AE%A2/</url>
     <content><![CDATA[<p>折腾了大半天，终于在本机搭了一个功能完备的服务器。<br>当然要记录一下啊。<br>不过这是搭建成功后的总结，可能有地方遗漏，有问题欢迎提出来。</p><h2 id="静态页面博客"><a href="#静态页面博客" class="headerlink" title="静态页面博客"></a>静态页面博客</h2><p>这个用 hexo 和 jekyll 直接就可以做到，本地跑 server 不成问题，<br>比较 easy ，不赘述，详见 hexo 或者 jekyll 的官网。</p><h2 id="动态页面博客"><a href="#动态页面博客" class="headerlink" title="动态页面博客"></a>动态页面博客</h2><a id="more"></a>
@@ -1060,6 +1028,38 @@
 ]]></content>
   </entry>
   <entry>
+    <title>HNOI2019</title>
+    <url>/2019/10/01/HNOI2019/</url>
+    <content><![CDATA[<p>先喷一句，没有大样例，差评。<br>再喷一句，数据水，好评。</p><p>预计 80’ ，实际 110’ 。</p><p>我真是个奇葩实际分比预计分高。。。</p><h2 id="Day0"><a href="#Day0" class="headerlink" title="Day0-"></a>Day0-</h2><p>省选前三天教练每天给我们推一道题，都是主席树应用（教练曰“线段树模板”）。<br>都是看了题解的思路才做出来的，自己想就找不到用主席树维护的地方。</p><p>不知道为什么这三天效率都挺高，这三天我 A 的题目估计有我平常一个星期的 A 题数。。。</p><a id="more"></a>
+
+
+
+
+<p>然而还没来得及复习每个知识点，省选就来了。</p>
+<h2 id="Day1"><a href="#Day1" class="headerlink" title="Day1"></a>Day1</h2><p>预计 70’ ，实际 40’ 。</p>
+<h3 id="fish"><a href="#fish" class="headerlink" title="fish"></a>fish</h3><p>我看到这题的时候就意识到我只能打暴力了。<br>计算几何？我对这块一片空白。<br>好吧，硬要说思路我大概想得到枚举线段，按斜率搞个什么数据结构？<br>然后真的不会，敲暴力滚粗。</p>
+<p>预计 20’ ，实际 20’ 。</p>
+<h3 id="jojo"><a href="#jojo" class="headerlink" title="jojo"></a>jojo</h3><p>前缀和后缀相同？求 KMP 的 fail 数组嘛。<br>暴力求，一次加几个字符就求几次 fail, 全加起来就是答案。<br>可持久化？版本树像个 AC 自动机，但是没管这么多，无脑写了个可持久化数组。<br>因为是把每个字符暴力求的，只能过前 50’ 。<br>结果我后面 30’ tm TLE 了？ $ O(n log(n)) $ 的时空复杂度跑 1e5 要 6 秒？</p>
+<p>预计 50’ ，实际 20’ 。</p>
+<h3 id="polygon"><a href="#polygon" class="headerlink" title="polygon"></a>polygon</h3><p>什么鬼畜题啊，简化一波题意。<br>把线段看做一个区间，除 (x, x + 1) 外每个区间一定可以划分成两个子区间。<br>然后把每个区间看做一个点，相当于有了一个满二叉树。<br>然后旋转操作就相当于把一个点 blablabla 换一下位置。<br>旋转次数可以贪心，方案数不会，大概要 DP ？<br>然后想着就求旋转次数吧，看看数据范围。。。<br>沃日 90% 的数据都要求方案数？小 W 的心情得多差啊。。。<br>当时我还没打其他题，感觉比较亏，就先做前面的题了，结果最后都没打。</p>
+<p>预计 0’ ，实际 0’ 。</p>
+<h3 id="Watering"><a href="#Watering" class="headerlink" title="Watering"></a>Watering</h3><p>下午直接去机房颓废，死神 vs 火影真好玩。<br>还有被 lyy 安利太阳系争夺战，画风清新，内容硬核。</p>
+<h2 id="Day2"><a href="#Day2" class="headerlink" title="Day2"></a>Day2</h2><p>emm, 我是来测数据湿度的。。。<br>结果真被我水过去了。。。</p>
+<p>预计 10’ ，实际 70’ 。</p>
+<p>所以说有想法就要实现 <del>不然就没事干了</del> 2333 。</p>
+<h3 id="tour"><a href="#tour" class="headerlink" title="tour"></a>tour</h3><p>u = v 或者 s[u] = s[v] 且 u, v 相邻的时候 (u, v) 一定是可行的。<br>其他点对 (u, v) 可行当且仅当 s[u] = s[v] 且存在 u -&gt; u2, v -&gt; v2 且 (u2, v2) 可行。<br>DP ？有环。<br>然后就只能把一个点对看做一个点，对于新的点建图，如果从初始的可行点能跑到 (u, v) 则 (u, v) 可行。<br>点数 $ O(n^2) $ ，边数 $ O(m^2) $ ，复杂度 $ O(n^2 + m^2 + q) $ 。<br>然而第一档暴力 m 就有 1e4 ， <strong>纯随机数据开O2</strong> 本地测了一下跑 5s, 真棒。</p>
+<p>预计 0’ ，实际 30’ 。</p>
+<h3 id="dance"><a href="#dance" class="headerlink" title="dance"></a>dance</h3><p>好迷啊，看了看 n = 1 有 40’ ，就去想 n = 1 怎么做，<br>推了推就是个式子： $ ans_i = \sum_{j=0} C_L^{i+j k} W^{i+j k} $ 。<br>把每个 $ C_L^x W^x $ 算一遍，快速幂复杂度 $ O(L log(L)) $ ，<br>然而 L 有 1e8 。。。<br>线性都跑不过去吧这，但我实在没别的思路，就想试试线性。<br>做法就是预处理，预处理 L 以内的逆元和 $ W_i $ ，再线性求一排的组合数。<br>时空复杂度都是 $ O(L) $ ， <strong>开 O2</strong> 本地测试 17s, 就算不 TLE 都得 MLE 。</p>
+<p>预计 0’ ，实际 30’ （考完后再放本地测可以水 40’ woc）。</p>
+<p>看了看实际的 L 只有 1e7 到 2e7 左右，真棒。<br>至于空间，我还算有点脑子搞了波动态开空间，不然直接开 1e8 的数组肯定得炸。</p>
+<h3 id="sequence"><a href="#sequence" class="headerlink" title="sequence"></a>sequence</h3><p>b 是整数的话还能枚举枚举。分数？没救了感觉。<br>于是只打了 10’ 的整数 DP 。</p>
+<p>预计 10’ ，实际 10’ 。</p>
+<h3 id="Watering-1"><a href="#Watering-1" class="headerlink" title="Watering"></a>Watering</h3><p>下午本来打算去黄兴街打游戏的，先去麦克唐纳德吃中饭，吃完后发现就已经 3 点多了没什么时间。<br>于是放弃了 xbox 又回到机房颓废，死神 vs 火影昨天已经玩熟练了，打起来比较轻松。</p>
+<h2 id="Day3"><a href="#Day3" class="headerlink" title="Day3+"></a>Day3+</h2><p>省选完了，结果并不想想象的那样，即使运气眷顾了我还是 wei 的一批。<br>实力不够啊，说啥都是扯淡。</p>
+<p>常规欠下的帐也该还了，滚回去学文化课啦，接受作业的洗礼。</p>
+]]></content>
+  </entry>
+  <entry>
     <title>NOIP 2018</title>
     <url>/2019/10/01/NOIP%202018/</url>
     <content><![CDATA[<h2 id="吐槽"><a href="#吐槽" class="headerlink" title="吐槽"></a>吐槽</h2><p>一天普及一天省选，弄到一起就出成了一套提高组试题。</p><h2 id="Day1"><a href="#Day1" class="headerlink" title="Day1"></a>Day1</h2><p>原题大作战。<br>然而我一题都没做过。</p><p>总的来说 Day1 比去年好像容易点（不然我也不会留出一个多小时给每道题造数据对拍）。</p><h3 id="T1"><a href="#T1" class="headerlink" title="T1"></a>T1</h3><p>CCF 直接把 2013 的题原封不动搬到了 Day1T1 。</p><p>一开始想着递归，发现会被卡成 $O(n^2)$ ，<br>再想 DP 的时候简化一下式子就直接可以扫一遍出结果。</p><a id="more"></a>
@@ -1089,6 +1089,26 @@
 <p>结果？一直死磕 T1 的 $O(n)$ 做法，直到最后考试结束都没写出来。</p>
 <p>考试听别人说直接枚举删边 $O(n^2)$ 就可以过的时候我才意识到 n 只有 5000 ，整个人懵的。</p>
 <p>结果 T1 还是 60’ ，T3 不晓得哪里炸掉了爆零，<br>有意思的是 T2 我错误的打法样例都没过在 ccf 的数据里水到了 45’ 。</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>NTT</title>
+    <url>/2019/10/01/NTT/</url>
+    <content><![CDATA[<p>NTT ，快速数论变换，功能与 <a href>FFT</a> 完全一致，用来求多项式卷积。<br>NTT 优点在于常数稍微小一点，没有精度误差。<br>但是 NTT 系数必须是取模意义下的整数，且对模数有特殊要求。</p><h2 id="FFT-的单位根"><a href="#FFT-的单位根" class="headerlink" title="FFT 的单位根"></a>FFT 的单位根</h2><p>建议前置 <a href>FFT</a> 。</p><p>FFT 可以分治优化复杂度的原因是用到了单位根的如下性质：<br>$$ W_{2n}^{2k} = W_n^k $$<br>$$ W_n^n = 1 $$<br>$$ W_n^{k + n/2} + W_n^k = 0 $$</p><a id="more"></a>
+
+
+<p>可是用单位根做 FFT ，需要用到复数和浮点数，常数大而且有精度误差。<br>还有别的数有这样的性质来替换单位根吗？<br>遗憾的是，可以证明复数域下只有单位根有这样的性质。</p>
+<h2 id="取模"><a href="#取模" class="headerlink" title="取模"></a>取模</h2><p>实际计算多项式卷积时，常常要求对系数取模以避免不必要的麻烦。<br>那么这时候系数实际上是在模意义下的， FFT 将它转到复数域上运算，似乎没有必要。<br>模意义下什么数可以有单位根那样的性质？<br>有的，那就是原根。</p>
+<h2 id="原根"><a href="#原根" class="headerlink" title="原根"></a>原根</h2><p>对于某些模数 P ，模 P 意义下的原根 g 满足：<br>对任意 $ 0 \leq k \leq P - 2 $ ， $ g^k $ 互不相同。<br>有些模数可能不存在原根，这里先假设模数都有原根。</p>
+<p>假设系数是模 P 意义下的，P 是形如 $ 2^k + 1 $ 的质数，其原根为 g ，<br>设 $ G_n = g^{\frac{P-1}{n}} mod P $ ，其中 n 是小于 P 的 2 的整次幂 。<br>那么在模 P 意义下， G 满足：</p>
+<p>$$ G_{2n}^{2k} = G_n^k $$</p>
+<p>由 G 定义可证：<br>$ G_{2n}^{2k} = g^{\frac{P-1}{2n}2k} = g^{\frac{P-1}{n}k} = G_n^k$</p>
+<p>$$ G_n^n = 1 $$</p>
+<p>由 G 定义可得：<br>$ G_n^n = g^{\frac{P-1}{n}n} = g^{P-1}  $<br>由费马小定理：<br>$ G_n^n =  g^{P-1} = 1 $</p>
+<p>$$ G_n^{k + n/2} + G_n^k = 0 $$</p>
+<p>有第一条性质可得：<br>$ G_n^{n/2} = G_2^1 = g^{\frac{P-1}{2}} $<br>因为 $ (g^{\frac{P-1}{2}})^2 = g^{P-1} = 1 $<br>根据原根的性质：<br>$ g^{\frac{P-1}{2}} \neq g^{P-1} $<br>那么 $ g^{\frac{P-1}{2}} = -1 $ （即 P - 1）。<br>那么可以证得：<br>$ G_n^{k + n/2} = G_n^k G_n^{n/2} = G_n^k(-1) $<br>于是 $ G_n^{k + n/2} + G_n^k = 0 $</p>
+<h2 id="NTT"><a href="#NTT" class="headerlink" title="NTT"></a>NTT</h2><p>于是 NTT 的算法思路就呼之欲出了：把 $ W_n $ 全部替换为 $ G_n $ 即可。<br>这样就可以算出模 P 意义下的多项式卷积了。<br>其中 n 必须是 2 的整次幂，不足的补零即可。</p>
+<p>现在唯一的问题是，模数 P 要满足什么条件，以及如何求模 P 意义下的原根 g 。<br>然而我并不想深入展开，大多数情况下模数都是 998244353 ，其原根为 3 。<br>一般 NTT 只会用这个模数，不会有毒瘤出题人卡这个模数的（我不对这句话负责）。</p>
 ]]></content>
   </entry>
   <entry>
@@ -1424,6 +1444,39 @@
 ]]></content>
   </entry>
   <entry>
+    <title>安徽游记 II</title>
+    <url>/2019/10/01/%E5%AE%89%E5%BE%BD%E6%B8%B8%E8%AE%B0%20II/</url>
+    <content><![CDATA[<p>12 天的培（kao）训（shi），坚持每日总结。</p><p>Day5 to Day8.</p><h2 id="Day5"><a href="#Day5" class="headerlink" title="Day5"></a>Day5</h2><h3 id="考试"><a href="#考试" class="headerlink" title="考试"></a>考试</h3><p>Nice 大夫今天又 A 掉一题！</p><p>第一题是在 DAG 上 q 个询问，每次询问一个子图的路径数量（子图点数和 O(n) ），<br>我想了想部分分， DAG 上 DP 嘛，但是这样复杂度上界是 $ O(q m) $ ，<br>瓶颈在于边的枚举（菊花树卡爆），然而子图的点可能很少，<br>然后想到了更暴力的：邻接矩阵存图然后用枚举点代替枚举边，<br>事实上邻接矩阵存不下，那就开 set （map 也行）动态加，<br>这复杂度 $ O(q n^2 log(m)) $ 啊然而，然后我想了好久优化都没想出来，<br>最后想着得多骗点分，于是就把两个暴力结合在了一起：<br>每次询问比较 $ n^2 log(m) $ 和 $ m $ 哪个小就跑哪个。。。<br>看上去很鸡肋，然而我理性分析了一波复杂度卧槽好像是 $ O(q m \sqrt{m} log(m)) $ ，<br>应该能骗蛮多分，于是交了，然后 A 了。。。</p><a id="more"></a>
+
+
+
+<p>第二题又是个计数，感觉像容斥，容斥之后怎么搞就有点迷，<br>于是写了个 dp ，手玩样例感觉没错，然而一测大样例就 WA 了，<br>于是手玩了几组数据，才发现 dp 错了，区间相交的情况没考虑好，<br>最后实在没思路，就打了个大暴力，有 30’, 还不错（ 10 倍于前面两天的暴力分 3’ ）。</p>
+<p>第三题哇塞维护一棵树，一看就感觉是树剖 + 线段树或者 LCT 之类的数据结构题，<br>然而还是不会，又敲了一发大暴力 10’ 走人。。。</p>
+<h3 id="讲题"><a href="#讲题" class="headerlink" title="讲题"></a>讲题</h3><p>下午讲题，一看 ppt 下面一行字：–Claris<br>woc 今天见到真人了，那位 bzoj 4000+ ac 的神仙！<br>第一题正解是按度数大小关系连边，出题人说数据难造所以有这种带 log 的算法卡过去了。<br>第二题果然是容斥，但是要通过一个奇妙的矩形构造转换为轮廓线 DP 。<br>第三题出题人说并不是数据结构题？blabla 讲了一堆奇妙的做法，<br>然而有 4 个人用动态 DP 搞过去了，出题人想到了这一点还特意去卡了但是没卡掉。</p>
+<h3 id="颓废"><a href="#颓废" class="headerlink" title="颓废"></a>颓废</h3><p>昨天没吃成必胜客来着，今天再次尝试，又剁一波手。<br>晚上真是诸事不利，tmd 这笔记本真的让人心累，<br>要啥没啥，网连续断了好几次，还真就不是网的问题，众人不断就我断，<br>什么 u 盘硬盘全没用，放我电脑上就读不到，<br>蓝牙更是做梦，键盘只能插线就算了还一老读不到，<br>还什么显像管出问题？动不动一些地方就全是红色的跟看恐怖片似的，<br>说优点倒也有，用个电脑火炉都省了，贼发热，那电风扇的声音时刻提醒你它还活着，<br>它要是太烫了还会自动关机，把你烤热了再降降温，贴心，<br>放歌听也很棒，我听快歌，它就一卡一卡的，一个字一个字给你放，根本不用怕听不清。<br>还能智能存储电量，充电线一拔就晓得要存储电量直接断电，不插上充电线不给开机，保证电池里的电永远满的。<br>别的什么还有一堆，懒得喷了，难受。</p>
+<h2 id="Day6"><a href="#Day6" class="headerlink" title="Day6"></a>Day6</h2><h3 id="考试-1"><a href="#考试-1" class="headerlink" title="考试"></a>考试</h3><p>前两天把 rp 用完了，今天全暴力都写挂。</p>
+<p>第一题我一开始推出个错误的结论，然后一想可以离线排序询问再预处理 dist 根据询问不断删除，删除不好搞换成加边弄个并查集维护联通块，<br>然而代码打完后一跑样例， WA 了，手玩样例才发现结论错了，这时候已经 9:30 了，凉凉，后面两题还没看。<br>最后打了大暴力 10’。</p>
+<p>第二题题读到一半就感觉是二分，读完题后推了一下发现可以转换成这样一个模型：<br>二维平面上给定 n 个点，每次将一条平行于 y 轴的直线右边的点都向上平移 dy 单位并回答所有点的斜率 (y / x) 的最大值。<br>然后就有了 $ o(n^2) $ 的暴力做法，这玩意一脸可以优化的样子，然而想了好久没思路，就交了 60’ 。</p>
+<p>第三题网格图 DAG, 感觉像要 dp ？但是不会，就打了暴力，结果还打挂了 RE ，爆零。</p>
+<h3 id="讲题-1"><a href="#讲题-1" class="headerlink" title="讲题"></a>讲题</h3><p>第一题什么神仙 dp $ O(n^4) $ 过 100 可还行，我太菜了没搞懂这个 dp ，<br>但是出题人提到有枚举端点 + 组合数的做法，我想去看看，一看哇塞简单多了，<br>而且复杂度优秀的 $ O(n^3) $ ，下午按照这个作法改了一段时间就 A 了（<del>期间没开 long long 一直爆炸</del>）。</p>
+<p>第二题好像是可以从我那个模型再转换一下后分块 + 凸包维护，感觉很神仙。</p>
+<p>第三题有个神奇的结论：<br>用两个不同的顺序得到的 dfs 后序，u 可以到 v 当且仅当 v 的两个 dfs 序都比 u 的小。<br>然后就可以将点按一个 dfs 序排序后按颜色设状态 dp, 把 dp 数组扔进树状数组后得出答案。</p>
+<h3 id="颓废-1"><a href="#颓废-1" class="headerlink" title="颓废"></a>颓废</h3><p>晚饭兰州拉面，清真的店子就是讲究，还贼好吃。<br>晚上感觉屁事没干，教练发了一套题要我们做（考试的题都改不完啊），<br>实在不想做，反正明天收，晚上就几乎一直在颓，找歌听。</p>
+<h2 id="Day7"><a href="#Day7" class="headerlink" title="Day7"></a>Day7</h2><h3 id="考试-2"><a href="#考试-2" class="headerlink" title="考试"></a>考试</h3><p>100 % 纯暴力的一天。</p>
+<p>第一题神仙计数题？好难啊感觉，于是想了想了 k 小于等于 3 会不会有什么规律可循，<br>发现 k = 1 的时候就是 $ 2^{n-1} $ ，就得到了 1 分的好成绩（这分给的真少）。<br>然后再手玩了一下 k = 2 和 k = 3 的情况，找到了一种计数方式，过了样例，就交了，<br>然并卵，k = 2 和 k = 3 的情况错了，只有 1’ 。</p>
+<p>第二题感觉是什么 set 启发式合并，但是合并之后只能暴力搞答案，<br>没思路，打了暴力，5 分的好成绩。</p>
+<p>第三题我靠麻将小模拟大搜索题？感觉很复杂，而且到第三题也没什么时间了，<br>于是打了一发只有字牌的特殊情况，20 分的好成绩。</p>
+<h3 id="讲题-2"><a href="#讲题-2" class="headerlink" title="讲题"></a>讲题</h3><p>出题人说这个题目难度是 T1 &gt;= T2 &gt;= T3 。</p>
+<p>T3 果然就是搜索，先算出最大答案（就是 9 ）统计面子搭子的数量再减答案。</p>
+<p>T2 线段树合并，玄学，还不会。</p>
+<p>T1 真有意思，标程生成函数加一大堆什么多项式的优化之类的，复杂，没懂。<br>但是有位大佬考试 27 分钟后就 A 了这题，出题人叫他上来讲讲，<br>然后他就开始秀操作：<br>“我的直觉告诉我 % n 等于 0 的方案和 % n 等于 x 的方案是一样的，然后就可以算出总方案数再除以 n 就可以……” ，<br>然后抄起笔写出一个式子，就是总方案数，<br>我靠这式子也贼好懂，全场都笑喷了，这大抵就是“爆踩标程”了吧，复杂度还更优秀。<br>出题人一脸懵逼，看了眼式子无奈的说了一句好吧那就这样吧。<br>做法就是考虑每个排列的贡献，枚举颜色的种类再用组合数和第二类斯特灵数算出这样的排列数再乘上贡献。<br>时间复杂度直接实现都是 $ O(k^2) $ （ k 只有 100 ，可见标程被爆踩），<br>把斯特灵数那部分的预处理用 NTT 优化复杂度就是 $ O(k logk) $ ，<br>听说还可以优化到 $ O(k) $ ，不会，但对这题来讲也没必要。</p>
+<h3 id="额外肝题"><a href="#额外肝题" class="headerlink" title="额外肝题"></a>额外肝题</h3><p>教练还额外发了一套题来着。<br>扫了遍题目，感觉第二题比较友好：<br>交换 i, j 枚举顺序后就把那个斯特灵数求和的部分设为函数 g ，<br>根据斯特灵数的递推，g 这玩意也是可以递推的，中间需要用到一排斯特灵数。<br>根据斯特灵数的容斥意义 NTT 预处理一排斯特灵数即可（卧槽这不就是上午 t3 吗）。<br><del>代码实现中，还没打完，随时准备被打脸。</del></p>
+<p><del>今天晚上竟然没有颓。</del></p>
+<h2 id="Day8"><a href="#Day8" class="headerlink" title="Day8"></a>Day8</h2><p><del>咕掉了</del></p>
+<h2 id="NEXT"><a href="#NEXT" class="headerlink" title="NEXT"></a>NEXT</h2><p><a href="/2019/03/29/安徽游记-iii/">Day9 to END</a></p>
+]]></content>
+  </entry>
+  <entry>
     <title>安徽游记 III</title>
     <url>/2019/10/01/%E5%AE%89%E5%BE%BD%E6%B8%B8%E8%AE%B0%20III/</url>
     <content><![CDATA[<p>12 天的培（kao）训（shi），坚持每日总结。</p><p>Day9 to Day12.</p><h2 id="Day9"><a href="#Day9" class="headerlink" title="Day9"></a>Day9</h2><h3 id="考试"><a href="#考试" class="headerlink" title="考试"></a>考试</h3><p>炸了，今天出的题好诡异。</p><p>第一题一道博弈论，题意好迷，没太看懂就去做后面的题了，<br>到后面离考试只有 5min 了再回来看 T1, 暴力都好难打，<br>于是信仰一波 <code>std::cout &lt;&lt; 0 &lt;&lt; std::endl</code> ，水到了 12’ 。</p><a id="more"></a>
@@ -1482,39 +1535,6 @@ int QCNT;</code></pre><p>note 那一排暴露啦，这命名空间 lkjjhkfdlhgkj
 ]]></content>
   </entry>
   <entry>
-    <title>安徽游记 II</title>
-    <url>/2019/10/01/%E5%AE%89%E5%BE%BD%E6%B8%B8%E8%AE%B0%20II/</url>
-    <content><![CDATA[<p>12 天的培（kao）训（shi），坚持每日总结。</p><p>Day5 to Day8.</p><h2 id="Day5"><a href="#Day5" class="headerlink" title="Day5"></a>Day5</h2><h3 id="考试"><a href="#考试" class="headerlink" title="考试"></a>考试</h3><p>Nice 大夫今天又 A 掉一题！</p><p>第一题是在 DAG 上 q 个询问，每次询问一个子图的路径数量（子图点数和 O(n) ），<br>我想了想部分分， DAG 上 DP 嘛，但是这样复杂度上界是 $ O(q m) $ ，<br>瓶颈在于边的枚举（菊花树卡爆），然而子图的点可能很少，<br>然后想到了更暴力的：邻接矩阵存图然后用枚举点代替枚举边，<br>事实上邻接矩阵存不下，那就开 set （map 也行）动态加，<br>这复杂度 $ O(q n^2 log(m)) $ 啊然而，然后我想了好久优化都没想出来，<br>最后想着得多骗点分，于是就把两个暴力结合在了一起：<br>每次询问比较 $ n^2 log(m) $ 和 $ m $ 哪个小就跑哪个。。。<br>看上去很鸡肋，然而我理性分析了一波复杂度卧槽好像是 $ O(q m \sqrt{m} log(m)) $ ，<br>应该能骗蛮多分，于是交了，然后 A 了。。。</p><a id="more"></a>
-
-
-
-<p>第二题又是个计数，感觉像容斥，容斥之后怎么搞就有点迷，<br>于是写了个 dp ，手玩样例感觉没错，然而一测大样例就 WA 了，<br>于是手玩了几组数据，才发现 dp 错了，区间相交的情况没考虑好，<br>最后实在没思路，就打了个大暴力，有 30’, 还不错（ 10 倍于前面两天的暴力分 3’ ）。</p>
-<p>第三题哇塞维护一棵树，一看就感觉是树剖 + 线段树或者 LCT 之类的数据结构题，<br>然而还是不会，又敲了一发大暴力 10’ 走人。。。</p>
-<h3 id="讲题"><a href="#讲题" class="headerlink" title="讲题"></a>讲题</h3><p>下午讲题，一看 ppt 下面一行字：–Claris<br>woc 今天见到真人了，那位 bzoj 4000+ ac 的神仙！<br>第一题正解是按度数大小关系连边，出题人说数据难造所以有这种带 log 的算法卡过去了。<br>第二题果然是容斥，但是要通过一个奇妙的矩形构造转换为轮廓线 DP 。<br>第三题出题人说并不是数据结构题？blabla 讲了一堆奇妙的做法，<br>然而有 4 个人用动态 DP 搞过去了，出题人想到了这一点还特意去卡了但是没卡掉。</p>
-<h3 id="颓废"><a href="#颓废" class="headerlink" title="颓废"></a>颓废</h3><p>昨天没吃成必胜客来着，今天再次尝试，又剁一波手。<br>晚上真是诸事不利，tmd 这笔记本真的让人心累，<br>要啥没啥，网连续断了好几次，还真就不是网的问题，众人不断就我断，<br>什么 u 盘硬盘全没用，放我电脑上就读不到，<br>蓝牙更是做梦，键盘只能插线就算了还一老读不到，<br>还什么显像管出问题？动不动一些地方就全是红色的跟看恐怖片似的，<br>说优点倒也有，用个电脑火炉都省了，贼发热，那电风扇的声音时刻提醒你它还活着，<br>它要是太烫了还会自动关机，把你烤热了再降降温，贴心，<br>放歌听也很棒，我听快歌，它就一卡一卡的，一个字一个字给你放，根本不用怕听不清。<br>还能智能存储电量，充电线一拔就晓得要存储电量直接断电，不插上充电线不给开机，保证电池里的电永远满的。<br>别的什么还有一堆，懒得喷了，难受。</p>
-<h2 id="Day6"><a href="#Day6" class="headerlink" title="Day6"></a>Day6</h2><h3 id="考试-1"><a href="#考试-1" class="headerlink" title="考试"></a>考试</h3><p>前两天把 rp 用完了，今天全暴力都写挂。</p>
-<p>第一题我一开始推出个错误的结论，然后一想可以离线排序询问再预处理 dist 根据询问不断删除，删除不好搞换成加边弄个并查集维护联通块，<br>然而代码打完后一跑样例， WA 了，手玩样例才发现结论错了，这时候已经 9:30 了，凉凉，后面两题还没看。<br>最后打了大暴力 10’。</p>
-<p>第二题题读到一半就感觉是二分，读完题后推了一下发现可以转换成这样一个模型：<br>二维平面上给定 n 个点，每次将一条平行于 y 轴的直线右边的点都向上平移 dy 单位并回答所有点的斜率 (y / x) 的最大值。<br>然后就有了 $ o(n^2) $ 的暴力做法，这玩意一脸可以优化的样子，然而想了好久没思路，就交了 60’ 。</p>
-<p>第三题网格图 DAG, 感觉像要 dp ？但是不会，就打了暴力，结果还打挂了 RE ，爆零。</p>
-<h3 id="讲题-1"><a href="#讲题-1" class="headerlink" title="讲题"></a>讲题</h3><p>第一题什么神仙 dp $ O(n^4) $ 过 100 可还行，我太菜了没搞懂这个 dp ，<br>但是出题人提到有枚举端点 + 组合数的做法，我想去看看，一看哇塞简单多了，<br>而且复杂度优秀的 $ O(n^3) $ ，下午按照这个作法改了一段时间就 A 了（<del>期间没开 long long 一直爆炸</del>）。</p>
-<p>第二题好像是可以从我那个模型再转换一下后分块 + 凸包维护，感觉很神仙。</p>
-<p>第三题有个神奇的结论：<br>用两个不同的顺序得到的 dfs 后序，u 可以到 v 当且仅当 v 的两个 dfs 序都比 u 的小。<br>然后就可以将点按一个 dfs 序排序后按颜色设状态 dp, 把 dp 数组扔进树状数组后得出答案。</p>
-<h3 id="颓废-1"><a href="#颓废-1" class="headerlink" title="颓废"></a>颓废</h3><p>晚饭兰州拉面，清真的店子就是讲究，还贼好吃。<br>晚上感觉屁事没干，教练发了一套题要我们做（考试的题都改不完啊），<br>实在不想做，反正明天收，晚上就几乎一直在颓，找歌听。</p>
-<h2 id="Day7"><a href="#Day7" class="headerlink" title="Day7"></a>Day7</h2><h3 id="考试-2"><a href="#考试-2" class="headerlink" title="考试"></a>考试</h3><p>100 % 纯暴力的一天。</p>
-<p>第一题神仙计数题？好难啊感觉，于是想了想了 k 小于等于 3 会不会有什么规律可循，<br>发现 k = 1 的时候就是 $ 2^{n-1} $ ，就得到了 1 分的好成绩（这分给的真少）。<br>然后再手玩了一下 k = 2 和 k = 3 的情况，找到了一种计数方式，过了样例，就交了，<br>然并卵，k = 2 和 k = 3 的情况错了，只有 1’ 。</p>
-<p>第二题感觉是什么 set 启发式合并，但是合并之后只能暴力搞答案，<br>没思路，打了暴力，5 分的好成绩。</p>
-<p>第三题我靠麻将小模拟大搜索题？感觉很复杂，而且到第三题也没什么时间了，<br>于是打了一发只有字牌的特殊情况，20 分的好成绩。</p>
-<h3 id="讲题-2"><a href="#讲题-2" class="headerlink" title="讲题"></a>讲题</h3><p>出题人说这个题目难度是 T1 &gt;= T2 &gt;= T3 。</p>
-<p>T3 果然就是搜索，先算出最大答案（就是 9 ）统计面子搭子的数量再减答案。</p>
-<p>T2 线段树合并，玄学，还不会。</p>
-<p>T1 真有意思，标程生成函数加一大堆什么多项式的优化之类的，复杂，没懂。<br>但是有位大佬考试 27 分钟后就 A 了这题，出题人叫他上来讲讲，<br>然后他就开始秀操作：<br>“我的直觉告诉我 % n 等于 0 的方案和 % n 等于 x 的方案是一样的，然后就可以算出总方案数再除以 n 就可以……” ，<br>然后抄起笔写出一个式子，就是总方案数，<br>我靠这式子也贼好懂，全场都笑喷了，这大抵就是“爆踩标程”了吧，复杂度还更优秀。<br>出题人一脸懵逼，看了眼式子无奈的说了一句好吧那就这样吧。<br>做法就是考虑每个排列的贡献，枚举颜色的种类再用组合数和第二类斯特灵数算出这样的排列数再乘上贡献。<br>时间复杂度直接实现都是 $ O(k^2) $ （ k 只有 100 ，可见标程被爆踩），<br>把斯特灵数那部分的预处理用 NTT 优化复杂度就是 $ O(k logk) $ ，<br>听说还可以优化到 $ O(k) $ ，不会，但对这题来讲也没必要。</p>
-<h3 id="额外肝题"><a href="#额外肝题" class="headerlink" title="额外肝题"></a>额外肝题</h3><p>教练还额外发了一套题来着。<br>扫了遍题目，感觉第二题比较友好：<br>交换 i, j 枚举顺序后就把那个斯特灵数求和的部分设为函数 g ，<br>根据斯特灵数的递推，g 这玩意也是可以递推的，中间需要用到一排斯特灵数。<br>根据斯特灵数的容斥意义 NTT 预处理一排斯特灵数即可（卧槽这不就是上午 t3 吗）。<br><del>代码实现中，还没打完，随时准备被打脸。</del></p>
-<p><del>今天晚上竟然没有颓。</del></p>
-<h2 id="Day8"><a href="#Day8" class="headerlink" title="Day8"></a>Day8</h2><p><del>咕掉了</del></p>
-<h2 id="NEXT"><a href="#NEXT" class="headerlink" title="NEXT"></a>NEXT</h2><p><a href="/2019/03/29/安徽游记-iii/">Day9 to END</a></p>
-]]></content>
-  </entry>
-  <entry>
     <title>最长反链长</title>
     <url>/2019/10/01/%E6%9C%80%E9%95%BF%E5%8F%8D%E9%93%BE%E9%95%BF/</url>
     <content><![CDATA[<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p>首先得知道链和反链是什么。</p><p>在 <strong>有向无环图（ DAG ）</strong> 中，<br>链是满足任意两点 x, y 要么 x 可以到达 y 要么 y 可以到达 x 的<strong>点集</strong> （即使只有一个点），<br>反链是任意两点没有路径的 <strong>点集</strong> 。</p><p>那么最长反链，就是点的个数最多的反链。</p><h2 id="定理"><a href="#定理" class="headerlink" title="定理"></a>定理</h2><p>不加证明地丢出两个定理：</p><ol>
@@ -1543,26 +1563,6 @@ int QCNT;</code></pre><p>note 那一排暴露啦，这命名空间 lkjjhkfdlhgkj
 <h2 id="相交"><a href="#相交" class="headerlink" title="相交"></a>相交</h2><p>将原图做一次 Floyd ，<br>之后就可以知道任意两点 x, y ，x 是否能到达 y 。</p>
 <p>把建立二分图的方法改造了一下，只要 x 能到达 y ，<br>就直接连一条边 (x, y)，这样就可以“跨过”其它链来连接两条链了。</p>
 <p>这个时候，原图最长反链长度 = 最小链覆盖 = 二分图最大匹配。</p>
-]]></content>
-  </entry>
-  <entry>
-    <title>NTT</title>
-    <url>/2019/10/01/NTT/</url>
-    <content><![CDATA[<p>NTT ，快速数论变换，功能与 <a href>FFT</a> 完全一致，用来求多项式卷积。<br>NTT 优点在于常数稍微小一点，没有精度误差。<br>但是 NTT 系数必须是取模意义下的整数，且对模数有特殊要求。</p><h2 id="FFT-的单位根"><a href="#FFT-的单位根" class="headerlink" title="FFT 的单位根"></a>FFT 的单位根</h2><p>建议前置 <a href>FFT</a> 。</p><p>FFT 可以分治优化复杂度的原因是用到了单位根的如下性质：<br>$$ W_{2n}^{2k} = W_n^k $$<br>$$ W_n^n = 1 $$<br>$$ W_n^{k + n/2} + W_n^k = 0 $$</p><a id="more"></a>
-
-
-<p>可是用单位根做 FFT ，需要用到复数和浮点数，常数大而且有精度误差。<br>还有别的数有这样的性质来替换单位根吗？<br>遗憾的是，可以证明复数域下只有单位根有这样的性质。</p>
-<h2 id="取模"><a href="#取模" class="headerlink" title="取模"></a>取模</h2><p>实际计算多项式卷积时，常常要求对系数取模以避免不必要的麻烦。<br>那么这时候系数实际上是在模意义下的， FFT 将它转到复数域上运算，似乎没有必要。<br>模意义下什么数可以有单位根那样的性质？<br>有的，那就是原根。</p>
-<h2 id="原根"><a href="#原根" class="headerlink" title="原根"></a>原根</h2><p>对于某些模数 P ，模 P 意义下的原根 g 满足：<br>对任意 $ 0 \leq k \leq P - 2 $ ， $ g^k $ 互不相同。<br>有些模数可能不存在原根，这里先假设模数都有原根。</p>
-<p>假设系数是模 P 意义下的，P 是形如 $ 2^k + 1 $ 的质数，其原根为 g ，<br>设 $ G_n = g^{\frac{P-1}{n}} mod P $ ，其中 n 是小于 P 的 2 的整次幂 。<br>那么在模 P 意义下， G 满足：</p>
-<p>$$ G_{2n}^{2k} = G_n^k $$</p>
-<p>由 G 定义可证：<br>$ G_{2n}^{2k} = g^{\frac{P-1}{2n}2k} = g^{\frac{P-1}{n}k} = G_n^k$</p>
-<p>$$ G_n^n = 1 $$</p>
-<p>由 G 定义可得：<br>$ G_n^n = g^{\frac{P-1}{n}n} = g^{P-1}  $<br>由费马小定理：<br>$ G_n^n =  g^{P-1} = 1 $</p>
-<p>$$ G_n^{k + n/2} + G_n^k = 0 $$</p>
-<p>有第一条性质可得：<br>$ G_n^{n/2} = G_2^1 = g^{\frac{P-1}{2}} $<br>因为 $ (g^{\frac{P-1}{2}})^2 = g^{P-1} = 1 $<br>根据原根的性质：<br>$ g^{\frac{P-1}{2}} \neq g^{P-1} $<br>那么 $ g^{\frac{P-1}{2}} = -1 $ （即 P - 1）。<br>那么可以证得：<br>$ G_n^{k + n/2} = G_n^k G_n^{n/2} = G_n^k(-1) $<br>于是 $ G_n^{k + n/2} + G_n^k = 0 $</p>
-<h2 id="NTT"><a href="#NTT" class="headerlink" title="NTT"></a>NTT</h2><p>于是 NTT 的算法思路就呼之欲出了：把 $ W_n $ 全部替换为 $ G_n $ 即可。<br>这样就可以算出模 P 意义下的多项式卷积了。<br>其中 n 必须是 2 的整次幂，不足的补零即可。</p>
-<p>现在唯一的问题是，模数 P 要满足什么条件，以及如何求模 P 意义下的原根 g 。<br>然而我并不想深入展开，大多数情况下模数都是 998244353 ，其原根为 3 。<br>一般 NTT 只会用这个模数，不会有毒瘤出题人卡这个模数的（我不对这句话负责）。</p>
 ]]></content>
   </entry>
 </search>
