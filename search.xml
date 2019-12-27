@@ -15,8 +15,9 @@
 <p>首先依次考虑每个 $L_i(x)$ 的 $x^k$ 系数，最后累加即可。</p>
 <p>注意到分母和 $y_i$ 是常数可以直接算，考虑提出来，</p>
 <p>$$ L_i(x) = (y_i \cdot \prod\limits_{j \ne i}\frac{1}{x_j-x_i})<br>    (\prod\limits_{j \ne i} (x_j - x)) $$</p>
+<p>左边的常数是一堆逆元相乘再乘上 $y_i$ ，逆元往往不是 $O(1)$ 计算的，<br>事实上可以先把分母中所有 $x-x_j$ 乘起来再一起求逆元，这样就只需要计算 1 次逆元，此时一般可以忽略逆元对复杂度的影响。</p>
 <p>那么只需要算分子部分，即上式右边的 $\prod$ 的 $x^k$ 系数即可。</p>
-<p>假设把这个连乘暴力拆开，其实 $x^k$ 的系数就是在之中选 $n - k - 1$ 个常数。<br>DP 预处理 $pre(i, k)$ 表示在 $\prod\limits_{j \leq i} (x - x_j)$ 中选 k 个常数的系数和，<br>同理 $suf(i, k)$ 表示在 $\prod\limits_{j \geq i} (x - x_j)$ 中选 k 个常数的系数和。<br>那么枚举 $p + q = n - k - 1$ 把 $pre(i - 1, p)$ 和 $suf(i + 1, q)$ 相乘就是上式的 $x^k$ 系数了。</p>
+<p>假设把这个连乘暴力拆开，其实 $x^k$ 的系数就是在之中选 $n - k - 1$ 个常数。<br>DP 预处理 $pre(i, k)$ 表示在 $\prod\limits_{j \leq i} (x - x_j)$ 中选 k 个常数的系数和，<br>同理 $suf(i, k)$ 表示在 $\prod\limits_{j \geq i} (x - x_j)$ 中选 k 个常数的系数和。<br>那么枚举 $p + q = n - k - 1$ 求 $pre(i - 1, p)$ 乘 $suf(i + 1, q)$ 的和就是上式的 $x^k$ 系数了。</p>
 <p>时间复杂度 $O(n^2)$ 。</p>
 <p>参考实现（未经过测试）：</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* 插出 L_i(x) 的 x^k 系数 */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">la</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> A = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n; j ++)</span><br><span class="line">		<span class="keyword">if</span>(i != j)</span><br><span class="line">			A *= X[i] - X[j];</span><br><span class="line">	<span class="keyword">int</span> B = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> l = <span class="number">0</span>; l &lt;= n - k - <span class="number">1</span>; l ++)</span><br><span class="line">		B += pre[i - <span class="number">1</span>][l] * suf[i + <span class="number">1</span>][n - k - <span class="number">1</span> - l];</span><br><span class="line">	<span class="keyword">return</span> B / A * X[i];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 初始化 suf 和 pre */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= n; i ++) &#123;</span><br><span class="line">		pre[i][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= i; j ++)</span><br><span class="line">			pre[i][j] = pre[i - <span class="number">1</span>][j] - pre[i - <span class="number">1</span>][j - <span class="number">1</span>] * X[i];</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = n + <span class="number">1</span>; i; i --) &#123;</span><br><span class="line">		suf[i][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n - i + <span class="number">1</span>; j ++)</span><br><span class="line">			suf[i][j] = suf[i + <span class="number">1</span>][j] - suf[i + <span class="number">1</span>][j - <span class="number">1</span>] * X[i];</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -26,13 +27,13 @@
 <p>点值比较特殊的情况下可以使用 FFT 或者 NTT ，但有失一般性。</p>
 <p>沿用上述分离常数的方法，考虑 $O(n)$ 求出每个 $L_i(x)$ 的所有系数：</p>
 <p>$$ L_i(x) = (y_i \cdot \prod\limits_{j \ne i}\frac{1}{x_j-x_i})<br>    (\prod\limits_{j \ne i} (x_j - x)) $$</p>
-<p>左边的常数是一堆逆元相乘再乘上 $y_i$ ，如果忽略逆元的计算复杂度，那么这部分可以 $O(n)$ 算出。</p>
+<p>左边的常数还是同样地处理，不同的是对于右边的多项式现在要求的不是某一项的系数而是所有系数。</p>
 <p>对于右边的多项式部分，可以看做：</p>
 <p>$$ \frac{\prod_{j=1}^n (x_j - x)}{x_i - x} $$</p>
 <p>其分子是个与 $i$ 无关的多项式，可以 $O(n^2)$ 暴力预处理，而其分母是个简单的一次二项式。<br>那么可以用短除法来进行多项式除二项式，复杂度 $O(n)$ 。</p>
-<p>综上，忽略逆元的计算复杂度的前提下这个算法的复杂度为 $O(n^2)$ ，否则在模 $P$ 意义下复杂度为 $O(n^2logP)$ 。<br>但是很多情况下逆元是可以预处理的，例如当满足 $x_i=i$ 时，要用到的逆元的值域范围是 $[-n, n]$ ，线性或者暴力预处理即可。</p>
+<p>总时间复杂度为 $O(n^2)$ 。</p>
 <p>参考实现（未经过测试）：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">la</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">	tmp[<span class="number">0</span>] = <span class="number">1</span>; <span class="comment">// tmp 表示 n 个二项式相乘的多项式</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i ++) &#123;</span><br><span class="line">		tmp[i] = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j = i; j; j --)</span><br><span class="line">			tmp[j] = tmp[j - <span class="number">1</span>] - X[i] * tmp[j];</span><br><span class="line">		tmp[<span class="number">0</span>] *= - X[i];</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i ++) &#123;</span><br><span class="line">		ll A = Y[i]; <span class="comment">// A 表示 L_i 的常数部分</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n; j ++)</span><br><span class="line">			<span class="keyword">if</span>(i != j)</span><br><span class="line">				A /= i - j;</span><br><span class="line"></span><br><span class="line">		tmp2[n] = tmp[n]; <span class="comment">// tmp2 表示将 tmp 除以一个二项式的结果</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j = n; j; j --) &#123;</span><br><span class="line">			ll t = tmp2[j];</span><br><span class="line">			get[j - <span class="number">1</span>] += t * A; <span class="comment">// get 表示 f(x) 的系数</span></span><br><span class="line">			tmp2[j - <span class="number">1</span>] = tmp[j - <span class="number">1</span>] + t * i;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 此时应有 tmp2[0] = 0 ，否则说明除法有余数</span></span><br><span class="line">		assert(tmp2[<span class="number">0</span>] == <span class="number">0</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">la</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">	tmp[<span class="number">0</span>] = <span class="number">1</span>; <span class="comment">// tmp 表示 n 个二项式相乘的多项式</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i ++) &#123;</span><br><span class="line">		tmp[i] = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j = i; j; j --)</span><br><span class="line">			tmp[j] = tmp[j - <span class="number">1</span>] - X[i] * tmp[j];</span><br><span class="line">		tmp[<span class="number">0</span>] *= - X[i];</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i ++) &#123;</span><br><span class="line">		ll A = <span class="number">1</span>; <span class="comment">// A 表示 L_i 的常数部分</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n; j ++)</span><br><span class="line">			<span class="keyword">if</span>(i != j)</span><br><span class="line">				A *= i - j;</span><br><span class="line">		A = Y[i] / A;</span><br><span class="line"></span><br><span class="line">		tmp2[n] = tmp[n]; <span class="comment">// tmp2 表示将 tmp 除以一个二项式的结果</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j = n; j; j --) &#123;</span><br><span class="line">			ll t = tmp2[j];</span><br><span class="line">			get[j - <span class="number">1</span>] += t * A; <span class="comment">// get 表示 f(x) 的系数</span></span><br><span class="line">			tmp2[j - <span class="number">1</span>] = tmp[j - <span class="number">1</span>] + t * i;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 此时应有 tmp2[0] = 0 ，否则说明除法有余数</span></span><br><span class="line">		assert(tmp2[<span class="number">0</span>] == <span class="number">0</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 ]]></content>
       <categories>
@@ -982,6 +983,38 @@
       </tags>
   </entry>
   <entry>
+    <title>HNOI2019</title>
+    <url>/2019/10/01/HNOI2019/</url>
+    <content><![CDATA[<p>先喷一句，没有大样例，差评。<br>再喷一句，数据水，好评。</p><p>预计 80’ ，实际 110’ 。</p><p>我真是个奇葩实际分比预计分高。。。</p><h2 id="Day0"><a href="#Day0" class="headerlink" title="Day0-"></a>Day0-</h2><p>省选前三天教练每天给我们推一道题，都是主席树应用（教练曰“线段树模板”）。<br>都是看了题解的思路才做出来的，自己想就找不到用主席树维护的地方。</p><p>不知道为什么这三天效率都挺高，这三天我 A 的题目估计有我平常一个星期的 A 题数。。。</p><a id="more"></a>
+
+
+
+
+<p>然而还没来得及复习每个知识点，省选就来了。</p>
+<h2 id="Day1"><a href="#Day1" class="headerlink" title="Day1"></a>Day1</h2><p>预计 70’ ，实际 40’ 。</p>
+<h3 id="fish"><a href="#fish" class="headerlink" title="fish"></a>fish</h3><p>我看到这题的时候就意识到我只能打暴力了。<br>计算几何？我对这块一片空白。<br>好吧，硬要说思路我大概想得到枚举线段，按斜率搞个什么数据结构？<br>然后真的不会，敲暴力滚粗。</p>
+<p>预计 20’ ，实际 20’ 。</p>
+<h3 id="jojo"><a href="#jojo" class="headerlink" title="jojo"></a>jojo</h3><p>前缀和后缀相同？求 KMP 的 fail 数组嘛。<br>暴力求，一次加几个字符就求几次 fail, 全加起来就是答案。<br>可持久化？版本树像个 AC 自动机，但是没管这么多，无脑写了个可持久化数组。<br>因为是把每个字符暴力求的，只能过前 50’ 。<br>结果我后面 30’ tm TLE 了？ $ O(n log(n)) $ 的时空复杂度跑 1e5 要 6 秒？</p>
+<p>预计 50’ ，实际 20’ 。</p>
+<h3 id="polygon"><a href="#polygon" class="headerlink" title="polygon"></a>polygon</h3><p>什么鬼畜题啊，简化一波题意。<br>把线段看做一个区间，除 (x, x + 1) 外每个区间一定可以划分成两个子区间。<br>然后把每个区间看做一个点，相当于有了一个满二叉树。<br>然后旋转操作就相当于把一个点 blablabla 换一下位置。<br>旋转次数可以贪心，方案数不会，大概要 DP ？<br>然后想着就求旋转次数吧，看看数据范围。。。<br>沃日 90% 的数据都要求方案数？小 W 的心情得多差啊。。。<br>当时我还没打其他题，感觉比较亏，就先做前面的题了，结果最后都没打。</p>
+<p>预计 0’ ，实际 0’ 。</p>
+<h3 id="Watering"><a href="#Watering" class="headerlink" title="Watering"></a>Watering</h3><p>下午直接去机房颓废，死神 vs 火影真好玩。<br>还有被 lyy 安利太阳系争夺战，画风清新，内容硬核。</p>
+<h2 id="Day2"><a href="#Day2" class="headerlink" title="Day2"></a>Day2</h2><p>emm, 我是来测数据湿度的。。。<br>结果真被我水过去了。。。</p>
+<p>预计 10’ ，实际 70’ 。</p>
+<p>所以说有想法就要实现 <del>不然就没事干了</del> 2333 。</p>
+<h3 id="tour"><a href="#tour" class="headerlink" title="tour"></a>tour</h3><p>u = v 或者 s[u] = s[v] 且 u, v 相邻的时候 (u, v) 一定是可行的。<br>其他点对 (u, v) 可行当且仅当 s[u] = s[v] 且存在 u -&gt; u2, v -&gt; v2 且 (u2, v2) 可行。<br>DP ？有环。<br>然后就只能把一个点对看做一个点，对于新的点建图，如果从初始的可行点能跑到 (u, v) 则 (u, v) 可行。<br>点数 $ O(n^2) $ ，边数 $ O(m^2) $ ，复杂度 $ O(n^2 + m^2 + q) $ 。<br>然而第一档暴力 m 就有 1e4 ， <strong>纯随机数据开O2</strong> 本地测了一下跑 5s, 真棒。</p>
+<p>预计 0’ ，实际 30’ 。</p>
+<h3 id="dance"><a href="#dance" class="headerlink" title="dance"></a>dance</h3><p>好迷啊，看了看 n = 1 有 40’ ，就去想 n = 1 怎么做，<br>推了推就是个式子： $ ans_i = \sum_{j=0} C_L^{i+j k} W^{i+j k} $ 。<br>把每个 $ C_L^x W^x $ 算一遍，快速幂复杂度 $ O(L log(L)) $ ，<br>然而 L 有 1e8 。。。<br>线性都跑不过去吧这，但我实在没别的思路，就想试试线性。<br>做法就是预处理，预处理 L 以内的逆元和 $ W_i $ ，再线性求一排的组合数。<br>时空复杂度都是 $ O(L) $ ， <strong>开 O2</strong> 本地测试 17s, 就算不 TLE 都得 MLE 。</p>
+<p>预计 0’ ，实际 30’ （考完后再放本地测可以水 40’ woc）。</p>
+<p>看了看实际的 L 只有 1e7 到 2e7 左右，真棒。<br>至于空间，我还算有点脑子搞了波动态开空间，不然直接开 1e8 的数组肯定得炸。</p>
+<h3 id="sequence"><a href="#sequence" class="headerlink" title="sequence"></a>sequence</h3><p>b 是整数的话还能枚举枚举。分数？没救了感觉。<br>于是只打了 10’ 的整数 DP 。</p>
+<p>预计 10’ ，实际 10’ 。</p>
+<h3 id="Watering-1"><a href="#Watering-1" class="headerlink" title="Watering"></a>Watering</h3><p>下午本来打算去黄兴街打游戏的，先去麦克唐纳德吃中饭，吃完后发现就已经 3 点多了没什么时间。<br>于是放弃了 xbox 又回到机房颓废，死神 vs 火影昨天已经玩熟练了，打起来比较轻松。</p>
+<h2 id="Day3"><a href="#Day3" class="headerlink" title="Day3+"></a>Day3+</h2><p>省选完了，结果并不想想象的那样，即使运气眷顾了我还是 wei 的一批。<br>实力不够啊，说啥都是扯淡。</p>
+<p>常规欠下的帐也该还了，滚回去学文化课啦，接受作业的洗礼。</p>
+]]></content>
+  </entry>
+  <entry>
     <title>Manjaro 搭建内网博客</title>
     <url>/2019/10/01/Manjaro%20%E6%90%AD%E5%BB%BA%E5%86%85%E7%BD%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%88%96%E5%8D%9A%E5%AE%A2/</url>
     <content><![CDATA[<p>折腾了大半天，终于在本机搭了一个功能完备的服务器。<br>当然要记录一下啊。<br>不过这是搭建成功后的总结，可能有地方遗漏，有问题欢迎提出来。</p><h2 id="静态页面博客"><a href="#静态页面博客" class="headerlink" title="静态页面博客"></a>静态页面博客</h2><p>这个用 hexo 和 jekyll 直接就可以做到，本地跑 server 不成问题，<br>比较 easy ，不赘述，详见 hexo 或者 jekyll 的官网。</p><h2 id="动态页面博客"><a href="#动态页面博客" class="headerlink" title="动态页面博客"></a>动态页面博客</h2><a id="more"></a>
@@ -1025,38 +1058,6 @@
 <p>让 php 支持 mysql 的调用，在 /etc/php/php.ini 找到 ;extension=mysqli 把分号去掉就行了。</p>
 <h2 id="使用-wordpress"><a href="#使用-wordpress" class="headerlink" title="使用 wordpress"></a>使用 wordpress</h2><p>Typecho 用 php7.2 似乎安装会出问题，<br>还是建议用 wordpress ，更加成熟，<br>安装方式在 wordpress 官网上把包下下来解压到 /srv/http/ ，<br>回了正常运行，需要改变 /srv/http 的权限，让 wordpress 能够对其做出修改。<br>这里不赘述，嫌麻烦可以 <code>chmod 777 -R /srv/http</code> 。</p>
 <p>然后进入 localhost 按照步骤来就行了。</p>
-]]></content>
-  </entry>
-  <entry>
-    <title>HNOI2019</title>
-    <url>/2019/10/01/HNOI2019/</url>
-    <content><![CDATA[<p>先喷一句，没有大样例，差评。<br>再喷一句，数据水，好评。</p><p>预计 80’ ，实际 110’ 。</p><p>我真是个奇葩实际分比预计分高。。。</p><h2 id="Day0"><a href="#Day0" class="headerlink" title="Day0-"></a>Day0-</h2><p>省选前三天教练每天给我们推一道题，都是主席树应用（教练曰“线段树模板”）。<br>都是看了题解的思路才做出来的，自己想就找不到用主席树维护的地方。</p><p>不知道为什么这三天效率都挺高，这三天我 A 的题目估计有我平常一个星期的 A 题数。。。</p><a id="more"></a>
-
-
-
-
-<p>然而还没来得及复习每个知识点，省选就来了。</p>
-<h2 id="Day1"><a href="#Day1" class="headerlink" title="Day1"></a>Day1</h2><p>预计 70’ ，实际 40’ 。</p>
-<h3 id="fish"><a href="#fish" class="headerlink" title="fish"></a>fish</h3><p>我看到这题的时候就意识到我只能打暴力了。<br>计算几何？我对这块一片空白。<br>好吧，硬要说思路我大概想得到枚举线段，按斜率搞个什么数据结构？<br>然后真的不会，敲暴力滚粗。</p>
-<p>预计 20’ ，实际 20’ 。</p>
-<h3 id="jojo"><a href="#jojo" class="headerlink" title="jojo"></a>jojo</h3><p>前缀和后缀相同？求 KMP 的 fail 数组嘛。<br>暴力求，一次加几个字符就求几次 fail, 全加起来就是答案。<br>可持久化？版本树像个 AC 自动机，但是没管这么多，无脑写了个可持久化数组。<br>因为是把每个字符暴力求的，只能过前 50’ 。<br>结果我后面 30’ tm TLE 了？ $ O(n log(n)) $ 的时空复杂度跑 1e5 要 6 秒？</p>
-<p>预计 50’ ，实际 20’ 。</p>
-<h3 id="polygon"><a href="#polygon" class="headerlink" title="polygon"></a>polygon</h3><p>什么鬼畜题啊，简化一波题意。<br>把线段看做一个区间，除 (x, x + 1) 外每个区间一定可以划分成两个子区间。<br>然后把每个区间看做一个点，相当于有了一个满二叉树。<br>然后旋转操作就相当于把一个点 blablabla 换一下位置。<br>旋转次数可以贪心，方案数不会，大概要 DP ？<br>然后想着就求旋转次数吧，看看数据范围。。。<br>沃日 90% 的数据都要求方案数？小 W 的心情得多差啊。。。<br>当时我还没打其他题，感觉比较亏，就先做前面的题了，结果最后都没打。</p>
-<p>预计 0’ ，实际 0’ 。</p>
-<h3 id="Watering"><a href="#Watering" class="headerlink" title="Watering"></a>Watering</h3><p>下午直接去机房颓废，死神 vs 火影真好玩。<br>还有被 lyy 安利太阳系争夺战，画风清新，内容硬核。</p>
-<h2 id="Day2"><a href="#Day2" class="headerlink" title="Day2"></a>Day2</h2><p>emm, 我是来测数据湿度的。。。<br>结果真被我水过去了。。。</p>
-<p>预计 10’ ，实际 70’ 。</p>
-<p>所以说有想法就要实现 <del>不然就没事干了</del> 2333 。</p>
-<h3 id="tour"><a href="#tour" class="headerlink" title="tour"></a>tour</h3><p>u = v 或者 s[u] = s[v] 且 u, v 相邻的时候 (u, v) 一定是可行的。<br>其他点对 (u, v) 可行当且仅当 s[u] = s[v] 且存在 u -&gt; u2, v -&gt; v2 且 (u2, v2) 可行。<br>DP ？有环。<br>然后就只能把一个点对看做一个点，对于新的点建图，如果从初始的可行点能跑到 (u, v) 则 (u, v) 可行。<br>点数 $ O(n^2) $ ，边数 $ O(m^2) $ ，复杂度 $ O(n^2 + m^2 + q) $ 。<br>然而第一档暴力 m 就有 1e4 ， <strong>纯随机数据开O2</strong> 本地测了一下跑 5s, 真棒。</p>
-<p>预计 0’ ，实际 30’ 。</p>
-<h3 id="dance"><a href="#dance" class="headerlink" title="dance"></a>dance</h3><p>好迷啊，看了看 n = 1 有 40’ ，就去想 n = 1 怎么做，<br>推了推就是个式子： $ ans_i = \sum_{j=0} C_L^{i+j k} W^{i+j k} $ 。<br>把每个 $ C_L^x W^x $ 算一遍，快速幂复杂度 $ O(L log(L)) $ ，<br>然而 L 有 1e8 。。。<br>线性都跑不过去吧这，但我实在没别的思路，就想试试线性。<br>做法就是预处理，预处理 L 以内的逆元和 $ W_i $ ，再线性求一排的组合数。<br>时空复杂度都是 $ O(L) $ ， <strong>开 O2</strong> 本地测试 17s, 就算不 TLE 都得 MLE 。</p>
-<p>预计 0’ ，实际 30’ （考完后再放本地测可以水 40’ woc）。</p>
-<p>看了看实际的 L 只有 1e7 到 2e7 左右，真棒。<br>至于空间，我还算有点脑子搞了波动态开空间，不然直接开 1e8 的数组肯定得炸。</p>
-<h3 id="sequence"><a href="#sequence" class="headerlink" title="sequence"></a>sequence</h3><p>b 是整数的话还能枚举枚举。分数？没救了感觉。<br>于是只打了 10’ 的整数 DP 。</p>
-<p>预计 10’ ，实际 10’ 。</p>
-<h3 id="Watering-1"><a href="#Watering-1" class="headerlink" title="Watering"></a>Watering</h3><p>下午本来打算去黄兴街打游戏的，先去麦克唐纳德吃中饭，吃完后发现就已经 3 点多了没什么时间。<br>于是放弃了 xbox 又回到机房颓废，死神 vs 火影昨天已经玩熟练了，打起来比较轻松。</p>
-<h2 id="Day3"><a href="#Day3" class="headerlink" title="Day3+"></a>Day3+</h2><p>省选完了，结果并不想想象的那样，即使运气眷顾了我还是 wei 的一批。<br>实力不够啊，说啥都是扯淡。</p>
-<p>常规欠下的帐也该还了，滚回去学文化课啦，接受作业的洗礼。</p>
 ]]></content>
   </entry>
   <entry>
