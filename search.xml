@@ -1,6 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>组合数学玄学操作</title>
+    <url>/2020/01/02/%E7%BB%84%E5%90%88%E6%95%B0%E5%AD%A6%E7%8E%84%E5%AD%A6%E6%93%8D%E4%BD%9C/</url>
+    <content><![CDATA[<p>以下公式均不给出证明，目的是为了让结论一目了然。</p><h2 id="组合数相关"><a href="#组合数相关" class="headerlink" title="组合数相关"></a>组合数相关</h2><p>$$ C_n^m C_m^k = C_n^k C_{n-k}^{m-k} $$</p><p>基本递推式<br>$$ C_n^m = C_{n-1}^{m-1} + C_{n-1}^m $$</p><p>二项式定理<br>$$ (a+b)^n = \sum_{i=0}^n C_n^i a^i b^{n-i} $$</p><a id="more"></a>
+
+
+
+<p>$$ \sum_{i=0}^n (C_n^i)^2 = C_{2n}^n $$</p>
+<p>$$ C_{n+m}^k = \sum_{i=0}^k C_n^i C_m^{k-i} $$</p>
+<p>卢卡斯定理（要求 $p$ 是质数）<br>$$ C_n^m \% p = C_{n/p}^{m/p} C_{n \% p}^{m \% p} \% p $$</p>
+<h2 id="第一类斯特灵数相关"><a href="#第一类斯特灵数相关" class="headerlink" title="第一类斯特灵数相关"></a>第一类斯特灵数相关</h2><p>$$ s_n^m = s_{n-1}^{m-1} + (n-1) s_{n-1}^m $$</p>
+<p>$$ x^{\overline{n}} = \sum_{m} s_n^m x^m $$</p>
+<h2 id="第二类斯特灵数相关"><a href="#第二类斯特灵数相关" class="headerlink" title="第二类斯特灵数相关"></a>第二类斯特灵数相关</h2><p>$$ S_n^m = S_{n-1}^{m-1} + m S_{n-1}^m $$</p>
+<p>$$ n^m = \sum_{k=0}^m S_m^k C_n^k k! $$</p>
+<p>上式的二项式反演，组合数拆开后可转换为卷积形式<br>$$ S_n^m = \frac{1}{m!} \sum_{k=0}^m (-1)^{m-k} C_m^k k^n $$</p>
+]]></content>
+      <categories>
+        <category>整理</category>
+      </categories>
+      <tags>
+        <tag>组合数学</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>杜教筛</title>
     <url>/2020/01/02/%E6%9D%9C%E6%95%99%E7%AD%9B/</url>
     <content><![CDATA[<p>杜教筛一般用于求一类数论函数的前缀和。</p><p>假设要求数论函数 $f(x)$ 的前缀和 $S(n) = \sum_{i=1}^n f(i)$ 。</p><p>杜教筛的关键在于构造两个合适的函数 $g, h$ 满足 $h = f \cdot g$ 。</p><p>这里的函数相乘指的是狄利克雷卷积。</p><h2 id="理论"><a href="#理论" class="headerlink" title="理论"></a>理论</h2><p>则由 $h = f \cdot g$ 可得（以下除号表示整除）：</p><a id="more"></a>
@@ -61,10 +84,11 @@
     <content><![CDATA[<p>这里只介绍关于多项式的拉格朗日插值法，对于一般函数的拟合当做一个多项式就好了。</p><h2 id="插点值"><a href="#插点值" class="headerlink" title="插点值"></a>插点值</h2><p>已知多项式 $f(x)$ 的 $n$ 个点值 $(x_i, y_i = f(x_i))$ ，求 $f(k)$ 。</p><p>拉格朗日插值法的思路在于：<br>对于每个 $(x_i, y_i)$ 找到 $L_i(x)$ 使得 $L_i(x_i) = y_i, L_i(x_j) = 0$ ，<br>其中 $x_j$ 是已知的 $x$ 中任意一个不等于 $x_i$ 的 $x$ 。</p><a id="more"></a>
 
 
-<p>而由 $L$ 的定义可知，$f(k) = \sum_{i=1}^n L_i(k)$ 。<br>代入上式即可 $ O(n^2) $ 求解。</p>
+<p>而由 $L$ 的定义可知，$f(k) = \sum_{i=1}^n L_i(k)$ 。<br>代入上式即可求解。</p>
 <p>现在问题在于构造 $L$ 。<br>下面的 $L$ 可以满足定义：</p>
 <p>$$ L_i(x) = y_i \cdot \prod\limits_{j \ne i}\frac{x_j-x}{x_j-x_i} $$</p>
 <p>代入可得这对于任意 $x_i$<br>可以使得 $L_i(x_i) = y_i, L_i(x_j) = 0$</p>
+<p>复杂度 $ O(n^2) $ 。</p>
 <h2 id="插系数"><a href="#插系数" class="headerlink" title="插系数"></a>插系数</h2><p>已知多项式 $f(x)$ 的 $n$ 个点值，求 $f(x)$ 的第 $k$ 次项系数 。</p>
 <p>先考虑插出一项 $x^k$ 的系数。</p>
 <p>首先依次考虑每个 $L_i(x)$ 的 $x^k$ 系数，最后累加即可。</p>
@@ -88,7 +112,7 @@
 <p>其分子是个与 $i$ 无关的多项式，可以 $O(n^2)$ 暴力预处理，而其分母是个简单的一次二项式。<br>那么可以用短除法来进行多项式除二项式，复杂度 $O(n)$ 。</p>
 <p>总时间复杂度为 $O(n^2)$ 。</p>
 <p>参考实现（未经过测试）：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">la</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">	tmp[<span class="number">0</span>] = <span class="number">1</span>; <span class="comment">// tmp 表示 n 个二项式相乘的多项式</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i ++) &#123;</span><br><span class="line">		tmp[i] = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j = i; j; j --)</span><br><span class="line">			tmp[j] = tmp[j - <span class="number">1</span>] - X[i] * tmp[j];</span><br><span class="line">		tmp[<span class="number">0</span>] *= - X[i];</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i ++) &#123;</span><br><span class="line">		ll A = <span class="number">1</span>; <span class="comment">// A 表示 L_i 的常数部分</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n; j ++)</span><br><span class="line">			<span class="keyword">if</span>(i != j)</span><br><span class="line">				A *= i - j;</span><br><span class="line">		A = Y[i] / A;</span><br><span class="line"></span><br><span class="line">		tmp2[n] = tmp[n]; <span class="comment">// tmp2 表示将 tmp 除以一个二项式的结果</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j = n; j; j --) &#123;</span><br><span class="line">			ll t = tmp2[j];</span><br><span class="line">			get[j - <span class="number">1</span>] += t * A; <span class="comment">// get 表示 f(x) 的系数</span></span><br><span class="line">			tmp2[j - <span class="number">1</span>] = tmp[j - <span class="number">1</span>] + t * i;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 此时应有 tmp2[0] = 0 ，否则说明除法有余数</span></span><br><span class="line">		assert(tmp2[<span class="number">0</span>] == <span class="number">0</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">la</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">	tmp[<span class="number">0</span>] = <span class="number">1</span>; <span class="comment">// tmp 表示 n 个二项式相乘的多项式</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i ++) &#123;</span><br><span class="line">		tmp[i] = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j = i; j; j --)</span><br><span class="line">			tmp[j] = tmp[j - <span class="number">1</span>] - X[i] * tmp[j];</span><br><span class="line">		tmp[<span class="number">0</span>] *= - X[i];</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i ++) &#123;</span><br><span class="line">		ll A = <span class="number">1</span>; <span class="comment">// A 表示 L_i 的常数部分</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n; j ++)</span><br><span class="line">			<span class="keyword">if</span>(i != j)</span><br><span class="line">				A *= X[i] - X[j];</span><br><span class="line">		A = Y[i] / A;</span><br><span class="line"></span><br><span class="line">		tmp2[n] = tmp[n]; <span class="comment">// tmp2 表示将 tmp 除以一个二项式的结果</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j = n; j; j --) &#123;</span><br><span class="line">			ll t = tmp2[j];</span><br><span class="line">			get[j - <span class="number">1</span>] += t * A; <span class="comment">// get 表示 f(x) 的系数</span></span><br><span class="line">			tmp2[j - <span class="number">1</span>] = tmp[j - <span class="number">1</span>] + t * X[i];</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 此时应有 tmp2[0] = 0 ，否则说明除法有余数</span></span><br><span class="line">		assert(tmp2[<span class="number">0</span>] == <span class="number">0</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 ]]></content>
       <categories>
@@ -675,7 +699,7 @@
 <p>在线的话，有一个经典的常用做法，还是建笛卡尔树转 LCA ，然后求出树的欧拉序转为 +-1 RMQ 。<br>而 +-1 RMQ 也是通过分块实现 $O(n + q)$ 复杂度的，<br>利用的是 +-1 RMQ 的差分数组在每个块内只有 $2^b$ 中可能，其中 $b$ 是块大小，取 $logn$ 。<br>整个过程较为复杂，在 OI 中实用性较低，具体做法留个坑，到时候再补。</p>
 <p>这里重点介绍另一个同样能做到在线 + 线性的 RMQ 算法，并且相对于上面的做法更简单，常数也更优秀。</p>
 <h4 id="线性-RMQ"><a href="#线性-RMQ" class="headerlink" title="线性 RMQ"></a>线性 RMQ</h4><p>该算法改进自之前再随机数据下的分块 RMQ ，<br>注意到当块大小为 $O(logn)$ 时，该算法唯一的瓶颈在于询问端点在同一个块内时需要暴力 $O(logn)$ 扫。<br>单独考虑每个块，考虑优化询问端点在该块的情况。<br>其中块大小为 $b = O(logn)$ 。</p>
-<p>利用之前提到的单调队列做法，如果对于每个带你暴力存下块的左端点到该点的单调递减队列，<br>那么对于询问 [l, r] ，拿出 r 上的单调队列，在单调队列上找到第一个不小于 l 的位置，该位置上的值即区间最大值。<br>由于单调队列的大小是 $O(b)$ 即 $O(logn)$ 的，该做法复杂度 $O((n + q)logn)$ 。</p>
+<p>利用之前提到的单调队列做法，如果对于每个点暴力存下块的左端点到该点的单调递减队列，<br>那么对于询问 [l, r] ，拿出 r 上的单调队列，在单调队列上找到第一个不小于 l 的位置，该位置上的值即区间最大值。<br>由于单调队列的大小是 $O(b)$ 即 $O(logn)$ 的，该做法复杂度 $O((n + q)logn)$ 。</p>
 <p>但是该做法有很大优化空间，由于 $b$ 足够小（一般认为它不超过字长 $w$ ），完全可以将每个点的单调队列状压，<br>这样预处理的时空复杂度就降到了 $O(n)$ 。<br>然后对于询问一个单调队列上第一个不小于 l 的位置，就是在一个二进制数 $x$ 上询问第一个位数不小于 l 的 1 的位数。<br>这通过位运算和内置函数可以很好实现，只需将 $x$ 右移 $l mod b$ 位来去掉单调队列上小于 l 的位置，<br>然后通过 <code>__builtin_ctz</code> $O(1)$ 找到第一个 1 的位置即可。<br>这样询问的复杂度就降到了 $O(1)$ ，总复杂度 $O(n + q)$ ，常数非常优秀。</p>
 <h4 id="完整实现"><a href="#完整实现" class="headerlink" title="完整实现"></a>完整实现</h4><p>以 bzoj1699 为例，该题的 rank1 就是用了这个线性 RMQ 做法，本人常数大，但还是狗到了 rank6 。</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> debug(...) fprintf(stderr, __VA_ARGS__)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> io &#123;</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">int</span> SIZE = (<span class="number">1</span> &lt;&lt; <span class="number">21</span>) + <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">char</span> ibuf[SIZE], *iS, *iT, obuf[SIZE], *oS = obuf, *oT = oS + SIZE - <span class="number">1</span>, c, qu[<span class="number">55</span>]; <span class="keyword">int</span> f, qr, flg;</span><br><span class="line">	<span class="meta">#<span class="meta-keyword">define</span> gc() (iS == iT ? (iT = (iS = ibuf) + fread (ibuf, 1, SIZE, stdin), (iS == iT ? EOF : *iS ++)) : *iS ++)</span></span><br><span class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">flush</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">		fwrite (obuf, <span class="number">1</span>, <span class="keyword">size_t</span>(oS - obuf), <span class="built_in">stdout</span>);</span><br><span class="line">		oS = obuf;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">pc</span> <span class="params">(<span class="keyword">char</span> x)</span> </span>&#123;</span><br><span class="line">		*oS ++ = x;</span><br><span class="line">		<span class="keyword">if</span> (oS == oT) flush ();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">I</span>&gt;</span></span><br><span class="line"><span class="class">	<span class="title">inline</span> <span class="title">int</span> <span class="title">gi</span> (<span class="title">I</span> &amp;<span class="title">x</span>) &#123;</span></span><br><span class="line">		<span class="keyword">for</span> (f = <span class="number">1</span>, c = gc(); c != EOF &amp;&amp; (c &lt; <span class="string">'0'</span> || c &gt; <span class="string">'9'</span>); c = gc()) <span class="keyword">if</span> (c == <span class="string">'-'</span>) f = <span class="number">-1</span>;</span><br><span class="line">		<span class="keyword">for</span> (flg = x = <span class="number">0</span>; c != EOF &amp;&amp; c &lt;= <span class="string">'9'</span> &amp;&amp; c &gt;= <span class="string">'0'</span>; c = gc()) flg = <span class="number">1</span>, x = x * <span class="number">10</span> + (c &amp; <span class="number">15</span>); x *= f;</span><br><span class="line">		<span class="keyword">return</span> flg || c != EOF;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">I</span>&gt;</span></span><br><span class="line"><span class="class">	<span class="title">inline</span> <span class="title">void</span> <span class="title">print</span> (<span class="title">I</span> <span class="title">x</span>) &#123;</span></span><br><span class="line">		<span class="keyword">if</span> (!x) pc (<span class="string">'0'</span>); <span class="keyword">if</span> (x &lt; <span class="number">0</span>) pc (<span class="string">'-'</span>), x = -x;</span><br><span class="line">		<span class="keyword">while</span> (x) qu[++ qr] = x % <span class="number">10</span> + <span class="string">'0'</span>,  x /= <span class="number">10</span>;</span><br><span class="line">		<span class="keyword">while</span> (qr) pc (qu[qr --]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">Flusher_</span> &#123;</span>~Flusher_()&#123;flush();&#125;&#125;io_flusher_;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">operator</span> <span class="title">int</span> <span class="params">()</span> </span>&#123; <span class="keyword">int</span> x; <span class="keyword">return</span> io::gi(x), x; &#125;</span><br><span class="line">&#125; read;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">50005</span>, maxs = <span class="number">20005</span>, maxb = <span class="number">80</span>;</span><br><span class="line"><span class="keyword">int</span> a[maxn + maxb];</span><br><span class="line"><span class="keyword">int</span> highbit[maxs];</span><br><span class="line"><span class="keyword">int</span> stmax[maxs][maxb], stmin[maxs][maxb];</span><br><span class="line"><span class="keyword">int</span> premax[maxs][maxb], premin[maxs][maxb];</span><br><span class="line"><span class="keyword">int</span> sufmax[maxs][maxb], sufmin[maxs][maxb];</span><br><span class="line"><span class="keyword">int</span> quemax[maxs][maxb], quemin[maxs][maxb];</span><br><span class="line"><span class="keyword">int</span> stackmax[maxb], stackmin[maxb];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">chkmax</span><span class="params">(<span class="keyword">int</span> &amp;x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(y &gt; x) x = y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">chkmin</span><span class="params">(<span class="keyword">int</span> &amp;x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(y &lt; x) x = y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">min</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123; <span class="keyword">return</span> x &lt; y ? x : y; &#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">max</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123; <span class="keyword">return</span> x &gt; y ? x : y; &#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> n = read, q = read;</span><br><span class="line">	<span class="keyword">int</span> B = <span class="keyword">int</span>(log2(n));</span><br><span class="line">	<span class="keyword">int</span> S = (n - <span class="number">1</span>) / B + <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> b = <span class="number">0</span>; b &lt; S; b ++)</span><br><span class="line">		stmin[b][<span class="number">0</span>] = <span class="number">1000000000</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i ++) &#123;</span><br><span class="line">		a[i] = read;</span><br><span class="line">		chkmin(stmin[i / B][<span class="number">0</span>], a[i]);</span><br><span class="line">		chkmax(stmax[i / B][<span class="number">0</span>], a[i]);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> b = S - <span class="number">1</span>; b &gt;= <span class="number">0</span>; b --)</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> k = <span class="number">1</span>; b + (<span class="number">1</span> &lt;&lt; k) - <span class="number">1</span> &lt; S; k ++) &#123;</span><br><span class="line">			stmin[b][k] = min(stmin[b][k - <span class="number">1</span>], stmin[b + (<span class="number">1</span> &lt;&lt; (k - <span class="number">1</span>))][k - <span class="number">1</span>]);</span><br><span class="line">			stmax[b][k] = max(stmax[b][k - <span class="number">1</span>], stmax[b + (<span class="number">1</span> &lt;&lt; (k - <span class="number">1</span>))][k - <span class="number">1</span>]);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> b = <span class="number">0</span>; b &lt; S; b ++) &#123;</span><br><span class="line">		<span class="keyword">int</span> be = b * B;</span><br><span class="line">		premin[b][<span class="number">0</span>] = premax[b][<span class="number">0</span>] = a[be];</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> k = <span class="number">1</span>; k &lt; B; k ++) &#123;</span><br><span class="line">			premin[b][k] = min(premin[b][k - <span class="number">1</span>], a[be + k]);</span><br><span class="line">			premax[b][k] = max(premax[b][k - <span class="number">1</span>], a[be + k]);</span><br><span class="line">		&#125;</span><br><span class="line">		sufmin[b][B - <span class="number">1</span>] = sufmax[b][B - <span class="number">1</span>] = a[be + B - <span class="number">1</span>];</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> k = B - <span class="number">2</span>; k &gt;= <span class="number">0</span>; k --) &#123;</span><br><span class="line">			sufmin[b][k] = min(sufmin[b][k + <span class="number">1</span>], a[be + k]);</span><br><span class="line">			sufmax[b][k] = max(sufmax[b][k + <span class="number">1</span>], a[be + k]);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> b = <span class="number">0</span>; b &lt; S; b ++) &#123;</span><br><span class="line">		<span class="keyword">int</span> be = b * B;</span><br><span class="line">		<span class="keyword">int</span> spmin = <span class="number">0</span>, nowmin = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">int</span> spmax = <span class="number">0</span>, nowmax = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; B; i ++) &#123;</span><br><span class="line">			<span class="keyword">while</span>(spmin <span class="keyword">and</span> a[be + stackmin[spmin]] &gt; a[be + i])</span><br><span class="line">				nowmin ^= <span class="number">1</span> &lt;&lt; stackmin[spmin --];</span><br><span class="line">			<span class="keyword">while</span>(spmax <span class="keyword">and</span> a[be + stackmax[spmax]] &lt; a[be + i])</span><br><span class="line">				nowmax ^= <span class="number">1</span> &lt;&lt; stackmax[spmax --];</span><br><span class="line">			quemin[b][i] = (nowmin ^= <span class="number">1</span> &lt;&lt; (stackmin[++ spmin] = i));</span><br><span class="line">			quemax[b][i] = (nowmax ^= <span class="number">1</span> &lt;&lt; (stackmax[++ spmax] = i));</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= S; i ++)</span><br><span class="line">		highbit[i] = highbit[i &gt;&gt; <span class="number">1</span>] + <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">while</span>(q --) &#123;</span><br><span class="line">		<span class="keyword">int</span> l = read - <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">int</span> r = read - <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">int</span> L = l / B, R = r / B;</span><br><span class="line">		<span class="keyword">int</span> li = l % B, ri = r % B;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">int</span> min = <span class="number">1000000000</span>, max = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">if</span>(L == R) &#123;</span><br><span class="line">			chkmin(min, a[l + __builtin_ctz(quemin[R][ri] &gt;&gt; li)]);</span><br><span class="line">			chkmax(max, a[l + __builtin_ctz(quemax[R][ri] &gt;&gt; li)]);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> &#123;</span><br><span class="line">			chkmin(min, sufmin[L][li]);</span><br><span class="line">			chkmin(min, premin[R][ri]);</span><br><span class="line">			chkmax(max, sufmax[L][li]);</span><br><span class="line">			chkmax(max, premax[R][ri]);</span><br><span class="line">			<span class="keyword">int</span> len = R - L - <span class="number">1</span>;</span><br><span class="line">			<span class="keyword">int</span> k = highbit[len];</span><br><span class="line">			<span class="keyword">if</span>(len) &#123;</span><br><span class="line">				chkmin(min, stmin[L + <span class="number">1</span>][k]);</span><br><span class="line">				chkmin(min, stmin[R - (<span class="number">1</span> &lt;&lt; k)][k]);</span><br><span class="line">				chkmax(max, stmax[L + <span class="number">1</span>][k]);</span><br><span class="line">				chkmax(max, stmax[R - (<span class="number">1</span> &lt;&lt; k)][k]);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="comment">/* printf("%d\n", max - min); */</span></span><br><span class="line">		io::print(max - min);</span><br><span class="line">		io::pc(<span class="string">'\n'</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -686,11 +710,11 @@
       </categories>
       <tags>
         <tag>O(1)</tag>
-        <tag>算法扩展</tag>
         <tag>RMQ</tag>
         <tag>分块</tag>
         <tag>线段树</tag>
         <tag>ST 表</tag>
+        <tag>算法扩展</tag>
         <tag>随机</tag>
       </tags>
   </entry>
@@ -773,9 +797,9 @@
         <category>算法</category>
       </categories>
       <tags>
+        <tag>算法扩展</tag>
         <tag>二分</tag>
         <tag>离线</tag>
-        <tag>算法扩展</tag>
       </tags>
   </entry>
   <entry>
@@ -1017,35 +1041,35 @@
       </tags>
   </entry>
   <entry>
-    <title>NOIP 2018</title>
-    <url>/2019/10/01/NOIP%202018/</url>
-    <content><![CDATA[<h2 id="吐槽"><a href="#吐槽" class="headerlink" title="吐槽"></a>吐槽</h2><p>一天普及一天省选，弄到一起就出成了一套提高组试题。</p><h2 id="Day1"><a href="#Day1" class="headerlink" title="Day1"></a>Day1</h2><p>原题大作战。<br>然而我一题都没做过。</p><p>总的来说 Day1 比去年好像容易点（不然我也不会留出一个多小时给每道题造数据对拍）。</p><h3 id="T1"><a href="#T1" class="headerlink" title="T1"></a>T1</h3><p>CCF 直接把 2013 的题原封不动搬到了 Day1T1 。</p><p>一开始想着递归，发现会被卡成 $O(n^2)$ ，<br>再想 DP 的时候简化一下式子就直接可以扫一遍出结果。</p><a id="more"></a>
+    <title>HNOI2019</title>
+    <url>/2019/10/01/HNOI2019/</url>
+    <content><![CDATA[<p>先喷一句，没有大样例，差评。<br>再喷一句，数据水，好评。</p><p>预计 80’ ，实际 110’ 。</p><p>我真是个奇葩实际分比预计分高。。。</p><h2 id="Day0"><a href="#Day0" class="headerlink" title="Day0-"></a>Day0-</h2><p>省选前三天教练每天给我们推一道题，都是主席树应用（教练曰“线段树模板”）。<br>都是看了题解的思路才做出来的，自己想就找不到用主席树维护的地方。</p><p>不知道为什么这三天效率都挺高，这三天我 A 的题目估计有我平常一个星期的 A 题数。。。</p><a id="more"></a>
 
 
 
 
-<h3 id="T2"><a href="#T2" class="headerlink" title="T2"></a>T2</h3><p>bzoj 权限题。</p>
-<p>如果一种货币能被其它若干货币代替，就扔掉。<br>设 f[i] 表示价值为 i 的货币是否会被代替，做一遍完全背包就好了。</p>
-<h3 id="T3"><a href="#T3" class="headerlink" title="T3"></a>T3</h3><p>bzoj 权限题。</p>
-<p>听说可以二分加贪心，不过我考场想的比较复杂 <del>是二分答案再 DP ，DP 转移再套一层用链表维护的 DP</del> 。</p>
-<p>首先容易想到二分答案，二分一个答案 mid 后求最多可以有多少条赛道满足长度不小于 mid ，<br>若有不少于 m 条，则答案可行。</p>
-<p>求赛道数量可以 DP ，设 f[u] 为 u 的子树中满足条件的赛道的数量，<br>g[u] 表示在满足 f[u] 最大的前提下 u 向下不经过赛道的最长路径长。</p>
-<p>转移的时候先把 u 的儿子 v 的 f[v] 累加，同时将所有 g[v]+w 存起来（w 表示 u 到 v 的长度）。</p>
-<p>对于 g[v]+w 大于等于 mid 的直接把 f[u]++ 然后扔掉，于是只需要考虑小于 mid 的 g[v]+w 的贡献。</p>
-<p>两个不同的 g[v]+w 若大于等于 mid 就同样可以作为一条赛道让 f[u]++ ，先排序然后再次 DP 统计这样的赛道数量，<br>然后若所有的 g[v]+w 都有另外一个构成赛道， g[u]=0 ，否则 g[u] 等于剩下的最大的 g[v]+w 。</p>
-<h2 id="Day2"><a href="#Day2" class="headerlink" title="Day2"></a>Day2</h2><p>Day1 的比赛对我造成了巨大的影响，Day1 考完后信心爆棚， <del>以 AKIOI 的自信</del> 走进 Day2 考场。</p>
-<p>结果什么题都死磕正解，到最后连暴力都没打全。</p>
-<p>看题，WTF?</p>
-<p>看完 T1 我以为是个稠密无向图，想了好久感觉是要求一种特殊的生成树，感觉巨不可做。<br>顿时有点小慌，突然想到考前教练提醒要看完题，说不定后面的题反而简单。</p>
-<p>嗯，有道理，直接翻到 T2 ，推了波结论认定是一道状压 DP，松了口气。</p>
-<p>不急，再看 T3 ，哦，好像树形 DP ，但是 m 个询问难住了我。</p>
-<p>于是认定 T2 比较容易，开始死磕 T2 ，打完状压后跑了遍 2,2 的样例，诶过了。<br>再跑一遍 3,3 ，输出 144 ，于是手推了 3,3 的样例发现还是 144 ,<br>意识到推的结论有误，瞬间慌的一批。<br>推了好久才发现了问题，得到正确的结论后发现对于新结论状压 DP 似乎变得不可行。</p>
-<p>这个时候考试已经过了一个小时多了。慌。</p>
-<p>换换思路吧，于是去做 T3 , 想了很久 DP 最后写了个平方复杂度的，<br>跑过了所有样例就没管了，没多少时间了，又回去看 T1 。</p>
-<p>往回看了看 T1 里 m 的数据范围我才发现只有树和换套树两种情况。<br>那还求个鬼生成树，迅速打掉树的 60 部分分，n 看都没看只知道 $O(n)$ 稳了。<br>再去想换套树，感觉差不多，继续 $O(n)$做。</p>
-<p>结果？一直死磕 T1 的 $O(n)$ 做法，直到最后考试结束都没写出来。</p>
-<p>考试听别人说直接枚举删边 $O(n^2)$ 就可以过的时候我才意识到 n 只有 5000 ，整个人懵的。</p>
-<p>结果 T1 还是 60’ ，T3 不晓得哪里炸掉了爆零，<br>有意思的是 T2 我错误的打法样例都没过在 ccf 的数据里水到了 45’ 。</p>
+<p>然而还没来得及复习每个知识点，省选就来了。</p>
+<h2 id="Day1"><a href="#Day1" class="headerlink" title="Day1"></a>Day1</h2><p>预计 70’ ，实际 40’ 。</p>
+<h3 id="fish"><a href="#fish" class="headerlink" title="fish"></a>fish</h3><p>我看到这题的时候就意识到我只能打暴力了。<br>计算几何？我对这块一片空白。<br>好吧，硬要说思路我大概想得到枚举线段，按斜率搞个什么数据结构？<br>然后真的不会，敲暴力滚粗。</p>
+<p>预计 20’ ，实际 20’ 。</p>
+<h3 id="jojo"><a href="#jojo" class="headerlink" title="jojo"></a>jojo</h3><p>前缀和后缀相同？求 KMP 的 fail 数组嘛。<br>暴力求，一次加几个字符就求几次 fail, 全加起来就是答案。<br>可持久化？版本树像个 AC 自动机，但是没管这么多，无脑写了个可持久化数组。<br>因为是把每个字符暴力求的，只能过前 50’ 。<br>结果我后面 30’ tm TLE 了？ $ O(n log(n)) $ 的时空复杂度跑 1e5 要 6 秒？</p>
+<p>预计 50’ ，实际 20’ 。</p>
+<h3 id="polygon"><a href="#polygon" class="headerlink" title="polygon"></a>polygon</h3><p>什么鬼畜题啊，简化一波题意。<br>把线段看做一个区间，除 (x, x + 1) 外每个区间一定可以划分成两个子区间。<br>然后把每个区间看做一个点，相当于有了一个满二叉树。<br>然后旋转操作就相当于把一个点 blablabla 换一下位置。<br>旋转次数可以贪心，方案数不会，大概要 DP ？<br>然后想着就求旋转次数吧，看看数据范围。。。<br>沃日 90% 的数据都要求方案数？小 W 的心情得多差啊。。。<br>当时我还没打其他题，感觉比较亏，就先做前面的题了，结果最后都没打。</p>
+<p>预计 0’ ，实际 0’ 。</p>
+<h3 id="Watering"><a href="#Watering" class="headerlink" title="Watering"></a>Watering</h3><p>下午直接去机房颓废，死神 vs 火影真好玩。<br>还有被 lyy 安利太阳系争夺战，画风清新，内容硬核。</p>
+<h2 id="Day2"><a href="#Day2" class="headerlink" title="Day2"></a>Day2</h2><p>emm, 我是来测数据湿度的。。。<br>结果真被我水过去了。。。</p>
+<p>预计 10’ ，实际 70’ 。</p>
+<p>所以说有想法就要实现 <del>不然就没事干了</del> 2333 。</p>
+<h3 id="tour"><a href="#tour" class="headerlink" title="tour"></a>tour</h3><p>u = v 或者 s[u] = s[v] 且 u, v 相邻的时候 (u, v) 一定是可行的。<br>其他点对 (u, v) 可行当且仅当 s[u] = s[v] 且存在 u -&gt; u2, v -&gt; v2 且 (u2, v2) 可行。<br>DP ？有环。<br>然后就只能把一个点对看做一个点，对于新的点建图，如果从初始的可行点能跑到 (u, v) 则 (u, v) 可行。<br>点数 $ O(n^2) $ ，边数 $ O(m^2) $ ，复杂度 $ O(n^2 + m^2 + q) $ 。<br>然而第一档暴力 m 就有 1e4 ， <strong>纯随机数据开O2</strong> 本地测了一下跑 5s, 真棒。</p>
+<p>预计 0’ ，实际 30’ 。</p>
+<h3 id="dance"><a href="#dance" class="headerlink" title="dance"></a>dance</h3><p>好迷啊，看了看 n = 1 有 40’ ，就去想 n = 1 怎么做，<br>推了推就是个式子： $ ans_i = \sum_{j=0} C_L^{i+j k} W^{i+j k} $ 。<br>把每个 $ C_L^x W^x $ 算一遍，快速幂复杂度 $ O(L log(L)) $ ，<br>然而 L 有 1e8 。。。<br>线性都跑不过去吧这，但我实在没别的思路，就想试试线性。<br>做法就是预处理，预处理 L 以内的逆元和 $ W_i $ ，再线性求一排的组合数。<br>时空复杂度都是 $ O(L) $ ， <strong>开 O2</strong> 本地测试 17s, 就算不 TLE 都得 MLE 。</p>
+<p>预计 0’ ，实际 30’ （考完后再放本地测可以水 40’ woc）。</p>
+<p>看了看实际的 L 只有 1e7 到 2e7 左右，真棒。<br>至于空间，我还算有点脑子搞了波动态开空间，不然直接开 1e8 的数组肯定得炸。</p>
+<h3 id="sequence"><a href="#sequence" class="headerlink" title="sequence"></a>sequence</h3><p>b 是整数的话还能枚举枚举。分数？没救了感觉。<br>于是只打了 10’ 的整数 DP 。</p>
+<p>预计 10’ ，实际 10’ 。</p>
+<h3 id="Watering-1"><a href="#Watering-1" class="headerlink" title="Watering"></a>Watering</h3><p>下午本来打算去黄兴街打游戏的，先去麦克唐纳德吃中饭，吃完后发现就已经 3 点多了没什么时间。<br>于是放弃了 xbox 又回到机房颓废，死神 vs 火影昨天已经玩熟练了，打起来比较轻松。</p>
+<h2 id="Day3"><a href="#Day3" class="headerlink" title="Day3+"></a>Day3+</h2><p>省选完了，结果并不想想象的那样，即使运气眷顾了我还是 wei 的一批。<br>实力不够啊，说啥都是扯淡。</p>
+<p>常规欠下的帐也该还了，滚回去学文化课啦，接受作业的洗礼。</p>
 ]]></content>
   </entry>
   <entry>
@@ -1095,35 +1119,35 @@
 ]]></content>
   </entry>
   <entry>
-    <title>HNOI2019</title>
-    <url>/2019/10/01/HNOI2019/</url>
-    <content><![CDATA[<p>先喷一句，没有大样例，差评。<br>再喷一句，数据水，好评。</p><p>预计 80’ ，实际 110’ 。</p><p>我真是个奇葩实际分比预计分高。。。</p><h2 id="Day0"><a href="#Day0" class="headerlink" title="Day0-"></a>Day0-</h2><p>省选前三天教练每天给我们推一道题，都是主席树应用（教练曰“线段树模板”）。<br>都是看了题解的思路才做出来的，自己想就找不到用主席树维护的地方。</p><p>不知道为什么这三天效率都挺高，这三天我 A 的题目估计有我平常一个星期的 A 题数。。。</p><a id="more"></a>
+    <title>NOIP 2018</title>
+    <url>/2019/10/01/NOIP%202018/</url>
+    <content><![CDATA[<h2 id="吐槽"><a href="#吐槽" class="headerlink" title="吐槽"></a>吐槽</h2><p>一天普及一天省选，弄到一起就出成了一套提高组试题。</p><h2 id="Day1"><a href="#Day1" class="headerlink" title="Day1"></a>Day1</h2><p>原题大作战。<br>然而我一题都没做过。</p><p>总的来说 Day1 比去年好像容易点（不然我也不会留出一个多小时给每道题造数据对拍）。</p><h3 id="T1"><a href="#T1" class="headerlink" title="T1"></a>T1</h3><p>CCF 直接把 2013 的题原封不动搬到了 Day1T1 。</p><p>一开始想着递归，发现会被卡成 $O(n^2)$ ，<br>再想 DP 的时候简化一下式子就直接可以扫一遍出结果。</p><a id="more"></a>
 
 
 
 
-<p>然而还没来得及复习每个知识点，省选就来了。</p>
-<h2 id="Day1"><a href="#Day1" class="headerlink" title="Day1"></a>Day1</h2><p>预计 70’ ，实际 40’ 。</p>
-<h3 id="fish"><a href="#fish" class="headerlink" title="fish"></a>fish</h3><p>我看到这题的时候就意识到我只能打暴力了。<br>计算几何？我对这块一片空白。<br>好吧，硬要说思路我大概想得到枚举线段，按斜率搞个什么数据结构？<br>然后真的不会，敲暴力滚粗。</p>
-<p>预计 20’ ，实际 20’ 。</p>
-<h3 id="jojo"><a href="#jojo" class="headerlink" title="jojo"></a>jojo</h3><p>前缀和后缀相同？求 KMP 的 fail 数组嘛。<br>暴力求，一次加几个字符就求几次 fail, 全加起来就是答案。<br>可持久化？版本树像个 AC 自动机，但是没管这么多，无脑写了个可持久化数组。<br>因为是把每个字符暴力求的，只能过前 50’ 。<br>结果我后面 30’ tm TLE 了？ $ O(n log(n)) $ 的时空复杂度跑 1e5 要 6 秒？</p>
-<p>预计 50’ ，实际 20’ 。</p>
-<h3 id="polygon"><a href="#polygon" class="headerlink" title="polygon"></a>polygon</h3><p>什么鬼畜题啊，简化一波题意。<br>把线段看做一个区间，除 (x, x + 1) 外每个区间一定可以划分成两个子区间。<br>然后把每个区间看做一个点，相当于有了一个满二叉树。<br>然后旋转操作就相当于把一个点 blablabla 换一下位置。<br>旋转次数可以贪心，方案数不会，大概要 DP ？<br>然后想着就求旋转次数吧，看看数据范围。。。<br>沃日 90% 的数据都要求方案数？小 W 的心情得多差啊。。。<br>当时我还没打其他题，感觉比较亏，就先做前面的题了，结果最后都没打。</p>
-<p>预计 0’ ，实际 0’ 。</p>
-<h3 id="Watering"><a href="#Watering" class="headerlink" title="Watering"></a>Watering</h3><p>下午直接去机房颓废，死神 vs 火影真好玩。<br>还有被 lyy 安利太阳系争夺战，画风清新，内容硬核。</p>
-<h2 id="Day2"><a href="#Day2" class="headerlink" title="Day2"></a>Day2</h2><p>emm, 我是来测数据湿度的。。。<br>结果真被我水过去了。。。</p>
-<p>预计 10’ ，实际 70’ 。</p>
-<p>所以说有想法就要实现 <del>不然就没事干了</del> 2333 。</p>
-<h3 id="tour"><a href="#tour" class="headerlink" title="tour"></a>tour</h3><p>u = v 或者 s[u] = s[v] 且 u, v 相邻的时候 (u, v) 一定是可行的。<br>其他点对 (u, v) 可行当且仅当 s[u] = s[v] 且存在 u -&gt; u2, v -&gt; v2 且 (u2, v2) 可行。<br>DP ？有环。<br>然后就只能把一个点对看做一个点，对于新的点建图，如果从初始的可行点能跑到 (u, v) 则 (u, v) 可行。<br>点数 $ O(n^2) $ ，边数 $ O(m^2) $ ，复杂度 $ O(n^2 + m^2 + q) $ 。<br>然而第一档暴力 m 就有 1e4 ， <strong>纯随机数据开O2</strong> 本地测了一下跑 5s, 真棒。</p>
-<p>预计 0’ ，实际 30’ 。</p>
-<h3 id="dance"><a href="#dance" class="headerlink" title="dance"></a>dance</h3><p>好迷啊，看了看 n = 1 有 40’ ，就去想 n = 1 怎么做，<br>推了推就是个式子： $ ans_i = \sum_{j=0} C_L^{i+j k} W^{i+j k} $ 。<br>把每个 $ C_L^x W^x $ 算一遍，快速幂复杂度 $ O(L log(L)) $ ，<br>然而 L 有 1e8 。。。<br>线性都跑不过去吧这，但我实在没别的思路，就想试试线性。<br>做法就是预处理，预处理 L 以内的逆元和 $ W_i $ ，再线性求一排的组合数。<br>时空复杂度都是 $ O(L) $ ， <strong>开 O2</strong> 本地测试 17s, 就算不 TLE 都得 MLE 。</p>
-<p>预计 0’ ，实际 30’ （考完后再放本地测可以水 40’ woc）。</p>
-<p>看了看实际的 L 只有 1e7 到 2e7 左右，真棒。<br>至于空间，我还算有点脑子搞了波动态开空间，不然直接开 1e8 的数组肯定得炸。</p>
-<h3 id="sequence"><a href="#sequence" class="headerlink" title="sequence"></a>sequence</h3><p>b 是整数的话还能枚举枚举。分数？没救了感觉。<br>于是只打了 10’ 的整数 DP 。</p>
-<p>预计 10’ ，实际 10’ 。</p>
-<h3 id="Watering-1"><a href="#Watering-1" class="headerlink" title="Watering"></a>Watering</h3><p>下午本来打算去黄兴街打游戏的，先去麦克唐纳德吃中饭，吃完后发现就已经 3 点多了没什么时间。<br>于是放弃了 xbox 又回到机房颓废，死神 vs 火影昨天已经玩熟练了，打起来比较轻松。</p>
-<h2 id="Day3"><a href="#Day3" class="headerlink" title="Day3+"></a>Day3+</h2><p>省选完了，结果并不想想象的那样，即使运气眷顾了我还是 wei 的一批。<br>实力不够啊，说啥都是扯淡。</p>
-<p>常规欠下的帐也该还了，滚回去学文化课啦，接受作业的洗礼。</p>
+<h3 id="T2"><a href="#T2" class="headerlink" title="T2"></a>T2</h3><p>bzoj 权限题。</p>
+<p>如果一种货币能被其它若干货币代替，就扔掉。<br>设 f[i] 表示价值为 i 的货币是否会被代替，做一遍完全背包就好了。</p>
+<h3 id="T3"><a href="#T3" class="headerlink" title="T3"></a>T3</h3><p>bzoj 权限题。</p>
+<p>听说可以二分加贪心，不过我考场想的比较复杂 <del>是二分答案再 DP ，DP 转移再套一层用链表维护的 DP</del> 。</p>
+<p>首先容易想到二分答案，二分一个答案 mid 后求最多可以有多少条赛道满足长度不小于 mid ，<br>若有不少于 m 条，则答案可行。</p>
+<p>求赛道数量可以 DP ，设 f[u] 为 u 的子树中满足条件的赛道的数量，<br>g[u] 表示在满足 f[u] 最大的前提下 u 向下不经过赛道的最长路径长。</p>
+<p>转移的时候先把 u 的儿子 v 的 f[v] 累加，同时将所有 g[v]+w 存起来（w 表示 u 到 v 的长度）。</p>
+<p>对于 g[v]+w 大于等于 mid 的直接把 f[u]++ 然后扔掉，于是只需要考虑小于 mid 的 g[v]+w 的贡献。</p>
+<p>两个不同的 g[v]+w 若大于等于 mid 就同样可以作为一条赛道让 f[u]++ ，先排序然后再次 DP 统计这样的赛道数量，<br>然后若所有的 g[v]+w 都有另外一个构成赛道， g[u]=0 ，否则 g[u] 等于剩下的最大的 g[v]+w 。</p>
+<h2 id="Day2"><a href="#Day2" class="headerlink" title="Day2"></a>Day2</h2><p>Day1 的比赛对我造成了巨大的影响，Day1 考完后信心爆棚， <del>以 AKIOI 的自信</del> 走进 Day2 考场。</p>
+<p>结果什么题都死磕正解，到最后连暴力都没打全。</p>
+<p>看题，WTF?</p>
+<p>看完 T1 我以为是个稠密无向图，想了好久感觉是要求一种特殊的生成树，感觉巨不可做。<br>顿时有点小慌，突然想到考前教练提醒要看完题，说不定后面的题反而简单。</p>
+<p>嗯，有道理，直接翻到 T2 ，推了波结论认定是一道状压 DP，松了口气。</p>
+<p>不急，再看 T3 ，哦，好像树形 DP ，但是 m 个询问难住了我。</p>
+<p>于是认定 T2 比较容易，开始死磕 T2 ，打完状压后跑了遍 2,2 的样例，诶过了。<br>再跑一遍 3,3 ，输出 144 ，于是手推了 3,3 的样例发现还是 144 ,<br>意识到推的结论有误，瞬间慌的一批。<br>推了好久才发现了问题，得到正确的结论后发现对于新结论状压 DP 似乎变得不可行。</p>
+<p>这个时候考试已经过了一个小时多了。慌。</p>
+<p>换换思路吧，于是去做 T3 , 想了很久 DP 最后写了个平方复杂度的，<br>跑过了所有样例就没管了，没多少时间了，又回去看 T1 。</p>
+<p>往回看了看 T1 里 m 的数据范围我才发现只有树和换套树两种情况。<br>那还求个鬼生成树，迅速打掉树的 60 部分分，n 看都没看只知道 $O(n)$ 稳了。<br>再去想换套树，感觉差不多，继续 $O(n)$做。</p>
+<p>结果？一直死磕 T1 的 $O(n)$ 做法，直到最后考试结束都没写出来。</p>
+<p>考试听别人说直接枚举删边 $O(n^2)$ 就可以过的时候我才意识到 n 只有 5000 ，整个人懵的。</p>
+<p>结果 T1 还是 60’ ，T3 不晓得哪里炸掉了爆零，<br>有意思的是 T2 我错误的打法样例都没过在 ccf 的数据里水到了 45’ 。</p>
 ]]></content>
   </entry>
   <entry>
@@ -1144,6 +1168,54 @@
 <p>有第一条性质可得：<br>$ G_n^{n/2} = G_2^1 = g^{\frac{P-1}{2}} $<br>因为 $ (g^{\frac{P-1}{2}})^2 = g^{P-1} = 1 $<br>根据原根的性质：<br>$ g^{\frac{P-1}{2}} \neq g^{P-1} $<br>那么 $ g^{\frac{P-1}{2}} = -1 $ （即 P - 1）。<br>那么可以证得：<br>$ G_n^{k + n/2} = G_n^k G_n^{n/2} = G_n^k(-1) $<br>于是 $ G_n^{k + n/2} + G_n^k = 0 $</p>
 <h2 id="NTT"><a href="#NTT" class="headerlink" title="NTT"></a>NTT</h2><p>于是 NTT 的算法思路就呼之欲出了：把 $ W_n $ 全部替换为 $ G_n $ 即可。<br>这样就可以算出模 P 意义下的多项式卷积了。<br>其中 n 必须是 2 的整次幂，不足的补零即可。</p>
 <p>现在唯一的问题是，模数 P 要满足什么条件，以及如何求模 P 意义下的原根 g 。<br>然而我并不想深入展开，大多数情况下模数都是 998244353 ，其原根为 3 。<br>一般 NTT 只会用这个模数，不会有毒瘤出题人卡这个模数的（我不对这句话负责）。</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>i3</title>
+    <url>/2019/10/01/i3/</url>
+    <content><![CDATA[<h2 id="历程"><a href="#历程" class="headerlink" title="历程"></a>历程</h2><ul>
+<li>最先用的是 Ubuntu 16.04 自带的 Unity 。</li>
+<li>更新 Ubuntu 后用的 Ubuntu 18.04 自带的 Gnome 。</li>
+<li>用了 Gnome 后学会了折腾，各种配置堆上。</li>
+<li>后来发现 Gnome 太卡太吃内存，并且才知道系统可以换桌面，<br>于是在 master 安利下换上 xfce 。</li>
+<li>xfce 很稳定很流畅，但是太丑，可玩性太低，于是换上高大上的 KDE 。</li>
+<li>中途还换过 enlightenment ，但是 enlightenment 的稳定性实在不敢恭维。</li>
+<li>最后用上了 i3 ，原因不详。</li>
+</ul><a id="more"></a>
+<p>WARNING:<br>既然你打算尝试 i3 ，本文假设你有一定的动手能力（说白了就是能折腾）。</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p><code>sudo aptitude install i3-wm</code> 后注销重进选择 i3 即可。</p>
+<p>然后你会发现弹出个窗口，接下来黑屏，没有动静。<br>WTF ?<br>其实 i3 已经开了，只是没背景而已，按 win+Enter 打开终端。</p>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>弹出一个菜单给你设置？想多了，要配置就写 ~/.config/i3/config 去吧。</p>
+<p>\$mod 是 i3 的灵魂，每一个快捷键最好都以 \$mod 开头，<br>一般 \$mod 被设置成 Mod4 ，也就是 Win 键。<br>bindsym 是绑定快捷键，注释很详细，自己看，下面列出一些重要的配置。</p>
+<h3 id="方向"><a href="#方向" class="headerlink" title="方向"></a>方向</h3><p>i3 默认把 jkl; 做方向键，也许你会更喜欢 hjkl ，自己替换掉就是了。<br>另外分号不是 ; 而是 semicolon 。</p>
+<h3 id="壁纸"><a href="#壁纸" class="headerlink" title="壁纸"></a>壁纸</h3><p>i3 默认没有壁纸，因为它是个平铺式的窗口管理器。<br>但壁纸是第一生产力啊，不要壁纸怎么行。</p>
+<p>下载 feh: <code>sudo aptitude install feh</code>.<br><code>feh --bg-fill (YOUR_IMG)</code> 就可以设置壁纸了，至于实现原理，你不会想知道的。</p>
+<h3 id="锁屏"><a href="#锁屏" class="headerlink" title="锁屏"></a>锁屏</h3><p>i3 默认没有锁屏，为了防机惨，锁屏还是很有必要的。</p>
+<p>下载 i3lock: <code>sudo aptitude install i3lock</code>.<br>直接 <code>i3lcok</code> 就可以锁屏，<code>i3lock -i (YOUR_PNG)</code> 还可以设置锁屏壁纸。<br>需要快捷键锁屏的话，加上一句配置就行了：  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">bindsym $mod+Tab exec i3lock # Win+Tab 锁屏</span><br></pre></td></tr></table></figure>
+
+<h3 id="工作区"><a href="#工作区" class="headerlink" title="工作区"></a>工作区</h3><p>i3 对工作区的数量没有限制，工作区的名字甚至可以有字母。<br>i3 默认配置里只提供了切换到 1 至 10 的快捷键，<br>但是有时候“切换到下一个工作区”和“切换到上一个工作区”可能更方便。<br>加上两句：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">bindsym $mod+comma workspace prev # Win+逗号</span><br><span class="line">bindsym $mod+period workspace next # Win+句号</span><br></pre></td></tr></table></figure>
+
+<p>另外，默认配置里，把一个窗口移动到某工作区的时候仍会停留在原工作区，<br>想改变这点，<br>把 <code>move container to workspace x</code> 后面加上 <code>; workspace x</code> 即可。</p>
+<h3 id="i3bar"><a href="#i3bar" class="headerlink" title="i3bar"></a>i3bar</h3><p>个人超喜欢 i3bar ，因为它可以接受任何一个程序的输出。<br>这意味着你可以完全自由地定制 i3bar 。</p>
+<p>找到 <code>bar {</code> 这行。<br>bar 的模式有三种：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mode hide # Auto display</span><br><span class="line">mode invisible # Never display</span><br><span class="line">mode dock # Alway display</span><br></pre></td></tr></table></figure>
+
+<p>位置有两种：  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">position top</span><br><span class="line">position bottom</span><br></pre></td></tr></table></figure>
+
+<p>重点来了，定义处理程序这一项：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">status_command i3status</span><br></pre></td></tr></table></figure>
+
+<p>可以看到默认使用 i3status 作为处理，i3status 本身也可以配置，<br>但是如果想自由配置，你可以写个程序，输出一个 json ，接口比较复杂，<br>在此不赘述，你可以在 ~/.config/i3status/config 里加几行：  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">general &#123;</span><br><span class="line">	   output_format = &quot;i3bar&quot;</span><br><span class="line">	   colors = true</span><br><span class="line">	   interval = 5</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>再运行 <code>i3status</code> 依葫芦画瓢就是了。</p>
+<h3 id="i3-gaps"><a href="#i3-gaps" class="headerlink" title="i3-gaps"></a>i3-gaps</h3><p>如果你希望窗口平铺之间会有间隙，i3-gaps 会满足你。<br>如果你用 Debian, Ubuntu ，<br>去 github 上搜 i3-gaps-deb clone 下来后运行 i3-gaps-deb 就行了。<br>如果用 Arch ，软件包管理器里有，直接下。</p>
+<h3 id="透明"><a href="#透明" class="headerlink" title="透明"></a>透明</h3><p>也许你给终端模拟器设置了透明度，很遗憾，在 i3 上没用。<br>解决方案是下载 compton ，运行 <code>compton -b</code> 即可。</p>
+<h2 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h2><p>你可以很自由地向 i3 发送命令，<code>i3-msg</code> 提供了一系列接口，<br>足以帮助完成更复杂的定制。</p>
+<p>使用 <code>i3-input</code> 可以直接向 i3 发送一条命令。</p>
 ]]></content>
   </entry>
   <entry>
@@ -1207,54 +1279,6 @@
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment"># try to use a forked version of i3lock with prepared parameters</span></span><br><span class="line">pkill compton</span><br><span class="line"><span class="keyword">if</span> ! i3lock -n <span class="string">"<span class="variable">$&#123;PARAM[@]&#125;</span>"</span> -i <span class="string">"<span class="variable">$IMAGE</span>"</span> &gt; /dev/null 2&gt;&amp;1; <span class="keyword">then</span></span><br><span class="line">    <span class="comment"># We have failed, lets get back to stock one</span></span><br><span class="line">    i3lock -n -i <span class="string">"<span class="variable">$IMAGE</span>"</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line">compton -i 0.8 -b</span><br></pre></td></tr></table></figure>
 
 <p>其次，用模糊背景通常会比较慢，尤其是 i3lock-fancy ，需等上 3 秒左右。<br>那么如果调用 i3lock-fancy 之后你又做了一些别的操作，比如关闭一个窗口，<br>这时锁屏了，你会发现背景和原来的不一样。 :)</p>
-]]></content>
-  </entry>
-  <entry>
-    <title>i3</title>
-    <url>/2019/10/01/i3/</url>
-    <content><![CDATA[<h2 id="历程"><a href="#历程" class="headerlink" title="历程"></a>历程</h2><ul>
-<li>最先用的是 Ubuntu 16.04 自带的 Unity 。</li>
-<li>更新 Ubuntu 后用的 Ubuntu 18.04 自带的 Gnome 。</li>
-<li>用了 Gnome 后学会了折腾，各种配置堆上。</li>
-<li>后来发现 Gnome 太卡太吃内存，并且才知道系统可以换桌面，<br>于是在 master 安利下换上 xfce 。</li>
-<li>xfce 很稳定很流畅，但是太丑，可玩性太低，于是换上高大上的 KDE 。</li>
-<li>中途还换过 enlightenment ，但是 enlightenment 的稳定性实在不敢恭维。</li>
-<li>最后用上了 i3 ，原因不详。</li>
-</ul><a id="more"></a>
-<p>WARNING:<br>既然你打算尝试 i3 ，本文假设你有一定的动手能力（说白了就是能折腾）。</p>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p><code>sudo aptitude install i3-wm</code> 后注销重进选择 i3 即可。</p>
-<p>然后你会发现弹出个窗口，接下来黑屏，没有动静。<br>WTF ?<br>其实 i3 已经开了，只是没背景而已，按 win+Enter 打开终端。</p>
-<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>弹出一个菜单给你设置？想多了，要配置就写 ~/.config/i3/config 去吧。</p>
-<p>\$mod 是 i3 的灵魂，每一个快捷键最好都以 \$mod 开头，<br>一般 \$mod 被设置成 Mod4 ，也就是 Win 键。<br>bindsym 是绑定快捷键，注释很详细，自己看，下面列出一些重要的配置。</p>
-<h3 id="方向"><a href="#方向" class="headerlink" title="方向"></a>方向</h3><p>i3 默认把 jkl; 做方向键，也许你会更喜欢 hjkl ，自己替换掉就是了。<br>另外分号不是 ; 而是 semicolon 。</p>
-<h3 id="壁纸"><a href="#壁纸" class="headerlink" title="壁纸"></a>壁纸</h3><p>i3 默认没有壁纸，因为它是个平铺式的窗口管理器。<br>但壁纸是第一生产力啊，不要壁纸怎么行。</p>
-<p>下载 feh: <code>sudo aptitude install feh</code>.<br><code>feh --bg-fill (YOUR_IMG)</code> 就可以设置壁纸了，至于实现原理，你不会想知道的。</p>
-<h3 id="锁屏"><a href="#锁屏" class="headerlink" title="锁屏"></a>锁屏</h3><p>i3 默认没有锁屏，为了防机惨，锁屏还是很有必要的。</p>
-<p>下载 i3lock: <code>sudo aptitude install i3lock</code>.<br>直接 <code>i3lcok</code> 就可以锁屏，<code>i3lock -i (YOUR_PNG)</code> 还可以设置锁屏壁纸。<br>需要快捷键锁屏的话，加上一句配置就行了：  </p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">bindsym $mod+Tab exec i3lock # Win+Tab 锁屏</span><br></pre></td></tr></table></figure>
-
-<h3 id="工作区"><a href="#工作区" class="headerlink" title="工作区"></a>工作区</h3><p>i3 对工作区的数量没有限制，工作区的名字甚至可以有字母。<br>i3 默认配置里只提供了切换到 1 至 10 的快捷键，<br>但是有时候“切换到下一个工作区”和“切换到上一个工作区”可能更方便。<br>加上两句：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">bindsym $mod+comma workspace prev # Win+逗号</span><br><span class="line">bindsym $mod+period workspace next # Win+句号</span><br></pre></td></tr></table></figure>
-
-<p>另外，默认配置里，把一个窗口移动到某工作区的时候仍会停留在原工作区，<br>想改变这点，<br>把 <code>move container to workspace x</code> 后面加上 <code>; workspace x</code> 即可。</p>
-<h3 id="i3bar"><a href="#i3bar" class="headerlink" title="i3bar"></a>i3bar</h3><p>个人超喜欢 i3bar ，因为它可以接受任何一个程序的输出。<br>这意味着你可以完全自由地定制 i3bar 。</p>
-<p>找到 <code>bar {</code> 这行。<br>bar 的模式有三种：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mode hide # Auto display</span><br><span class="line">mode invisible # Never display</span><br><span class="line">mode dock # Alway display</span><br></pre></td></tr></table></figure>
-
-<p>位置有两种：  </p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">position top</span><br><span class="line">position bottom</span><br></pre></td></tr></table></figure>
-
-<p>重点来了，定义处理程序这一项：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">status_command i3status</span><br></pre></td></tr></table></figure>
-
-<p>可以看到默认使用 i3status 作为处理，i3status 本身也可以配置，<br>但是如果想自由配置，你可以写个程序，输出一个 json ，接口比较复杂，<br>在此不赘述，你可以在 ~/.config/i3status/config 里加几行：  </p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">general &#123;</span><br><span class="line">	   output_format = &quot;i3bar&quot;</span><br><span class="line">	   colors = true</span><br><span class="line">	   interval = 5</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>再运行 <code>i3status</code> 依葫芦画瓢就是了。</p>
-<h3 id="i3-gaps"><a href="#i3-gaps" class="headerlink" title="i3-gaps"></a>i3-gaps</h3><p>如果你希望窗口平铺之间会有间隙，i3-gaps 会满足你。<br>如果你用 Debian, Ubuntu ，<br>去 github 上搜 i3-gaps-deb clone 下来后运行 i3-gaps-deb 就行了。<br>如果用 Arch ，软件包管理器里有，直接下。</p>
-<h3 id="透明"><a href="#透明" class="headerlink" title="透明"></a>透明</h3><p>也许你给终端模拟器设置了透明度，很遗憾，在 i3 上没用。<br>解决方案是下载 compton ，运行 <code>compton -b</code> 即可。</p>
-<h2 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h2><p>你可以很自由地向 i3 发送命令，<code>i3-msg</code> 提供了一系列接口，<br>足以帮助完成更复杂的定制。</p>
-<p>使用 <code>i3-input</code> 可以直接向 i3 发送一条命令。</p>
 ]]></content>
   </entry>
   <entry>
@@ -1385,31 +1409,6 @@
 ]]></content>
   </entry>
   <entry>
-    <title>多项式的运算</title>
-    <url>/2019/10/01/%E5%A4%9A%E9%A1%B9%E5%BC%8F%E8%BF%90%E7%AE%97/</url>
-    <content><![CDATA[<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>简单来说，形如 $ a_0 + a_1X + a_2X^2 + … + a_nX^n $ 的代数表达式叫做多项式，<br>可以记作 $ P(X) = a_0 + a_1X + a_2X^2 + … + a_nX^n $ （系数表示法），<br>a 叫做多项式的系数，X 是一个不定元，不表示任何值，<br>不定元在多项式中最大项的次数称作多项式的次数。</p><a id="more"></a>
-<h2 id="加减"><a href="#加减" class="headerlink" title="加减"></a>加减</h2><p>两个多项式 a, b 的和 a + b 是一个多项式 c ，满足：<br> $ \forall x, c(x) = a(x) + b(x) $</p>
-<p>两个多项式 a, b 的差 a - b 是一个多项式 c ，满足：<br> $ \forall x, c(x) = a(x) - b(x) $</p>
-<p>多项式的加减十分自然，实际运算中也只需要按定义 O(n) 枚举即可。</p>
-<h2 id="乘"><a href="#乘" class="headerlink" title="乘"></a>乘</h2><p>两个多项式 a, b 的积 a * b 是一个多项式 c ，满足：<br> $ \forall x, c(x) = a(x)  \cdot  b(x) $</p>
-<p>此时将 a, b 的系数按分配率展开求 c 的时间复杂度为 O(n *  m) ，<br> n, m 分别为 a, b 的次数，不难得出 c 的次数为 n + m 。</p>
-<p>快速求多项式乘积的方法是 $ O(n \cdot log_2n) $ 的 <a href>FFT</a> 或 NTT 。</p>
-<h2 id="除"><a href="#除" class="headerlink" title="除"></a>除</h2><p>两个多项式 a, b 的商 a / b 是一个多项式 c ，满足：<br> $ \forall x, c(x) = a(x) / b(x) $</p>
-<p>众所周知多项式除法可以列竖式求解，<br>这样做与乘法一样复杂度为 O(n *  m) 。</p>
-<h2 id="取模"><a href="#取模" class="headerlink" title="取模"></a>取模</h2><p>正如整数除法会有余数，多项式除法也不一定整除，<br>此时 a / b 会余一个多项式 c ，<br>正如整数除法中余数小于除数，<br>此处也要满足 c 的次数小于 b 的次数以保证唯一性。</p>
-<p>具体来说，对于多项式 a, b 存在唯一的多项式 c, d 满足：<br> a = b *  d + c 且 c 的次数小于 b 的次数，<br>便称 c 是 b 除 a 的余数，即 a 模 b 的结果，<br> d 是 b 除 a 的商。</p>
-<p>值得注意的是，当模数 b 可表示为 $ b(x) = x^k $ 时，<br> a 模 b 相当于将 a 舍弃所有次数大于等于 k 的单项式的结果。</p>
-<h2 id="逆元"><a href="#逆元" class="headerlink" title="逆元"></a>逆元</h2><p>对于多项式 a ，其在 mod p 意义下的逆元 b 满足：<br> a *  b mod p = 1 且 b 的次数不比 a 大<br>（此处的 1 实际上是指只有常数项为 1 而次数为 0 的多项式），<br> a 的逆元通常记为 $ a^{-1} $ 或 inv(a) 。</p>
-<p>那么在 mod p 意义下，有 $ a / b = a  \cdot  b^{-1} $ 。</p>
-<h2 id="逆元的求解"><a href="#逆元的求解" class="headerlink" title="逆元的求解"></a>逆元的求解</h2><p>事实上模数一般是 $ x^n $ 。</p>
-<p>此时可以用分治求多项式 a 的逆元 b。</p>
-<p>假设已经分治求得了 a 模 $ x^{n/2} $ （此处及以下除法表示向上取整）的逆元 c 。<br>那么有：<br>$$ a  \cdot  c \equiv 1 (mod \; x^{n/2}) \;\;\;\;\; (1)$$<br>由 b 的定义可知：<br>$$ a  \cdot  b \equiv 1 (mod \; x^n) \;\;\;\;\; (2)$$<br>转换为：<br>$$ a  \cdot  b \equiv 1 (mod \; x^{n/2}) \;\;\;\;\; (3)$$<br>(3) - (1) 得：<br>$$ b - c \equiv 0 (mod \; x^{n/2}) \;\;\;\;\; (4)$$<br>两边同时平方得：<br>$$ b^2 - 2bc + c^2 \equiv 0 (mod \; x^n) \;\;\;\;\; (5)$$<br>两边同时乘 a 得：<br>$$ b - 2c + c^2a \equiv 0 (mod \; x^n) \;\;\;\;\; (6)$$<br>移项，整理：<br>$$ b = (2c - c^2a) \; mod \; x^n $$</p>
-<p>(4) -&gt; (5) 中模数平方的原因：<br>左边多项式模 $ x^{n/2} $ 为 0 代表该多项式每一项最低次数为 n / 2 + 1 。<br>那么该多项平方后最低次数会是 n + 1 或 n + 2 ，<br>模 $ x^n $ 后仍为 0 。</p>
-<p>于是乎分治，直到 n == 1 ，此时多项式的取模为一个常数，逆元也就是整数的逆元。</p>
-<p>其中乘法使用 FFT ，则最终时间复杂度为 $ O(n \cdot log_2n) $ 。</p>
-]]></content>
-  </entry>
-  <entry>
     <title>北京游记</title>
     <url>/2019/10/01/%E5%8C%97%E4%BA%AC%E6%B8%B8%E8%AE%B0/</url>
     <content><![CDATA[<p>Q: 我天天盯着你高考 (gq) 怎么一直没更新啊？<br>A: 懒。</p><p>因此这实际是一篇事后回忆。</p><h2 id="Day0"><a href="#Day0" class="headerlink" title="Day0"></a>Day0</h2><p>昨天晚上特意没去学校回了家，想着离高铁站近可以晚点起床，<br><del>真相是需要回家拿电脑</del><br>然而大早上 6 点就被叫了起来，早餐都没吃就直接送到了高铁站，<br>emm 还有大半个小时才检票，果断拿起颓书开始颓废，<br>不要问<a href>为什么不玩电脑</a>，心塞。</p><a id="more"></a>
@@ -1438,44 +1437,28 @@
 ]]></content>
   </entry>
   <entry>
-    <title>安徽游记 I</title>
-    <url>/2019/10/01/%E5%AE%89%E5%BE%BD%E6%B8%B8%E8%AE%B0%20I/</url>
-    <content><![CDATA[<p>12 天的培（kao）训（shi），坚持每日总结。</p><p>Day0 to Day4.</p><h2 id="Day0"><a href="#Day0" class="headerlink" title="Day0"></a>Day0</h2><p>大清早的就出发了，地铁还是那么挤。<br>先从长沙坐到南京，高铁上干坐 6 个小时贼贼贼贼贼无聊。</p><p>中午幸好提前买了泡面，随便应付一下，坐了一上午不动也不会感觉饿。<br>%%% 在高铁上一餐吃 70rmb 的 lzk 。</p><p>到了南京还得等 1 小时转到芜湖，期间 UNO 现学现玩，<br>第一把就赢了，一定是传说中的新手的欧气附体，<br>但是这欧气来得快去的也飞快，后面再也没赢过 ，并且一度成为全场最富（一次拿了 20 张牌也是没谁了）。</p><a id="more"></a>
-
-
-
-
-<p>再到动车上就累了，睡了一觉。</p>
-<p>宾馆感觉一般但也还行，位置不错，旁边就是美食街，<br>逛一遍发现芜湖的物价似乎比长沙要便宜得多？<br>这里奶茶只有长沙一半多的价格还巨好喝，还有木桶饭最便宜 8rmb, 最贵也 16rmb, 吃得相当饱，提供的辣椒酱好评。</p>
-<p>晚上宾馆自习，我的笔记本实在实在实在是太 tm 旧了 windows xp 实在实在实在是忍不了啊。<br>宾馆的 wifi 都连不上去我怎么怎么打（kan）代（dian）码（ying）啊？？？<br>还有我早已练就一身折腾本领，小事，关掉 XP 的沙雕代理轻松解决。<br>但是网络实在是 suo （也许是我电脑不行？），努力了一晚上都没能成功看上电影。</p>
-<h2 id="Day1"><a href="#Day1" class="headerlink" title="Day1"></a>Day1</h2><p>第一天考试，凄惨爆 0 。<br>考试的时候想不出题啊（<del>我太菜了</del>），比较心不在焉，<br>才发现打满暴力都是一种困难，水平不够。<br>%　一 % 成功拿满暴力的 CZZ, orz 。</p>
-<p>第一题维护区间历史最小和，玄学转换到二维平面 KD-Tree, 这玩意前几天刚考但是没去学，<br><del>我发现冷门算法一考就会连续考几次</del>。</p>
-<p>第二题一脸不可做，题目名叫因式分解，我也就真的只会因式分解了。<br>讲题的时候满分做法爆搜？？？好吧正解还是要个 DP 的。</p>
-<p>第三题式子题妙啊妙啊，这什么用 $ \sum_{i=0}^{n-1} A^i = \frac{A^n-1}{A-1} $  把 $ A^n $ 换掉的清奇思路谁想得到啊。<br>还有把 f(i) O(1) 一路推到 f(n) 再用组合数的奇技淫巧把 k 到 n 的枚举换成 1 到 k 谁想得到啊。</p>
-<p>还有吐槽一下这套题部分分好少，几乎只有两档：暴力 -&gt; 正解。</p>
-<p>然后就是晚上的 <del>自由欢乐时光</del> 认真自习。<br>终于成功把昨天的电影看了一半。<br>然后颓了一晚上也是没救了，没办法 T3 被卡常心态爆炸（这就是你颓废的理由？）。</p>
-<h2 id="Day2"><a href="#Day2" class="headerlink" title="Day2"></a>Day2</h2><p><del>成功拿到预期的暴力分 30，一大进步。</del></p>
-<p>第一题图染色，考场上脑子不清醒，很快想到 $ O(n^2) $ 的建图方式后，<br>竟然完全没有想到怎么计数，最后 $ O(n^n) $ 枚举染色方案可还行。<br>于是 40’ -&gt; 10’</p>
-<p>第二题又是一个计数，AC 自动机？我完全没想到，<br>我还以为是容斥，但是发现有有 5 种情况，容斥起来要 5 + 10 + 10 + 5 种情况加加减减，<br>没敢打，不过这次这题部分分给的挺全的，分了 10 个 subtask 还是不错的 <del>虽然我只拿了 20 ~</del> 。</p>
-<p>第三题玄学最短路，要用最短路树（我想到了但是没啥用），这玩意前几天 czz 才讲，<br><del>果然又应验了我昨天说的，一考就连续考几次</del><br>暴力都很难打啊这题，到最后只能 <code>puts(&quot;-1&quot;)</code> 了，然而 subtask 数据捆绑。</p>
-<p>一考完就被 *** 拉去吃什么网红烤冷面（然而是热的），very nice but 量有点少。<br>然后 *** 就拉了一堆人去星巴克 666 ，讲真这是我第一次在星巴克喝咖啡，忍痛剁手。<br>晚上到宾馆就开始颓，终于看完了昨天的电影 <del>壮哉我大火影</del> 。</p>
-<h2 id="Day3"><a href="#Day3" class="headerlink" title="Day3"></a>Day3</h2><p>今天的题目巨难，听出题人说是因为他明天赶时间所以把明天的 <del>毒瘤</del> 题全放今天就有更多时间讲。</p>
-<p>第一题在 2 * n 的网格图上求一个生成树，我想到有个类似的题（求 2n 的网格图上放一颗树的方案数），<br>但是那道题我已经忘记怎么做了，而且那是计数，而这题是要求一个最优方案，<br>反正就是以为可做然而 Naive, 浪费了很多时间最后打了枚举生成树的大暴力。<br>考场上有一个线性计算当前方案的算法，枚举的时候加一点小剪枝，总复杂度应该是 $ O(6^n n) $ ，<br>预计 20’ ，但是实际上还是只有 10’ 。</p>
-<p>第二题感觉是什么数据结构题，我按照一种贪心思路敲了线段树，<br>估摸着有 23’ 就没管了，后来出题人放了三个大样例，我一测，第一个就 WA 了，改了一点细节后过掉了，<br>再测第二个，又 WA 了，然后 debug 了好久才意识到贪心的思路不对，这个时候离考试结束只有 5min, 弃疗。<br>然后和预计的一样，3’ 。</p>
-<p>第三题是在一个很奇怪的图上面求最短路为 x 的点对（怎么又是最短路），<br>大暴力就是跑出每个点对的最短路再统计嘛，这个图发现了一些性质，但是还是不会做，<br>想着应该不难打就去打 T2 了，然后 T2 打到结束前 5min 所以这题的暴力也没打， 0’ 。</p>
-<p>今天的部分分还是很少，T2 T3 的暴力都只有 3’ ，难受。</p>
-<p>中午去一个东北菜馆吃饭，菜上的k慢但是挺好吃，很有特色，<br>最抢眼的是收银台前面的冰箱，里面一条<strong>巨大</strong>的鱼（完整一条的可能比我还大？）。</p>
-<p>下午有洛谷月赛，于是冠冕堂皇地不改题打月赛，洛谷月赛一如既往，除了签到题都只能打暴力。</p>
-<p>晚上险些被查水表，我正在听歌教练突然敲门，我当时就以迅雷不及掩耳盗铃儿响叮当仁不让世界感受痛楚汉相争之势拔掉了耳机。<br>没错，拔掉了耳机，然后 tm 就变成外放了声音贼大，当时就感觉自己真是沙雕了我去，<br>然后我又以迅雷不及掩耳盗铃儿响叮当仁不让世界感受痛楚汉相争之势插上了耳机（被自己秀死了），这个时候教练已经差不多进来了，然后交代一些事，我耳机就插在笔记本上光明正大地摆桌上，有点小可怕，还好教练没有说什么。。。</p>
-<p>从今天开始教练晚上要强制收电脑，于是 10:30 电脑被收后无所事事，<br>这时候大家都要睡了（比如柠檬 9:30 就交电脑睡了），可是<del>万恶的</del> *** 以睡不着的名义把我拉过去打 UNO,<br>然后我<del>只能被逼无奈地</del>去打 UNO,  到 11:30 才睡可还行。</p>
-<h2 id="Day4"><a href="#Day4" class="headerlink" title="Day4"></a>Day4</h2><p>今天终于 A 了一题，今天终于 A 了一题，今天终于 A 了一题。<br>还有 % 一 % 全场 rank1 的柠檬。</p>
-<p>第一题我手玩了一下得出了一个十分精简的结论，按照这个结论三四十行代码就能解决，<br>自己都不敢相信啊，今天终于有一道良心签到题了？<br>于是打出来后不停地调试，手造各种情况的数据都跑一遍，把之前的结论完善一些漏洞之后就交了，<br>交了之后还是有点慌，生怕哪里出锅。<br>最后还是成功 AC （四天来唯一一次）。</p>
-<p>第二题刚开始看题还觉得可做，感觉像扫描线加线段树那种，<br>但是看到可能有一面墙回塌后就不这么觉得了。<br>而且我还看错了样例，这直接导致我误解题意，本来是先选点再有墙塌（考虑方案的时候不知道哪个墙会塌），<br>我看样例这样跑出来不对（其实是我手玩玩错了），就以为是先塌墙再选点（提前知道哪面墙会塌后考虑方案），<br>于是 blablabla 后交上去，预计至少有个二三十来分，结果只有大暴力 3’ （还好大暴力的数据没卡掉我）。</p>
-<p>第三题就感觉完全不可做了，最后暴力都没打， 0’ 。<br>下午讲题的时候才发现这题 25’ 的部分分贼容易，就是个排序加贪心。<br>另外 75’ 正解好像是用 dp 做前面 25’ 在对后面 75’ 的求和用 dp 套 dp, 好巧啊之前朱哥才讲过。</p>
-<p>A 了一题心里比较舒服，于是下午就颓了好久，打 Nazo 自力更生到 level 8 就不会了，<br>在网上找提示后玩到 level 11 后再次卡关。</p>
-<p>另外碰到一件玄学的事，我那显示器一碰就断电，然后要不断地调那根线，<br>直到调到某个位置才可以打开，大概是因为接触不良，<br>然后一次又黑了，我调了贼久试遍了各种姿势还是然并卵，<br>没法子了，去找老师实在不行换个位置，<br>老师了解状况后过来随手一拨，真的是 <strong>随手一拨</strong> ，那显示屏就开了，就开了，开了，了，<br>emm 不愧是金牌教练，真的 6 。</p>
-<p>晚上本来去吃必胜客的，但是没注意到今天周日，人巨多，排队等座位都要半个小时，<br>几经周折最后去了 KFC ，也还不错。<br>旁边一家奶茶店搞活动，把一个计时器按到刚好 10s 就能领两大杯奶茶，然而大概是我脸黑，按了 3 次都差的蛮远。<br>晚上又是 UNO, 和 tyr 无意间相互精准放炮，<br>连续两次 tyr （下家）只剩一张牌，我掐指一算，猜到了那张牌的颜色，<br>自信地打出一张其它颜色牌，结果和他数字相同。。。</p>
-<h2 id="NEXT"><a href="#NEXT" class="headerlink" title="NEXT"></a>NEXT</h2><p><a href="/2019/03/26/安徽游记-ii/">Day5 to Day8</a></p>
+    <title>多项式的运算</title>
+    <url>/2019/10/01/%E5%A4%9A%E9%A1%B9%E5%BC%8F%E8%BF%90%E7%AE%97/</url>
+    <content><![CDATA[<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>简单来说，形如 $ a_0 + a_1X + a_2X^2 + … + a_nX^n $ 的代数表达式叫做多项式，<br>可以记作 $ P(X) = a_0 + a_1X + a_2X^2 + … + a_nX^n $ （系数表示法），<br>a 叫做多项式的系数，X 是一个不定元，不表示任何值，<br>不定元在多项式中最大项的次数称作多项式的次数。</p><a id="more"></a>
+<h2 id="加减"><a href="#加减" class="headerlink" title="加减"></a>加减</h2><p>两个多项式 a, b 的和 a + b 是一个多项式 c ，满足：<br> $ \forall x, c(x) = a(x) + b(x) $</p>
+<p>两个多项式 a, b 的差 a - b 是一个多项式 c ，满足：<br> $ \forall x, c(x) = a(x) - b(x) $</p>
+<p>多项式的加减十分自然，实际运算中也只需要按定义 O(n) 枚举即可。</p>
+<h2 id="乘"><a href="#乘" class="headerlink" title="乘"></a>乘</h2><p>两个多项式 a, b 的积 a * b 是一个多项式 c ，满足：<br> $ \forall x, c(x) = a(x)  \cdot  b(x) $</p>
+<p>此时将 a, b 的系数按分配率展开求 c 的时间复杂度为 O(n *  m) ，<br> n, m 分别为 a, b 的次数，不难得出 c 的次数为 n + m 。</p>
+<p>快速求多项式乘积的方法是 $ O(n \cdot log_2n) $ 的 <a href>FFT</a> 或 NTT 。</p>
+<h2 id="除"><a href="#除" class="headerlink" title="除"></a>除</h2><p>两个多项式 a, b 的商 a / b 是一个多项式 c ，满足：<br> $ \forall x, c(x) = a(x) / b(x) $</p>
+<p>众所周知多项式除法可以列竖式求解，<br>这样做与乘法一样复杂度为 O(n *  m) 。</p>
+<h2 id="取模"><a href="#取模" class="headerlink" title="取模"></a>取模</h2><p>正如整数除法会有余数，多项式除法也不一定整除，<br>此时 a / b 会余一个多项式 c ，<br>正如整数除法中余数小于除数，<br>此处也要满足 c 的次数小于 b 的次数以保证唯一性。</p>
+<p>具体来说，对于多项式 a, b 存在唯一的多项式 c, d 满足：<br> a = b *  d + c 且 c 的次数小于 b 的次数，<br>便称 c 是 b 除 a 的余数，即 a 模 b 的结果，<br> d 是 b 除 a 的商。</p>
+<p>值得注意的是，当模数 b 可表示为 $ b(x) = x^k $ 时，<br> a 模 b 相当于将 a 舍弃所有次数大于等于 k 的单项式的结果。</p>
+<h2 id="逆元"><a href="#逆元" class="headerlink" title="逆元"></a>逆元</h2><p>对于多项式 a ，其在 mod p 意义下的逆元 b 满足：<br> a *  b mod p = 1 且 b 的次数不比 a 大<br>（此处的 1 实际上是指只有常数项为 1 而次数为 0 的多项式），<br> a 的逆元通常记为 $ a^{-1} $ 或 inv(a) 。</p>
+<p>那么在 mod p 意义下，有 $ a / b = a  \cdot  b^{-1} $ 。</p>
+<h2 id="逆元的求解"><a href="#逆元的求解" class="headerlink" title="逆元的求解"></a>逆元的求解</h2><p>事实上模数一般是 $ x^n $ 。</p>
+<p>此时可以用分治求多项式 a 的逆元 b。</p>
+<p>假设已经分治求得了 a 模 $ x^{n/2} $ （此处及以下除法表示向上取整）的逆元 c 。<br>那么有：<br>$$ a  \cdot  c \equiv 1 (mod \; x^{n/2}) \;\;\;\;\; (1)$$<br>由 b 的定义可知：<br>$$ a  \cdot  b \equiv 1 (mod \; x^n) \;\;\;\;\; (2)$$<br>转换为：<br>$$ a  \cdot  b \equiv 1 (mod \; x^{n/2}) \;\;\;\;\; (3)$$<br>(3) - (1) 得：<br>$$ b - c \equiv 0 (mod \; x^{n/2}) \;\;\;\;\; (4)$$<br>两边同时平方得：<br>$$ b^2 - 2bc + c^2 \equiv 0 (mod \; x^n) \;\;\;\;\; (5)$$<br>两边同时乘 a 得：<br>$$ b - 2c + c^2a \equiv 0 (mod \; x^n) \;\;\;\;\; (6)$$<br>移项，整理：<br>$$ b = (2c - c^2a) \; mod \; x^n $$</p>
+<p>(4) -&gt; (5) 中模数平方的原因：<br>左边多项式模 $ x^{n/2} $ 为 0 代表该多项式每一项最低次数为 n / 2 + 1 。<br>那么该多项平方后最低次数会是 n + 1 或 n + 2 ，<br>模 $ x^n $ 后仍为 0 。</p>
+<p>于是乎分治，直到 n == 1 ，此时多项式的取模为一个常数，逆元也就是整数的逆元。</p>
+<p>其中乘法使用 FFT ，则最终时间复杂度为 $ O(n \cdot log_2n) $ 。</p>
 ]]></content>
   </entry>
   <entry>
@@ -1509,37 +1492,6 @@
 <p><del>今天晚上竟然没有颓。</del></p>
 <h2 id="Day8"><a href="#Day8" class="headerlink" title="Day8"></a>Day8</h2><p><del>咕掉了</del></p>
 <h2 id="NEXT"><a href="#NEXT" class="headerlink" title="NEXT"></a>NEXT</h2><p><a href="/2019/03/29/安徽游记-iii/">Day9 to END</a></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>最长反链长</title>
-    <url>/2019/10/01/%E6%9C%80%E9%95%BF%E5%8F%8D%E9%93%BE%E9%95%BF/</url>
-    <content><![CDATA[<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p>首先得知道链和反链是什么。</p><p>在 <strong>有向无环图（ DAG ）</strong> 中，<br>链是满足任意两点 x, y 要么 x 可以到达 y 要么 y 可以到达 x 的<strong>点集</strong> （即使只有一个点），<br>反链是任意两点没有路径的 <strong>点集</strong> 。</p><p>那么最长反链，就是点的个数最多的反链。</p><h2 id="定理"><a href="#定理" class="headerlink" title="定理"></a>定理</h2><p>不加证明地丢出两个定理：</p><ol>
-<li>最长反链长度 = 最小链覆盖（用最少的链覆盖所有顶点）</li>
-<li>最长链长度 = 最小反链覆盖（用最少的反链覆盖所有顶点）</li>
-</ol><a id="more"></a>
-
-
-
-
-<p>那么要求的其实是最小链覆盖。</p>
-<h2 id="不相交"><a href="#不相交" class="headerlink" title="不相交"></a>不相交</h2><p>假设最小链覆盖不会相交，怎么求出这个最小链覆盖？</p>
-<p>把每个点 i 拆成 i1 和 i2 ，考虑建立二分图。<br>如果存在一条边 (x, y) ，那么就在二分图中建立 (x1, y2) 的边。<br>这样建立二分图之后，原图的点数 - 二分图最大匹配 = 原图的最小链覆盖<br>（链不相交）。</p>
-<p>这样为什么是对的呢？<br>一个点也可以看作是一个链，因此可以将每个点独立来看做初始状态。<br>然后每次在二分图中选出一条边，就是将两条链连接成一条链，<br>使用的链数就减少一个。</p>
-<p>而链不会相交，所以在二分图中选出的边也是不相交的，也就是二分图的最大匹配。</p>
-<h2 id="栗子"><a href="#栗子" class="headerlink" title="栗子"></a>栗子</h2><p>如果链可以相交呢？</p>
-<p>举个栗子：</p>
-<pre><code>5 4 // 五个点四条边
-1 3 // 1 连向 3
-2 3 // 2 连向 3
-3 4 // 3 连向 4
-3 5 // 3 连向 5</code></pre><p>这里不相交的最小链覆盖是 3 ，而实际的最小链覆盖是 2 。</p>
-<p>观察不相交的最小链覆盖 {1-3-5, 2, 4} 与最小链覆盖 {1-3-5, 2-3-4} 。</p>
-<p>发现由于不能相交， 1-3-5 这条链把 2-3-4 这条链切断了，<br>分成 2 和 4 两条链，因此比最小链覆盖多了一条链。</p>
-<p>如果可以让 2 跨过 1-3-5 与 4 相连呢？</p>
-<h2 id="相交"><a href="#相交" class="headerlink" title="相交"></a>相交</h2><p>将原图做一次 Floyd ，<br>之后就可以知道任意两点 x, y ，x 是否能到达 y 。</p>
-<p>把建立二分图的方法改造了一下，只要 x 能到达 y ，<br>就直接连一条边 (x, y)，这样就可以“跨过”其它链来连接两条链了。</p>
-<p>这个时候，原图最长反链长度 = 最小链覆盖 = 二分图最大匹配。</p>
 ]]></content>
   </entry>
   <entry>
@@ -1598,6 +1550,78 @@ int QCNT;</code></pre><p>note 那一排暴露啦，这命名空间 lkjjhkfdlhgkj
 <p>emm 最后发现 Treap 无论是速度还是码量上都没好到哪去（难道是我实现太烂？），<br>对于文艺平衡树来说，无旋 Treap 略慢，代码还略长，只是空间消耗略少。</p>
 <h2 id="THE-END"><a href="#THE-END" class="headerlink" title="THE END"></a>THE END</h2><p>安徽芜湖 12 天，每天都很充实，虽然也有遗憾。</p>
 <p>HNOI 2019, RP ++.</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>安徽游记 I</title>
+    <url>/2019/10/01/%E5%AE%89%E5%BE%BD%E6%B8%B8%E8%AE%B0%20I/</url>
+    <content><![CDATA[<p>12 天的培（kao）训（shi），坚持每日总结。</p><p>Day0 to Day4.</p><h2 id="Day0"><a href="#Day0" class="headerlink" title="Day0"></a>Day0</h2><p>大清早的就出发了，地铁还是那么挤。<br>先从长沙坐到南京，高铁上干坐 6 个小时贼贼贼贼贼无聊。</p><p>中午幸好提前买了泡面，随便应付一下，坐了一上午不动也不会感觉饿。<br>%%% 在高铁上一餐吃 70rmb 的 lzk 。</p><p>到了南京还得等 1 小时转到芜湖，期间 UNO 现学现玩，<br>第一把就赢了，一定是传说中的新手的欧气附体，<br>但是这欧气来得快去的也飞快，后面再也没赢过 ，并且一度成为全场最富（一次拿了 20 张牌也是没谁了）。</p><a id="more"></a>
+
+
+
+
+<p>再到动车上就累了，睡了一觉。</p>
+<p>宾馆感觉一般但也还行，位置不错，旁边就是美食街，<br>逛一遍发现芜湖的物价似乎比长沙要便宜得多？<br>这里奶茶只有长沙一半多的价格还巨好喝，还有木桶饭最便宜 8rmb, 最贵也 16rmb, 吃得相当饱，提供的辣椒酱好评。</p>
+<p>晚上宾馆自习，我的笔记本实在实在实在是太 tm 旧了 windows xp 实在实在实在是忍不了啊。<br>宾馆的 wifi 都连不上去我怎么怎么打（kan）代（dian）码（ying）啊？？？<br>还有我早已练就一身折腾本领，小事，关掉 XP 的沙雕代理轻松解决。<br>但是网络实在是 suo （也许是我电脑不行？），努力了一晚上都没能成功看上电影。</p>
+<h2 id="Day1"><a href="#Day1" class="headerlink" title="Day1"></a>Day1</h2><p>第一天考试，凄惨爆 0 。<br>考试的时候想不出题啊（<del>我太菜了</del>），比较心不在焉，<br>才发现打满暴力都是一种困难，水平不够。<br>%　一 % 成功拿满暴力的 CZZ, orz 。</p>
+<p>第一题维护区间历史最小和，玄学转换到二维平面 KD-Tree, 这玩意前几天刚考但是没去学，<br><del>我发现冷门算法一考就会连续考几次</del>。</p>
+<p>第二题一脸不可做，题目名叫因式分解，我也就真的只会因式分解了。<br>讲题的时候满分做法爆搜？？？好吧正解还是要个 DP 的。</p>
+<p>第三题式子题妙啊妙啊，这什么用 $ \sum_{i=0}^{n-1} A^i = \frac{A^n-1}{A-1} $  把 $ A^n $ 换掉的清奇思路谁想得到啊。<br>还有把 f(i) O(1) 一路推到 f(n) 再用组合数的奇技淫巧把 k 到 n 的枚举换成 1 到 k 谁想得到啊。</p>
+<p>还有吐槽一下这套题部分分好少，几乎只有两档：暴力 -&gt; 正解。</p>
+<p>然后就是晚上的 <del>自由欢乐时光</del> 认真自习。<br>终于成功把昨天的电影看了一半。<br>然后颓了一晚上也是没救了，没办法 T3 被卡常心态爆炸（这就是你颓废的理由？）。</p>
+<h2 id="Day2"><a href="#Day2" class="headerlink" title="Day2"></a>Day2</h2><p><del>成功拿到预期的暴力分 30，一大进步。</del></p>
+<p>第一题图染色，考场上脑子不清醒，很快想到 $ O(n^2) $ 的建图方式后，<br>竟然完全没有想到怎么计数，最后 $ O(n^n) $ 枚举染色方案可还行。<br>于是 40’ -&gt; 10’</p>
+<p>第二题又是一个计数，AC 自动机？我完全没想到，<br>我还以为是容斥，但是发现有有 5 种情况，容斥起来要 5 + 10 + 10 + 5 种情况加加减减，<br>没敢打，不过这次这题部分分给的挺全的，分了 10 个 subtask 还是不错的 <del>虽然我只拿了 20 ~</del> 。</p>
+<p>第三题玄学最短路，要用最短路树（我想到了但是没啥用），这玩意前几天 czz 才讲，<br><del>果然又应验了我昨天说的，一考就连续考几次</del><br>暴力都很难打啊这题，到最后只能 <code>puts(&quot;-1&quot;)</code> 了，然而 subtask 数据捆绑。</p>
+<p>一考完就被 *** 拉去吃什么网红烤冷面（然而是热的），very nice but 量有点少。<br>然后 *** 就拉了一堆人去星巴克 666 ，讲真这是我第一次在星巴克喝咖啡，忍痛剁手。<br>晚上到宾馆就开始颓，终于看完了昨天的电影 <del>壮哉我大火影</del> 。</p>
+<h2 id="Day3"><a href="#Day3" class="headerlink" title="Day3"></a>Day3</h2><p>今天的题目巨难，听出题人说是因为他明天赶时间所以把明天的 <del>毒瘤</del> 题全放今天就有更多时间讲。</p>
+<p>第一题在 2 * n 的网格图上求一个生成树，我想到有个类似的题（求 2n 的网格图上放一颗树的方案数），<br>但是那道题我已经忘记怎么做了，而且那是计数，而这题是要求一个最优方案，<br>反正就是以为可做然而 Naive, 浪费了很多时间最后打了枚举生成树的大暴力。<br>考场上有一个线性计算当前方案的算法，枚举的时候加一点小剪枝，总复杂度应该是 $ O(6^n n) $ ，<br>预计 20’ ，但是实际上还是只有 10’ 。</p>
+<p>第二题感觉是什么数据结构题，我按照一种贪心思路敲了线段树，<br>估摸着有 23’ 就没管了，后来出题人放了三个大样例，我一测，第一个就 WA 了，改了一点细节后过掉了，<br>再测第二个，又 WA 了，然后 debug 了好久才意识到贪心的思路不对，这个时候离考试结束只有 5min, 弃疗。<br>然后和预计的一样，3’ 。</p>
+<p>第三题是在一个很奇怪的图上面求最短路为 x 的点对（怎么又是最短路），<br>大暴力就是跑出每个点对的最短路再统计嘛，这个图发现了一些性质，但是还是不会做，<br>想着应该不难打就去打 T2 了，然后 T2 打到结束前 5min 所以这题的暴力也没打， 0’ 。</p>
+<p>今天的部分分还是很少，T2 T3 的暴力都只有 3’ ，难受。</p>
+<p>中午去一个东北菜馆吃饭，菜上的k慢但是挺好吃，很有特色，<br>最抢眼的是收银台前面的冰箱，里面一条<strong>巨大</strong>的鱼（完整一条的可能比我还大？）。</p>
+<p>下午有洛谷月赛，于是冠冕堂皇地不改题打月赛，洛谷月赛一如既往，除了签到题都只能打暴力。</p>
+<p>晚上险些被查水表，我正在听歌教练突然敲门，我当时就以迅雷不及掩耳盗铃儿响叮当仁不让世界感受痛楚汉相争之势拔掉了耳机。<br>没错，拔掉了耳机，然后 tm 就变成外放了声音贼大，当时就感觉自己真是沙雕了我去，<br>然后我又以迅雷不及掩耳盗铃儿响叮当仁不让世界感受痛楚汉相争之势插上了耳机（被自己秀死了），这个时候教练已经差不多进来了，然后交代一些事，我耳机就插在笔记本上光明正大地摆桌上，有点小可怕，还好教练没有说什么。。。</p>
+<p>从今天开始教练晚上要强制收电脑，于是 10:30 电脑被收后无所事事，<br>这时候大家都要睡了（比如柠檬 9:30 就交电脑睡了），可是<del>万恶的</del> *** 以睡不着的名义把我拉过去打 UNO,<br>然后我<del>只能被逼无奈地</del>去打 UNO,  到 11:30 才睡可还行。</p>
+<h2 id="Day4"><a href="#Day4" class="headerlink" title="Day4"></a>Day4</h2><p>今天终于 A 了一题，今天终于 A 了一题，今天终于 A 了一题。<br>还有 % 一 % 全场 rank1 的柠檬。</p>
+<p>第一题我手玩了一下得出了一个十分精简的结论，按照这个结论三四十行代码就能解决，<br>自己都不敢相信啊，今天终于有一道良心签到题了？<br>于是打出来后不停地调试，手造各种情况的数据都跑一遍，把之前的结论完善一些漏洞之后就交了，<br>交了之后还是有点慌，生怕哪里出锅。<br>最后还是成功 AC （四天来唯一一次）。</p>
+<p>第二题刚开始看题还觉得可做，感觉像扫描线加线段树那种，<br>但是看到可能有一面墙回塌后就不这么觉得了。<br>而且我还看错了样例，这直接导致我误解题意，本来是先选点再有墙塌（考虑方案的时候不知道哪个墙会塌），<br>我看样例这样跑出来不对（其实是我手玩玩错了），就以为是先塌墙再选点（提前知道哪面墙会塌后考虑方案），<br>于是 blablabla 后交上去，预计至少有个二三十来分，结果只有大暴力 3’ （还好大暴力的数据没卡掉我）。</p>
+<p>第三题就感觉完全不可做了，最后暴力都没打， 0’ 。<br>下午讲题的时候才发现这题 25’ 的部分分贼容易，就是个排序加贪心。<br>另外 75’ 正解好像是用 dp 做前面 25’ 在对后面 75’ 的求和用 dp 套 dp, 好巧啊之前朱哥才讲过。</p>
+<p>A 了一题心里比较舒服，于是下午就颓了好久，打 Nazo 自力更生到 level 8 就不会了，<br>在网上找提示后玩到 level 11 后再次卡关。</p>
+<p>另外碰到一件玄学的事，我那显示器一碰就断电，然后要不断地调那根线，<br>直到调到某个位置才可以打开，大概是因为接触不良，<br>然后一次又黑了，我调了贼久试遍了各种姿势还是然并卵，<br>没法子了，去找老师实在不行换个位置，<br>老师了解状况后过来随手一拨，真的是 <strong>随手一拨</strong> ，那显示屏就开了，就开了，开了，了，<br>emm 不愧是金牌教练，真的 6 。</p>
+<p>晚上本来去吃必胜客的，但是没注意到今天周日，人巨多，排队等座位都要半个小时，<br>几经周折最后去了 KFC ，也还不错。<br>旁边一家奶茶店搞活动，把一个计时器按到刚好 10s 就能领两大杯奶茶，然而大概是我脸黑，按了 3 次都差的蛮远。<br>晚上又是 UNO, 和 tyr 无意间相互精准放炮，<br>连续两次 tyr （下家）只剩一张牌，我掐指一算，猜到了那张牌的颜色，<br>自信地打出一张其它颜色牌，结果和他数字相同。。。</p>
+<h2 id="NEXT"><a href="#NEXT" class="headerlink" title="NEXT"></a>NEXT</h2><p><a href="/2019/03/26/安徽游记-ii/">Day5 to Day8</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>最长反链长</title>
+    <url>/2019/10/01/%E6%9C%80%E9%95%BF%E5%8F%8D%E9%93%BE%E9%95%BF/</url>
+    <content><![CDATA[<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p>首先得知道链和反链是什么。</p><p>在 <strong>有向无环图（ DAG ）</strong> 中，<br>链是满足任意两点 x, y 要么 x 可以到达 y 要么 y 可以到达 x 的<strong>点集</strong> （即使只有一个点），<br>反链是任意两点没有路径的 <strong>点集</strong> 。</p><p>那么最长反链，就是点的个数最多的反链。</p><h2 id="定理"><a href="#定理" class="headerlink" title="定理"></a>定理</h2><p>不加证明地丢出两个定理：</p><ol>
+<li>最长反链长度 = 最小链覆盖（用最少的链覆盖所有顶点）</li>
+<li>最长链长度 = 最小反链覆盖（用最少的反链覆盖所有顶点）</li>
+</ol><a id="more"></a>
+
+
+
+
+<p>那么要求的其实是最小链覆盖。</p>
+<h2 id="不相交"><a href="#不相交" class="headerlink" title="不相交"></a>不相交</h2><p>假设最小链覆盖不会相交，怎么求出这个最小链覆盖？</p>
+<p>把每个点 i 拆成 i1 和 i2 ，考虑建立二分图。<br>如果存在一条边 (x, y) ，那么就在二分图中建立 (x1, y2) 的边。<br>这样建立二分图之后，原图的点数 - 二分图最大匹配 = 原图的最小链覆盖<br>（链不相交）。</p>
+<p>这样为什么是对的呢？<br>一个点也可以看作是一个链，因此可以将每个点独立来看做初始状态。<br>然后每次在二分图中选出一条边，就是将两条链连接成一条链，<br>使用的链数就减少一个。</p>
+<p>而链不会相交，所以在二分图中选出的边也是不相交的，也就是二分图的最大匹配。</p>
+<h2 id="栗子"><a href="#栗子" class="headerlink" title="栗子"></a>栗子</h2><p>如果链可以相交呢？</p>
+<p>举个栗子：</p>
+<pre><code>5 4 // 五个点四条边
+1 3 // 1 连向 3
+2 3 // 2 连向 3
+3 4 // 3 连向 4
+3 5 // 3 连向 5</code></pre><p>这里不相交的最小链覆盖是 3 ，而实际的最小链覆盖是 2 。</p>
+<p>观察不相交的最小链覆盖 {1-3-5, 2, 4} 与最小链覆盖 {1-3-5, 2-3-4} 。</p>
+<p>发现由于不能相交， 1-3-5 这条链把 2-3-4 这条链切断了，<br>分成 2 和 4 两条链，因此比最小链覆盖多了一条链。</p>
+<p>如果可以让 2 跨过 1-3-5 与 4 相连呢？</p>
+<h2 id="相交"><a href="#相交" class="headerlink" title="相交"></a>相交</h2><p>将原图做一次 Floyd ，<br>之后就可以知道任意两点 x, y ，x 是否能到达 y 。</p>
+<p>把建立二分图的方法改造了一下，只要 x 能到达 y ，<br>就直接连一条边 (x, y)，这样就可以“跨过”其它链来连接两条链了。</p>
+<p>这个时候，原图最长反链长度 = 最小链覆盖 = 二分图最大匹配。</p>
 ]]></content>
   </entry>
 </search>
