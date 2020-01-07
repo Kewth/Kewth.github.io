@@ -74,9 +74,9 @@
 <p>$$ \sum_{i=0}^n (C_n^i)^2 = C_{2n}^n $$</p>
 <p>$$ C_{n+m}^k = \sum_{i=0}^k C_n^i C_m^{k-i} $$</p>
 <p>卢卡斯定理（要求 $p$ 是质数）<br>$$ C_n^m \% p = C_{n/p}^{m/p} C_{n \% p}^{m \% p} \% p $$</p>
-<h2 id="第一类斯特灵数相关"><a href="#第一类斯特灵数相关" class="headerlink" title="第一类斯特灵数相关"></a>第一类斯特灵数相关</h2><p>$$ s_n^m = s_{n-1}^{m-1} + (n-1) s_{n-1}^m $$</p>
+<h2 id="第一类斯特林数相关"><a href="#第一类斯特林数相关" class="headerlink" title="第一类斯特林数相关"></a>第一类斯特林数相关</h2><p>$$ s_n^m = s_{n-1}^{m-1} + (n-1) s_{n-1}^m $$</p>
 <p>$$ x^{\overline{n}} = \sum_{m} s_n^m x^m $$</p>
-<h2 id="第二类斯特灵数相关"><a href="#第二类斯特灵数相关" class="headerlink" title="第二类斯特灵数相关"></a>第二类斯特灵数相关</h2><p>$$ S_n^m = S_{n-1}^{m-1} + m S_{n-1}^m $$</p>
+<h2 id="第二类斯特林数相关"><a href="#第二类斯特林数相关" class="headerlink" title="第二类斯特林数相关"></a>第二类斯特林数相关</h2><p>$$ S_n^m = S_{n-1}^{m-1} + m S_{n-1}^m $$</p>
 <p>$$ n^m = \sum_{k=0}^m S_m^k C_n^k k! $$</p>
 <p>上式的二项式反演，组合数拆开后可转换为卷积形式<br>$$ S_n^m = \frac{1}{m!} \sum_{k=0}^m (-1)^{m-k} C_m^k k^n $$</p>
 ]]></content>
@@ -1215,26 +1215,6 @@
 ]]></content>
   </entry>
   <entry>
-    <title>NTT</title>
-    <url>/2019/10/01/NTT/</url>
-    <content><![CDATA[<p>NTT ，快速数论变换，功能与 <a href>FFT</a> 完全一致，用来求多项式卷积。<br>NTT 优点在于常数稍微小一点，没有精度误差。<br>但是 NTT 系数必须是取模意义下的整数，且对模数有特殊要求。</p><h2 id="FFT-的单位根"><a href="#FFT-的单位根" class="headerlink" title="FFT 的单位根"></a>FFT 的单位根</h2><p>建议前置 <a href>FFT</a> 。</p><p>FFT 可以分治优化复杂度的原因是用到了单位根的如下性质：<br>$$ W_{2n}^{2k} = W_n^k $$<br>$$ W_n^n = 1 $$<br>$$ W_n^{k + n/2} + W_n^k = 0 $$</p><a id="more"></a>
-
-
-<p>可是用单位根做 FFT ，需要用到复数和浮点数，常数大而且有精度误差。<br>还有别的数有这样的性质来替换单位根吗？<br>遗憾的是，可以证明复数域下只有单位根有这样的性质。</p>
-<h2 id="取模"><a href="#取模" class="headerlink" title="取模"></a>取模</h2><p>实际计算多项式卷积时，常常要求对系数取模以避免不必要的麻烦。<br>那么这时候系数实际上是在模意义下的， FFT 将它转到复数域上运算，似乎没有必要。<br>模意义下什么数可以有单位根那样的性质？<br>有的，那就是原根。</p>
-<h2 id="原根"><a href="#原根" class="headerlink" title="原根"></a>原根</h2><p>对于某些模数 P ，模 P 意义下的原根 g 满足：<br>对任意 $ 0 \leq k \leq P - 2 $ ， $ g^k $ 互不相同。<br>有些模数可能不存在原根，这里先假设模数都有原根。</p>
-<p>假设系数是模 P 意义下的，P 是形如 $ 2^k + 1 $ 的质数，其原根为 g ，<br>设 $ G_n = g^{\frac{P-1}{n}} mod P $ ，其中 n 是小于 P 的 2 的整次幂 。<br>那么在模 P 意义下， G 满足：</p>
-<p>$$ G_{2n}^{2k} = G_n^k $$</p>
-<p>由 G 定义可证：<br>$ G_{2n}^{2k} = g^{\frac{P-1}{2n}2k} = g^{\frac{P-1}{n}k} = G_n^k$</p>
-<p>$$ G_n^n = 1 $$</p>
-<p>由 G 定义可得：<br>$ G_n^n = g^{\frac{P-1}{n}n} = g^{P-1}  $<br>由费马小定理：<br>$ G_n^n =  g^{P-1} = 1 $</p>
-<p>$$ G_n^{k + n/2} + G_n^k = 0 $$</p>
-<p>有第一条性质可得：<br>$ G_n^{n/2} = G_2^1 = g^{\frac{P-1}{2}} $<br>因为 $ (g^{\frac{P-1}{2}})^2 = g^{P-1} = 1 $<br>根据原根的性质：<br>$ g^{\frac{P-1}{2}} \neq g^{P-1} $<br>那么 $ g^{\frac{P-1}{2}} = -1 $ （即 P - 1）。<br>那么可以证得：<br>$ G_n^{k + n/2} = G_n^k G_n^{n/2} = G_n^k(-1) $<br>于是 $ G_n^{k + n/2} + G_n^k = 0 $</p>
-<h2 id="NTT"><a href="#NTT" class="headerlink" title="NTT"></a>NTT</h2><p>于是 NTT 的算法思路就呼之欲出了：把 $ W_n $ 全部替换为 $ G_n $ 即可。<br>这样就可以算出模 P 意义下的多项式卷积了。<br>其中 n 必须是 2 的整次幂，不足的补零即可。</p>
-<p>现在唯一的问题是，模数 P 要满足什么条件，以及如何求模 P 意义下的原根 g 。<br>然而我并不想深入展开，大多数情况下模数都是 998244353 ，其原根为 3 。<br>一般 NTT 只会用这个模数，不会有毒瘤出题人卡这个模数的（我不对这句话负责）。</p>
-]]></content>
-  </entry>
-  <entry>
     <title>i3</title>
     <url>/2019/10/01/i3/</url>
     <content><![CDATA[<h2 id="历程"><a href="#历程" class="headerlink" title="历程"></a>历程</h2><ul>
@@ -1280,6 +1260,126 @@
 <h3 id="透明"><a href="#透明" class="headerlink" title="透明"></a>透明</h3><p>也许你给终端模拟器设置了透明度，很遗憾，在 i3 上没用。<br>解决方案是下载 compton ，运行 <code>compton -b</code> 即可。</p>
 <h2 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h2><p>你可以很自由地向 i3 发送命令，<code>i3-msg</code> 提供了一系列接口，<br>足以帮助完成更复杂的定制。</p>
 <p>使用 <code>i3-input</code> 可以直接向 i3 发送一条命令。</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>i3lock</title>
+    <url>/2019/10/01/i3lock/</url>
+    <content><![CDATA[<p><img src="http://kewth.gq/wp-content/uploads/2019/07/2_054-1.png" alt="i3lock-fancy"></p><p>折腾了半天 i3lock ，不写篇博客可惜了。</p><p>i3lock 有啥好折腾的？不就是挂个壁纸锁屏嘛。<br>就是因为 i3lock 太鸡肋了折腾啊。<br>于是我试过了 i3lock 的各种民间 fork 版本，在此总结。</p><h2 id="i3lock"><a href="#i3lock" class="headerlink" title="i3lock"></a><a href="https://github.com/i3/i3lock" target="_blank" rel="noopener">i3lock</a></h2><p>官方版本 i3lock ，稳定可靠，但是鸡肋。</p><p>安装：</p><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo aptitude install i3lock</span><br></pre></td></tr></table></figure><a id="more"></a>
+
+
+
+
+
+
+<p>使用：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">i3lock</span><br></pre></td></tr></table></figure>
+
+<h2 id="i3lock-lixxia"><a href="#i3lock-lixxia" class="headerlink" title="i3lock-lixxia"></a><a href="https://github.com/Lixxia/i3lock" target="_blank" rel="noopener">i3lock-lixxia</a></h2><p>最友好，最简单的一个 i3lock fork ，<br>优化了中间显示的圆形框，并支持一些颜色自定义。</p>
+<p>安装：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo aptitude remove i3lock</span><br><span class="line">sudo aptitude install pkg-config libxcb1-dev libxcb1 libgl2ps-dev libx11-dev libglc0 libglc-dev libcairo2-dev libcairo-gobject2 libcairo2-dev libxkbfile-dev libxkbfile1 libxkbcommon-dev libxkbcommon-x11-dev libxcb-xkb-dev libxcb-dpms0-dev libxcb-damage0-dev libpam0g-dev libev-dev libxcb-image0-dev libxcb-util0-dev libxcb-composite0-dev libxcb-xinerama0-dev</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/Lixxia/i3lock.git</span><br><span class="line"><span class="built_in">cd</span> i3lock</span><br><span class="line">autoreconf -<span class="keyword">fi</span></span><br><span class="line">mkdir -p build &amp;&amp; <span class="built_in">cd</span> build</span><br><span class="line">../configure</span><br><span class="line">make &amp;&amp; sudo make install</span><br></pre></td></tr></table></figure>
+
+<p>顺带一提，只有这个 fork 给出了靠谱的源码安装方式，<br>其他 fork 甚至 i3lock 本身的安装方式都给得很不靠谱。</p>
+<p>使用：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">i3lock</span><br></pre></td></tr></table></figure>
+
+<h2 id="i3lock-blur"><a href="#i3lock-blur" class="headerlink" title="i3lock-blur"></a><a href="https://github.com/karulont/i3lock-blur" target="_blank" rel="noopener">i3lock-blur</a></h2><p>支持模糊背景，毛玻璃特效。</p>
+<p>安装：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo aptitude remove i3lock</span><br><span class="line">sudo aptitude install pkg-config libxcb1-dev libxcb1 libgl2ps-dev libx11-dev libglc0 libglc-dev libcairo2-dev libcairo-gobject2 libcairo2-dev libxkbfile-dev libxkbfile1 libxkbcommon-dev libxkbcommon-x11-dev libxcb-xkb-dev libxcb-dpms0-dev libxcb-damage0-dev libpam0g-dev libev-dev libxcb-image0-dev libxcb-util0-dev libxcb-composite0-dev libxcb-xinerama0-dev</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/karulont/i3lock-blur.git</span><br><span class="line"><span class="built_in">cd</span> i3lock-blur</span><br><span class="line">autoreconf -<span class="keyword">fi</span></span><br><span class="line">mkdir -p build &amp;&amp; <span class="built_in">cd</span> build</span><br><span class="line">../configure</span><br><span class="line">make &amp;&amp; sudo make install</span><br></pre></td></tr></table></figure>
+
+<p>再顺带一提，只有这个 fork 直接给出了需要安装那些库。</p>
+<p>使用：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">i3lock --fuzzy</span><br></pre></td></tr></table></figure>
+
+<h2 id="i3lockr"><a href="#i3lockr" class="headerlink" title="i3lockr"></a><a href="https://github.com/owenthewizard/i3lockr" target="_blank" rel="noopener">i3lockr</a></h2><p>支持模糊背景，毛玻璃特效。</p>
+<p>安装：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">wget https://github.com/owenthewizard/i3lockr/releases/download/v1.0.0-final/i3lockr</span><br><span class="line">sudo mv i3lockr /usr/<span class="built_in">local</span>/bin</span><br></pre></td></tr></table></figure>
+
+<p>使用：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">i3lockr --blur=25</span><br></pre></td></tr></table></figure>
+
+<h2 id="i3lock-color"><a href="#i3lock-color" class="headerlink" title="i3lock-color"></a><a href="https://github.com/PandorasFox/i3lock-color" target="_blank" rel="noopener">i3lock-color</a></h2><p>对于颜色的自定义十分全面。</p>
+<p>安装：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo aptitude remove i3lock</span><br><span class="line">sudo aptitude install pkg-config libxcb1-dev libxcb1 libgl2ps-dev libx11-dev libglc0 libglc-dev libcairo2-dev libcairo-gobject2 libcairo2-dev libxkbfile-dev libxkbfile1 libxkbcommon-dev libxkbcommon-x11-dev libxcb-xkb-dev libxcb-dpms0-dev libxcb-damage0-dev libpam0g-dev libev-dev libxcb-image0-dev libxcb-util0-dev libxcb-composite0-dev libxcb-xinerama0-dev</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/PandorasFox/i3lock-color</span><br><span class="line"><span class="built_in">cd</span> i3lock-color</span><br><span class="line">autoreconf -<span class="keyword">fi</span></span><br><span class="line">mkdir -p build &amp;&amp; <span class="built_in">cd</span> build</span><br><span class="line">../configure</span><br><span class="line">make &amp;&amp; sudo make install</span><br></pre></td></tr></table></figure>
+
+<p>使用：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">i3lock</span><br></pre></td></tr></table></figure>
+
+<h2 id="i3lock-fancy"><a href="#i3lock-fancy" class="headerlink" title="i3lock-fancy"></a><a href="https://github.com/meskarune/i3lock-fancy" target="_blank" rel="noopener">i3lock-fancy</a></h2><p>重头戏，star 最多的 fork ，甚至比 i3lock 本身更多，被广泛使用。</p>
+<p>安装：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo aptitude install i3lock-fancy</span><br></pre></td></tr></table></figure>
+
+<p>使用：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">i3lock-fancy</span><br></pre></td></tr></table></figure>
+
+<p>依赖 i3lock ，实际上是产生了背景图片再调用 i3lock 。<br>默认使用模糊背景，用起来没什么问题，但是事实上，<br>圆形框的颜色并不是最正确的，而是兼容的。</p>
+<p>源码里有这样一条：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment"># try to use a forked version of i3lock with prepared parameters</span></span><br><span class="line"><span class="keyword">if</span> ! i3lock -n <span class="string">"<span class="variable">$&#123;PARAM[@]&#125;</span>"</span> -i <span class="string">"<span class="variable">$IMAGE</span>"</span> &gt; /dev/null 2&gt;&amp;1; <span class="keyword">then</span></span><br><span class="line">    <span class="comment"># We have failed, lets get back to stock one</span></span><br><span class="line">    i3lock -n -i <span class="string">"<span class="variable">$IMAGE</span>"</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+
+<p>bash -x i3lock-fancy 就知道，<br>if 上的命令往往失败了，执行的是 if 里头的命令。</p>
+<p>事实上这需要 i3lock-color 。<br>那么，安装 i3lock-color 代替 i3lock 后，执行 i3lock-fancy ，<br>会发现圆形框的颜色与背景更加配了。</p>
+<h2 id="关于模糊背景"><a href="#关于模糊背景" class="headerlink" title="关于模糊背景"></a>关于模糊背景</h2><p>事实上，如果你用了 compton 再用 i3lock ，效果十分差劲。<br>解决这个方案，可以在调用 i3lock 前 kill compton ，结束后重新启动 compton 。</p>
+<p>拿 i3lock-fancy 举例，把之前展示的代码改成这样：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment"># try to use a forked version of i3lock with prepared parameters</span></span><br><span class="line">pkill compton</span><br><span class="line"><span class="keyword">if</span> ! i3lock -n <span class="string">"<span class="variable">$&#123;PARAM[@]&#125;</span>"</span> -i <span class="string">"<span class="variable">$IMAGE</span>"</span> &gt; /dev/null 2&gt;&amp;1; <span class="keyword">then</span></span><br><span class="line">    <span class="comment"># We have failed, lets get back to stock one</span></span><br><span class="line">    i3lock -n -i <span class="string">"<span class="variable">$IMAGE</span>"</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line">compton -i 0.8 -b</span><br></pre></td></tr></table></figure>
+
+<p>其次，用模糊背景通常会比较慢，尤其是 i3lock-fancy ，需等上 3 秒左右。<br>那么如果调用 i3lock-fancy 之后你又做了一些别的操作，比如关闭一个窗口，<br>这时锁屏了，你会发现背景和原来的不一样。 :)</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>ncurses</title>
+    <url>/2019/10/01/ncurses/</url>
+    <content><![CDATA[<p>ncurses 是基于终端的十分强大的图形库。<br>Vim, screen, sl 等终端程序都用到了这个库（足以见其强大）。</p><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>部分系统默认安装了 ncurses ，手动安装的方式是： <code>sudo aptitude install ncurses-dev</code> 。</p><p>使用的程序需要 <code>#include &lt;ncurses.h&gt;</code>　。<br>编译时需要添加 <code>-lncurses</code> 参数进行链接。</p><a id="more"></a>
+
+
+<h2 id="开始和结束"><a href="#开始和结束" class="headerlink" title="开始和结束"></a>开始和结束</h2><p>调用 initscr 初始化窗口，endwin 结束窗口。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;curses.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function">WINDOW *<span class="title">initscr</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">endwin</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<h2 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h2><p>调用 initscr 后调用 endwin 前，printf, std::cout 等标准输出不会显示在屏幕上。<br>而输出到屏幕上需要 ncurses 提供的相应函数。</p>
+<h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">addch</span><span class="params">(<span class="keyword">const</span> chtype char_to_add)</span></span>;   <span class="comment">// 当前位置添加字符</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">addstr</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *string_to_add)</span></span>;    <span class="comment">// 当前位置添加字符串</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">printw</span><span class="params">(<span class="keyword">char</span> *format, ...)</span></span>;   <span class="comment">// 类似于 printf</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">refresh</span><span class="params">(<span class="keyword">void</span>)</span></span>;    <span class="comment">// 强制刷新物理屏幕</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">beep</span><span class="params">(<span class="keyword">void</span>)</span></span>;   <span class="comment">// 终端响铃</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">flash</span><span class="params">(<span class="keyword">void</span>)</span></span>;   <span class="comment">// 屏幕闪烁</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h2><p>调用 scanf, getchar, cin 等标准输入函数同样无效。</p>
+<h3 id="函数-1"><a href="#函数-1" class="headerlink" title="函数"></a>函数</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">cbreak</span><span class="params">()</span></span>;   <span class="comment">// 字符一键入，直接传给程序（不用按下回车）</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">nocbreak</span><span class="params">()</span></span>;  <span class="comment">// 关闭 cbreak</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">echo</span><span class="params">(<span class="keyword">void</span>)</span></span>; <span class="comment">// 开启输入回显</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">noecho</span><span class="params">(<span class="keyword">void</span>)</span></span>; <span class="comment">// 关闭输入回显</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getch</span><span class="params">(<span class="keyword">void</span>)</span></span>; <span class="comment">// 读入一个字符</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">scanw</span><span class="params">(<span class="keyword">char</span> *format, ...)</span></span>; <span class="comment">// 类似于 scanf</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">clear</span><span class="params">(<span class="keyword">void</span>)</span></span>; <span class="comment">// 清屏</span></span><br></pre></td></tr></table></figure>
+
+<p>输入函数通常是阻塞的，但是通过调用 nodelay(stdscr, TRUE); 可以关闭阻塞。<br>此时若输入函数未读取到内容会返回 ERR 。</p>
+<h2 id="光标"><a href="#光标" class="headerlink" title="光标"></a>光标</h2><p>控制光标。<br>调用 initscr 后调用 endwin 前，输出终端控制符改变光标是无效的。</p>
+<h3 id="函数及示例"><a href="#函数及示例" class="headerlink" title="函数及示例"></a>函数及示例</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">move</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>; <span class="comment">// 将光标移动到 [x] 行 [y] 列，左上角为 0 行 0 列</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">curs_set</span><span class="params">(<span class="keyword">int</span> visiblility)</span></span>; <span class="comment">// 参数为 0 表示隐藏光标，1 表示显示光标</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getyx</span><span class="params">(WINDOW* win, <span class="keyword">int</span> &amp;x, <span class="keyword">int</span> &amp;y)</span></span>; <span class="comment">// 获取指定窗口光标位置，示例如下</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">move_up</span><span class="params">()</span> </span>&#123; <span class="comment">// 将光标上移</span></span><br><span class="line">	<span class="keyword">int</span> x, y;</span><br><span class="line">	getyx(stdscr, x, y); <span class="comment">// stdscr 表示标准屏幕</span></span><br><span class="line">	move(x - <span class="number">1</span>, y);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="指定位置输出"><a href="#指定位置输出" class="headerlink" title="指定位置输出"></a>指定位置输出</h3><p>在指定位置输出不必先 move 再 printw ，<br>ncurses 提供了 mv 函数前缀在指定位置输出。<br>例如 <code>mvprintw(1, 2, &quot;%d&quot;, 2)</code> 在 1 行 2 列输出 3 。<br>类似的有 mvaddch, mvaddstr 等。</p>
+<h2 id="颜色"><a href="#颜色" class="headerlink" title="颜色"></a>颜色</h2><h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><p>首先需要调用 has_color() 查看当前运行环境是否支持彩色。<br>调用 start_color() 初始化颜色，成功则返回 OK 。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">has_colors</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">start_color</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>成功后会初始化全局变量 COLORS 表示终端支持的颜色数量<br>还会有 COLOT_WHITE, COLOR_RED 等 8 个表示颜色的变量。</p>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>例如希望打印白底黑字的信息：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *info)</span> </span>&#123;</span><br><span class="line">	init_pair(<span class="number">1</span>, COLOR_BLACK, COLOR_WHITE);</span><br><span class="line">		<span class="comment">// 的一个参数表示编号，后面两个分别表示字体和背景颜色</span></span><br><span class="line">	attron(COLOR_PAIR(<span class="number">1</span>));</span><br><span class="line">		<span class="comment">// attron 是一个设置函数，COLOR_PAIR 返回指定编号的颜色信息</span></span><br><span class="line">	addstr(info);</span><br><span class="line">	attroff(COLOR_PAIR(<span class="number">1</span>));</span><br><span class="line">		<span class="comment">// attroff 关闭设置（若接下来需要用其他颜色可以不调用 attroff 而直接使用 attron 覆盖设置</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="错误示例"><a href="#错误示例" class="headerlink" title="错误示例"></a>错误示例</h3><p>值得注意的是，必须保证 init_pair 的编号不与其他已初始化的编号重复<br>一个错误的调用如下：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> *info = <span class="string">"ERROR CODE"</span>;</span><br><span class="line">init_pair(<span class="number">1</span>, COLOR_BLACK, COLOR_WHITE);</span><br><span class="line">attron(COLOR_PAIR(<span class="number">1</span>));</span><br><span class="line">addstr(info); <span class="comment">// 打印白底黑字</span></span><br><span class="line">init_pair(<span class="number">1</span>, COLOR_BLACK, COLOR_RED);</span><br><span class="line">attron(COLOR_PAIR(<span class="number">1</span>));</span><br><span class="line">addstr(info); <span class="comment">// 打印白底红字</span></span><br></pre></td></tr></table></figure>
+
+<p>上述代码的期望打印出白字和黑字两种不同的颜色，<br>但事实上只会打印出红色一种。<br>解决方案便是将白底红字的 pair 编号设为 2 。</p>
+<h2 id="窗口"><a href="#窗口" class="headerlink" title="窗口"></a>窗口</h2><p>ncurses 有窗口类 WINDOW 并提供了 stdscr 作为默认窗口。<br>有时一个窗口无法满足需要，此时需要自己新建窗口。</p>
+<h3 id="新建窗口"><a href="#新建窗口" class="headerlink" title="新建窗口"></a>新建窗口</h3><p>调用 newwin 来新建窗口。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 从 ([x], [y]) 开始新建 [line] 行 [column] 列的窗口。</span></span><br><span class="line"><span class="function">WINDOW *<span class="title">newwin</span><span class="params">(<span class="keyword">int</span> line, <span class="keyword">int</span> column, <span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>新建的窗口</p>
+<h3 id="通用输出"><a href="#通用输出" class="headerlink" title="通用输出"></a>通用输出</h3><p>addch, printw 等输出方式只输出到 stdscr 。<br>ncurses 提供了 w 前缀来输出到指定窗口。<br>例如 <code>wprintw(win, &quot;%d&quot;, 1)</code> 在 [win] 窗口输出 1 。<br>但是自己新建的窗口与 stdscr 不同，<br>若想在屏幕上显示需要调用 <code>wrefresh(win)</code> 刷新窗口。</p>
+<p>若想在窗口中指定位置输出，可以用 mvw 前缀函数。<br>例如 <code>mvwprintw(win, 1, 2, &quot;%d&quot;, 3)</code> 在 [win] 窗口的 1 行 2 列（ <strong>相对位置</strong> ）输出 3 。</p>
+<h3 id="子窗口"><a href="#子窗口" class="headerlink" title="子窗口"></a>子窗口</h3><p>调用 subwin 创建子窗口。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 从 ([x], [y]) 开始新建 [line] 行 [column] 列属于 [parent] 的子窗口。</span></span><br><span class="line"><span class="function">WINDOW *<span class="title">subwin</span><span class="params">(WINDOW *parent, <span class="keyword">int</span> line, <span class="keyword">int</span> column, <span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>子窗口与普通窗口的区别在于它与其父窗口共用屏幕储存空间，<br>子窗口修改时父窗口会直接受到影响。<br>比如新建了 stdscr 的子窗口 win ，<br>那么输出到 win 后想显示在屏幕不调用 wrefresh 而是调用 touchwin(stdscr) 。<br>touchwin 用于标记一个窗口被修改。</p>
+<h3 id="销毁窗口"><a href="#销毁窗口" class="headerlink" title="销毁窗口"></a>销毁窗口</h3><p>调用 delwin 销毁窗口。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">delwin</span><span class="params">(WINDOW *win)</span></span>; <span class="comment">// 销毁 [win] 窗口</span></span><br></pre></td></tr></table></figure>
+
+<p>窗口销毁后其在屏幕上对应的内容不会改变。</p>
+<h2 id="离开"><a href="#离开" class="headerlink" title="离开"></a>离开</h2><p>有时候可能需要离开 ncurses 回到行缓冲模式做些事情而且需要在之后回到 ncurses 。<br>例如 Vim 里面输入 :!ls 就会退出 ncurses 运行 ls 命令，并在用户敲下回车后回到 ncurses。</p>
+<p>调用 def_prog_mode 暂存，调用 reset_prog_mode 恢复。</p>
+<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	initscr();</span><br><span class="line">	printw(<span class="string">"Hello World !!!\n"</span>);</span><br><span class="line">	getch(); <span class="comment">// 等待用户输入</span></span><br><span class="line">	def_prog_mode(); <span class="comment">// 存储当前tty 模式</span></span><br><span class="line">	endwin(); <span class="comment">// 退出 ncurses 模式</span></span><br><span class="line">	system(<span class="string">"sh"</span>); <span class="comment">// 返回普通的行缓冲模式</span></span><br><span class="line">	reset_prog_mode(); <span class="comment">// 返回到 def_prog_mode() 存储的 tty 模式</span></span><br><span class="line">	refresh(); <span class="comment">// 刷新屏幕（必须！）</span></span><br><span class="line">	getch(); <span class="comment">// 等待用户输入</span></span><br><span class="line">	endwin(); <span class="comment">// 退出 ncurses 模式</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="输出中文等非-ASCII-字符"><a href="#输出中文等非-ASCII-字符" class="headerlink" title="输出中文等非 ASCII 字符"></a>输出中文等非 ASCII 字符</h2><p>事实上 ncurses 并不支持直接输出中文，<br>这意味着调用 printw(“中文”) 会是一堆乱码。<br>解决方案如下：</p>
+<h3 id="安装库"><a href="#安装库" class="headerlink" title="安装库"></a>安装库</h3><p>这需要另一个库。<br>通过 <code>sudo aptitude install libncurses5 libncursesw5 libncursesw5-dbg libncursesw5-dev</code> 安装</p>
+<h3 id="头文件"><a href="#头文件" class="headerlink" title="头文件"></a>头文件</h3><p>一定是 <code>#include &lt;ncurses.h&gt;</code> 而不是 <code>#include &lt;curses.h&gt;</code> 。<br>另外在 main.cpp <code>#include &lt;locale.h&gt;</code> 。</p>
+<h3 id="调用"><a href="#调用" class="headerlink" title="调用"></a>调用</h3><p>在调用 initscr() <strong>之前</strong> 调用 setlocale(LC_ALL, “”) 。</p>
+<h3 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h3><p>将 <code>-lncurses</code> 参数改为 <code>-lncursesw</code> 。</p>
 ]]></content>
   </entry>
   <entry>
@@ -1353,126 +1453,6 @@
 ]]></content>
   </entry>
   <entry>
-    <title>ncurses</title>
-    <url>/2019/10/01/ncurses/</url>
-    <content><![CDATA[<p>ncurses 是基于终端的十分强大的图形库。<br>Vim, screen, sl 等终端程序都用到了这个库（足以见其强大）。</p><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>部分系统默认安装了 ncurses ，手动安装的方式是： <code>sudo aptitude install ncurses-dev</code> 。</p><p>使用的程序需要 <code>#include &lt;ncurses.h&gt;</code>　。<br>编译时需要添加 <code>-lncurses</code> 参数进行链接。</p><a id="more"></a>
-
-
-<h2 id="开始和结束"><a href="#开始和结束" class="headerlink" title="开始和结束"></a>开始和结束</h2><p>调用 initscr 初始化窗口，endwin 结束窗口。</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;curses.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function">WINDOW *<span class="title">initscr</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">endwin</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br></pre></td></tr></table></figure>
-
-<h2 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h2><p>调用 initscr 后调用 endwin 前，printf, std::cout 等标准输出不会显示在屏幕上。<br>而输出到屏幕上需要 ncurses 提供的相应函数。</p>
-<h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">addch</span><span class="params">(<span class="keyword">const</span> chtype char_to_add)</span></span>;   <span class="comment">// 当前位置添加字符</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">addstr</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *string_to_add)</span></span>;    <span class="comment">// 当前位置添加字符串</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">printw</span><span class="params">(<span class="keyword">char</span> *format, ...)</span></span>;   <span class="comment">// 类似于 printf</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">refresh</span><span class="params">(<span class="keyword">void</span>)</span></span>;    <span class="comment">// 强制刷新物理屏幕</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">beep</span><span class="params">(<span class="keyword">void</span>)</span></span>;   <span class="comment">// 终端响铃</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">flash</span><span class="params">(<span class="keyword">void</span>)</span></span>;   <span class="comment">// 屏幕闪烁</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h2><p>调用 scanf, getchar, cin 等标准输入函数同样无效。</p>
-<h3 id="函数-1"><a href="#函数-1" class="headerlink" title="函数"></a>函数</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">cbreak</span><span class="params">()</span></span>;   <span class="comment">// 字符一键入，直接传给程序（不用按下回车）</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">nocbreak</span><span class="params">()</span></span>;  <span class="comment">// 关闭 cbreak</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">echo</span><span class="params">(<span class="keyword">void</span>)</span></span>; <span class="comment">// 开启输入回显</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">noecho</span><span class="params">(<span class="keyword">void</span>)</span></span>; <span class="comment">// 关闭输入回显</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getch</span><span class="params">(<span class="keyword">void</span>)</span></span>; <span class="comment">// 读入一个字符</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">scanw</span><span class="params">(<span class="keyword">char</span> *format, ...)</span></span>; <span class="comment">// 类似于 scanf</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">clear</span><span class="params">(<span class="keyword">void</span>)</span></span>; <span class="comment">// 清屏</span></span><br></pre></td></tr></table></figure>
-
-<p>输入函数通常是阻塞的，但是通过调用 nodelay(stdscr, TRUE); 可以关闭阻塞。<br>此时若输入函数未读取到内容会返回 ERR 。</p>
-<h2 id="光标"><a href="#光标" class="headerlink" title="光标"></a>光标</h2><p>控制光标。<br>调用 initscr 后调用 endwin 前，输出终端控制符改变光标是无效的。</p>
-<h3 id="函数及示例"><a href="#函数及示例" class="headerlink" title="函数及示例"></a>函数及示例</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">move</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>; <span class="comment">// 将光标移动到 [x] 行 [y] 列，左上角为 0 行 0 列</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">curs_set</span><span class="params">(<span class="keyword">int</span> visiblility)</span></span>; <span class="comment">// 参数为 0 表示隐藏光标，1 表示显示光标</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getyx</span><span class="params">(WINDOW* win, <span class="keyword">int</span> &amp;x, <span class="keyword">int</span> &amp;y)</span></span>; <span class="comment">// 获取指定窗口光标位置，示例如下</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">move_up</span><span class="params">()</span> </span>&#123; <span class="comment">// 将光标上移</span></span><br><span class="line">	<span class="keyword">int</span> x, y;</span><br><span class="line">	getyx(stdscr, x, y); <span class="comment">// stdscr 表示标准屏幕</span></span><br><span class="line">	move(x - <span class="number">1</span>, y);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="指定位置输出"><a href="#指定位置输出" class="headerlink" title="指定位置输出"></a>指定位置输出</h3><p>在指定位置输出不必先 move 再 printw ，<br>ncurses 提供了 mv 函数前缀在指定位置输出。<br>例如 <code>mvprintw(1, 2, &quot;%d&quot;, 2)</code> 在 1 行 2 列输出 3 。<br>类似的有 mvaddch, mvaddstr 等。</p>
-<h2 id="颜色"><a href="#颜色" class="headerlink" title="颜色"></a>颜色</h2><h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><p>首先需要调用 has_color() 查看当前运行环境是否支持彩色。<br>调用 start_color() 初始化颜色，成功则返回 OK 。</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">has_colors</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">start_color</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br></pre></td></tr></table></figure>
-
-<p>成功后会初始化全局变量 COLORS 表示终端支持的颜色数量<br>还会有 COLOT_WHITE, COLOR_RED 等 8 个表示颜色的变量。</p>
-<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>例如希望打印白底黑字的信息：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *info)</span> </span>&#123;</span><br><span class="line">	init_pair(<span class="number">1</span>, COLOR_BLACK, COLOR_WHITE);</span><br><span class="line">		<span class="comment">// 的一个参数表示编号，后面两个分别表示字体和背景颜色</span></span><br><span class="line">	attron(COLOR_PAIR(<span class="number">1</span>));</span><br><span class="line">		<span class="comment">// attron 是一个设置函数，COLOR_PAIR 返回指定编号的颜色信息</span></span><br><span class="line">	addstr(info);</span><br><span class="line">	attroff(COLOR_PAIR(<span class="number">1</span>));</span><br><span class="line">		<span class="comment">// attroff 关闭设置（若接下来需要用其他颜色可以不调用 attroff 而直接使用 attron 覆盖设置</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="错误示例"><a href="#错误示例" class="headerlink" title="错误示例"></a>错误示例</h3><p>值得注意的是，必须保证 init_pair 的编号不与其他已初始化的编号重复<br>一个错误的调用如下：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> *info = <span class="string">"ERROR CODE"</span>;</span><br><span class="line">init_pair(<span class="number">1</span>, COLOR_BLACK, COLOR_WHITE);</span><br><span class="line">attron(COLOR_PAIR(<span class="number">1</span>));</span><br><span class="line">addstr(info); <span class="comment">// 打印白底黑字</span></span><br><span class="line">init_pair(<span class="number">1</span>, COLOR_BLACK, COLOR_RED);</span><br><span class="line">attron(COLOR_PAIR(<span class="number">1</span>));</span><br><span class="line">addstr(info); <span class="comment">// 打印白底红字</span></span><br></pre></td></tr></table></figure>
-
-<p>上述代码的期望打印出白字和黑字两种不同的颜色，<br>但事实上只会打印出红色一种。<br>解决方案便是将白底红字的 pair 编号设为 2 。</p>
-<h2 id="窗口"><a href="#窗口" class="headerlink" title="窗口"></a>窗口</h2><p>ncurses 有窗口类 WINDOW 并提供了 stdscr 作为默认窗口。<br>有时一个窗口无法满足需要，此时需要自己新建窗口。</p>
-<h3 id="新建窗口"><a href="#新建窗口" class="headerlink" title="新建窗口"></a>新建窗口</h3><p>调用 newwin 来新建窗口。</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 从 ([x], [y]) 开始新建 [line] 行 [column] 列的窗口。</span></span><br><span class="line"><span class="function">WINDOW *<span class="title">newwin</span><span class="params">(<span class="keyword">int</span> line, <span class="keyword">int</span> column, <span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>;</span><br></pre></td></tr></table></figure>
-
-<p>新建的窗口</p>
-<h3 id="通用输出"><a href="#通用输出" class="headerlink" title="通用输出"></a>通用输出</h3><p>addch, printw 等输出方式只输出到 stdscr 。<br>ncurses 提供了 w 前缀来输出到指定窗口。<br>例如 <code>wprintw(win, &quot;%d&quot;, 1)</code> 在 [win] 窗口输出 1 。<br>但是自己新建的窗口与 stdscr 不同，<br>若想在屏幕上显示需要调用 <code>wrefresh(win)</code> 刷新窗口。</p>
-<p>若想在窗口中指定位置输出，可以用 mvw 前缀函数。<br>例如 <code>mvwprintw(win, 1, 2, &quot;%d&quot;, 3)</code> 在 [win] 窗口的 1 行 2 列（ <strong>相对位置</strong> ）输出 3 。</p>
-<h3 id="子窗口"><a href="#子窗口" class="headerlink" title="子窗口"></a>子窗口</h3><p>调用 subwin 创建子窗口。</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 从 ([x], [y]) 开始新建 [line] 行 [column] 列属于 [parent] 的子窗口。</span></span><br><span class="line"><span class="function">WINDOW *<span class="title">subwin</span><span class="params">(WINDOW *parent, <span class="keyword">int</span> line, <span class="keyword">int</span> column, <span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>;</span><br></pre></td></tr></table></figure>
-
-<p>子窗口与普通窗口的区别在于它与其父窗口共用屏幕储存空间，<br>子窗口修改时父窗口会直接受到影响。<br>比如新建了 stdscr 的子窗口 win ，<br>那么输出到 win 后想显示在屏幕不调用 wrefresh 而是调用 touchwin(stdscr) 。<br>touchwin 用于标记一个窗口被修改。</p>
-<h3 id="销毁窗口"><a href="#销毁窗口" class="headerlink" title="销毁窗口"></a>销毁窗口</h3><p>调用 delwin 销毁窗口。</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">delwin</span><span class="params">(WINDOW *win)</span></span>; <span class="comment">// 销毁 [win] 窗口</span></span><br></pre></td></tr></table></figure>
-
-<p>窗口销毁后其在屏幕上对应的内容不会改变。</p>
-<h2 id="离开"><a href="#离开" class="headerlink" title="离开"></a>离开</h2><p>有时候可能需要离开 ncurses 回到行缓冲模式做些事情而且需要在之后回到 ncurses 。<br>例如 Vim 里面输入 :!ls 就会退出 ncurses 运行 ls 命令，并在用户敲下回车后回到 ncurses。</p>
-<p>调用 def_prog_mode 暂存，调用 reset_prog_mode 恢复。</p>
-<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	initscr();</span><br><span class="line">	printw(<span class="string">"Hello World !!!\n"</span>);</span><br><span class="line">	getch(); <span class="comment">// 等待用户输入</span></span><br><span class="line">	def_prog_mode(); <span class="comment">// 存储当前tty 模式</span></span><br><span class="line">	endwin(); <span class="comment">// 退出 ncurses 模式</span></span><br><span class="line">	system(<span class="string">"sh"</span>); <span class="comment">// 返回普通的行缓冲模式</span></span><br><span class="line">	reset_prog_mode(); <span class="comment">// 返回到 def_prog_mode() 存储的 tty 模式</span></span><br><span class="line">	refresh(); <span class="comment">// 刷新屏幕（必须！）</span></span><br><span class="line">	getch(); <span class="comment">// 等待用户输入</span></span><br><span class="line">	endwin(); <span class="comment">// 退出 ncurses 模式</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="输出中文等非-ASCII-字符"><a href="#输出中文等非-ASCII-字符" class="headerlink" title="输出中文等非 ASCII 字符"></a>输出中文等非 ASCII 字符</h2><p>事实上 ncurses 并不支持直接输出中文，<br>这意味着调用 printw(“中文”) 会是一堆乱码。<br>解决方案如下：</p>
-<h3 id="安装库"><a href="#安装库" class="headerlink" title="安装库"></a>安装库</h3><p>这需要另一个库。<br>通过 <code>sudo aptitude install libncurses5 libncursesw5 libncursesw5-dbg libncursesw5-dev</code> 安装</p>
-<h3 id="头文件"><a href="#头文件" class="headerlink" title="头文件"></a>头文件</h3><p>一定是 <code>#include &lt;ncurses.h&gt;</code> 而不是 <code>#include &lt;curses.h&gt;</code> 。<br>另外在 main.cpp <code>#include &lt;locale.h&gt;</code> 。</p>
-<h3 id="调用"><a href="#调用" class="headerlink" title="调用"></a>调用</h3><p>在调用 initscr() <strong>之前</strong> 调用 setlocale(LC_ALL, “”) 。</p>
-<h3 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h3><p>将 <code>-lncurses</code> 参数改为 <code>-lncursesw</code> 。</p>
-]]></content>
-  </entry>
-  <entry>
-    <title>i3lock</title>
-    <url>/2019/10/01/i3lock/</url>
-    <content><![CDATA[<p><img src="http://kewth.gq/wp-content/uploads/2019/07/2_054-1.png" alt="i3lock-fancy"></p><p>折腾了半天 i3lock ，不写篇博客可惜了。</p><p>i3lock 有啥好折腾的？不就是挂个壁纸锁屏嘛。<br>就是因为 i3lock 太鸡肋了折腾啊。<br>于是我试过了 i3lock 的各种民间 fork 版本，在此总结。</p><h2 id="i3lock"><a href="#i3lock" class="headerlink" title="i3lock"></a><a href="https://github.com/i3/i3lock" target="_blank" rel="noopener">i3lock</a></h2><p>官方版本 i3lock ，稳定可靠，但是鸡肋。</p><p>安装：</p><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo aptitude install i3lock</span><br></pre></td></tr></table></figure><a id="more"></a>
-
-
-
-
-
-
-<p>使用：</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">i3lock</span><br></pre></td></tr></table></figure>
-
-<h2 id="i3lock-lixxia"><a href="#i3lock-lixxia" class="headerlink" title="i3lock-lixxia"></a><a href="https://github.com/Lixxia/i3lock" target="_blank" rel="noopener">i3lock-lixxia</a></h2><p>最友好，最简单的一个 i3lock fork ，<br>优化了中间显示的圆形框，并支持一些颜色自定义。</p>
-<p>安装：</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo aptitude remove i3lock</span><br><span class="line">sudo aptitude install pkg-config libxcb1-dev libxcb1 libgl2ps-dev libx11-dev libglc0 libglc-dev libcairo2-dev libcairo-gobject2 libcairo2-dev libxkbfile-dev libxkbfile1 libxkbcommon-dev libxkbcommon-x11-dev libxcb-xkb-dev libxcb-dpms0-dev libxcb-damage0-dev libpam0g-dev libev-dev libxcb-image0-dev libxcb-util0-dev libxcb-composite0-dev libxcb-xinerama0-dev</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/Lixxia/i3lock.git</span><br><span class="line"><span class="built_in">cd</span> i3lock</span><br><span class="line">autoreconf -<span class="keyword">fi</span></span><br><span class="line">mkdir -p build &amp;&amp; <span class="built_in">cd</span> build</span><br><span class="line">../configure</span><br><span class="line">make &amp;&amp; sudo make install</span><br></pre></td></tr></table></figure>
-
-<p>顺带一提，只有这个 fork 给出了靠谱的源码安装方式，<br>其他 fork 甚至 i3lock 本身的安装方式都给得很不靠谱。</p>
-<p>使用：</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">i3lock</span><br></pre></td></tr></table></figure>
-
-<h2 id="i3lock-blur"><a href="#i3lock-blur" class="headerlink" title="i3lock-blur"></a><a href="https://github.com/karulont/i3lock-blur" target="_blank" rel="noopener">i3lock-blur</a></h2><p>支持模糊背景，毛玻璃特效。</p>
-<p>安装：</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo aptitude remove i3lock</span><br><span class="line">sudo aptitude install pkg-config libxcb1-dev libxcb1 libgl2ps-dev libx11-dev libglc0 libglc-dev libcairo2-dev libcairo-gobject2 libcairo2-dev libxkbfile-dev libxkbfile1 libxkbcommon-dev libxkbcommon-x11-dev libxcb-xkb-dev libxcb-dpms0-dev libxcb-damage0-dev libpam0g-dev libev-dev libxcb-image0-dev libxcb-util0-dev libxcb-composite0-dev libxcb-xinerama0-dev</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/karulont/i3lock-blur.git</span><br><span class="line"><span class="built_in">cd</span> i3lock-blur</span><br><span class="line">autoreconf -<span class="keyword">fi</span></span><br><span class="line">mkdir -p build &amp;&amp; <span class="built_in">cd</span> build</span><br><span class="line">../configure</span><br><span class="line">make &amp;&amp; sudo make install</span><br></pre></td></tr></table></figure>
-
-<p>再顺带一提，只有这个 fork 直接给出了需要安装那些库。</p>
-<p>使用：</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">i3lock --fuzzy</span><br></pre></td></tr></table></figure>
-
-<h2 id="i3lockr"><a href="#i3lockr" class="headerlink" title="i3lockr"></a><a href="https://github.com/owenthewizard/i3lockr" target="_blank" rel="noopener">i3lockr</a></h2><p>支持模糊背景，毛玻璃特效。</p>
-<p>安装：</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">wget https://github.com/owenthewizard/i3lockr/releases/download/v1.0.0-final/i3lockr</span><br><span class="line">sudo mv i3lockr /usr/<span class="built_in">local</span>/bin</span><br></pre></td></tr></table></figure>
-
-<p>使用：</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">i3lockr --blur=25</span><br></pre></td></tr></table></figure>
-
-<h2 id="i3lock-color"><a href="#i3lock-color" class="headerlink" title="i3lock-color"></a><a href="https://github.com/PandorasFox/i3lock-color" target="_blank" rel="noopener">i3lock-color</a></h2><p>对于颜色的自定义十分全面。</p>
-<p>安装：</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo aptitude remove i3lock</span><br><span class="line">sudo aptitude install pkg-config libxcb1-dev libxcb1 libgl2ps-dev libx11-dev libglc0 libglc-dev libcairo2-dev libcairo-gobject2 libcairo2-dev libxkbfile-dev libxkbfile1 libxkbcommon-dev libxkbcommon-x11-dev libxcb-xkb-dev libxcb-dpms0-dev libxcb-damage0-dev libpam0g-dev libev-dev libxcb-image0-dev libxcb-util0-dev libxcb-composite0-dev libxcb-xinerama0-dev</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/PandorasFox/i3lock-color</span><br><span class="line"><span class="built_in">cd</span> i3lock-color</span><br><span class="line">autoreconf -<span class="keyword">fi</span></span><br><span class="line">mkdir -p build &amp;&amp; <span class="built_in">cd</span> build</span><br><span class="line">../configure</span><br><span class="line">make &amp;&amp; sudo make install</span><br></pre></td></tr></table></figure>
-
-<p>使用：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">i3lock</span><br></pre></td></tr></table></figure>
-
-<h2 id="i3lock-fancy"><a href="#i3lock-fancy" class="headerlink" title="i3lock-fancy"></a><a href="https://github.com/meskarune/i3lock-fancy" target="_blank" rel="noopener">i3lock-fancy</a></h2><p>重头戏，star 最多的 fork ，甚至比 i3lock 本身更多，被广泛使用。</p>
-<p>安装：</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo aptitude install i3lock-fancy</span><br></pre></td></tr></table></figure>
-
-<p>使用：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">i3lock-fancy</span><br></pre></td></tr></table></figure>
-
-<p>依赖 i3lock ，实际上是产生了背景图片再调用 i3lock 。<br>默认使用模糊背景，用起来没什么问题，但是事实上，<br>圆形框的颜色并不是最正确的，而是兼容的。</p>
-<p>源码里有这样一条：</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment"># try to use a forked version of i3lock with prepared parameters</span></span><br><span class="line"><span class="keyword">if</span> ! i3lock -n <span class="string">"<span class="variable">$&#123;PARAM[@]&#125;</span>"</span> -i <span class="string">"<span class="variable">$IMAGE</span>"</span> &gt; /dev/null 2&gt;&amp;1; <span class="keyword">then</span></span><br><span class="line">    <span class="comment"># We have failed, lets get back to stock one</span></span><br><span class="line">    i3lock -n -i <span class="string">"<span class="variable">$IMAGE</span>"</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
-
-<p>bash -x i3lock-fancy 就知道，<br>if 上的命令往往失败了，执行的是 if 里头的命令。</p>
-<p>事实上这需要 i3lock-color 。<br>那么，安装 i3lock-color 代替 i3lock 后，执行 i3lock-fancy ，<br>会发现圆形框的颜色与背景更加配了。</p>
-<h2 id="关于模糊背景"><a href="#关于模糊背景" class="headerlink" title="关于模糊背景"></a>关于模糊背景</h2><p>事实上，如果你用了 compton 再用 i3lock ，效果十分差劲。<br>解决这个方案，可以在调用 i3lock 前 kill compton ，结束后重新启动 compton 。</p>
-<p>拿 i3lock-fancy 举例，把之前展示的代码改成这样：</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment"># try to use a forked version of i3lock with prepared parameters</span></span><br><span class="line">pkill compton</span><br><span class="line"><span class="keyword">if</span> ! i3lock -n <span class="string">"<span class="variable">$&#123;PARAM[@]&#125;</span>"</span> -i <span class="string">"<span class="variable">$IMAGE</span>"</span> &gt; /dev/null 2&gt;&amp;1; <span class="keyword">then</span></span><br><span class="line">    <span class="comment"># We have failed, lets get back to stock one</span></span><br><span class="line">    i3lock -n -i <span class="string">"<span class="variable">$IMAGE</span>"</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line">compton -i 0.8 -b</span><br></pre></td></tr></table></figure>
-
-<p>其次，用模糊背景通常会比较慢，尤其是 i3lock-fancy ，需等上 3 秒左右。<br>那么如果调用 i3lock-fancy 之后你又做了一些别的操作，比如关闭一个窗口，<br>这时锁屏了，你会发现背景和原来的不一样。 :)</p>
-]]></content>
-  </entry>
-  <entry>
     <title>北京游记</title>
     <url>/2019/10/01/%E5%8C%97%E4%BA%AC%E6%B8%B8%E8%AE%B0/</url>
     <content><![CDATA[<p>Q: 我天天盯着你高考 (gq) 怎么一直没更新啊？<br>A: 懒。</p><p>因此这实际是一篇事后回忆。</p><h2 id="Day0"><a href="#Day0" class="headerlink" title="Day0"></a>Day0</h2><p>昨天晚上特意没去学校回了家，想着离高铁站近可以晚点起床，<br><del>真相是需要回家拿电脑</del><br>然而大早上 6 点就被叫了起来，早餐都没吃就直接送到了高铁站，<br>emm 还有大半个小时才检票，果断拿起颓书开始颓废，<br>不要问<a href>为什么不玩电脑</a>，心塞。</p><a id="more"></a>
@@ -1526,39 +1506,6 @@
 ]]></content>
   </entry>
   <entry>
-    <title>安徽游记 II</title>
-    <url>/2019/10/01/%E5%AE%89%E5%BE%BD%E6%B8%B8%E8%AE%B0%20II/</url>
-    <content><![CDATA[<p>12 天的培（kao）训（shi），坚持每日总结。</p><p>Day5 to Day8.</p><h2 id="Day5"><a href="#Day5" class="headerlink" title="Day5"></a>Day5</h2><h3 id="考试"><a href="#考试" class="headerlink" title="考试"></a>考试</h3><p>Nice 大夫今天又 A 掉一题！</p><p>第一题是在 DAG 上 q 个询问，每次询问一个子图的路径数量（子图点数和 O(n) ），<br>我想了想部分分， DAG 上 DP 嘛，但是这样复杂度上界是 $ O(q m) $ ，<br>瓶颈在于边的枚举（菊花树卡爆），然而子图的点可能很少，<br>然后想到了更暴力的：邻接矩阵存图然后用枚举点代替枚举边，<br>事实上邻接矩阵存不下，那就开 set （map 也行）动态加，<br>这复杂度 $ O(q n^2 log(m)) $ 啊然而，然后我想了好久优化都没想出来，<br>最后想着得多骗点分，于是就把两个暴力结合在了一起：<br>每次询问比较 $ n^2 log(m) $ 和 $ m $ 哪个小就跑哪个。。。<br>看上去很鸡肋，然而我理性分析了一波复杂度卧槽好像是 $ O(q m \sqrt{m} log(m)) $ ，<br>应该能骗蛮多分，于是交了，然后 A 了。。。</p><a id="more"></a>
-
-
-
-<p>第二题又是个计数，感觉像容斥，容斥之后怎么搞就有点迷，<br>于是写了个 dp ，手玩样例感觉没错，然而一测大样例就 WA 了，<br>于是手玩了几组数据，才发现 dp 错了，区间相交的情况没考虑好，<br>最后实在没思路，就打了个大暴力，有 30’, 还不错（ 10 倍于前面两天的暴力分 3’ ）。</p>
-<p>第三题哇塞维护一棵树，一看就感觉是树剖 + 线段树或者 LCT 之类的数据结构题，<br>然而还是不会，又敲了一发大暴力 10’ 走人。。。</p>
-<h3 id="讲题"><a href="#讲题" class="headerlink" title="讲题"></a>讲题</h3><p>下午讲题，一看 ppt 下面一行字：–Claris<br>woc 今天见到真人了，那位 bzoj 4000+ ac 的神仙！<br>第一题正解是按度数大小关系连边，出题人说数据难造所以有这种带 log 的算法卡过去了。<br>第二题果然是容斥，但是要通过一个奇妙的矩形构造转换为轮廓线 DP 。<br>第三题出题人说并不是数据结构题？blabla 讲了一堆奇妙的做法，<br>然而有 4 个人用动态 DP 搞过去了，出题人想到了这一点还特意去卡了但是没卡掉。</p>
-<h3 id="颓废"><a href="#颓废" class="headerlink" title="颓废"></a>颓废</h3><p>昨天没吃成必胜客来着，今天再次尝试，又剁一波手。<br>晚上真是诸事不利，tmd 这笔记本真的让人心累，<br>要啥没啥，网连续断了好几次，还真就不是网的问题，众人不断就我断，<br>什么 u 盘硬盘全没用，放我电脑上就读不到，<br>蓝牙更是做梦，键盘只能插线就算了还一老读不到，<br>还什么显像管出问题？动不动一些地方就全是红色的跟看恐怖片似的，<br>说优点倒也有，用个电脑火炉都省了，贼发热，那电风扇的声音时刻提醒你它还活着，<br>它要是太烫了还会自动关机，把你烤热了再降降温，贴心，<br>放歌听也很棒，我听快歌，它就一卡一卡的，一个字一个字给你放，根本不用怕听不清。<br>还能智能存储电量，充电线一拔就晓得要存储电量直接断电，不插上充电线不给开机，保证电池里的电永远满的。<br>别的什么还有一堆，懒得喷了，难受。</p>
-<h2 id="Day6"><a href="#Day6" class="headerlink" title="Day6"></a>Day6</h2><h3 id="考试-1"><a href="#考试-1" class="headerlink" title="考试"></a>考试</h3><p>前两天把 rp 用完了，今天全暴力都写挂。</p>
-<p>第一题我一开始推出个错误的结论，然后一想可以离线排序询问再预处理 dist 根据询问不断删除，删除不好搞换成加边弄个并查集维护联通块，<br>然而代码打完后一跑样例， WA 了，手玩样例才发现结论错了，这时候已经 9:30 了，凉凉，后面两题还没看。<br>最后打了大暴力 10’。</p>
-<p>第二题题读到一半就感觉是二分，读完题后推了一下发现可以转换成这样一个模型：<br>二维平面上给定 n 个点，每次将一条平行于 y 轴的直线右边的点都向上平移 dy 单位并回答所有点的斜率 (y / x) 的最大值。<br>然后就有了 $ o(n^2) $ 的暴力做法，这玩意一脸可以优化的样子，然而想了好久没思路，就交了 60’ 。</p>
-<p>第三题网格图 DAG, 感觉像要 dp ？但是不会，就打了暴力，结果还打挂了 RE ，爆零。</p>
-<h3 id="讲题-1"><a href="#讲题-1" class="headerlink" title="讲题"></a>讲题</h3><p>第一题什么神仙 dp $ O(n^4) $ 过 100 可还行，我太菜了没搞懂这个 dp ，<br>但是出题人提到有枚举端点 + 组合数的做法，我想去看看，一看哇塞简单多了，<br>而且复杂度优秀的 $ O(n^3) $ ，下午按照这个作法改了一段时间就 A 了（<del>期间没开 long long 一直爆炸</del>）。</p>
-<p>第二题好像是可以从我那个模型再转换一下后分块 + 凸包维护，感觉很神仙。</p>
-<p>第三题有个神奇的结论：<br>用两个不同的顺序得到的 dfs 后序，u 可以到 v 当且仅当 v 的两个 dfs 序都比 u 的小。<br>然后就可以将点按一个 dfs 序排序后按颜色设状态 dp, 把 dp 数组扔进树状数组后得出答案。</p>
-<h3 id="颓废-1"><a href="#颓废-1" class="headerlink" title="颓废"></a>颓废</h3><p>晚饭兰州拉面，清真的店子就是讲究，还贼好吃。<br>晚上感觉屁事没干，教练发了一套题要我们做（考试的题都改不完啊），<br>实在不想做，反正明天收，晚上就几乎一直在颓，找歌听。</p>
-<h2 id="Day7"><a href="#Day7" class="headerlink" title="Day7"></a>Day7</h2><h3 id="考试-2"><a href="#考试-2" class="headerlink" title="考试"></a>考试</h3><p>100 % 纯暴力的一天。</p>
-<p>第一题神仙计数题？好难啊感觉，于是想了想了 k 小于等于 3 会不会有什么规律可循，<br>发现 k = 1 的时候就是 $ 2^{n-1} $ ，就得到了 1 分的好成绩（这分给的真少）。<br>然后再手玩了一下 k = 2 和 k = 3 的情况，找到了一种计数方式，过了样例，就交了，<br>然并卵，k = 2 和 k = 3 的情况错了，只有 1’ 。</p>
-<p>第二题感觉是什么 set 启发式合并，但是合并之后只能暴力搞答案，<br>没思路，打了暴力，5 分的好成绩。</p>
-<p>第三题我靠麻将小模拟大搜索题？感觉很复杂，而且到第三题也没什么时间了，<br>于是打了一发只有字牌的特殊情况，20 分的好成绩。</p>
-<h3 id="讲题-2"><a href="#讲题-2" class="headerlink" title="讲题"></a>讲题</h3><p>出题人说这个题目难度是 T1 &gt;= T2 &gt;= T3 。</p>
-<p>T3 果然就是搜索，先算出最大答案（就是 9 ）统计面子搭子的数量再减答案。</p>
-<p>T2 线段树合并，玄学，还不会。</p>
-<p>T1 真有意思，标程生成函数加一大堆什么多项式的优化之类的，复杂，没懂。<br>但是有位大佬考试 27 分钟后就 A 了这题，出题人叫他上来讲讲，<br>然后他就开始秀操作：<br>“我的直觉告诉我 % n 等于 0 的方案和 % n 等于 x 的方案是一样的，然后就可以算出总方案数再除以 n 就可以……” ，<br>然后抄起笔写出一个式子，就是总方案数，<br>我靠这式子也贼好懂，全场都笑喷了，这大抵就是“爆踩标程”了吧，复杂度还更优秀。<br>出题人一脸懵逼，看了眼式子无奈的说了一句好吧那就这样吧。<br>做法就是考虑每个排列的贡献，枚举颜色的种类再用组合数和第二类斯特灵数算出这样的排列数再乘上贡献。<br>时间复杂度直接实现都是 $ O(k^2) $ （ k 只有 100 ，可见标程被爆踩），<br>把斯特灵数那部分的预处理用 NTT 优化复杂度就是 $ O(k logk) $ ，<br>听说还可以优化到 $ O(k) $ ，不会，但对这题来讲也没必要。</p>
-<h3 id="额外肝题"><a href="#额外肝题" class="headerlink" title="额外肝题"></a>额外肝题</h3><p>教练还额外发了一套题来着。<br>扫了遍题目，感觉第二题比较友好：<br>交换 i, j 枚举顺序后就把那个斯特灵数求和的部分设为函数 g ，<br>根据斯特灵数的递推，g 这玩意也是可以递推的，中间需要用到一排斯特灵数。<br>根据斯特灵数的容斥意义 NTT 预处理一排斯特灵数即可（卧槽这不就是上午 t3 吗）。<br><del>代码实现中，还没打完，随时准备被打脸。</del></p>
-<p><del>今天晚上竟然没有颓。</del></p>
-<h2 id="Day8"><a href="#Day8" class="headerlink" title="Day8"></a>Day8</h2><p><del>咕掉了</del></p>
-<h2 id="NEXT"><a href="#NEXT" class="headerlink" title="NEXT"></a>NEXT</h2><p><a href="/2019/03/29/安徽游记-iii/">Day9 to END</a></p>
-]]></content>
-  </entry>
-  <entry>
     <title>安徽游记 I</title>
     <url>/2019/10/01/%E5%AE%89%E5%BE%BD%E6%B8%B8%E8%AE%B0%20I/</url>
     <content><![CDATA[<p>12 天的培（kao）训（shi），坚持每日总结。</p><p>Day0 to Day4.</p><h2 id="Day0"><a href="#Day0" class="headerlink" title="Day0"></a>Day0</h2><p>大清早的就出发了，地铁还是那么挤。<br>先从长沙坐到南京，高铁上干坐 6 个小时贼贼贼贼贼无聊。</p><p>中午幸好提前买了泡面，随便应付一下，坐了一上午不动也不会感觉饿。<br>%%% 在高铁上一餐吃 70rmb 的 lzk 。</p><p>到了南京还得等 1 小时转到芜湖，期间 UNO 现学现玩，<br>第一把就赢了，一定是传说中的新手的欧气附体，<br>但是这欧气来得快去的也飞快，后面再也没赢过 ，并且一度成为全场最富（一次拿了 20 张牌也是没谁了）。</p><a id="more"></a>
@@ -1597,6 +1544,39 @@
 <p>另外碰到一件玄学的事，我那显示器一碰就断电，然后要不断地调那根线，<br>直到调到某个位置才可以打开，大概是因为接触不良，<br>然后一次又黑了，我调了贼久试遍了各种姿势还是然并卵，<br>没法子了，去找老师实在不行换个位置，<br>老师了解状况后过来随手一拨，真的是 <strong>随手一拨</strong> ，那显示屏就开了，就开了，开了，了，<br>emm 不愧是金牌教练，真的 6 。</p>
 <p>晚上本来去吃必胜客的，但是没注意到今天周日，人巨多，排队等座位都要半个小时，<br>几经周折最后去了 KFC ，也还不错。<br>旁边一家奶茶店搞活动，把一个计时器按到刚好 10s 就能领两大杯奶茶，然而大概是我脸黑，按了 3 次都差的蛮远。<br>晚上又是 UNO, 和 tyr 无意间相互精准放炮，<br>连续两次 tyr （下家）只剩一张牌，我掐指一算，猜到了那张牌的颜色，<br>自信地打出一张其它颜色牌，结果和他数字相同。。。</p>
 <h2 id="NEXT"><a href="#NEXT" class="headerlink" title="NEXT"></a>NEXT</h2><p><a href="/2019/03/26/安徽游记-ii/">Day5 to Day8</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>安徽游记 II</title>
+    <url>/2019/10/01/%E5%AE%89%E5%BE%BD%E6%B8%B8%E8%AE%B0%20II/</url>
+    <content><![CDATA[<p>12 天的培（kao）训（shi），坚持每日总结。</p><p>Day5 to Day8.</p><h2 id="Day5"><a href="#Day5" class="headerlink" title="Day5"></a>Day5</h2><h3 id="考试"><a href="#考试" class="headerlink" title="考试"></a>考试</h3><p>Nice 大夫今天又 A 掉一题！</p><p>第一题是在 DAG 上 q 个询问，每次询问一个子图的路径数量（子图点数和 O(n) ），<br>我想了想部分分， DAG 上 DP 嘛，但是这样复杂度上界是 $ O(q m) $ ，<br>瓶颈在于边的枚举（菊花树卡爆），然而子图的点可能很少，<br>然后想到了更暴力的：邻接矩阵存图然后用枚举点代替枚举边，<br>事实上邻接矩阵存不下，那就开 set （map 也行）动态加，<br>这复杂度 $ O(q n^2 log(m)) $ 啊然而，然后我想了好久优化都没想出来，<br>最后想着得多骗点分，于是就把两个暴力结合在了一起：<br>每次询问比较 $ n^2 log(m) $ 和 $ m $ 哪个小就跑哪个。。。<br>看上去很鸡肋，然而我理性分析了一波复杂度卧槽好像是 $ O(q m \sqrt{m} log(m)) $ ，<br>应该能骗蛮多分，于是交了，然后 A 了。。。</p><a id="more"></a>
+
+
+
+<p>第二题又是个计数，感觉像容斥，容斥之后怎么搞就有点迷，<br>于是写了个 dp ，手玩样例感觉没错，然而一测大样例就 WA 了，<br>于是手玩了几组数据，才发现 dp 错了，区间相交的情况没考虑好，<br>最后实在没思路，就打了个大暴力，有 30’, 还不错（ 10 倍于前面两天的暴力分 3’ ）。</p>
+<p>第三题哇塞维护一棵树，一看就感觉是树剖 + 线段树或者 LCT 之类的数据结构题，<br>然而还是不会，又敲了一发大暴力 10’ 走人。。。</p>
+<h3 id="讲题"><a href="#讲题" class="headerlink" title="讲题"></a>讲题</h3><p>下午讲题，一看 ppt 下面一行字：–Claris<br>woc 今天见到真人了，那位 bzoj 4000+ ac 的神仙！<br>第一题正解是按度数大小关系连边，出题人说数据难造所以有这种带 log 的算法卡过去了。<br>第二题果然是容斥，但是要通过一个奇妙的矩形构造转换为轮廓线 DP 。<br>第三题出题人说并不是数据结构题？blabla 讲了一堆奇妙的做法，<br>然而有 4 个人用动态 DP 搞过去了，出题人想到了这一点还特意去卡了但是没卡掉。</p>
+<h3 id="颓废"><a href="#颓废" class="headerlink" title="颓废"></a>颓废</h3><p>昨天没吃成必胜客来着，今天再次尝试，又剁一波手。<br>晚上真是诸事不利，tmd 这笔记本真的让人心累，<br>要啥没啥，网连续断了好几次，还真就不是网的问题，众人不断就我断，<br>什么 u 盘硬盘全没用，放我电脑上就读不到，<br>蓝牙更是做梦，键盘只能插线就算了还一老读不到，<br>还什么显像管出问题？动不动一些地方就全是红色的跟看恐怖片似的，<br>说优点倒也有，用个电脑火炉都省了，贼发热，那电风扇的声音时刻提醒你它还活着，<br>它要是太烫了还会自动关机，把你烤热了再降降温，贴心，<br>放歌听也很棒，我听快歌，它就一卡一卡的，一个字一个字给你放，根本不用怕听不清。<br>还能智能存储电量，充电线一拔就晓得要存储电量直接断电，不插上充电线不给开机，保证电池里的电永远满的。<br>别的什么还有一堆，懒得喷了，难受。</p>
+<h2 id="Day6"><a href="#Day6" class="headerlink" title="Day6"></a>Day6</h2><h3 id="考试-1"><a href="#考试-1" class="headerlink" title="考试"></a>考试</h3><p>前两天把 rp 用完了，今天全暴力都写挂。</p>
+<p>第一题我一开始推出个错误的结论，然后一想可以离线排序询问再预处理 dist 根据询问不断删除，删除不好搞换成加边弄个并查集维护联通块，<br>然而代码打完后一跑样例， WA 了，手玩样例才发现结论错了，这时候已经 9:30 了，凉凉，后面两题还没看。<br>最后打了大暴力 10’。</p>
+<p>第二题题读到一半就感觉是二分，读完题后推了一下发现可以转换成这样一个模型：<br>二维平面上给定 n 个点，每次将一条平行于 y 轴的直线右边的点都向上平移 dy 单位并回答所有点的斜率 (y / x) 的最大值。<br>然后就有了 $ o(n^2) $ 的暴力做法，这玩意一脸可以优化的样子，然而想了好久没思路，就交了 60’ 。</p>
+<p>第三题网格图 DAG, 感觉像要 dp ？但是不会，就打了暴力，结果还打挂了 RE ，爆零。</p>
+<h3 id="讲题-1"><a href="#讲题-1" class="headerlink" title="讲题"></a>讲题</h3><p>第一题什么神仙 dp $ O(n^4) $ 过 100 可还行，我太菜了没搞懂这个 dp ，<br>但是出题人提到有枚举端点 + 组合数的做法，我想去看看，一看哇塞简单多了，<br>而且复杂度优秀的 $ O(n^3) $ ，下午按照这个作法改了一段时间就 A 了（<del>期间没开 long long 一直爆炸</del>）。</p>
+<p>第二题好像是可以从我那个模型再转换一下后分块 + 凸包维护，感觉很神仙。</p>
+<p>第三题有个神奇的结论：<br>用两个不同的顺序得到的 dfs 后序，u 可以到 v 当且仅当 v 的两个 dfs 序都比 u 的小。<br>然后就可以将点按一个 dfs 序排序后按颜色设状态 dp, 把 dp 数组扔进树状数组后得出答案。</p>
+<h3 id="颓废-1"><a href="#颓废-1" class="headerlink" title="颓废"></a>颓废</h3><p>晚饭兰州拉面，清真的店子就是讲究，还贼好吃。<br>晚上感觉屁事没干，教练发了一套题要我们做（考试的题都改不完啊），<br>实在不想做，反正明天收，晚上就几乎一直在颓，找歌听。</p>
+<h2 id="Day7"><a href="#Day7" class="headerlink" title="Day7"></a>Day7</h2><h3 id="考试-2"><a href="#考试-2" class="headerlink" title="考试"></a>考试</h3><p>100 % 纯暴力的一天。</p>
+<p>第一题神仙计数题？好难啊感觉，于是想了想了 k 小于等于 3 会不会有什么规律可循，<br>发现 k = 1 的时候就是 $ 2^{n-1} $ ，就得到了 1 分的好成绩（这分给的真少）。<br>然后再手玩了一下 k = 2 和 k = 3 的情况，找到了一种计数方式，过了样例，就交了，<br>然并卵，k = 2 和 k = 3 的情况错了，只有 1’ 。</p>
+<p>第二题感觉是什么 set 启发式合并，但是合并之后只能暴力搞答案，<br>没思路，打了暴力，5 分的好成绩。</p>
+<p>第三题我靠麻将小模拟大搜索题？感觉很复杂，而且到第三题也没什么时间了，<br>于是打了一发只有字牌的特殊情况，20 分的好成绩。</p>
+<h3 id="讲题-2"><a href="#讲题-2" class="headerlink" title="讲题"></a>讲题</h3><p>出题人说这个题目难度是 T1 &gt;= T2 &gt;= T3 。</p>
+<p>T3 果然就是搜索，先算出最大答案（就是 9 ）统计面子搭子的数量再减答案。</p>
+<p>T2 线段树合并，玄学，还不会。</p>
+<p>T1 真有意思，标程生成函数加一大堆什么多项式的优化之类的，复杂，没懂。<br>但是有位大佬考试 27 分钟后就 A 了这题，出题人叫他上来讲讲，<br>然后他就开始秀操作：<br>“我的直觉告诉我 % n 等于 0 的方案和 % n 等于 x 的方案是一样的，然后就可以算出总方案数再除以 n 就可以……” ，<br>然后抄起笔写出一个式子，就是总方案数，<br>我靠这式子也贼好懂，全场都笑喷了，这大抵就是“爆踩标程”了吧，复杂度还更优秀。<br>出题人一脸懵逼，看了眼式子无奈的说了一句好吧那就这样吧。<br>做法就是考虑每个排列的贡献，枚举颜色的种类再用组合数和第二类斯特灵数算出这样的排列数再乘上贡献。<br>时间复杂度直接实现都是 $ O(k^2) $ （ k 只有 100 ，可见标程被爆踩），<br>把斯特灵数那部分的预处理用 NTT 优化复杂度就是 $ O(k logk) $ ，<br>听说还可以优化到 $ O(k) $ ，不会，但对这题来讲也没必要。</p>
+<h3 id="额外肝题"><a href="#额外肝题" class="headerlink" title="额外肝题"></a>额外肝题</h3><p>教练还额外发了一套题来着。<br>扫了遍题目，感觉第二题比较友好：<br>交换 i, j 枚举顺序后就把那个斯特灵数求和的部分设为函数 g ，<br>根据斯特灵数的递推，g 这玩意也是可以递推的，中间需要用到一排斯特灵数。<br>根据斯特灵数的容斥意义 NTT 预处理一排斯特灵数即可（卧槽这不就是上午 t3 吗）。<br><del>代码实现中，还没打完，随时准备被打脸。</del></p>
+<p><del>今天晚上竟然没有颓。</del></p>
+<h2 id="Day8"><a href="#Day8" class="headerlink" title="Day8"></a>Day8</h2><p><del>咕掉了</del></p>
+<h2 id="NEXT"><a href="#NEXT" class="headerlink" title="NEXT"></a>NEXT</h2><p><a href="/2019/03/29/安徽游记-iii/">Day9 to END</a></p>
 ]]></content>
   </entry>
   <entry>
@@ -1686,6 +1666,26 @@ int QCNT;</code></pre><p>note 那一排暴露啦，这命名空间 lkjjhkfdlhgkj
 <h2 id="相交"><a href="#相交" class="headerlink" title="相交"></a>相交</h2><p>将原图做一次 Floyd ，<br>之后就可以知道任意两点 x, y ，x 是否能到达 y 。</p>
 <p>把建立二分图的方法改造了一下，只要 x 能到达 y ，<br>就直接连一条边 (x, y)，这样就可以“跨过”其它链来连接两条链了。</p>
 <p>这个时候，原图最长反链长度 = 最小链覆盖 = 二分图最大匹配。</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>NTT</title>
+    <url>/2019/10/01/NTT/</url>
+    <content><![CDATA[<p>NTT ，快速数论变换，功能与 <a href>FFT</a> 完全一致，用来求多项式卷积。<br>NTT 优点在于常数稍微小一点，没有精度误差。<br>但是 NTT 系数必须是取模意义下的整数，且对模数有特殊要求。</p><h2 id="FFT-的单位根"><a href="#FFT-的单位根" class="headerlink" title="FFT 的单位根"></a>FFT 的单位根</h2><p>建议前置 <a href>FFT</a> 。</p><p>FFT 可以分治优化复杂度的原因是用到了单位根的如下性质：<br>$$ W_{2n}^{2k} = W_n^k $$<br>$$ W_n^n = 1 $$<br>$$ W_n^{k + n/2} + W_n^k = 0 $$</p><a id="more"></a>
+
+
+<p>可是用单位根做 FFT ，需要用到复数和浮点数，常数大而且有精度误差。<br>还有别的数有这样的性质来替换单位根吗？<br>遗憾的是，可以证明复数域下只有单位根有这样的性质。</p>
+<h2 id="取模"><a href="#取模" class="headerlink" title="取模"></a>取模</h2><p>实际计算多项式卷积时，常常要求对系数取模以避免不必要的麻烦。<br>那么这时候系数实际上是在模意义下的， FFT 将它转到复数域上运算，似乎没有必要。<br>模意义下什么数可以有单位根那样的性质？<br>有的，那就是原根。</p>
+<h2 id="原根"><a href="#原根" class="headerlink" title="原根"></a>原根</h2><p>对于某些模数 P ，模 P 意义下的原根 g 满足：<br>对任意 $ 0 \leq k \leq P - 2 $ ， $ g^k $ 互不相同。<br>有些模数可能不存在原根，这里先假设模数都有原根。</p>
+<p>假设系数是模 P 意义下的，P 是形如 $ 2^k + 1 $ 的质数，其原根为 g ，<br>设 $ G_n = g^{\frac{P-1}{n}} mod P $ ，其中 n 是小于 P 的 2 的整次幂 。<br>那么在模 P 意义下， G 满足：</p>
+<p>$$ G_{2n}^{2k} = G_n^k $$</p>
+<p>由 G 定义可证：<br>$ G_{2n}^{2k} = g^{\frac{P-1}{2n}2k} = g^{\frac{P-1}{n}k} = G_n^k$</p>
+<p>$$ G_n^n = 1 $$</p>
+<p>由 G 定义可得：<br>$ G_n^n = g^{\frac{P-1}{n}n} = g^{P-1}  $<br>由费马小定理：<br>$ G_n^n =  g^{P-1} = 1 $</p>
+<p>$$ G_n^{k + n/2} + G_n^k = 0 $$</p>
+<p>有第一条性质可得：<br>$ G_n^{n/2} = G_2^1 = g^{\frac{P-1}{2}} $<br>因为 $ (g^{\frac{P-1}{2}})^2 = g^{P-1} = 1 $<br>根据原根的性质：<br>$ g^{\frac{P-1}{2}} \neq g^{P-1} $<br>那么 $ g^{\frac{P-1}{2}} = -1 $ （即 P - 1）。<br>那么可以证得：<br>$ G_n^{k + n/2} = G_n^k G_n^{n/2} = G_n^k(-1) $<br>于是 $ G_n^{k + n/2} + G_n^k = 0 $</p>
+<h2 id="NTT"><a href="#NTT" class="headerlink" title="NTT"></a>NTT</h2><p>于是 NTT 的算法思路就呼之欲出了：把 $ W_n $ 全部替换为 $ G_n $ 即可。<br>这样就可以算出模 P 意义下的多项式卷积了。<br>其中 n 必须是 2 的整次幂，不足的补零即可。</p>
+<p>现在唯一的问题是，模数 P 要满足什么条件，以及如何求模 P 意义下的原根 g 。<br>然而我并不想深入展开，大多数情况下模数都是 998244353 ，其原根为 3 。<br>一般 NTT 只会用这个模数，不会有毒瘤出题人卡这个模数的（我不对这句话负责）。</p>
 ]]></content>
   </entry>
 </search>
