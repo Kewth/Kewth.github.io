@@ -1,6 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>牛客练习赛57</title>
+    <url>/2020/01/10/%E7%89%9B%E5%AE%A2%E7%BB%83%E4%B9%A0%E8%B5%9B57/</url>
+    <content><![CDATA[<p>咕咕咕我又来写总结啦。</p><p>第一次打牛客，一进牛客发现还有 30s 就有一场比赛，就报了名。<br>一开始只是打算玩玩，看看牛客的题来着。</p><p><img src="/images/nowcoder.com.png" alt="牛客"></p><p>一不小心上瘾了，可惜不计 rating 。<br>（另外 %%% @CYJian 喜提 rank1 ）</p><p>先看 A 题挺签到的，花几分钟过了，然而交 WA 了一次，原因竟然是下标 0, 1 开头混用了，感觉自己很蠢。</p><a id="more"></a>
+
+
+
+
+<p>然后想着玩玩嘛，就直接开 F 了。</p>
+<p>嗯看着是道数学题？这个求和方式是个组合数嘛，询问就是一个这玩意：</p>
+<p>$$\sum_{i=l}^r a_i C_{r-l}^{i-l}$$</p>
+<p>我猜这个个组合数展开成阶乘然后配卷积，然后推式子，推了一年没有半点用，连个卷积的影子都没有。</p>
+<p>然后打算根据组合意义算，就是在一个三角形上走的路径数，<br>三角形有 $O(n^2)$ 个点，每个点可以 $O(1)$ 递推 ($A_{i,j} = A_{i-1,j} + A_{i-1,j-1}$) ，<br>询问就是询问一个点的值 ($A_{r,r-l}$) 。<br>但同时根据组合数的性质，每个点可以 $O(k)$ 地由该点底下 k 层的 k 个点递推出来。<br>暴力预处理是 $O(n^2+q)$ 的，暴力询问是 $O(n+qn)$ 的，这看着就是要在两者之间求得平衡。</p>
+<p>于是我想到了分块，只要预处理三角形若干排，然后询问就可以找到比较近的已经处理的一排暴力算。</p>
+<p>如果两排的间距是 $B$ ，那么询问复杂度就是 $O(B)$ 的。</p>
+<p>然而怎么预处理？每个点拿组合数直接算复杂度仍然是 $O(n^2)$ 的 🤔 。</p>
+<p>然后卡这里又卡了一年，后来灵光一现发现两排之间的生成函数就是乘一个 $(1+x)$ ，<br>用 NTT 即可在两排之间快速预处理，乘一个 $(1+x)^B$ 就行了。<br><del>$(1+x)^B$ 不就是是组合数的生成函数吗？这都没想到感觉自己很睿智。</del></p>
+<p>那么预处理的复杂度为 $O(nlogn\frac{n}{B})$ 的，和询问的复杂度均衡一下就可以得到一个 $O(n\sqrt{nlogn})$ 的做法。<br>（假定 $n, q$ 同阶）</p>
+<p>然后就开始码，码完 T 了，T 了两次，经 @CYJian 指点发现 $B$ 设小了，导致带 log 的卷积部分跑得很慢。<br>改完就 A 了，过了 1.5h 竟然还拿了一血。<br>这个时候没记错是 rank140 左右。</p>
+<p>然后开了一眼 D 感觉就是个马拉车，打完发现疯狂 WA ，仔细读题发现要求找两个子串，是恰好两个，用一个都不行 wdnmd 😡 。</p>
+<p>A 掉 D 就开始飘了， B 题细节题写的一批，C 题是个 FWT 。</p>
+<p>结果 C 题也疯狂 WA ：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">	<span class="keyword">while</span>(T --) &#123;</span><br><span class="line">		<span class="comment">// ....</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i ++)</span><br><span class="line">			<span class="keyword">if</span>(w[i] &gt; W) &#123;</span><br><span class="line">				<span class="built_in">puts</span>(<span class="string">"No"</span>);</span><br><span class="line">				<span class="keyword">continue</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		<span class="comment">// ....</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>原因竟然是这个特判，它的 continue 只对 for 有效。。。<br>都打了两三年代码竟然犯这个错误。。。</p>
+<p>最后打完就只有几分钟了，竟然上了 rank4 ，罚时高出天际。</p>
+<p>没有被抽中 😭 😭 😭 😔 😔 😔 。</p>
+]]></content>
+      <categories>
+        <category>总结</category>
+      </categories>
+      <tags>
+        <tag>牛客</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>miller-rabin 和 pollard-rho</title>
     <url>/2020/01/06/miller-rabin-%E5%92%8C-pollard-rho/</url>
     <content><![CDATA[<h2 id="miller-rabin"><a href="#miller-rabin" class="headerlink" title="miller-rabin"></a>miller-rabin</h2><p>用于快速测试一个数 $n$ 是否为质数，有概率出错。</p><p>不妨假设 $n$ 是奇数，此外 miller-rabin 需要随意选取一个小质数 $p$ 。</p><h4 id="理论"><a href="#理论" class="headerlink" title="理论"></a>理论</h4><p>miller-rabin 用到的两个基本定理：</p><ul>
@@ -1215,6 +1250,26 @@
 ]]></content>
   </entry>
   <entry>
+    <title>NTT</title>
+    <url>/2019/10/01/NTT/</url>
+    <content><![CDATA[<p>NTT ，快速数论变换，功能与 <a href>FFT</a> 完全一致，用来求多项式卷积。<br>NTT 优点在于常数稍微小一点，没有精度误差。<br>但是 NTT 系数必须是取模意义下的整数，且对模数有特殊要求。</p><h2 id="FFT-的单位根"><a href="#FFT-的单位根" class="headerlink" title="FFT 的单位根"></a>FFT 的单位根</h2><p>建议前置 <a href>FFT</a> 。</p><p>FFT 可以分治优化复杂度的原因是用到了单位根的如下性质：<br>$$ W_{2n}^{2k} = W_n^k $$<br>$$ W_n^n = 1 $$<br>$$ W_n^{k + n/2} + W_n^k = 0 $$</p><a id="more"></a>
+
+
+<p>可是用单位根做 FFT ，需要用到复数和浮点数，常数大而且有精度误差。<br>还有别的数有这样的性质来替换单位根吗？<br>遗憾的是，可以证明复数域下只有单位根有这样的性质。</p>
+<h2 id="取模"><a href="#取模" class="headerlink" title="取模"></a>取模</h2><p>实际计算多项式卷积时，常常要求对系数取模以避免不必要的麻烦。<br>那么这时候系数实际上是在模意义下的， FFT 将它转到复数域上运算，似乎没有必要。<br>模意义下什么数可以有单位根那样的性质？<br>有的，那就是原根。</p>
+<h2 id="原根"><a href="#原根" class="headerlink" title="原根"></a>原根</h2><p>对于某些模数 P ，模 P 意义下的原根 g 满足：<br>对任意 $ 0 \leq k \leq P - 2 $ ， $ g^k $ 互不相同。<br>有些模数可能不存在原根，这里先假设模数都有原根。</p>
+<p>假设系数是模 P 意义下的，P 是形如 $ 2^k + 1 $ 的质数，其原根为 g ，<br>设 $ G_n = g^{\frac{P-1}{n}} mod P $ ，其中 n 是小于 P 的 2 的整次幂 。<br>那么在模 P 意义下， G 满足：</p>
+<p>$$ G_{2n}^{2k} = G_n^k $$</p>
+<p>由 G 定义可证：<br>$ G_{2n}^{2k} = g^{\frac{P-1}{2n}2k} = g^{\frac{P-1}{n}k} = G_n^k$</p>
+<p>$$ G_n^n = 1 $$</p>
+<p>由 G 定义可得：<br>$ G_n^n = g^{\frac{P-1}{n}n} = g^{P-1}  $<br>由费马小定理：<br>$ G_n^n =  g^{P-1} = 1 $</p>
+<p>$$ G_n^{k + n/2} + G_n^k = 0 $$</p>
+<p>有第一条性质可得：<br>$ G_n^{n/2} = G_2^1 = g^{\frac{P-1}{2}} $<br>因为 $ (g^{\frac{P-1}{2}})^2 = g^{P-1} = 1 $<br>根据原根的性质：<br>$ g^{\frac{P-1}{2}} \neq g^{P-1} $<br>那么 $ g^{\frac{P-1}{2}} = -1 $ （即 P - 1）。<br>那么可以证得：<br>$ G_n^{k + n/2} = G_n^k G_n^{n/2} = G_n^k(-1) $<br>于是 $ G_n^{k + n/2} + G_n^k = 0 $</p>
+<h2 id="NTT"><a href="#NTT" class="headerlink" title="NTT"></a>NTT</h2><p>于是 NTT 的算法思路就呼之欲出了：把 $ W_n $ 全部替换为 $ G_n $ 即可。<br>这样就可以算出模 P 意义下的多项式卷积了。<br>其中 n 必须是 2 的整次幂，不足的补零即可。</p>
+<p>现在唯一的问题是，模数 P 要满足什么条件，以及如何求模 P 意义下的原根 g 。<br>然而我并不想深入展开，大多数情况下模数都是 998244353 ，其原根为 3 。<br>一般 NTT 只会用这个模数，不会有毒瘤出题人卡这个模数的（我不对这句话负责）。</p>
+]]></content>
+  </entry>
+  <entry>
     <title>i3</title>
     <url>/2019/10/01/i3/</url>
     <content><![CDATA[<h2 id="历程"><a href="#历程" class="headerlink" title="历程"></a>历程</h2><ul>
@@ -1260,69 +1315,6 @@
 <h3 id="透明"><a href="#透明" class="headerlink" title="透明"></a>透明</h3><p>也许你给终端模拟器设置了透明度，很遗憾，在 i3 上没用。<br>解决方案是下载 compton ，运行 <code>compton -b</code> 即可。</p>
 <h2 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h2><p>你可以很自由地向 i3 发送命令，<code>i3-msg</code> 提供了一系列接口，<br>足以帮助完成更复杂的定制。</p>
 <p>使用 <code>i3-input</code> 可以直接向 i3 发送一条命令。</p>
-]]></content>
-  </entry>
-  <entry>
-    <title>i3lock</title>
-    <url>/2019/10/01/i3lock/</url>
-    <content><![CDATA[<p><img src="http://kewth.gq/wp-content/uploads/2019/07/2_054-1.png" alt="i3lock-fancy"></p><p>折腾了半天 i3lock ，不写篇博客可惜了。</p><p>i3lock 有啥好折腾的？不就是挂个壁纸锁屏嘛。<br>就是因为 i3lock 太鸡肋了折腾啊。<br>于是我试过了 i3lock 的各种民间 fork 版本，在此总结。</p><h2 id="i3lock"><a href="#i3lock" class="headerlink" title="i3lock"></a><a href="https://github.com/i3/i3lock" target="_blank" rel="noopener">i3lock</a></h2><p>官方版本 i3lock ，稳定可靠，但是鸡肋。</p><p>安装：</p><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo aptitude install i3lock</span><br></pre></td></tr></table></figure><a id="more"></a>
-
-
-
-
-
-
-<p>使用：</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">i3lock</span><br></pre></td></tr></table></figure>
-
-<h2 id="i3lock-lixxia"><a href="#i3lock-lixxia" class="headerlink" title="i3lock-lixxia"></a><a href="https://github.com/Lixxia/i3lock" target="_blank" rel="noopener">i3lock-lixxia</a></h2><p>最友好，最简单的一个 i3lock fork ，<br>优化了中间显示的圆形框，并支持一些颜色自定义。</p>
-<p>安装：</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo aptitude remove i3lock</span><br><span class="line">sudo aptitude install pkg-config libxcb1-dev libxcb1 libgl2ps-dev libx11-dev libglc0 libglc-dev libcairo2-dev libcairo-gobject2 libcairo2-dev libxkbfile-dev libxkbfile1 libxkbcommon-dev libxkbcommon-x11-dev libxcb-xkb-dev libxcb-dpms0-dev libxcb-damage0-dev libpam0g-dev libev-dev libxcb-image0-dev libxcb-util0-dev libxcb-composite0-dev libxcb-xinerama0-dev</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/Lixxia/i3lock.git</span><br><span class="line"><span class="built_in">cd</span> i3lock</span><br><span class="line">autoreconf -<span class="keyword">fi</span></span><br><span class="line">mkdir -p build &amp;&amp; <span class="built_in">cd</span> build</span><br><span class="line">../configure</span><br><span class="line">make &amp;&amp; sudo make install</span><br></pre></td></tr></table></figure>
-
-<p>顺带一提，只有这个 fork 给出了靠谱的源码安装方式，<br>其他 fork 甚至 i3lock 本身的安装方式都给得很不靠谱。</p>
-<p>使用：</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">i3lock</span><br></pre></td></tr></table></figure>
-
-<h2 id="i3lock-blur"><a href="#i3lock-blur" class="headerlink" title="i3lock-blur"></a><a href="https://github.com/karulont/i3lock-blur" target="_blank" rel="noopener">i3lock-blur</a></h2><p>支持模糊背景，毛玻璃特效。</p>
-<p>安装：</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo aptitude remove i3lock</span><br><span class="line">sudo aptitude install pkg-config libxcb1-dev libxcb1 libgl2ps-dev libx11-dev libglc0 libglc-dev libcairo2-dev libcairo-gobject2 libcairo2-dev libxkbfile-dev libxkbfile1 libxkbcommon-dev libxkbcommon-x11-dev libxcb-xkb-dev libxcb-dpms0-dev libxcb-damage0-dev libpam0g-dev libev-dev libxcb-image0-dev libxcb-util0-dev libxcb-composite0-dev libxcb-xinerama0-dev</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/karulont/i3lock-blur.git</span><br><span class="line"><span class="built_in">cd</span> i3lock-blur</span><br><span class="line">autoreconf -<span class="keyword">fi</span></span><br><span class="line">mkdir -p build &amp;&amp; <span class="built_in">cd</span> build</span><br><span class="line">../configure</span><br><span class="line">make &amp;&amp; sudo make install</span><br></pre></td></tr></table></figure>
-
-<p>再顺带一提，只有这个 fork 直接给出了需要安装那些库。</p>
-<p>使用：</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">i3lock --fuzzy</span><br></pre></td></tr></table></figure>
-
-<h2 id="i3lockr"><a href="#i3lockr" class="headerlink" title="i3lockr"></a><a href="https://github.com/owenthewizard/i3lockr" target="_blank" rel="noopener">i3lockr</a></h2><p>支持模糊背景，毛玻璃特效。</p>
-<p>安装：</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">wget https://github.com/owenthewizard/i3lockr/releases/download/v1.0.0-final/i3lockr</span><br><span class="line">sudo mv i3lockr /usr/<span class="built_in">local</span>/bin</span><br></pre></td></tr></table></figure>
-
-<p>使用：</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">i3lockr --blur=25</span><br></pre></td></tr></table></figure>
-
-<h2 id="i3lock-color"><a href="#i3lock-color" class="headerlink" title="i3lock-color"></a><a href="https://github.com/PandorasFox/i3lock-color" target="_blank" rel="noopener">i3lock-color</a></h2><p>对于颜色的自定义十分全面。</p>
-<p>安装：</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo aptitude remove i3lock</span><br><span class="line">sudo aptitude install pkg-config libxcb1-dev libxcb1 libgl2ps-dev libx11-dev libglc0 libglc-dev libcairo2-dev libcairo-gobject2 libcairo2-dev libxkbfile-dev libxkbfile1 libxkbcommon-dev libxkbcommon-x11-dev libxcb-xkb-dev libxcb-dpms0-dev libxcb-damage0-dev libpam0g-dev libev-dev libxcb-image0-dev libxcb-util0-dev libxcb-composite0-dev libxcb-xinerama0-dev</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/PandorasFox/i3lock-color</span><br><span class="line"><span class="built_in">cd</span> i3lock-color</span><br><span class="line">autoreconf -<span class="keyword">fi</span></span><br><span class="line">mkdir -p build &amp;&amp; <span class="built_in">cd</span> build</span><br><span class="line">../configure</span><br><span class="line">make &amp;&amp; sudo make install</span><br></pre></td></tr></table></figure>
-
-<p>使用：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">i3lock</span><br></pre></td></tr></table></figure>
-
-<h2 id="i3lock-fancy"><a href="#i3lock-fancy" class="headerlink" title="i3lock-fancy"></a><a href="https://github.com/meskarune/i3lock-fancy" target="_blank" rel="noopener">i3lock-fancy</a></h2><p>重头戏，star 最多的 fork ，甚至比 i3lock 本身更多，被广泛使用。</p>
-<p>安装：</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo aptitude install i3lock-fancy</span><br></pre></td></tr></table></figure>
-
-<p>使用：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">i3lock-fancy</span><br></pre></td></tr></table></figure>
-
-<p>依赖 i3lock ，实际上是产生了背景图片再调用 i3lock 。<br>默认使用模糊背景，用起来没什么问题，但是事实上，<br>圆形框的颜色并不是最正确的，而是兼容的。</p>
-<p>源码里有这样一条：</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment"># try to use a forked version of i3lock with prepared parameters</span></span><br><span class="line"><span class="keyword">if</span> ! i3lock -n <span class="string">"<span class="variable">$&#123;PARAM[@]&#125;</span>"</span> -i <span class="string">"<span class="variable">$IMAGE</span>"</span> &gt; /dev/null 2&gt;&amp;1; <span class="keyword">then</span></span><br><span class="line">    <span class="comment"># We have failed, lets get back to stock one</span></span><br><span class="line">    i3lock -n -i <span class="string">"<span class="variable">$IMAGE</span>"</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
-
-<p>bash -x i3lock-fancy 就知道，<br>if 上的命令往往失败了，执行的是 if 里头的命令。</p>
-<p>事实上这需要 i3lock-color 。<br>那么，安装 i3lock-color 代替 i3lock 后，执行 i3lock-fancy ，<br>会发现圆形框的颜色与背景更加配了。</p>
-<h2 id="关于模糊背景"><a href="#关于模糊背景" class="headerlink" title="关于模糊背景"></a>关于模糊背景</h2><p>事实上，如果你用了 compton 再用 i3lock ，效果十分差劲。<br>解决这个方案，可以在调用 i3lock 前 kill compton ，结束后重新启动 compton 。</p>
-<p>拿 i3lock-fancy 举例，把之前展示的代码改成这样：</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment"># try to use a forked version of i3lock with prepared parameters</span></span><br><span class="line">pkill compton</span><br><span class="line"><span class="keyword">if</span> ! i3lock -n <span class="string">"<span class="variable">$&#123;PARAM[@]&#125;</span>"</span> -i <span class="string">"<span class="variable">$IMAGE</span>"</span> &gt; /dev/null 2&gt;&amp;1; <span class="keyword">then</span></span><br><span class="line">    <span class="comment"># We have failed, lets get back to stock one</span></span><br><span class="line">    i3lock -n -i <span class="string">"<span class="variable">$IMAGE</span>"</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line">compton -i 0.8 -b</span><br></pre></td></tr></table></figure>
-
-<p>其次，用模糊背景通常会比较慢，尤其是 i3lock-fancy ，需等上 3 秒左右。<br>那么如果调用 i3lock-fancy 之后你又做了一些别的操作，比如关闭一个窗口，<br>这时锁屏了，你会发现背景和原来的不一样。 :)</p>
 ]]></content>
   </entry>
   <entry>
@@ -1506,47 +1498,6 @@
 ]]></content>
   </entry>
   <entry>
-    <title>安徽游记 I</title>
-    <url>/2019/10/01/%E5%AE%89%E5%BE%BD%E6%B8%B8%E8%AE%B0%20I/</url>
-    <content><![CDATA[<p>12 天的培（kao）训（shi），坚持每日总结。</p><p>Day0 to Day4.</p><h2 id="Day0"><a href="#Day0" class="headerlink" title="Day0"></a>Day0</h2><p>大清早的就出发了，地铁还是那么挤。<br>先从长沙坐到南京，高铁上干坐 6 个小时贼贼贼贼贼无聊。</p><p>中午幸好提前买了泡面，随便应付一下，坐了一上午不动也不会感觉饿。<br>%%% 在高铁上一餐吃 70rmb 的 lzk 。</p><p>到了南京还得等 1 小时转到芜湖，期间 UNO 现学现玩，<br>第一把就赢了，一定是传说中的新手的欧气附体，<br>但是这欧气来得快去的也飞快，后面再也没赢过 ，并且一度成为全场最富（一次拿了 20 张牌也是没谁了）。</p><a id="more"></a>
-
-
-
-
-<p>再到动车上就累了，睡了一觉。</p>
-<p>宾馆感觉一般但也还行，位置不错，旁边就是美食街，<br>逛一遍发现芜湖的物价似乎比长沙要便宜得多？<br>这里奶茶只有长沙一半多的价格还巨好喝，还有木桶饭最便宜 8rmb, 最贵也 16rmb, 吃得相当饱，提供的辣椒酱好评。</p>
-<p>晚上宾馆自习，我的笔记本实在实在实在是太 tm 旧了 windows xp 实在实在实在是忍不了啊。<br>宾馆的 wifi 都连不上去我怎么怎么打（kan）代（dian）码（ying）啊？？？<br>还有我早已练就一身折腾本领，小事，关掉 XP 的沙雕代理轻松解决。<br>但是网络实在是 suo （也许是我电脑不行？），努力了一晚上都没能成功看上电影。</p>
-<h2 id="Day1"><a href="#Day1" class="headerlink" title="Day1"></a>Day1</h2><p>第一天考试，凄惨爆 0 。<br>考试的时候想不出题啊（<del>我太菜了</del>），比较心不在焉，<br>才发现打满暴力都是一种困难，水平不够。<br>%　一 % 成功拿满暴力的 CZZ, orz 。</p>
-<p>第一题维护区间历史最小和，玄学转换到二维平面 KD-Tree, 这玩意前几天刚考但是没去学，<br><del>我发现冷门算法一考就会连续考几次</del>。</p>
-<p>第二题一脸不可做，题目名叫因式分解，我也就真的只会因式分解了。<br>讲题的时候满分做法爆搜？？？好吧正解还是要个 DP 的。</p>
-<p>第三题式子题妙啊妙啊，这什么用 $ \sum_{i=0}^{n-1} A^i = \frac{A^n-1}{A-1} $  把 $ A^n $ 换掉的清奇思路谁想得到啊。<br>还有把 f(i) O(1) 一路推到 f(n) 再用组合数的奇技淫巧把 k 到 n 的枚举换成 1 到 k 谁想得到啊。</p>
-<p>还有吐槽一下这套题部分分好少，几乎只有两档：暴力 -&gt; 正解。</p>
-<p>然后就是晚上的 <del>自由欢乐时光</del> 认真自习。<br>终于成功把昨天的电影看了一半。<br>然后颓了一晚上也是没救了，没办法 T3 被卡常心态爆炸（这就是你颓废的理由？）。</p>
-<h2 id="Day2"><a href="#Day2" class="headerlink" title="Day2"></a>Day2</h2><p><del>成功拿到预期的暴力分 30，一大进步。</del></p>
-<p>第一题图染色，考场上脑子不清醒，很快想到 $ O(n^2) $ 的建图方式后，<br>竟然完全没有想到怎么计数，最后 $ O(n^n) $ 枚举染色方案可还行。<br>于是 40’ -&gt; 10’</p>
-<p>第二题又是一个计数，AC 自动机？我完全没想到，<br>我还以为是容斥，但是发现有有 5 种情况，容斥起来要 5 + 10 + 10 + 5 种情况加加减减，<br>没敢打，不过这次这题部分分给的挺全的，分了 10 个 subtask 还是不错的 <del>虽然我只拿了 20 ~</del> 。</p>
-<p>第三题玄学最短路，要用最短路树（我想到了但是没啥用），这玩意前几天 czz 才讲，<br><del>果然又应验了我昨天说的，一考就连续考几次</del><br>暴力都很难打啊这题，到最后只能 <code>puts(&quot;-1&quot;)</code> 了，然而 subtask 数据捆绑。</p>
-<p>一考完就被 *** 拉去吃什么网红烤冷面（然而是热的），very nice but 量有点少。<br>然后 *** 就拉了一堆人去星巴克 666 ，讲真这是我第一次在星巴克喝咖啡，忍痛剁手。<br>晚上到宾馆就开始颓，终于看完了昨天的电影 <del>壮哉我大火影</del> 。</p>
-<h2 id="Day3"><a href="#Day3" class="headerlink" title="Day3"></a>Day3</h2><p>今天的题目巨难，听出题人说是因为他明天赶时间所以把明天的 <del>毒瘤</del> 题全放今天就有更多时间讲。</p>
-<p>第一题在 2 * n 的网格图上求一个生成树，我想到有个类似的题（求 2n 的网格图上放一颗树的方案数），<br>但是那道题我已经忘记怎么做了，而且那是计数，而这题是要求一个最优方案，<br>反正就是以为可做然而 Naive, 浪费了很多时间最后打了枚举生成树的大暴力。<br>考场上有一个线性计算当前方案的算法，枚举的时候加一点小剪枝，总复杂度应该是 $ O(6^n n) $ ，<br>预计 20’ ，但是实际上还是只有 10’ 。</p>
-<p>第二题感觉是什么数据结构题，我按照一种贪心思路敲了线段树，<br>估摸着有 23’ 就没管了，后来出题人放了三个大样例，我一测，第一个就 WA 了，改了一点细节后过掉了，<br>再测第二个，又 WA 了，然后 debug 了好久才意识到贪心的思路不对，这个时候离考试结束只有 5min, 弃疗。<br>然后和预计的一样，3’ 。</p>
-<p>第三题是在一个很奇怪的图上面求最短路为 x 的点对（怎么又是最短路），<br>大暴力就是跑出每个点对的最短路再统计嘛，这个图发现了一些性质，但是还是不会做，<br>想着应该不难打就去打 T2 了，然后 T2 打到结束前 5min 所以这题的暴力也没打， 0’ 。</p>
-<p>今天的部分分还是很少，T2 T3 的暴力都只有 3’ ，难受。</p>
-<p>中午去一个东北菜馆吃饭，菜上的k慢但是挺好吃，很有特色，<br>最抢眼的是收银台前面的冰箱，里面一条<strong>巨大</strong>的鱼（完整一条的可能比我还大？）。</p>
-<p>下午有洛谷月赛，于是冠冕堂皇地不改题打月赛，洛谷月赛一如既往，除了签到题都只能打暴力。</p>
-<p>晚上险些被查水表，我正在听歌教练突然敲门，我当时就以迅雷不及掩耳盗铃儿响叮当仁不让世界感受痛楚汉相争之势拔掉了耳机。<br>没错，拔掉了耳机，然后 tm 就变成外放了声音贼大，当时就感觉自己真是沙雕了我去，<br>然后我又以迅雷不及掩耳盗铃儿响叮当仁不让世界感受痛楚汉相争之势插上了耳机（被自己秀死了），这个时候教练已经差不多进来了，然后交代一些事，我耳机就插在笔记本上光明正大地摆桌上，有点小可怕，还好教练没有说什么。。。</p>
-<p>从今天开始教练晚上要强制收电脑，于是 10:30 电脑被收后无所事事，<br>这时候大家都要睡了（比如柠檬 9:30 就交电脑睡了），可是<del>万恶的</del> *** 以睡不着的名义把我拉过去打 UNO,<br>然后我<del>只能被逼无奈地</del>去打 UNO,  到 11:30 才睡可还行。</p>
-<h2 id="Day4"><a href="#Day4" class="headerlink" title="Day4"></a>Day4</h2><p>今天终于 A 了一题，今天终于 A 了一题，今天终于 A 了一题。<br>还有 % 一 % 全场 rank1 的柠檬。</p>
-<p>第一题我手玩了一下得出了一个十分精简的结论，按照这个结论三四十行代码就能解决，<br>自己都不敢相信啊，今天终于有一道良心签到题了？<br>于是打出来后不停地调试，手造各种情况的数据都跑一遍，把之前的结论完善一些漏洞之后就交了，<br>交了之后还是有点慌，生怕哪里出锅。<br>最后还是成功 AC （四天来唯一一次）。</p>
-<p>第二题刚开始看题还觉得可做，感觉像扫描线加线段树那种，<br>但是看到可能有一面墙回塌后就不这么觉得了。<br>而且我还看错了样例，这直接导致我误解题意，本来是先选点再有墙塌（考虑方案的时候不知道哪个墙会塌），<br>我看样例这样跑出来不对（其实是我手玩玩错了），就以为是先塌墙再选点（提前知道哪面墙会塌后考虑方案），<br>于是 blablabla 后交上去，预计至少有个二三十来分，结果只有大暴力 3’ （还好大暴力的数据没卡掉我）。</p>
-<p>第三题就感觉完全不可做了，最后暴力都没打， 0’ 。<br>下午讲题的时候才发现这题 25’ 的部分分贼容易，就是个排序加贪心。<br>另外 75’ 正解好像是用 dp 做前面 25’ 在对后面 75’ 的求和用 dp 套 dp, 好巧啊之前朱哥才讲过。</p>
-<p>A 了一题心里比较舒服，于是下午就颓了好久，打 Nazo 自力更生到 level 8 就不会了，<br>在网上找提示后玩到 level 11 后再次卡关。</p>
-<p>另外碰到一件玄学的事，我那显示器一碰就断电，然后要不断地调那根线，<br>直到调到某个位置才可以打开，大概是因为接触不良，<br>然后一次又黑了，我调了贼久试遍了各种姿势还是然并卵，<br>没法子了，去找老师实在不行换个位置，<br>老师了解状况后过来随手一拨，真的是 <strong>随手一拨</strong> ，那显示屏就开了，就开了，开了，了，<br>emm 不愧是金牌教练，真的 6 。</p>
-<p>晚上本来去吃必胜客的，但是没注意到今天周日，人巨多，排队等座位都要半个小时，<br>几经周折最后去了 KFC ，也还不错。<br>旁边一家奶茶店搞活动，把一个计时器按到刚好 10s 就能领两大杯奶茶，然而大概是我脸黑，按了 3 次都差的蛮远。<br>晚上又是 UNO, 和 tyr 无意间相互精准放炮，<br>连续两次 tyr （下家）只剩一张牌，我掐指一算，猜到了那张牌的颜色，<br>自信地打出一张其它颜色牌，结果和他数字相同。。。</p>
-<h2 id="NEXT"><a href="#NEXT" class="headerlink" title="NEXT"></a>NEXT</h2><p><a href="/2019/03/26/安徽游记-ii/">Day5 to Day8</a></p>
-]]></content>
-  </entry>
-  <entry>
     <title>安徽游记 II</title>
     <url>/2019/10/01/%E5%AE%89%E5%BE%BD%E6%B8%B8%E8%AE%B0%20II/</url>
     <content><![CDATA[<p>12 天的培（kao）训（shi），坚持每日总结。</p><p>Day5 to Day8.</p><h2 id="Day5"><a href="#Day5" class="headerlink" title="Day5"></a>Day5</h2><h3 id="考试"><a href="#考试" class="headerlink" title="考试"></a>考试</h3><p>Nice 大夫今天又 A 掉一题！</p><p>第一题是在 DAG 上 q 个询问，每次询问一个子图的路径数量（子图点数和 O(n) ），<br>我想了想部分分， DAG 上 DP 嘛，但是这样复杂度上界是 $ O(q m) $ ，<br>瓶颈在于边的枚举（菊花树卡爆），然而子图的点可能很少，<br>然后想到了更暴力的：邻接矩阵存图然后用枚举点代替枚举边，<br>事实上邻接矩阵存不下，那就开 set （map 也行）动态加，<br>这复杂度 $ O(q n^2 log(m)) $ 啊然而，然后我想了好久优化都没想出来，<br>最后想着得多骗点分，于是就把两个暴力结合在了一起：<br>每次询问比较 $ n^2 log(m) $ 和 $ m $ 哪个小就跑哪个。。。<br>看上去很鸡肋，然而我理性分析了一波复杂度卧槽好像是 $ O(q m \sqrt{m} log(m)) $ ，<br>应该能骗蛮多分，于是交了，然后 A 了。。。</p><a id="more"></a>
@@ -1638,6 +1589,47 @@ int QCNT;</code></pre><p>note 那一排暴露啦，这命名空间 lkjjhkfdlhgkj
 ]]></content>
   </entry>
   <entry>
+    <title>安徽游记 I</title>
+    <url>/2019/10/01/%E5%AE%89%E5%BE%BD%E6%B8%B8%E8%AE%B0%20I/</url>
+    <content><![CDATA[<p>12 天的培（kao）训（shi），坚持每日总结。</p><p>Day0 to Day4.</p><h2 id="Day0"><a href="#Day0" class="headerlink" title="Day0"></a>Day0</h2><p>大清早的就出发了，地铁还是那么挤。<br>先从长沙坐到南京，高铁上干坐 6 个小时贼贼贼贼贼无聊。</p><p>中午幸好提前买了泡面，随便应付一下，坐了一上午不动也不会感觉饿。<br>%%% 在高铁上一餐吃 70rmb 的 lzk 。</p><p>到了南京还得等 1 小时转到芜湖，期间 UNO 现学现玩，<br>第一把就赢了，一定是传说中的新手的欧气附体，<br>但是这欧气来得快去的也飞快，后面再也没赢过 ，并且一度成为全场最富（一次拿了 20 张牌也是没谁了）。</p><a id="more"></a>
+
+
+
+
+<p>再到动车上就累了，睡了一觉。</p>
+<p>宾馆感觉一般但也还行，位置不错，旁边就是美食街，<br>逛一遍发现芜湖的物价似乎比长沙要便宜得多？<br>这里奶茶只有长沙一半多的价格还巨好喝，还有木桶饭最便宜 8rmb, 最贵也 16rmb, 吃得相当饱，提供的辣椒酱好评。</p>
+<p>晚上宾馆自习，我的笔记本实在实在实在是太 tm 旧了 windows xp 实在实在实在是忍不了啊。<br>宾馆的 wifi 都连不上去我怎么怎么打（kan）代（dian）码（ying）啊？？？<br>还有我早已练就一身折腾本领，小事，关掉 XP 的沙雕代理轻松解决。<br>但是网络实在是 suo （也许是我电脑不行？），努力了一晚上都没能成功看上电影。</p>
+<h2 id="Day1"><a href="#Day1" class="headerlink" title="Day1"></a>Day1</h2><p>第一天考试，凄惨爆 0 。<br>考试的时候想不出题啊（<del>我太菜了</del>），比较心不在焉，<br>才发现打满暴力都是一种困难，水平不够。<br>%　一 % 成功拿满暴力的 CZZ, orz 。</p>
+<p>第一题维护区间历史最小和，玄学转换到二维平面 KD-Tree, 这玩意前几天刚考但是没去学，<br><del>我发现冷门算法一考就会连续考几次</del>。</p>
+<p>第二题一脸不可做，题目名叫因式分解，我也就真的只会因式分解了。<br>讲题的时候满分做法爆搜？？？好吧正解还是要个 DP 的。</p>
+<p>第三题式子题妙啊妙啊，这什么用 $ \sum_{i=0}^{n-1} A^i = \frac{A^n-1}{A-1} $  把 $ A^n $ 换掉的清奇思路谁想得到啊。<br>还有把 f(i) O(1) 一路推到 f(n) 再用组合数的奇技淫巧把 k 到 n 的枚举换成 1 到 k 谁想得到啊。</p>
+<p>还有吐槽一下这套题部分分好少，几乎只有两档：暴力 -&gt; 正解。</p>
+<p>然后就是晚上的 <del>自由欢乐时光</del> 认真自习。<br>终于成功把昨天的电影看了一半。<br>然后颓了一晚上也是没救了，没办法 T3 被卡常心态爆炸（这就是你颓废的理由？）。</p>
+<h2 id="Day2"><a href="#Day2" class="headerlink" title="Day2"></a>Day2</h2><p><del>成功拿到预期的暴力分 30，一大进步。</del></p>
+<p>第一题图染色，考场上脑子不清醒，很快想到 $ O(n^2) $ 的建图方式后，<br>竟然完全没有想到怎么计数，最后 $ O(n^n) $ 枚举染色方案可还行。<br>于是 40’ -&gt; 10’</p>
+<p>第二题又是一个计数，AC 自动机？我完全没想到，<br>我还以为是容斥，但是发现有有 5 种情况，容斥起来要 5 + 10 + 10 + 5 种情况加加减减，<br>没敢打，不过这次这题部分分给的挺全的，分了 10 个 subtask 还是不错的 <del>虽然我只拿了 20 ~</del> 。</p>
+<p>第三题玄学最短路，要用最短路树（我想到了但是没啥用），这玩意前几天 czz 才讲，<br><del>果然又应验了我昨天说的，一考就连续考几次</del><br>暴力都很难打啊这题，到最后只能 <code>puts(&quot;-1&quot;)</code> 了，然而 subtask 数据捆绑。</p>
+<p>一考完就被 *** 拉去吃什么网红烤冷面（然而是热的），very nice but 量有点少。<br>然后 *** 就拉了一堆人去星巴克 666 ，讲真这是我第一次在星巴克喝咖啡，忍痛剁手。<br>晚上到宾馆就开始颓，终于看完了昨天的电影 <del>壮哉我大火影</del> 。</p>
+<h2 id="Day3"><a href="#Day3" class="headerlink" title="Day3"></a>Day3</h2><p>今天的题目巨难，听出题人说是因为他明天赶时间所以把明天的 <del>毒瘤</del> 题全放今天就有更多时间讲。</p>
+<p>第一题在 2 * n 的网格图上求一个生成树，我想到有个类似的题（求 2n 的网格图上放一颗树的方案数），<br>但是那道题我已经忘记怎么做了，而且那是计数，而这题是要求一个最优方案，<br>反正就是以为可做然而 Naive, 浪费了很多时间最后打了枚举生成树的大暴力。<br>考场上有一个线性计算当前方案的算法，枚举的时候加一点小剪枝，总复杂度应该是 $ O(6^n n) $ ，<br>预计 20’ ，但是实际上还是只有 10’ 。</p>
+<p>第二题感觉是什么数据结构题，我按照一种贪心思路敲了线段树，<br>估摸着有 23’ 就没管了，后来出题人放了三个大样例，我一测，第一个就 WA 了，改了一点细节后过掉了，<br>再测第二个，又 WA 了，然后 debug 了好久才意识到贪心的思路不对，这个时候离考试结束只有 5min, 弃疗。<br>然后和预计的一样，3’ 。</p>
+<p>第三题是在一个很奇怪的图上面求最短路为 x 的点对（怎么又是最短路），<br>大暴力就是跑出每个点对的最短路再统计嘛，这个图发现了一些性质，但是还是不会做，<br>想着应该不难打就去打 T2 了，然后 T2 打到结束前 5min 所以这题的暴力也没打， 0’ 。</p>
+<p>今天的部分分还是很少，T2 T3 的暴力都只有 3’ ，难受。</p>
+<p>中午去一个东北菜馆吃饭，菜上的k慢但是挺好吃，很有特色，<br>最抢眼的是收银台前面的冰箱，里面一条<strong>巨大</strong>的鱼（完整一条的可能比我还大？）。</p>
+<p>下午有洛谷月赛，于是冠冕堂皇地不改题打月赛，洛谷月赛一如既往，除了签到题都只能打暴力。</p>
+<p>晚上险些被查水表，我正在听歌教练突然敲门，我当时就以迅雷不及掩耳盗铃儿响叮当仁不让世界感受痛楚汉相争之势拔掉了耳机。<br>没错，拔掉了耳机，然后 tm 就变成外放了声音贼大，当时就感觉自己真是沙雕了我去，<br>然后我又以迅雷不及掩耳盗铃儿响叮当仁不让世界感受痛楚汉相争之势插上了耳机（被自己秀死了），这个时候教练已经差不多进来了，然后交代一些事，我耳机就插在笔记本上光明正大地摆桌上，有点小可怕，还好教练没有说什么。。。</p>
+<p>从今天开始教练晚上要强制收电脑，于是 10:30 电脑被收后无所事事，<br>这时候大家都要睡了（比如柠檬 9:30 就交电脑睡了），可是<del>万恶的</del> *** 以睡不着的名义把我拉过去打 UNO,<br>然后我<del>只能被逼无奈地</del>去打 UNO,  到 11:30 才睡可还行。</p>
+<h2 id="Day4"><a href="#Day4" class="headerlink" title="Day4"></a>Day4</h2><p>今天终于 A 了一题，今天终于 A 了一题，今天终于 A 了一题。<br>还有 % 一 % 全场 rank1 的柠檬。</p>
+<p>第一题我手玩了一下得出了一个十分精简的结论，按照这个结论三四十行代码就能解决，<br>自己都不敢相信啊，今天终于有一道良心签到题了？<br>于是打出来后不停地调试，手造各种情况的数据都跑一遍，把之前的结论完善一些漏洞之后就交了，<br>交了之后还是有点慌，生怕哪里出锅。<br>最后还是成功 AC （四天来唯一一次）。</p>
+<p>第二题刚开始看题还觉得可做，感觉像扫描线加线段树那种，<br>但是看到可能有一面墙回塌后就不这么觉得了。<br>而且我还看错了样例，这直接导致我误解题意，本来是先选点再有墙塌（考虑方案的时候不知道哪个墙会塌），<br>我看样例这样跑出来不对（其实是我手玩玩错了），就以为是先塌墙再选点（提前知道哪面墙会塌后考虑方案），<br>于是 blablabla 后交上去，预计至少有个二三十来分，结果只有大暴力 3’ （还好大暴力的数据没卡掉我）。</p>
+<p>第三题就感觉完全不可做了，最后暴力都没打， 0’ 。<br>下午讲题的时候才发现这题 25’ 的部分分贼容易，就是个排序加贪心。<br>另外 75’ 正解好像是用 dp 做前面 25’ 在对后面 75’ 的求和用 dp 套 dp, 好巧啊之前朱哥才讲过。</p>
+<p>A 了一题心里比较舒服，于是下午就颓了好久，打 Nazo 自力更生到 level 8 就不会了，<br>在网上找提示后玩到 level 11 后再次卡关。</p>
+<p>另外碰到一件玄学的事，我那显示器一碰就断电，然后要不断地调那根线，<br>直到调到某个位置才可以打开，大概是因为接触不良，<br>然后一次又黑了，我调了贼久试遍了各种姿势还是然并卵，<br>没法子了，去找老师实在不行换个位置，<br>老师了解状况后过来随手一拨，真的是 <strong>随手一拨</strong> ，那显示屏就开了，就开了，开了，了，<br>emm 不愧是金牌教练，真的 6 。</p>
+<p>晚上本来去吃必胜客的，但是没注意到今天周日，人巨多，排队等座位都要半个小时，<br>几经周折最后去了 KFC ，也还不错。<br>旁边一家奶茶店搞活动，把一个计时器按到刚好 10s 就能领两大杯奶茶，然而大概是我脸黑，按了 3 次都差的蛮远。<br>晚上又是 UNO, 和 tyr 无意间相互精准放炮，<br>连续两次 tyr （下家）只剩一张牌，我掐指一算，猜到了那张牌的颜色，<br>自信地打出一张其它颜色牌，结果和他数字相同。。。</p>
+<h2 id="NEXT"><a href="#NEXT" class="headerlink" title="NEXT"></a>NEXT</h2><p><a href="/2019/03/26/安徽游记-ii/">Day5 to Day8</a></p>
+]]></content>
+  </entry>
+  <entry>
     <title>最长反链长</title>
     <url>/2019/10/01/%E6%9C%80%E9%95%BF%E5%8F%8D%E9%93%BE%E9%95%BF/</url>
     <content><![CDATA[<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p>首先得知道链和反链是什么。</p><p>在 <strong>有向无环图（ DAG ）</strong> 中，<br>链是满足任意两点 x, y 要么 x 可以到达 y 要么 y 可以到达 x 的<strong>点集</strong> （即使只有一个点），<br>反链是任意两点没有路径的 <strong>点集</strong> 。</p><p>那么最长反链，就是点的个数最多的反链。</p><h2 id="定理"><a href="#定理" class="headerlink" title="定理"></a>定理</h2><p>不加证明地丢出两个定理：</p><ol>
@@ -1669,23 +1661,66 @@ int QCNT;</code></pre><p>note 那一排暴露啦，这命名空间 lkjjhkfdlhgkj
 ]]></content>
   </entry>
   <entry>
-    <title>NTT</title>
-    <url>/2019/10/01/NTT/</url>
-    <content><![CDATA[<p>NTT ，快速数论变换，功能与 <a href>FFT</a> 完全一致，用来求多项式卷积。<br>NTT 优点在于常数稍微小一点，没有精度误差。<br>但是 NTT 系数必须是取模意义下的整数，且对模数有特殊要求。</p><h2 id="FFT-的单位根"><a href="#FFT-的单位根" class="headerlink" title="FFT 的单位根"></a>FFT 的单位根</h2><p>建议前置 <a href>FFT</a> 。</p><p>FFT 可以分治优化复杂度的原因是用到了单位根的如下性质：<br>$$ W_{2n}^{2k} = W_n^k $$<br>$$ W_n^n = 1 $$<br>$$ W_n^{k + n/2} + W_n^k = 0 $$</p><a id="more"></a>
+    <title>i3lock</title>
+    <url>/2019/10/01/i3lock/</url>
+    <content><![CDATA[<p><img src="http://kewth.gq/wp-content/uploads/2019/07/2_054-1.png" alt="i3lock-fancy"></p><p>折腾了半天 i3lock ，不写篇博客可惜了。</p><p>i3lock 有啥好折腾的？不就是挂个壁纸锁屏嘛。<br>就是因为 i3lock 太鸡肋了折腾啊。<br>于是我试过了 i3lock 的各种民间 fork 版本，在此总结。</p><h2 id="i3lock"><a href="#i3lock" class="headerlink" title="i3lock"></a><a href="https://github.com/i3/i3lock" target="_blank" rel="noopener">i3lock</a></h2><p>官方版本 i3lock ，稳定可靠，但是鸡肋。</p><p>安装：</p><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo aptitude install i3lock</span><br></pre></td></tr></table></figure><a id="more"></a>
 
 
-<p>可是用单位根做 FFT ，需要用到复数和浮点数，常数大而且有精度误差。<br>还有别的数有这样的性质来替换单位根吗？<br>遗憾的是，可以证明复数域下只有单位根有这样的性质。</p>
-<h2 id="取模"><a href="#取模" class="headerlink" title="取模"></a>取模</h2><p>实际计算多项式卷积时，常常要求对系数取模以避免不必要的麻烦。<br>那么这时候系数实际上是在模意义下的， FFT 将它转到复数域上运算，似乎没有必要。<br>模意义下什么数可以有单位根那样的性质？<br>有的，那就是原根。</p>
-<h2 id="原根"><a href="#原根" class="headerlink" title="原根"></a>原根</h2><p>对于某些模数 P ，模 P 意义下的原根 g 满足：<br>对任意 $ 0 \leq k \leq P - 2 $ ， $ g^k $ 互不相同。<br>有些模数可能不存在原根，这里先假设模数都有原根。</p>
-<p>假设系数是模 P 意义下的，P 是形如 $ 2^k + 1 $ 的质数，其原根为 g ，<br>设 $ G_n = g^{\frac{P-1}{n}} mod P $ ，其中 n 是小于 P 的 2 的整次幂 。<br>那么在模 P 意义下， G 满足：</p>
-<p>$$ G_{2n}^{2k} = G_n^k $$</p>
-<p>由 G 定义可证：<br>$ G_{2n}^{2k} = g^{\frac{P-1}{2n}2k} = g^{\frac{P-1}{n}k} = G_n^k$</p>
-<p>$$ G_n^n = 1 $$</p>
-<p>由 G 定义可得：<br>$ G_n^n = g^{\frac{P-1}{n}n} = g^{P-1}  $<br>由费马小定理：<br>$ G_n^n =  g^{P-1} = 1 $</p>
-<p>$$ G_n^{k + n/2} + G_n^k = 0 $$</p>
-<p>有第一条性质可得：<br>$ G_n^{n/2} = G_2^1 = g^{\frac{P-1}{2}} $<br>因为 $ (g^{\frac{P-1}{2}})^2 = g^{P-1} = 1 $<br>根据原根的性质：<br>$ g^{\frac{P-1}{2}} \neq g^{P-1} $<br>那么 $ g^{\frac{P-1}{2}} = -1 $ （即 P - 1）。<br>那么可以证得：<br>$ G_n^{k + n/2} = G_n^k G_n^{n/2} = G_n^k(-1) $<br>于是 $ G_n^{k + n/2} + G_n^k = 0 $</p>
-<h2 id="NTT"><a href="#NTT" class="headerlink" title="NTT"></a>NTT</h2><p>于是 NTT 的算法思路就呼之欲出了：把 $ W_n $ 全部替换为 $ G_n $ 即可。<br>这样就可以算出模 P 意义下的多项式卷积了。<br>其中 n 必须是 2 的整次幂，不足的补零即可。</p>
-<p>现在唯一的问题是，模数 P 要满足什么条件，以及如何求模 P 意义下的原根 g 。<br>然而我并不想深入展开，大多数情况下模数都是 998244353 ，其原根为 3 。<br>一般 NTT 只会用这个模数，不会有毒瘤出题人卡这个模数的（我不对这句话负责）。</p>
+
+
+
+
+<p>使用：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">i3lock</span><br></pre></td></tr></table></figure>
+
+<h2 id="i3lock-lixxia"><a href="#i3lock-lixxia" class="headerlink" title="i3lock-lixxia"></a><a href="https://github.com/Lixxia/i3lock" target="_blank" rel="noopener">i3lock-lixxia</a></h2><p>最友好，最简单的一个 i3lock fork ，<br>优化了中间显示的圆形框，并支持一些颜色自定义。</p>
+<p>安装：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo aptitude remove i3lock</span><br><span class="line">sudo aptitude install pkg-config libxcb1-dev libxcb1 libgl2ps-dev libx11-dev libglc0 libglc-dev libcairo2-dev libcairo-gobject2 libcairo2-dev libxkbfile-dev libxkbfile1 libxkbcommon-dev libxkbcommon-x11-dev libxcb-xkb-dev libxcb-dpms0-dev libxcb-damage0-dev libpam0g-dev libev-dev libxcb-image0-dev libxcb-util0-dev libxcb-composite0-dev libxcb-xinerama0-dev</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/Lixxia/i3lock.git</span><br><span class="line"><span class="built_in">cd</span> i3lock</span><br><span class="line">autoreconf -<span class="keyword">fi</span></span><br><span class="line">mkdir -p build &amp;&amp; <span class="built_in">cd</span> build</span><br><span class="line">../configure</span><br><span class="line">make &amp;&amp; sudo make install</span><br></pre></td></tr></table></figure>
+
+<p>顺带一提，只有这个 fork 给出了靠谱的源码安装方式，<br>其他 fork 甚至 i3lock 本身的安装方式都给得很不靠谱。</p>
+<p>使用：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">i3lock</span><br></pre></td></tr></table></figure>
+
+<h2 id="i3lock-blur"><a href="#i3lock-blur" class="headerlink" title="i3lock-blur"></a><a href="https://github.com/karulont/i3lock-blur" target="_blank" rel="noopener">i3lock-blur</a></h2><p>支持模糊背景，毛玻璃特效。</p>
+<p>安装：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo aptitude remove i3lock</span><br><span class="line">sudo aptitude install pkg-config libxcb1-dev libxcb1 libgl2ps-dev libx11-dev libglc0 libglc-dev libcairo2-dev libcairo-gobject2 libcairo2-dev libxkbfile-dev libxkbfile1 libxkbcommon-dev libxkbcommon-x11-dev libxcb-xkb-dev libxcb-dpms0-dev libxcb-damage0-dev libpam0g-dev libev-dev libxcb-image0-dev libxcb-util0-dev libxcb-composite0-dev libxcb-xinerama0-dev</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/karulont/i3lock-blur.git</span><br><span class="line"><span class="built_in">cd</span> i3lock-blur</span><br><span class="line">autoreconf -<span class="keyword">fi</span></span><br><span class="line">mkdir -p build &amp;&amp; <span class="built_in">cd</span> build</span><br><span class="line">../configure</span><br><span class="line">make &amp;&amp; sudo make install</span><br></pre></td></tr></table></figure>
+
+<p>再顺带一提，只有这个 fork 直接给出了需要安装那些库。</p>
+<p>使用：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">i3lock --fuzzy</span><br></pre></td></tr></table></figure>
+
+<h2 id="i3lockr"><a href="#i3lockr" class="headerlink" title="i3lockr"></a><a href="https://github.com/owenthewizard/i3lockr" target="_blank" rel="noopener">i3lockr</a></h2><p>支持模糊背景，毛玻璃特效。</p>
+<p>安装：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">wget https://github.com/owenthewizard/i3lockr/releases/download/v1.0.0-final/i3lockr</span><br><span class="line">sudo mv i3lockr /usr/<span class="built_in">local</span>/bin</span><br></pre></td></tr></table></figure>
+
+<p>使用：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">i3lockr --blur=25</span><br></pre></td></tr></table></figure>
+
+<h2 id="i3lock-color"><a href="#i3lock-color" class="headerlink" title="i3lock-color"></a><a href="https://github.com/PandorasFox/i3lock-color" target="_blank" rel="noopener">i3lock-color</a></h2><p>对于颜色的自定义十分全面。</p>
+<p>安装：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo aptitude remove i3lock</span><br><span class="line">sudo aptitude install pkg-config libxcb1-dev libxcb1 libgl2ps-dev libx11-dev libglc0 libglc-dev libcairo2-dev libcairo-gobject2 libcairo2-dev libxkbfile-dev libxkbfile1 libxkbcommon-dev libxkbcommon-x11-dev libxcb-xkb-dev libxcb-dpms0-dev libxcb-damage0-dev libpam0g-dev libev-dev libxcb-image0-dev libxcb-util0-dev libxcb-composite0-dev libxcb-xinerama0-dev</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/PandorasFox/i3lock-color</span><br><span class="line"><span class="built_in">cd</span> i3lock-color</span><br><span class="line">autoreconf -<span class="keyword">fi</span></span><br><span class="line">mkdir -p build &amp;&amp; <span class="built_in">cd</span> build</span><br><span class="line">../configure</span><br><span class="line">make &amp;&amp; sudo make install</span><br></pre></td></tr></table></figure>
+
+<p>使用：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">i3lock</span><br></pre></td></tr></table></figure>
+
+<h2 id="i3lock-fancy"><a href="#i3lock-fancy" class="headerlink" title="i3lock-fancy"></a><a href="https://github.com/meskarune/i3lock-fancy" target="_blank" rel="noopener">i3lock-fancy</a></h2><p>重头戏，star 最多的 fork ，甚至比 i3lock 本身更多，被广泛使用。</p>
+<p>安装：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo aptitude install i3lock-fancy</span><br></pre></td></tr></table></figure>
+
+<p>使用：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">i3lock-fancy</span><br></pre></td></tr></table></figure>
+
+<p>依赖 i3lock ，实际上是产生了背景图片再调用 i3lock 。<br>默认使用模糊背景，用起来没什么问题，但是事实上，<br>圆形框的颜色并不是最正确的，而是兼容的。</p>
+<p>源码里有这样一条：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment"># try to use a forked version of i3lock with prepared parameters</span></span><br><span class="line"><span class="keyword">if</span> ! i3lock -n <span class="string">"<span class="variable">$&#123;PARAM[@]&#125;</span>"</span> -i <span class="string">"<span class="variable">$IMAGE</span>"</span> &gt; /dev/null 2&gt;&amp;1; <span class="keyword">then</span></span><br><span class="line">    <span class="comment"># We have failed, lets get back to stock one</span></span><br><span class="line">    i3lock -n -i <span class="string">"<span class="variable">$IMAGE</span>"</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+
+<p>bash -x i3lock-fancy 就知道，<br>if 上的命令往往失败了，执行的是 if 里头的命令。</p>
+<p>事实上这需要 i3lock-color 。<br>那么，安装 i3lock-color 代替 i3lock 后，执行 i3lock-fancy ，<br>会发现圆形框的颜色与背景更加配了。</p>
+<h2 id="关于模糊背景"><a href="#关于模糊背景" class="headerlink" title="关于模糊背景"></a>关于模糊背景</h2><p>事实上，如果你用了 compton 再用 i3lock ，效果十分差劲。<br>解决这个方案，可以在调用 i3lock 前 kill compton ，结束后重新启动 compton 。</p>
+<p>拿 i3lock-fancy 举例，把之前展示的代码改成这样：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment"># try to use a forked version of i3lock with prepared parameters</span></span><br><span class="line">pkill compton</span><br><span class="line"><span class="keyword">if</span> ! i3lock -n <span class="string">"<span class="variable">$&#123;PARAM[@]&#125;</span>"</span> -i <span class="string">"<span class="variable">$IMAGE</span>"</span> &gt; /dev/null 2&gt;&amp;1; <span class="keyword">then</span></span><br><span class="line">    <span class="comment"># We have failed, lets get back to stock one</span></span><br><span class="line">    i3lock -n -i <span class="string">"<span class="variable">$IMAGE</span>"</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line">compton -i 0.8 -b</span><br></pre></td></tr></table></figure>
+
+<p>其次，用模糊背景通常会比较慢，尤其是 i3lock-fancy ，需等上 3 秒左右。<br>那么如果调用 i3lock-fancy 之后你又做了一些别的操作，比如关闭一个窗口，<br>这时锁屏了，你会发现背景和原来的不一样。 :)</p>
 ]]></content>
   </entry>
 </search>
