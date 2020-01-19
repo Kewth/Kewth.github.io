@@ -65,7 +65,7 @@
 <meta property="og:description" content="咕咕咕我又来写总结啦。第一次打牛客，一进牛客发现还有 30s 就有一场比赛，就报了名。一开始只是打算玩玩，看看牛客的题来着。一不小心上瘾了，可惜不计 rating 。（另外 %%% @CYJian 喜提 rank1 ）先看 A 题挺签到的，花几分钟过了，然而交 WA 了一次，原因竟然是下标 0, 1 开头混用了，感觉自己很蠢。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/nowcoder.com.png">
-<meta property="og:updated_time" content="2020-01-10T14:45:35.550Z">
+<meta property="og:updated_time" content="2020-01-10T14:49:37.041Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="牛客练习赛57">
 <meta name="twitter:description" content="咕咕咕我又来写总结啦。第一次打牛客，一进牛客发现还有 30s 就有一场比赛，就报了名。一开始只是打算玩玩，看看牛客的题来着。一不小心上瘾了，可惜不计 rating 。（另外 %%% @CYJian 喜提 rank1 ）先看 A 题挺签到的，花几分钟过了，然而交 WA 了一次，原因竟然是下标 0, 1 开头混用了，感觉自己很蠢。">
@@ -214,7 +214,7 @@
       
     
 
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">43</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">44</span></a>
 
   </li>
       
@@ -262,7 +262,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">43</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">44</span></a>
 
   </li>
       
@@ -327,7 +327,7 @@
                 
               
 
-              <time title="创建时间：2020-01-10 22:05:52 / 修改时间：22:45:35" itemprop="dateCreated datePublished" datetime="2020-01-10T22:05:52+08:00">2020-01-10</time>
+              <time title="创建时间：2020-01-10 22:05:52 / 修改时间：22:49:37" itemprop="dateCreated datePublished" datetime="2020-01-10T22:05:52+08:00">2020-01-10</time>
             </span>
           
             
@@ -388,7 +388,7 @@
 <p>那么预处理的复杂度为 $O(nlogn\frac{n}{B})$ 的，和询问的复杂度均衡一下就可以得到一个 $O(n\sqrt{nlogn})$ 的做法。<br>（假定 $n, q$ 同阶）</p>
 <p>然后就开始码，码完 T 了，T 了两次，经 @CYJian 指点发现 $B$ 设小了，导致带 log 的卷积部分跑得很慢。<br>改完就 A 了，过了 1.5h 竟然还拿了一血。<br>这个时候没记错是 rank140 左右。</p>
 <p>然后开了一眼 D 感觉就是个马拉车，打完发现疯狂 WA ，仔细读题发现要求找两个子串，是恰好两个，用一个都不行 wdnmd 😡 。</p>
-<p>A 掉 D 就开始飘了， B 题细节题写的一批，C 题是个 FWT 。</p>
+<p>A 掉 D 就开始飘了， B 题细节题屑的一批，C 题是个 FWT 。</p>
 <p>结果 C 题也疯狂 WA ：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">	<span class="keyword">while</span>(T --) &#123;</span><br><span class="line">		<span class="comment">// ....</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i ++)</span><br><span class="line">			<span class="keyword">if</span>(w[i] &gt; W) &#123;</span><br><span class="line">				<span class="built_in">puts</span>(<span class="string">"No"</span>);</span><br><span class="line">				<span class="keyword">continue</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		<span class="comment">// ....</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -429,6 +429,10 @@
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2020/01/16/code-trick/" rel="prev" title="code-trick">
+                  code-trick <i class="fa fa-chevron-right"></i>
+                </a>
               
             </div>
           </div>
@@ -494,7 +498,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">43</span>
+          <span class="site-state-item-count">44</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -520,7 +524,7 @@
             <a href="/tags/">
           
         
-        <span class="site-state-item-count">43</span>
+        <span class="site-state-item-count">44</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
