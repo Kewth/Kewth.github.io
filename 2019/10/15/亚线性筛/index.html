@@ -64,7 +64,7 @@
 <meta property="og:site_name" content="KeBlog">
 <meta property="og:description" content="亚线性筛，就是以低于线性的复杂度预处理一些线性信息的筛法统称。目前我会杜教筛和 min25 还有 powerful number。杜教筛篇幅过长，点击此处。min25min25 筛是扩展埃氏筛，也可以筛一类（更复杂的）积性函数的前缀和，并且通常是同类亚线性筛中最快的一个。而且灵活运用 min25 可以处理一些特殊的关于质因子的问题。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-01-02T04:00:31.341Z">
+<meta property="og:updated_time" content="2020-03-30T11:40:11.127Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="亚线性筛">
 <meta name="twitter:description" content="亚线性筛，就是以低于线性的复杂度预处理一些线性信息的筛法统称。目前我会杜教筛和 min25 还有 powerful number。杜教筛篇幅过长，点击此处。min25min25 筛是扩展埃氏筛，也可以筛一类（更复杂的）积性函数的前缀和，并且通常是同类亚线性筛中最快的一个。而且灵活运用 min25 可以处理一些特殊的关于质因子的问题。">
@@ -336,7 +336,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-01-02 12:00:31" itemprop="dateModified" datetime="2020-01-02T12:00:31+08:00">2020-01-02</time>
+                <time title="修改时间：2020-03-30 19:40:11" itemprop="dateModified" datetime="2020-03-30T19:40:11+08:00">2020-03-30</time>
               </span>
             
           
@@ -406,8 +406,8 @@
 <p>同样地第一维的取值都是 $\frac{n}{d}$ 的形式，但是第二维无法滚动，<br>但事实上后面的部分直接递归计算即可，以下是参考实现：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> lolong;</span><br><span class="line"><span class="function">lolong <span class="title">S</span><span class="params">(lolong i, <span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(prime[j] &gt; i) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	lolong res = S_F[id(i)] - pf[j];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> k = j + <span class="number">1</span>; k &lt;= p <span class="keyword">and</span> <span class="number">1l</span>l * prime[k] * prime[k] &lt;= i; k ++) &#123;</span><br><span class="line">		<span class="keyword">int</span> e = <span class="number">1</span>;</span><br><span class="line">		lolong pr = prime[k];</span><br><span class="line">		<span class="keyword">while</span>(pr &lt;= i) &#123;</span><br><span class="line">			res += (prime[k] ^ e) * (S(i / pr, k) + (e &gt; <span class="number">1</span>));</span><br><span class="line">			pr *= prime[k];</span><br><span class="line">			e ++;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>复杂度似乎是 $O(\frac{n^{\frac{3}{4}}}{logn})$ ，大概是能跑 $10^11$ 的。</p>
-<p>另外 min25 筛还有个树状数组的优化版本，也是 min25 本人引入的，复杂度 $O(n^{\frac{2}{3}})$ ，<br>大概能跑 $10^13$ ？<br>但很不常见，网上可供学习的资料很少，有兴趣可以直接看 <a href="https://min-25.hatenablog.com/entry/2018/11/11/172216" target="_blank" rel="noopener">min25 的博客</a>。</p>
+<p>复杂度似乎是 $O(\frac{n^{\frac{3}{4}}}{logn})$ ，大概是能跑 $10^{11}$ 的。</p>
+<p>另外 min25 筛还有个树状数组的优化版本，也是 min25 本人引入的，复杂度 $O(n^{\frac{2}{3}})$ ，<br>大概能跑 $10^{13}$ ？<br>但很不常见，网上可供学习的资料很少，有兴趣可以直接看 <a href="https://min-25.hatenablog.com/entry/2018/11/11/172216" target="_blank" rel="noopener">min25 的博客</a>。</p>
 <h2 id="Powerful-number"><a href="#Powerful-number" class="headerlink" title="Powerful number"></a>Powerful number</h2><p>这个在 OI 中用得少，我也只是做过两道题，大概提一下。</p>
 <p>称 1 和每个质因子次数大于 1 的合数为 Powerful number 。<br>首先有个性质就是 $n$ 以内的 Powerful number 数量是 $O(\sqrt{n})$ 的。</p>
 <p>还是筛数论函数 $f$ 的前缀和 $S$ ，需要构造两个函数 $g, h$ 满足 $f = g \cdot h$ 。<br>如果 $g$ 只在 Powerful number 上有值并且 $h$ 的前缀和 $S_h$ 容易求或者可以筛的话，<br>由 $S(n) = \sum_{i=1}^n \sum_{d|x} g(d) h(\frac{d}{x}) = \sum_{d=1}^n G(d) S_h(n/d)$<br>可以通过枚举 Powerful number 快速计算答案。</p>
