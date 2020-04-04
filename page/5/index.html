@@ -290,6 +290,95 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/01/安徽游记 II/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Kewth">
+      <meta itemprop="description" content="HNFMS 现役 OIer">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KeBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            
+            <a href="/2019/10/01/安徽游记 II/" class="post-title-link" itemprop="url">安徽游记 II</a>
+          
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-10-01 00:00:00" itemprop="dateCreated datePublished" datetime="2019-10-01T00:00:00+08:00">2019-10-01</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-12-08 14:22:06" itemprop="dateModified" datetime="2019-12-08T14:22:06+08:00">2019-12-08</time>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>12 天的培（kao）训（shi），坚持每日总结。</p><p>Day5 to Day8.</p><h2 id="Day5"><a href="#Day5" class="headerlink" title="Day5"></a>Day5</h2><h3 id="考试"><a href="#考试" class="headerlink" title="考试"></a>考试</h3><p>Nice 大夫今天又 A 掉一题！</p><p>第一题是在 DAG 上 q 个询问，每次询问一个子图的路径数量（子图点数和 O(n) ），<br>我想了想部分分， DAG 上 DP 嘛，但是这样复杂度上界是 $ O(q m) $ ，<br>瓶颈在于边的枚举（菊花树卡爆），然而子图的点可能很少，<br>然后想到了更暴力的：邻接矩阵存图然后用枚举点代替枚举边，<br>事实上邻接矩阵存不下，那就开 set （map 也行）动态加，<br>这复杂度 $ O(q n^2 log(m)) $ 啊然而，然后我想了好久优化都没想出来，<br>最后想着得多骗点分，于是就把两个暴力结合在了一起：<br>每次询问比较 $ n^2 log(m) $ 和 $ m $ 哪个小就跑哪个。。。<br>看上去很鸡肋，然而我理性分析了一波复杂度卧槽好像是 $ O(q m \sqrt{m} log(m)) $ ，<br>应该能骗蛮多分，于是交了，然后 A 了。。。</p>
+          <!--noindex-->
+          
+            <div class="post-button">
+              <a class="btn" href="/2019/10/01/安徽游记 II/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+    
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/01/安徽游记 III/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -354,184 +443,6 @@
           
             <div class="post-button">
               <a class="btn" href="/2019/10/01/安徽游记 III/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-    
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/01/i3lock/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Kewth">
-      <meta itemprop="description" content="HNFMS 现役 OIer">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="KeBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            
-            <a href="/2019/10/01/i3lock/" class="post-title-link" itemprop="url">i3lock</a>
-          
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2019-10-01 00:00:00" itemprop="dateCreated datePublished" datetime="2019-10-01T00:00:00+08:00">2019-10-01</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-08 14:24:00" itemprop="dateModified" datetime="2019-12-08T14:24:00+08:00">2019-12-08</time>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><img src="http://kewth.gq/wp-content/uploads/2019/07/2_054-1.png" alt="i3lock-fancy"></p><p>折腾了半天 i3lock ，不写篇博客可惜了。</p><p>i3lock 有啥好折腾的？不就是挂个壁纸锁屏嘛。<br>就是因为 i3lock 太鸡肋了折腾啊。<br>于是我试过了 i3lock 的各种民间 fork 版本，在此总结。</p><h2 id="i3lock"><a href="#i3lock" class="headerlink" title="i3lock"></a><a href="https://github.com/i3/i3lock" target="_blank" rel="noopener">i3lock</a></h2><p>官方版本 i3lock ，稳定可靠，但是鸡肋。</p><p>安装：</p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo aptitude install i3lock</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          
-            <div class="post-button">
-              <a class="btn" href="/2019/10/01/i3lock/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-    
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/01/多项式运算/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Kewth">
-      <meta itemprop="description" content="HNFMS 现役 OIer">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="KeBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            
-            <a href="/2019/10/01/多项式运算/" class="post-title-link" itemprop="url">多项式的运算</a>
-          
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2019-10-01 00:00:00" itemprop="dateCreated datePublished" datetime="2019-10-01T00:00:00+08:00">2019-10-01</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-08 14:23:34" itemprop="dateModified" datetime="2019-12-08T14:23:34+08:00">2019-12-08</time>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>简单来说，形如 $ a_0 + a_1X + a_2X^2 + … + a_nX^n $ 的代数表达式叫做多项式，<br>可以记作 $ P(X) = a_0 + a_1X + a_2X^2 + … + a_nX^n $ （系数表示法），<br>a 叫做多项式的系数，X 是一个不定元，不表示任何值，<br>不定元在多项式中最大项的次数称作多项式的次数。</p>
-          <!--noindex-->
-          
-            <div class="post-button">
-              <a class="btn" href="/2019/10/01/多项式运算/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -624,6 +535,95 @@
           
             <div class="post-button">
               <a class="btn" href="/2019/10/01/最长反链长/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+    
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/01/terminal-tool/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Kewth">
+      <meta itemprop="description" content="HNFMS 现役 OIer">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KeBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            
+            <a href="/2019/10/01/terminal-tool/" class="post-title-link" itemprop="url">终端（娱乐）工具</a>
+          
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-10-01 00:00:00" itemprop="dateCreated datePublished" datetime="2019-10-01T00:00:00+08:00">2019-10-01</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-12-08 14:22:43" itemprop="dateModified" datetime="2019-12-08T14:22:43+08:00">2019-12-08</time>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="sl-LS"><a href="#sl-LS" class="headerlink" title="sl / LS"></a>sl / LS</h2><p>在你 ls 打累的时候开小火车。</p><h3 id="安装方式"><a href="#安装方式" class="headerlink" title="安装方式"></a>安装方式</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo aptitude install sl</span><br></pre></td></tr></table></figure><h2 id="lolcat"><a href="#lolcat" class="headerlink" title="lolcat"></a>lolcat</h2><p>用彩虹为输出着色！</p><h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><p><img src="https://pic4.zhimg.com/v2-3bf6b7552162441dd638ac6d5fb3717b_r.jpg" alt="lolcat"></p><h3 id="安装方式-1"><a href="#安装方式-1" class="headerlink" title="安装方式"></a>安装方式</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo aptitude install rubygems</span><br><span class="line">gem install lolcat</span><br></pre></td></tr></table></figure><h3 id="管道处理"><a href="#管道处理" class="headerlink" title="管道处理"></a>管道处理</h3><p>非常有意思的是，将大多数 ncurses 程序的输出通过管道用 lolcat 后仍然可以正常运行！</p>
+          <!--noindex-->
+          
+            <div class="post-button">
+              <a class="btn" href="/2019/10/01/terminal-tool/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
