@@ -608,7 +608,7 @@
 <p>观察费马小定理 $n^{p-1} \equiv 1$ ，由于 $p$ 是奇素数，可以得到 $n^{2(\frac{p-1}{2})} - 1\equiv 0$ ，<br>也就是说 $n^{\frac{p-1}{2}}$ 是 1 开根的结果，根据上面所说， 1 开根只有两个解 1 和 -1 。<br>那么 $n^{\frac{p-1}{2}}$ 只能是 1 或 -1 。</p>
 <p>若 $n$ 是二次剩余，则有 $n^{\frac{p-1}{2}} \equiv (x^2)^{\frac{p-1}{2}} \equiv x^{p-1} \equiv 1$ 。</p>
 <p>若 $n^{\frac{p-1}{2}} \equiv 1$ ，将 $n$ 表示为 $g^k$ ， 其中 $g$ 是模 $p$ 意义下的原根。<br>那么有 $g^{k\frac{p-1}{2}} \equiv 1$ 由于 $g$ 是原根，必有 $p-1|k\frac{p-1}{2}$ ，<br>也就是说 $k$ 一定是偶数，那么令 $x \equiv g^{\frac{k}{2}}$ 即是 $n$ 开根的结果，这说明 $n$ 是二次剩余。</p>
-<p>也就是说 $n^{\frac{p-1}{2}} \equiv 1$ 与 $n$ 是二次剩余是等价的，<br>由于 $n^{\frac{p-1}{2}}$ 不为 1 是只能是 -1 ，那么 $n^{\frac{p-1}{2}} \equiv -1$ 与 $n$ 是非二次剩余等价。</p>
+<p>也就是说 $n^{\frac{p-1}{2}} \equiv 1$ 与 $n$ 是二次剩余是等价的，<br>由于 $n^{\frac{p-1}{2}}$ 不为 1 就只能是 -1 ，那么 $n^{\frac{p-1}{2}} \equiv -1$ 与 $n$ 是非二次剩余等价。</p>
 <p><em>ps: 网上一堆伪证说若 $n$ 是非二次剩余，不存在 $x$ 使得上式为 1 ，但这只能说明上式为 -1 时 $n$ 是非二次剩余，并不能推翻“当 $n$ 是非二次剩余时上式为 1”</em></p>
 <h2 id="Cipolla"><a href="#Cipolla" class="headerlink" title="Cipolla"></a>Cipolla</h2><p>对于二次剩余解方程 $x^2 \equiv n$ 。</p>
 <p>找到一个 $a$ 满足 $a^2 - n$ 是非二次剩余，由于非二次剩余的数量接近 $\frac{p}{2}$ ，<br>通过随机 + 检验的方式期望约 2 次可以找到这样一个 $a$ 。</p>
@@ -1203,6 +1203,38 @@
       </tags>
   </entry>
   <entry>
+    <title>NOIP 2018</title>
+    <url>/2019/10/01/NOIP%202018/</url>
+    <content><![CDATA[<h2 id="吐槽"><a href="#吐槽" class="headerlink" title="吐槽"></a>吐槽</h2><p>一天普及一天省选，弄到一起就出成了一套提高组试题。</p><h2 id="Day1"><a href="#Day1" class="headerlink" title="Day1"></a>Day1</h2><p>原题大作战。<br>然而我一题都没做过。</p><p>总的来说 Day1 比去年好像容易点（不然我也不会留出一个多小时给每道题造数据对拍）。</p><h3 id="T1"><a href="#T1" class="headerlink" title="T1"></a>T1</h3><p>CCF 直接把 2013 的题原封不动搬到了 Day1T1 。</p><p>一开始想着递归，发现会被卡成 $O(n^2)$ ，<br>再想 DP 的时候简化一下式子就直接可以扫一遍出结果。</p><a id="more"></a>
+
+
+
+
+<h3 id="T2"><a href="#T2" class="headerlink" title="T2"></a>T2</h3><p>bzoj 权限题。</p>
+<p>如果一种货币能被其它若干货币代替，就扔掉。<br>设 f[i] 表示价值为 i 的货币是否会被代替，做一遍完全背包就好了。</p>
+<h3 id="T3"><a href="#T3" class="headerlink" title="T3"></a>T3</h3><p>bzoj 权限题。</p>
+<p>听说可以二分加贪心，不过我考场想的比较复杂 <del>是二分答案再 DP ，DP 转移再套一层用链表维护的 DP</del> 。</p>
+<p>首先容易想到二分答案，二分一个答案 mid 后求最多可以有多少条赛道满足长度不小于 mid ，<br>若有不少于 m 条，则答案可行。</p>
+<p>求赛道数量可以 DP ，设 f[u] 为 u 的子树中满足条件的赛道的数量，<br>g[u] 表示在满足 f[u] 最大的前提下 u 向下不经过赛道的最长路径长。</p>
+<p>转移的时候先把 u 的儿子 v 的 f[v] 累加，同时将所有 g[v]+w 存起来（w 表示 u 到 v 的长度）。</p>
+<p>对于 g[v]+w 大于等于 mid 的直接把 f[u]++ 然后扔掉，于是只需要考虑小于 mid 的 g[v]+w 的贡献。</p>
+<p>两个不同的 g[v]+w 若大于等于 mid 就同样可以作为一条赛道让 f[u]++ ，先排序然后再次 DP 统计这样的赛道数量，<br>然后若所有的 g[v]+w 都有另外一个构成赛道， g[u]=0 ，否则 g[u] 等于剩下的最大的 g[v]+w 。</p>
+<h2 id="Day2"><a href="#Day2" class="headerlink" title="Day2"></a>Day2</h2><p>Day1 的比赛对我造成了巨大的影响，Day1 考完后信心爆棚， <del>以 AKIOI 的自信</del> 走进 Day2 考场。</p>
+<p>结果什么题都死磕正解，到最后连暴力都没打全。</p>
+<p>看题，WTF?</p>
+<p>看完 T1 我以为是个稠密无向图，想了好久感觉是要求一种特殊的生成树，感觉巨不可做。<br>顿时有点小慌，突然想到考前教练提醒要看完题，说不定后面的题反而简单。</p>
+<p>嗯，有道理，直接翻到 T2 ，推了波结论认定是一道状压 DP，松了口气。</p>
+<p>不急，再看 T3 ，哦，好像树形 DP ，但是 m 个询问难住了我。</p>
+<p>于是认定 T2 比较容易，开始死磕 T2 ，打完状压后跑了遍 2,2 的样例，诶过了。<br>再跑一遍 3,3 ，输出 144 ，于是手推了 3,3 的样例发现还是 144 ,<br>意识到推的结论有误，瞬间慌的一批。<br>推了好久才发现了问题，得到正确的结论后发现对于新结论状压 DP 似乎变得不可行。</p>
+<p>这个时候考试已经过了一个小时多了。慌。</p>
+<p>换换思路吧，于是去做 T3 , 想了很久 DP 最后写了个平方复杂度的，<br>跑过了所有样例就没管了，没多少时间了，又回去看 T1 。</p>
+<p>往回看了看 T1 里 m 的数据范围我才发现只有树和换套树两种情况。<br>那还求个鬼生成树，迅速打掉树的 60 部分分，n 看都没看只知道 $O(n)$ 稳了。<br>再去想换套树，感觉差不多，继续 $O(n)$做。</p>
+<p>结果？一直死磕 T1 的 $O(n)$ 做法，直到最后考试结束都没写出来。</p>
+<p>考试听别人说直接枚举删边 $O(n^2)$ 就可以过的时候我才意识到 n 只有 5000 ，整个人懵的。</p>
+<p>结果 T1 还是 60’ ，T3 不晓得哪里炸掉了爆零，<br>有意思的是 T2 我错误的打法样例都没过在 ccf 的数据里水到了 45’ 。</p>
+]]></content>
+  </entry>
+  <entry>
     <title>HNOI2019</title>
     <url>/2019/10/01/HNOI2019/</url>
     <content><![CDATA[<p>先喷一句，没有大样例，差评。<br>再喷一句，数据水，好评。</p><p>预计 80’ ，实际 110’ 。</p><p>我真是个奇葩实际分比预计分高。。。</p><h2 id="Day0"><a href="#Day0" class="headerlink" title="Day0-"></a>Day0-</h2><p>省选前三天教练每天给我们推一道题，都是主席树应用（教练曰“线段树模板”）。<br>都是看了题解的思路才做出来的，自己想就找不到用主席树维护的地方。</p><p>不知道为什么这三天效率都挺高，这三天我 A 的题目估计有我平常一个星期的 A 题数。。。</p><a id="more"></a>
@@ -1293,38 +1325,6 @@
 ]]></content>
   </entry>
   <entry>
-    <title>NOIP 2018</title>
-    <url>/2019/10/01/NOIP%202018/</url>
-    <content><![CDATA[<h2 id="吐槽"><a href="#吐槽" class="headerlink" title="吐槽"></a>吐槽</h2><p>一天普及一天省选，弄到一起就出成了一套提高组试题。</p><h2 id="Day1"><a href="#Day1" class="headerlink" title="Day1"></a>Day1</h2><p>原题大作战。<br>然而我一题都没做过。</p><p>总的来说 Day1 比去年好像容易点（不然我也不会留出一个多小时给每道题造数据对拍）。</p><h3 id="T1"><a href="#T1" class="headerlink" title="T1"></a>T1</h3><p>CCF 直接把 2013 的题原封不动搬到了 Day1T1 。</p><p>一开始想着递归，发现会被卡成 $O(n^2)$ ，<br>再想 DP 的时候简化一下式子就直接可以扫一遍出结果。</p><a id="more"></a>
-
-
-
-
-<h3 id="T2"><a href="#T2" class="headerlink" title="T2"></a>T2</h3><p>bzoj 权限题。</p>
-<p>如果一种货币能被其它若干货币代替，就扔掉。<br>设 f[i] 表示价值为 i 的货币是否会被代替，做一遍完全背包就好了。</p>
-<h3 id="T3"><a href="#T3" class="headerlink" title="T3"></a>T3</h3><p>bzoj 权限题。</p>
-<p>听说可以二分加贪心，不过我考场想的比较复杂 <del>是二分答案再 DP ，DP 转移再套一层用链表维护的 DP</del> 。</p>
-<p>首先容易想到二分答案，二分一个答案 mid 后求最多可以有多少条赛道满足长度不小于 mid ，<br>若有不少于 m 条，则答案可行。</p>
-<p>求赛道数量可以 DP ，设 f[u] 为 u 的子树中满足条件的赛道的数量，<br>g[u] 表示在满足 f[u] 最大的前提下 u 向下不经过赛道的最长路径长。</p>
-<p>转移的时候先把 u 的儿子 v 的 f[v] 累加，同时将所有 g[v]+w 存起来（w 表示 u 到 v 的长度）。</p>
-<p>对于 g[v]+w 大于等于 mid 的直接把 f[u]++ 然后扔掉，于是只需要考虑小于 mid 的 g[v]+w 的贡献。</p>
-<p>两个不同的 g[v]+w 若大于等于 mid 就同样可以作为一条赛道让 f[u]++ ，先排序然后再次 DP 统计这样的赛道数量，<br>然后若所有的 g[v]+w 都有另外一个构成赛道， g[u]=0 ，否则 g[u] 等于剩下的最大的 g[v]+w 。</p>
-<h2 id="Day2"><a href="#Day2" class="headerlink" title="Day2"></a>Day2</h2><p>Day1 的比赛对我造成了巨大的影响，Day1 考完后信心爆棚， <del>以 AKIOI 的自信</del> 走进 Day2 考场。</p>
-<p>结果什么题都死磕正解，到最后连暴力都没打全。</p>
-<p>看题，WTF?</p>
-<p>看完 T1 我以为是个稠密无向图，想了好久感觉是要求一种特殊的生成树，感觉巨不可做。<br>顿时有点小慌，突然想到考前教练提醒要看完题，说不定后面的题反而简单。</p>
-<p>嗯，有道理，直接翻到 T2 ，推了波结论认定是一道状压 DP，松了口气。</p>
-<p>不急，再看 T3 ，哦，好像树形 DP ，但是 m 个询问难住了我。</p>
-<p>于是认定 T2 比较容易，开始死磕 T2 ，打完状压后跑了遍 2,2 的样例，诶过了。<br>再跑一遍 3,3 ，输出 144 ，于是手推了 3,3 的样例发现还是 144 ,<br>意识到推的结论有误，瞬间慌的一批。<br>推了好久才发现了问题，得到正确的结论后发现对于新结论状压 DP 似乎变得不可行。</p>
-<p>这个时候考试已经过了一个小时多了。慌。</p>
-<p>换换思路吧，于是去做 T3 , 想了很久 DP 最后写了个平方复杂度的，<br>跑过了所有样例就没管了，没多少时间了，又回去看 T1 。</p>
-<p>往回看了看 T1 里 m 的数据范围我才发现只有树和换套树两种情况。<br>那还求个鬼生成树，迅速打掉树的 60 部分分，n 看都没看只知道 $O(n)$ 稳了。<br>再去想换套树，感觉差不多，继续 $O(n)$做。</p>
-<p>结果？一直死磕 T1 的 $O(n)$ 做法，直到最后考试结束都没写出来。</p>
-<p>考试听别人说直接枚举删边 $O(n^2)$ 就可以过的时候我才意识到 n 只有 5000 ，整个人懵的。</p>
-<p>结果 T1 还是 60’ ，T3 不晓得哪里炸掉了爆零，<br>有意思的是 T2 我错误的打法样例都没过在 ccf 的数据里水到了 45’ 。</p>
-]]></content>
-  </entry>
-  <entry>
     <title>NTT</title>
     <url>/2019/10/01/NTT/</url>
     <content><![CDATA[<p>NTT ，快速数论变换，功能与 <a href>FFT</a> 完全一致，用来求多项式卷积。<br>NTT 优点在于常数稍微小一点，没有精度误差。<br>但是 NTT 系数必须是取模意义下的整数，且对模数有特殊要求。</p><h2 id="FFT-的单位根"><a href="#FFT-的单位根" class="headerlink" title="FFT 的单位根"></a>FFT 的单位根</h2><p>建议前置 <a href>FFT</a> 。</p><p>FFT 可以分治优化复杂度的原因是用到了单位根的如下性质：<br>$$ W_{2n}^{2k} = W_n^k $$<br>$$ W_n^n = 1 $$<br>$$ W_n^{k + n/2} + W_n^k = 0 $$</p><a id="more"></a>
@@ -1390,6 +1390,69 @@
 <h3 id="透明"><a href="#透明" class="headerlink" title="透明"></a>透明</h3><p>也许你给终端模拟器设置了透明度，很遗憾，在 i3 上没用。<br>解决方案是下载 compton ，运行 <code>compton -b</code> 即可。</p>
 <h2 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h2><p>你可以很自由地向 i3 发送命令，<code>i3-msg</code> 提供了一系列接口，<br>足以帮助完成更复杂的定制。</p>
 <p>使用 <code>i3-input</code> 可以直接向 i3 发送一条命令。</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>i3lock</title>
+    <url>/2019/10/01/i3lock/</url>
+    <content><![CDATA[<p><img src="http://kewth.gq/wp-content/uploads/2019/07/2_054-1.png" alt="i3lock-fancy"></p><p>折腾了半天 i3lock ，不写篇博客可惜了。</p><p>i3lock 有啥好折腾的？不就是挂个壁纸锁屏嘛。<br>就是因为 i3lock 太鸡肋了折腾啊。<br>于是我试过了 i3lock 的各种民间 fork 版本，在此总结。</p><h2 id="i3lock"><a href="#i3lock" class="headerlink" title="i3lock"></a><a href="https://github.com/i3/i3lock" target="_blank" rel="noopener">i3lock</a></h2><p>官方版本 i3lock ，稳定可靠，但是鸡肋。</p><p>安装：</p><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo aptitude install i3lock</span><br></pre></td></tr></table></figure><a id="more"></a>
+
+
+
+
+
+
+<p>使用：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">i3lock</span><br></pre></td></tr></table></figure>
+
+<h2 id="i3lock-lixxia"><a href="#i3lock-lixxia" class="headerlink" title="i3lock-lixxia"></a><a href="https://github.com/Lixxia/i3lock" target="_blank" rel="noopener">i3lock-lixxia</a></h2><p>最友好，最简单的一个 i3lock fork ，<br>优化了中间显示的圆形框，并支持一些颜色自定义。</p>
+<p>安装：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo aptitude remove i3lock</span><br><span class="line">sudo aptitude install pkg-config libxcb1-dev libxcb1 libgl2ps-dev libx11-dev libglc0 libglc-dev libcairo2-dev libcairo-gobject2 libcairo2-dev libxkbfile-dev libxkbfile1 libxkbcommon-dev libxkbcommon-x11-dev libxcb-xkb-dev libxcb-dpms0-dev libxcb-damage0-dev libpam0g-dev libev-dev libxcb-image0-dev libxcb-util0-dev libxcb-composite0-dev libxcb-xinerama0-dev</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/Lixxia/i3lock.git</span><br><span class="line"><span class="built_in">cd</span> i3lock</span><br><span class="line">autoreconf -<span class="keyword">fi</span></span><br><span class="line">mkdir -p build &amp;&amp; <span class="built_in">cd</span> build</span><br><span class="line">../configure</span><br><span class="line">make &amp;&amp; sudo make install</span><br></pre></td></tr></table></figure>
+
+<p>顺带一提，只有这个 fork 给出了靠谱的源码安装方式，<br>其他 fork 甚至 i3lock 本身的安装方式都给得很不靠谱。</p>
+<p>使用：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">i3lock</span><br></pre></td></tr></table></figure>
+
+<h2 id="i3lock-blur"><a href="#i3lock-blur" class="headerlink" title="i3lock-blur"></a><a href="https://github.com/karulont/i3lock-blur" target="_blank" rel="noopener">i3lock-blur</a></h2><p>支持模糊背景，毛玻璃特效。</p>
+<p>安装：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo aptitude remove i3lock</span><br><span class="line">sudo aptitude install pkg-config libxcb1-dev libxcb1 libgl2ps-dev libx11-dev libglc0 libglc-dev libcairo2-dev libcairo-gobject2 libcairo2-dev libxkbfile-dev libxkbfile1 libxkbcommon-dev libxkbcommon-x11-dev libxcb-xkb-dev libxcb-dpms0-dev libxcb-damage0-dev libpam0g-dev libev-dev libxcb-image0-dev libxcb-util0-dev libxcb-composite0-dev libxcb-xinerama0-dev</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/karulont/i3lock-blur.git</span><br><span class="line"><span class="built_in">cd</span> i3lock-blur</span><br><span class="line">autoreconf -<span class="keyword">fi</span></span><br><span class="line">mkdir -p build &amp;&amp; <span class="built_in">cd</span> build</span><br><span class="line">../configure</span><br><span class="line">make &amp;&amp; sudo make install</span><br></pre></td></tr></table></figure>
+
+<p>再顺带一提，只有这个 fork 直接给出了需要安装那些库。</p>
+<p>使用：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">i3lock --fuzzy</span><br></pre></td></tr></table></figure>
+
+<h2 id="i3lockr"><a href="#i3lockr" class="headerlink" title="i3lockr"></a><a href="https://github.com/owenthewizard/i3lockr" target="_blank" rel="noopener">i3lockr</a></h2><p>支持模糊背景，毛玻璃特效。</p>
+<p>安装：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">wget https://github.com/owenthewizard/i3lockr/releases/download/v1.0.0-final/i3lockr</span><br><span class="line">sudo mv i3lockr /usr/<span class="built_in">local</span>/bin</span><br></pre></td></tr></table></figure>
+
+<p>使用：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">i3lockr --blur=25</span><br></pre></td></tr></table></figure>
+
+<h2 id="i3lock-color"><a href="#i3lock-color" class="headerlink" title="i3lock-color"></a><a href="https://github.com/PandorasFox/i3lock-color" target="_blank" rel="noopener">i3lock-color</a></h2><p>对于颜色的自定义十分全面。</p>
+<p>安装：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo aptitude remove i3lock</span><br><span class="line">sudo aptitude install pkg-config libxcb1-dev libxcb1 libgl2ps-dev libx11-dev libglc0 libglc-dev libcairo2-dev libcairo-gobject2 libcairo2-dev libxkbfile-dev libxkbfile1 libxkbcommon-dev libxkbcommon-x11-dev libxcb-xkb-dev libxcb-dpms0-dev libxcb-damage0-dev libpam0g-dev libev-dev libxcb-image0-dev libxcb-util0-dev libxcb-composite0-dev libxcb-xinerama0-dev</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/PandorasFox/i3lock-color</span><br><span class="line"><span class="built_in">cd</span> i3lock-color</span><br><span class="line">autoreconf -<span class="keyword">fi</span></span><br><span class="line">mkdir -p build &amp;&amp; <span class="built_in">cd</span> build</span><br><span class="line">../configure</span><br><span class="line">make &amp;&amp; sudo make install</span><br></pre></td></tr></table></figure>
+
+<p>使用：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">i3lock</span><br></pre></td></tr></table></figure>
+
+<h2 id="i3lock-fancy"><a href="#i3lock-fancy" class="headerlink" title="i3lock-fancy"></a><a href="https://github.com/meskarune/i3lock-fancy" target="_blank" rel="noopener">i3lock-fancy</a></h2><p>重头戏，star 最多的 fork ，甚至比 i3lock 本身更多，被广泛使用。</p>
+<p>安装：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo aptitude install i3lock-fancy</span><br></pre></td></tr></table></figure>
+
+<p>使用：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">i3lock-fancy</span><br></pre></td></tr></table></figure>
+
+<p>依赖 i3lock ，实际上是产生了背景图片再调用 i3lock 。<br>默认使用模糊背景，用起来没什么问题，但是事实上，<br>圆形框的颜色并不是最正确的，而是兼容的。</p>
+<p>源码里有这样一条：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment"># try to use a forked version of i3lock with prepared parameters</span></span><br><span class="line"><span class="keyword">if</span> ! i3lock -n <span class="string">"<span class="variable">$&#123;PARAM[@]&#125;</span>"</span> -i <span class="string">"<span class="variable">$IMAGE</span>"</span> &gt; /dev/null 2&gt;&amp;1; <span class="keyword">then</span></span><br><span class="line">    <span class="comment"># We have failed, lets get back to stock one</span></span><br><span class="line">    i3lock -n -i <span class="string">"<span class="variable">$IMAGE</span>"</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+
+<p>bash -x i3lock-fancy 就知道，<br>if 上的命令往往失败了，执行的是 if 里头的命令。</p>
+<p>事实上这需要 i3lock-color 。<br>那么，安装 i3lock-color 代替 i3lock 后，执行 i3lock-fancy ，<br>会发现圆形框的颜色与背景更加配了。</p>
+<h2 id="关于模糊背景"><a href="#关于模糊背景" class="headerlink" title="关于模糊背景"></a>关于模糊背景</h2><p>事实上，如果你用了 compton 再用 i3lock ，效果十分差劲。<br>解决这个方案，可以在调用 i3lock 前 kill compton ，结束后重新启动 compton 。</p>
+<p>拿 i3lock-fancy 举例，把之前展示的代码改成这样：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment"># try to use a forked version of i3lock with prepared parameters</span></span><br><span class="line">pkill compton</span><br><span class="line"><span class="keyword">if</span> ! i3lock -n <span class="string">"<span class="variable">$&#123;PARAM[@]&#125;</span>"</span> -i <span class="string">"<span class="variable">$IMAGE</span>"</span> &gt; /dev/null 2&gt;&amp;1; <span class="keyword">then</span></span><br><span class="line">    <span class="comment"># We have failed, lets get back to stock one</span></span><br><span class="line">    i3lock -n -i <span class="string">"<span class="variable">$IMAGE</span>"</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line">compton -i 0.8 -b</span><br></pre></td></tr></table></figure>
+
+<p>其次，用模糊背景通常会比较慢，尤其是 i3lock-fancy ，需等上 3 秒左右。<br>那么如果调用 i3lock-fancy 之后你又做了一些别的操作，比如关闭一个窗口，<br>这时锁屏了，你会发现背景和原来的不一样。 :)</p>
 ]]></content>
   </entry>
   <entry>
@@ -1733,69 +1796,6 @@ int QCNT;</code></pre><p>note 那一排暴露啦，这命名空间 lkjjhkfdlhgkj
 <h2 id="相交"><a href="#相交" class="headerlink" title="相交"></a>相交</h2><p>将原图做一次 Floyd ，<br>之后就可以知道任意两点 x, y ，x 是否能到达 y 。</p>
 <p>把建立二分图的方法改造了一下，只要 x 能到达 y ，<br>就直接连一条边 (x, y)，这样就可以“跨过”其它链来连接两条链了。</p>
 <p>这个时候，原图最长反链长度 = 最小链覆盖 = 二分图最大匹配。</p>
-]]></content>
-  </entry>
-  <entry>
-    <title>i3lock</title>
-    <url>/2019/10/01/i3lock/</url>
-    <content><![CDATA[<p><img src="http://kewth.gq/wp-content/uploads/2019/07/2_054-1.png" alt="i3lock-fancy"></p><p>折腾了半天 i3lock ，不写篇博客可惜了。</p><p>i3lock 有啥好折腾的？不就是挂个壁纸锁屏嘛。<br>就是因为 i3lock 太鸡肋了折腾啊。<br>于是我试过了 i3lock 的各种民间 fork 版本，在此总结。</p><h2 id="i3lock"><a href="#i3lock" class="headerlink" title="i3lock"></a><a href="https://github.com/i3/i3lock" target="_blank" rel="noopener">i3lock</a></h2><p>官方版本 i3lock ，稳定可靠，但是鸡肋。</p><p>安装：</p><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo aptitude install i3lock</span><br></pre></td></tr></table></figure><a id="more"></a>
-
-
-
-
-
-
-<p>使用：</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">i3lock</span><br></pre></td></tr></table></figure>
-
-<h2 id="i3lock-lixxia"><a href="#i3lock-lixxia" class="headerlink" title="i3lock-lixxia"></a><a href="https://github.com/Lixxia/i3lock" target="_blank" rel="noopener">i3lock-lixxia</a></h2><p>最友好，最简单的一个 i3lock fork ，<br>优化了中间显示的圆形框，并支持一些颜色自定义。</p>
-<p>安装：</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo aptitude remove i3lock</span><br><span class="line">sudo aptitude install pkg-config libxcb1-dev libxcb1 libgl2ps-dev libx11-dev libglc0 libglc-dev libcairo2-dev libcairo-gobject2 libcairo2-dev libxkbfile-dev libxkbfile1 libxkbcommon-dev libxkbcommon-x11-dev libxcb-xkb-dev libxcb-dpms0-dev libxcb-damage0-dev libpam0g-dev libev-dev libxcb-image0-dev libxcb-util0-dev libxcb-composite0-dev libxcb-xinerama0-dev</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/Lixxia/i3lock.git</span><br><span class="line"><span class="built_in">cd</span> i3lock</span><br><span class="line">autoreconf -<span class="keyword">fi</span></span><br><span class="line">mkdir -p build &amp;&amp; <span class="built_in">cd</span> build</span><br><span class="line">../configure</span><br><span class="line">make &amp;&amp; sudo make install</span><br></pre></td></tr></table></figure>
-
-<p>顺带一提，只有这个 fork 给出了靠谱的源码安装方式，<br>其他 fork 甚至 i3lock 本身的安装方式都给得很不靠谱。</p>
-<p>使用：</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">i3lock</span><br></pre></td></tr></table></figure>
-
-<h2 id="i3lock-blur"><a href="#i3lock-blur" class="headerlink" title="i3lock-blur"></a><a href="https://github.com/karulont/i3lock-blur" target="_blank" rel="noopener">i3lock-blur</a></h2><p>支持模糊背景，毛玻璃特效。</p>
-<p>安装：</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo aptitude remove i3lock</span><br><span class="line">sudo aptitude install pkg-config libxcb1-dev libxcb1 libgl2ps-dev libx11-dev libglc0 libglc-dev libcairo2-dev libcairo-gobject2 libcairo2-dev libxkbfile-dev libxkbfile1 libxkbcommon-dev libxkbcommon-x11-dev libxcb-xkb-dev libxcb-dpms0-dev libxcb-damage0-dev libpam0g-dev libev-dev libxcb-image0-dev libxcb-util0-dev libxcb-composite0-dev libxcb-xinerama0-dev</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/karulont/i3lock-blur.git</span><br><span class="line"><span class="built_in">cd</span> i3lock-blur</span><br><span class="line">autoreconf -<span class="keyword">fi</span></span><br><span class="line">mkdir -p build &amp;&amp; <span class="built_in">cd</span> build</span><br><span class="line">../configure</span><br><span class="line">make &amp;&amp; sudo make install</span><br></pre></td></tr></table></figure>
-
-<p>再顺带一提，只有这个 fork 直接给出了需要安装那些库。</p>
-<p>使用：</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">i3lock --fuzzy</span><br></pre></td></tr></table></figure>
-
-<h2 id="i3lockr"><a href="#i3lockr" class="headerlink" title="i3lockr"></a><a href="https://github.com/owenthewizard/i3lockr" target="_blank" rel="noopener">i3lockr</a></h2><p>支持模糊背景，毛玻璃特效。</p>
-<p>安装：</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">wget https://github.com/owenthewizard/i3lockr/releases/download/v1.0.0-final/i3lockr</span><br><span class="line">sudo mv i3lockr /usr/<span class="built_in">local</span>/bin</span><br></pre></td></tr></table></figure>
-
-<p>使用：</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">i3lockr --blur=25</span><br></pre></td></tr></table></figure>
-
-<h2 id="i3lock-color"><a href="#i3lock-color" class="headerlink" title="i3lock-color"></a><a href="https://github.com/PandorasFox/i3lock-color" target="_blank" rel="noopener">i3lock-color</a></h2><p>对于颜色的自定义十分全面。</p>
-<p>安装：</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo aptitude remove i3lock</span><br><span class="line">sudo aptitude install pkg-config libxcb1-dev libxcb1 libgl2ps-dev libx11-dev libglc0 libglc-dev libcairo2-dev libcairo-gobject2 libcairo2-dev libxkbfile-dev libxkbfile1 libxkbcommon-dev libxkbcommon-x11-dev libxcb-xkb-dev libxcb-dpms0-dev libxcb-damage0-dev libpam0g-dev libev-dev libxcb-image0-dev libxcb-util0-dev libxcb-composite0-dev libxcb-xinerama0-dev</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/PandorasFox/i3lock-color</span><br><span class="line"><span class="built_in">cd</span> i3lock-color</span><br><span class="line">autoreconf -<span class="keyword">fi</span></span><br><span class="line">mkdir -p build &amp;&amp; <span class="built_in">cd</span> build</span><br><span class="line">../configure</span><br><span class="line">make &amp;&amp; sudo make install</span><br></pre></td></tr></table></figure>
-
-<p>使用：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">i3lock</span><br></pre></td></tr></table></figure>
-
-<h2 id="i3lock-fancy"><a href="#i3lock-fancy" class="headerlink" title="i3lock-fancy"></a><a href="https://github.com/meskarune/i3lock-fancy" target="_blank" rel="noopener">i3lock-fancy</a></h2><p>重头戏，star 最多的 fork ，甚至比 i3lock 本身更多，被广泛使用。</p>
-<p>安装：</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo aptitude install i3lock-fancy</span><br></pre></td></tr></table></figure>
-
-<p>使用：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">i3lock-fancy</span><br></pre></td></tr></table></figure>
-
-<p>依赖 i3lock ，实际上是产生了背景图片再调用 i3lock 。<br>默认使用模糊背景，用起来没什么问题，但是事实上，<br>圆形框的颜色并不是最正确的，而是兼容的。</p>
-<p>源码里有这样一条：</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment"># try to use a forked version of i3lock with prepared parameters</span></span><br><span class="line"><span class="keyword">if</span> ! i3lock -n <span class="string">"<span class="variable">$&#123;PARAM[@]&#125;</span>"</span> -i <span class="string">"<span class="variable">$IMAGE</span>"</span> &gt; /dev/null 2&gt;&amp;1; <span class="keyword">then</span></span><br><span class="line">    <span class="comment"># We have failed, lets get back to stock one</span></span><br><span class="line">    i3lock -n -i <span class="string">"<span class="variable">$IMAGE</span>"</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
-
-<p>bash -x i3lock-fancy 就知道，<br>if 上的命令往往失败了，执行的是 if 里头的命令。</p>
-<p>事实上这需要 i3lock-color 。<br>那么，安装 i3lock-color 代替 i3lock 后，执行 i3lock-fancy ，<br>会发现圆形框的颜色与背景更加配了。</p>
-<h2 id="关于模糊背景"><a href="#关于模糊背景" class="headerlink" title="关于模糊背景"></a>关于模糊背景</h2><p>事实上，如果你用了 compton 再用 i3lock ，效果十分差劲。<br>解决这个方案，可以在调用 i3lock 前 kill compton ，结束后重新启动 compton 。</p>
-<p>拿 i3lock-fancy 举例，把之前展示的代码改成这样：</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment"># try to use a forked version of i3lock with prepared parameters</span></span><br><span class="line">pkill compton</span><br><span class="line"><span class="keyword">if</span> ! i3lock -n <span class="string">"<span class="variable">$&#123;PARAM[@]&#125;</span>"</span> -i <span class="string">"<span class="variable">$IMAGE</span>"</span> &gt; /dev/null 2&gt;&amp;1; <span class="keyword">then</span></span><br><span class="line">    <span class="comment"># We have failed, lets get back to stock one</span></span><br><span class="line">    i3lock -n -i <span class="string">"<span class="variable">$IMAGE</span>"</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line">compton -i 0.8 -b</span><br></pre></td></tr></table></figure>
-
-<p>其次，用模糊背景通常会比较慢，尤其是 i3lock-fancy ，需等上 3 秒左右。<br>那么如果调用 i3lock-fancy 之后你又做了一些别的操作，比如关闭一个窗口，<br>这时锁屏了，你会发现背景和原来的不一样。 :)</p>
 ]]></content>
   </entry>
 </search>
