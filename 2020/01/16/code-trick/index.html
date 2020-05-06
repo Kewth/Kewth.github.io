@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="zh-CN">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.1">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.1">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.1">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.1" color="#222">
+  <link rel="alternate" href="/atom.xml" title="KeBlog" type="application/atom+xml">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.1">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.4.1',
+    exturl: false,
+    sidebar: {"position":"left","display":"always","offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="总结一些 code-trick ，这种东西看看别人的代码，有时能够大开眼界。NTT/FFT预处理原根普通 NTT 每次长度改变都需要调用若干次快速幂来计算原根，差不多长这样：123456789101112131415void DFT(ll *a, int n) &amp;#123;	// ...	for(int m = 1; m &amp;lt; n; m &amp;lt;&amp;lt;= 1) &amp;#123;		ll Gn =">
+<meta name="keywords" content="trick">
+<meta property="og:type" content="article">
+<meta property="og:title" content="code-trick">
+<meta property="og:url" content="http://yoursite.com/2020/01/16/code-trick/index.html">
+<meta property="og:site_name" content="KeBlog">
+<meta property="og:description" content="总结一些 code-trick ，这种东西看看别人的代码，有时能够大开眼界。NTT/FFT预处理原根普通 NTT 每次长度改变都需要调用若干次快速幂来计算原根，差不多长这样：123456789101112131415void DFT(ll *a, int n) &amp;#123;	// ...	for(int m = 1; m &amp;lt; n; m &amp;lt;&amp;lt;= 1) &amp;#123;		ll Gn =">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-04-18T10:50:25.807Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="code-trick">
+<meta name="twitter:description" content="总结一些 code-trick ，这种东西看看别人的代码，有时能够大开眼界。NTT/FFT预处理原根普通 NTT 每次长度改变都需要调用若干次快速幂来计算原根，差不多长这样：123456789101112131415void DFT(ll *a, int n) &amp;#123;	// ...	for(int m = 1; m &amp;lt; n; m &amp;lt;&amp;lt;= 1) &amp;#123;		ll Gn =">
+  <link rel="canonical" href="http://yoursite.com/2020/01/16/code-trick/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>code-trick | KeBlog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">KeBlog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description">The OI Algorithm Blog of Kewth</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+        
+        
+        <li class="menu-item menu-item-home">
+      
+    
+      
+      
+        
+      
+        
+      
+        
+      
+    
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+      
+    
+      
+      
+        
+        
+        <li class="menu-item menu-item-about">
+      
+    
+      
+      
+        
+      
+        
+      
+        
+      
+    
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+      
+    
+      
+      
+        
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+      
+      
+        
+      
+        
+      
+        
+          
+        
+      
+    
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">46</span></a>
+
+  </li>
+      
+    
+      
+      
+        
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+      
+      
+        
+      
+        
+          
+        
+      
+        
+      
+    
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">4</span></a>
+
+  </li>
+      
+    
+      
+      
+        
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+      
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">48</span></a>
+
+  </li>
+      
+    
+  </ul>
+
+    
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/16/code-trick/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Kewth">
+      <meta itemprop="description" content="HNFMS 现役 OIer">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KeBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            code-trick
+            
+
+          
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2020-01-16 14:36:13" itemprop="dateCreated datePublished" datetime="2020-01-16T14:36:13+08:00">2020-01-16</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-04-18 18:50:25" itemprop="dateModified" datetime="2020-04-18T18:50:25+08:00">2020-04-18</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/整理/" itemprop="url" rel="index">
+                    <span itemprop="name">整理</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>总结一些 code-trick ，这种东西看看别人的代码，有时能够大开眼界。</p><h2 id="NTT-FFT"><a href="#NTT-FFT" class="headerlink" title="NTT/FFT"></a>NTT/FFT</h2><h4 id="预处理原根"><a href="#预处理原根" class="headerlink" title="预处理原根"></a>预处理原根</h4><p>普通 NTT 每次长度改变都需要调用若干次快速幂来计算原根，差不多长这样：</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">DFT</span><span class="params">(ll *a, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">	<span class="comment">// ...</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> m = <span class="number">1</span>; m &lt; n; m &lt;&lt;= <span class="number">1</span>) &#123;</span><br><span class="line">		ll Gn = power(<span class="number">3</span>, (mod - <span class="number">1</span>) / (m &lt;&lt; <span class="number">1</span>));</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i += m) &#123;</span><br><span class="line">			ll G = <span class="number">1</span>;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> k = i; k &lt; i + m; k ++) &#123;</span><br><span class="line">				ll a0 = a[k], a1 = a[k + m] * G;</span><br><span class="line">				a[k] = (a0 + a1) % mod;</span><br><span class="line">				a[k + m] = (a0 + mod - a1) % mod;</span><br><span class="line">				(G *= Gn) %= mod;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><a id="more"></a>
+
+
+
+<p>事实上可以预处理数组 $G$ 满足当前枚举的 $(m, k, i)$ 需要用到的原根就是 <code>G[m + k - i]</code> ，<br>每一层需要 $m$ 个位置，由于每次 $m$ 倍长，$O(n)$ 的空间是能存下的。<br>而且只需要递推 $m$ 最大的一层，剩下的由于 $W_m^k = W_{2m}^{2k}$ ，可以知道 <code>G[m + k] = G[m * 2 + k * 2]</code> 。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	ll g = power(<span class="number">3</span>, (mod - <span class="number">1</span>) / maxl);</span><br><span class="line">	G[maxl &gt;&gt; <span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = (maxl &gt;&gt; <span class="number">1</span>) + <span class="number">1</span>; i &lt;= maxl; i ++)</span><br><span class="line">		G[i] = G[i - <span class="number">1</span>] * g % mod;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = (maxl &gt;&gt; <span class="number">1</span>) - <span class="number">1</span>; i; i --)</span><br><span class="line">		G[i] = G[i &lt;&lt; <span class="number">1</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">DFT</span><span class="params">(ll *a, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">	<span class="comment">// ...</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> m = <span class="number">1</span>; m &lt; n; m &lt;&lt;= <span class="number">1</span>)</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i += m &lt;&lt; <span class="number">1</span>)</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> k = i; k &lt; i + m; k ++) &#123;</span><br><span class="line">				ll a0 = a[k], a1 = a[k + m] * G[m + k - i] % mod;</span><br><span class="line">				a[k] = (a0 + a1) % mod;</span><br><span class="line">				a[k + m] = (a0 + mod - a1) % mod;</span><br><span class="line">			&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>同样的道理 rev 数组也是能预处理的。</p>
+<h4 id="逆变换"><a href="#逆变换" class="headerlink" title="逆变换"></a>逆变换</h4><p>逆变换实际只要 reverse 一遍做正变换然后除以 $n$ 即可。</p>
+<p>除以 $n$ 往往需要计算逆元，但是由于 $n$ 是二的整次幂，且 NTT 模数必须是 $2^k * s + 1$ ，<br>除了预处理以外 $n$ 的逆元有更好的 $O(1)$ 计算方法，因为找到一个满足 $nx \equiv -1$ 的数 $x$ 是很容易的。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">IDFT</span><span class="params">(ll *a, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">	<span class="built_in">std</span>::reverse(a + <span class="number">1</span>, a + n);</span><br><span class="line">	DFT(a, n);</span><br><span class="line">	<span class="keyword">int</span> invn = mod - (mod - <span class="number">1</span>) / n;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i ++)</span><br><span class="line">		(a[i] *= invn) %= mod;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="模数"><a href="#模数" class="headerlink" title="模数"></a>模数</h4><p>当模数比较小以至于 $p^2logn$ 不会爆 <code>long long</code> 的时候，NTT 的蝴蝶变换可以在最后取模，实测会快很多。<br>比如 <code>167772161</code> 就是这样一个模数。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">inline</span> <span class="keyword">void</span> __d(ll &amp;x) &#123; <span class="keyword">if</span>(x &lt; <span class="number">0</span>) x += mod; &#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">DFT</span><span class="params">(ll *a, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> m = <span class="number">1</span>; m &lt; n; m &lt;&lt;= <span class="number">1</span>)</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i += m &lt;&lt; <span class="number">1</span>)</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> k = i; k &lt; i + m; k ++) &#123;</span><br><span class="line">				ll a0 = a[k], a1 = a[k + m] * G[m + k - i] % mod;</span><br><span class="line">				a[k] = a0 + a1;</span><br><span class="line">				a[k + m] = a0 - a1;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) __d(a[i] %= mod);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="FFT-两次变一次-1"><a href="#FFT-两次变一次-1" class="headerlink" title="FFT 两次变一次 1"></a>FFT 两次变一次 1</h4><p>这是 myy 提出的一个优秀的 FFT trick ，能够一次 FFT 处理两个多项式，但缺点是精度会进一步降低。</p>
+<p>前提是两个多项式的系数在 FFT 前虚部为 0 ，这个条件在 DFT 中往往是能满足的。</p>
+<p>例如要给两个多项式 $A, B$ 做 FFT ，考虑构造两个多项式：</p>
+<p>$$P(x) = A(x) + i B(x)$$<br>$$Q(x) = A(x) - i B(x)$$</p>
+<p>那么由于 $A, B$ 的虚部都为 0 ，$P, Q$ 的每一项系数都互为共轭，同样 $FFT(P), FFT(Q)$ 的每一项系数都互为共轭。<br>那么只需对 $P$ 做一次 FFT ，就可以通过共轭 $O(n)$ 求出 $FFT(Q)$ 的系数。<br>然后通过 $FFT(P), FFT(Q)$ 求 $FFT(A), FFT(B)$ 就是解上面的二元一次方程组，也是可以 $O(n)$ 做到的。</p>
+<h4 id="FFT-两次变一次-2"><a href="#FFT-两次变一次-2" class="headerlink" title="FFT 两次变一次 2"></a>FFT 两次变一次 2</h4><p>这是 myy 提出的一个优秀的 FFT trick ，能够一次 FFT 处理两个多项式，但缺点是精度会进一步降低。</p>
+<p>前提是两个多项式的系数在 FFT 后虚部为 0 ，这个条件在 IDFT 中往往是能满足的。</p>
+<p>例如要给两个多项式 $A, B$ 做 FFT ，构造多项式 $P$ 满足：</p>
+<p>$$P(x) = A(x) + i B(x)$$</p>
+<p>求出 $FFT(P)$ ，同样有 $FFT(P)(x) = FFT(A)(x) + i FFT(B)(x)$ ，而 $FFT(A), FFT(B)$ 系数的虚部都是 0 。</p>
+<p>那么 $FFT(P)$ 的实部就是 $FFT(A)$ ，虚部就是 $FFT(B)$ 。</p>
+<h2 id="线段树"><a href="#线段树" class="headerlink" title="线段树"></a>线段树</h2><p>同时需要记录区间最大值 max 和区间取 min 标记 tag 时，直接用 max 代替掉 tag 即可。<br>比如区间取 min 和区间求和的吉司机线段树（segment tree beats）。</p>
+<h2 id="STL"><a href="#STL" class="headerlink" title="STL"></a>STL</h2><p>将数组降序排序不需要写 <code>cmp</code> ，只需要 <code>std::sort(a, a + n, std::greater&lt;int&gt;());</code> 即可。<br><code>std::greater</code> 包含在头文件 <code>functional</code> 中，这同样适用于结构体排序。<br>另外如果要用小根堆，可以使用 <code>std::priority_queue&lt;int, std::vector&lt;int&gt;, std::greater&lt;int&gt; &gt;</code> 。<br>与 <code>std::greater</code> 对应的是 <code>std::less</code> 。</p>
+<p><code>std::set</code> 插入后返回的迭代器可以直接获取：<code>auto iter = set.insert(x).second</code> 。</p>
+<h2 id="位运算"><a href="#位运算" class="headerlink" title="位运算"></a>位运算</h2><h4 id="预处理-bitcount"><a href="#预处理-bitcount" class="headerlink" title="预处理 bitcount"></a>预处理 bitcount</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i ++)</span><br><span class="line">	bitcount[i] = bitcount[i &amp; (i - <span class="number">1</span>)] + <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+
+<h4 id="预处理-highbit"><a href="#预处理-highbit" class="headerlink" title="预处理 highbit"></a>预处理 highbit</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; i ++)</span><br><span class="line">	highbit[i] = highbit[i &gt;&gt; <span class="number">1</span>] + <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+
+<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><p>利用语法糖可以写出一些骚操作，比如下面这个快读模板：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Inputer</span> &#123;</span></span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">char</span> buffer[<span class="number">64</span> * <span class="number">1024</span> * <span class="number">1024</span>], *p;</span><br><span class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">operator</span> <span class="title">int</span> <span class="params">()</span> </span>&#123; <span class="keyword">return</span> <span class="keyword">int</span>(strtol(p, &amp;p, <span class="number">10</span>)); &#125;</span><br><span class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">operator</span> <span class="title">ll</span> <span class="params">()</span> </span>&#123; <span class="keyword">return</span> strtoll(p, &amp;p, <span class="number">10</span>); &#125;</span><br><span class="line">	<span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt; <span class="title">inline</span> <span class="title">void</span> <span class="title">operator</span> () (<span class="title">T</span> &amp;<span class="title">x</span>) &#123;</span> x = *<span class="keyword">this</span>; &#125;</span><br><span class="line">	<span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>, <span class="title">class</span> ...<span class="title">A</span>&gt; <span class="title">inline</span> <span class="title">void</span> <span class="title">operator</span> () (<span class="title">T</span> &amp;<span class="title">x</span>, <span class="title">A</span> &amp;...<span class="title">a</span>)</span></span><br><span class="line"><span class="class">	&#123;</span> x = *<span class="keyword">this</span>; <span class="keyword">this</span> -&gt; <span class="keyword">operator</span> ()(a...); &#125;</span><br><span class="line">	Inputer() &#123; fread(buffer, <span class="number">1</span>, <span class="keyword">sizeof</span> buffer, <span class="built_in">stdin</span>); &#125;</span><br><span class="line">&#125; read;</span><br><span class="line"><span class="keyword">char</span> *Inputer::p = Inputer::buffer;</span><br><span class="line"><span class="keyword">char</span> Inputer::buffer[] = &#123;&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>它有多种用法：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">foo</span> <span class="params">(<span class="keyword">int</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a = read;</span><br><span class="line"></span><br><span class="line">	ll b = read;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> c;</span><br><span class="line">	read(c);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> d;</span><br><span class="line">	ll e, f;</span><br><span class="line">	read(d, e, f);</span><br><span class="line"></span><br><span class="line">	foo(read);</span><br><span class="line"></span><br><span class="line">	read.<span class="function"><span class="keyword">operator</span> <span class="title">int</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">	ll g = <span class="keyword">int</span>(read);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>并且可以自定义各种类型的读入，编译器能够根据类型正确调用对应的输入函数（在没有歧义的前提下），或者自己在调用时直接给出类型。</p>
+<p>ps: 这个 trick 不是学的，是我自己原创的，也是我一直在使用的快读模板。:)</p>
+<p>事实上由于大多时候不需要快读，我平时用的输入模板是这样子的（用法完全相同）：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">operator</span> <span class="title">int</span> <span class="params">()</span> </span>&#123; <span class="keyword">int</span> x; <span class="keyword">return</span> <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;x), x; &#125;</span><br><span class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">operator</span> <span class="title">ll</span> <span class="params">()</span> </span>&#123; ll x; <span class="keyword">return</span> <span class="built_in">scanf</span>(<span class="string">"%lld"</span>, &amp;x), x; &#125;</span><br><span class="line">	<span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt; <span class="title">inline</span> <span class="title">void</span> <span class="title">operator</span> () (<span class="title">T</span> &amp;<span class="title">x</span>) &#123;</span> x = *<span class="keyword">this</span>; &#125;</span><br><span class="line">	<span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>, <span class="title">class</span> ...<span class="title">A</span>&gt; <span class="title">inline</span> <span class="title">void</span> <span class="title">operator</span> () (<span class="title">T</span> &amp;<span class="title">x</span>, <span class="title">A</span> &amp;...<span class="title">a</span>)</span></span><br><span class="line"><span class="class">	&#123;</span> x = *<span class="keyword">this</span>; <span class="keyword">this</span> -&gt; <span class="keyword">operator</span> () (a...); &#125;</span><br><span class="line">&#125; read;</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+        
+      
+
+      <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/trick/" rel="tag"><i class="fa fa-tag"></i> trick</a>
+            
+          </div>
+        
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2020/01/10/牛客练习赛57/" rel="next" title="牛客练习赛57">
+                  <i class="fa fa-chevron-left"></i> 牛客练习赛57
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2020/04/19/常系数齐次线性递推/" rel="prev" title="常系数齐次线性递推">
+                  常系数齐次线性递推 <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    
+    <div class="comments" id="gitalk-container"></div>
+  
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#NTT-FFT"><span class="nav-number">1.</span> <span class="nav-text">NTT/FFT</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#预处理原根"><span class="nav-number">1.0.1.</span> <span class="nav-text">预处理原根</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#逆变换"><span class="nav-number">1.0.2.</span> <span class="nav-text">逆变换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#模数"><span class="nav-number">1.0.3.</span> <span class="nav-text">模数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#FFT-两次变一次-1"><span class="nav-number">1.0.4.</span> <span class="nav-text">FFT 两次变一次 1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#FFT-两次变一次-2"><span class="nav-number">1.0.5.</span> <span class="nav-text">FFT 两次变一次 2</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线段树"><span class="nav-number">2.</span> <span class="nav-text">线段树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#STL"><span class="nav-number">3.</span> <span class="nav-text">STL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#位运算"><span class="nav-number">4.</span> <span class="nav-text">位运算</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#预处理-bitcount"><span class="nav-number">4.0.1.</span> <span class="nav-text">预处理 bitcount</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#预处理-highbit"><span class="nav-number">4.0.2.</span> <span class="nav-text">预处理 highbit</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#语法"><span class="nav-number">5.</span> <span class="nav-text">语法</span></a></li></ol></div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="/images/avatar.jpeg"
+      alt="Kewth">
+  <p class="site-author-name" itemprop="name">Kewth</p>
+  <div class="site-description" itemprop="description">HNFMS 现役 OIer</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">48</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        <span class="site-state-item-count">46</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+</div>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://github.com/Kewth" title="GitHub &rarr; https://github.com/Kewth" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:Kewth.K.D@outlook.com" title="E-Mail &rarr; mailto:Kewth.K.D@outlook.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="qq:1344205350" title="QQ &rarr; qq:1344205350" rel="noopener" target="_blank"><i class="fa fa-fw fa-qq"></i>QQ</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://www.luogu.org/space/show?uid=52232" title="Luogu &rarr; https://www.luogu.org/space/show?uid=52232" rel="noopener" target="_blank"><i class="fa fa-fw fa-code-fork"></i>Luogu</a>
+      </span>
+    
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      Links | 友链
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://ricardoships.github.io" title="https://ricardoships.github.io" rel="noopener" target="_blank">Ricardoships(AFO)</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://luoyuyang.cf" title="https://luoyuyang.cf" rel="noopener" target="_blank">lyy(AFO)</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://zrz-orz.github.io" title="https://zrz-orz.github.io" rel="noopener" target="_blank">zrz_orz(AFO)</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://qiuly.xyz" title="https://qiuly.xyz" rel="noopener" target="_blank">Qiuly</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/Lskkkno1" title="https://www.cnblogs.com/Lskkkno1" rel="noopener" target="_blank">Lskkkno1</a>
+        </li>
+      
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heartbeat"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Kewth</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">
+      
+    主题 – <a href="https://muse.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.4.1
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+  
+    <span class="post-meta-divider">|</span>
+  
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.4.1"></script><script src="/js/motion.js?v=7.4.1"></script>
+<script src="/js/schemes/muse.js?v=7.4.1"></script>
+<script src="/js/next-boot.js?v=7.4.1"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+    
+      
+<script type="text/x-mathjax-config">
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
+    MathJax.Hub.Typeset();
+  }, window.MathJax);
+</script>
+
+    
+  
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID: '5a2fdd60fe2f91777a6b',
+      clientSecret: '9ddb762244fffc5caff2490a05e53dbca8ae4902',
+      repo: 'hexo-gitalk',
+      owner: 'Kewth',
+      admin: ['Kewth'],
+      id: '6cc2024783fdae9bf69cd05696f1de98',
+        language: 'zh-CN',
+      
+      distractionFreeMode: 'true'
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+</body>
+</html>

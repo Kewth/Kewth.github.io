@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="zh-CN">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.1">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.1">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.1">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.1" color="#222">
+  <link rel="alternate" href="/atom.xml" title="KeBlog" type="application/atom+xml">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.1">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.4.1',
+    exturl: false,
+    sidebar: {"position":"left","display":"always","offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="快速沃尔什变换，简称 FWT 。用处多项式卷积一般是这样的：$$ C_i = \sum_{j + k = i} A_j \cdot B_k $$这个可以用 FFT 快速求解。然而还有一个诡异的卷积：$$ C_i = \sum_{j \oplus k = i} A_j \cdot B_k $$其中 $ \oplus $ 是任意一种位运算。">
+<meta name="keywords" content="卷积,位运算,FWT,子集卷积">
+<meta property="og:type" content="article">
+<meta property="og:title" content="快速沃尔什变换">
+<meta property="og:url" content="http://yoursite.com/2019/11/03/快速沃尔什变换/index.html">
+<meta property="og:site_name" content="KeBlog">
+<meta property="og:description" content="快速沃尔什变换，简称 FWT 。用处多项式卷积一般是这样的：$$ C_i = \sum_{j + k = i} A_j \cdot B_k $$这个可以用 FFT 快速求解。然而还有一个诡异的卷积：$$ C_i = \sum_{j \oplus k = i} A_j \cdot B_k $$其中 $ \oplus $ 是任意一种位运算。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-12-29T08:14:04.184Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="快速沃尔什变换">
+<meta name="twitter:description" content="快速沃尔什变换，简称 FWT 。用处多项式卷积一般是这样的：$$ C_i = \sum_{j + k = i} A_j \cdot B_k $$这个可以用 FFT 快速求解。然而还有一个诡异的卷积：$$ C_i = \sum_{j \oplus k = i} A_j \cdot B_k $$其中 $ \oplus $ 是任意一种位运算。">
+  <link rel="canonical" href="http://yoursite.com/2019/11/03/快速沃尔什变换/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>快速沃尔什变换 | KeBlog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">KeBlog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description">The OI Algorithm Blog of Kewth</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+        
+        
+        <li class="menu-item menu-item-home">
+      
+    
+      
+      
+        
+      
+        
+      
+        
+      
+    
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+      
+    
+      
+      
+        
+        
+        <li class="menu-item menu-item-about">
+      
+    
+      
+      
+        
+      
+        
+      
+        
+      
+    
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+      
+    
+      
+      
+        
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+      
+      
+        
+      
+        
+      
+        
+          
+        
+      
+    
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">46</span></a>
+
+  </li>
+      
+    
+      
+      
+        
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+      
+      
+        
+      
+        
+          
+        
+      
+        
+      
+    
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">4</span></a>
+
+  </li>
+      
+    
+      
+      
+        
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+      
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">48</span></a>
+
+  </li>
+      
+    
+  </ul>
+
+    
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/03/快速沃尔什变换/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Kewth">
+      <meta itemprop="description" content="HNFMS 现役 OIer">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KeBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            快速沃尔什变换
+            
+
+          
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-11-03 17:35:00" itemprop="dateCreated datePublished" datetime="2019-11-03T17:35:00+08:00">2019-11-03</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-12-29 16:14:04" itemprop="dateModified" datetime="2019-12-29T16:14:04+08:00">2019-12-29</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>快速沃尔什变换，简称 FWT 。</p><h2 id="用处"><a href="#用处" class="headerlink" title="用处"></a>用处</h2><p>多项式卷积一般是这样的：</p><p>$$ C_i = \sum_{j + k = i} A_j \cdot B_k $$</p><p>这个可以用 FFT 快速求解。</p><p>然而还有一个诡异的卷积：</p><p>$$ C_i = \sum_{j \oplus k = i} A_j \cdot B_k $$</p><p>其中 $ \oplus $ 是任意一种位运算。</p><a id="more"></a>
+
+
+
+
+
+
+<p>FWT 便是求这类卷积的快速算法。</p>
+<h2 id="构造"><a href="#构造" class="headerlink" title="构造"></a>构造</h2><p>FFT 的思想是把多项式转换成可以线性相乘的点值表示法 (DFT) ，<br>再把相乘的结果转换回系数表示法 (IDFT) 。</p>
+<p>同样的道理可以用在 FWT 上，用 DWT 将多项式转换成可以线性相乘的形式，即：</p>
+<p>$$ DWT(C)_i = DWT(A)_i \cdot DWT(B)_i $$</p>
+<p>再用 IDWT 将相乘的结果转换回来。</p>
+<h2 id="DWT"><a href="#DWT" class="headerlink" title="DWT"></a>DWT</h2><p>目标是构造一个转移系数函数 f(i, j) ，满足：</p>
+<p>$$ DWT(A)_i = \sum_j A_j \cdot f(i, j) $$</p>
+<p>考虑 f(i, j) 应满足什么样的性质。</p>
+<p>首先根据 DWT 的性质：</p>
+<p>$$ DWT(C)_i = DWT(A)_i \cdot DWT(B)_i $$</p>
+<p>$$ \sum_t C_t f(i, t) = \sum_j A_j f(i, j) \sum_k B_k f(i, k) $$</p>
+<p>$$ \sum_t \sum_{j \oplus k = t} A_j B_k f(i, t) = \sum_j \sum_k A_j f(i, j) B_k f(i, k) $$</p>
+<p>$$ \sum_t \sum_{j \oplus k = t} A_j B_k f(i, t) = \sum_t \sum_{j \oplus k = t} A_j f(i, j) B_k f(i, k) $$</p>
+<p>由上式可得出：</p>
+<p>$$ \forall i, j, k: f(i, j) f(i, k) = f(i, j \oplus k) $$</p>
+<p>这样还不够，为了让 DWT 快速进行，f(i, j) 还应满足以下性质：</p>
+<p>$$ f(i, j) = \prod_k f(i_k, j_k) $$</p>
+<p>其中 $ i_k $ 表示 i 二进制下的第 k 位（ 0 或 1 ）。</p>
+<p>有了这个性质，就可已通过 f(0, 0), f(0, 1), f(1, 0), f(1, 1) 的值相乘得出所有 f 。<br>有了这个性质，就可以考虑分治求 DWT ：</p>
+<p>$$DWT(A)_i = \sum_{j=0}^{n-1} A_j f(i, j)$$</p>
+<p>$$ = \sum_{j=0}^{n/2-1} A_j f(i, j) + \sum_{j=n/2}^{n-1} A_j f(i, j) $$</p>
+<p>$$ = \sum_{j=0}^{n/2-1} A_j \prod_k f(i_k, j_k) + \sum_{j=n/2}^{n-1} A_j \prod_k f(i_k, j_k) $$</p>
+<p>$$ = \sum_{j=0}^{n/2-1} f(i_0, j_0) A_j \prod_{k \geq 1} f(i_k, j_k) + \sum_{j=n/2}^{n-1} A_j f(i_0, j_0) \prod_{k \geq 1} f(i_k, j_k)$$</p>
+<p>$$ = f(i_0, 0) \sum_{j=0}^{n/2-1} A_j \prod_k f(i_k, j_k) + f(i_0, 1) \sum_{j=n/2}^{n-1} A_j \prod_k f(i_k, j_k) $$</p>
+<p>规模减小了一半，递归或迭代地分治下去。<br>每次将 A 分成左右两半 A0, A1 ：</p>
+<p>$$ DWT(A)_i = f(0, 0) DWT(A0)_i + f(0, 1) DWT(A1)_i , i &lt; n / 2 $$</p>
+<p>$$ DWT(A)_i = f(1, 0) DWT(A0)_i + f(1, 1) DWT(A1)_i , i \geq n / 2 $$</p>
+<p>想到 FFT 的蝴蝶变换没有？ <del>答：没有</del><br>迭代的 DWT 这里也有类似的蝴蝶变换：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> x = A[i], y = A[i + k];</span><br><span class="line">A[i] = f00 * x + f01 * y;</span><br><span class="line">A[i + k] = f10 * x + f11 * y;</span><br></pre></td></tr></table></figure>
+
+<p>DWT 的过程就是这样了，甚至不需要构造整个 f ，<br>只需要 f(0, 0), f(0, 1), f(1, 0), f(1, 1) 即可，<br>需要满足的就是 $ \forall i, j, k: f(i, j) f(i, k) = f(i, j \oplus k) $ 。</p>
+<h2 id="IDWT"><a href="#IDWT" class="headerlink" title="IDWT"></a>IDWT</h2><p>怎么将 DWT 的结果转换回来？<br>观察 DWT 的蝴蝶变换：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = f00 * x + f01 * y;</span><br><span class="line">b = f10 * x + f11 * y;</span><br></pre></td></tr></table></figure>
+
+<p>DWT 通过 x, y 求出 a, b,<br>IDWT 就是通过 a, b 求 x, y 。</p>
+<p>解二元一次方程就好了：<br>x = (f11 * a - f01 * b) / (f00 * f11 - f01 * f10)<br>y = (f10 * a - f00 * b) / (f01 * f10 - f00 * f11)  </p>
+<p>就是这么简单…</p>
+<p>个屁啊。</p>
+<p>考虑 f 的构造，<br>要满足 DWT 的性质把所有的 f 设为 0 不就可以了？<br>要满足 DWT 的性质把所有的 f 设为 1 不就可以了？</p>
+<p>这样且不是对于任何位运算都会有相同的结果？</p>
+<p><del>Naive.</del></p>
+<p>再看看 IDWT ，分母里边是不是有 (f01 * f11 - f01 * f10) ？<br>不幸的是把 f 全部设为 0 或者全设为 1 这个分母都是 0 ，<br>这意味着 IDWT 的二元一次方程无解，转过去就转不回来了。</p>
+<p>因此 f 的构造还要满足一个条件： <code>f01 * f11 != f01 * f10</code> 。</p>
+<h2 id="f-的构造"><a href="#f-的构造" class="headerlink" title="f 的构造"></a>f 的构造</h2><p>f 需要满足的性质已经讲的很详细了。</p>
+<p>这里给出常用位运算中 f 的构造：</p>
+<ul>
+<li>按位或： f00 = 1, f01 = 0, f10 = 1, f11 = 1</li>
+<li>按位与： f00 = 1, f01 = 1, f10 = 0, f11 = 1</li>
+<li>异或： f00 = 1, f01 = 1, f10 = 1, f11 = -1</li>
+</ul>
+<p>可以自行验证，这些 f 满足上述性质。</p>
+<h2 id="实际意义"><a href="#实际意义" class="headerlink" title="实际意义"></a>实际意义</h2><p>一个多项式 A DFT 后的 $A2_x$ 实际意义就是 A 在 $ W_n^x $ 上的值（点值表示）。</p>
+<p>那么 A DWT 后的结果的现实意义呢？<br>这得分类来说。</p>
+<h3 id="按位或"><a href="#按位或" class="headerlink" title="按位或"></a>按位或</h3><p>A 在做按位或的 DWT 之后得到的 A2 满足：<br>$$ A2_x = \sum_{i|x=x} A_i $$</p>
+<p>也就是说 $A2_x$ 表示 x 的每个子集 i 的 $A_i$ 的和。<br>不难得到，$A2_x \cdot B2_x$ 的结果 $C2_x$ 就是 A, B 卷积后的 C 的变换：<br>$$ A2_x \cdot B2_x = \sum_{i|x=x} A_i \sum_{j|x=x} B_j $$<br>$$ A2_x \cdot B2_x = \sum_{i|x=x} \sum_{j|x=x} A_i B_j $$<br>$$ A2_x \cdot B2_x = \sum_{k|x=x} \sum_{i|j=k} A_i B_j $$<br>$$ A2_x \cdot B2_x = \sum_{k|x=x} C_k $$<br>$$ A2_x \cdot B2_x = C2_x $$</p>
+<p>事实上，这也就是子集和变换 FMT （快速莫比乌斯变换） 。</p>
+<p><del>感性理解一下</del></p>
+<h3 id="按位与"><a href="#按位与" class="headerlink" title="按位与"></a>按位与</h3><p>和按位或类似的，A 在做按位与的 DWT 之后得到的 A2 满足：<br>$$ A2_x = \sum_{i\&amp;x=x} A_i $$</p>
+<p>也就是说 $A2_x$ 表示每个包含 x 的集合 i 的 $A_i$ 的和。<br>不难得到，$A2_x \cdot B2_x$ 的结果 $C2_x$ 就是 A, B 卷积后的 C 的变换：<br>$$ A2_x \cdot B2_x = \sum_{i\&amp;x=x} A_i \sum_{j\&amp;x=x} B_j $$<br>$$ A2_x \cdot B2_x = \sum_{i\&amp;x=x} \sum_{j\&amp;x=x} A_i B_j $$<br>$$ A2_x \cdot B2_x = \sum_{k\&amp;x=x} \sum_{i\&amp;j=k} A_i B_j $$<br>$$ A2_x \cdot B2_x = \sum_{k\&amp;x=x} C_k $$<br>$$ A2_x \cdot B2_x = C2_x $$</p>
+<p><del>和按位或一个模子里刻出来的</del></p>
+<h2 id="子集卷积"><a href="#子集卷积" class="headerlink" title="子集卷积"></a>子集卷积</h2><p>两个多项式 A, B 的子集卷积 C 的意义如下：</p>
+<p>$$ C(x) = \sum_{y|z=x, y\&amp;z=0} A(y) B(z) $$</p>
+<p>也就是把 x 划分为两个子集 y, z 的 A(y) * B(z) 的和。</p>
+<p>转换成 $ \sum_{y|z=x} A(y) B(z) [y \&amp; z = 0] $ ，似乎是一个按位或卷积。<br>再转换成 $ \sum_{y|z=x} A(y) B(z) [bitcount(y) + bitcount(z) = bitcount(x)] $ 。</p>
+<p>此时需要考虑的就是 bitcount, 也就是集合大小，也就是二进制位中 1 的个数。<br>集合大小是 $ O(log(n)) $ 的，可以考虑枚举大小，设：<br>$$ A_i(x) = A(x) [bitcount(x) = i] $$<br>$$ B_j(x) = B(x) [bitcount(x) = j] $$<br>$$ C_k(x) = C(x) [bitcount(x) = k] $$</p>
+<p>那么有：<br>$$ C_k(x) = \sum_{y|z=x} A_i(y) B_j(z) [i + j = k] $$<br>$$ C_k(x) = \sum_{i+j=k} \sum_{y|z=x} A_i(y) B_j(z) $$</p>
+<p>那么枚举 i, j 的值，将 $ A_i $ 和 $ B_j $ 卷积后贡献到 $ C_{i+j} $ 即可。</p>
+<p>这样复杂度似乎是 $ O(n log^3n) $ 的，<br>但是事实上每个 $ A_i, B_j $ 都可以提前 FWT 后 $ O(n) $ 相乘，<br>再贡献到 C 后不进行逆变换，而是确定了 C 的值后在进行逆变换。</p>
+<p>复杂度 $ O(n log^2n) $</p>
+
+    </div>
+
+    
+    
+    
+        
+      
+
+      <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/卷积/" rel="tag"><i class="fa fa-tag"></i> 卷积</a>
+            
+              <a href="/tags/位运算/" rel="tag"><i class="fa fa-tag"></i> 位运算</a>
+            
+              <a href="/tags/FWT/" rel="tag"><i class="fa fa-tag"></i> FWT</a>
+            
+              <a href="/tags/子集卷积/" rel="tag"><i class="fa fa-tag"></i> 子集卷积</a>
+            
+          </div>
+        
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2019/10/25/cometoj-13/" rel="next" title="cometoj-13">
+                  <i class="fa fa-chevron-left"></i> cometoj-13
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2019/11/05/中国剩余定理/" rel="prev" title="中国剩余定理">
+                  中国剩余定理 <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    
+    <div class="comments" id="gitalk-container"></div>
+  
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#用处"><span class="nav-number">1.</span> <span class="nav-text">用处</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构造"><span class="nav-number">2.</span> <span class="nav-text">构造</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DWT"><span class="nav-number">3.</span> <span class="nav-text">DWT</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IDWT"><span class="nav-number">4.</span> <span class="nav-text">IDWT</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#f-的构造"><span class="nav-number">5.</span> <span class="nav-text">f 的构造</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实际意义"><span class="nav-number">6.</span> <span class="nav-text">实际意义</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#按位或"><span class="nav-number">6.1.</span> <span class="nav-text">按位或</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#按位与"><span class="nav-number">6.2.</span> <span class="nav-text">按位与</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#子集卷积"><span class="nav-number">7.</span> <span class="nav-text">子集卷积</span></a></li></ol></div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="/images/avatar.jpeg"
+      alt="Kewth">
+  <p class="site-author-name" itemprop="name">Kewth</p>
+  <div class="site-description" itemprop="description">HNFMS 现役 OIer</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">48</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        <span class="site-state-item-count">46</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+</div>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://github.com/Kewth" title="GitHub &rarr; https://github.com/Kewth" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:Kewth.K.D@outlook.com" title="E-Mail &rarr; mailto:Kewth.K.D@outlook.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="qq:1344205350" title="QQ &rarr; qq:1344205350" rel="noopener" target="_blank"><i class="fa fa-fw fa-qq"></i>QQ</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://www.luogu.org/space/show?uid=52232" title="Luogu &rarr; https://www.luogu.org/space/show?uid=52232" rel="noopener" target="_blank"><i class="fa fa-fw fa-code-fork"></i>Luogu</a>
+      </span>
+    
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      Links | 友链
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://ricardoships.github.io" title="https://ricardoships.github.io" rel="noopener" target="_blank">Ricardoships(AFO)</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://luoyuyang.cf" title="https://luoyuyang.cf" rel="noopener" target="_blank">lyy(AFO)</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://zrz-orz.github.io" title="https://zrz-orz.github.io" rel="noopener" target="_blank">zrz_orz(AFO)</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://qiuly.xyz" title="https://qiuly.xyz" rel="noopener" target="_blank">Qiuly</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/Lskkkno1" title="https://www.cnblogs.com/Lskkkno1" rel="noopener" target="_blank">Lskkkno1</a>
+        </li>
+      
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heartbeat"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Kewth</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">
+      
+    主题 – <a href="https://muse.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.4.1
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+  
+    <span class="post-meta-divider">|</span>
+  
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.4.1"></script><script src="/js/motion.js?v=7.4.1"></script>
+<script src="/js/schemes/muse.js?v=7.4.1"></script>
+<script src="/js/next-boot.js?v=7.4.1"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+    
+      
+<script type="text/x-mathjax-config">
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
+    MathJax.Hub.Typeset();
+  }, window.MathJax);
+</script>
+
+    
+  
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID: '5a2fdd60fe2f91777a6b',
+      clientSecret: '9ddb762244fffc5caff2490a05e53dbca8ae4902',
+      repo: 'hexo-gitalk',
+      owner: 'Kewth',
+      admin: ['Kewth'],
+      id: '4d4b3cee3cc1cbe3c0767f746aea6a89',
+        language: 'zh-CN',
+      
+      distractionFreeMode: 'true'
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+</body>
+</html>
