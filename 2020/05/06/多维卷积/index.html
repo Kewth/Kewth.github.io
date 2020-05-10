@@ -57,18 +57,18 @@
   };
 </script>
 
-  <meta name="description" content="异或卷积的本质就是 $n$ 维循环卷积。二维卷积可以理解为对于二维数组 $f$ 和二维数组 $g$ 求二维数组 $h$ ：$$h_{i,j} = \sum_{a+b=i} \sum_{c+d=j} f_{a,c} \times g_{b,d}$$这个 $h$ 就是 $f$ 和 $g$ 的二维卷积。构造生成函数数组 ${F_i}, {G_i}, {H_i}$ ，满足 $F_i = \sum_{j}">
+  <meta name="description" content="异或卷积的本质就是 \(n\) 维循环卷积。二维卷积可以理解为对于二维数组 \(f\) 和二维数组 \(g\) 求二维数组 \(h\) ：\[h_{i,j} = \sum_{a+b=i} \sum_{c+d=j} f_{a,c} \times g_{b,d}\]这个 \(h\) 就是 \(f\) 和 \(g\) 的二维卷积。">
 <meta name="keywords" content="卷积">
 <meta property="og:type" content="article">
 <meta property="og:title" content="多维卷积">
 <meta property="og:url" content="https://kewth.github.io/2020/05/06/多维卷积/index.html">
 <meta property="og:site_name" content="KeBlog">
-<meta property="og:description" content="异或卷积的本质就是 $n$ 维循环卷积。二维卷积可以理解为对于二维数组 $f$ 和二维数组 $g$ 求二维数组 $h$ ：$$h_{i,j} = \sum_{a+b=i} \sum_{c+d=j} f_{a,c} \times g_{b,d}$$这个 $h$ 就是 $f$ 和 $g$ 的二维卷积。构造生成函数数组 ${F_i}, {G_i}, {H_i}$ ，满足 $F_i = \sum_{j}">
+<meta property="og:description" content="异或卷积的本质就是 \(n\) 维循环卷积。二维卷积可以理解为对于二维数组 \(f\) 和二维数组 \(g\) 求二维数组 \(h\) ：\[h_{i,j} = \sum_{a+b=i} \sum_{c+d=j} f_{a,c} \times g_{b,d}\]这个 \(h\) 就是 \(f\) 和 \(g\) 的二维卷积。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2020-05-06T08:20:48.683Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="多维卷积">
-<meta name="twitter:description" content="异或卷积的本质就是 $n$ 维循环卷积。二维卷积可以理解为对于二维数组 $f$ 和二维数组 $g$ 求二维数组 $h$ ：$$h_{i,j} = \sum_{a+b=i} \sum_{c+d=j} f_{a,c} \times g_{b,d}$$这个 $h$ 就是 $f$ 和 $g$ 的二维卷积。构造生成函数数组 ${F_i}, {G_i}, {H_i}$ ，满足 $F_i = \sum_{j}">
+<meta name="twitter:description" content="异或卷积的本质就是 \(n\) 维循环卷积。二维卷积可以理解为对于二维数组 \(f\) 和二维数组 \(g\) 求二维数组 \(h\) ：\[h_{i,j} = \sum_{a+b=i} \sum_{c+d=j} f_{a,c} \times g_{b,d}\]这个 \(h\) 就是 \(f\) 和 \(g\) 的二维卷积。">
   <link rel="canonical" href="https://kewth.github.io/2020/05/06/多维卷积/">
 
 
@@ -213,7 +213,7 @@
       
     
 
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">47</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">49</span></a>
 
   </li>
       
@@ -370,17 +370,19 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p><del>异或卷积的本质就是 $n$ 维循环卷积。</del></p><h2 id="二维卷积"><a href="#二维卷积" class="headerlink" title="二维卷积"></a>二维卷积</h2><p>可以理解为对于二维数组 $f$ 和二维数组 $g$ 求二维数组 $h$ ：</p><p>$$h_{i,j} = \sum_{a+b=i} \sum_{c+d=j} f_{a,c} \times g_{b,d}$$</p><p>这个 $h$ 就是 $f$ 和 $g$ 的二维卷积。</p><p>构造生成函数数组 ${F_i}, {G_i}, {H_i}$ ，满足 $F_i = \sum_{j} f_{i,j} x^j$ ，类似地定义 ${G_i}$ 和 ${H_i}$ ，那么有：</p><a id="more"></a>
+        <p><del>异或卷积的本质就是 <span class="math inline">\(n\)</span> 维循环卷积。</del></p><h2 id="二维卷积">二维卷积</h2><p>可以理解为对于二维数组 <span class="math inline">\(f\)</span> 和二维数组 <span class="math inline">\(g\)</span> 求二维数组 <span class="math inline">\(h\)</span> ：</p><p><span class="math display">\[h_{i,j} = \sum_{a+b=i} \sum_{c+d=j} f_{a,c} \times g_{b,d}\]</span></p><p>这个 <span class="math inline">\(h\)</span> 就是 <span class="math inline">\(f\)</span> 和 <span class="math inline">\(g\)</span> 的二维卷积。</p><a id="more"></a>
 
 
 
 
-<p>$$H_i = \sum_{a+b=i} F_a \times G_b$$</p>
-<p>其中 $F_a \times G_b$ 就是多项式卷积。</p>
-<p>不妨把 $F, G, H$ 的每一位所对应的多项式看做普通的元素，那么 $H$ 就是 $F$ 和 $G$ 的卷积，傅里叶变换在这里仍然是可以定义的。</p>
-<h2 id="高维卷积"><a href="#高维卷积" class="headerlink" title="高维卷积"></a>高维卷积</h2><p>二维卷积的做法完全可以推广到高维卷积，对于两个从向量到数的映射 $F, G$ ，定义其卷积 $H$ 满足：</p>
-<p>$$H_c = \sum_{a+b=c} F_a \times G_b$$</p>
-<p>其中 $a, b, c$ 都是高维向量。</p>
+<p>构造生成函数数组 <span class="math inline">\({F_i}, {G_i}, {H_i}\)</span> ，满足 <span class="math inline">\(F_i = \sum_{j} f_{i,j} x^j\)</span> ，类似地定义 <span class="math inline">\({G_i}\)</span> 和 <span class="math inline">\({H_i}\)</span> ，那么有：</p>
+<p><span class="math display">\[H_i = \sum_{a+b=i} F_a \times G_b\]</span></p>
+<p>其中 <span class="math inline">\(F_a \times G_b\)</span> 就是多项式卷积。</p>
+<p>不妨把 <span class="math inline">\(F, G, H\)</span> 的每一位所对应的多项式看做普通的元素，那么 <span class="math inline">\(H\)</span> 就是 <span class="math inline">\(F\)</span> 和 <span class="math inline">\(G\)</span> 的卷积，傅里叶变换在这里仍然是可以定义的。</p>
+<h2 id="高维卷积">高维卷积</h2>
+<p>二维卷积的做法完全可以推广到高维卷积，对于两个从向量到数的映射 <span class="math inline">\(F, G\)</span> ，定义其卷积 <span class="math inline">\(H\)</span> 满足：</p>
+<p><span class="math display">\[H_c = \sum_{a+b=c} F_a \times G_b\]</span></p>
+<p>其中 <span class="math inline">\(a, b, c\)</span> 都是高维向量。</p>
 <p>事实上异或卷积就是一个高维卷积（循环卷积），每一维的长度都是二，根据异或卷积的实现不难推广到所有高维卷积的实现。</p>
 
     </div>
@@ -513,7 +515,7 @@
             <a href="/tags/">
           
         
-        <span class="site-state-item-count">47</span>
+        <span class="site-state-item-count">49</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>

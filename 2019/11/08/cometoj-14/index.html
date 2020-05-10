@@ -57,18 +57,18 @@
   };
 </script>
 
-  <meta name="description" content="万年卡 E 题系列。这次 A 竟然不是字符串，开始我已经准备了字符串的输入输出等一堆东西结果发现没卵用花 1min49 AC ，好像在这之前已经有 12 个人 A 了。B 第一眼看上去是个 DP ，再看一眼（看成最小值最大）以为是二分，发现是让最大值最大而且还只有三个段后。。。大力分类讨论！果然是个分类讨论就巨多细节，判无解判边界判大小 blabla ，结果交 WA 了两发，在 16min AC">
+  <meta name="description" content="万年卡 E 题系列。这次 A 竟然不是字符串，开始我已经准备了字符串的输入输出等一堆东西结果发现没卵用 花 1min49 AC ，好像在这之前已经有 12 个人 A 了。B 第一眼看上去是个 DP ，再看一眼（看成最小值最大）以为是二分，发现是让最大值最大而且还只有三个段后。。。 大力分类讨论！ 果然是个分类讨论就巨多细节，判无解判边界判大小 blabla ，结果交 WA 了两发，在 16min">
 <meta name="keywords" content="cometoj">
 <meta property="og:type" content="article">
 <meta property="og:title" content="cometoj-14">
 <meta property="og:url" content="https://kewth.github.io/2019/11/08/cometoj-14/index.html">
 <meta property="og:site_name" content="KeBlog">
-<meta property="og:description" content="万年卡 E 题系列。这次 A 竟然不是字符串，开始我已经准备了字符串的输入输出等一堆东西结果发现没卵用花 1min49 AC ，好像在这之前已经有 12 个人 A 了。B 第一眼看上去是个 DP ，再看一眼（看成最小值最大）以为是二分，发现是让最大值最大而且还只有三个段后。。。大力分类讨论！果然是个分类讨论就巨多细节，判无解判边界判大小 blabla ，结果交 WA 了两发，在 16min AC">
+<meta property="og:description" content="万年卡 E 题系列。这次 A 竟然不是字符串，开始我已经准备了字符串的输入输出等一堆东西结果发现没卵用 花 1min49 AC ，好像在这之前已经有 12 个人 A 了。B 第一眼看上去是个 DP ，再看一眼（看成最小值最大）以为是二分，发现是让最大值最大而且还只有三个段后。。。 大力分类讨论！ 果然是个分类讨论就巨多细节，判无解判边界判大小 blabla ，结果交 WA 了两发，在 16min">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2019-12-26T12:14:37.654Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="cometoj-14">
-<meta name="twitter:description" content="万年卡 E 题系列。这次 A 竟然不是字符串，开始我已经准备了字符串的输入输出等一堆东西结果发现没卵用花 1min49 AC ，好像在这之前已经有 12 个人 A 了。B 第一眼看上去是个 DP ，再看一眼（看成最小值最大）以为是二分，发现是让最大值最大而且还只有三个段后。。。大力分类讨论！果然是个分类讨论就巨多细节，判无解判边界判大小 blabla ，结果交 WA 了两发，在 16min AC">
+<meta name="twitter:description" content="万年卡 E 题系列。这次 A 竟然不是字符串，开始我已经准备了字符串的输入输出等一堆东西结果发现没卵用 花 1min49 AC ，好像在这之前已经有 12 个人 A 了。B 第一眼看上去是个 DP ，再看一眼（看成最小值最大）以为是二分，发现是让最大值最大而且还只有三个段后。。。 大力分类讨论！ 果然是个分类讨论就巨多细节，判无解判边界判大小 blabla ，结果交 WA 了两发，在 16min">
   <link rel="canonical" href="https://kewth.github.io/2019/11/08/cometoj-14/">
 
 
@@ -213,7 +213,7 @@
       
     
 
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">47</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">49</span></a>
 
   </li>
       
@@ -378,17 +378,39 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>万年卡 E 题系列。</p><p>这次 A 竟然不是字符串，<del>开始我已经准备了字符串的输入输出等一堆东西结果发现没卵用</del><br>花 1min49 AC ，好像在这之前已经有 12 个人 A 了。</p><p>B 第一眼看上去是个 DP ，再看一眼（看成最小值最大）以为是二分，发现是让最大值最大而且还只有三个段后。。。<br><strong>大力分类讨论</strong>！<br>果然是个分类讨论就巨多细节，判无解判边界判大小 blabla ，结果交 WA 了两发，在 16min AC 。<br>（ B 最快的 6min 就 A 了，16min 这时候 C 的一血都被拿了的说）</p><a id="more"></a>
+        <p>万年卡 E 题系列。</p><p>这次 A 竟然不是字符串，<del>开始我已经准备了字符串的输入输出等一堆东西结果发现没卵用</del><br>
+花 1min49 AC ，好像在这之前已经有 12 个人 A 了。</p><p>B 第一眼看上去是个 DP ，再看一眼（看成最小值最大）以为是二分，发现是让最大值最大而且还只有三个段后。。。<br>
+<strong>大力分类讨论</strong>！<br>
+果然是个分类讨论就巨多细节，判无解判边界判大小 blabla ，结果交 WA 了两发，在 16min AC 。<br>
+（ B 最快的 6min 就 A 了，16min 这时候 C 的一血都被拿了的说）</p><a id="more"></a>
 
 
-<p>C 维护一个序列？结果每次需要把所有序列复制一份并对复制的那一部分进行修改？<br>一脸懵逼.jpg<br>（然而水群的时候大佬们都说这题怎么怎么显然，和什么什么题一模一样）<br>还好看清楚了数据范围只有 2000 ，就去想单独考虑序列上每个点，这样就很好维护，<br>一个点每次复制就是权值翻倍，复制的位置被修改就是权值加上 修改值 乘 序列数量。<br>好像花了和 B 差不多的时间，在 33min AC 。</p>
-<p>D 题感觉很神，乍一看什么可追溯化数据结构，可一想哪有对线段树可追溯化的，还是追溯一段操作区间。<br>然后就感觉很不可做，但<del>看了 E 发现是个图论更不可做</del>还是头铁硬肝。<br>发现区间覆盖的性质还是很优秀的，然后 yy 了一个扫描线 + set + 树状数组的做法，<br>树状数组维护每个操作对当前扫描线上的询问的影响，<br>然后 set 维护一个蛇皮东西，扫描线扫过的操作执行后的区间覆盖长什么样子，<br>每次区间覆盖就可以直接在 set 上 lower_bound 到位置再换掉旧的覆盖。<br>（后来听人讲这就是 odt 。。。）  </p>
-<p>在 81min 打完过了样例，仔细检查了检查，一交，WA 了。<br>懵逼，静态差错无果，对拍无果，查了半个小时，实在没发现什么错，<br>还以为我题目读错了，读了四五遍题感觉实在是没有什么坑，<br>抱着自闭的心态再交了一发， woc AC 了。<br>一脸懵逼.jpg<br>我感觉我什么地方都没改啊怎么突然从 WA 到 AC 啊！！！</p>
+<p>C 维护一个序列？结果每次需要把所有序列复制一份并对复制的那一部分进行修改？<br>
+一脸懵逼.jpg<br>
+（然而水群的时候大佬们都说这题怎么怎么显然，和什么什么题一模一样）<br>
+还好看清楚了数据范围只有 2000 ，就去想单独考虑序列上每个点，这样就很好维护，<br>
+一个点每次复制就是权值翻倍，复制的位置被修改就是权值加上 修改值 乘 序列数量。<br>
+好像花了和 B 差不多的时间，在 33min AC 。</p>
+<p>D 题感觉很神，乍一看什么可追溯化数据结构，可一想哪有对线段树可追溯化的，还是追溯一段操作区间。<br>
+然后就感觉很不可做，但<del>看了 E 发现是个图论更不可做</del>还是头铁硬肝。<br>
+发现区间覆盖的性质还是很优秀的，然后 yy 了一个扫描线 + set + 树状数组的做法，<br>
+树状数组维护每个操作对当前扫描线上的询问的影响，<br>
+然后 set 维护一个蛇皮东西，扫描线扫过的操作执行后的区间覆盖长什么样子，<br>
+每次区间覆盖就可以直接在 set 上 lower_bound 到位置再换掉旧的覆盖。<br>
+（后来听人讲这就是 odt 。。。）</p>
+<p>在 81min 打完过了样例，仔细检查了检查，一交，WA 了。<br>
+懵逼，静态差错无果，对拍无果，查了半个小时，实在没发现什么错，<br>
+还以为我题目读错了，读了四五遍题感觉实在是没有什么坑，<br>
+抱着自闭的心态再交了一发， woc AC 了。<br>
+一脸懵逼.jpg<br>
+我感觉我什么地方都没改啊怎么突然从 WA 到 AC 啊！！！</p>
 <p>比完后查了查，发现是这样一句话：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"%d\n"</span>, i);</span><br><span class="line"><span class="comment">// 等价于 std::cerr &lt;&lt; i &lt;&lt; std::endl;</span></span><br></pre></td></tr></table></figure>
-
-<p>神 tm 我输出到标准错误流竟然就 WA 了？！<br>后面还 test 了一波，发现在 cometoj 上只要有标准错误流就会 WA/RE 。<br>引以为戒，祭奠为此逝去的半个小时。</p>
-<p>最后就在整个后半场卡 E 了，回头看了看每场 cometoj 常规赛都卡 E ，能 A 掉 ABCD ，<br>发现唯一一次拿到奖是因为那次只有 8 个人 A 掉了 D 。。</p>
+<p>神 tm 我输出到标准错误流竟然就 WA 了？！<br>
+后面还 test 了一波，发现在 cometoj 上只要有标准错误流就会 WA/RE 。<br>
+引以为戒，祭奠为此逝去的半个小时。</p>
+<p>最后就在整个后半场卡 E 了，回头看了看每场 cometoj 常规赛都卡 E ，能 A 掉 ABCD ，<br>
+发现唯一一次拿到奖是因为那次只有 8 个人 A 掉了 D 。。</p>
 <p><del>写总结好累啊，以后打比赛就不写了吧。。</del></p>
 
     </div>
@@ -519,7 +541,7 @@
             <a href="/tags/">
           
         
-        <span class="site-state-item-count">47</span>
+        <span class="site-state-item-count">49</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>

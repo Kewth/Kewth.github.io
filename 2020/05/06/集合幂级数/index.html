@@ -57,17 +57,17 @@
   };
 </script>
 
-  <meta name="description" content="对于两个集合幂级数 $f$ 和 $g$ ，定义其和 $h$ ：$$ h_S = f_S + g_S $$对于两个集合幂级数 $f$ 和 $g$ ，定义其乘积 $h$ ：$$ h_S = \sum_{T \subseteq S} f_T \times g_{S \setminus T} $$即常说的子集卷积。">
+  <meta name="description" content="对于两个集合幂级数 \(f\) 和 \(g\) ，定义其和 \(h\) ：\[ h_S = f_S + g_S \]对于两个集合幂级数 \(f\) 和 \(g\) ，定义其乘积 \(h\) ：\[ h_S = \sum_{T \subseteq S} f_T \times g_{S \setminus T} \]">
 <meta property="og:type" content="article">
 <meta property="og:title" content="集合幂级数">
 <meta property="og:url" content="https://kewth.github.io/2020/05/06/集合幂级数/index.html">
 <meta property="og:site_name" content="KeBlog">
-<meta property="og:description" content="对于两个集合幂级数 $f$ 和 $g$ ，定义其和 $h$ ：$$ h_S = f_S + g_S $$对于两个集合幂级数 $f$ 和 $g$ ，定义其乘积 $h$ ：$$ h_S = \sum_{T \subseteq S} f_T \times g_{S \setminus T} $$即常说的子集卷积。">
+<meta property="og:description" content="对于两个集合幂级数 \(f\) 和 \(g\) ，定义其和 \(h\) ：\[ h_S = f_S + g_S \]对于两个集合幂级数 \(f\) 和 \(g\) ，定义其乘积 \(h\) ：\[ h_S = \sum_{T \subseteq S} f_T \times g_{S \setminus T} \]">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-05-06T09:03:20.697Z">
+<meta property="og:updated_time" content="2020-05-10T11:20:13.607Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="集合幂级数">
-<meta name="twitter:description" content="对于两个集合幂级数 $f$ 和 $g$ ，定义其和 $h$ ：$$ h_S = f_S + g_S $$对于两个集合幂级数 $f$ 和 $g$ ，定义其乘积 $h$ ：$$ h_S = \sum_{T \subseteq S} f_T \times g_{S \setminus T} $$即常说的子集卷积。">
+<meta name="twitter:description" content="对于两个集合幂级数 \(f\) 和 \(g\) ，定义其和 \(h\) ：\[ h_S = f_S + g_S \]对于两个集合幂级数 \(f\) 和 \(g\) ，定义其乘积 \(h\) ：\[ h_S = \sum_{T \subseteq S} f_T \times g_{S \setminus T} \]">
   <link rel="canonical" href="https://kewth.github.io/2020/05/06/集合幂级数/">
 
 
@@ -212,7 +212,7 @@
       
     
 
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">47</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">49</span></a>
 
   </li>
       
@@ -325,11 +325,19 @@
                 
               
 
-              <time title="创建时间：2020-05-06 15:21:50 / 修改时间：17:03:20" itemprop="dateCreated datePublished" datetime="2020-05-06T15:21:50+08:00">2020-05-06</time>
+              <time title="创建时间：2020-05-06 15:21:50" itemprop="dateCreated datePublished" datetime="2020-05-06T15:21:50+08:00">2020-05-06</time>
             </span>
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-05-10 19:20:13" itemprop="dateModified" datetime="2020-05-10T19:20:13+08:00">2020-05-10</time>
+              </span>
             
           
             <span class="post-meta-item">
@@ -369,34 +377,38 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>对于两个集合幂级数 $f$ 和 $g$ ，定义其和 $h$ ：</p><p>$$ h_S = f_S + g_S $$</p><p>对于两个集合幂级数 $f$ 和 $g$ ，定义其乘积 $h$ ：</p><p>$$ h_S = \sum_{T \subseteq S} f_T \times g_{S \setminus T} $$</p><p>即常说的子集卷积。</p><a id="more"></a>
+        <p>对于两个集合幂级数 <span class="math inline">\(f\)</span> 和 <span class="math inline">\(g\)</span> ，定义其和 <span class="math inline">\(h\)</span> ：</p><p><span class="math display">\[ h_S = f_S + g_S \]</span></p><p>对于两个集合幂级数 <span class="math inline">\(f\)</span> 和 <span class="math inline">\(g\)</span> ，定义其乘积 <span class="math inline">\(h\)</span> ：</p><p><span class="math display">\[ h_S = \sum_{T \subseteq S} f_T \times g_{S \setminus T} \]</span></p><a id="more"></a>
 
 
 
-
+<p>即常说的子集卷积。</p>
 <p>那么定义了乘法和加法，就能进一步定义更多运算。</p>
 <p>在这之前先引入集合占位幂级数。</p>
-<h2 id="集合占位幂级数"><a href="#集合占位幂级数" class="headerlink" title="集合占位幂级数"></a>集合占位幂级数</h2><p>对于集合幂级数 $f$ ，其占位幂级数 $P(f)$ 的每一位实际是一个多项式，满足：</p>
-<p>$$ P(f)_S = f_S x^{|S|} \pmod{x^{|S|+1}} $$</p>
+<h2 id="集合占位幂级数">集合占位幂级数</h2>
+<p>对于集合幂级数 <span class="math inline">\(f\)</span> ，其占位幂级数 <span class="math inline">\(P(f)\)</span> 的每一位实际是一个多项式，满足：</p>
+<p><span class="math display">\[ P(f)_S = f_S x^{|S|} \pmod{x^{|S|+1}} \]</span></p>
 <p>有了占位幂级数，就可以很容易地把集合幂级数的乘法转换为并卷积，即通过莫比乌斯变换可以很好处理两个集合幂级数的乘法。</p>
-<p>具体的，对于集合幂级数 $f$ 和 $g$ ，求出幂级数 $p$ 满足：</p>
-<p>$$ P(h)_S = \sum_{A \cup B = S} P(f)_A \times P(g)_B $$</p>
-<p>其中 $P(f)_A \times P(g)_B$ 就是多项式卷积。</p>
+<p>具体的，对于集合幂级数 <span class="math inline">\(f\)</span> 和 <span class="math inline">\(g\)</span> ，求出幂级数 <span class="math inline">\(p\)</span> 满足：</p>
+<p><span class="math display">\[ P(h)_S = \sum_{A \cup B = S} P(f)_A \times P(g)_B \]</span></p>
+<p>其中 <span class="math inline">\(P(f)_A \times P(g)_B\)</span> 就是多项式卷积。</p>
 <p>那么根据集合并卷积的性质可以知道：</p>
-<p>$$ FMT(P(h))_S = FMT(P(f))_S \times FMT(P(g))_S $$</p>
-<p>暴力进行多项式卷积，一次乘法的复杂度为 $O(2^n n^2)$ ，其中 $n$ 是全集的大小。</p>
-<h2 id="求逆"><a href="#求逆" class="headerlink" title="求逆"></a>求逆</h2><p>对于集合幂级数 $f$ ，定义其逆元 $g$ 为满足 $f \times g = e$ 的集合幂级数。</p>
-<p>其中 $e$ 是集合幂级数的单位元，满足 $\forall f, f \times e = f$ 。</p>
-<p>可以知道 $\forall S, FMT(P(e))_S = 1$ 。</p>
-<p>那么就有 $\forall S, FMT(P(g))_S = FMT(P(f))_S^{-1} \pmod{x^{|S|+1}}$ 。</p>
-<p>暴力多项式求逆，复杂度 $O(2^n n^2)$ ，其中 $n$ 是全集的大小。</p>
-<h2 id="开根"><a href="#开根" class="headerlink" title="开根"></a>开根</h2><p>对于集合幂级数 $f$ ，定义其平方根 $g$ 为满足 $g \times g = f$ 的集合幂级数。</p>
-<p>可以知道 $\forall S, FMT(P(g))_S^2 = FMT(P(f))_S \pmod{x^{|S|+1}}$ 。</p>
-<p>暴力多项式开根，复杂度 $O(2^n n^2)$ ，其中 $n$ 是全集的大小。</p>
-<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>类似的也可以定义 $\exp$ 和 $\ln$ 。</p>
+<p><span class="math display">\[ FMT(P(h))_S = FMT(P(f))_S \times FMT(P(g))_S \]</span></p>
+<p>暴力进行多项式卷积，一次乘法的复杂度为 <span class="math inline">\(O(2^n n^2)\)</span> ，其中 <span class="math inline">\(n\)</span> 是全集的大小。</p>
+<h2 id="求逆">求逆</h2>
+<p>对于集合幂级数 <span class="math inline">\(f\)</span> ，定义其逆元 <span class="math inline">\(g\)</span> 为满足 <span class="math inline">\(f \times g = e\)</span> 的集合幂级数。</p>
+<p>其中 <span class="math inline">\(e\)</span> 是集合幂级数的单位元，满足 <span class="math inline">\(\forall f, f \times e = f\)</span> 。</p>
+<p>可以知道 <span class="math inline">\(\forall S, FMT(P(e))_S = 1\)</span> 。</p>
+<p>那么就有 <span class="math inline">\(\forall S, FMT(P(g))_S = FMT(P(f))_S^{-1} \pmod{x^{|S|+1}}\)</span> 。</p>
+<p>暴力多项式求逆，复杂度 <span class="math inline">\(O(2^n n^2)\)</span> ，其中 <span class="math inline">\(n\)</span> 是全集的大小。</p>
+<h2 id="开根">开根</h2>
+<p>对于集合幂级数 <span class="math inline">\(f\)</span> ，定义其平方根 <span class="math inline">\(g\)</span> 为满足 <span class="math inline">\(g \times g = f\)</span> 的集合幂级数。</p>
+<p>可以知道 <span class="math inline">\(\forall S, FMT(P(g))_S^2 = FMT(P(f))_S \pmod{x^{|S|+1}}\)</span> 。</p>
+<p>暴力多项式开根，复杂度 <span class="math inline">\(O(2^n n^2)\)</span> ，其中 <span class="math inline">\(n\)</span> 是全集的大小。</p>
+<h2 id="其他">其他</h2>
+<p>类似的也可以定义 <span class="math inline">\(\exp\)</span> 和 <span class="math inline">\(\ln\)</span> 。</p>
 <p>不难发现所有集合幂级数的运算都可以转换莫比乌斯变换后占位幂级数的多项式运算。</p>
-<p>暴力做多项式运算，复杂度都是 $O(2^n n^2)$ ，理论上可以做到 $O(2^n n \log n)$ 。</p>
-<p>但是考虑到对占位幂级数做莫比乌斯变换的复杂度就要 $O(2^n n^2)$ 。<br>且由于集合幂级数运算的运算的瓶颈主要在于 $o(2^n)$ ，$n$ 往往很小。<br>此时 $O(n \log n)$ 的多项式运算带来的常数因子影响是很大的，因此集合幂级数的运算往往使用 $O(n^2)$ 的暴力运算。</p>
+<p>暴力做多项式运算，复杂度都是 <span class="math inline">\(O(2^n n^2)\)</span> ，理论上可以做到 <span class="math inline">\(O(2^n n \log n)\)</span> 。</p>
+<p>但是考虑到对占位幂级数做莫比乌斯变换的复杂度就要 <span class="math inline">\(O(2^n n^2)\)</span> 。 且由于集合幂级数运算的运算的瓶颈主要在于 <span class="math inline">\(O(2^n)\)</span> ，<span class="math inline">\(n\)</span> 往往很小。 此时 <span class="math inline">\(O(n \log n)\)</span> 的多项式运算带来的常数因子影响是很大的，因此集合幂级数的运算往往使用 <span class="math inline">\(O(n^2)\)</span> 的暴力运算。</p>
 
     </div>
 
@@ -423,8 +435,8 @@
 
             <div class="post-nav-prev post-nav-item">
               
-                <a href="/2020/05/09/博弈论总结/" rel="prev" title="博弈论总结">
-                  博弈论总结 <i class="fa fa-chevron-right"></i>
+                <a href="/2020/05/09/一类不公平博弈总结/" rel="prev" title="一类不公平博弈总结">
+                  一类不公平博弈总结 <i class="fa fa-chevron-right"></i>
                 </a>
               
             </div>
@@ -519,7 +531,7 @@
             <a href="/tags/">
           
         
-        <span class="site-state-item-count">47</span>
+        <span class="site-state-item-count">49</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>

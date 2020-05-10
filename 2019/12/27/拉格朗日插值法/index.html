@@ -57,18 +57,18 @@
   };
 </script>
 
-  <meta name="description" content="这里只介绍关于多项式的拉格朗日插值法，对于一般函数的拟合当做一个多项式就好了。插点值已知多项式 $f(x)$ 的 $n$ 个点值 $(x_i, y_i = f(x_i))$ ，求 $f(k)$ 。拉格朗日插值法的思路在于：对于每个 $(x_i, y_i)$ 找到 $L_i(x)$ 使得 $L_i(x_i) = y_i, L_i(x_j) = 0$ ，其中 $x_j$ 是已知的 $x$ 中任意一个不">
+  <meta name="description" content="这里只介绍关于多项式的拉格朗日插值法，对于一般函数的拟合当做一个多项式就好了。插点值已知多项式 \(f(x)\) 的 \(n\) 个点值 \((x_i, y_i = f(x_i))\) ，求 \(f(k)\) 。拉格朗日插值法的思路在于： 对于每个 \((x_i, y_i)\) 找到 \(L_i(x)\) 使得 \(L_i(x_i) = y_i, L_i(x_j) = 0\) ， 其中 \(x_j">
 <meta name="keywords" content="多项式">
 <meta property="og:type" content="article">
 <meta property="og:title" content="拉格朗日插值法">
 <meta property="og:url" content="https://kewth.github.io/2019/12/27/拉格朗日插值法/index.html">
 <meta property="og:site_name" content="KeBlog">
-<meta property="og:description" content="这里只介绍关于多项式的拉格朗日插值法，对于一般函数的拟合当做一个多项式就好了。插点值已知多项式 $f(x)$ 的 $n$ 个点值 $(x_i, y_i = f(x_i))$ ，求 $f(k)$ 。拉格朗日插值法的思路在于：对于每个 $(x_i, y_i)$ 找到 $L_i(x)$ 使得 $L_i(x_i) = y_i, L_i(x_j) = 0$ ，其中 $x_j$ 是已知的 $x$ 中任意一个不">
+<meta property="og:description" content="这里只介绍关于多项式的拉格朗日插值法，对于一般函数的拟合当做一个多项式就好了。插点值已知多项式 \(f(x)\) 的 \(n\) 个点值 \((x_i, y_i = f(x_i))\) ，求 \(f(k)\) 。拉格朗日插值法的思路在于： 对于每个 \((x_i, y_i)\) 找到 \(L_i(x)\) 使得 \(L_i(x_i) = y_i, L_i(x_j) = 0\) ， 其中 \(x_j">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2020-01-06T01:54:57.116Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="拉格朗日插值法">
-<meta name="twitter:description" content="这里只介绍关于多项式的拉格朗日插值法，对于一般函数的拟合当做一个多项式就好了。插点值已知多项式 $f(x)$ 的 $n$ 个点值 $(x_i, y_i = f(x_i))$ ，求 $f(k)$ 。拉格朗日插值法的思路在于：对于每个 $(x_i, y_i)$ 找到 $L_i(x)$ 使得 $L_i(x_i) = y_i, L_i(x_j) = 0$ ，其中 $x_j$ 是已知的 $x$ 中任意一个不">
+<meta name="twitter:description" content="这里只介绍关于多项式的拉格朗日插值法，对于一般函数的拟合当做一个多项式就好了。插点值已知多项式 \(f(x)\) 的 \(n\) 个点值 \((x_i, y_i = f(x_i))\) ，求 \(f(k)\) 。拉格朗日插值法的思路在于： 对于每个 \((x_i, y_i)\) 找到 \(L_i(x)\) 使得 \(L_i(x_i) = y_i, L_i(x_j) = 0\) ， 其中 \(x_j">
   <link rel="canonical" href="https://kewth.github.io/2019/12/27/拉格朗日插值法/">
 
 
@@ -213,7 +213,7 @@
       
     
 
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">47</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">49</span></a>
 
   </li>
       
@@ -378,39 +378,48 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>这里只介绍关于多项式的拉格朗日插值法，对于一般函数的拟合当做一个多项式就好了。</p><h2 id="插点值"><a href="#插点值" class="headerlink" title="插点值"></a>插点值</h2><p>已知多项式 $f(x)$ 的 $n$ 个点值 $(x_i, y_i = f(x_i))$ ，求 $f(k)$ 。</p><p>拉格朗日插值法的思路在于：<br>对于每个 $(x_i, y_i)$ 找到 $L_i(x)$ 使得 $L_i(x_i) = y_i, L_i(x_j) = 0$ ，<br>其中 $x_j$ 是已知的 $x$ 中任意一个不等于 $x_i$ 的 $x$ 。</p><a id="more"></a>
+        <p>这里只介绍关于多项式的拉格朗日插值法，对于一般函数的拟合当做一个多项式就好了。</p><h2 id="插点值">插点值</h2><p>已知多项式 <span class="math inline">\(f(x)\)</span> 的 <span class="math inline">\(n\)</span> 个点值 <span class="math inline">\((x_i, y_i = f(x_i))\)</span> ，求 <span class="math inline">\(f(k)\)</span> 。</p><p>拉格朗日插值法的思路在于： 对于每个 <span class="math inline">\((x_i, y_i)\)</span> 找到 <span class="math inline">\(L_i(x)\)</span> 使得 <span class="math inline">\(L_i(x_i) = y_i, L_i(x_j) = 0\)</span> ， 其中 <span class="math inline">\(x_j\)</span> 是已知的 <span class="math inline">\(x\)</span> 中任意一个不等于 <span class="math inline">\(x_i\)</span> 的 <span class="math inline">\(x\)</span> 。</p><a id="more"></a>
 
 
-<p>而由 $L$ 的定义可知，$f(k) = \sum_{i=1}^n L_i(k)$ 。<br>代入上式即可求解。</p>
-<p>现在问题在于构造 $L$ 。<br>下面的 $L$ 可以满足定义：</p>
-<p>$$ L_i(x) = y_i \cdot \prod\limits_{j \ne i}\frac{x_j-x}{x_j-x_i} $$</p>
-<p>代入可得这对于任意 $x_i$<br>可以使得 $L_i(x_i) = y_i, L_i(x_j) = 0$</p>
+
+<p>而由 <span class="math inline">\(L\)</span> 的定义可知，<span class="math inline">\(f(k) = \sum_{i=1}^n L_i(k)\)</span> 。<br>
+代入上式即可求解。</p>
+<p>现在问题在于构造 <span class="math inline">\(L\)</span> 。 下面的 <span class="math inline">\(L\)</span> 可以满足定义：</p>
+<p><span class="math display">\[ L_i(x) = y_i \cdot \prod\limits_{j \ne i}\frac{x_j-x}{x_j-x_i} \]</span></p>
+<p>代入可得这对于任意 <span class="math inline">\(x_i\)</span> 可以使得 <span class="math inline">\(L_i(x_i) = y_i, L_i(x_j) = 0\)</span></p>
 <p>复杂度 $ O(n^2) $ 。</p>
-<h2 id="插系数"><a href="#插系数" class="headerlink" title="插系数"></a>插系数</h2><p>已知多项式 $f(x)$ 的 $n$ 个点值，求 $f(x)$ 的第 $k$ 次项系数 。</p>
-<p>先考虑插出一项 $x^k$ 的系数。</p>
-<p>首先依次考虑每个 $L_i(x)$ 的 $x^k$ 系数，最后累加即可。</p>
-<p>注意到分母和 $y_i$ 是常数可以直接算，考虑提出来，</p>
-<p>$$ L_i(x) = (y_i \cdot \prod\limits_{j \ne i}\frac{1}{x_j-x_i})<br>    (\prod\limits_{j \ne i} (x_j - x)) $$</p>
-<p>左边的常数是一堆逆元相乘再乘上 $y_i$ ，逆元往往不是 $O(1)$ 计算的，<br>事实上可以先把分母中所有 $x-x_j$ 乘起来再一起求逆元，这样就只需要计算 1 次逆元，此时一般可以忽略逆元对复杂度的影响。</p>
-<p>那么只需要算分子部分，即上式右边的 $\prod$ 的 $x^k$ 系数即可。</p>
-<p>假设把这个连乘暴力拆开，其实 $x^k$ 的系数就是在之中选 $n - k - 1$ 个常数。<br>DP 预处理 $pre(i, k)$ 表示在 $\prod\limits_{j \leq i} (x - x_j)$ 中选 k 个常数的系数和，<br>同理 $suf(i, k)$ 表示在 $\prod\limits_{j \geq i} (x - x_j)$ 中选 k 个常数的系数和。<br>那么枚举 $p + q = n - k - 1$ 求 $pre(i - 1, p)$ 乘 $suf(i + 1, q)$ 的和就是上式的 $x^k$ 系数了。</p>
-<p>时间复杂度 $O(n^2)$ 。</p>
+<h2 id="插系数">插系数</h2>
+<p>已知多项式 <span class="math inline">\(f(x)\)</span> 的 <span class="math inline">\(n\)</span> 个点值，求 <span class="math inline">\(f(x)\)</span> 的第 <span class="math inline">\(k\)</span> 次项系数 。</p>
+<p>先考虑插出一项 <span class="math inline">\(x^k\)</span> 的系数。</p>
+<p>首先依次考虑每个 <span class="math inline">\(L_i(x)\)</span> 的 <span class="math inline">\(x^k\)</span> 系数，最后累加即可。</p>
+<p>注意到分母和 <span class="math inline">\(y_i\)</span> 是常数可以直接算，考虑提出来，</p>
+<p><span class="math display">\[ L_i(x) = (y_i \cdot \prod\limits_{j \ne i}\frac{1}{x_j-x_i})
+    (\prod\limits_{j \ne i} (x_j - x)) \]</span></p>
+<p>左边的常数是一堆逆元相乘再乘上 <span class="math inline">\(y_i\)</span> ，逆元往往不是 <span class="math inline">\(O(1)\)</span> 计算的，<br>
+事实上可以先把分母中所有 <span class="math inline">\(x-x_j\)</span> 乘起来再一起求逆元，这样就只需要计算 1 次逆元，此时一般可以忽略逆元对复杂度的影响。</p>
+<p>那么只需要算分子部分，即上式右边的 <span class="math inline">\(\prod\)</span> 的 <span class="math inline">\(x^k\)</span> 系数即可。</p>
+<p>假设把这个连乘暴力拆开，其实 <span class="math inline">\(x^k\)</span> 的系数就是在之中选 <span class="math inline">\(n - k - 1\)</span> 个常数。<br>
+DP 预处理 <span class="math inline">\(pre(i, k)\)</span> 表示在 <span class="math inline">\(\prod\limits_{j \leq i} (x - x_j)\)</span> 中选 k 个常数的系数和，<br>
+同理 <span class="math inline">\(suf(i, k)\)</span> 表示在 <span class="math inline">\(\prod\limits_{j \geq i} (x - x_j)\)</span> 中选 k 个常数的系数和。<br>
+那么枚举 <span class="math inline">\(p + q = n - k - 1\)</span> 求 <span class="math inline">\(pre(i - 1, p)\)</span> 乘 <span class="math inline">\(suf(i + 1, q)\)</span> 的和就是上式的 <span class="math inline">\(x^k\)</span> 系数了。</p>
+<p>时间复杂度 <span class="math inline">\(O(n^2)\)</span> 。</p>
 <p>参考实现（未经过测试）：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 插出 L_i(x) 的 x^k 系数 */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">la</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> A = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n; j ++)</span><br><span class="line">		<span class="keyword">if</span>(i != j)</span><br><span class="line">			A *= X[i] - X[j];</span><br><span class="line">	<span class="keyword">int</span> B = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> l = <span class="number">0</span>; l &lt;= n - k - <span class="number">1</span>; l ++)</span><br><span class="line">		B += pre[i - <span class="number">1</span>][l] * suf[i + <span class="number">1</span>][n - k - <span class="number">1</span> - l];</span><br><span class="line">	<span class="keyword">return</span> B / A * X[i];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 初始化 suf 和 pre */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= n; i ++) &#123;</span><br><span class="line">		pre[i][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= i; j ++)</span><br><span class="line">			pre[i][j] = pre[i - <span class="number">1</span>][j] - pre[i - <span class="number">1</span>][j - <span class="number">1</span>] * X[i];</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = n + <span class="number">1</span>; i; i --) &#123;</span><br><span class="line">		suf[i][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n - i + <span class="number">1</span>; j ++)</span><br><span class="line">			suf[i][j] = suf[i + <span class="number">1</span>][j] - suf[i + <span class="number">1</span>][j - <span class="number">1</span>] * X[i];</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="插多项式"><a href="#插多项式" class="headerlink" title="插多项式"></a>插多项式</h2><p>已知 $n-1$ 次多项式 $f(x)$ 的 $n$ 个点值，求 $f(x)$ 的所有系数 。</p>
-<p>直接将所有暴力多项式相乘计算所有 $L_i(x)$ ，或者使用 $n$ 次上述的插系数，复杂度 $O(n^3)$ ，难以接受。</p>
+<h2 id="插多项式">插多项式</h2>
+<p>已知 <span class="math inline">\(n-1\)</span> 次多项式 <span class="math inline">\(f(x)\)</span> 的 <span class="math inline">\(n\)</span> 个点值，求 <span class="math inline">\(f(x)\)</span> 的所有系数 。</p>
+<p>直接将所有暴力多项式相乘计算所有 <span class="math inline">\(L_i(x)\)</span> ，或者使用 <span class="math inline">\(n\)</span> 次上述的插系数，复杂度 <span class="math inline">\(O(n^3)\)</span> ，难以接受。</p>
 <p>点值比较特殊的情况下可以使用 FFT 或者 NTT ，但有失一般性。</p>
-<p>沿用上述分离常数的方法，考虑 $O(n)$ 求出每个 $L_i(x)$ 的所有系数：</p>
-<p>$$ L_i(x) = (y_i \cdot \prod\limits_{j \ne i}\frac{1}{x_j-x_i})<br>    (\prod\limits_{j \ne i} (x_j - x)) $$</p>
+<p>沿用上述分离常数的方法，考虑 <span class="math inline">\(O(n)\)</span> 求出每个 <span class="math inline">\(L_i(x)\)</span> 的所有系数：</p>
+<p><span class="math display">\[ L_i(x) = (y_i \cdot \prod\limits_{j \ne i}\frac{1}{x_j-x_i})
+    (\prod\limits_{j \ne i} (x_j - x)) \]</span></p>
 <p>左边的常数还是同样地处理，不同的是对于右边的多项式现在要求的不是某一项的系数而是所有系数。</p>
 <p>对于右边的多项式部分，可以看做：</p>
-<p>$$ \frac{\prod_{j=1}^n (x_j - x)}{x_i - x} $$</p>
-<p>其分子是个与 $i$ 无关的多项式，可以 $O(n^2)$ 暴力预处理，而其分母是个简单的一次二项式。<br>那么可以用短除法来进行多项式除二项式，复杂度 $O(n)$ 。</p>
-<p>总时间复杂度为 $O(n^2)$ 。</p>
+<p><span class="math display">\[ \frac{\prod_{j=1}^n (x_j - x)}{x_i - x} \]</span></p>
+<p>其分子是个与 <span class="math inline">\(i\)</span> 无关的多项式，可以 <span class="math inline">\(O(n^2)\)</span> 暴力预处理，而其分母是个简单的一次二项式。<br>
+那么可以用短除法来进行多项式除二项式，复杂度 <span class="math inline">\(O(n)\)</span> 。</p>
+<p>总时间复杂度为 <span class="math inline">\(O(n^2)\)</span> 。</p>
 <p>参考实现（未经过测试）：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">la</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">	tmp[<span class="number">0</span>] = <span class="number">1</span>; <span class="comment">// tmp 表示 n 个二项式相乘的多项式</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i ++) &#123;</span><br><span class="line">		tmp[i] = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j = i; j; j --)</span><br><span class="line">			tmp[j] = tmp[j - <span class="number">1</span>] - X[i] * tmp[j];</span><br><span class="line">		tmp[<span class="number">0</span>] *= - X[i];</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i ++) &#123;</span><br><span class="line">		ll A = <span class="number">1</span>; <span class="comment">// A 表示 L_i 的常数部分</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n; j ++)</span><br><span class="line">			<span class="keyword">if</span>(i != j)</span><br><span class="line">				A *= X[i] - X[j];</span><br><span class="line">		A = Y[i] / A;</span><br><span class="line"></span><br><span class="line">		tmp2[n] = tmp[n]; <span class="comment">// tmp2 表示将 tmp 除以一个二项式的结果</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j = n; j; j --) &#123;</span><br><span class="line">			ll t = tmp2[j];</span><br><span class="line">			get[j - <span class="number">1</span>] += t * A; <span class="comment">// get 表示 f(x) 的系数</span></span><br><span class="line">			tmp2[j - <span class="number">1</span>] = tmp[j - <span class="number">1</span>] + t * X[i];</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 此时应有 tmp2[0] = 0 ，否则说明除法有余数</span></span><br><span class="line">		assert(tmp2[<span class="number">0</span>] == <span class="number">0</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 
     </div>
 
@@ -542,7 +551,7 @@
             <a href="/tags/">
           
         
-        <span class="site-state-item-count">47</span>
+        <span class="site-state-item-count">49</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>

@@ -57,18 +57,18 @@
   };
 </script>
 
-  <meta name="description" content="@CYJian 出了一道黑科技二合一，我就顺便跟着学了学。O(1) gcd在 O(V) 的预处理后可以做到 O(1) 查询 gcd ，其中 V 是权值的大小。主要利用到的一个性质是可以将任意 x 分解为三个数 a * b * c ， a, b, c 分别满足以下两个条件之一： 不超过 $\sqrt{x}$ 。 是质数。">
+  <meta name="description" content="@CYJian 出了一道黑科技二合一，我就顺便跟着学了学。O(1) gcd在 O(V) 的预处理后可以做到 O(1) 查询 gcd ，其中 V 是权值的大小。主要利用到的一个性质是可以将任意 x 分解为三个数 a * b * c ， a, b, c 分别满足以下两个条件之一： 不超过 \(\sqrt{x}\) 。 是质数。">
 <meta name="keywords" content="gcd&#x2F;lcm,快速幂,黑科技,O(1)">
 <meta property="og:type" content="article">
 <meta property="og:title" content="O(1)黑科技">
 <meta property="og:url" content="https://kewth.github.io/2019/10/10/O(1)黑科技/index.html">
 <meta property="og:site_name" content="KeBlog">
-<meta property="og:description" content="@CYJian 出了一道黑科技二合一，我就顺便跟着学了学。O(1) gcd在 O(V) 的预处理后可以做到 O(1) 查询 gcd ，其中 V 是权值的大小。主要利用到的一个性质是可以将任意 x 分解为三个数 a * b * c ， a, b, c 分别满足以下两个条件之一： 不超过 $\sqrt{x}$ 。 是质数。">
+<meta property="og:description" content="@CYJian 出了一道黑科技二合一，我就顺便跟着学了学。O(1) gcd在 O(V) 的预处理后可以做到 O(1) 查询 gcd ，其中 V 是权值的大小。主要利用到的一个性质是可以将任意 x 分解为三个数 a * b * c ， a, b, c 分别满足以下两个条件之一： 不超过 \(\sqrt{x}\) 。 是质数。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2019-12-06T12:37:17.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="O(1)黑科技">
-<meta name="twitter:description" content="@CYJian 出了一道黑科技二合一，我就顺便跟着学了学。O(1) gcd在 O(V) 的预处理后可以做到 O(1) 查询 gcd ，其中 V 是权值的大小。主要利用到的一个性质是可以将任意 x 分解为三个数 a * b * c ， a, b, c 分别满足以下两个条件之一： 不超过 $\sqrt{x}$ 。 是质数。">
+<meta name="twitter:description" content="@CYJian 出了一道黑科技二合一，我就顺便跟着学了学。O(1) gcd在 O(V) 的预处理后可以做到 O(1) 查询 gcd ，其中 V 是权值的大小。主要利用到的一个性质是可以将任意 x 分解为三个数 a * b * c ， a, b, c 分别满足以下两个条件之一： 不超过 \(\sqrt{x}\) 。 是质数。">
   <link rel="canonical" href="https://kewth.github.io/2019/10/10/O(1)黑科技/">
 
 
@@ -213,7 +213,7 @@
       
     
 
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">47</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">49</span></a>
 
   </li>
       
@@ -378,25 +378,40 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>@CYJian 出了一道黑科技二合一，我就顺便跟着学了学。</p><h2 id="O-1-gcd"><a href="#O-1-gcd" class="headerlink" title="O(1) gcd"></a>O(1) gcd</h2><p>在 O(V) 的预处理后可以做到 O(1) 查询 gcd ，其中 V 是权值的大小。</p><p>主要利用到的一个性质是可以将任意 x 分解为三个数 a * b * c ， a, b, c 分别满足以下两个条件之一：</p><ol>
-<li>不超过 $\sqrt{x}$ 。</li>
+        <p><span class="citation" data-cites="CYJian">@CYJian</span> 出了一道黑科技二合一，我就顺便跟着学了学。</p><h2 id="o1-gcd">O(1) gcd</h2><p>在 O(V) 的预处理后可以做到 O(1) 查询 gcd ，其中 V 是权值的大小。</p><p>主要利用到的一个性质是可以将任意 x 分解为三个数 a * b * c ， a, b, c 分别满足以下两个条件之一：</p><ol type="1">
+<li>不超过 <span class="math inline">\(\sqrt{x}\)</span> 。</li>
 <li>是质数。</li>
 </ol><a id="more"></a>
 
 
 
-<p>update: 之前写假了，感谢 @CYJian 的 hack 。</p>
+
+<p>update: 之前写假了，感谢 <span class="citation" data-cites="CYJian">@CYJian</span> 的 hack 。</p>
 <p>zzq 把满足这个性质的分解称为“迷之分解”，那我也这么叫吧。</p>
 <p>考虑证明一下，顺便构造一个“迷之分解”。</p>
-<p>找到 x 的最小质因子 p ，然后假设已知 x / p 的“迷之分解” A, B, C (A &lt;= B &lt;= C) 。<br>那么把 p 乘到 A 上就可以得到 x 的“迷之分解” A * p, B, C 。<br>分类讨论，如果 p 不超过 $\sqrt[4]{x}$ ，由于 A 是 A, B, C 三者中最小的，<br>一定满足 A 不超过 $\sqrt[3]{x/p}$ ，那么可得：</p>
-<p>$$A \cdot p \leq \sqrt[3]{x/p} \cdot p = \sqrt[3]{xp^2} \leq \sqrt{x}$$</p>
-<p>而如果 p 超过 $\sqrt[4]{x}$ ，由于 p 是最小质因子，<br>那么如果 x 的“迷之分解”有合数 C ， C 至少是 $p^2$ ，超过 $\sqrt{x}$ ，<br>那么 B 的大小就会比 p 小，与 p 是最小质因子矛盾，<br>因而此时 x 的“迷之分解”全是质数。</p>
-<p>“迷之分解”的分析就是这样，通过线性筛可以很好预处理出 O(V) 内的所有数的“迷之分解”。<br>只需筛出每个数的最小质因子即可按上述方法递推出“迷之分解”。<br>然后只需预处理出 $O(\sqrt{V})$ 内两两的 gcd ，为了不带 log ，需要递推预处理。<br>此时求 gcd(x, y) 只需对于 x 的“迷之分解” A, B, C 依次对 y 求 gcd （每次求 gcd 后把 y 除以该 gcd ），<br>以 A 为例，如果 A 不超过 $\sqrt{x}$ ，直接查表可以得到 gcd(A, y) （查的是 gcd(A mod y, A) ），<br>否则 A 为质数，简单讨论一下就可以得到 gcd(A, y) 了。</p>
+<p>找到 x 的最小质因子 p ，然后假设已知 x / p 的“迷之分解” A, B, C (A &lt;= B &lt;= C) 。<br>
+那么把 p 乘到 A 上就可以得到 x 的“迷之分解” A * p, B, C 。<br>
+分类讨论，如果 p 不超过 <span class="math inline">\(\sqrt[4]{x}\)</span> ，由于 A 是 A, B, C 三者中最小的，<br>
+一定满足 A 不超过 <span class="math inline">\(\sqrt[3]{x/p}\)</span> ，那么可得：</p>
+<p><span class="math display">\[A \cdot p \leq \sqrt[3]{x/p} \cdot p = \sqrt[3]{xp^2} \leq \sqrt{x}\]</span></p>
+<p>而如果 p 超过 <span class="math inline">\(\sqrt[4]{x}\)</span> ，由于 p 是最小质因子，<br>
+那么如果 x 的“迷之分解”有合数 C ， C 至少是 <span class="math inline">\(p^2\)</span> ，超过 <span class="math inline">\(\sqrt{x}\)</span> ，<br>
+那么 B 的大小就会比 p 小，与 p 是最小质因子矛盾，<br>
+因而此时 x 的“迷之分解”全是质数。</p>
+<p>“迷之分解”的分析就是这样，通过线性筛可以很好预处理出 O(V) 内的所有数的“迷之分解”。<br>
+只需筛出每个数的最小质因子即可按上述方法递推出“迷之分解”。<br>
+然后只需预处理出 <span class="math inline">\(O(\sqrt{V})\)</span> 内两两的 gcd ，为了不带 log ，需要递推预处理。<br>
+此时求 gcd(x, y) 只需对于 x 的“迷之分解” A, B, C 依次对 y 求 gcd （每次求 gcd 后把 y 除以该 gcd ），<br>
+以 A 为例，如果 A 不超过 <span class="math inline">\(\sqrt{x}\)</span> ，直接查表可以得到 gcd(A, y) （查的是 gcd(A mod y, A) ），<br>
+否则 A 为质数，简单讨论一下就可以得到 gcd(A, y) 了。</p>
 <p>关键部分参考实现：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> magic[maxv][<span class="number">3</span>]; <span class="comment">// 每个数的“迷之分解”</span></span><br><span class="line"><span class="keyword">int</span> gcd[maxb][maxb]; <span class="comment">// 预处理的 gcd</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">GCD</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> res = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i ++) &#123;</span><br><span class="line">		<span class="keyword">int</span> X = magic[x][i];</span><br><span class="line">		<span class="keyword">int</span> d;</span><br><span class="line">		<span class="keyword">if</span>(X &lt; maxb)</span><br><span class="line">			d = gcd[X][y % X];</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(y % X)</span><br><span class="line">			d = <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			d = X;</span><br><span class="line">		res *= d;</span><br><span class="line">		y /= d;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="O-1-快速幂"><a href="#O-1-快速幂" class="headerlink" title="O(1) 快速幂"></a>O(1) 快速幂</h2><p>在 $O(\sqrt{p})$ 的预处理后可以做到对于一个固定的底数 O(1) 查询快速幂，<br>其中 p 是模数（或者上式是 $\sqrt{\phi(p)}$ ），或者是指数的范围。</p>
-<p>这个就简单得多，对于每个 $a^k$ 的指数 k 都可以表示为 $a \sqrt{p} + b$ 的形式，<br>满足 $a, b &lt; \sqrt{p}$ ，分别预处理即可，<br>即预处理 $a^0, a^1, a^2 … a^{\sqrt{p}}, a^{2\sqrt{p}}, a^{3\sqrt{p}} … a^p$ 。</p>
+<h2 id="o1-快速幂">O(1) 快速幂</h2>
+<p>在 <span class="math inline">\(O(\sqrt{p})\)</span> 的预处理后可以做到对于一个固定的底数 O(1) 查询快速幂，<br>
+其中 p 是模数（或者上式是 <span class="math inline">\(\sqrt{\phi(p)}\)</span> ），或者是指数的范围。</p>
+<p>这个就简单得多，对于每个 <span class="math inline">\(a^k\)</span> 的指数 k 都可以表示为 <span class="math inline">\(a \sqrt{p} + b\)</span> 的形式，<br>
+满足 <span class="math inline">\(a, b &lt; \sqrt{p}\)</span> ，分别预处理即可，<br>
+即预处理 <span class="math inline">\(a^0, a^1, a^2 ... a^{\sqrt{p}}, a^{2\sqrt{p}}, a^{3\sqrt{p}} ... a^p\)</span> 。</p>
 
     </div>
 
@@ -489,7 +504,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#O-1-gcd"><span class="nav-number">1.</span> <span class="nav-text">O(1) gcd</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#O-1-快速幂"><span class="nav-number">2.</span> <span class="nav-text">O(1) 快速幂</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#o1-gcd"><span class="nav-number">1.</span> <span class="nav-text">O(1) gcd</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#o1-快速幂"><span class="nav-number">2.</span> <span class="nav-text">O(1) 快速幂</span></a></li></ol></div>
         
       </div>
       <!--/noindex-->
@@ -534,7 +549,7 @@
             <a href="/tags/">
           
         
-        <span class="site-state-item-count">47</span>
+        <span class="site-state-item-count">49</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>

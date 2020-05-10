@@ -57,18 +57,18 @@
   };
 </script>
 
-  <meta name="description" content="relearn 了一遍 exCRT ，发现之前学的可能是假的（这种情况出现不止一次了 233 ）。简单来说，中国剩余定理（以下简称 CRT ）主要用于解线性同余方程组：$$\begin{equation}\left\{\begin{aligned}x \equiv a_1 (mod \; m_1) \\\x \equiv a_2 (mod \; m_2) \\\… \\\x \equiv a_n">
-<meta name="keywords" content="CRT,exCRT,中国剩余定理,同余">
+  <meta name="description" content="relearn 了一遍 exCRT ，发现之前学的可能是假的（这种情况出现不止一次了 233 ）。简单来说，中国剩余定理（以下简称 CRT ）主要用于解线性同余方程组：\[ \begin{equation} \left\{ \begin{aligned} x \equiv a_1 \pmod{m_1} \\\\ x \equiv a_2 \pmod{m_2} \\\\ ... \\\\ x \eq">
+<meta name="keywords" content="同余,中国剩余定理,CRT,exCRT">
 <meta property="og:type" content="article">
 <meta property="og:title" content="中国剩余定理">
 <meta property="og:url" content="https://kewth.github.io/2019/11/05/中国剩余定理/index.html">
 <meta property="og:site_name" content="KeBlog">
-<meta property="og:description" content="relearn 了一遍 exCRT ，发现之前学的可能是假的（这种情况出现不止一次了 233 ）。简单来说，中国剩余定理（以下简称 CRT ）主要用于解线性同余方程组：$$\begin{equation}\left\{\begin{aligned}x \equiv a_1 (mod \; m_1) \\\x \equiv a_2 (mod \; m_2) \\\… \\\x \equiv a_n">
+<meta property="og:description" content="relearn 了一遍 exCRT ，发现之前学的可能是假的（这种情况出现不止一次了 233 ）。简单来说，中国剩余定理（以下简称 CRT ）主要用于解线性同余方程组：\[ \begin{equation} \left\{ \begin{aligned} x \equiv a_1 \pmod{m_1} \\\\ x \equiv a_2 \pmod{m_2} \\\\ ... \\\\ x \eq">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-04-22T13:55:12.319Z">
+<meta property="og:updated_time" content="2020-05-10T11:12:16.605Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="中国剩余定理">
-<meta name="twitter:description" content="relearn 了一遍 exCRT ，发现之前学的可能是假的（这种情况出现不止一次了 233 ）。简单来说，中国剩余定理（以下简称 CRT ）主要用于解线性同余方程组：$$\begin{equation}\left\{\begin{aligned}x \equiv a_1 (mod \; m_1) \\\x \equiv a_2 (mod \; m_2) \\\… \\\x \equiv a_n">
+<meta name="twitter:description" content="relearn 了一遍 exCRT ，发现之前学的可能是假的（这种情况出现不止一次了 233 ）。简单来说，中国剩余定理（以下简称 CRT ）主要用于解线性同余方程组：\[ \begin{equation} \left\{ \begin{aligned} x \equiv a_1 \pmod{m_1} \\\\ x \equiv a_2 \pmod{m_2} \\\\ ... \\\\ x \eq">
   <link rel="canonical" href="https://kewth.github.io/2019/11/05/中国剩余定理/">
 
 
@@ -213,7 +213,7 @@
       
     
 
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">47</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">49</span></a>
 
   </li>
       
@@ -337,7 +337,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-04-22 21:55:12" itemprop="dateModified" datetime="2020-04-22T21:55:12+08:00">2020-04-22</time>
+                <time title="修改时间：2020-05-10 19:12:16" itemprop="dateModified" datetime="2020-05-10T19:12:16+08:00">2020-05-10</time>
               </span>
             
           
@@ -378,24 +378,49 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>relearn 了一遍 exCRT ，发现之前学的可能是假的（这种情况出现不止一次了 233 ）。</p><p>简单来说，中国剩余定理（以下简称 CRT ）主要用于解线性同余方程组：</p><p>$$<br>\begin{equation}<br>\left\{<br>\begin{aligned}<br>x \equiv a_1 (mod \; m_1) \\\<br>x \equiv a_2 (mod \; m_2) \\\<br>… \\\<br>x \equiv a_n (mod \; m_n) \\\<br>\end{aligned}<br>\right.<br>\end{equation}<br>$$</p><a id="more"></a>
+        <p>relearn 了一遍 exCRT ，发现之前学的可能是假的（这种情况出现不止一次了 233 ）。</p><p>简单来说，中国剩余定理（以下简称 CRT ）主要用于解线性同余方程组：</p><p><span class="math display">\[
+\begin{equation}
+\left\{
+\begin{aligned}
+x \equiv a_1 \pmod{m_1} \\\\
+x \equiv a_2 \pmod{m_2} \\\\
+... \\\\
+x \equiv a_n \pmod{m_n} \\\\
+\end{aligned}
+\right.
+\end{equation}
+\]</span></p><a id="more"></a>
 
 
-<h2 id="CRT"><a href="#CRT" class="headerlink" title="CRT"></a>CRT</h2><p>普通的 CRT 用于解决模数两两互质的情况（这个条件比较苛刻，实践中往往需要 exCRT ）。</p>
-<p>CRT 的主要思想是构造，对于每个方程组构造一个 $b_i$ 使得 $b_i$ 在其他所有模数下为 0 ，仅在模 $m_i$ 意义下为 1 。<br>感觉这个构造思路有点想拉格朗日插值法，那么不难得出：</p>
-<p>$$ b_i = \prod_{i \ne j} m_j (\prod_{i \ne j} m_j)_{m_i}^{-1} $$</p>
-<p>其中 $(\prod_{i \ne j} m_j)_{m_i}^{-1}$ 是 $\prod_{i \ne j} m_j$ 在模 $m_i$ 意义下的逆元。</p>
-<p>那么整个方程组的一个解就是 $\sum_{i=1}^n b_i a_i$ ，通解就是：</p>
-<p>$$ x \equiv \sum_{i=1}^n b_i a_i (mod \; \prod_{i=1}^n m_i) $$</p>
-<h2 id="exCRT"><a href="#exCRT" class="headerlink" title="exCRT"></a>exCRT</h2><p>CRT 只适用于模数两两互质的情况，因为用到了模数之间的逆元，而模数不互质是没有逆元的。</p>
-<p>exCRT 的主要思想是两两合并，考虑 $n=2$ 的情况：</p>
-<p>$$<br>\begin{equation}<br>\left\{<br>\begin{aligned}<br>x \equiv a_1 (mod \; m_1) \\\<br>x \equiv a_2 (mod \; m_2) \\\<br>\end{aligned}<br>\right.<br>\end{equation}<br>$$</p>
-<p>那么此时方程组的解 $x$ 需要满足存在 $i, j$ 使得：</p>
-<p>$$ x = a_1 + i m_1 = a_2 + j m_2 $$</p>
-<p>对于右边的等式 $a_1 + i m_1 = a_2 + j m_2$ ，是关于 $i, j$ 的二元一次方程，<br>那么用扩展欧几里得解出一组解 $i=i_0, j=j_0$ 再回代到等式中即可求得一个 $x = x_0$ 。<br>而通解的话，根据 exgcd 的通解 $i \equiv i_0 (mod\frac{m_2}{gcd(m_1, m_2)})$ ，可以得到 $x$ 的通解：</p>
-<p>$$ x \equiv x_0 (mod\; lcm(m_1, m_2)) $$</p>
+<h2 id="crt">CRT</h2>
+<p>普通的 CRT 用于解决模数两两互质的情况（这个条件比较苛刻，实践中往往需要 exCRT ）。</p>
+<p>CRT 的主要思想是构造，对于每个方程组构造一个 <span class="math inline">\(b_i\)</span> 使得 <span class="math inline">\(b_i\)</span> 在其他所有模数下为 0 ，仅在模 <span class="math inline">\(m_i\)</span> 意义下为 1 。<br>
+感觉这个构造思路有点想拉格朗日插值法，那么不难得出：</p>
+<p><span class="math display">\[ b_i = \prod_{i \ne j} m_j (\prod_{i \ne j} m_j)_{m_i}^{-1} \]</span></p>
+<p>其中 <span class="math inline">\((\prod_{i \ne j} m_j)_{m_i}^{-1}\)</span> 是 <span class="math inline">\(\prod_{i \ne j} m_j\)</span> 在模 <span class="math inline">\(m_i\)</span> 意义下的逆元。</p>
+<p>那么整个方程组的一个解就是 <span class="math inline">\(\sum_{i=1}^n b_i a_i\)</span> ，通解就是：</p>
+<p><span class="math display">\[ x \equiv \sum_{i=1}^n b_i a_i \pmod{\prod_{i=1}^n m_i} \]</span></p>
+<h2 id="excrt">exCRT</h2>
+<p>CRT 只适用于模数两两互质的情况，因为用到了模数之间的逆元，而模数不互质是没有逆元的。</p>
+<p>exCRT 的主要思想是两两合并，考虑 <span class="math inline">\(n=2\)</span> 的情况：</p>
+<p><span class="math display">\[
+\begin{equation}
+\left\{
+\begin{aligned}
+x \equiv a_1 \pmod{m_1} \\\\
+x \equiv a_2 \pmod{m_2} \\\\
+\end{aligned}
+\right.
+\end{equation}
+\]</span></p>
+<p>那么此时方程组的解 <span class="math inline">\(x\)</span> 需要满足存在 <span class="math inline">\(i, j\)</span> 使得：</p>
+<p><span class="math display">\[ x = a_1 + i m_1 = a_2 + j m_2 \]</span></p>
+<p>对于右边的等式 <span class="math inline">\(a_1 + i m_1 = a_2 + j m_2\)</span> ，是关于 <span class="math inline">\(i, j\)</span> 的二元一次方程，<br>
+那么用扩展欧几里得解出一组解 <span class="math inline">\(i=i_0, j=j_0\)</span> 再回代到等式中即可求得一个 <span class="math inline">\(x = x_0\)</span> 。<br>
+而通解的话，根据 exgcd 的通解 <span class="math inline">\(i \equiv i_0 \pmod{\frac{m_2}{\gcd(m_1, m_2)}}\)</span> ，可以得到 <span class="math inline">\(x\)</span> 的通解：</p>
+<p><span class="math display">\[ x \equiv x_0 \pmod{lcm(m_1, m_2)} \]</span></p>
 <p>那么据此可以将任意两个同余方程合并为一个，也就可以通过两两合并的方式将整个同余方程组合并为一个方程。</p>
-<p>无解的话，当且仅当 exgcd 解 $i, j$ 的时候无解，只要有两个方程无法合并那么整个方程组都无法合并。</p>
+<p>无解的话，当且仅当 exgcd 解 <span class="math inline">\(i, j\)</span> 的时候无解，只要有两个方程无法合并那么整个方程组都无法合并。</p>
 
     </div>
 
@@ -411,13 +436,13 @@
           
           <div class="post-tags">
             
-              <a href="/tags/CRT/" rel="tag"><i class="fa fa-tag"></i> CRT</a>
-            
-              <a href="/tags/exCRT/" rel="tag"><i class="fa fa-tag"></i> exCRT</a>
+              <a href="/tags/同余/" rel="tag"><i class="fa fa-tag"></i> 同余</a>
             
               <a href="/tags/中国剩余定理/" rel="tag"><i class="fa fa-tag"></i> 中国剩余定理</a>
             
-              <a href="/tags/同余/" rel="tag"><i class="fa fa-tag"></i> 同余</a>
+              <a href="/tags/CRT/" rel="tag"><i class="fa fa-tag"></i> CRT</a>
+            
+              <a href="/tags/exCRT/" rel="tag"><i class="fa fa-tag"></i> exCRT</a>
             
           </div>
         
@@ -488,7 +513,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#CRT"><span class="nav-number">1.</span> <span class="nav-text">CRT</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#exCRT"><span class="nav-number">2.</span> <span class="nav-text">exCRT</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#crt"><span class="nav-number">1.</span> <span class="nav-text">CRT</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#excrt"><span class="nav-number">2.</span> <span class="nav-text">exCRT</span></a></li></ol></div>
         
       </div>
       <!--/noindex-->
@@ -533,7 +558,7 @@
             <a href="/tags/">
           
         
-        <span class="site-state-item-count">47</span>
+        <span class="site-state-item-count">49</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>

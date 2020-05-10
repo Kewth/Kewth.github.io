@@ -57,18 +57,18 @@
   };
 </script>
 
-  <meta name="description" content="以下公式均不给出证明，目的是为了让结论一目了然。组合数相关$$ C_n^m C_m^k = C_n^k C_{n-k}^{m-k} $$基本递推式$$ C_n^m = C_{n-1}^{m-1} + C_{n-1}^m $$二项式定理$$ (a+b)^n = \sum_{i=0}^n C_n^i a^i b^{n-i} $$">
+  <meta name="description" content="以下公式均不给出证明，目的是为了让结论一目了然。组合数相关\[ C_n^m C_m^k = C_n^k C_{n-k}^{m-k} \]基本递推式 \[ C_n^m = C_{n-1}^{m-1} + C_{n-1}^m \]二项式定理 \[ (a+b)^n = \sum_{i=0}^n C_n^i a^i b^{n-i} \]">
 <meta name="keywords" content="组合数学">
 <meta property="og:type" content="article">
 <meta property="og:title" content="组合数学玄学操作">
 <meta property="og:url" content="https://kewth.github.io/2020/01/02/组合数学玄学操作/index.html">
 <meta property="og:site_name" content="KeBlog">
-<meta property="og:description" content="以下公式均不给出证明，目的是为了让结论一目了然。组合数相关$$ C_n^m C_m^k = C_n^k C_{n-k}^{m-k} $$基本递推式$$ C_n^m = C_{n-1}^{m-1} + C_{n-1}^m $$二项式定理$$ (a+b)^n = \sum_{i=0}^n C_n^i a^i b^{n-i} $$">
+<meta property="og:description" content="以下公式均不给出证明，目的是为了让结论一目了然。组合数相关\[ C_n^m C_m^k = C_n^k C_{n-k}^{m-k} \]基本递推式 \[ C_n^m = C_{n-1}^{m-1} + C_{n-1}^m \]二项式定理 \[ (a+b)^n = \sum_{i=0}^n C_n^i a^i b^{n-i} \]">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2020-01-07T09:32:41.432Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="组合数学玄学操作">
-<meta name="twitter:description" content="以下公式均不给出证明，目的是为了让结论一目了然。组合数相关$$ C_n^m C_m^k = C_n^k C_{n-k}^{m-k} $$基本递推式$$ C_n^m = C_{n-1}^{m-1} + C_{n-1}^m $$二项式定理$$ (a+b)^n = \sum_{i=0}^n C_n^i a^i b^{n-i} $$">
+<meta name="twitter:description" content="以下公式均不给出证明，目的是为了让结论一目了然。组合数相关\[ C_n^m C_m^k = C_n^k C_{n-k}^{m-k} \]基本递推式 \[ C_n^m = C_{n-1}^{m-1} + C_{n-1}^m \]二项式定理 \[ (a+b)^n = \sum_{i=0}^n C_n^i a^i b^{n-i} \]">
   <link rel="canonical" href="https://kewth.github.io/2020/01/02/组合数学玄学操作/">
 
 
@@ -213,7 +213,7 @@
       
     
 
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">47</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">49</span></a>
 
   </li>
       
@@ -378,18 +378,21 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>以下公式均不给出证明，目的是为了让结论一目了然。</p><h2 id="组合数相关"><a href="#组合数相关" class="headerlink" title="组合数相关"></a>组合数相关</h2><p>$$ C_n^m C_m^k = C_n^k C_{n-k}^{m-k} $$</p><p>基本递推式<br>$$ C_n^m = C_{n-1}^{m-1} + C_{n-1}^m $$</p><p>二项式定理<br>$$ (a+b)^n = \sum_{i=0}^n C_n^i a^i b^{n-i} $$</p><a id="more"></a>
+        <p>以下公式均不给出证明，目的是为了让结论一目了然。</p><h2 id="组合数相关">组合数相关</h2><p><span class="math display">\[ C_n^m C_m^k = C_n^k C_{n-k}^{m-k} \]</span></p><p>基本递推式 <span class="math display">\[ C_n^m = C_{n-1}^{m-1} + C_{n-1}^m \]</span></p><p>二项式定理 <span class="math display">\[ (a+b)^n = \sum_{i=0}^n C_n^i a^i b^{n-i} \]</span></p><a id="more"></a>
 
 
 
-<p>$$ \sum_{i=0}^n (C_n^i)^2 = C_{2n}^n $$</p>
-<p>$$ C_{n+m}^k = \sum_{i=0}^k C_n^i C_m^{k-i} $$</p>
-<p>卢卡斯定理（要求 $p$ 是质数）<br>$$ C_n^m \% p = C_{n/p}^{m/p} C_{n \% p}^{m \% p} \% p $$</p>
-<h2 id="第一类斯特林数相关"><a href="#第一类斯特林数相关" class="headerlink" title="第一类斯特林数相关"></a>第一类斯特林数相关</h2><p>$$ s_n^m = s_{n-1}^{m-1} + (n-1) s_{n-1}^m $$</p>
-<p>$$ x^{\overline{n}} = \sum_{m} s_n^m x^m $$</p>
-<h2 id="第二类斯特林数相关"><a href="#第二类斯特林数相关" class="headerlink" title="第二类斯特林数相关"></a>第二类斯特林数相关</h2><p>$$ S_n^m = S_{n-1}^{m-1} + m S_{n-1}^m $$</p>
-<p>$$ n^m = \sum_{k=0}^m S_m^k C_n^k k! $$</p>
-<p>上式的二项式反演，组合数拆开后可转换为卷积形式<br>$$ S_n^m = \frac{1}{m!} \sum_{k=0}^m (-1)^{m-k} C_m^k k^n $$</p>
+
+<p><span class="math display">\[ \sum_{i=0}^n (C_n^i)^2 = C_{2n}^n \]</span></p>
+<p><span class="math display">\[ C_{n+m}^k = \sum_{i=0}^k C_n^i C_m^{k-i} \]</span></p>
+<p>卢卡斯定理（要求 <span class="math inline">\(p\)</span> 是质数） <span class="math display">\[ C_n^m \% p = C_{n/p}^{m/p} C_{n \% p}^{m \% p} \% p \]</span></p>
+<h2 id="第一类斯特林数相关">第一类斯特林数相关</h2>
+<p><span class="math display">\[ s_n^m = s_{n-1}^{m-1} + (n-1) s_{n-1}^m \]</span></p>
+<p><span class="math display">\[ x^{\overline{n}} = \sum_{m} s_n^m x^m \]</span></p>
+<h2 id="第二类斯特林数相关">第二类斯特林数相关</h2>
+<p><span class="math display">\[ S_n^m = S_{n-1}^{m-1} + m S_{n-1}^m \]</span></p>
+<p><span class="math display">\[ n^m = \sum_{k=0}^m S_m^k C_n^k k! \]</span></p>
+<p>上式的二项式反演，组合数拆开后可转换为卷积形式 <span class="math display">\[ S_n^m = \frac{1}{m!} \sum_{k=0}^m (-1)^{m-k} C_m^k k^n \]</span></p>
 
     </div>
 
@@ -521,7 +524,7 @@
             <a href="/tags/">
           
         
-        <span class="site-state-item-count">47</span>
+        <span class="site-state-item-count">49</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
