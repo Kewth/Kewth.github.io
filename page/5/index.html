@@ -658,7 +658,7 @@ emm 还有大半个小时才检票，果断拿起颓书开始颓废，<br>
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2019/10/01/安徽游记 II/">
+    <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2019/10/01/多项式运算/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Kewth">
@@ -673,7 +673,7 @@ emm 还有大半个小时才检票，果断拿起颓书开始颓废，<br>
         <h2 class="post-title" itemprop="name headline">
           
             
-            <a href="/2019/10/01/安徽游记 II/" class="post-title-link" itemprop="url">安徽游记 II</a>
+            <a href="/2019/10/01/多项式运算/" class="post-title-link" itemprop="url">多项式的运算</a>
           
         </h2>
 
@@ -701,7 +701,7 @@ emm 还有大半个小时才检票，果断拿起颓书开始颓废，<br>
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-08 14:22:06" itemprop="dateModified" datetime="2019-12-08T14:22:06+08:00">2019-12-08</time>
+                <time title="修改时间：2019-12-08 14:23:34" itemprop="dateModified" datetime="2019-12-08T14:23:34+08:00">2019-12-08</time>
               </span>
             
           
@@ -717,20 +717,11 @@ emm 还有大半个小时才检票，果断拿起颓书开始颓废，<br>
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>12 天的培（kao）训（shi），坚持每日总结。</p><p>Day5 to Day8.</p><h2 id="day5">Day5</h2><h3 id="考试">考试</h3><p>Nice 大夫今天又 A 掉一题！</p><p>第一题是在 DAG 上 q 个询问，每次询问一个子图的路径数量（子图点数和 O(n) ），<br>
-我想了想部分分， DAG 上 DP 嘛，但是这样复杂度上界是 $ O(q m) $ ，<br>
-瓶颈在于边的枚举（菊花树卡爆），然而子图的点可能很少，<br>
-然后想到了更暴力的：邻接矩阵存图然后用枚举点代替枚举边，<br>
-事实上邻接矩阵存不下，那就开 set （map 也行）动态加，<br>
-这复杂度 $ O(q n^2 log(m)) $ 啊然而，然后我想了好久优化都没想出来，<br>
-最后想着得多骗点分，于是就把两个暴力结合在了一起：<br>
-每次询问比较 $ n^2 log(m) $ 和 $ m $ 哪个小就跑哪个。。。<br>
-看上去很鸡肋，然而我理性分析了一波复杂度卧槽好像是 $ O(q m  log(m)) $ ，<br>
-应该能骗蛮多分，于是交了，然后 A 了。。。</p>
+          <h2 id="定义">定义</h2><p>简单来说，形如 $ a_0 + a_1X + a_2X^2 + ... + a_nX^n $ 的代数表达式叫做多项式， 可以记作 $ P(X) = a_0 + a_1X + a_2X^2 + ... + a_nX^n $ （系数表示法）， a 叫做多项式的系数，X 是一个不定元，不表示任何值， 不定元在多项式中最大项的次数称作多项式的次数。</p>
           <!--noindex-->
           
             <div class="post-button">
-              <a class="btn" href="/2019/10/01/安徽游记 II/#more" rel="contents">
+              <a class="btn" href="/2019/10/01/多项式运算/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -849,7 +840,7 @@ emm 还有大半个小时才检票，果断拿起颓书开始颓废，<br>
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2019/10/01/多项式运算/">
+    <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2019/10/01/安徽游记 III/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Kewth">
@@ -864,7 +855,7 @@ emm 还有大半个小时才检票，果断拿起颓书开始颓废，<br>
         <h2 class="post-title" itemprop="name headline">
           
             
-            <a href="/2019/10/01/多项式运算/" class="post-title-link" itemprop="url">多项式的运算</a>
+            <a href="/2019/10/01/安徽游记 III/" class="post-title-link" itemprop="url">安徽游记 III</a>
           
         </h2>
 
@@ -892,7 +883,7 @@ emm 还有大半个小时才检票，果断拿起颓书开始颓废，<br>
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-08 14:23:34" itemprop="dateModified" datetime="2019-12-08T14:23:34+08:00">2019-12-08</time>
+                <time title="修改时间：2019-12-08 14:22:02" itemprop="dateModified" datetime="2019-12-08T14:22:02+08:00">2019-12-08</time>
               </span>
             
           
@@ -908,11 +899,111 @@ emm 还有大半个小时才检票，果断拿起颓书开始颓废，<br>
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="定义">定义</h2><p>简单来说，形如 $ a_0 + a_1X + a_2X^2 + ... + a_nX^n $ 的代数表达式叫做多项式， 可以记作 $ P(X) = a_0 + a_1X + a_2X^2 + ... + a_nX^n $ （系数表示法）， a 叫做多项式的系数，X 是一个不定元，不表示任何值， 不定元在多项式中最大项的次数称作多项式的次数。</p>
+          <p>12 天的培（kao）训（shi），坚持每日总结。</p><p>Day9 to Day12.</p><h2 id="day9">Day9</h2><h3 id="考试">考试</h3><p>炸了，今天出的题好诡异。</p><p>第一题一道博弈论，题意好迷，没太看懂就去做后面的题了，<br>
+到后面离考试只有 5min 了再回来看 T1, 暴力都好难打，<br>
+于是信仰一波 <code>std::cout &lt;&lt; 0 &lt;&lt; std::endl</code> ，水到了 12' 。</p>
           <!--noindex-->
           
             <div class="post-button">
-              <a class="btn" href="/2019/10/01/多项式运算/#more" rel="contents">
+              <a class="btn" href="/2019/10/01/安徽游记 III/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+    
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2019/10/01/安徽游记 II/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Kewth">
+      <meta itemprop="description" content="HNFMS 现役 OIer">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KeBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            
+            <a href="/2019/10/01/安徽游记 II/" class="post-title-link" itemprop="url">安徽游记 II</a>
+          
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-10-01 00:00:00" itemprop="dateCreated datePublished" datetime="2019-10-01T00:00:00+08:00">2019-10-01</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-12-08 14:22:06" itemprop="dateModified" datetime="2019-12-08T14:22:06+08:00">2019-12-08</time>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>12 天的培（kao）训（shi），坚持每日总结。</p><p>Day5 to Day8.</p><h2 id="day5">Day5</h2><h3 id="考试">考试</h3><p>Nice 大夫今天又 A 掉一题！</p><p>第一题是在 DAG 上 q 个询问，每次询问一个子图的路径数量（子图点数和 O(n) ），<br>
+我想了想部分分， DAG 上 DP 嘛，但是这样复杂度上界是 $ O(q m) $ ，<br>
+瓶颈在于边的枚举（菊花树卡爆），然而子图的点可能很少，<br>
+然后想到了更暴力的：邻接矩阵存图然后用枚举点代替枚举边，<br>
+事实上邻接矩阵存不下，那就开 set （map 也行）动态加，<br>
+这复杂度 $ O(q n^2 log(m)) $ 啊然而，然后我想了好久优化都没想出来，<br>
+最后想着得多骗点分，于是就把两个暴力结合在了一起：<br>
+每次询问比较 $ n^2 log(m) $ 和 $ m $ 哪个小就跑哪个。。。<br>
+看上去很鸡肋，然而我理性分析了一波复杂度卧槽好像是 $ O(q m  log(m)) $ ，<br>
+应该能骗蛮多分，于是交了，然后 A 了。。。</p>
+          <!--noindex-->
+          
+            <div class="post-button">
+              <a class="btn" href="/2019/10/01/安徽游记 II/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1007,97 +1098,6 @@ emm 还有大半个小时才检票，果断拿起颓书开始颓废，<br>
           
             <div class="post-button">
               <a class="btn" href="/2019/10/01/最长反链长/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-    
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2019/10/01/安徽游记 III/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Kewth">
-      <meta itemprop="description" content="HNFMS 现役 OIer">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="KeBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            
-            <a href="/2019/10/01/安徽游记 III/" class="post-title-link" itemprop="url">安徽游记 III</a>
-          
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2019-10-01 00:00:00" itemprop="dateCreated datePublished" datetime="2019-10-01T00:00:00+08:00">2019-10-01</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-08 14:22:02" itemprop="dateModified" datetime="2019-12-08T14:22:02+08:00">2019-12-08</time>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>12 天的培（kao）训（shi），坚持每日总结。</p><p>Day9 to Day12.</p><h2 id="day9">Day9</h2><h3 id="考试">考试</h3><p>炸了，今天出的题好诡异。</p><p>第一题一道博弈论，题意好迷，没太看懂就去做后面的题了，<br>
-到后面离考试只有 5min 了再回来看 T1, 暴力都好难打，<br>
-于是信仰一波 <code>std::cout &lt;&lt; 0 &lt;&lt; std::endl</code> ，水到了 12' 。</p>
-          <!--noindex-->
-          
-            <div class="post-button">
-              <a class="btn" href="/2019/10/01/安徽游记 III/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
