@@ -21,12 +21,12 @@
     var CONFIG = {"hostname":"kewth.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="二次剩余，俗称模意义开根。 也就是对于常数 \(n\) 解这样一个方程：\[x^2 \equiv n \; (mod \; p)\]这里只介绍模数 \(p\) 为奇素数的解法，也就是 Cipolla 算法。以下运算皆指模 \(p\) 意义下的运算。解的数量严格来讲，非 0 数 \(n\) 是二次剩余当且仅当方程 \(x^2 \equiv n\) 有解，也就是能开根。 上述方程无解的非 0 数 \(">
+  <meta name="description" content="二次剩余，俗称模意义开根。 也就是对于常数 \(n\) 解这样一个方程： \[x^2 \equiv n \; (mod \; p)\] 这里只介绍模数 \(p\) 为奇素数的解法，也就是 Cipolla 算法。 以下运算皆指模 \(p\) 意义下的运算。 解的数量 严格来讲，非 0 数 \(n\) 是二次剩余当且仅当方程 \(x^2 \equiv n\) 有解，也就是能开根。 上述方程无解的非 0">
 <meta property="og:type" content="article">
 <meta property="og:title" content="二次剩余">
 <meta property="og:url" content="https://kewth.github.io/2019/10/21/%E4%BA%8C%E6%AC%A1%E5%89%A9%E4%BD%99/index.html">
 <meta property="og:site_name" content="KeBlog">
-<meta property="og:description" content="二次剩余，俗称模意义开根。 也就是对于常数 \(n\) 解这样一个方程：\[x^2 \equiv n \; (mod \; p)\]这里只介绍模数 \(p\) 为奇素数的解法，也就是 Cipolla 算法。以下运算皆指模 \(p\) 意义下的运算。解的数量严格来讲，非 0 数 \(n\) 是二次剩余当且仅当方程 \(x^2 \equiv n\) 有解，也就是能开根。 上述方程无解的非 0 数 \(">
+<meta property="og:description" content="二次剩余，俗称模意义开根。 也就是对于常数 \(n\) 解这样一个方程： \[x^2 \equiv n \; (mod \; p)\] 这里只介绍模数 \(p\) 为奇素数的解法，也就是 Cipolla 算法。 以下运算皆指模 \(p\) 意义下的运算。 解的数量 严格来讲，非 0 数 \(n\) 是二次剩余当且仅当方程 \(x^2 \equiv n\) 有解，也就是能开根。 上述方程无解的非 0">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-10-21T12:10:01.000Z">
 <meta property="article:modified_time" content="2020-04-11T02:29:20.145Z">
@@ -233,43 +233,43 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>二次剩余，<del>俗称模意义开根</del>。<br>
-也就是对于常数 <span class="math inline">\(n\)</span> 解这样一个方程：</p><p><span class="math display">\[x^2 \equiv n \; (mod \; p)\]</span></p><p>这里只介绍模数 <span class="math inline">\(p\)</span> 为奇素数的解法，也就是 Cipolla 算法。</p><p>以下运算皆指模 <span class="math inline">\(p\)</span> 意义下的运算。</p><h2 id="解的数量">解的数量</h2><p>严格来讲，非 0 数 <span class="math inline">\(n\)</span> 是二次剩余当且仅当方程 <span class="math inline">\(x^2 \equiv n\)</span> 有解，也就是能开根。<br>
-上述方程无解的非 0 数 <span class="math inline">\(n\)</span> 称作非二次剩余。</p><a id="more"></a>
-
-
-
-
-
+        <p>二次剩余，<del>俗称模意义开根</del>。<br />
+也就是对于常数 <span class="math inline">\(n\)</span> 解这样一个方程：</p>
+<p><span class="math display">\[x^2 \equiv n \; (mod \; p)\]</span></p>
+<p>这里只介绍模数 <span class="math inline">\(p\)</span> 为奇素数的解法，也就是 Cipolla 算法。</p>
+<p>以下运算皆指模 <span class="math inline">\(p\)</span> 意义下的运算。</p>
+<h2 id="解的数量">解的数量</h2>
+<p>严格来讲，非 0 数 <span class="math inline">\(n\)</span> 是二次剩余当且仅当方程 <span class="math inline">\(x^2 \equiv n\)</span> 有解，也就是能开根。<br />
+上述方程无解的非 0 数 <span class="math inline">\(n\)</span> 称作非二次剩余。</p>
 <p>对于二次剩余 <span class="math inline">\(n\)</span> ，<span class="math inline">\(x^2 \equiv n\)</span> 有多少解？</p>
-<p>假设有多组解，对于任意两个不相等的解 <span class="math inline">\(x_0, x_1\)</span> ，有 <span class="math inline">\(x_0^2 \equiv x_1^2\)</span> 。<br>
+<p>假设有多组解，对于任意两个不相等的解 <span class="math inline">\(x_0, x_1\)</span> ，有 <span class="math inline">\(x_0^2 \equiv x_1^2\)</span> 。<br />
 移项后平方差，得到 <span class="math inline">\((x_0 - x_1)(x_0 + x_1) \equiv 0\)</span> 。</p>
-<p>由于 <span class="math inline">\(p\)</span> 是奇素数，且 <span class="math inline">\(x_0 \ne x_1\)</span> ， <span class="math inline">\(x_0 - x_1\)</span> 在模 <span class="math inline">\(p\)</span> 意义下是不会为 0 的。<br>
-故有 <span class="math inline">\(x_0 + x_1 \equiv 0\)</span> ，也就是说两个不相等的解一定是相反数，<br>
-换言之，该方程只有两个解，且它们互为相反数。<br>
+<p>由于 <span class="math inline">\(p\)</span> 是奇素数，且 <span class="math inline">\(x_0 \ne x_1\)</span> ， <span class="math inline">\(x_0 - x_1\)</span> 在模 <span class="math inline">\(p\)</span> 意义下是不会为 0 的。<br />
+故有 <span class="math inline">\(x_0 + x_1 \equiv 0\)</span> ，也就是说两个不相等的解一定是相反数，<br />
+换言之，该方程只有两个解，且它们互为相反数。<br />
 而当 <span class="math inline">\(p\)</span> 为奇素数时模意义的两个相反数不会相等，因为奇偶性不同。</p>
-<p>还可以知道，任意一对相反数都对应一个二次剩余，而且这些二次剩余是两两不同的。<br>
+<p>还可以知道，任意一对相反数都对应一个二次剩余，而且这些二次剩余是两两不同的。<br />
 也就说二次剩余的数量恰为 <span class="math inline">\(\frac{p-1}{2}\)</span> ，其他的非 0 数都是非二次剩余，数量也是 <span class="math inline">\(\frac{p-1}{2}\)</span> 。</p>
 <h2 id="欧拉准则">欧拉准则</h2>
 <p>如何快速判断一个数 <span class="math inline">\(n\)</span> 是否为二次剩余？</p>
 <p>以下讨论假定 n 不为 0 。</p>
-<p>观察费马小定理 <span class="math inline">\(n^{p-1} \equiv 1\)</span> ，由于 <span class="math inline">\(p\)</span> 是奇素数，可以得到 <span class="math inline">\(n^{2(\frac{p-1}{2})} - 1\equiv 0\)</span> ，<br>
-也就是说 <span class="math inline">\(n^{\frac{p-1}{2}}\)</span> 是 1 开根的结果，根据上面所说， 1 开根只有两个解 1 和 -1 。<br>
+<p>观察费马小定理 <span class="math inline">\(n^{p-1} \equiv 1\)</span> ，由于 <span class="math inline">\(p\)</span> 是奇素数，可以得到 <span class="math inline">\(n^{2(\frac{p-1}{2})} - 1\equiv 0\)</span> ，<br />
+也就是说 <span class="math inline">\(n^{\frac{p-1}{2}}\)</span> 是 1 开根的结果，根据上面所说， 1 开根只有两个解 1 和 -1 。<br />
 那么 <span class="math inline">\(n^{\frac{p-1}{2}}\)</span> 只能是 1 或 -1 。</p>
 <p>若 <span class="math inline">\(n\)</span> 是二次剩余，则有 <span class="math inline">\(n^{\frac{p-1}{2}} \equiv (x^2)^{\frac{p-1}{2}} \equiv x^{p-1} \equiv 1\)</span> 。</p>
-<p>若 <span class="math inline">\(n^{\frac{p-1}{2}} \equiv 1\)</span> ，将 <span class="math inline">\(n\)</span> 表示为 <span class="math inline">\(g^k\)</span> ， 其中 <span class="math inline">\(g\)</span> 是模 <span class="math inline">\(p\)</span> 意义下的原根。<br>
-那么有 <span class="math inline">\(g^{k\frac{p-1}{2}} \equiv 1\)</span> 由于 <span class="math inline">\(g\)</span> 是原根，必有 <span class="math inline">\(p-1|k\frac{p-1}{2}\)</span> ，<br>
+<p>若 <span class="math inline">\(n^{\frac{p-1}{2}} \equiv 1\)</span> ，将 <span class="math inline">\(n\)</span> 表示为 <span class="math inline">\(g^k\)</span> ， 其中 <span class="math inline">\(g\)</span> 是模 <span class="math inline">\(p\)</span> 意义下的原根。<br />
+那么有 <span class="math inline">\(g^{k\frac{p-1}{2}} \equiv 1\)</span> 由于 <span class="math inline">\(g\)</span> 是原根，必有 <span class="math inline">\(p-1|k\frac{p-1}{2}\)</span> ，<br />
 也就是说 <span class="math inline">\(k\)</span> 一定是偶数，那么令 <span class="math inline">\(x \equiv g^{\frac{k}{2}}\)</span> 即是 <span class="math inline">\(n\)</span> 开根的结果，这说明 <span class="math inline">\(n\)</span> 是二次剩余。</p>
-<p>也就是说 <span class="math inline">\(n^{\frac{p-1}{2}} \equiv 1\)</span> 与 <span class="math inline">\(n\)</span> 是二次剩余是等价的，<br>
+<p>也就是说 <span class="math inline">\(n^{\frac{p-1}{2}} \equiv 1\)</span> 与 <span class="math inline">\(n\)</span> 是二次剩余是等价的，<br />
 由于 <span class="math inline">\(n^{\frac{p-1}{2}}\)</span> 不为 1 就只能是 -1 ，那么 <span class="math inline">\(n^{\frac{p-1}{2}} \equiv -1\)</span> 与 <span class="math inline">\(n\)</span> 是非二次剩余等价。</p>
 <p><em>ps: 网上一堆伪证说若 <span class="math inline">\(n\)</span> 是非二次剩余，不存在 <span class="math inline">\(x\)</span> 使得上式为 1 ，但这只能说明上式为 -1 时 <span class="math inline">\(n\)</span> 是非二次剩余，并不能推翻“当 <span class="math inline">\(n\)</span> 是非二次剩余时上式为 1”</em></p>
 <h2 id="cipolla">Cipolla</h2>
 <p>对于二次剩余解方程 <span class="math inline">\(x^2 \equiv n\)</span> 。</p>
-<p>找到一个 <span class="math inline">\(a\)</span> 满足 <span class="math inline">\(a^2 - n\)</span> 是非二次剩余，由于非二次剩余的数量接近 <span class="math inline">\(\frac{p}{2}\)</span> ，<br>
+<p>找到一个 <span class="math inline">\(a\)</span> 满足 <span class="math inline">\(a^2 - n\)</span> 是非二次剩余，由于非二次剩余的数量接近 <span class="math inline">\(\frac{p}{2}\)</span> ，<br />
 通过随机 + 检验的方式期望约 2 次可以找到这样一个 <span class="math inline">\(a\)</span> 。</p>
-<p>接下来定义 <span class="math inline">\(i^2 \equiv a^2 - n\)</span> 。<br>
+<p>接下来定义 <span class="math inline">\(i^2 \equiv a^2 - n\)</span> 。<br />
 但是 <span class="math inline">\(a^2 - n\)</span> 不是二次剩余，怎么找得到这样一个 <span class="math inline">\(i\)</span> ？</p>
-<p>类比实数域到复数域的推广，定义这样一个 <span class="math inline">\(i\)</span> ，然后可以将所有数表示为 <span class="math inline">\(A+Bi\)</span> 的形式，<br>
+<p>类比实数域到复数域的推广，定义这样一个 <span class="math inline">\(i\)</span> ，然后可以将所有数表示为 <span class="math inline">\(A+Bi\)</span> 的形式，<br />
 其中 <span class="math inline">\(A, B\)</span> 都是模 <span class="math inline">\(p\)</span> 意义下的数，类似于实部和虚部。</p>
 <p>那么 <span class="math inline">\((a + i)^{p+1} \equiv n\)</span> ，考虑证明。</p>
 <p><strong>引理 1</strong> ： <span class="math inline">\(i^p \equiv -i\)</span> 。</p>
@@ -280,24 +280,24 @@
 <p><span class="math display">\[(a + i)^{p+1} \equiv (a^p + i^p) (a + i) \equiv (a - i) (a + i) \equiv a^2 - i^2 \equiv n\]</span></p>
 <p>那么 <span class="math inline">\((a + i)^{\frac{p+1}{2}}\)</span> 即是一个解，其相反数是另一个解。</p>
 <p>然而还剩最后一个问题， <span class="math inline">\((a + i)^{\frac{p+1}{2}}\)</span> 的“虚部”一定为 0 吗？</p>
-<p>幸运的是，的确如此，假设存在 <span class="math inline">\((A + Bi)^2 \equiv n\)</span> 且 <span class="math inline">\(B \ne 0\)</span> ，<br>
-那么有 <span class="math inline">\(A^2 + B^2i^2 + 2ABi \equiv n\)</span> ，即 <span class="math inline">\(A^2 + B^2(a^2 - n) - n \equiv -2ABi\)</span> 。<br>
-式子的左边“虚部”为 0 ，那么式子右边的“虚部”也一定为 0 ，也就是说 <span class="math inline">\(AB \equiv 0\)</span> 。<br>
-既然假设了 <span class="math inline">\(B \ne 0\)</span> 那么一定是 <span class="math inline">\(A \equiv 0\)</span> ，也就是说 <span class="math inline">\((Bi)^2 \equiv n\)</span> 。<br>
+<p>幸运的是，的确如此，假设存在 <span class="math inline">\((A + Bi)^2 \equiv n\)</span> 且 <span class="math inline">\(B \ne 0\)</span> ，<br />
+那么有 <span class="math inline">\(A^2 + B^2i^2 + 2ABi \equiv n\)</span> ，即 <span class="math inline">\(A^2 + B^2(a^2 - n) - n \equiv -2ABi\)</span> 。<br />
+式子的左边“虚部”为 0 ，那么式子右边的“虚部”也一定为 0 ，也就是说 <span class="math inline">\(AB \equiv 0\)</span> 。<br />
+既然假设了 <span class="math inline">\(B \ne 0\)</span> 那么一定是 <span class="math inline">\(A \equiv 0\)</span> ，也就是说 <span class="math inline">\((Bi)^2 \equiv n\)</span> 。<br />
 也就是 <span class="math inline">\(i^2 \equiv nB^{-2}\)</span> ，由于 <span class="math inline">\(B^2\)</span> 是个二次剩余，其逆元 <span class="math inline">\(B^{-2}\)</span> 一定也是二次剩余，乘上二次剩余 <span class="math inline">\(n\)</span> 后一定还是二次剩余，这与 <span class="math inline">\(i^2\)</span> 是个非二次剩余产生矛盾。</p>
 <h2 id="实现">实现</h2>
 <p>实现的时候弄个“复数”类（据说也可以不用）即可。</p>
 <p>参考实现：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> lolong;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> mod;</span><br><span class="line">lolong I_mul_I; <span class="comment">// 虚数单位的平方</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">complex</span> &#123;</span></span><br><span class="line">	lolong real, imag;</span><br><span class="line">	<span class="keyword">complex</span>(lolong real = <span class="number">0</span>, lolong imag = <span class="number">0</span>): real(real), imag(imag) &#123; &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">inline</span> <span class="keyword">bool</span> <span class="keyword">operator</span> == (<span class="keyword">complex</span> x, <span class="keyword">complex</span> y) &#123;</span><br><span class="line">	<span class="keyword">return</span> x.real == y.real <span class="keyword">and</span> x.imag == y.imag;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">inline</span> <span class="keyword">complex</span> <span class="keyword">operator</span> * (<span class="keyword">complex</span> x, <span class="keyword">complex</span> y) &#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">complex</span>((x.real * y.real + I_mul_I * x.imag % mod * y.imag) % mod,</span><br><span class="line">			(x.imag * y.real + x.real * y.imag) % mod);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">complex</span> <span class="title">power</span><span class="params">(<span class="keyword">complex</span> x, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">complex</span> res = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span>(k) &#123;</span><br><span class="line">		<span class="keyword">if</span>(k &amp; <span class="number">1</span>) res = res * x;</span><br><span class="line">		x = x * x;</span><br><span class="line">		k &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">check_if_residue</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> power(x, (mod - <span class="number">1</span>) &gt;&gt; <span class="number">1</span>) == <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> p, <span class="keyword">int</span> &amp;x0, <span class="keyword">int</span> &amp;x1)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(n == <span class="number">0</span>) &#123;</span><br><span class="line">		x0 = x1 = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	mod = p;</span><br><span class="line"></span><br><span class="line">	lolong a = rand() % mod;</span><br><span class="line">	<span class="keyword">while</span>(!a <span class="keyword">or</span> check_if_residue((a * a + mod - n) % mod))</span><br><span class="line">		a = rand() % mod;</span><br><span class="line">	I_mul_I = (a * a + mod - n) % mod;</span><br><span class="line"></span><br><span class="line">	x0 = <span class="keyword">int</span>(power(<span class="keyword">complex</span>(a, <span class="number">1</span>), (mod + <span class="number">1</span>) &gt;&gt; <span class="number">1</span>).real);</span><br><span class="line">	x1 = mod - x0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="bsgs">BSGS</h2>
-<p>值得一提的是，模意义开根（甚至可以推广到开 <span class="math inline">\(k\)</span> 次方根）是可以通过原根转换为求对数问题从而使用 BSGS 的。<br>
+<p>值得一提的是，模意义开根（甚至可以推广到开 <span class="math inline">\(k\)</span> 次方根）是可以通过原根转换为求对数问题从而使用 BSGS 的。<br />
 不过复杂度 <span class="math inline">\(O(\sqrt{p})\)</span> 远不如 Cipolla 的 <span class="math inline">\(O(logp)\)</span> 优秀，但很多情况下也足够了。</p>
 <p>具体地，将 <span class="math inline">\(x\)</span> 表示为 <span class="math inline">\(g^y\)</span> ，其中 <span class="math inline">\(g\)</span> 是原根，方程变为 <span class="math inline">\((g^y)^k \equiv n\)</span> ，即 <span class="math inline">\((g^k)^y \equiv n\)</span> ，解出 <span class="math inline">\(y\)</span> 即可。</p>
 <h2 id="非二次剩余开根">非二次剩余开根</h2>
 <p>事实上，大多数情况需要开根的数并不是个二次剩余。</p>
 <p>比如有一个递推式，为了化简需要开根，但是这时候被开根的数是个任意数。</p>
 <p>比如 <a href="https://cometoj.com/contest/72/problem/Ｄ?problem_id=4033" target="_blank" rel="noopener">这个</a> 还有 <a href="http://www.51nod.com/Challenge/ProblemSubmitDetail.html#judgeId=826009" target="_blank" rel="noopener">这个</a> 。</p>
-<p>其实很简单，像 Cipolla 那样直接扩域，把这个非二次剩余设为虚数单位即可。<br>
+<p>其实很简单，像 Cipolla 那样直接扩域，把这个非二次剩余设为虚数单位即可。<br />
 但当然这仅适用于对仅仅一个非二次剩余开根的情况，如果式子需要同时对若干非二次剩余开根，扩域的代价（大概）会呈指数级别增长，即每一次复数乘法的复杂度会很大。</p>
 <h2 id="扩域后指数取模">扩域后指数取模</h2>
 <p>（以下前提是模数是质数）</p>
@@ -305,8 +305,8 @@
 <p>但有时需要对一个幂的指数取模，还是扩域后的，或者有时候需要对一个扩域后的数求逆元，怎么办？</p>
 <p>比如 <a href="http://www.51nod.com/Challenge/ProblemSubmitDetail.html#judgeId=826009" target="_blank" rel="noopener">这个</a> 。</p>
 <p>根据 Cipolla 中提到的公式 <span class="math inline">\((a + i)^{p+1} \equiv n\)</span> ，推广一下可以得到 <span class="math inline">\((A+Bi)^{p+1} \equiv A^2-B^2i^2\)</span> 。</p>
-<p>注意到此时 <span class="math inline">\(A^2 - B^2 i^2\)</span> 虚部为 0 ，设 <span class="math inline">\(x \equiv A^2 - B^2 i^2\)</span> 虚部为零的数是满足费马小定理的，<br>
-也就是说 <span class="math inline">\(x^p \equiv x\)</span> ，即 <span class="math inline">\(x^{p-1} \equiv 1\)</span>，那么有 <span class="math inline">\(((A+Bi)^{p+1})^{p-1} \equiv 1\)</span> 。<br>
+<p>注意到此时 <span class="math inline">\(A^2 - B^2 i^2\)</span> 虚部为 0 ，设 <span class="math inline">\(x \equiv A^2 - B^2 i^2\)</span> 虚部为零的数是满足费马小定理的，<br />
+也就是说 <span class="math inline">\(x^p \equiv x\)</span> ，即 <span class="math inline">\(x^{p-1} \equiv 1\)</span>，那么有 <span class="math inline">\(((A+Bi)^{p+1})^{p-1} \equiv 1\)</span> 。<br />
 也就说指数对 <span class="math inline">\(p^2 - 1\)</span> 取模即可，换句话说，扩域后的复数 <span class="math inline">\(x\)</span> 满足：</p>
 <p><span class="math display">\[ x^{p^2} \equiv x \]</span></p>
 

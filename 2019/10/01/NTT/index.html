@@ -21,12 +21,12 @@
     var CONFIG = {"hostname":"kewth.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="NTT ，快速数论变换，功能与 FFT 完全一致，用来求多项式卷积。 NTT 优点在于常数稍微小一点，没有精度误差。 但是 NTT 系数必须是取模意义下的整数，且对模数有特殊要求。FFT 的单位根建议前置 FFT 。FFT 可以分治优化复杂度的原因是用到了单位根的如下性质： \[ W_{2n}^{2k} &#x3D; W_n^k \] \[ W_n^n &#x3D; 1 \] \[ W_n^{k + n&#x2F;2} + W">
+  <meta name="description" content="NTT ，快速数论变换，功能与 FFT 完全一致，用来求多项式卷积。 NTT 优点在于常数稍微小一点，没有精度误差。 但是 NTT 系数必须是取模意义下的整数，且对模数有特殊要求。 FFT 的单位根 建议前置 FFT 。 FFT 可以分治优化复杂度的原因是用到了单位根的如下性质： \[ W_{2n}^{2k} &#x3D; W_n^k \] \[ W_n^n &#x3D; 1 \] \[ W_n^{k + n&#x2F;2}">
 <meta property="og:type" content="article">
 <meta property="og:title" content="NTT">
 <meta property="og:url" content="https://kewth.github.io/2019/10/01/NTT/index.html">
 <meta property="og:site_name" content="KeBlog">
-<meta property="og:description" content="NTT ，快速数论变换，功能与 FFT 完全一致，用来求多项式卷积。 NTT 优点在于常数稍微小一点，没有精度误差。 但是 NTT 系数必须是取模意义下的整数，且对模数有特殊要求。FFT 的单位根建议前置 FFT 。FFT 可以分治优化复杂度的原因是用到了单位根的如下性质： \[ W_{2n}^{2k} &#x3D; W_n^k \] \[ W_n^n &#x3D; 1 \] \[ W_n^{k + n&#x2F;2} + W">
+<meta property="og:description" content="NTT ，快速数论变换，功能与 FFT 完全一致，用来求多项式卷积。 NTT 优点在于常数稍微小一点，没有精度误差。 但是 NTT 系数必须是取模意义下的整数，且对模数有特殊要求。 FFT 的单位根 建议前置 FFT 。 FFT 可以分治优化复杂度的原因是用到了单位根的如下性质： \[ W_{2n}^{2k} &#x3D; W_n^k \] \[ W_n^n &#x3D; 1 \] \[ W_n^{k + n&#x2F;2}">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-09-30T16:00:00.000Z">
 <meta property="article:modified_time" content="2019-12-08T06:21:36.580Z">
@@ -222,51 +222,51 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>NTT ，快速数论变换，功能与 <a href>FFT</a> 完全一致，用来求多项式卷积。<br>
-NTT 优点在于常数稍微小一点，没有精度误差。<br>
-但是 NTT 系数必须是取模意义下的整数，且对模数有特殊要求。</p><h2 id="fft-的单位根">FFT 的单位根</h2><p>建议前置 <a href>FFT</a> 。</p><p>FFT 可以分治优化复杂度的原因是用到了单位根的如下性质：<br>
-<span class="math display">\[ W_{2n}^{2k} = W_n^k \]</span> <span class="math display">\[ W_n^n = 1 \]</span> <span class="math display">\[ W_n^{k + n/2} + W_n^k = 0 \]</span></p><a id="more"></a>
-
-
-
-<p>可是用单位根做 FFT ，需要用到复数和浮点数，常数大而且有精度误差。<br>
-还有别的数有这样的性质来替换单位根吗？<br>
+        <p>NTT ，快速数论变换，功能与 <a href="">FFT</a> 完全一致，用来求多项式卷积。<br />
+NTT 优点在于常数稍微小一点，没有精度误差。<br />
+但是 NTT 系数必须是取模意义下的整数，且对模数有特殊要求。</p>
+<h2 id="fft-的单位根">FFT 的单位根</h2>
+<p>建议前置 <a href="">FFT</a> 。</p>
+<p>FFT 可以分治优化复杂度的原因是用到了单位根的如下性质：<br />
+<span class="math display">\[ W_{2n}^{2k} = W_n^k \]</span> <span class="math display">\[ W_n^n = 1 \]</span> <span class="math display">\[ W_n^{k + n/2} + W_n^k = 0 \]</span></p>
+<p>可是用单位根做 FFT ，需要用到复数和浮点数，常数大而且有精度误差。<br />
+还有别的数有这样的性质来替换单位根吗？<br />
 遗憾的是，可以证明复数域下只有单位根有这样的性质。</p>
 <h2 id="取模">取模</h2>
-<p>实际计算多项式卷积时，常常要求对系数取模以避免不必要的麻烦。<br>
-那么这时候系数实际上是在模意义下的， FFT 将它转到复数域上运算，似乎没有必要。<br>
-模意义下什么数可以有单位根那样的性质？<br>
+<p>实际计算多项式卷积时，常常要求对系数取模以避免不必要的麻烦。<br />
+那么这时候系数实际上是在模意义下的， FFT 将它转到复数域上运算，似乎没有必要。<br />
+模意义下什么数可以有单位根那样的性质？<br />
 有的，那就是原根。</p>
 <h2 id="原根">原根</h2>
-<p>对于某些模数 P ，模 P 意义下的原根 g 满足：<br>
+<p>对于某些模数 P ，模 P 意义下的原根 g 满足：<br />
 对任意 $ 0 k P - 2 $ ， $ g^k $ 互不相同。 有些模数可能不存在原根，这里先假设模数都有原根。</p>
-<p>假设系数是模 P 意义下的，P 是形如 $ 2^k + 1 $ 的质数，其原根为 g ，<br>
-设 $ G_n = g^{} mod P $ ，其中 n 是小于 P 的 2 的整次幂 。<br>
+<p>假设系数是模 P 意义下的，P 是形如 $ 2^k + 1 $ 的质数，其原根为 g ，<br />
+设 $ G_n = g^{} mod P $ ，其中 n 是小于 P 的 2 的整次幂 。<br />
 那么在模 P 意义下， G 满足：</p>
 <p><span class="math display">\[ G_{2n}^{2k} = G_n^k \]</span></p>
-<p>由 G 定义可证：<br>
+<p>由 G 定义可证：<br />
 $ G_{2n}^{2k} = g^{2k} = g^{k} = G_n^k$</p>
 <p><span class="math display">\[ G_n^n = 1 \]</span></p>
-<p>由 G 定义可得：<br>
-$ G_n^n = g^{n} = g^{P-1} $<br>
-由费马小定理：<br>
+<p>由 G 定义可得：<br />
+$ G_n^n = g^{n} = g^{P-1} $<br />
+由费马小定理：<br />
 $ G_n^n = g^{P-1} = 1 $</p>
 <p><span class="math display">\[ G_n^{k + n/2} + G_n^k = 0 \]</span></p>
-<p>有第一条性质可得：<br>
-$ G_n^{n/2} = G_2^1 = g^{} $<br>
-因为 $ (g<sup>{})</sup>2 = g^{P-1} = 1 $<br>
-根据原根的性质：<br>
-$ g^{} g^{P-1} $<br>
-那么 $ g^{} = -1 $ （即 P - 1）。<br>
-那么可以证得：<br>
-$ G_n^{k + n/2} = G_n^k G_n^{n/2} = G_n^k(-1) $<br>
+<p>有第一条性质可得：<br />
+$ G_n^{n/2} = G_2^1 = g^{} $<br />
+因为 $ (g<sup>{})</sup>2 = g^{P-1} = 1 $<br />
+根据原根的性质：<br />
+$ g^{} g^{P-1} $<br />
+那么 $ g^{} = -1 $ （即 P - 1）。<br />
+那么可以证得：<br />
+$ G_n^{k + n/2} = G_n^k G_n^{n/2} = G_n^k(-1) $<br />
 于是 $ G_n^{k + n/2} + G_n^k = 0 $</p>
 <h2 id="ntt">NTT</h2>
-<p>于是 NTT 的算法思路就呼之欲出了：把 $ W_n $ 全部替换为 $ G_n $ 即可。<br>
-这样就可以算出模 P 意义下的多项式卷积了。<br>
+<p>于是 NTT 的算法思路就呼之欲出了：把 $ W_n $ 全部替换为 $ G_n $ 即可。<br />
+这样就可以算出模 P 意义下的多项式卷积了。<br />
 其中 n 必须是 2 的整次幂，不足的补零即可。</p>
-<p>现在唯一的问题是，模数 P 要满足什么条件，以及如何求模 P 意义下的原根 g 。<br>
-然而我并不想深入展开，大多数情况下模数都是 998244353 ，其原根为 3 。<br>
+<p>现在唯一的问题是，模数 P 要满足什么条件，以及如何求模 P 意义下的原根 g 。<br />
+然而我并不想深入展开，大多数情况下模数都是 998244353 ，其原根为 3 。<br />
 一般 NTT 只会用这个模数，不会有毒瘤出题人卡这个模数的（我不对这句话负责）。</p>
 
     </div>
@@ -283,12 +283,12 @@ $ G_n^{k + n/2} = G_n^k G_n^{n/2} = G_n^k(-1) $<br>
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2019/10/01/i3/" rel="prev" title="i3">
-      <i class="fa fa-chevron-left"></i> i3
+    <a href="/2019/10/01/NOIP%202018/" rel="prev" title="NOIP 2018">
+      <i class="fa fa-chevron-left"></i> NOIP 2018
     </a></div>
       <div class="post-nav-item">
-    <a href="/2019/10/01/NOIP%202018/" rel="next" title="NOIP 2018">
-      NOIP 2018 <i class="fa fa-chevron-right"></i>
+    <a href="/2019/10/01/Manjaro%20%E6%90%AD%E5%BB%BA%E5%86%85%E7%BD%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%88%96%E5%8D%9A%E5%AE%A2/" rel="next" title="Manjaro 搭建内网博客">
+      Manjaro 搭建内网博客 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>

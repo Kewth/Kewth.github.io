@@ -559,15 +559,21 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><del>异或卷积的本质就是 <span class="math inline">\(n\)</span> 维循环卷积。</del></p><h2 id="二维卷积">二维卷积</h2><p>可以理解为对于二维数组 <span class="math inline">\(f\)</span> 和二维数组 <span class="math inline">\(g\)</span> 求二维数组 <span class="math inline">\(h\)</span> ：</p><p><span class="math display">\[h_{i,j} = \sum_{a+b=i} \sum_{c+d=j} f_{a,c} \times g_{b,d}\]</span></p><p>这个 <span class="math inline">\(h\)</span> 就是 <span class="math inline">\(f\)</span> 和 <span class="math inline">\(g\)</span> 的二维卷积。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/05/06/%E5%A4%9A%E7%BB%B4%E5%8D%B7%E7%A7%AF/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
+          <p><del>异或卷积的本质就是 <span class="math inline">\(n\)</span> 维循环卷积。</del></p>
+<h2 id="二维卷积">二维卷积</h2>
+<p>可以理解为对于二维数组 <span class="math inline">\(f\)</span> 和二维数组 <span class="math inline">\(g\)</span> 求二维数组 <span class="math inline">\(h\)</span> ：</p>
+<p><span class="math display">\[h_{i,j} = \sum_{a+b=i} \sum_{c+d=j} f_{a,c} \times g_{b,d}\]</span></p>
+<p>这个 <span class="math inline">\(h\)</span> 就是 <span class="math inline">\(f\)</span> 和 <span class="math inline">\(g\)</span> 的二维卷积。</p>
+<p>构造生成函数数组 <span class="math inline">\({F_i}, {G_i}, {H_i}\)</span> ，满足 <span class="math inline">\(F_i = \sum_{j} f_{i,j} x^j\)</span> ，类似地定义 <span class="math inline">\({G_i}\)</span> 和 <span class="math inline">\({H_i}\)</span> ，那么有：</p>
+<p><span class="math display">\[H_i = \sum_{a+b=i} F_a \times G_b\]</span></p>
+<p>其中 <span class="math inline">\(F_a \times G_b\)</span> 就是多项式卷积。</p>
+<p>不妨把 <span class="math inline">\(F, G, H\)</span> 的每一位所对应的多项式看做普通的元素，那么 <span class="math inline">\(H\)</span> 就是 <span class="math inline">\(F\)</span> 和 <span class="math inline">\(G\)</span> 的卷积，傅里叶变换在这里仍然是可以定义的。</p>
+<h2 id="高维卷积">高维卷积</h2>
+<p>二维卷积的做法完全可以推广到高维卷积，对于两个从向量到数的映射 <span class="math inline">\(F, G\)</span> ，定义其卷积 <span class="math inline">\(H\)</span> 满足：</p>
+<p><span class="math display">\[H_c = \sum_{a+b=c} F_a \times G_b\]</span></p>
+<p>其中 <span class="math inline">\(a, b, c\)</span> 都是高维向量。</p>
+<p>事实上异或卷积就是一个高维卷积（循环卷积），每一维的长度都是二，根据异或卷积的实现不难推广到所有高维卷积的实现。</p>
+
       
     </div>
 
@@ -636,15 +642,18 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>简单来说就是快速计算 <span class="math inline">\(\binom{n}{m} \mod p\)</span> 。</p><h2 id="卢卡斯定理">卢卡斯定理</h2><p>如果 <span class="math inline">\(p\)</span> 是质数，有 <span class="math inline">\(\binom{n}{m} \equiv \binom{n \mod p}{m \mod p} \binom{n/p}{m/p} \pmod{p}\)</span> ，其中 <span class="math inline">\(n/p\)</span> 和 <span class="math inline">\(m/p\)</span> 表示整除。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/04/29/%E5%8D%A2%E5%8D%A1%E6%96%AF%E5%AE%9A%E7%90%86/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
+          <p>简单来说就是快速计算 <span class="math inline">\(\binom{n}{m} \mod p\)</span> 。</p>
+<h2 id="卢卡斯定理">卢卡斯定理</h2>
+<p>如果 <span class="math inline">\(p\)</span> 是质数，有 <span class="math inline">\(\binom{n}{m} \equiv \binom{n \mod p}{m \mod p} \binom{n/p}{m/p} \pmod{p}\)</span> ，其中 <span class="math inline">\(n/p\)</span> 和 <span class="math inline">\(m/p\)</span> 表示整除。</p>
+<p>直接递归调用，预处理阶乘，单次询问时间复杂度 <span class="math inline">\(O(p + \frac{\log n}{\log p})\)</span> 。</p>
+<h2 id="扩展卢卡斯">扩展卢卡斯</h2>
+<p>这已经不能算定理了，从头到尾就是一个算法。</p>
+<p>对于 <span class="math inline">\(p\)</span> 不是质数的情况，考虑将 <span class="math inline">\(p\)</span> 质因数分解，对于每个质因子 <span class="math inline">\(x^k\)</span> ，求出 <span class="math inline">\(\binom{n}{m} \mod x^k\)</span> 后扩展中国剩余定理合并。</p>
+<p>那么问题转换为对于质数 <span class="math inline">\(x\)</span> 和指数 <span class="math inline">\(k\)</span> 求 <span class="math inline">\(\binom{n}{m} \mod x^k\)</span> 。</p>
+<p>考虑组合数的通项公式 <span class="math inline">\(\binom{n}{m} = \frac{n!}{m!(n-m)!}\)</span> ，分别求出 <span class="math inline">\(n!\)</span>, <span class="math inline">\(m!\)</span>, <span class="math inline">\((n-m)!\)</span> ，特别地，由于它们可能是 <span class="math inline">\(x\)</span> 的倍数，需要将 <span class="math inline">\(x\)</span> 单独提出来。 也就是要求 <span class="math inline">\(n! = x^a b\)</span> 中的 <span class="math inline">\(a\)</span> 和 <span class="math inline">\(b\)</span> 。</p>
+<p>将 <span class="math inline">\(n! = 1 \times 2 \times 3 ... \times n\)</span> 中 <span class="math inline">\(x\)</span> 的倍数单独提出来，这些部分都除掉一个 <span class="math inline">\(x\)</span> 就是 <span class="math inline">\(\lfloor \frac{n}{x} \rfloor!\)</span> ，递归计算。 对于其他部分，每 <span class="math inline">\(x^k\)</span> 分为一块，每一个完整的块的乘积相同，算出一个完整的块的乘积（也就是 <span class="math inline">\((x^k-1)!\)</span> ）后再算零散部分的乘积即可。</p>
+<p>预处理阶乘，单次询问时间复杂度 <span class="math inline">\(O(p + \frac{\log n}{\log p})\)</span> 。</p>
+
       
     </div>
 
@@ -719,15 +728,29 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>问题是这样的：</p><p>对于一个无穷大的递推数列 <span class="math inline">\(\{h_i\}\)</span> 和长度为 <span class="math inline">\(k\)</span> 的已知数列 <span class="math inline">\(\{a_i\}\)</span>，满足<span class="math inline">\(\forall n, h_n = \sum_{i=1}^k a_i h_{n-i}\)</span> 。 已知 <span class="math inline">\(h_i (0 \le i &lt; k)\)</span> 求 <span class="math inline">\(h_n\)</span> 。</p><p>直接递推复杂度 <span class="math inline">\(O(nk)\)</span> ，矩阵快速幂可以做到 <span class="math inline">\(O(k^3 logn)\)</span> 的复杂度，这里介绍一个更优秀的做法。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/04/19/%E5%B8%B8%E7%B3%BB%E6%95%B0%E9%BD%90%E6%AC%A1%E7%BA%BF%E6%80%A7%E9%80%92%E6%8E%A8/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
+          <p>问题是这样的：</p>
+<p>对于一个无穷大的递推数列 <span class="math inline">\(\{h_i\}\)</span> 和长度为 <span class="math inline">\(k\)</span> 的已知数列 <span class="math inline">\(\{a_i\}\)</span>，满足<span class="math inline">\(\forall n, h_n = \sum_{i=1}^k a_i h_{n-i}\)</span> 。 已知 <span class="math inline">\(h_i (0 \le i &lt; k)\)</span> 求 <span class="math inline">\(h_n\)</span> 。</p>
+<p>直接递推复杂度 <span class="math inline">\(O(nk)\)</span> ，矩阵快速幂可以做到 <span class="math inline">\(O(k^3 logn)\)</span> 的复杂度，这里介绍一个更优秀的做法。</p>
+<h2 id="结论">结论</h2>
+<p>便于以后复习，先给出结论。</p>
+<ol type="1">
+<li>构造多项式 <span class="math inline">\(F(x) = x^k - \sum_{i=1}^k a_i x^{k-i}\)</span> 。</li>
+<li>求出多项式 <span class="math inline">\(G(x) = \sum_{i=0}^{k-1} c_i x^i = x^n \mod F(x)\)</span> 。</li>
+<li>有 <span class="math inline">\(h_n = \sum_{i=0}^{k-1} c_i h_i\)</span> 。</li>
+</ol>
+<p>第一步和第三步都是 <span class="math inline">\(O(k)\)</span> 的，而第二步通过多项式快速幂和多项式取模可以做到 <span class="math inline">\(O(k\log k\log n)\)</span> 的复杂度。</p>
+<h2 id="直观理解">直观理解</h2>
+<p>不会线性代数也没关系，上面的做法其实有很简单的直观理解。</p>
+<p>上述做法的关键在于第二部分，观察 <span class="math inline">\(H(x) = x^n\)</span> 在对 <span class="math inline">\(F(x)\)</span> 取模时的过程，<br />
+可以发现任意时刻，都有 <span class="math inline">\(h_n = \sum_i [x^i]H(x) h_i\)</span> 。</p>
+<p>也就是说总有以下命题成立，<span class="math inline">\(H(x)\)</span> 的 <span class="math inline">\(i\)</span> 次项系数就是 <span class="math inline">\(h_i\)</span> 对 <span class="math inline">\(h_n\)</span> 的贡献系数。<br />
+这一点不会因减去了若干倍 <span class="math inline">\(F(x)\)</span> 发生改变。<br />
+原因也很简单，每次将 <span class="math inline">\(H(x)\)</span> 减去 <span class="math inline">\(x^i F(x)\)</span> ，就相当于把 <span class="math inline">\(h_{k+i}\)</span> 换成了 <span class="math inline">\(\sum_{j=1}^k a_j h_{k+i-j}\)</span> 。<br />
+本质上是由于 <span class="math inline">\(F(x) \equiv 0 \pmod{F(x)}\)</span> 等价于 <span class="math inline">\(x_k \equiv \sum_{i=1}^k a_i x^{k-i} \pmod{F(x)}\)</span> 。</p>
+<p>其实自己列竖式算一算 <span class="math inline">\(x^n \mod F(x)\)</span> 就能很容易发现这一点。</p>
+<h2 id="线代意义">线代意义</h2>
+<p>线代基础不行，只能先行告退。🕊🕊🕊🕊🕊</p>
+
       
     </div>
 
@@ -802,15 +825,63 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>总结一些 code-trick ，这种东西看看别人的代码，有时能够大开眼界。</p><h2 id="nttfft">NTT/FFT</h2><h4 id="预处理原根">预处理原根</h4><p>普通 NTT 每次长度改变都需要调用若干次快速幂来计算原根，差不多长这样：</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">DFT</span><span class="params">(ll *a, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">	<span class="comment">// ...</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> m = <span class="number">1</span>; m &lt; n; m &lt;&lt;= <span class="number">1</span>) &#123;</span><br><span class="line">		ll Gn = power(<span class="number">3</span>, (mod - <span class="number">1</span>) / (m &lt;&lt; <span class="number">1</span>));</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i += m) &#123;</span><br><span class="line">			ll G = <span class="number">1</span>;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> k = i; k &lt; i + m; k ++) &#123;</span><br><span class="line">				ll a0 = a[k], a1 = a[k + m] * G;</span><br><span class="line">				a[k] = (a0 + a1) % mod;</span><br><span class="line">				a[k + m] = (a0 + mod - a1) % mod;</span><br><span class="line">				(G *= Gn) %= mod;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/01/16/code-trick/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
+          <p>总结一些 code-trick ，这种东西看看别人的代码，有时能够大开眼界。</p>
+<h2 id="nttfft">NTT/FFT</h2>
+<h4 id="预处理原根">预处理原根</h4>
+<p>普通 NTT 每次长度改变都需要调用若干次快速幂来计算原根，差不多长这样：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">DFT</span><span class="params">(ll *a, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">	<span class="comment">// ...</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> m = <span class="number">1</span>; m &lt; n; m &lt;&lt;= <span class="number">1</span>) &#123;</span><br><span class="line">		ll Gn = power(<span class="number">3</span>, (mod - <span class="number">1</span>) / (m &lt;&lt; <span class="number">1</span>));</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i += m) &#123;</span><br><span class="line">			ll G = <span class="number">1</span>;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> k = i; k &lt; i + m; k ++) &#123;</span><br><span class="line">				ll a0 = a[k], a1 = a[k + m] * G;</span><br><span class="line">				a[k] = (a0 + a1) % mod;</span><br><span class="line">				a[k + m] = (a0 + mod - a1) % mod;</span><br><span class="line">				(G *= Gn) %= mod;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>事实上可以预处理数组 <span class="math inline">\(G\)</span> 满足当前枚举的 <span class="math inline">\((m, k, i)\)</span> 需要用到的原根就是 <code>G[m + k - i]</code> ，<br />
+每一层需要 <span class="math inline">\(m\)</span> 个位置，由于每次 <span class="math inline">\(m\)</span> 倍长，<span class="math inline">\(O(n)\)</span> 的空间是能存下的。<br />
+而且只需要递推 <span class="math inline">\(m\)</span> 最大的一层，剩下的由于 <span class="math inline">\(W_m^k = W_{2m}^{2k}\)</span> ，可以知道 <code>G[m + k] = G[m * 2 + k * 2]</code> 。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	ll g = power(<span class="number">3</span>, (mod - <span class="number">1</span>) / maxl);</span><br><span class="line">	G[maxl &gt;&gt; <span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = (maxl &gt;&gt; <span class="number">1</span>) + <span class="number">1</span>; i &lt;= maxl; i ++)</span><br><span class="line">		G[i] = G[i - <span class="number">1</span>] * g % mod;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = (maxl &gt;&gt; <span class="number">1</span>) - <span class="number">1</span>; i; i --)</span><br><span class="line">		G[i] = G[i &lt;&lt; <span class="number">1</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">DFT</span><span class="params">(ll *a, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">	<span class="comment">// ...</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> m = <span class="number">1</span>; m &lt; n; m &lt;&lt;= <span class="number">1</span>)</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i += m &lt;&lt; <span class="number">1</span>)</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> k = i; k &lt; i + m; k ++) &#123;</span><br><span class="line">				ll a0 = a[k], a1 = a[k + m] * G[m + k - i] % mod;</span><br><span class="line">				a[k] = (a0 + a1) % mod;</span><br><span class="line">				a[k + m] = (a0 + mod - a1) % mod;</span><br><span class="line">			&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>同样的道理 rev 数组也是能预处理的。</p>
+<h4 id="逆变换">逆变换</h4>
+<p>逆变换实际只要 reverse 一遍做正变换然后除以 <span class="math inline">\(n\)</span> 即可。</p>
+<p>除以 <span class="math inline">\(n\)</span> 往往需要计算逆元，但是由于 <span class="math inline">\(n\)</span> 是二的整次幂，且 NTT 模数必须是 <span class="math inline">\(2^k * s + 1\)</span> ，<br />
+除了预处理以外 <span class="math inline">\(n\)</span> 的逆元有更好的 <span class="math inline">\(O(1)\)</span> 计算方法，因为找到一个满足 <span class="math inline">\(nx \equiv -1\)</span> 的数 <span class="math inline">\(x\)</span> 是很容易的。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">IDFT</span><span class="params">(ll *a, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">	<span class="built_in">std</span>::reverse(a + <span class="number">1</span>, a + n);</span><br><span class="line">	DFT(a, n);</span><br><span class="line">	<span class="keyword">int</span> invn = mod - (mod - <span class="number">1</span>) / n;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i ++)</span><br><span class="line">		(a[i] *= invn) %= mod;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="模数">模数</h4>
+<p>当模数比较小以至于 <span class="math inline">\(p^2logn\)</span> 不会爆 <code>long long</code> 的时候，NTT 的蝴蝶变换可以在最后取模，实测会快很多。 比如 <code>167772161</code> 就是这样一个模数。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">inline</span> <span class="keyword">void</span> __d(ll &amp;x) &#123; <span class="keyword">if</span>(x &lt; <span class="number">0</span>) x += mod; &#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">DFT</span><span class="params">(ll *a, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> m = <span class="number">1</span>; m &lt; n; m &lt;&lt;= <span class="number">1</span>)</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i += m &lt;&lt; <span class="number">1</span>)</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> k = i; k &lt; i + m; k ++) &#123;</span><br><span class="line">				ll a0 = a[k], a1 = a[k + m] * G[m + k - i] % mod;</span><br><span class="line">				a[k] = a0 + a1;</span><br><span class="line">				a[k + m] = a0 - a1;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) __d(a[i] %= mod);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="fft-两次变一次-1">FFT 两次变一次 1</h4>
+<p>这是 myy 提出的一个优秀的 FFT trick ，能够一次 FFT 处理两个多项式，但缺点是精度会进一步降低。</p>
+<p>前提是两个多项式的系数在 FFT 前虚部为 0 ，这个条件在 DFT 中往往是能满足的。</p>
+<p>例如要给两个多项式 <span class="math inline">\(A, B\)</span> 做 FFT ，考虑构造两个多项式：</p>
+<p><span class="math display">\[P(x) = A(x) + i B(x)\]</span> <span class="math display">\[Q(x) = A(x) - i B(x)\]</span></p>
+<p>那么由于 <span class="math inline">\(A, B\)</span> 的虚部都为 0 ，<span class="math inline">\(P, Q\)</span> 的每一项系数都互为共轭，同样 <span class="math inline">\(FFT(P), FFT(Q)\)</span> 的每一项系数都互为共轭。<br />
+那么只需对 <span class="math inline">\(P\)</span> 做一次 FFT ，就可以通过共轭 <span class="math inline">\(O(n)\)</span> 求出 <span class="math inline">\(FFT(Q)\)</span> 的系数。<br />
+然后通过 <span class="math inline">\(FFT(P), FFT(Q)\)</span> 求 <span class="math inline">\(FFT(A), FFT(B)\)</span> 就是解上面的二元一次方程组，也是可以 <span class="math inline">\(O(n)\)</span> 做到的。</p>
+<h4 id="fft-两次变一次-2">FFT 两次变一次 2</h4>
+<p>这是 myy 提出的一个优秀的 FFT trick ，能够一次 FFT 处理两个多项式，但缺点是精度会进一步降低。</p>
+<p>前提是两个多项式的系数在 FFT 后虚部为 0 ，这个条件在 IDFT 中往往是能满足的。</p>
+<p>例如要给两个多项式 <span class="math inline">\(A, B\)</span> 做 FFT ，构造多项式 <span class="math inline">\(P\)</span> 满足：</p>
+<p><span class="math display">\[P(x) = A(x) + i B(x)\]</span></p>
+<p>求出 <span class="math inline">\(FFT(P)\)</span> ，同样有 <span class="math inline">\(FFT(P)(x) = FFT(A)(x) + i FFT(B)(x)\)</span> ，而 <span class="math inline">\(FFT(A), FFT(B)\)</span> 系数的虚部都是 0 。</p>
+<p>那么 <span class="math inline">\(FFT(P)\)</span> 的实部就是 <span class="math inline">\(FFT(A)\)</span> ，虚部就是 <span class="math inline">\(FFT(B)\)</span> 。</p>
+<h2 id="线段树">线段树</h2>
+<p>同时需要记录区间最大值 max 和区间取 min 标记 tag 时，直接用 max 代替掉 tag 即可。<br />
+比如区间取 min 和区间求和的吉司机线段树（segment tree beats）。</p>
+<h2 id="stl">STL</h2>
+<p>将数组降序排序不需要写 <code>cmp</code> ，只需要 <code>std::sort(a, a + n, std::greater&lt;int&gt;());</code> 即可。<br />
+<code>std::greater</code> 包含在头文件 <code>functional</code> 中，这同样适用于结构体排序。<br />
+另外如果要用小根堆，可以使用 <code>std::priority_queue&lt;int, std::vector&lt;int&gt;, std::greater&lt;int&gt; &gt;</code> 。<br />
+与 <code>std::greater</code> 对应的是 <code>std::less</code> 。</p>
+<p><code>std::set</code> 插入后返回的迭代器可以直接获取：<code>auto iter = set.insert(x).second</code> 。</p>
+<h2 id="位运算">位运算</h2>
+<h4 id="预处理-bitcount">预处理 bitcount</h4>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i ++)</span><br><span class="line">	bitcount[i] = bitcount[i &amp; (i - <span class="number">1</span>)] + <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+<h4 id="预处理-highbit">预处理 highbit</h4>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; i ++)</span><br><span class="line">	highbit[i] = highbit[i &gt;&gt; <span class="number">1</span>] + <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="语法">语法</h2>
+<p>利用语法糖可以写出一些骚操作，比如下面这个快读模板：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Inputer</span> &#123;</span></span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">char</span> buffer[<span class="number">64</span> * <span class="number">1024</span> * <span class="number">1024</span>], *p;</span><br><span class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">operator</span> <span class="title">int</span> <span class="params">()</span> </span>&#123; <span class="keyword">return</span> <span class="keyword">int</span>(strtol(p, &amp;p, <span class="number">10</span>)); &#125;</span><br><span class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">operator</span> <span class="title">ll</span> <span class="params">()</span> </span>&#123; <span class="keyword">return</span> strtoll(p, &amp;p, <span class="number">10</span>); &#125;</span><br><span class="line">	<span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt; <span class="title">inline</span> <span class="title">void</span> <span class="title">operator</span> () (<span class="title">T</span> &amp;<span class="title">x</span>) &#123;</span> x = *<span class="keyword">this</span>; &#125;</span><br><span class="line">	<span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>, <span class="title">class</span> ...<span class="title">A</span>&gt; <span class="title">inline</span> <span class="title">void</span> <span class="title">operator</span> () (<span class="title">T</span> &amp;<span class="title">x</span>, <span class="title">A</span> &amp;...<span class="title">a</span>)</span></span><br><span class="line"><span class="class">	&#123;</span> x = *<span class="keyword">this</span>; <span class="keyword">this</span> -&gt; <span class="keyword">operator</span> ()(a...); &#125;</span><br><span class="line">	Inputer() &#123; fread(buffer, <span class="number">1</span>, <span class="keyword">sizeof</span> buffer, <span class="built_in">stdin</span>); &#125;</span><br><span class="line">&#125; read;</span><br><span class="line"><span class="keyword">char</span> *Inputer::p = Inputer::buffer;</span><br><span class="line"><span class="keyword">char</span> Inputer::buffer[] = &#123;&#125;;</span><br></pre></td></tr></table></figure>
+<p>它有多种用法：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">foo</span> <span class="params">(<span class="keyword">int</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a = read;</span><br><span class="line"></span><br><span class="line">	ll b = read;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> c;</span><br><span class="line">	read(c);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> d;</span><br><span class="line">	ll e, f;</span><br><span class="line">	read(d, e, f);</span><br><span class="line"></span><br><span class="line">	foo(read);</span><br><span class="line"></span><br><span class="line">	read.<span class="function"><span class="keyword">operator</span> <span class="title">int</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">	ll g = <span class="keyword">int</span>(read);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>并且可以自定义各种类型的读入，编译器能够根据类型正确调用对应的输入函数（在没有歧义的前提下），或者自己在调用时直接给出类型。</p>
+<p>ps: 这个 trick 不是学的，是我自己原创的，也是我一直在使用的快读模板。:)</p>
+<p>事实上由于大多时候不需要快读，我平时用的输入模板是这样子的（用法完全相同）：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">operator</span> <span class="title">int</span> <span class="params">()</span> </span>&#123; <span class="keyword">int</span> x; <span class="keyword">return</span> <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;x), x; &#125;</span><br><span class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">operator</span> <span class="title">ll</span> <span class="params">()</span> </span>&#123; ll x; <span class="keyword">return</span> <span class="built_in">scanf</span>(<span class="string">"%lld"</span>, &amp;x), x; &#125;</span><br><span class="line">	<span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt; <span class="title">inline</span> <span class="title">void</span> <span class="title">operator</span> () (<span class="title">T</span> &amp;<span class="title">x</span>) &#123;</span> x = *<span class="keyword">this</span>; &#125;</span><br><span class="line">	<span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>, <span class="title">class</span> ...<span class="title">A</span>&gt; <span class="title">inline</span> <span class="title">void</span> <span class="title">operator</span> () (<span class="title">T</span> &amp;<span class="title">x</span>, <span class="title">A</span> &amp;...<span class="title">a</span>)</span></span><br><span class="line"><span class="class">	&#123;</span> x = *<span class="keyword">this</span>; <span class="keyword">this</span> -&gt; <span class="keyword">operator</span> () (a...); &#125;</span><br><span class="line">&#125; read;</span><br></pre></td></tr></table></figure>
+
       
     </div>
 
@@ -879,19 +950,44 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>咕咕咕我又来写总结啦。</p><p>第一次打牛客，一进牛客发现还有 30s 就有一场比赛，就报了名。<br>
-一开始只是打算玩玩，看看牛客的题来着。</p><figure>
-<img src="/images/nowcoder.com.png" alt><figcaption>牛客</figcaption>
-</figure><p>一不小心上瘾了，可惜不计 rating 。<br>
-（另外 %%% <span class="citation" data-cites="CYJian">@CYJian</span> 喜提 rank1 ）</p><p>先看 A 题挺签到的，花几分钟过了，然而交 WA 了一次，原因竟然是下标 0, 1 开头混用了，感觉自己很蠢。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/01/10/%E7%89%9B%E5%AE%A2%E7%BB%83%E4%B9%A0%E8%B5%9B57/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
+          <p>咕咕咕我又来写总结啦。</p>
+<p>第一次打牛客，一进牛客发现还有 30s 就有一场比赛，就报了名。<br />
+一开始只是打算玩玩，看看牛客的题来着。</p>
+<figure>
+<img src="/images/nowcoder.com.png" alt="" /><figcaption>牛客</figcaption>
+</figure>
+<p>一不小心上瘾了，可惜不计 rating 。<br />
+（另外 %%% <span class="citation" data-cites="CYJian">@CYJian</span> 喜提 rank1 ）</p>
+<p>先看 A 题挺签到的，花几分钟过了，然而交 WA 了一次，原因竟然是下标 0, 1 开头混用了，感觉自己很蠢。</p>
+<p>然后想着玩玩嘛，就直接开 F 了。</p>
+<p>嗯看着是道数学题？这个求和方式是个组合数嘛，询问就是一个这玩意：</p>
+<p><span class="math display">\[\sum_{i=l}^r a_i C_{r-l}^{i-l}\]</span></p>
+<p>我猜这个个组合数展开成阶乘然后配卷积，然后推式子，推了一年没有半点用，连个卷积的影子都没有。</p>
+<p>然后打算根据组合意义算，就是在一个三角形上走的路径数，<br />
+三角形有 <span class="math inline">\(O(n^2)\)</span> 个点，每个点可以 <span class="math inline">\(O(1)\)</span> 递推 (<span class="math inline">\(A_{i,j} = A_{i-1,j} + A_{i-1,j-1}\)</span>) ，<br />
+询问就是询问一个点的值 (<span class="math inline">\(A_{r,r-l}\)</span>) 。<br />
+但同时根据组合数的性质，每个点可以 <span class="math inline">\(O(k)\)</span> 地由该点底下 k 层的 k 个点递推出来。<br />
+暴力预处理是 <span class="math inline">\(O(n^2+q)\)</span> 的，暴力询问是 <span class="math inline">\(O(n+qn)\)</span> 的，这看着就是要在两者之间求得平衡。</p>
+<p>于是我想到了分块，只要预处理三角形若干排，然后询问就可以找到比较近的已经处理的一排暴力算。</p>
+<p>如果两排的间距是 <span class="math inline">\(B\)</span> ，那么询问复杂度就是 <span class="math inline">\(O(B)\)</span> 的。</p>
+<p>然而怎么预处理？每个点拿组合数直接算复杂度仍然是 <span class="math inline">\(O(n^2)\)</span> 的 🤔 。</p>
+<p>然后卡这里又卡了一年，后来灵光一现发现两排之间的生成函数就是乘一个 <span class="math inline">\((1+x)\)</span> ，<br />
+用 NTT 即可在两排之间快速预处理，乘一个 <span class="math inline">\((1+x)^B\)</span> 就行了。<br />
+<del><span class="math inline">\((1+x)^B\)</span> 不就是是组合数的生成函数吗？这都没想到感觉自己很睿智。</del></p>
+<p>那么预处理的复杂度为 <span class="math inline">\(O(nlogn\frac{n}{B})\)</span> 的，和询问的复杂度均衡一下就可以得到一个 <span class="math inline">\(O(n\sqrt{nlogn})\)</span> 的做法。<br />
+（假定 <span class="math inline">\(n, q\)</span> 同阶）</p>
+<p>然后就开始码，码完 T 了，T 了两次，经 <span class="citation" data-cites="CYJian">@CYJian</span> 指点发现 <span class="math inline">\(B\)</span> 设小了，导致带 log 的卷积部分跑得很慢。<br />
+改完就 A 了，过了 1.5h 竟然还拿了一血。<br />
+这个时候没记错是 rank140 左右。</p>
+<p>然后开了一眼 D 感觉就是个马拉车，打完发现疯狂 WA ，仔细读题发现要求找两个子串，是恰好两个，用一个都不行 wdnmd 😡 。</p>
+<p>A 掉 D 就开始飘了， B 题细节题屑的一批，C 题是个 FWT 。</p>
+<p>结果 C 题也疯狂 WA ：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">	<span class="keyword">while</span>(T --) &#123;</span><br><span class="line">		<span class="comment">// ....</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i ++)</span><br><span class="line">			<span class="keyword">if</span>(w[i] &gt; W) &#123;</span><br><span class="line">				<span class="built_in">puts</span>(<span class="string">"No"</span>);</span><br><span class="line">				<span class="keyword">continue</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		<span class="comment">// ....</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>原因竟然是这个特判，它的 continue 只对 for 有效。。。<br />
+都打了两三年代码竟然犯这个错误。。。</p>
+<p>最后打完就只有几分钟了，竟然上了 rank4 ，罚时高出天际。</p>
+<p>没有被抽中 😭 😭 😭 😔 😔 😔 。</p>
+
       
     </div>
 
@@ -966,18 +1062,102 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="miller-rabin">miller-rabin</h2><p>用于快速测试一个数 <span class="math inline">\(n\)</span> 是否为质数，有概率出错。</p><p>不妨假设 <span class="math inline">\(n\)</span> 是奇数，此外 miller-rabin 需要随意选取一个小质数 <span class="math inline">\(p\)</span> 。</p><h4 id="理论">理论</h4><p>miller-rabin 用到的两个基本定理：</p><ul>
+          <h2 id="miller-rabin">miller-rabin</h2>
+<p>用于快速测试一个数 <span class="math inline">\(n\)</span> 是否为质数，有概率出错。</p>
+<p>不妨假设 <span class="math inline">\(n\)</span> 是奇数，此外 miller-rabin 需要随意选取一个小质数 <span class="math inline">\(p\)</span> 。</p>
+<h4 id="理论">理论</h4>
+<p>miller-rabin 用到的两个基本定理：</p>
+<ul>
 <li><p>费马小定理：如果 <span class="math inline">\(n\)</span> 为质数，一定有 <span class="math inline">\(p^n \equiv p (mod \; n)\)</span> ，即 <span class="math inline">\(p^{n-1} \equiv 1\)</span> 。</p></li>
 <li><p>二次探测定理：如果 <span class="math inline">\(n\)</span> 为质数，对于 <span class="math inline">\(a^2 \equiv 1 (mod \; n)\)</span> 一定有 <span class="math inline">\(a \equiv -1\)</span> 或 <span class="math inline">\(a \equiv n - 1\)</span> 。</p></li>
 </ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/01/06/miller-rabin-%E5%92%8C-pollard-rho/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
+<p>如果 <span class="math inline">\(p^{n-1} \equiv 1\)</span> 不成立，根据费马小定理， <span class="math inline">\(n\)</span> 一定不为质数，<br />
+否则令 <span class="math inline">\(x = n - 1\)</span> ，<span class="math inline">\(x\)</span> 一定是偶数，那么可以计算 <span class="math inline">\(y = p^{\frac{x}{2}}\)</span> ，<br />
+由于 <span class="math inline">\(p^x \equiv 1\)</span> ，那么根据二次探测定理，如果 <span class="math inline">\(y \equiv 1\)</span> 和 <span class="math inline">\(y \equiv n - 1\)</span> 都不成立，<span class="math inline">\(n\)</span> 一定不为质数。<br />
+否则如果 <span class="math inline">\(y \equiv 1\)</span> ，令 <span class="math inline">\(x = \frac{x}{2}\)</span> 继续判断，<br />
+直到 <span class="math inline">\(y \equiv n - 1\)</span> 或者 <span class="math inline">\(x\)</span> 为奇数，此时 <span class="math inline">\(n\)</span> 通过了测试，但无法保证 <span class="math inline">\(n\)</span> 是质数还是合数。</p>
+<p>如果仅仅通过一次测试就认为 <span class="math inline">\(n\)</span> 是质数的话错误的概率很大，<br />
+实践中往往选取多个质数 <span class="math inline">\(p\)</span> 测试多次，全部通过才认为 <span class="math inline">\(n\)</span> 是质数。<br />
+实践证明，只要取前 9 个质数，就能准确判断 <span class="math inline">\(10^{18}\)</span> 内的所有数。</p>
+<h4 id="实现">实现</h4>
+<p>参考实现（经过测试）：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> ll <span class="title">mul</span><span class="params">(ll x, ll y, ll mod)</span> </span>&#123;</span><br><span class="line">    ll tmp = x * y - ll((<span class="keyword">long</span> <span class="keyword">double</span>)x / mod * y + <span class="number">0.5</span>) * mod;</span><br><span class="line">    <span class="keyword">return</span> tmp &lt; <span class="number">0</span> ? tmp + mod : tmp;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> ll <span class="title">power</span><span class="params">(ll x, ll k, ll mod)</span> </span>&#123;</span><br><span class="line">    ll res = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (k) &#123;</span><br><span class="line">        <span class="keyword">if</span> (k &amp; <span class="number">1</span>)</span><br><span class="line">            res = mul(res, x, mod);</span><br><span class="line">        x = mul(x, x, mod);</span><br><span class="line">        k &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res % mod;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">bool</span> <span class="title">miller</span><span class="params">(ll n, <span class="keyword">int</span> p)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (power(p, n - <span class="number">1</span>, n) != <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    ll x = n - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (<span class="keyword">not</span>(x &amp; <span class="number">1</span>)) &#123;</span><br><span class="line">        x &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">        ll y = power(p, x, n);</span><br><span class="line">        <span class="keyword">if</span> (y == n - <span class="number">1</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (y != <span class="number">1</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">is_prime</span><span class="params">(ll n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">int</span> len = <span class="number">9</span>;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">int</span> p[len] = &#123; <span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">11</span>, <span class="number">13</span>, <span class="number">17</span>, <span class="number">19</span>, <span class="number">23</span> &#125;;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++)</span><br><span class="line">        <span class="keyword">if</span> (n == p[i])</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++)</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">not</span> miller(n, p[i]))</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="优化">优化</h4>
+<p>事实上 miller-rabin 中进行的多次快速幂是没有必要的。</p>
+<p>将 <span class="math inline">\(n\)</span> 表示为 <span class="math inline">\(n=2^s t + 1\)</span> 的形式，其中 <span class="math inline">\(t\)</span> 为奇数，<br />
+那么 miller-rabin 中可能用到的所有快速幂，都是 <span class="math inline">\(p^{2^it} (0 \leq i &lt; s)\)</span> 的形式。<br />
+原本 <span class="math inline">\(x\)</span> 是从 <span class="math inline">\(2^s t\)</span> 到 <span class="math inline">\(t\)</span> ，考虑倒着进行，<span class="math inline">\(x\)</span> 从 <span class="math inline">\(t\)</span> 到 <span class="math inline">\(2^s t\)</span> ，<br />
+这样只需要一次快速幂计算 <span class="math inline">\(y = p^t\)</span> ，每次 <span class="math inline">\(x\)</span> 扩大一倍时将 <span class="math inline">\(y\)</span> 平方即可。</p>
+<p>参考实现（经过测试）：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">miller</span><span class="params">(ll n, <span class="keyword">int</span> p)</span> </span>&#123;</span><br><span class="line">	ll t = n - <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span>(!(t &amp; <span class="number">1</span>)) t &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">	ll y = power(p, t, n), ny;</span><br><span class="line">	<span class="keyword">while</span>((t &lt;&lt; <span class="number">1</span>) &lt; n) &#123;</span><br><span class="line">		ny = mul(y, y, n);</span><br><span class="line">		<span class="keyword">if</span>(ny == <span class="number">1</span> <span class="keyword">and</span> !(y == <span class="number">1</span> <span class="keyword">or</span> y == n - <span class="number">1</span>)) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">		t &lt;&lt;= <span class="number">1</span>;</span><br><span class="line">		y = ny;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> y == <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">is_prime</span><span class="params">(ll n)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">int</span> len = <span class="number">9</span>, p[len] = &#123;<span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">11</span>, <span class="number">13</span>, <span class="number">17</span>, <span class="number">19</span>, <span class="number">23</span>&#125;;</span><br><span class="line">	<span class="keyword">if</span>(n == <span class="number">1</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i ++) <span class="keyword">if</span>(n == p[i]) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">if</span>(!(n &amp; <span class="number">1</span>)) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i ++) <span class="keyword">if</span>(!miller(n, p[i])) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="pollard-rho">pollard-rho</h2>
+<p>用于快速找到一个数 <span class="math inline">\(n\)</span> 的一个非平凡因子，常应用于大数的质因数分解。</p>
+<p>这玩意大家似乎都是背代码，很难找到关于原理以及复杂度的证明，学习资料很少，如果有误，还请指正。</p>
+<h4 id="非平凡因子">非平凡因子</h4>
+<p>关于非平凡因子：如果 <span class="math inline">\(d\)</span> 能整除 <span class="math inline">\(n\)</span> 且满足 <span class="math inline">\(1 &lt; d &lt; n\)</span> ，则称 <span class="math inline">\(d\)</span> 是 <span class="math inline">\(n\)</span> 的非平凡因子。</p>
+<p>从定义可以看出质数是没有非平凡因子的，事实上质数直接拿来做 pollard-rho 会陷入死循环，<br />
+因此 pollard-rho 常常需要配合 miller-rabin 使用，在一个数为质数时停止分解。</p>
+<p>因此以下讨论假定 <span class="math inline">\(n\)</span> 是合数。</p>
+<h4 id="随机实验">随机实验</h4>
+<p>随机一个正整数 <span class="math inline">\(d(d &lt; n)\)</span> ，如果 <span class="math inline">\(d\)</span> 是 <span class="math inline">\(n\)</span> 的因子，那么就找到了 <span class="math inline">\(n\)</span> 的一个非平凡因子 <span class="math inline">\(d\)</span> 。<br />
+然而这样的概率很小，最坏情况下是 <span class="math inline">\(\frac{1}{n}\)</span> 的。</p>
+<p>随机一个正整数 <span class="math inline">\(v(v &lt; n)\)</span> ，求出 <span class="math inline">\(d = gcd(v, n)\)</span> ，如果 <span class="math inline">\(d &gt; 1\)</span> 那么就找到了 <span class="math inline">\(n\)</span> 的一个非平凡因子 <span class="math inline">\(d\)</span> 。<br />
+这样成功的概率就大得多，最坏是 <span class="math inline">\(\frac{1}{\sqrt{n}}\)</span> 的。</p>
+<p>证明：<br />
+设 <span class="math inline">\(p = minp(n)\)</span> 是合数 <span class="math inline">\(n\)</span> 的最小质因子，那么 <span class="math inline">\(p \leq \sqrt{n}\)</span> ，而 <span class="math inline">\(p\)</span> 的倍数有 <span class="math inline">\(\lfloor\frac{n}{p}\rfloor\)</span> 个，<br />
+因此概率的一个下界是 <span class="math inline">\(\frac{1}{p}\)</span> ，这是取到 <span class="math inline">\(p\)</span> 的倍数的概率。<br />
+而这个下界是可以达到的，当 <span class="math inline">\(n = p^2\)</span> 且时，概率恰为 <span class="math inline">\(\frac{1}{p}\)</span> ，也就是 <span class="math inline">\(\frac{1}{\sqrt{n}}\)</span> 。</p>
+<p>以下讨论中均有 <span class="math inline">\(p\)</span> 是 <span class="math inline">\(n\)</span> 的最小质因子。</p>
+<h4 id="生日悖论">生日悖论</h4>
+<p>然而这个概率还是很小，期望下需要随机 <span class="math inline">\(O(p)\)</span> 次才能成功（这是个上界）。</p>
+<p>根据生日悖论可以提供一个优化思路，<br />
+随机 <span class="math inline">\(\sqrt{p}\)</span> 个数 <span class="math inline">\(v\)</span> ，其中有 <span class="math inline">\(\frac{1}{2}\)</span> 的概率存在两个数 <span class="math inline">\(v_1, v_2\)</span> 模 <span class="math inline">\(p\)</span> 同余，<br />
+也就是说存在两个数的差是 <span class="math inline">\(p\)</span> 的倍数。<br />
+但是如果两两作差与 <span class="math inline">\(n\)</span> 取 gcd ，期望复杂度仍然是 <span class="math inline">\(O(p)\)</span> 的。</p>
+<!-- 算上 gcd 的复杂度，可以在期望复杂度 $O(\sqrt{p}logn)$ 的时间找到 $n$ 的一个非平凡因子。  
+但事实上可以每次取 $O(\sqrt{p})$ 个数为一组，每次对求一组数的乘积 $k$ ，求 $gcd(n, k)$ 即可。  
+而根据 $gcd(x, n) = gcd(x \% n, n)$ ，这个 $k$ 可以是模 $n$ 意义下的。  
+这样期望复杂度 $O(\sqrt{p} + logn)$ 。 -->
+<h4 id="rho">rho</h4>
+<p>pollard-rho 用到了一个特殊的伪随机数列 <span class="math inline">\(\{a\}\)</span> ，对于参数 <span class="math inline">\(c\)</span> ，其满足：</p>
+<p><span class="math display">\[ a_{i+1} = (a_i^2 + c) \mod n \]</span></p>
+<p>这个数列是个 <span class="math inline">\(\rho\)</span>(rho) 形，这也是 pollard-rho 的名字由来。<br />
+换言之，存在链长 <span class="math inline">\(T\)</span> 和环长 <span class="math inline">\(M\)</span> ，满足 <span class="math inline">\(\forall i,k&gt;0: a_{T+i} = a_{T+i+kM}\)</span> 。<br />
+如果把 <span class="math inline">\(a\)</span> 两两不同的前缀部分近似看做真随机数列，那么根据生日悖论，这个长度 <span class="math inline">\(T + M\)</span> 是期望 <span class="math inline">\(O(\sqrt{n})\)</span> 的。<br />
+也就是说 <span class="math inline">\(T\)</span> 和 <span class="math inline">\(M\)</span> 期望都是在 <span class="math inline">\(O(\sqrt{n})\)</span> 以内的。</p>
+<p>令 <span class="math inline">\(b_i = a_i \mod p\)</span> ，当然由于 <span class="math inline">\(p\)</span> 未知，<span class="math inline">\(b\)</span> 这个数列实际上是未知的。<br />
+那么同样的道理，<span class="math inline">\(b\)</span> 的链长和环长 <span class="math inline">\(t, m\)</span> 是期望 <span class="math inline">\(O(\sqrt{p})\)</span> 的。</p>
+<p>现在要做的是通过对 <span class="math inline">\(a\)</span> 作差来间接对 <span class="math inline">\(b\)</span> 作差，目标是选到两个下标 <span class="math inline">\(i, j\)</span> 满足 <span class="math inline">\(b_i = b_j\)</span> ，<br />
+这样的话，<span class="math inline">\(|a_i - a_j|\)</span> 就是 <span class="math inline">\(p\)</span> 的倍数，也就是说 <span class="math inline">\(gcd(n, |a_i - a_j|) \geq p\)</span> 。<br />
+关键在于环长，如果只选取下标 <span class="math inline">\((i, 2i)\)</span> 作差，那么当 <span class="math inline">\(i \geq t\)</span> 且 <span class="math inline">\(i=km\)</span> 时，<br />
+根据 <span class="math inline">\(b_i = b_{t+(i-t)} = b_{t+(i-t)+km} = b_{t+(i-t)+i} = b_{2i}\)</span> ，<br />
+可以确定此时一定有 <span class="math inline">\(b_i = b_{2i}\)</span> ，<br />
+而上面提到过 <span class="math inline">\(t, m\)</span> 期望都是 <span class="math inline">\(O(\sqrt{p})\)</span> 的，那么第一个这样的 <span class="math inline">\(i\)</span> 的大小也是期望 <span class="math inline">\(O(\sqrt{p})\)</span> 的。</p>
+<p>一个期望复杂度 <span class="math inline">\(O(\sqrt{p})\)</span> 的 pollard-rho 基本思想大抵如此。</p>
+<h4 id="实践">实践</h4>
+<p>算法流程就是随机一个生成序列的参数 <span class="math inline">\(c\)</span> 。<br />
+然后枚举 <span class="math inline">\(i\)</span> ，同时通过递推维护 <span class="math inline">\(a_i\)</span> 和 <span class="math inline">\(a_{2i}\)</span> ，<br />
+当 <span class="math inline">\(gcd(n, |a_i - a_{2i}|) &gt; 1\)</span> 时就得到了一个非平凡因子。<br />
+直接做考虑 gcd 期望复杂度 <span class="math inline">\(O(\sqrt{p}logn)\)</span> 。<br />
+但这个 gcd 很好优化，设 <span class="math inline">\(v_i = |a_i - a_{2i}|\)</span> ，把 <span class="math inline">\(v\)</span> 相邻 <span class="math inline">\(k\)</span> 个乘起来再和 <span class="math inline">\(n\)</span> 做 gcd ，<br />
+根据 <span class="math inline">\(gcd(x, n) = gcd(x \mod n, n)\)</span> ，乘积可以是模 <span class="math inline">\(n\)</span> 意义下的。<br />
+理论上只要 <span class="math inline">\(k &gt; O(logn)\)</span> ，复杂度就能做到 <span class="math inline">\(O(\sqrt{p} + k + logn)\)</span> ，<br />
+一般认为 <span class="math inline">\(p\)</span> 足够大，此时复杂度就是 <span class="math inline">\(O(\sqrt{p})\)</span> ，最坏情况下就是 <span class="math inline">\(O(n^{\frac{1}{4}})\)</span> 。<br />
+实践中往往采用倍增的方式，起初 <span class="math inline">\(k\)</span> 不断成倍增大，增大到 128 时保持不变。<br />
+这样可以保证在 <span class="math inline">\(p\)</span> 很小的时候不用算 <span class="math inline">\(logn\)</span> 次就能得到非平凡因子，减小常数。</p>
+<p>有一些需要注意的地方：</p>
+<ul>
+<li><p>有小概率 <span class="math inline">\(M\)</span> 与 <span class="math inline">\(m\)</span> 恰好相等，在 <span class="math inline">\(b_i = b_{2i}\)</span> 的时候恰好有 <span class="math inline">\(a_i = a_{2i}\)</span> ，此时应该更换参数 <span class="math inline">\(c\)</span> 重新进行算法。</p></li>
+<li><p>当 <span class="math inline">\(v\)</span> 的乘积模 <span class="math inline">\(n\)</span> 为 0 时需要及时退出，否则算法会返回 <span class="math inline">\(n\)</span> ，而 <span class="math inline">\(n\)</span> 不是 <span class="math inline">\(n\)</span> 的非平凡因子。</p></li>
+</ul>
+<p>参考实现（经过测试，上接 miller-rabin 的部分）：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> ll <span class="title">nxt</span><span class="params">(ll x, ll c, ll n)</span> </span>&#123;</span><br><span class="line">	ll res = mul(x, x, n) + c;</span><br><span class="line">	<span class="keyword">return</span> res &gt;= n ? res - n : res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">ll <span class="title">pollard</span><span class="params">(ll n)</span> </span>&#123;</span><br><span class="line">	ll c = <span class="number">1l</span>l * rand() * rand() % n;</span><br><span class="line">	ll a = nxt(rand(), c, n);</span><br><span class="line">	ll a2 = nxt(a, c, n);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> lim = <span class="number">2</span>;</span><br><span class="line">	<span class="keyword">while</span>(a != a2) &#123;</span><br><span class="line">		ll v = <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; lim <span class="keyword">and</span> a != a2; i ++) &#123;</span><br><span class="line">			ll tov = mul(v, <span class="built_in">std</span>::<span class="built_in">abs</span>(a - a2), n);</span><br><span class="line">			<span class="keyword">if</span>(!tov) <span class="keyword">return</span> <span class="built_in">std</span>::__gcd(v, n);</span><br><span class="line">			v = tov;</span><br><span class="line">			a = nxt(a, c, n);</span><br><span class="line">			a2 = nxt(nxt(a2, c, n), c, n);</span><br><span class="line">		&#125;</span><br><span class="line">		ll d = <span class="built_in">std</span>::__gcd(v, n);</span><br><span class="line">		<span class="keyword">if</span>(d &gt; <span class="number">1</span>) <span class="keyword">return</span> d;</span><br><span class="line">		<span class="keyword">if</span>(lim &lt; <span class="number">128</span>) lim &lt;&lt;= <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> pollard(n);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="应用">应用</h4>
+<p>求最小质因数，最大质因数，质因数分解等，<br />
+都只需要每次找到 <span class="math inline">\(n\)</span> 的非平凡因子 <span class="math inline">\(d\)</span> 然后不断令 <span class="math inline">\(n\)</span> 除以 <span class="math inline">\(d\)</span> 转换为子问题，<br />
+需要注意的是 <span class="math inline">\(d\)</span> 不一定是质数，也要递归处理。<br />
+终止条件是 <span class="math inline">\(n\)</span> 为质数。</p>
+
       
     </div>
 

@@ -21,18 +21,18 @@
     var CONFIG = {"hostname":"kewth.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="快速沃尔什变换，简称 FWT 。用处多项式卷积一般是这样的：\[ C_i &#x3D; \sum_{j + k &#x3D; i} A_j \cdot B_k \]这个可以用 FFT 快速求解。然而还有一个诡异的卷积：\[ C_i &#x3D; \sum_{j \oplus k &#x3D; i} A_j \cdot B_k \]其中 $ $ 是任意一种位运算。">
+  <meta name="description" content="快速沃尔什变换，简称 FWT 。 用处 多项式卷积一般是这样的： \[ C_i &#x3D; \sum_{j + k &#x3D; i} A_j \cdot B_k \] 这个可以用 FFT 快速求解。 然而还有一个诡异的卷积： \[ C_i &#x3D; \sum_{j \oplus k &#x3D; i} A_j \cdot B_k \] 其中 $ $ 是任意一种位运算。 FWT 便是求这类卷积的快速算法。 构造 FFT 的思想是把">
 <meta property="og:type" content="article">
 <meta property="og:title" content="快速沃尔什变换">
 <meta property="og:url" content="https://kewth.github.io/2019/11/03/%E5%BF%AB%E9%80%9F%E6%B2%83%E5%B0%94%E4%BB%80%E5%8F%98%E6%8D%A2/index.html">
 <meta property="og:site_name" content="KeBlog">
-<meta property="og:description" content="快速沃尔什变换，简称 FWT 。用处多项式卷积一般是这样的：\[ C_i &#x3D; \sum_{j + k &#x3D; i} A_j \cdot B_k \]这个可以用 FFT 快速求解。然而还有一个诡异的卷积：\[ C_i &#x3D; \sum_{j \oplus k &#x3D; i} A_j \cdot B_k \]其中 $ $ 是任意一种位运算。">
+<meta property="og:description" content="快速沃尔什变换，简称 FWT 。 用处 多项式卷积一般是这样的： \[ C_i &#x3D; \sum_{j + k &#x3D; i} A_j \cdot B_k \] 这个可以用 FFT 快速求解。 然而还有一个诡异的卷积： \[ C_i &#x3D; \sum_{j \oplus k &#x3D; i} A_j \cdot B_k \] 其中 $ $ 是任意一种位运算。 FWT 便是求这类卷积的快速算法。 构造 FFT 的思想是把">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-11-03T09:35:00.000Z">
 <meta property="article:modified_time" content="2019-12-29T08:14:04.184Z">
 <meta property="article:author" content="Kewth">
-<meta property="article:tag" content="卷积">
 <meta property="article:tag" content="位运算">
+<meta property="article:tag" content="卷积">
 <meta property="article:tag" content="FWT">
 <meta property="article:tag" content="子集卷积">
 <meta name="twitter:card" content="summary">
@@ -235,17 +235,17 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>快速沃尔什变换，简称 FWT 。</p><h2 id="用处">用处</h2><p>多项式卷积一般是这样的：</p><p><span class="math display">\[ C_i = \sum_{j + k = i} A_j \cdot B_k \]</span></p><p>这个可以用 FFT 快速求解。</p><p>然而还有一个诡异的卷积：</p><p><span class="math display">\[ C_i = \sum_{j \oplus k = i} A_j \cdot B_k \]</span></p><p>其中 $ $ 是任意一种位运算。</p><a id="more"></a>
-
-
-
-
-
-
-
+        <p>快速沃尔什变换，简称 FWT 。</p>
+<h2 id="用处">用处</h2>
+<p>多项式卷积一般是这样的：</p>
+<p><span class="math display">\[ C_i = \sum_{j + k = i} A_j \cdot B_k \]</span></p>
+<p>这个可以用 FFT 快速求解。</p>
+<p>然而还有一个诡异的卷积：</p>
+<p><span class="math display">\[ C_i = \sum_{j \oplus k = i} A_j \cdot B_k \]</span></p>
+<p>其中 $ $ 是任意一种位运算。</p>
 <p>FWT 便是求这类卷积的快速算法。</p>
 <h2 id="构造">构造</h2>
-<p>FFT 的思想是把多项式转换成可以线性相乘的点值表示法 (DFT) ，<br>
+<p>FFT 的思想是把多项式转换成可以线性相乘的点值表示法 (DFT) ，<br />
 再把相乘的结果转换回系数表示法 (IDFT) 。</p>
 <p>同样的道理可以用在 FWT 上，用 DWT 将多项式转换成可以线性相乘的形式，即：</p>
 <p><span class="math display">\[ DWT(C)_i = DWT(A)_i \cdot DWT(B)_i \]</span></p>
@@ -264,40 +264,40 @@
 <p>这样还不够，为了让 DWT 快速进行，f(i, j) 还应满足以下性质：</p>
 <p><span class="math display">\[ f(i, j) = \prod_k f(i_k, j_k) \]</span></p>
 <p>其中 $ i_k $ 表示 i 二进制下的第 k 位（ 0 或 1 ）。</p>
-<p>有了这个性质，就可已通过 f(0, 0), f(0, 1), f(1, 0), f(1, 1) 的值相乘得出所有 f 。<br>
+<p>有了这个性质，就可已通过 f(0, 0), f(0, 1), f(1, 0), f(1, 1) 的值相乘得出所有 f 。<br />
 有了这个性质，就可以考虑分治求 DWT ：</p>
 <p><span class="math display">\[DWT(A)_i = \sum_{j=0}^{n-1} A_j f(i, j)\]</span></p>
 <p><span class="math display">\[ = \sum_{j=0}^{n/2-1} A_j f(i, j) + \sum_{j=n/2}^{n-1} A_j f(i, j) \]</span></p>
 <p><span class="math display">\[ = \sum_{j=0}^{n/2-1} A_j \prod_k f(i_k, j_k) + \sum_{j=n/2}^{n-1} A_j \prod_k f(i_k, j_k) \]</span></p>
 <p><span class="math display">\[ = \sum_{j=0}^{n/2-1} f(i_0, j_0) A_j \prod_{k \geq 1} f(i_k, j_k) + \sum_{j=n/2}^{n-1} A_j f(i_0, j_0) \prod_{k \geq 1} f(i_k, j_k)\]</span></p>
 <p><span class="math display">\[ = f(i_0, 0) \sum_{j=0}^{n/2-1} A_j \prod_k f(i_k, j_k) + f(i_0, 1) \sum_{j=n/2}^{n-1} A_j \prod_k f(i_k, j_k) \]</span></p>
-<p>规模减小了一半，递归或迭代地分治下去。<br>
+<p>规模减小了一半，递归或迭代地分治下去。<br />
 每次将 A 分成左右两半 A0, A1 ：</p>
 <p><span class="math display">\[ DWT(A)_i = f(0, 0) DWT(A0)_i + f(0, 1) DWT(A1)_i , i &lt; n / 2 \]</span></p>
 <p><span class="math display">\[ DWT(A)_i = f(1, 0) DWT(A0)_i + f(1, 1) DWT(A1)_i , i \geq n / 2 \]</span></p>
-<p>想到 FFT 的蝴蝶变换没有？ <del>答：没有</del><br>
+<p>想到 FFT 的蝴蝶变换没有？ <del>答：没有</del><br />
 迭代的 DWT 这里也有类似的蝴蝶变换：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> x = A[i], y = A[i + k];</span><br><span class="line">A[i] = f00 * x + f01 * y;</span><br><span class="line">A[i + k] = f10 * x + f11 * y;</span><br></pre></td></tr></table></figure>
-<p>DWT 的过程就是这样了，甚至不需要构造整个 f ，<br>
-只需要 f(0, 0), f(0, 1), f(1, 0), f(1, 1) 即可，<br>
+<p>DWT 的过程就是这样了，甚至不需要构造整个 f ，<br />
+只需要 f(0, 0), f(0, 1), f(1, 0), f(1, 1) 即可，<br />
 需要满足的就是 $ i, j, k: f(i, j) f(i, k) = f(i, j k) $ 。</p>
 <h2 id="idwt">IDWT</h2>
 <p>怎么将 DWT 的结果转换回来？ 观察 DWT 的蝴蝶变换：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = f00 * x + f01 * y;</span><br><span class="line">b = f10 * x + f11 * y;</span><br></pre></td></tr></table></figure>
-<p>DWT 通过 x, y 求出 a, b,<br>
+<p>DWT 通过 x, y 求出 a, b,<br />
 IDWT 就是通过 a, b 求 x, y 。</p>
-<p>解二元一次方程就好了：<br>
-x = (f11 * a - f01 * b) / (f00 * f11 - f01 * f10)<br>
+<p>解二元一次方程就好了：<br />
+x = (f11 * a - f01 * b) / (f00 * f11 - f01 * f10)<br />
 y = (f10 * a - f00 * b) / (f01 * f10 - f00 * f11)</p>
 <p>就是这么简单...</p>
 <p>个屁啊。</p>
-<p>考虑 f 的构造，<br>
-要满足 DWT 的性质把所有的 f 设为 0 不就可以了？<br>
+<p>考虑 f 的构造，<br />
+要满足 DWT 的性质把所有的 f 设为 0 不就可以了？<br />
 要满足 DWT 的性质把所有的 f 设为 1 不就可以了？</p>
 <p>这样且不是对于任何位运算都会有相同的结果？</p>
 <p><del>Naive.</del></p>
-<p>再看看 IDWT ，分母里边是不是有 (f01 * f11 - f01 * f10) ？<br>
-不幸的是把 f 全部设为 0 或者全设为 1 这个分母都是 0 ，<br>
+<p>再看看 IDWT ，分母里边是不是有 (f01 * f11 - f01 * f10) ？<br />
+不幸的是把 f 全部设为 0 或者全设为 1 这个分母都是 0 ，<br />
 这意味着 IDWT 的二元一次方程无解，转过去就转不回来了。</p>
 <p>因此 f 的构造还要满足一个条件： <code>f01 * f11 != f01 * f10</code> 。</p>
 <h2 id="f-的构造">f 的构造</h2>
@@ -311,31 +311,31 @@ y = (f10 * a - f00 * b) / (f01 * f10 - f00 * f11)</p>
 <p>可以自行验证，这些 f 满足上述性质。</p>
 <h2 id="实际意义">实际意义</h2>
 <p>一个多项式 A DFT 后的 <span class="math inline">\(A2_x\)</span> 实际意义就是 A 在 $ W_n^x $ 上的值（点值表示）。</p>
-<p>那么 A DWT 后的结果的现实意义呢？<br>
+<p>那么 A DWT 后的结果的现实意义呢？<br />
 这得分类来说。</p>
 <h3 id="按位或">按位或</h3>
 <p>A 在做按位或的 DWT 之后得到的 A2 满足： <span class="math display">\[ A2_x = \sum_{i|x=x} A_i \]</span></p>
-<p>也就是说 <span class="math inline">\(A2_x\)</span> 表示 x 的每个子集 i 的 <span class="math inline">\(A_i\)</span> 的和。<br>
+<p>也就是说 <span class="math inline">\(A2_x\)</span> 表示 x 的每个子集 i 的 <span class="math inline">\(A_i\)</span> 的和。<br />
 不难得到，<span class="math inline">\(A2_x \cdot B2_x\)</span> 的结果 <span class="math inline">\(C2_x\)</span> 就是 A, B 卷积后的 C 的变换： <span class="math display">\[ A2_x \cdot B2_x = \sum_{i|x=x} A_i \sum_{j|x=x} B_j \]</span> <span class="math display">\[ A2_x \cdot B2_x = \sum_{i|x=x} \sum_{j|x=x} A_i B_j \]</span> <span class="math display">\[ A2_x \cdot B2_x = \sum_{k|x=x} \sum_{i|j=k} A_i B_j \]</span> <span class="math display">\[ A2_x \cdot B2_x = \sum_{k|x=x} C_k \]</span> <span class="math display">\[ A2_x \cdot B2_x = C2_x \]</span></p>
 <p>事实上，这也就是子集和变换 FMT （快速莫比乌斯变换） 。</p>
 <p><del>感性理解一下</del></p>
 <h3 id="按位与">按位与</h3>
 <p>和按位或类似的，A 在做按位与的 DWT 之后得到的 A2 满足： <span class="math display">\[ A2_x = \sum_{i\&amp;x=x} A_i \]</span></p>
-<p>也就是说 <span class="math inline">\(A2_x\)</span> 表示每个包含 x 的集合 i 的 <span class="math inline">\(A_i\)</span> 的和。<br>
+<p>也就是说 <span class="math inline">\(A2_x\)</span> 表示每个包含 x 的集合 i 的 <span class="math inline">\(A_i\)</span> 的和。<br />
 不难得到，<span class="math inline">\(A2_x \cdot B2_x\)</span> 的结果 <span class="math inline">\(C2_x\)</span> 就是 A, B 卷积后的 C 的变换： <span class="math display">\[ A2_x \cdot B2_x = \sum_{i\&amp;x=x} A_i \sum_{j\&amp;x=x} B_j \]</span> <span class="math display">\[ A2_x \cdot B2_x = \sum_{i\&amp;x=x} \sum_{j\&amp;x=x} A_i B_j \]</span> <span class="math display">\[ A2_x \cdot B2_x = \sum_{k\&amp;x=x} \sum_{i\&amp;j=k} A_i B_j \]</span> <span class="math display">\[ A2_x \cdot B2_x = \sum_{k\&amp;x=x} C_k \]</span> <span class="math display">\[ A2_x \cdot B2_x = C2_x \]</span></p>
 <p><del>和按位或一个模子里刻出来的</del></p>
 <h2 id="子集卷积">子集卷积</h2>
 <p>两个多项式 A, B 的子集卷积 C 的意义如下：</p>
 <p><span class="math display">\[ C(x) = \sum_{y|z=x, y\&amp;z=0} A(y) B(z) \]</span></p>
 <p>也就是把 x 划分为两个子集 y, z 的 A(y) * B(z) 的和。</p>
-<p>转换成 $ <em>{y|z=x} A(y) B(z) [y &amp; z = 0] $ ，似乎是一个按位或卷积。<br>
+<p>转换成 $ <em>{y|z=x} A(y) B(z) [y &amp; z = 0] $ ，似乎是一个按位或卷积。<br />
 再转换成 $ </em>{y|z=x} A(y) B(z) [bitcount(y) + bitcount(z) = bitcount(x)] $ 。</p>
-<p>此时需要考虑的就是 bitcount, 也就是集合大小，也就是二进制位中 1 的个数。<br>
+<p>此时需要考虑的就是 bitcount, 也就是集合大小，也就是二进制位中 1 的个数。<br />
 集合大小是 $ O(log(n)) $ 的，可以考虑枚举大小，设： <span class="math display">\[ A_i(x) = A(x) [bitcount(x) = i] \]</span> <span class="math display">\[ B_j(x) = B(x) [bitcount(x) = j] \]</span> <span class="math display">\[ C_k(x) = C(x) [bitcount(x) = k] \]</span></p>
 <p>那么有： <span class="math display">\[ C_k(x) = \sum_{y|z=x} A_i(y) B_j(z) [i + j = k] \]</span> <span class="math display">\[ C_k(x) = \sum_{i+j=k} \sum_{y|z=x} A_i(y) B_j(z) \]</span></p>
 <p>那么枚举 i, j 的值，将 $ A_i $ 和 $ B_j $ 卷积后贡献到 $ C_{i+j} $ 即可。</p>
-<p>这样复杂度似乎是 $ O(n log^3n) $ 的，<br>
-但是事实上每个 $ A_i, B_j $ 都可以提前 FWT 后 $ O(n) $ 相乘，<br>
+<p>这样复杂度似乎是 $ O(n log^3n) $ 的，<br />
+但是事实上每个 $ A_i, B_j $ 都可以提前 FWT 后 $ O(n) $ 相乘，<br />
 再贡献到 C 后不进行逆变换，而是确定了 C 的值后在进行逆变换。</p>
 <p>复杂度 $ O(n log^2n) $</p>
 
@@ -348,8 +348,8 @@ y = (f10 * a - f00 * b) / (f01 * f10 - f00 * f11)</p>
       <footer class="post-footer">
           
           <div class="post-tags">
-              <a href="/tags/%E5%8D%B7%E7%A7%AF/" rel="tag"><i class="fa fa-tag"></i> 卷积</a>
               <a href="/tags/%E4%BD%8D%E8%BF%90%E7%AE%97/" rel="tag"><i class="fa fa-tag"></i> 位运算</a>
+              <a href="/tags/%E5%8D%B7%E7%A7%AF/" rel="tag"><i class="fa fa-tag"></i> 卷积</a>
               <a href="/tags/FWT/" rel="tag"><i class="fa fa-tag"></i> FWT</a>
               <a href="/tags/%E5%AD%90%E9%9B%86%E5%8D%B7%E7%A7%AF/" rel="tag"><i class="fa fa-tag"></i> 子集卷积</a>
           </div>

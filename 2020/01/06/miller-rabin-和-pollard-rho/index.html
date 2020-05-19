@@ -21,12 +21,12 @@
     var CONFIG = {"hostname":"kewth.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="miller-rabin用于快速测试一个数 \(n\) 是否为质数，有概率出错。不妨假设 \(n\) 是奇数，此外 miller-rabin 需要随意选取一个小质数 \(p\) 。理论miller-rabin 用到的两个基本定理： 费马小定理：如果 \(n\) 为质数，一定有 \(p^n \equiv p (mod \; n)\) ，即 \(p^{n-1} \equiv 1\) 。 二次探测定理：">
+  <meta name="description" content="miller-rabin 用于快速测试一个数 \(n\) 是否为质数，有概率出错。 不妨假设 \(n\) 是奇数，此外 miller-rabin 需要随意选取一个小质数 \(p\) 。 理论 miller-rabin 用到的两个基本定理：  费马小定理：如果 \(n\) 为质数，一定有 \(p^n \equiv p (mod \; n)\) ，即 \(p^{n-1} \equiv 1\) 。 二次">
 <meta property="og:type" content="article">
 <meta property="og:title" content="miller-rabin 和 pollard-rho">
 <meta property="og:url" content="https://kewth.github.io/2020/01/06/miller-rabin-%E5%92%8C-pollard-rho/index.html">
 <meta property="og:site_name" content="KeBlog">
-<meta property="og:description" content="miller-rabin用于快速测试一个数 \(n\) 是否为质数，有概率出错。不妨假设 \(n\) 是奇数，此外 miller-rabin 需要随意选取一个小质数 \(p\) 。理论miller-rabin 用到的两个基本定理： 费马小定理：如果 \(n\) 为质数，一定有 \(p^n \equiv p (mod \; n)\) ，即 \(p^{n-1} \equiv 1\) 。 二次探测定理：">
+<meta property="og:description" content="miller-rabin 用于快速测试一个数 \(n\) 是否为质数，有概率出错。 不妨假设 \(n\) 是奇数，此外 miller-rabin 需要随意选取一个小质数 \(p\) 。 理论 miller-rabin 用到的两个基本定理：  费马小定理：如果 \(n\) 为质数，一定有 \(p^n \equiv p (mod \; n)\) ，即 \(p^{n-1} \equiv 1\) 。 二次">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-01-06T07:41:21.000Z">
 <meta property="article:modified_time" content="2020-05-10T11:04:30.294Z">
@@ -234,31 +234,31 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="miller-rabin">miller-rabin</h2><p>用于快速测试一个数 <span class="math inline">\(n\)</span> 是否为质数，有概率出错。</p><p>不妨假设 <span class="math inline">\(n\)</span> 是奇数，此外 miller-rabin 需要随意选取一个小质数 <span class="math inline">\(p\)</span> 。</p><h4 id="理论">理论</h4><p>miller-rabin 用到的两个基本定理：</p><ul>
+        <h2 id="miller-rabin">miller-rabin</h2>
+<p>用于快速测试一个数 <span class="math inline">\(n\)</span> 是否为质数，有概率出错。</p>
+<p>不妨假设 <span class="math inline">\(n\)</span> 是奇数，此外 miller-rabin 需要随意选取一个小质数 <span class="math inline">\(p\)</span> 。</p>
+<h4 id="理论">理论</h4>
+<p>miller-rabin 用到的两个基本定理：</p>
+<ul>
 <li><p>费马小定理：如果 <span class="math inline">\(n\)</span> 为质数，一定有 <span class="math inline">\(p^n \equiv p (mod \; n)\)</span> ，即 <span class="math inline">\(p^{n-1} \equiv 1\)</span> 。</p></li>
 <li><p>二次探测定理：如果 <span class="math inline">\(n\)</span> 为质数，对于 <span class="math inline">\(a^2 \equiv 1 (mod \; n)\)</span> 一定有 <span class="math inline">\(a \equiv -1\)</span> 或 <span class="math inline">\(a \equiv n - 1\)</span> 。</p></li>
-</ul><a id="more"></a>
-
-
-
-
-
-<p>如果 <span class="math inline">\(p^{n-1} \equiv 1\)</span> 不成立，根据费马小定理， <span class="math inline">\(n\)</span> 一定不为质数，<br>
-否则令 <span class="math inline">\(x = n - 1\)</span> ，<span class="math inline">\(x\)</span> 一定是偶数，那么可以计算 <span class="math inline">\(y = p^{\frac{x}{2}}\)</span> ，<br>
-由于 <span class="math inline">\(p^x \equiv 1\)</span> ，那么根据二次探测定理，如果 <span class="math inline">\(y \equiv 1\)</span> 和 <span class="math inline">\(y \equiv n - 1\)</span> 都不成立，<span class="math inline">\(n\)</span> 一定不为质数。<br>
-否则如果 <span class="math inline">\(y \equiv 1\)</span> ，令 <span class="math inline">\(x = \frac{x}{2}\)</span> 继续判断，<br>
+</ul>
+<p>如果 <span class="math inline">\(p^{n-1} \equiv 1\)</span> 不成立，根据费马小定理， <span class="math inline">\(n\)</span> 一定不为质数，<br />
+否则令 <span class="math inline">\(x = n - 1\)</span> ，<span class="math inline">\(x\)</span> 一定是偶数，那么可以计算 <span class="math inline">\(y = p^{\frac{x}{2}}\)</span> ，<br />
+由于 <span class="math inline">\(p^x \equiv 1\)</span> ，那么根据二次探测定理，如果 <span class="math inline">\(y \equiv 1\)</span> 和 <span class="math inline">\(y \equiv n - 1\)</span> 都不成立，<span class="math inline">\(n\)</span> 一定不为质数。<br />
+否则如果 <span class="math inline">\(y \equiv 1\)</span> ，令 <span class="math inline">\(x = \frac{x}{2}\)</span> 继续判断，<br />
 直到 <span class="math inline">\(y \equiv n - 1\)</span> 或者 <span class="math inline">\(x\)</span> 为奇数，此时 <span class="math inline">\(n\)</span> 通过了测试，但无法保证 <span class="math inline">\(n\)</span> 是质数还是合数。</p>
-<p>如果仅仅通过一次测试就认为 <span class="math inline">\(n\)</span> 是质数的话错误的概率很大，<br>
-实践中往往选取多个质数 <span class="math inline">\(p\)</span> 测试多次，全部通过才认为 <span class="math inline">\(n\)</span> 是质数。<br>
+<p>如果仅仅通过一次测试就认为 <span class="math inline">\(n\)</span> 是质数的话错误的概率很大，<br />
+实践中往往选取多个质数 <span class="math inline">\(p\)</span> 测试多次，全部通过才认为 <span class="math inline">\(n\)</span> 是质数。<br />
 实践证明，只要取前 9 个质数，就能准确判断 <span class="math inline">\(10^{18}\)</span> 内的所有数。</p>
 <h4 id="实现">实现</h4>
 <p>参考实现（经过测试）：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> ll <span class="title">mul</span><span class="params">(ll x, ll y, ll mod)</span> </span>&#123;</span><br><span class="line">    ll tmp = x * y - ll((<span class="keyword">long</span> <span class="keyword">double</span>)x / mod * y + <span class="number">0.5</span>) * mod;</span><br><span class="line">    <span class="keyword">return</span> tmp &lt; <span class="number">0</span> ? tmp + mod : tmp;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> ll <span class="title">power</span><span class="params">(ll x, ll k, ll mod)</span> </span>&#123;</span><br><span class="line">    ll res = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (k) &#123;</span><br><span class="line">        <span class="keyword">if</span> (k &amp; <span class="number">1</span>)</span><br><span class="line">            res = mul(res, x, mod);</span><br><span class="line">        x = mul(x, x, mod);</span><br><span class="line">        k &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res % mod;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">bool</span> <span class="title">miller</span><span class="params">(ll n, <span class="keyword">int</span> p)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (power(p, n - <span class="number">1</span>, n) != <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    ll x = n - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (<span class="keyword">not</span>(x &amp; <span class="number">1</span>)) &#123;</span><br><span class="line">        x &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">        ll y = power(p, x, n);</span><br><span class="line">        <span class="keyword">if</span> (y == n - <span class="number">1</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (y != <span class="number">1</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">is_prime</span><span class="params">(ll n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">int</span> len = <span class="number">9</span>;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">int</span> p[len] = &#123; <span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">11</span>, <span class="number">13</span>, <span class="number">17</span>, <span class="number">19</span>, <span class="number">23</span> &#125;;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++)</span><br><span class="line">        <span class="keyword">if</span> (n == p[i])</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++)</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">not</span> miller(n, p[i]))</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="优化">优化</h4>
 <p>事实上 miller-rabin 中进行的多次快速幂是没有必要的。</p>
-<p>将 <span class="math inline">\(n\)</span> 表示为 <span class="math inline">\(n=2^s t + 1\)</span> 的形式，其中 <span class="math inline">\(t\)</span> 为奇数，<br>
-那么 miller-rabin 中可能用到的所有快速幂，都是 <span class="math inline">\(p^{2^it} (0 \leq i &lt; s)\)</span> 的形式。<br>
-原本 <span class="math inline">\(x\)</span> 是从 <span class="math inline">\(2^s t\)</span> 到 <span class="math inline">\(t\)</span> ，考虑倒着进行，<span class="math inline">\(x\)</span> 从 <span class="math inline">\(t\)</span> 到 <span class="math inline">\(2^s t\)</span> ，<br>
+<p>将 <span class="math inline">\(n\)</span> 表示为 <span class="math inline">\(n=2^s t + 1\)</span> 的形式，其中 <span class="math inline">\(t\)</span> 为奇数，<br />
+那么 miller-rabin 中可能用到的所有快速幂，都是 <span class="math inline">\(p^{2^it} (0 \leq i &lt; s)\)</span> 的形式。<br />
+原本 <span class="math inline">\(x\)</span> 是从 <span class="math inline">\(2^s t\)</span> 到 <span class="math inline">\(t\)</span> ，考虑倒着进行，<span class="math inline">\(x\)</span> 从 <span class="math inline">\(t\)</span> 到 <span class="math inline">\(2^s t\)</span> ，<br />
 这样只需要一次快速幂计算 <span class="math inline">\(y = p^t\)</span> ，每次 <span class="math inline">\(x\)</span> 扩大一倍时将 <span class="math inline">\(y\)</span> 平方即可。</p>
 <p>参考实现（经过测试）：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">miller</span><span class="params">(ll n, <span class="keyword">int</span> p)</span> </span>&#123;</span><br><span class="line">	ll t = n - <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span>(!(t &amp; <span class="number">1</span>)) t &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">	ll y = power(p, t, n), ny;</span><br><span class="line">	<span class="keyword">while</span>((t &lt;&lt; <span class="number">1</span>) &lt; n) &#123;</span><br><span class="line">		ny = mul(y, y, n);</span><br><span class="line">		<span class="keyword">if</span>(ny == <span class="number">1</span> <span class="keyword">and</span> !(y == <span class="number">1</span> <span class="keyword">or</span> y == n - <span class="number">1</span>)) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">		t &lt;&lt;= <span class="number">1</span>;</span><br><span class="line">		y = ny;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> y == <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">is_prime</span><span class="params">(ll n)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">int</span> len = <span class="number">9</span>, p[len] = &#123;<span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">11</span>, <span class="number">13</span>, <span class="number">17</span>, <span class="number">19</span>, <span class="number">23</span>&#125;;</span><br><span class="line">	<span class="keyword">if</span>(n == <span class="number">1</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i ++) <span class="keyword">if</span>(n == p[i]) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">if</span>(!(n &amp; <span class="number">1</span>)) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i ++) <span class="keyword">if</span>(!miller(n, p[i])) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -267,24 +267,24 @@
 <p>这玩意大家似乎都是背代码，很难找到关于原理以及复杂度的证明，学习资料很少，如果有误，还请指正。</p>
 <h4 id="非平凡因子">非平凡因子</h4>
 <p>关于非平凡因子：如果 <span class="math inline">\(d\)</span> 能整除 <span class="math inline">\(n\)</span> 且满足 <span class="math inline">\(1 &lt; d &lt; n\)</span> ，则称 <span class="math inline">\(d\)</span> 是 <span class="math inline">\(n\)</span> 的非平凡因子。</p>
-<p>从定义可以看出质数是没有非平凡因子的，事实上质数直接拿来做 pollard-rho 会陷入死循环，<br>
+<p>从定义可以看出质数是没有非平凡因子的，事实上质数直接拿来做 pollard-rho 会陷入死循环，<br />
 因此 pollard-rho 常常需要配合 miller-rabin 使用，在一个数为质数时停止分解。</p>
 <p>因此以下讨论假定 <span class="math inline">\(n\)</span> 是合数。</p>
 <h4 id="随机实验">随机实验</h4>
-<p>随机一个正整数 <span class="math inline">\(d(d &lt; n)\)</span> ，如果 <span class="math inline">\(d\)</span> 是 <span class="math inline">\(n\)</span> 的因子，那么就找到了 <span class="math inline">\(n\)</span> 的一个非平凡因子 <span class="math inline">\(d\)</span> 。<br>
+<p>随机一个正整数 <span class="math inline">\(d(d &lt; n)\)</span> ，如果 <span class="math inline">\(d\)</span> 是 <span class="math inline">\(n\)</span> 的因子，那么就找到了 <span class="math inline">\(n\)</span> 的一个非平凡因子 <span class="math inline">\(d\)</span> 。<br />
 然而这样的概率很小，最坏情况下是 <span class="math inline">\(\frac{1}{n}\)</span> 的。</p>
-<p>随机一个正整数 <span class="math inline">\(v(v &lt; n)\)</span> ，求出 <span class="math inline">\(d = gcd(v, n)\)</span> ，如果 <span class="math inline">\(d &gt; 1\)</span> 那么就找到了 <span class="math inline">\(n\)</span> 的一个非平凡因子 <span class="math inline">\(d\)</span> 。<br>
+<p>随机一个正整数 <span class="math inline">\(v(v &lt; n)\)</span> ，求出 <span class="math inline">\(d = gcd(v, n)\)</span> ，如果 <span class="math inline">\(d &gt; 1\)</span> 那么就找到了 <span class="math inline">\(n\)</span> 的一个非平凡因子 <span class="math inline">\(d\)</span> 。<br />
 这样成功的概率就大得多，最坏是 <span class="math inline">\(\frac{1}{\sqrt{n}}\)</span> 的。</p>
-<p>证明：<br>
-设 <span class="math inline">\(p = minp(n)\)</span> 是合数 <span class="math inline">\(n\)</span> 的最小质因子，那么 <span class="math inline">\(p \leq \sqrt{n}\)</span> ，而 <span class="math inline">\(p\)</span> 的倍数有 <span class="math inline">\(\lfloor\frac{n}{p}\rfloor\)</span> 个，<br>
-因此概率的一个下界是 <span class="math inline">\(\frac{1}{p}\)</span> ，这是取到 <span class="math inline">\(p\)</span> 的倍数的概率。<br>
+<p>证明：<br />
+设 <span class="math inline">\(p = minp(n)\)</span> 是合数 <span class="math inline">\(n\)</span> 的最小质因子，那么 <span class="math inline">\(p \leq \sqrt{n}\)</span> ，而 <span class="math inline">\(p\)</span> 的倍数有 <span class="math inline">\(\lfloor\frac{n}{p}\rfloor\)</span> 个，<br />
+因此概率的一个下界是 <span class="math inline">\(\frac{1}{p}\)</span> ，这是取到 <span class="math inline">\(p\)</span> 的倍数的概率。<br />
 而这个下界是可以达到的，当 <span class="math inline">\(n = p^2\)</span> 且时，概率恰为 <span class="math inline">\(\frac{1}{p}\)</span> ，也就是 <span class="math inline">\(\frac{1}{\sqrt{n}}\)</span> 。</p>
 <p>以下讨论中均有 <span class="math inline">\(p\)</span> 是 <span class="math inline">\(n\)</span> 的最小质因子。</p>
 <h4 id="生日悖论">生日悖论</h4>
 <p>然而这个概率还是很小，期望下需要随机 <span class="math inline">\(O(p)\)</span> 次才能成功（这是个上界）。</p>
-<p>根据生日悖论可以提供一个优化思路，<br>
-随机 <span class="math inline">\(\sqrt{p}\)</span> 个数 <span class="math inline">\(v\)</span> ，其中有 <span class="math inline">\(\frac{1}{2}\)</span> 的概率存在两个数 <span class="math inline">\(v_1, v_2\)</span> 模 <span class="math inline">\(p\)</span> 同余，<br>
-也就是说存在两个数的差是 <span class="math inline">\(p\)</span> 的倍数。<br>
+<p>根据生日悖论可以提供一个优化思路，<br />
+随机 <span class="math inline">\(\sqrt{p}\)</span> 个数 <span class="math inline">\(v\)</span> ，其中有 <span class="math inline">\(\frac{1}{2}\)</span> 的概率存在两个数 <span class="math inline">\(v_1, v_2\)</span> 模 <span class="math inline">\(p\)</span> 同余，<br />
+也就是说存在两个数的差是 <span class="math inline">\(p\)</span> 的倍数。<br />
 但是如果两两作差与 <span class="math inline">\(n\)</span> 取 gcd ，期望复杂度仍然是 <span class="math inline">\(O(p)\)</span> 的。</p>
 <!-- 算上 gcd 的复杂度，可以在期望复杂度 $O(\sqrt{p}logn)$ 的时间找到 $n$ 的一个非平凡因子。  
 但事实上可以每次取 $O(\sqrt{p})$ 个数为一组，每次对求一组数的乘积 $k$ ，求 $gcd(n, k)$ 即可。  
@@ -293,29 +293,29 @@
 <h4 id="rho">rho</h4>
 <p>pollard-rho 用到了一个特殊的伪随机数列 <span class="math inline">\(\{a\}\)</span> ，对于参数 <span class="math inline">\(c\)</span> ，其满足：</p>
 <p><span class="math display">\[ a_{i+1} = (a_i^2 + c) \mod n \]</span></p>
-<p>这个数列是个 <span class="math inline">\(\rho\)</span>(rho) 形，这也是 pollard-rho 的名字由来。<br>
-换言之，存在链长 <span class="math inline">\(T\)</span> 和环长 <span class="math inline">\(M\)</span> ，满足 <span class="math inline">\(\forall i,k&gt;0: a_{T+i} = a_{T+i+kM}\)</span> 。<br>
-如果把 <span class="math inline">\(a\)</span> 两两不同的前缀部分近似看做真随机数列，那么根据生日悖论，这个长度 <span class="math inline">\(T + M\)</span> 是期望 <span class="math inline">\(O(\sqrt{n})\)</span> 的。<br>
+<p>这个数列是个 <span class="math inline">\(\rho\)</span>(rho) 形，这也是 pollard-rho 的名字由来。<br />
+换言之，存在链长 <span class="math inline">\(T\)</span> 和环长 <span class="math inline">\(M\)</span> ，满足 <span class="math inline">\(\forall i,k&gt;0: a_{T+i} = a_{T+i+kM}\)</span> 。<br />
+如果把 <span class="math inline">\(a\)</span> 两两不同的前缀部分近似看做真随机数列，那么根据生日悖论，这个长度 <span class="math inline">\(T + M\)</span> 是期望 <span class="math inline">\(O(\sqrt{n})\)</span> 的。<br />
 也就是说 <span class="math inline">\(T\)</span> 和 <span class="math inline">\(M\)</span> 期望都是在 <span class="math inline">\(O(\sqrt{n})\)</span> 以内的。</p>
-<p>令 <span class="math inline">\(b_i = a_i \mod p\)</span> ，当然由于 <span class="math inline">\(p\)</span> 未知，<span class="math inline">\(b\)</span> 这个数列实际上是未知的。<br>
+<p>令 <span class="math inline">\(b_i = a_i \mod p\)</span> ，当然由于 <span class="math inline">\(p\)</span> 未知，<span class="math inline">\(b\)</span> 这个数列实际上是未知的。<br />
 那么同样的道理，<span class="math inline">\(b\)</span> 的链长和环长 <span class="math inline">\(t, m\)</span> 是期望 <span class="math inline">\(O(\sqrt{p})\)</span> 的。</p>
-<p>现在要做的是通过对 <span class="math inline">\(a\)</span> 作差来间接对 <span class="math inline">\(b\)</span> 作差，目标是选到两个下标 <span class="math inline">\(i, j\)</span> 满足 <span class="math inline">\(b_i = b_j\)</span> ，<br>
-这样的话，<span class="math inline">\(|a_i - a_j|\)</span> 就是 <span class="math inline">\(p\)</span> 的倍数，也就是说 <span class="math inline">\(gcd(n, |a_i - a_j|) \geq p\)</span> 。<br>
-关键在于环长，如果只选取下标 <span class="math inline">\((i, 2i)\)</span> 作差，那么当 <span class="math inline">\(i \geq t\)</span> 且 <span class="math inline">\(i=km\)</span> 时，<br>
-根据 <span class="math inline">\(b_i = b_{t+(i-t)} = b_{t+(i-t)+km} = b_{t+(i-t)+i} = b_{2i}\)</span> ，<br>
-可以确定此时一定有 <span class="math inline">\(b_i = b_{2i}\)</span> ，<br>
+<p>现在要做的是通过对 <span class="math inline">\(a\)</span> 作差来间接对 <span class="math inline">\(b\)</span> 作差，目标是选到两个下标 <span class="math inline">\(i, j\)</span> 满足 <span class="math inline">\(b_i = b_j\)</span> ，<br />
+这样的话，<span class="math inline">\(|a_i - a_j|\)</span> 就是 <span class="math inline">\(p\)</span> 的倍数，也就是说 <span class="math inline">\(gcd(n, |a_i - a_j|) \geq p\)</span> 。<br />
+关键在于环长，如果只选取下标 <span class="math inline">\((i, 2i)\)</span> 作差，那么当 <span class="math inline">\(i \geq t\)</span> 且 <span class="math inline">\(i=km\)</span> 时，<br />
+根据 <span class="math inline">\(b_i = b_{t+(i-t)} = b_{t+(i-t)+km} = b_{t+(i-t)+i} = b_{2i}\)</span> ，<br />
+可以确定此时一定有 <span class="math inline">\(b_i = b_{2i}\)</span> ，<br />
 而上面提到过 <span class="math inline">\(t, m\)</span> 期望都是 <span class="math inline">\(O(\sqrt{p})\)</span> 的，那么第一个这样的 <span class="math inline">\(i\)</span> 的大小也是期望 <span class="math inline">\(O(\sqrt{p})\)</span> 的。</p>
 <p>一个期望复杂度 <span class="math inline">\(O(\sqrt{p})\)</span> 的 pollard-rho 基本思想大抵如此。</p>
 <h4 id="实践">实践</h4>
-<p>算法流程就是随机一个生成序列的参数 <span class="math inline">\(c\)</span> 。<br>
-然后枚举 <span class="math inline">\(i\)</span> ，同时通过递推维护 <span class="math inline">\(a_i\)</span> 和 <span class="math inline">\(a_{2i}\)</span> ，<br>
-当 <span class="math inline">\(gcd(n, |a_i - a_{2i}|) &gt; 1\)</span> 时就得到了一个非平凡因子。<br>
-直接做考虑 gcd 期望复杂度 <span class="math inline">\(O(\sqrt{p}logn)\)</span> 。<br>
-但这个 gcd 很好优化，设 <span class="math inline">\(v_i = |a_i - a_{2i}|\)</span> ，把 <span class="math inline">\(v\)</span> 相邻 <span class="math inline">\(k\)</span> 个乘起来再和 <span class="math inline">\(n\)</span> 做 gcd ，<br>
-根据 <span class="math inline">\(gcd(x, n) = gcd(x \mod n, n)\)</span> ，乘积可以是模 <span class="math inline">\(n\)</span> 意义下的。<br>
-理论上只要 <span class="math inline">\(k &gt; O(logn)\)</span> ，复杂度就能做到 <span class="math inline">\(O(\sqrt{p} + k + logn)\)</span> ，<br>
-一般认为 <span class="math inline">\(p\)</span> 足够大，此时复杂度就是 <span class="math inline">\(O(\sqrt{p})\)</span> ，最坏情况下就是 <span class="math inline">\(O(n^{\frac{1}{4}})\)</span> 。<br>
-实践中往往采用倍增的方式，起初 <span class="math inline">\(k\)</span> 不断成倍增大，增大到 128 时保持不变。<br>
+<p>算法流程就是随机一个生成序列的参数 <span class="math inline">\(c\)</span> 。<br />
+然后枚举 <span class="math inline">\(i\)</span> ，同时通过递推维护 <span class="math inline">\(a_i\)</span> 和 <span class="math inline">\(a_{2i}\)</span> ，<br />
+当 <span class="math inline">\(gcd(n, |a_i - a_{2i}|) &gt; 1\)</span> 时就得到了一个非平凡因子。<br />
+直接做考虑 gcd 期望复杂度 <span class="math inline">\(O(\sqrt{p}logn)\)</span> 。<br />
+但这个 gcd 很好优化，设 <span class="math inline">\(v_i = |a_i - a_{2i}|\)</span> ，把 <span class="math inline">\(v\)</span> 相邻 <span class="math inline">\(k\)</span> 个乘起来再和 <span class="math inline">\(n\)</span> 做 gcd ，<br />
+根据 <span class="math inline">\(gcd(x, n) = gcd(x \mod n, n)\)</span> ，乘积可以是模 <span class="math inline">\(n\)</span> 意义下的。<br />
+理论上只要 <span class="math inline">\(k &gt; O(logn)\)</span> ，复杂度就能做到 <span class="math inline">\(O(\sqrt{p} + k + logn)\)</span> ，<br />
+一般认为 <span class="math inline">\(p\)</span> 足够大，此时复杂度就是 <span class="math inline">\(O(\sqrt{p})\)</span> ，最坏情况下就是 <span class="math inline">\(O(n^{\frac{1}{4}})\)</span> 。<br />
+实践中往往采用倍增的方式，起初 <span class="math inline">\(k\)</span> 不断成倍增大，增大到 128 时保持不变。<br />
 这样可以保证在 <span class="math inline">\(p\)</span> 很小的时候不用算 <span class="math inline">\(logn\)</span> 次就能得到非平凡因子，减小常数。</p>
 <p>有一些需要注意的地方：</p>
 <ul>
@@ -325,9 +325,9 @@
 <p>参考实现（经过测试，上接 miller-rabin 的部分）：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> ll <span class="title">nxt</span><span class="params">(ll x, ll c, ll n)</span> </span>&#123;</span><br><span class="line">	ll res = mul(x, x, n) + c;</span><br><span class="line">	<span class="keyword">return</span> res &gt;= n ? res - n : res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">ll <span class="title">pollard</span><span class="params">(ll n)</span> </span>&#123;</span><br><span class="line">	ll c = <span class="number">1l</span>l * rand() * rand() % n;</span><br><span class="line">	ll a = nxt(rand(), c, n);</span><br><span class="line">	ll a2 = nxt(a, c, n);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> lim = <span class="number">2</span>;</span><br><span class="line">	<span class="keyword">while</span>(a != a2) &#123;</span><br><span class="line">		ll v = <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; lim <span class="keyword">and</span> a != a2; i ++) &#123;</span><br><span class="line">			ll tov = mul(v, <span class="built_in">std</span>::<span class="built_in">abs</span>(a - a2), n);</span><br><span class="line">			<span class="keyword">if</span>(!tov) <span class="keyword">return</span> <span class="built_in">std</span>::__gcd(v, n);</span><br><span class="line">			v = tov;</span><br><span class="line">			a = nxt(a, c, n);</span><br><span class="line">			a2 = nxt(nxt(a2, c, n), c, n);</span><br><span class="line">		&#125;</span><br><span class="line">		ll d = <span class="built_in">std</span>::__gcd(v, n);</span><br><span class="line">		<span class="keyword">if</span>(d &gt; <span class="number">1</span>) <span class="keyword">return</span> d;</span><br><span class="line">		<span class="keyword">if</span>(lim &lt; <span class="number">128</span>) lim &lt;&lt;= <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> pollard(n);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="应用">应用</h4>
-<p>求最小质因数，最大质因数，质因数分解等，<br>
-都只需要每次找到 <span class="math inline">\(n\)</span> 的非平凡因子 <span class="math inline">\(d\)</span> 然后不断令 <span class="math inline">\(n\)</span> 除以 <span class="math inline">\(d\)</span> 转换为子问题，<br>
-需要注意的是 <span class="math inline">\(d\)</span> 不一定是质数，也要递归处理。<br>
+<p>求最小质因数，最大质因数，质因数分解等，<br />
+都只需要每次找到 <span class="math inline">\(n\)</span> 的非平凡因子 <span class="math inline">\(d\)</span> 然后不断令 <span class="math inline">\(n\)</span> 除以 <span class="math inline">\(d\)</span> 转换为子问题，<br />
+需要注意的是 <span class="math inline">\(d\)</span> 不一定是质数，也要递归处理。<br />
 终止条件是 <span class="math inline">\(n\)</span> 为质数。</p>
 
     </div>

@@ -21,12 +21,12 @@
     var CONFIG = {"hostname":"kewth.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="这里只介绍关于多项式的拉格朗日插值法，对于一般函数的拟合当做一个多项式就好了。插点值已知多项式 \(f(x)\) 的 \(n\) 个点值 \((x_i, y_i &#x3D; f(x_i))\) ，求 \(f(k)\) 。拉格朗日插值法的思路在于： 对于每个 \((x_i, y_i)\) 找到 \(L_i(x)\) 使得 \(L_i(x_i) &#x3D; y_i, L_i(x_j) &#x3D; 0\) ， 其中 \(x_j">
+  <meta name="description" content="这里只介绍关于多项式的拉格朗日插值法，对于一般函数的拟合当做一个多项式就好了。 插点值 已知多项式 \(f(x)\) 的 \(n\) 个点值 \((x_i, y_i &#x3D; f(x_i))\) ，求 \(f(k)\) 。 拉格朗日插值法的思路在于： 对于每个 \((x_i, y_i)\) 找到 \(L_i(x)\) 使得 \(L_i(x_i) &#x3D; y_i, L_i(x_j) &#x3D; 0\) ， 其中 \(">
 <meta property="og:type" content="article">
 <meta property="og:title" content="拉格朗日插值法">
 <meta property="og:url" content="https://kewth.github.io/2019/12/27/%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E6%8F%92%E5%80%BC%E6%B3%95/index.html">
 <meta property="og:site_name" content="KeBlog">
-<meta property="og:description" content="这里只介绍关于多项式的拉格朗日插值法，对于一般函数的拟合当做一个多项式就好了。插点值已知多项式 \(f(x)\) 的 \(n\) 个点值 \((x_i, y_i &#x3D; f(x_i))\) ，求 \(f(k)\) 。拉格朗日插值法的思路在于： 对于每个 \((x_i, y_i)\) 找到 \(L_i(x)\) 使得 \(L_i(x_i) &#x3D; y_i, L_i(x_j) &#x3D; 0\) ， 其中 \(x_j">
+<meta property="og:description" content="这里只介绍关于多项式的拉格朗日插值法，对于一般函数的拟合当做一个多项式就好了。 插点值 已知多项式 \(f(x)\) 的 \(n\) 个点值 \((x_i, y_i &#x3D; f(x_i))\) ，求 \(f(k)\) 。 拉格朗日插值法的思路在于： 对于每个 \((x_i, y_i)\) 找到 \(L_i(x)\) 使得 \(L_i(x_i) &#x3D; y_i, L_i(x_j) &#x3D; 0\) ， 其中 \(">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-12-27T08:36:22.000Z">
 <meta property="article:modified_time" content="2020-01-06T01:54:57.116Z">
@@ -232,11 +232,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>这里只介绍关于多项式的拉格朗日插值法，对于一般函数的拟合当做一个多项式就好了。</p><h2 id="插点值">插点值</h2><p>已知多项式 <span class="math inline">\(f(x)\)</span> 的 <span class="math inline">\(n\)</span> 个点值 <span class="math inline">\((x_i, y_i = f(x_i))\)</span> ，求 <span class="math inline">\(f(k)\)</span> 。</p><p>拉格朗日插值法的思路在于： 对于每个 <span class="math inline">\((x_i, y_i)\)</span> 找到 <span class="math inline">\(L_i(x)\)</span> 使得 <span class="math inline">\(L_i(x_i) = y_i, L_i(x_j) = 0\)</span> ， 其中 <span class="math inline">\(x_j\)</span> 是已知的 <span class="math inline">\(x\)</span> 中任意一个不等于 <span class="math inline">\(x_i\)</span> 的 <span class="math inline">\(x\)</span> 。</p><a id="more"></a>
-
-
-
-<p>而由 <span class="math inline">\(L\)</span> 的定义可知，<span class="math inline">\(f(k) = \sum_{i=1}^n L_i(k)\)</span> 。<br>
+        <p>这里只介绍关于多项式的拉格朗日插值法，对于一般函数的拟合当做一个多项式就好了。</p>
+<h2 id="插点值">插点值</h2>
+<p>已知多项式 <span class="math inline">\(f(x)\)</span> 的 <span class="math inline">\(n\)</span> 个点值 <span class="math inline">\((x_i, y_i = f(x_i))\)</span> ，求 <span class="math inline">\(f(k)\)</span> 。</p>
+<p>拉格朗日插值法的思路在于： 对于每个 <span class="math inline">\((x_i, y_i)\)</span> 找到 <span class="math inline">\(L_i(x)\)</span> 使得 <span class="math inline">\(L_i(x_i) = y_i, L_i(x_j) = 0\)</span> ， 其中 <span class="math inline">\(x_j\)</span> 是已知的 <span class="math inline">\(x\)</span> 中任意一个不等于 <span class="math inline">\(x_i\)</span> 的 <span class="math inline">\(x\)</span> 。</p>
+<p>而由 <span class="math inline">\(L\)</span> 的定义可知，<span class="math inline">\(f(k) = \sum_{i=1}^n L_i(k)\)</span> 。<br />
 代入上式即可求解。</p>
 <p>现在问题在于构造 <span class="math inline">\(L\)</span> 。 下面的 <span class="math inline">\(L\)</span> 可以满足定义：</p>
 <p><span class="math display">\[ L_i(x) = y_i \cdot \prod\limits_{j \ne i}\frac{x_j-x}{x_j-x_i} \]</span></p>
@@ -249,12 +249,12 @@
 <p>注意到分母和 <span class="math inline">\(y_i\)</span> 是常数可以直接算，考虑提出来，</p>
 <p><span class="math display">\[ L_i(x) = (y_i \cdot \prod\limits_{j \ne i}\frac{1}{x_j-x_i})
     (\prod\limits_{j \ne i} (x_j - x)) \]</span></p>
-<p>左边的常数是一堆逆元相乘再乘上 <span class="math inline">\(y_i\)</span> ，逆元往往不是 <span class="math inline">\(O(1)\)</span> 计算的，<br>
+<p>左边的常数是一堆逆元相乘再乘上 <span class="math inline">\(y_i\)</span> ，逆元往往不是 <span class="math inline">\(O(1)\)</span> 计算的，<br />
 事实上可以先把分母中所有 <span class="math inline">\(x-x_j\)</span> 乘起来再一起求逆元，这样就只需要计算 1 次逆元，此时一般可以忽略逆元对复杂度的影响。</p>
 <p>那么只需要算分子部分，即上式右边的 <span class="math inline">\(\prod\)</span> 的 <span class="math inline">\(x^k\)</span> 系数即可。</p>
-<p>假设把这个连乘暴力拆开，其实 <span class="math inline">\(x^k\)</span> 的系数就是在之中选 <span class="math inline">\(n - k - 1\)</span> 个常数。<br>
-DP 预处理 <span class="math inline">\(pre(i, k)\)</span> 表示在 <span class="math inline">\(\prod\limits_{j \leq i} (x - x_j)\)</span> 中选 k 个常数的系数和，<br>
-同理 <span class="math inline">\(suf(i, k)\)</span> 表示在 <span class="math inline">\(\prod\limits_{j \geq i} (x - x_j)\)</span> 中选 k 个常数的系数和。<br>
+<p>假设把这个连乘暴力拆开，其实 <span class="math inline">\(x^k\)</span> 的系数就是在之中选 <span class="math inline">\(n - k - 1\)</span> 个常数。<br />
+DP 预处理 <span class="math inline">\(pre(i, k)\)</span> 表示在 <span class="math inline">\(\prod\limits_{j \leq i} (x - x_j)\)</span> 中选 k 个常数的系数和，<br />
+同理 <span class="math inline">\(suf(i, k)\)</span> 表示在 <span class="math inline">\(\prod\limits_{j \geq i} (x - x_j)\)</span> 中选 k 个常数的系数和。<br />
 那么枚举 <span class="math inline">\(p + q = n - k - 1\)</span> 求 <span class="math inline">\(pre(i - 1, p)\)</span> 乘 <span class="math inline">\(suf(i + 1, q)\)</span> 的和就是上式的 <span class="math inline">\(x^k\)</span> 系数了。</p>
 <p>时间复杂度 <span class="math inline">\(O(n^2)\)</span> 。</p>
 <p>参考实现（未经过测试）：</p>
@@ -269,7 +269,7 @@ DP 预处理 <span class="math inline">\(pre(i, k)\)</span> 表示在 <span clas
 <p>左边的常数还是同样地处理，不同的是对于右边的多项式现在要求的不是某一项的系数而是所有系数。</p>
 <p>对于右边的多项式部分，可以看做：</p>
 <p><span class="math display">\[ \frac{\prod_{j=1}^n (x_j - x)}{x_i - x} \]</span></p>
-<p>其分子是个与 <span class="math inline">\(i\)</span> 无关的多项式，可以 <span class="math inline">\(O(n^2)\)</span> 暴力预处理，而其分母是个简单的一次二项式。<br>
+<p>其分子是个与 <span class="math inline">\(i\)</span> 无关的多项式，可以 <span class="math inline">\(O(n^2)\)</span> 暴力预处理，而其分母是个简单的一次二项式。<br />
 那么可以用短除法来进行多项式除二项式，复杂度 <span class="math inline">\(O(n)\)</span> 。</p>
 <p>总时间复杂度为 <span class="math inline">\(O(n^2)\)</span> 。</p>
 <p>参考实现（未经过测试）：</p>

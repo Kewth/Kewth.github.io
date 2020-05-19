@@ -21,12 +21,12 @@
     var CONFIG = {"hostname":"kewth.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="以后打比赛写总结。话说今天打到短裙好开心啊A 题签到题。为什么我第一个想的就是 O(1) 的哈希？ 表示完全没有去想好写得多的排序，而是直接把三个字符用 int 表示去搞。 然后本地测样例玄学错误，最后发现哈希的数组开小了。 7min 做出 A 题表示自闭。真是可怕交题的时候刷新就有 40+ AC 了">
+  <meta name="description" content="以后打比赛写总结。 话说今天打到短裙好开心啊 A 题签到题。 为什么我第一个想的就是 O(1) 的哈希？ 表示完全没有去想好写得多的排序，而是直接把三个字符用 int 表示去搞。 然后本地测样例玄学错误，最后发现哈希的数组开小了。 7min 做出 A 题表示自闭。 真是可怕交题的时候刷新就有 40+ AC 了 B 题还是签到题，以为能在 5min AC 结果打了 9min ，感觉我不适合这种手速题">
 <meta property="og:type" content="article">
 <meta property="og:title" content="cometoj-12">
 <meta property="og:url" content="https://kewth.github.io/2019/10/13/cometoj-12/index.html">
 <meta property="og:site_name" content="KeBlog">
-<meta property="og:description" content="以后打比赛写总结。话说今天打到短裙好开心啊A 题签到题。为什么我第一个想的就是 O(1) 的哈希？ 表示完全没有去想好写得多的排序，而是直接把三个字符用 int 表示去搞。 然后本地测样例玄学错误，最后发现哈希的数组开小了。 7min 做出 A 题表示自闭。真是可怕交题的时候刷新就有 40+ AC 了">
+<meta property="og:description" content="以后打比赛写总结。 话说今天打到短裙好开心啊 A 题签到题。 为什么我第一个想的就是 O(1) 的哈希？ 表示完全没有去想好写得多的排序，而是直接把三个字符用 int 表示去搞。 然后本地测样例玄学错误，最后发现哈希的数组开小了。 7min 做出 A 题表示自闭。 真是可怕交题的时候刷新就有 40+ AC 了 B 题还是签到题，以为能在 5min AC 结果打了 9min ，感觉我不适合这种手速题">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-10-13T12:27:30.000Z">
 <meta property="article:modified_time" content="2019-12-06T12:37:17.000Z">
@@ -232,18 +232,18 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>以后打比赛写总结。</p><p><del>话说今天打到短裙好开心啊</del></p><p>A 题签到题。</p><p>为什么我第一个想的就是 O(1) 的哈希？<br>
-表示完全没有去想好写得多的排序，而是直接把三个字符用 int 表示去搞。<br>
-然后本地测样例玄学错误，最后发现哈希的数组开小了。<br>
-7min 做出 A 题表示自闭。</p><p><del>真是可怕交题的时候刷新就有 40+ AC 了</del></p><a id="more"></a>
-
-
-
-
+        <p>以后打比赛写总结。</p>
+<p><del>话说今天打到短裙好开心啊</del></p>
+<p>A 题签到题。</p>
+<p>为什么我第一个想的就是 O(1) 的哈希？<br />
+表示完全没有去想好写得多的排序，而是直接把三个字符用 int 表示去搞。<br />
+然后本地测样例玄学错误，最后发现哈希的数组开小了。<br />
+7min 做出 A 题表示自闭。</p>
+<p><del>真是可怕交题的时候刷新就有 40+ AC 了</del></p>
 <p>B 题还是签到题，以为能在 5min AC 结果打了 9min ，感觉我不适合这种手速题。</p>
-<p>然后我 C 题看都没看一眼直接 skip 掉就去开了 D 题。<br>
-看了 3min 哇这不数位 DP 吗，现在还没人交，我还有拿一血的想法。<br>
-然后打了出来，测样例， woc 过了，这个时候还是 4 提交 0 通过。<br>
+<p>然后我 C 题看都没看一眼直接 skip 掉就去开了 D 题。<br />
+看了 3min 哇这不数位 DP 吗，现在还没人交，我还有拿一血的想法。<br />
+然后打了出来，测样例， woc 过了，这个时候还是 4 提交 0 通过。<br />
 我在机房大呼卧槽我要拿一血了，然后自信满满地交了上去。</p>
 <p>成功 WA 掉所有点。</p>
 <p>再刷新 D 题一血就已经被拿了。</p>
@@ -253,16 +253,16 @@
 <p>我要拿四血。</p>
 <p>算了我凉了还是做好长期打算拿个十血什么的吧。。。</p>
 <p>期间各种被 master 嘲讽，各种互怼。</p>
-<p>master 走后没人跟我说话了，然后冷静分析了一波，发现限制条件搞错了，<br>
+<p>master 走后没人跟我说话了，然后冷静分析了一波，发现限制条件搞错了，<br />
 然后随便搓了几行代码就 A 了。</p>
-<p><del>所以以后打比赛要远离 master</del><br>
+<p><del>所以以后打比赛要远离 master</del><br />
 所以以后打比赛还是要在快节奏中冷静下来。</p>
-<p>A 完 D 已经是 2h 了，回去看 C ，<del>这 tm 不最短路板题嘛</del>。<br>
+<p>A 完 D 已经是 2h 了，回去看 C ，<del>这 tm 不最短路板题嘛</del>。<br />
 然而 C 题有坑，卡了好久，最后在比赛结束前 3min rush 了一发成功 AC 。</p>
 <p>然后靠着 4 题 + 罚时 8h 狗进 rank8 <del>拿到短裙啦</del>。</p>
-<p>这场比赛绝对是我打的最爽的一场网络赛，感觉 cometoj 的 ACM 比赛才是最刺激的，<br>
-题目质量高，节奏快，竞争激烈，尤其是相对于 cf 和 atcoder 来说没有网速杀和题意杀。<br>
-体验感极好。<br>
+<p>这场比赛绝对是我打的最爽的一场网络赛，感觉 cometoj 的 ACM 比赛才是最刺激的，<br />
+题目质量高，节奏快，竞争激烈，尤其是相对于 cf 和 atcoder 来说没有网速杀和题意杀。<br />
+体验感极好。<br />
 <del>最主要的还是有短裙拿</del></p>
 <p>然而拿短裙又没人肯女装，我还是选择拿杯子吧。。</p>
 
