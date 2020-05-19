@@ -1,91 +1,53 @@
 <!DOCTYPE html>
-
-
-
-
-
 <html lang="zh-CN">
 <head>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 3.9.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.1">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.1">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.1">
-  <link rel="mask-icon" href="/images/logo.svg?v=7.4.1" color="#222">
-  <link rel="alternate" href="/atom.xml" title="KeBlog" type="application/atom+xml">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
   <meta name="google-site-verification" content="KIx9DF_OoeyQmEhcVAbjH5vg_i539tmILHmNH8lRDtw">
 
-<link rel="stylesheet" href="/css/main.css?v=7.4.1">
+<link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
-
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
 
 <script id="hexo-configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Muse',
-    version: '7.4.1',
-    exturl: false,
-    sidebar: {"position":"left","display":"always","offset":12,"onmobile":false},
-    copycode: {"enable":true,"show_result":true,"style":null},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
-    bookmark: {"enable":false,"color":"#222","save":"auto"},
-    fancybox: false,
-    mediumzoom: false,
-    lazyload: false,
-    pangu: false,
-    algolia: {
-      appID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    },
-    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: 'search.xml',
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    translation: {
-      copy_button: '复制',
-      copy_success: '复制成功',
-      copy_failure: '复制失败'
-    },
-    sidebarPadding: 40
-  };
-</script>
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"kewth.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
 
   <meta name="description" content="作用线段树通过维护序列，可以维护一个承载各种操作的时间轴。通常用于辅助一些不支持删除操作的数据结构（线性基，并查集）， 这种情况可以用线段树分治维护操作影响的时间来巧妙地避开删除。线段树结构线段树分治用到的线段树（以下简称线段树）是以询问的时间为键值， 没有权值只有标记的线段树。也就是线段树的一段区间对应的是一段询问（一段时间）。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="线段树分治">
-<meta property="og:url" content="https://kewth.github.io/2019/10/10/线段树分治/index.html">
+<meta property="og:url" content="https://kewth.github.io/2019/10/10/%E7%BA%BF%E6%AE%B5%E6%A0%91%E5%88%86%E6%B2%BB/index.html">
 <meta property="og:site_name" content="KeBlog">
 <meta property="og:description" content="作用线段树通过维护序列，可以维护一个承载各种操作的时间轴。通常用于辅助一些不支持删除操作的数据结构（线性基，并查集）， 这种情况可以用线段树分治维护操作影响的时间来巧妙地避开删除。线段树结构线段树分治用到的线段树（以下简称线段树）是以询问的时间为键值， 没有权值只有标记的线段树。也就是线段树的一段区间对应的是一段询问（一段时间）。">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-06T12:37:17.000Z">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-10-10T02:00:02.000Z">
+<meta property="article:modified_time" content="2019-12-06T12:37:17.000Z">
+<meta property="article:author" content="Kewth">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="线段树分治">
-<meta name="twitter:description" content="作用线段树通过维护序列，可以维护一个承载各种操作的时间轴。通常用于辅助一些不支持删除操作的数据结构（线性基，并查集）， 这种情况可以用线段树分治维护操作影响的时间来巧妙地避开删除。线段树结构线段树分治用到的线段树（以下简称线段树）是以询问的时间为键值， 没有权值只有标记的线段树。也就是线段树的一段区间对应的是一段询问（一段时间）。">
-  <link rel="canonical" href="https://kewth.github.io/2019/10/10/线段树分治/">
+
+<link rel="canonical" href="https://kewth.github.io/2019/10/10/%E7%BA%BF%E6%AE%B5%E6%A0%91%E5%88%86%E6%B2%BB/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: false,
-    isPost: true,
-    isPage: false,
-    isArchive: false
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
   };
 </script>
 
   <title>线段树分治 | KeBlog</title>
   
-
-
 
 
 
@@ -113,29 +75,17 @@
   .use-motion .logo-line-before i { left: initial; }
   .use-motion .logo-line-after i { right: initial; }
   </style>
-</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</noscript>
 
+<link rel="alternate" href="/atom.xml" title="KeBlog" type="application/atom+xml">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
+  <div class="container use-motion">
     <div class="headband"></div>
 
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
-  <div class="site-meta">
-
-    <div>
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">KeBlog</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-        <h1 class="site-subtitle" itemprop="description">The OI Algorithm Blog of Kewth</h1>
-      
-  </div>
-
   <div class="site-nav-toggle">
     <div class="toggle" aria-label="切换导航栏">
       <span class="toggle-line toggle-line-first"></span>
@@ -143,133 +93,59 @@
       <span class="toggle-line toggle-line-last"></span>
     </div>
   </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">KeBlog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">The OI Algorithm Blog of Kewth</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
 </div>
 
 
+
+
 <nav class="site-nav">
-  
-  <ul id="menu" class="menu">
-      
-      
-        
-        
+  <ul id="menu" class="main-menu menu">
         <li class="menu-item menu-item-home">
-      
-    
-      
-      
-        
-      
-        
-      
-        
-      
-    
 
-    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
 
   </li>
-      
-    
-      
-      
-        
-        
         <li class="menu-item menu-item-about">
-      
-    
-      
-      
-        
-      
-        
-      
-        
-      
-    
 
-    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
 
   </li>
-      
-    
-      
-      
-        
-        
         <li class="menu-item menu-item-tags">
-      
-    
-      
-      
-        
-      
-        
-      
-        
-          
-        
-      
-    
 
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">49</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">49</span></a>
 
   </li>
-      
-    
-      
-      
-        
-        
         <li class="menu-item menu-item-categories">
-      
-    
-      
-      
-        
-      
-        
-          
-        
-      
-        
-      
-    
 
-    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">4</span></a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">4</span></a>
 
   </li>
-      
-    
-      
-      
-        
-        
         <li class="menu-item menu-item-archives">
-      
-    
-      
-      
-        
-          
-        
-      
-        
-      
-        
-      
-    
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">49</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">50</span></a>
 
   </li>
-      
-    
   </ul>
-
-    
-
 </nav>
+
+
+
+
 </div>
     </header>
 
@@ -284,79 +160,58 @@
     <main class="main">
       <div class="main-inner">
         <div class="content-wrap">
-          <div class="content">
+          
+
+          <div class="content post posts-expand">
             
 
-  <div class="posts-expand">
-      
+    
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2019/10/10/线段树分治/">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2019/10/10/%E7%BA%BF%E6%AE%B5%E6%A0%91%E5%88%86%E6%B2%BB/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
       <meta itemprop="name" content="Kewth">
       <meta itemprop="description" content="HNFMS 现役 OIer">
-      <meta itemprop="image" content="/images/avatar.jpeg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="KeBlog">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            线段树分治
-            
-
-          
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          线段树分治
+        </h1>
 
         <div class="post-meta">
 
           
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
+                <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              
-                
-              
-
               <time title="创建时间：2019-10-10 10:00:02" itemprop="dateCreated datePublished" datetime="2019-10-10T10:00:02+08:00">2019-10-10</time>
             </span>
-          
-            
-
-            
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
+                  <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
                 <time title="修改时间：2019-12-06 20:37:17" itemprop="dateModified" datetime="2019-12-06T20:37:17+08:00">2019-12-06</time>
               </span>
-            
-          
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
+                <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
-              
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
                 </span>
-
-                
-                
-              
             </span>
-          
 
           
             <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
@@ -366,7 +221,6 @@
               <span class="post-meta-item-text">阅读次数：</span>
               <span id="busuanzi_value_page_pv"></span>
             </span>
-          
 
         </div>
       </header>
@@ -440,33 +294,23 @@ dfs 到一个新点 v 一定会使深度 + 1 ，将当前深度 d 的线性基�
     
     
     
-        
-      
 
       <footer class="post-footer">
 
         
 
-          <div class="post-nav">
-            <div class="post-nav-next post-nav-item">
-              
-                <a href="/2019/10/10/组合数公式/" rel="next" title="组合数公式">
-                  <i class="fa fa-chevron-left"></i> 组合数公式
-                </a>
-              
-            </div>
 
-            <span class="post-nav-divider"></span>
-
-            <div class="post-nav-prev post-nav-item">
-              
-                <a href="/2019/10/10/类欧几里得/" rel="prev" title="类欧几里得">
-                  类欧几里得 <i class="fa fa-chevron-right"></i>
-                </a>
-              
-            </div>
-          </div>
         
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/10/10/%E7%BB%84%E5%90%88%E6%95%B0%E5%85%AC%E5%BC%8F/" rel="prev" title="组合数公式">
+      <i class="fa fa-chevron-left"></i> 组合数公式
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/10/10/%E7%B1%BB%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97/" rel="next" title="类欧几里得">
+      类欧几里得 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
       </footer>
     
   </article>
@@ -474,14 +318,33 @@ dfs 到一个新点 v 一定会使深度 + 1 ，将当前深度 d 的线性基�
   
   
 
-  </div>
 
 
           </div>
           
-    
     <div class="comments" id="gitalk-container"></div>
-  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
 
         </div>
           
@@ -494,11 +357,6 @@ dfs 到一个新点 v 一定会使深度 + 1 ，将当前深度 d 的线性基�
 
   <aside class="sidebar">
     <div class="sidebar-inner">
-        
-        
-        
-        
-      
 
       <ul class="sidebar-nav motion-element">
         <li class="sidebar-nav-toc">
@@ -512,136 +370,75 @@ dfs 到一个新点 v 一定会使深度 + 1 ，将当前深度 d 的线性基�
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
           <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#作用"><span class="nav-number">1.</span> <span class="nav-text">作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线段树结构"><span class="nav-number">2.</span> <span class="nav-text">线段树结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#例题"><span class="nav-number">3.</span> <span class="nav-text">例题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#暴力线性基"><span class="nav-number">3.1.</span> <span class="nav-text">暴力线性基</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#时间轴"><span class="nav-number">3.2.</span> <span class="nav-text">时间轴</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线段树优化"><span class="nav-number">3.3.</span> <span class="nav-text">线段树优化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#处理懒标记"><span class="nav-number">3.3.1.</span> <span class="nav-text">处理懒标记</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分治"><span class="nav-number">3.3.2.</span> <span class="nav-text">分治</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#真---例题"><span class="nav-number">4.</span> <span class="nav-text">真 - 例题</span></a></li></ol></div>
-        
       </div>
       <!--/noindex-->
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image"
-      src="/images/avatar.jpeg"
-      alt="Kewth">
+    <img class="site-author-image" itemprop="image" alt="Kewth"
+      src="/images/avatar.jpeg">
   <p class="site-author-name" itemprop="name">Kewth</p>
   <div class="site-description" itemprop="description">HNFMS 现役 OIer</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
-        
           <a href="/archives/">
         
-          <span class="site-state-item-count">49</span>
+          <span class="site-state-item-count">50</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
-    
-      
-      
       <div class="site-state-item site-state-categories">
-        
-          
             <a href="/categories/">
           
-        
         <span class="site-state-item-count">4</span>
-        <span class="site-state-item-name">分类</span>
-        </a>
+        <span class="site-state-item-name">分类</span></a>
       </div>
-    
-      
-      
       <div class="site-state-item site-state-tags">
-        
-          
             <a href="/tags/">
           
-        
         <span class="site-state-item-count">49</span>
-        <span class="site-state-item-name">标签</span>
-        </a>
+        <span class="site-state-item-name">标签</span></a>
       </div>
-    
   </nav>
 </div>
-  <div class="feed-link motion-element">
-    <a href="/atom.xml" rel="alternate">
-      <i class="fa fa-rss"></i>RSS
-    </a>
-  </div>
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
-      
-      
-        
-      
-      
-        
-      
-        <a href="https://github.com/Kewth" title="GitHub &rarr; https://github.com/Kewth" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+        <a href="https://github.com/Kewth" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Kewth" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
       </span>
-    
       <span class="links-of-author-item">
-      
-      
-        
-      
-      
-        
-      
-        <a href="mailto:Kewth.K.D@outlook.com" title="E-Mail &rarr; mailto:Kewth.K.D@outlook.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+        <a href="mailto:Kewth.K.D@outlook.com" title="E-Mail → mailto:Kewth.K.D@outlook.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
       </span>
-    
       <span class="links-of-author-item">
-      
-      
-        
-      
-      
-        
-      
-        <a href="qq:1344205350" title="QQ &rarr; qq:1344205350" rel="noopener" target="_blank"><i class="fa fa-fw fa-qq"></i>QQ</a>
+        <a href="qq:1344205350" title="QQ → qq:1344205350" rel="noopener" target="_blank"><i class="fab fa-qq fa-fw"></i>QQ</a>
       </span>
-    
       <span class="links-of-author-item">
-      
-      
-        
-      
-      
-        
-      
-        <a href="https://www.luogu.org/space/show?uid=52232" title="Luogu &rarr; https://www.luogu.org/space/show?uid=52232" rel="noopener" target="_blank"><i class="fa fa-fw fa-code-fork"></i>Luogu</a>
+        <a href="https://www.luogu.org/space/show?uid=52232" title="Luogu → https:&#x2F;&#x2F;www.luogu.org&#x2F;space&#x2F;show?uid&#x3D;52232" rel="noopener" target="_blank"><i class="fab fa-code-fork fa-fw"></i>Luogu</a>
       </span>
-    
   </div>
 
 
   <div class="links-of-blogroll motion-element">
-    <div class="links-of-blogroll-title">
-      <i class="fa fa-fw fa-link"></i>
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
       Links | 友链
     </div>
     <ul class="links-of-blogroll-list">
         <li class="links-of-blogroll-item">
-          <a href="https://ricardoships.github.io" title="https://ricardoships.github.io" rel="noopener" target="_blank">Ricardoships(AFO)</a>
+          <a href="https://ricardoships.github.io/" title="https:&#x2F;&#x2F;ricardoships.github.io" rel="noopener" target="_blank">Ricardoships(AFO)</a>
         </li>
-      
         <li class="links-of-blogroll-item">
-          <a href="https://luoyuyang.cf" title="https://luoyuyang.cf" rel="noopener" target="_blank">lyy(AFO)</a>
+          <a href="https://luoyuyang.cf/" title="https:&#x2F;&#x2F;luoyuyang.cf" rel="noopener" target="_blank">lyy(AFO)</a>
         </li>
-      
         <li class="links-of-blogroll-item">
-          <a href="https://zrz-orz.github.io" title="https://zrz-orz.github.io" rel="noopener" target="_blank">zrz_orz(AFO)</a>
+          <a href="https://zrz-orz.github.io/" title="https:&#x2F;&#x2F;zrz-orz.github.io" rel="noopener" target="_blank">zrz_orz(AFO)</a>
         </li>
-      
         <li class="links-of-blogroll-item">
-          <a href="https://qiuly.xyz" title="https://qiuly.xyz" rel="noopener" target="_blank">Qiuly</a>
+          <a href="https://qiuly.xyz/" title="https:&#x2F;&#x2F;qiuly.xyz" rel="noopener" target="_blank">Qiuly</a>
         </li>
-      
         <li class="links-of-blogroll-item">
-          <a href="https://www.cnblogs.com/Lskkkno1" title="https://www.cnblogs.com/Lskkkno1" rel="noopener" target="_blank">Lskkkno1</a>
+          <a href="https://www.cnblogs.com/Lskkkno1" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;Lskkkno1" rel="noopener" target="_blank">Lskkkno1</a>
         </li>
-      
     </ul>
   </div>
 
@@ -659,7 +456,10 @@ dfs 到一个新点 v 一定会使深度 + 1 ，将当前深度 d 的线性基�
       <div class="footer-inner">
         
 
+        
+
 <div class="copyright">
+  
   &copy; 
   <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
@@ -667,12 +467,7 @@ dfs 到一个新点 v 一定会使深度 + 1 ，将当前深度 d 的线性基�
   </span>
   <span class="author" itemprop="copyrightHolder">Kewth</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0
-  </div>
-  <span class="post-meta-divider">|</span>
-  <div class="theme-info">
-      
-    主题 – <a href="https://muse.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.4.1
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
   </div>
 
         
@@ -686,9 +481,7 @@ dfs 到一个新点 v 一定会使深度 + 1 ，将当前深度 d 的线性基�
         <span id="busuanzi_value_site_uv"></span>
       </span>
     </span>
-  
     <span class="post-meta-divider">|</span>
-  
     <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
       <span class="post-meta-item-icon">
         <i class="fa fa-eye"></i>
@@ -697,7 +490,6 @@ dfs 到一个新点 v 一定会使深度 + 1 ，将当前深度 d 的线性基�
         <span id="busuanzi_value_site_pv"></span>
       </span>
     </span>
-  
 </div>
 
 
@@ -707,140 +499,122 @@ dfs 到一个新点 v 一定会使深度 + 1 ，将当前深度 d 的线性基�
 
 
 
-
-
-
-
-        
       </div>
     </footer>
   </div>
 
   
-  <script src="/lib/anime.min.js?v=3.1.0"></script>
-  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-<script src="/js/utils.js?v=7.4.1"></script><script src="/js/motion.js?v=7.4.1"></script>
-<script src="/js/schemes/muse.js?v=7.4.1"></script>
-<script src="/js/next-boot.js?v=7.4.1"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
 
 
-
-  
-
+<script src="/js/schemes/muse.js"></script>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<script src="/js/next-boot.js"></script>
 
 
 
 
   
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   
-    
+
+  
       
-<script type="text/x-mathjax-config">
 
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
-      processEscapes: true,
-      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    },
-    TeX: {
-      equationNumbers: {
-        autoNumber: 'AMS'
-      }
-    }
-  });
-
-  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
-    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
-      if (data.display) {
-        var next = data.script.nextSibling;
-        while (next && next.nodeName.toLowerCase() === '#text') {
-          next = next.nextSibling;
-        }
-        if (next && next.nodeName.toLowerCase() === 'br') {
-          next.parentNode.removeChild(next);
-        }
-      }
-    });
-  });
-
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for (i = 0; i < all.length; i += 1) {
-      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
-      if (element.nodeName.toLowerCase() == 'li') {
-        element = element.parentNode;
-      }
-      element.classList.add('has-jax');
-    }
-  });
-</script>
 <script>
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
-    MathJax.Hub.Typeset();
-  }, window.MathJax);
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
 </script>
 
     
-  
-
-  
 
   
 
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
 
 <script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
   NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
     var gitalk = new Gitalk({
-      clientID: '5a2fdd60fe2f91777a6b',
+      clientID    : '5a2fdd60fe2f91777a6b',
       clientSecret: '9ddb762244fffc5caff2490a05e53dbca8ae4902',
-      repo: 'hexo-gitalk',
-      owner: 'Kewth',
-      admin: ['Kewth'],
-      id: 'aaea4b7fc740a0ed6510f6f72aeb1112',
+      repo        : 'hexo-gitalk',
+      owner       : 'Kewth',
+      admin       : ['Kewth'],
+      id          : 'aaea4b7fc740a0ed6510f6f72aeb1112',
         language: 'zh-CN',
-      
-      distractionFreeMode: 'true'
+      distractionFreeMode: true
     });
     gitalk.render('gitalk-container');
   }, window.Gitalk);
-</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config("");
+});
 </script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
 
 </body>
 </html>
