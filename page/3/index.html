@@ -402,7 +402,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-30 19:40:11" itemprop="dateModified" datetime="2020-03-30T19:40:11+08:00">2020-03-30</time>
+                <time title="修改时间：2020-05-19 20:30:23" itemprop="dateModified" datetime="2020-05-19T20:30:23+08:00">2020-05-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -435,69 +435,14 @@
 <h4 id="理论">理论</h4>
 <p>假设要求 <span class="math inline">\(S(n) = \sum_{i=1}^n f(i)\)</span> 。</p>
 <p>min25 筛可大致分为两步。</p>
-<h5 id="step-1">Step 1</h5>
-<p>第一步处理的是 <span class="math inline">\(f\)</span> 在质数上的取值的和。<br />
-令 <span class="math inline">\(F(x) = [x \in Prime] f(x)\)</span> ，那么这一步的目标是筛出 <span class="math inline">\(F\)</span> 的前缀和。<br />
-准确地讲，是 <span class="math inline">\(F\)</span> 的前缀和函数 <span class="math inline">\(S_F\)</span> 在每个形如 <span class="math inline">\(\frac{n}{d}\)</span> 的数上的取值。</p>
-<p>首先需要将 <span class="math inline">\(f(i)\)</span> 拆成若干完全积性函数的和，<br />
-只需考虑 <span class="math inline">\(F\)</span> ，也就是 <span class="math inline">\(f(p^k)\)</span> 的取值。<br />
-如果是关于 <span class="math inline">\(p\)</span> 的多项式，每个单项式对应的就是一个完全积性函数。</p>
-<p>假设现在要筛一个完全积性函数 <span class="math inline">\(h\)</span> ，要能快速计算出 <span class="math inline">\(S_h = \sum_{i=1}^n h(i)\)</span> 。<br />
-这一步的主要思想是，一个一个枚举质数 <span class="math inline">\(p\)</span> ，筛掉最小质因子为 <span class="math inline">\(p\)</span> 的合数的取值。<br />
-而合数 <span class="math inline">\(x\)</span> 的最小质因子为 <span class="math inline">\(p\)</span> 的必要条件是 <span class="math inline">\(p^2 \leq x\)</span> ，即 <span class="math inline">\(p \leq \sqrt{x}\)</span> 。<br />
-那么只需要枚举 <span class="math inline">\(\sqrt{n}\)</span> 以内的质数去筛即可。</p>
-<p>假设现在筛掉了前 <span class="math inline">\(i - 1\)</span> 个质因子得到一个这个值：</p>
-<p><span class="math display">\[g(n, i - 1) = \sum_{x=1}^n [x \in Prime \; or \; minp(x) &gt; P_{i-1}] h(x)\]</span></p>
-<p>其中 <span class="math inline">\(P_i\)</span> 表示 <span class="math inline">\(\sqrt{n}\)</span> 以内第 <span class="math inline">\(i\)</span> 个质数。</p>
-<p>那么接下来要筛最小质因子为 <span class="math inline">\(P_i\)</span> 的合数：</p>
-<p><span class="math display">\[g(n, i) = g(n, i - 1) - \sum_{x=1}^n [minp(x) = P_i \; and \; x \notin Prime] h(x)\]</span></p>
-<p>由于 <span class="math inline">\(h\)</span> 是完全积性函数，<span class="math inline">\(P_i\)</span> 可以直接提出来，得到（这里的除号表示整除）：</p>
-<p><span class="math display">\[
-\begin{equation}
-\begin{aligned}
-g(n, i) &amp;= g(n, i - 1) - h(P_i) \sum_{x=1}^{n/P_i} [minp(x) \geq P_i] h(x) \\\\
-&amp;= g(n, i - 1) - h(P_i) (g(\frac{n}{P_i}, i - 1) - \sum_{x=1}^{n/P_i} [x \in Prime \; and \; minp(x) &lt; P_i] h(x)) \\\\
-&amp;= g(n, i - 1) - h(P_i) (g(\frac{n}{P_i}, i - 1) - \sum_{j=1}^{i-1} h(P_j)) \\\\
-&amp;= g(n, i - 1) - h(P_i) (g(\frac{n}{P_i}, i - 1) - ph_{i - 1}) \\\\
-\end{aligned}
-\end{equation}
-\]</span></p>
-<p>其中 <span class="math inline">\(ph_i\)</span> 就是 <span class="math inline">\(h\)</span> 在前 <span class="math inline">\(i\)</span> 个质数上的取值和，注意 <span class="math inline">\(P_i \leq \sqrt{n}\)</span> ，这是可以直接筛的。</p>
-<p>那么上面的式子就是 <span class="math inline">\(g\)</span> 的递推式，不难发现第一维的取值都是 <span class="math inline">\(\frac{n}{d}\)</span> 的形式，第二维可以滚动。<br />
-直接按照递推式算，就可以在 <span class="math inline">\(O(\sqrt{n} |P|)\)</span> 的时间筛出需要的东西，也就是 <span class="math inline">\(g(n, |P|)\)</span> 。<br />
-这还是不够的，需要优化，由于最小质因子的取值在根号以内，所以递推时只需考虑满足 <span class="math inline">\(n \geq P_i^2\)</span> 的 <span class="math inline">\(g(n, i)\)</span> 。<br />
-当 <span class="math inline">\(n &lt; P_i^2\)</span> 时，随着 <span class="math inline">\(i\)</span> 的增大 <span class="math inline">\(g(n, i)\)</span> 的值不会改变，由于是滚动数组，直接 skip 掉就好了。</p>
-<h5 id="step-2">Step 2</h5>
-<p>上面将每个完全积性函数的 <span class="math inline">\(g(n, |P|)\)</span> 加起来，得到 <span class="math inline">\(S_F(n)\)</span> ，表示 <span class="math inline">\(f\)</span> 在质数上的取值 <span class="math inline">\(F\)</span> 的前缀和。</p>
-<p>仍然利用最小质因子，不同的是，上一步从所有的取值开始从小到大把对应的最小质因子的合数的贡献给删掉的到质数的取值。<br />
-那这一步能不能反过来，从质数的取值开始，从大到小把对应的最小质因子的合数的贡献给加上最后得到所有数的取值？</p>
-<p>并不能，事实上是从空值开始，从大到小把对应的最小质因子的数的贡献加上最后得到所有数的取值，<br />
-合数可以递推并类似地利用积性函数的性质提出一个因子，质数则直接用上一步预处理的来算。</p>
-<p>那么假设现在以及算上了比第 <span class="math inline">\(i\)</span> 个更大的质数为最小质因子的数的值得到了这个：</p>
-<p><span class="math display">\[S(n, i) = \sum_{x=1}^n [minp(x) &gt; P_i] f(x)\]</span></p>
-<p>不难推导出：</p>
-<p><span class="math display">\[S(n, i)=S_F(n) - pf_i + \sum_{P_j &lt; P_k \leq \sqrt{n}} \sum_{e&gt;0,P_k^e \leq n}f(P_k^e)(S(\frac{n}{P_k^e}, k) + [e&gt;1])\]</span></p>
-<p>其中 <span class="math inline">\(pf_i\)</span> 就是 <span class="math inline">\(f\)</span> 在前 <span class="math inline">\(i\)</span> 个质数上的取值和，注意 <span class="math inline">\(P_i \leq \sqrt{n}\)</span> ，这是可以直接筛的。</p>
-<p>同样地第一维的取值都是 <span class="math inline">\(\frac{n}{d}\)</span> 的形式，但是第二维无法滚动，<br />
-但事实上后面的部分直接递归计算即可，以下是参考实现：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> lolong;</span><br><span class="line"><span class="function">lolong <span class="title">S</span><span class="params">(lolong i, <span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(prime[j] &gt; i) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	lolong res = S_F[id(i)] - pf[j];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> k = j + <span class="number">1</span>; k &lt;= p <span class="keyword">and</span> <span class="number">1l</span>l * prime[k] * prime[k] &lt;= i; k ++) &#123;</span><br><span class="line">		<span class="keyword">int</span> e = <span class="number">1</span>;</span><br><span class="line">		lolong pr = prime[k];</span><br><span class="line">		<span class="keyword">while</span>(pr &lt;= i) &#123;</span><br><span class="line">			res += (prime[k] ^ e) * (S(i / pr, k) + (e &gt; <span class="number">1</span>));</span><br><span class="line">			pr *= prime[k];</span><br><span class="line">			e ++;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>复杂度似乎是 <span class="math inline">\(O(\frac{n^{\frac{3}{4}}}{logn})\)</span> ，大概是能跑 <span class="math inline">\(10^{11}\)</span> 的。</p>
-<p>另外 min25 筛还有个树状数组的优化版本，也是 min25 本人引入的，复杂度 <span class="math inline">\(O(n^{\frac{2}{3}})\)</span> ，<br />
-大概能跑 <span class="math inline">\(10^{13}\)</span> ？<br />
-但很不常见，网上可供学习的资料很少，有兴趣可以直接看 <a href="https://min-25.hatenablog.com/entry/2018/11/11/172216" target="_blank" rel="noopener">min25 的博客</a>。</p>
-<h2 id="powerful-number">Powerful number</h2>
-<p>这个在 OI 中用得少，我也只是做过两道题，大概提一下。</p>
-<p>称 1 和每个质因子次数大于 1 的合数为 Powerful number 。<br />
-首先有个性质就是 <span class="math inline">\(n\)</span> 以内的 Powerful number 数量是 <span class="math inline">\(O(\sqrt{n})\)</span> 的。</p>
-<p>还是筛数论函数 <span class="math inline">\(f\)</span> 的前缀和 <span class="math inline">\(S\)</span> ，需要构造两个函数 <span class="math inline">\(g, h\)</span> 满足 <span class="math inline">\(f = g \cdot h\)</span> 。<br />
-如果 <span class="math inline">\(g\)</span> 只在 Powerful number 上有值并且 <span class="math inline">\(h\)</span> 的前缀和 <span class="math inline">\(S_h\)</span> 容易求或者可以筛的话，<br />
-由 <span class="math inline">\(S(n) = \sum_{i=1}^n \sum_{d|x} g(d) h(\frac{d}{x}) = \sum_{d=1}^n G(d) S_h(n/d)\)</span><br />
-可以通过枚举 Powerful number 快速计算答案。</p>
-<p>至于枚举 Powerful number 的方法，注意到 Powerful number 的质因子都是 <span class="math inline">\(\sqrt{n}\)</span> 以内的，<br />
-这可以通过反证法证明，如果有大于 <span class="math inline">\(\sqrt{n}\)</span> 的质因子它的次数不可能超过 1 。<br />
-那么筛出 <span class="math inline">\(\sqrt{n}\)</span> 以内的质数，再通过搜索枚举每个质数的次数即可。</p>
-<p>复杂度似乎是 <span class="math inline">\(O(n^{\frac{2}{3}})\)</span> ，可以跑很快，5s 内 <span class="math inline">\(10^{13}\)</span> 不成问题。</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/10/15/%E4%BA%9A%E7%BA%BF%E6%80%A7%E7%AD%9B/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -549,7 +494,7 @@ g(n, i) &amp;= g(n, i - 1) - h(P_i) \sum_{x=1}^{n/P_i} [minp(x) \geq P_i] h(x) \
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-06 20:37:17" itemprop="dateModified" datetime="2019-12-06T20:37:17+08:00">2019-12-06</time>
+                <time title="修改时间：2020-05-19 20:31:24" itemprop="dateModified" datetime="2020-05-19T20:31:24+08:00">2020-05-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -574,6 +519,7 @@ g(n, i) &amp;= g(n, i - 1) - h(P_i) \sum_{x=1}^{n/P_i} [minp(x) \geq P_i] h(x) \
       
           <p>自闭。<br />
 这大概是我打过最失败的一场比赛。</p>
+<p><del>UPDATE: 我还是太 naive 了，比起后面 Div1 爆零，这次还算好的。</del></p>
 <p>A 签到题，然而我在 14min 才 A ，我是真的不适合做手速题。</p>
 <p>B 行数开大点就是插头 DP ，然而行数只有 2 ，插头只有 3 种，<br />
 随便 DP 一下就行了，中间少考虑一种插头 WA 了一发，在 25min AC 。</p>
@@ -758,7 +704,7 @@ g(n, i) &amp;= g(n, i - 1) - h(P_i) \sum_{x=1}^{n/P_i} [minp(x) \geq P_i] h(x) \
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-04-07 19:44:14" itemprop="dateModified" datetime="2020-04-07T19:44:14+08:00">2020-04-07</time>
+                <time title="修改时间：2020-05-19 20:31:44" itemprop="dateModified" datetime="2020-05-19T20:31:44+08:00">2020-05-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -790,105 +736,14 @@ RMQ 真是流皮，每次深入思考都会有新的发现，所以有了新的�
 <p>但是如果只是静态询问的话，可以用 ST 表预处理后 <span class="math inline">\(O(1)\)</span> 在线处理询问，<br />
 复杂度 <span class="math inline">\(O(nlogn + q)\)</span> 。</p>
 <p>这两个做法烂大街了，是基础中的基础，不是本文讨论重点。</p>
-<h2 id="区间定长特殊做法">区间定长特殊做法</h2>
-<p>即所有的询问区间的长度都为与询问无关的定值 <span class="math inline">\(len\)</span> 。<br />
-直接当做任意区间做，可以做到 <span class="math inline">\(O(n + qlogn)\)</span> 或 <span class="math inline">\(O(nloglen + q)\)</span> 。</p>
-<p>这种情况下有更好理解的预处理方法，只需优先队列。<br />
-先把 <span class="math inline">\([1, l]\)</span> 的数扔进优先队列里，之后不断把区间右移，<br />
-<span class="math inline">\([l, r]\)</span> 右移的过程相当于加一个点 <span class="math inline">\(r + 1\)</span> 并删掉点 <span class="math inline">\(l\)</span> ，用优先队列维护即可。<br />
-复杂度 <span class="math inline">\(O(nlogn + q)\)</span> 。</p>
-<p>但这还不够，还有线性的预处理方法，用单调双端队列代替上面的优先队列。<br />
-同样是让区间不断右移，单调双端队列中的值是单调不增的， 那么最左边的值一定是最大值。<br />
-加点 <span class="math inline">\(r + 1\)</span> 前维护单调性，删点 <span class="math inline">\(l\)</span> 时判断是不是删的最大值， 如果是就删点最左边的点即可。<br />
-复杂度 <span class="math inline">\(O(n + q)\)</span> 。</p>
-<h2 id="随机询问期望做法">随机询问期望做法</h2>
-<p>这种情况下有个 <span class="math inline">\(O(n + q)\)</span> 的在线做法。</p>
-<p>考虑分块，设块的大小为 <span class="math inline">\(b\)</span> ， <span class="math inline">\(O(n)\)</span> 预处理每个块的最大值。</p>
-<p>那么对于询问 <span class="math inline">\([l, r]\)</span> ，若该区间跨过了多个块，问题就分为两个部分：</p>
-<ol type="1">
-<li>求跨过的块区间的最大值。</li>
-<li>求两端点所在零散的块的最大值。</li>
-</ol>
-<p>第一个问题就是个子问题，并且数据规模减小到了 <span class="math inline">\(O(\frac{n}{b})\)</span> ，<br />
-为了保证询问 <span class="math inline">\(O(1)\)</span> ，可以用上面一般性的普通做法提到的 ST 表，<br />
-就可以 <span class="math inline">\(O(\frac{n}{b} log\frac{n}{b})\)</span> 进行预处理然后 <span class="math inline">\(O(1)\)</span> 询问。</p>
-<p>第二个问题端点所在零散的块是该块的一段前缀或者后缀，<br />
-只需 <span class="math inline">\(O(n)\)</span> 对于每个块预处理前缀最大值和后缀最大值即可 <span class="math inline">\(O(1)\)</span> 询问。</p>
-<p>那么若询问区间在同一个块内呢？<br />
-自然是暴力扫，但是这样的复杂度是 <span class="math inline">\(O(b)\)</span> 的。<br />
-但询问区间随机的情况下，不难得出两个端点在同一个块内的概率是 <span class="math inline">\(\frac{b}{n}\)</span> 。<br />
-那么这种情况询问的期望复杂度是 <span class="math inline">\(O(\frac{b^2}{n})\)</span> 的。</p>
-<p>总复杂度 <span class="math inline">\(O(n + \frac{n}{b} log\frac{n}{b} + q + q \frac{b^2}{n})\)</span> 。<br />
-当 <span class="math inline">\(b\)</span> 至少为 <span class="math inline">\(O(logn)\)</span> 时，预处理的 <span class="math inline">\(O(\frac{n}{b} log\frac{n}{b})\)</span> 不超过 <span class="math inline">\(O(n)\)</span> 。<br />
-当 <span class="math inline">\(b\)</span> 至多为 <span class="math inline">\(O(\sqrt{n})\)</span> 时，询问的 <span class="math inline">\(O(q \frac{b^2}{n})\)</span> 不超过 <span class="math inline">\(O(q)\)</span> 。<br />
-因此 <span class="math inline">\(b\)</span> 的大小取 <span class="math inline">\(O(logn)\)</span> 到 <span class="math inline">\(O(\sqrt{n})\)</span> 之间即可。</p>
-<p>另外，当 <span class="math inline">\(b = \sqrt{n}\)</span> 时，块的个数也是 <span class="math inline">\(O(\sqrt{n})\)</span> 的，<br />
-此时根本不需要 ST 表，直接 <span class="math inline">\(O(\sqrt{n}^2)\)</span> 暴力预处理处理所有可能区间的最大值即可。<br />
-这样复杂度不变，常数可能还能小一点。</p>
-<h4 id="毒瘤活动">毒瘤活动</h4>
-<p>值得注意的是，虽然这个做法的复杂度仅适用于询问区间随机的情况，但是一般不会卡。</p>
-<p>来点有意思的娱乐活动，考虑怎么卡掉它，以及怎么防止被出题人卡。</p>
-<p>想要卡这个做法就要尽量让询问区间在一个块内，卡成 <span class="math inline">\(O(b)\)</span> 的询问复杂度。<br />
-但在不知道块的大小的情况下，假设给一个区间长 <span class="math inline">\(len\)</span> 的询问，实际块的大小为 <span class="math inline">\(b\)</span> ，<br />
-那么两个端点在同一个块内的概率大概是 <span class="math inline">\(\frac{b-len+1}{b}\)</span> ，期望复杂度就是 <span class="math inline">\(O(\frac{(b-len+1)len}{b})\)</span> 。</p>
-<p>现在出题人要在不知道 <span class="math inline">\(b\)</span> 的情况下希望上面的复杂度尽量大，选手要在不知道 <span class="math inline">\(len\)</span> 的情况下希望上面复杂度尽量小。<br />
-<del>怎么感觉像博弈论</del></p>
-<p>最坏的情况是 <span class="math inline">\(len = \frac{b}{2}\)</span> 的时候，此时询问的期望复杂度为 <span class="math inline">\(O(\frac{b}{4})\)</span> 。<br />
-选手希望预处理和询问的复杂度最大值最小，也就是让它们相等，此时 <span class="math inline">\(b\)</span> 的最优取值大致为 <span class="math inline">\(2\sqrt{\frac{n}{q} logn}\)</span> ，<br />
-这里说是“大致”，是因为为了方便计算将 <span class="math inline">\(O(log \frac{n}{b})\)</span> 看做了 <span class="math inline">\(O(logn)\)</span> 。<br />
-将 <span class="math inline">\(n, q\)</span> 看做同阶的话，上述取值为 <span class="math inline">\(2\sqrt{logn}\)</span> ，此时复杂度为 <span class="math inline">\(O(\frac{n\sqrt{logn}}{2})\)</span> ，<br />
-也就是 <span class="math inline">\(O(n\sqrt{logn})\)</span> ，得出结论，在询问区间非随机的情况下，该算法最优可以做到严格 <span class="math inline">\(O(n\sqrt{logn})\)</span> 。</p>
-<p>关键这算法常数小，还好写，取 b 为 <span class="math inline">\(O(\sqrt{logn})\)</span> 的话，复杂度 <span class="math inline">\(O((n + q)\sqrt{logn})\)</span> 在绝大多数情况都足够了。</p>
-<p>另外，此时没必要维护块内前缀后缀最大值，因为块足够小，询问的时候对零散的块暴力扫就好了，复杂度不变。</p>
-<h2 id="一般性较优做法">一般性较优做法</h2>
-<p>自己 yy 出来的，权当过渡吧。</p>
-<p>上面提到的 <span class="math inline">\(O((n + q)\sqrt{logn})\)</span> 算法中，通过分块将问题规模缩小到了 <span class="math inline">\(\frac{n}{b}\)</span> ，<br />
-然后对于这个规模的问题使用 ST 表，预处理复杂度近似看做 <span class="math inline">\(O(\frac{n}{b}logn)\)</span> 。<br />
-而既然这是个子问题，为什么还要用 ST 表？能不能继续分块直到 ST 表的预处理复杂度在 <span class="math inline">\(O(n)\)</span> 以内？</p>
-<p>当然是可以的，这个时候块的大小又要取多少呢？<br />
-取 <span class="math inline">\(b = 2\)</span> 就够了，这个时候，相当于从底层向上建线段树，<br />
-第一层有 <span class="math inline">\(n\)</span> 个节点，第二层有 <span class="math inline">\(\frac{n}{2}\)</span> 个节点，第三层有 <span class="math inline">\(\frac{n}{4}\)</span> 个节点，<br />
-直到某一层只有 <span class="math inline">\(\frac{n}{logn}\)</span> 个节点时，不再向上建线段树，而是用 ST 表维护这 <span class="math inline">\(\frac{n}{logn}\)</span> 个点，<br />
-这样 ST 表的预处理就是 <span class="math inline">\(O(n)\)</span> 的，而此时这个线段树的树高是 <span class="math inline">\(O(loglogn)\)</span> 的。</p>
-<p>总时间复杂度 <span class="math inline">\(O(n + qloglogn)\)</span> ，事实上层数可以再少点，使得 ST 表预处理不严格 <span class="math inline">\(O(n)\)</span> 而是与询问复杂度相当，<br />
-但这样的话最优的层数难以计算，在此不讨论。</p>
-<h4 id="毒瘤活动-1">毒瘤活动</h4>
-<p>从下向上建线段树太麻烦了，怕不是要写 zkw ，考虑从上向下建。<br />
-由于最上面一层有 <span class="math inline">\(\frac{n}{logn}\)</span> 个节点，每个节点管辖的区间大小为 <span class="math inline">\(logn\)</span> ，<br />
-继续考虑分块，以 <span class="math inline">\(b = logn\)</span> 为块大小分块，那么就是块内直接建满的线段树，块间维护 ST 表。</p>
-<p><del>卧槽怎么又回到前面的做法了</del></p>
-<p>那么这个算法事实上就是通过线段树保证了块间查询严格 <span class="math inline">\(logb\)</span> ，也就是 <span class="math inline">\(loglogn\)</span> 。</p>
-<p>既然这样，为什么一定要用线段树呢？在每个块内依然维护 ST 表，复杂度就是 <span class="math inline">\(O(nloglogn + q)\)</span> 。</p>
-<p>通过上面的各种讨论，相信读者已经明白分块 RMQ 的强大，以及线段树和 ST 表（尤其是后者）在 RMQ 的重要性。<br />
-分块什么这么多东西目的基本就是去平衡 ST 表 / 线段树的询问和预处理的复杂度。</p>
-<p>update: 后来知道这玩意叫四个俄罗斯人算法 (Four Russian) 。</p>
-<h2 id="一般性标准做法">一般性标准做法</h2>
-<p>标准的 <span class="math inline">\(O(n + q)\)</span> RMQ 。</p>
-<p>离线的话可以建笛卡尔树将 RMQ 转换为 LCA ，然后用 Tarjan 处理。<br />
-明显的缺点是离线，并且空间开销较大。</p>
-<p>在线的话，有一个经典的常用做法，还是建笛卡尔树转 LCA ，然后求出树的欧拉序转为 +-1 RMQ 。<br />
-而 +-1 RMQ 也是通过分块实现 <span class="math inline">\(O(n + q)\)</span> 复杂度的，<br />
-利用的是 +-1 RMQ 的差分数组在每个块内只有 <span class="math inline">\(2^b\)</span> 中可能，其中 <span class="math inline">\(b\)</span> 是块大小，取 <span class="math inline">\(logn\)</span> 。<br />
-整个过程较为复杂，在 OI 中实用性较低，具体做法留个坑，到时候再补。</p>
-<p>这里重点介绍另一个同样能做到在线 + 线性的 RMQ 算法，并且相对于上面的做法更简单，常数也更优秀。</p>
-<h4 id="线性-rmq">线性 RMQ</h4>
-<p>该算法改进自之前在随机数据下的分块 RMQ ，<br />
-注意到当块大小为 <span class="math inline">\(O(logn)\)</span> 时，该算法唯一的瓶颈在于询问端点在同一个块内时需要暴力 <span class="math inline">\(O(logn)\)</span> 扫。<br />
-单独考虑每个块，考虑优化询问端点在该块的情况。<br />
-其中块大小为 <span class="math inline">\(b = O(logn)\)</span> 。</p>
-<p>利用之前提到的单调队列做法，如果对于每个点暴力存下块的左端点到该点的单调递减队列，<br />
-那么对于询问 [l, r] ，拿出 r 上的单调队列，在单调队列上找到第一个不小于 l 的位置，该位置上的值即区间最大值。<br />
-由于单调队列的大小是 <span class="math inline">\(O(b)\)</span> 即 <span class="math inline">\(O(logn)\)</span> 的，该做法复杂度 <span class="math inline">\(O((n + q)logn)\)</span> 。</p>
-<p>但是该做法有很大优化空间，由于 <span class="math inline">\(b\)</span> 足够小（一般认为它不超过字长 <span class="math inline">\(w\)</span> ），完全可以将每个点的单调队列状压，<br />
-这样预处理的时空复杂度就降到了 <span class="math inline">\(O(n)\)</span> 。<br />
-然后对于询问一个单调队列上第一个不小于 l 的位置，就是在一个二进制数 <span class="math inline">\(x\)</span> 上询问第一个位数不小于 l 的 1 的位数。<br />
-这通过位运算和内置函数可以很好实现，只需将 <span class="math inline">\(x\)</span> 右移 <span class="math inline">\(l mod b\)</span> 位来去掉单调队列上小于 l 的位置，<br />
-然后通过 <code>__builtin_ctz</code> <span class="math inline">\(O(1)\)</span> 找到第一个 1 的位置即可。<br />
-这样询问的复杂度就降到了 <span class="math inline">\(O(1)\)</span> ，总复杂度 <span class="math inline">\(O(n + q)\)</span> ，常数非常优秀。</p>
-<h4 id="完整实现">完整实现</h4>
-<p>以 bzoj1699 为例，该题的 rank1 就是用了这个线性 RMQ 做法，本人常数大，但还是狗到了 rank6 。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> debug(...) fprintf(stderr, __VA_ARGS__)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> io &#123;</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">int</span> SIZE = (<span class="number">1</span> &lt;&lt; <span class="number">21</span>) + <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">char</span> ibuf[SIZE], *iS, *iT, obuf[SIZE], *oS = obuf, *oT = oS + SIZE - <span class="number">1</span>, c, qu[<span class="number">55</span>]; <span class="keyword">int</span> f, qr, flg;</span><br><span class="line">	<span class="meta">#<span class="meta-keyword">define</span> gc() (iS == iT ? (iT = (iS = ibuf) + fread (ibuf, 1, SIZE, stdin), (iS == iT ? EOF : *iS ++)) : *iS ++)</span></span><br><span class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">flush</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">		fwrite (obuf, <span class="number">1</span>, <span class="keyword">size_t</span>(oS - obuf), <span class="built_in">stdout</span>);</span><br><span class="line">		oS = obuf;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">pc</span> <span class="params">(<span class="keyword">char</span> x)</span> </span>&#123;</span><br><span class="line">		*oS ++ = x;</span><br><span class="line">		<span class="keyword">if</span> (oS == oT) flush ();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">I</span>&gt;</span></span><br><span class="line"><span class="class">	<span class="title">inline</span> <span class="title">int</span> <span class="title">gi</span> (<span class="title">I</span> &amp;<span class="title">x</span>) &#123;</span></span><br><span class="line">		<span class="keyword">for</span> (f = <span class="number">1</span>, c = gc(); c != EOF &amp;&amp; (c &lt; <span class="string">'0'</span> || c &gt; <span class="string">'9'</span>); c = gc()) <span class="keyword">if</span> (c == <span class="string">'-'</span>) f = <span class="number">-1</span>;</span><br><span class="line">		<span class="keyword">for</span> (flg = x = <span class="number">0</span>; c != EOF &amp;&amp; c &lt;= <span class="string">'9'</span> &amp;&amp; c &gt;= <span class="string">'0'</span>; c = gc()) flg = <span class="number">1</span>, x = x * <span class="number">10</span> + (c &amp; <span class="number">15</span>); x *= f;</span><br><span class="line">		<span class="keyword">return</span> flg || c != EOF;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">I</span>&gt;</span></span><br><span class="line"><span class="class">	<span class="title">inline</span> <span class="title">void</span> <span class="title">print</span> (<span class="title">I</span> <span class="title">x</span>) &#123;</span></span><br><span class="line">		<span class="keyword">if</span> (!x) pc (<span class="string">'0'</span>); <span class="keyword">if</span> (x &lt; <span class="number">0</span>) pc (<span class="string">'-'</span>), x = -x;</span><br><span class="line">		<span class="keyword">while</span> (x) qu[++ qr] = x % <span class="number">10</span> + <span class="string">'0'</span>,  x /= <span class="number">10</span>;</span><br><span class="line">		<span class="keyword">while</span> (qr) pc (qu[qr --]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">Flusher_</span> &#123;</span>~Flusher_()&#123;flush();&#125;&#125;io_flusher_;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">operator</span> <span class="title">int</span> <span class="params">()</span> </span>&#123; <span class="keyword">int</span> x; <span class="keyword">return</span> io::gi(x), x; &#125;</span><br><span class="line">&#125; read;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">50005</span>, maxs = <span class="number">20005</span>, maxb = <span class="number">80</span>;</span><br><span class="line"><span class="keyword">int</span> a[maxn + maxb];</span><br><span class="line"><span class="keyword">int</span> highbit[maxs];</span><br><span class="line"><span class="keyword">int</span> stmax[maxs][maxb], stmin[maxs][maxb];</span><br><span class="line"><span class="keyword">int</span> premax[maxs][maxb], premin[maxs][maxb];</span><br><span class="line"><span class="keyword">int</span> sufmax[maxs][maxb], sufmin[maxs][maxb];</span><br><span class="line"><span class="keyword">int</span> quemax[maxs][maxb], quemin[maxs][maxb];</span><br><span class="line"><span class="keyword">int</span> stackmax[maxb], stackmin[maxb];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">chkmax</span><span class="params">(<span class="keyword">int</span> &amp;x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(y &gt; x) x = y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">chkmin</span><span class="params">(<span class="keyword">int</span> &amp;x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(y &lt; x) x = y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">min</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123; <span class="keyword">return</span> x &lt; y ? x : y; &#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">max</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123; <span class="keyword">return</span> x &gt; y ? x : y; &#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> n = read, q = read;</span><br><span class="line">	<span class="keyword">int</span> B = <span class="keyword">int</span>(log2(n));</span><br><span class="line">	<span class="keyword">int</span> S = (n - <span class="number">1</span>) / B + <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> b = <span class="number">0</span>; b &lt; S; b ++)</span><br><span class="line">		stmin[b][<span class="number">0</span>] = <span class="number">1000000000</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i ++) &#123;</span><br><span class="line">		a[i] = read;</span><br><span class="line">		chkmin(stmin[i / B][<span class="number">0</span>], a[i]);</span><br><span class="line">		chkmax(stmax[i / B][<span class="number">0</span>], a[i]);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> b = S - <span class="number">1</span>; b &gt;= <span class="number">0</span>; b --)</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> k = <span class="number">1</span>; b + (<span class="number">1</span> &lt;&lt; k) - <span class="number">1</span> &lt; S; k ++) &#123;</span><br><span class="line">			stmin[b][k] = min(stmin[b][k - <span class="number">1</span>], stmin[b + (<span class="number">1</span> &lt;&lt; (k - <span class="number">1</span>))][k - <span class="number">1</span>]);</span><br><span class="line">			stmax[b][k] = max(stmax[b][k - <span class="number">1</span>], stmax[b + (<span class="number">1</span> &lt;&lt; (k - <span class="number">1</span>))][k - <span class="number">1</span>]);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> b = <span class="number">0</span>; b &lt; S; b ++) &#123;</span><br><span class="line">		<span class="keyword">int</span> be = b * B;</span><br><span class="line">		premin[b][<span class="number">0</span>] = premax[b][<span class="number">0</span>] = a[be];</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> k = <span class="number">1</span>; k &lt; B; k ++) &#123;</span><br><span class="line">			premin[b][k] = min(premin[b][k - <span class="number">1</span>], a[be + k]);</span><br><span class="line">			premax[b][k] = max(premax[b][k - <span class="number">1</span>], a[be + k]);</span><br><span class="line">		&#125;</span><br><span class="line">		sufmin[b][B - <span class="number">1</span>] = sufmax[b][B - <span class="number">1</span>] = a[be + B - <span class="number">1</span>];</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> k = B - <span class="number">2</span>; k &gt;= <span class="number">0</span>; k --) &#123;</span><br><span class="line">			sufmin[b][k] = min(sufmin[b][k + <span class="number">1</span>], a[be + k]);</span><br><span class="line">			sufmax[b][k] = max(sufmax[b][k + <span class="number">1</span>], a[be + k]);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> b = <span class="number">0</span>; b &lt; S; b ++) &#123;</span><br><span class="line">		<span class="keyword">int</span> be = b * B;</span><br><span class="line">		<span class="keyword">int</span> spmin = <span class="number">0</span>, nowmin = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">int</span> spmax = <span class="number">0</span>, nowmax = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; B; i ++) &#123;</span><br><span class="line">			<span class="keyword">while</span>(spmin <span class="keyword">and</span> a[be + stackmin[spmin]] &gt; a[be + i])</span><br><span class="line">				nowmin ^= <span class="number">1</span> &lt;&lt; stackmin[spmin --];</span><br><span class="line">			<span class="keyword">while</span>(spmax <span class="keyword">and</span> a[be + stackmax[spmax]] &lt; a[be + i])</span><br><span class="line">				nowmax ^= <span class="number">1</span> &lt;&lt; stackmax[spmax --];</span><br><span class="line">			quemin[b][i] = (nowmin ^= <span class="number">1</span> &lt;&lt; (stackmin[++ spmin] = i));</span><br><span class="line">			quemax[b][i] = (nowmax ^= <span class="number">1</span> &lt;&lt; (stackmax[++ spmax] = i));</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= S; i ++)</span><br><span class="line">		highbit[i] = highbit[i &gt;&gt; <span class="number">1</span>] + <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">while</span>(q --) &#123;</span><br><span class="line">		<span class="keyword">int</span> l = read - <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">int</span> r = read - <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">int</span> L = l / B, R = r / B;</span><br><span class="line">		<span class="keyword">int</span> li = l % B, ri = r % B;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">int</span> min = <span class="number">1000000000</span>, max = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">if</span>(L == R) &#123;</span><br><span class="line">			chkmin(min, a[l + __builtin_ctz(quemin[R][ri] &gt;&gt; li)]);</span><br><span class="line">			chkmax(max, a[l + __builtin_ctz(quemax[R][ri] &gt;&gt; li)]);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> &#123;</span><br><span class="line">			chkmin(min, sufmin[L][li]);</span><br><span class="line">			chkmin(min, premin[R][ri]);</span><br><span class="line">			chkmax(max, sufmax[L][li]);</span><br><span class="line">			chkmax(max, premax[R][ri]);</span><br><span class="line">			<span class="keyword">int</span> len = R - L - <span class="number">1</span>;</span><br><span class="line">			<span class="keyword">int</span> k = highbit[len];</span><br><span class="line">			<span class="keyword">if</span>(len) &#123;</span><br><span class="line">				chkmin(min, stmin[L + <span class="number">1</span>][k]);</span><br><span class="line">				chkmin(min, stmin[R - (<span class="number">1</span> &lt;&lt; k)][k]);</span><br><span class="line">				chkmax(max, stmax[L + <span class="number">1</span>][k]);</span><br><span class="line">				chkmax(max, stmax[R - (<span class="number">1</span> &lt;&lt; k)][k]);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="comment">/* printf("%d\n", max - min); */</span></span><br><span class="line">		io::print(max - min);</span><br><span class="line">		io::pc(<span class="string">'\n'</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/10/11/RMQ/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1049,7 +904,7 @@ RMQ 真是流皮，每次深入思考都会有新的发现，所以有了新的�
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-06 20:37:17" itemprop="dateModified" datetime="2019-12-06T20:37:17+08:00">2019-12-06</time>
+                <time title="修改时间：2020-05-19 20:32:02" itemprop="dateModified" datetime="2020-05-19T20:32:02+08:00">2020-05-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1081,85 +936,14 @@ RMQ 真是流皮，每次深入思考都会有新的发现，所以有了新的�
 有多组询问，每个询问可以二分，但是每个询问二分的时间不能接受，<br />
 而不同询问的二分有共同点，这时就可以用整体二分把多个询问一起二分。<br />
 所以这是个离线算法。</p>
-<p>流程大概是这样的：<br />
-对于当前确定的区间 [L, R] ，取 M 为区间中点，<br />
-对于当前在确定在这个区间的每个询问进行 check ，<br />
-然后判断每个询问接下来是到 [L, M] 还是 [M + 1, R] 。<br />
-当 L = R 时，就得到了处理到这个区间的询问的答案。</p>
-<p>每个询问还是进行了 O(logV) 次 check ，<br />
-但是和直接二分不同的是，一般在每个区间内进行预处理后 check 可以做到 O(1) 或者 O(logn) 等，<br />
-一般需要数据结构维护（常见的有并查集，树状数组，线段树）。</p>
-<h2 id="栗子">栗子</h2>
-<p>就说静态区间第 k 大吧，当然可以用主席树搞，但是此处讨论整体二分。</p>
-<p>对于每个询问 [l, r] ，可以二分答案 x ，<br />
-然后 check 不超过 x 的数量，与 k 进行比较即可得出接下来该询问的答案区间。</p>
-<p>直接 check 是 O(V) 的，当然可以直接用数据结构维护，但是此处讨论整体二分。</p>
-<p>当前的答案区间是 [L, R] ，有若干询问的答案已经确定在这个区间内，<br />
-取中点 M ，维护值在 [L, M] 的每个数，对于每个询问就可以 O(logn) check 了，<br />
-然后如果询问 k 的答案在 [M + 1, R] ，那么 k 要减去当前 check 的值，以消去 [L, M] 的影响。<br />
-另外处理后要清空 [L, M] 的影响。</p>
-<p>这样做复杂度是 <span class="math inline">\(O(q logV logn)\)</span> 的。</p>
-<p>另一个实现是维护值在 [1, M] 的每个数，<br />
-二分到 [L, M] 前先把 [L, M] 的影响撤销掉，<br />
-二分到 [M + 1, R] 前只需在二分 [L, M] 时保证算上了 [L, M] 的贡献即可。<br />
-这样做的好处是避开了删除，有些用并查集的操作就可以实现了。</p>
-<p>这样做复杂度同样是 <span class="math inline">\(O(q logV logn)\)</span> 的。</p>
-<h2 id="带修">带修</h2>
-<p>就说带修区间第 k 大。</p>
-<p>将修改和查询统称为操作，只需保证操作在二分中的相对顺序，<br />
-处理答案在 [L, R] 的区间时按顺序做，碰到修改就修改，碰到查询就 check 。<br />
-但是修改哪来的答案？对于修改操作，只需将它放到它能影响的答案区间即可。<br />
-例如修改 <span class="math inline">\(a_i = x\)</span> ，分为两个操作：删除 <span class="math inline">\(a_i\)</span> 和添加 <span class="math inline">\(a_i = x\)</span> 。<br />
-前者的影响的区间需要包括 <span class="math inline">\(a_i\)</span> ，后者影响的区间需要包括 <span class="math inline">\(x\)</span> 。</p>
-<p>同样有两个实现，复杂度都是 <span class="math inline">\(O(q logV logn)\)</span> 。</p>
-<h2 id="在线">在线</h2>
-<p>毒瘤的地方来了，整体二分做强制在线。<br />
-这也是本文的真正讨论重点。</p>
-<p>还是拿静态区间第 k 大分别讨论上述的两种实现。</p>
-<h3 id="实现-1">实现 1</h3>
-<p>单独考虑一个询问 q ，观察它在整体二分中答案区间的移动过程。<br />
-假设当前二分到区间 [L, R] ，<br />
-q 能在整体二分中 O(logn) check 是因为权值在 [L, R] 的数被维护进了一个数据结构。<br />
-那如果 q 到达的所有可能答案区间的数据结构都提前构造好了，<br />
-q 就不需要整体二分，而可以直接在线询问。</p>
-<p>而所有可能的答案区间事实上形成了一个线段树的结构。<br />
-上面已经说到要求每个可能的答案区间的数据结构已经提前维护。<br />
-对应在线段树中就是线段树的每个节点都有数据结构维护该节点对应的答案区间。<br />
-在本题中就是要权值线段树套区间树状数组，<br />
-而为了节省空间开销，需要换成权值线段树套区间线段树。<br />
-这样把每个数先按取值找到对应的外层线段树，再按位置加到对应的内层线段树，<br />
-每个询问 (l, r, k) 就在外层线段树上二分，在内层线段树查询区间 [l, r] 的数的个数。</p>
-<p>时间复杂度依然是 <span class="math inline">\(O(q logV logn)\)</span> 的，但是空间复杂度为 <span class="math inline">\(O(V + n logV logn)\)</span> 。</p>
-<p>不难推广到更一般的情况，所有不带修的<strong>整体二分实现 1 + 数据结构 A</strong>， 都可以用<strong>线段树套数据结构 A</strong> 做到在线询问。<br />
-时间复杂度不变，但是空间开销会乘上 <span class="math inline">\(O(n)\)</span> ，<br />
-而当<strong>数据结构 A</strong> 支持动态开空间，即空间开销与修改次数 <span class="math inline">\(q\)</span> 成函数关系 <span class="math inline">\(O(qk)\)</span> 时，<br />
-这样就只会带来 <span class="math inline">\(O(n logV k)\)</span> 的额外空间开销。</p>
-<p>另外，这是可以支持带修的，对于修改操作，在线段树上找到影响的节点，<br />
-然后直接去修改节点上的<strong>数据结构 A</strong> 即可。</p>
-<h3 id="实现-2">实现 2</h3>
-<p>还是单独考虑一个询问 q ，此时它在整体二分中答案区间的移动过程固然还是线段树的形式。<br />
-但是不同的是，此时线段树的每个节点 [L, R] 需要保存维护 [1, R] 的数据结构，<br />
-换言之，不同节点之间相互不独立。<br />
-但既然所有需要的数据结构都是维护 [1, K] 这样的前缀形式，<br />
-不难想到可持久化，每个维护 [1, K] 的数据结构在维护 [1, K - 1] 的数据结构上修改即可。</p>
-<p>具体到静态区间第 k 大，按权值递增的顺序建可持久化区间线段树（树状数组难以可持久化）。<br />
-对于每个询问 (l, r, k) 二分答案 x 时只需要在第 x 颗区间线段树上查询 [l, r] 的数的个数。</p>
-<p>时间复杂度自然还是 <span class="math inline">\(O(q logV logn)\)</span> 的，空间复杂度为 <span class="math inline">\(O(V + n logn)\)</span> 。</p>
-<p>同样可以推广到更一般的情况，所有不带修的<strong>整体二分实现 2 + 数据结构 A</strong>， 都可以用<strong>可持久化数据结构 A</strong> 做到在线询问。<br />
-在可持久没有额外时间开销的前提下，时间复杂度不变，<br />
-否则若可持久化会带来 <span class="math inline">\(O(k)\)</span> 的额外时间复杂度，这样做的时间复杂度同样需要乘上 <span class="math inline">\(O(k)\)</span> 。<br />
-可持久化并查集就是个典型的例子。<br />
-同样空间复杂度也要乘上可持久化带来的额外开销。</p>
-<p>可惜的是，这不能很好的支持修改，因为每个修改影响到的历史版本是 <span class="math inline">\(O(V)\)</span> 级别的。</p>
-<h2 id="总结">总结</h2>
-<p>事实上做到在线后，干脆抛弃了整体二分的“整体查询”的思想，其实就和整体二分没什么关系了。<br />
-那么整体二分究竟是个什么玩意？<br />
-事实上绝大多数整体二分都无法做到比直接数据结构的时间复杂度优秀，<br />
-而且经过上述的讨论不难发现绝大多数整体二分都能直接被数据结构替代，<br />
-也因此整体二分往往被归在“骗分”，“非正解”一类。</p>
-<p>不过整体二分明显的优势在于空间复杂度和实现难度。 不过有时经过整体二分的转换后，就可以使用无法可持久化，或者空间开销大的数据结构，<br />
-上面的树状数组就是很好的例子，无论是实现 1 还是实现 2 ，做到在线都必须换成线段树。</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/10/10/%E6%95%B4%E4%BD%93%E4%BA%8C%E5%88%86/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 

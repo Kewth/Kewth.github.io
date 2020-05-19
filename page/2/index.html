@@ -199,7 +199,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-01-07 17:32:41" itemprop="dateModified" datetime="2020-01-07T17:32:41+08:00">2020-01-07</time>
+                <time title="修改时间：2020-05-19 20:26:38" itemprop="dateModified" datetime="2020-05-19T20:26:38+08:00">2020-05-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -223,21 +223,14 @@
 
       
           <p>以下公式均不给出证明，目的是为了让结论一目了然。</p>
-<h2 id="组合数相关">组合数相关</h2>
-<p><span class="math display">\[ C_n^m C_m^k = C_n^k C_{n-k}^{m-k} \]</span></p>
-<p>基本递推式 <span class="math display">\[ C_n^m = C_{n-1}^{m-1} + C_{n-1}^m \]</span></p>
-<p>二项式定理 <span class="math display">\[ (a+b)^n = \sum_{i=0}^n C_n^i a^i b^{n-i} \]</span></p>
-<p><span class="math display">\[ \sum_{i=0}^n (C_n^i)^2 = C_{2n}^n \]</span></p>
-<p><span class="math display">\[ C_{n+m}^k = \sum_{i=0}^k C_n^i C_m^{k-i} \]</span></p>
-<p>卢卡斯定理（要求 <span class="math inline">\(p\)</span> 是质数） <span class="math display">\[ C_n^m \% p = C_{n/p}^{m/p} C_{n \% p}^{m \% p} \% p \]</span></p>
-<h2 id="第一类斯特林数相关">第一类斯特林数相关</h2>
-<p><span class="math display">\[ s_n^m = s_{n-1}^{m-1} + (n-1) s_{n-1}^m \]</span></p>
-<p><span class="math display">\[ x^{\overline{n}} = \sum_{m} s_n^m x^m \]</span></p>
-<h2 id="第二类斯特林数相关">第二类斯特林数相关</h2>
-<p><span class="math display">\[ S_n^m = S_{n-1}^{m-1} + m S_{n-1}^m \]</span></p>
-<p><span class="math display">\[ n^m = \sum_{k=0}^m S_m^k C_n^k k! \]</span></p>
-<p>上式的二项式反演，组合数拆开后可转换为卷积形式 <span class="math display">\[ S_n^m = \frac{1}{m!} \sum_{k=0}^m (-1)^{m-k} C_m^k k^n \]</span></p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/01/02/%E7%BB%84%E5%90%88%E6%95%B0%E5%AD%A6%E7%8E%84%E5%AD%A6%E6%93%8D%E4%BD%9C/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -289,7 +282,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-01-06 19:05:12" itemprop="dateModified" datetime="2020-01-06T19:05:12+08:00">2020-01-06</time>
+                <time title="修改时间：2020-05-19 20:26:54" itemprop="dateModified" datetime="2020-05-19T20:26:54+08:00">2020-05-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -316,72 +309,14 @@
 <p>假设要求数论函数 <span class="math inline">\(f(x)\)</span> 的前缀和 <span class="math inline">\(S(n) = \sum_{i=1}^n f(i)\)</span> 。</p>
 <p>杜教筛的关键在于构造两个合适的函数 <span class="math inline">\(g, h\)</span> 满足 <span class="math inline">\(h = f \cdot g\)</span> 。</p>
 <p>这里的函数相乘指的是狄利克雷卷积。</p>
-<h2 id="理论">理论</h2>
-<p>则由 <span class="math inline">\(h = f \cdot g\)</span> 可得（以下除号表示整除）：</p>
-<p><span class="math display">\[
-\begin{equation}
-\begin{aligned}
-\sum_{i=1}^n h(i) &amp;= \sum_{i=1}^n\sum_{d|i}f(\frac{i}{d})g(d) \\\\
-&amp;= \sum_{d=1}^ng(d)\sum_{i=d}^nf(\frac{i}{d})[i|d] \\\\
-&amp;= \sum_{d=1}^ng(d)\sum_{i=1}^{n/d}f(i) \\\\
-&amp;= \sum_{d=1}^ng(d)S(\frac{n}{d}) \\\\
-&amp;= g(1)S(n) + \sum_{d=2}^ng(d)S(\frac{n}{d}) \\\\
-\end{aligned}
-\end{equation}
-\]</span></p>
-<p>所以 <span class="math inline">\(S(n) = \sum_{i=1}^n h(i) - \sum_{d=2}^n g(d)S(\frac{n}{d})\)</span> 。</p>
-<p>前提是每个 <span class="math inline">\(\sum_{i=1}^n h(i)\)</span> 很容易求，那么接下来不考虑 <span class="math inline">\(h\)</span> ，<br />
-对于后面的部分可以整除分块，还需要快速求出 <span class="math inline">\(g\)</span> 的一段区间和，<br />
-然后就可以递推，由于形如 <span class="math inline">\(\lfloor\frac{n}{d}\rfloor\)</span> 的数只有 <span class="math inline">\(O(\sqrt{n})\)</span> 个，<br />
-可以只递推这 <span class="math inline">\(O(\sqrt{n})\)</span> 个 <span class="math inline">\(S\)</span> ，不考虑 <span class="math inline">\(g, h\)</span> 的计算复杂度，复杂度为 <span class="math inline">\(O(n^{\frac{2}{3}})\)</span> 。</p>
-<p>update: 根据 16 年的集训队论文，直接计算的复杂度是 <span class="math inline">\(O(n^{\frac{3}{4}})\)</span> ，<br />
-要保证复杂度的话需要线性筛预处理 <span class="math inline">\(n^{\frac{2}{3}}\)</span> 以内的 <span class="math inline">\(S\)</span> 。<br />
-证明后面有提到。</p>
-<p>关于如何存储 <span class="math inline">\(S\)</span> ，直接用数组存需要 <span class="math inline">\(O(n)\)</span> 的空间，开 map 每次取用带一个 log ，<br />
-普通的离散化也会带一个 log 。</p>
-<p>观察 <span class="math inline">\(\frac{n}{d}\)</span> 的分布，当 <span class="math inline">\(d \leq \sqrt{n}\)</span> 时， <span class="math inline">\(\frac{n}{d}\)</span> 的值两两不同。<br />
-而当 <span class="math inline">\(d &gt; \sqrt{n}\)</span> 时， <span class="math inline">\(\frac{n}{d}\)</span> 的值都不超过 <span class="math inline">\(\sqrt{n}\)</span> 。<br />
-设 <span class="math inline">\(m\)</span> 是 <span class="math inline">\(\frac{n}{d}\)</span> 的不同取值个数，那么可以用如下的函数对 <span class="math inline">\(x = \frac{n}{d}\)</span> 进行离散化：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">id</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> x &lt;= sqrt_of_n ? x : m - (n / x) + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="实践">实践</h2>
-<p>举个简单的栗子：求 <span class="math inline">\(\mu\)</span> 的前缀和。</p>
-<p>首先根据 <span class="math inline">\(\mu\)</span> 的性质不难想到 <span class="math inline">\(\mu \cdot I = \epsilon\)</span> 。</p>
-<p>那么就将 <span class="math inline">\(f = \mu, g = I, h = \epsilon\)</span> 代入上去，得到：</p>
-<p><span class="math display">\[S(n) = \sum_{i=1}^n \mu(i) = \sum_{i=1}^n \epsilon(i) - \sum_{d=2}^n I(d) \cdot S(\frac{n}{d})\]</span></p>
-<p>即</p>
-<p><span class="math display">\[S(n) = 1 - \sum_{d=2}^n S(\frac{n}{d})\]</span></p>
-<h2 id="扩展">扩展</h2>
-<p>但有时候无法构造合适的 <span class="math inline">\(h = f \cdot g\)</span> 使得 <span class="math inline">\(g, h\)</span> 的前缀和可以 <span class="math inline">\(O(1)\)</span> 算出。<br />
-这时候杜教筛是否就毫无用武之地呢？不见得。</p>
-<p>观察递推式，利用整除分块，设 <span class="math inline">\(S_f, S_g, S_h\)</span> 分别表示 <span class="math inline">\(f, g, h\)</span> 的前缀和，那么：</p>
-<p><span class="math display">\[S_f(n) = S_h(n) - \sum_{i=2}^m (S_g(r_i) - S_g(r_{i-1})) S_f(\frac{n}{r_i})\]</span></p>
-<p>其中 <span class="math inline">\(m\)</span> 是 <span class="math inline">\(\frac{n}{d}\)</span> 的不同取值个数， <span class="math inline">\(r_i\)</span> 是整除分块后对应第 <span class="math inline">\(i\)</span> 块的右端点。</p>
-<p>首先不难发现需要用到的 <span class="math inline">\(S_h\)</span> 也都是形如 <span class="math inline">\(\frac{n}{d}\)</span> 的数，<br />
-那么只需要如果 <span class="math inline">\(S_h\)</span> 能够杜教筛（或者其他筛）筛出来就行了。</p>
-<p>再考虑 <span class="math inline">\(S_g\)</span> 需要的取值，由整除分块中的 <span class="math inline">\(r = n / (n / l)\)</span> 可知，<span class="math inline">\(r_i\)</span> 的取值也都是形如 <span class="math inline">\(\frac{n}{d}\)</span> 的数，<br />
-同理只要能筛 <span class="math inline">\(S_g\)</span> 就行了，不一定要 <span class="math inline">\(O(1)\)</span> 算。</p>
-<h2 id="复杂度">复杂度</h2>
-<p>发现之前对杜教筛的复杂度理解有问题。</p>
-<p>假设已经预处理（或者可以 <span class="math inline">\(O(1)\)</span> 计算）需要的 <span class="math inline">\(S_g, S_h\)</span> ，<br />
-那么需要计算的 <span class="math inline">\(S(\frac{n}{d})\)</span> 有 <span class="math inline">\(O(\sqrt{n})\)</span> 个。<br />
-将他们分为两类：</p>
-<ol type="1">
-<li><span class="math inline">\(d \leq \sqrt{n}\)</span>: 这部分有 <span class="math inline">\(\sqrt{n}\)</span> 个。</li>
-<li><span class="math inline">\(d \geq \sqrt{n}, \frac{n}{d} \leq \sqrt{n}\)</span>: 这部分同样有 <span class="math inline">\(\sqrt{n}\)</span> 个。</li>
-</ol>
-<p>计算单个 <span class="math inline">\(S(x)\)</span> 需要枚举 <span class="math inline">\(\frac{x}{d}\)</span> ，复杂度为 <span class="math inline">\(O(\sqrt{x})\)</span> 。</p>
-<p>对于两部分分别计算复杂度，总复杂度就是：</p>
-<p><span class="math display">\[ \sum_{i=1}^{\sqrt{n}} O(\sqrt{i}) + \sum_{i=1}^{\sqrt{n}} O(\sqrt{\frac{n}{i}}) \]</span></p>
-<p>对于前者：</p>
-<p><span class="math display">\[ \sum_{i=1}^{\sqrt{n}} O(\sqrt{i}) = O(\int_{0}^{\sqrt{n}}\sqrt{x}dx) = O(n^{\frac{3}{4}}) \]</span></p>
-<p>对于后者：</p>
-<p><span class="math display">\[ \sum_{i=1}^{\sqrt{n}} O(\sqrt{\frac{n}{i}}) = O(\int_{0}^{\sqrt{n}}\sqrt{\frac{n}{x}}dx) = O(n^{\frac{3}{4}}) \]</span></p>
-<p>如果预处理 <span class="math inline">\(k\)</span> 以内的 <span class="math inline">\(S\)</span> 且 <span class="math inline">\(k \geq \sqrt{n}\)</span> ，预处理部分复杂度为 <span class="math inline">\(O(k)\)</span> ，杜教筛部分前者也可以被预处理。</p>
-<p>对于后者：</p>
-<p><span class="math display">\[ \sum_{i=1}^{\frac{n}{k}} O(\sqrt{\frac{n}{i}}) = O(\int_{0}^{\frac{n}{k}}\sqrt{\frac{n}{x}}dx) = O(\frac{n}{\sqrt{k}}) \]</span></p>
-<p>当 <span class="math inline">\(k = \frac{n}{\sqrt{k}}\)</span> 时，总复杂度达到最优，<br />
-此时 <span class="math inline">\(k = n^{\frac{2}{3}}\)</span> ，总复杂度 <span class="math inline">\(O(n^{\frac{2}{3}})\)</span> 。</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/01/02/%E6%9D%9C%E6%95%99%E7%AD%9B/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -433,7 +368,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-01-06 09:54:57" itemprop="dateModified" datetime="2020-01-06T09:54:57+08:00">2020-01-06</time>
+                <time title="修改时间：2020-05-19 20:27:35" itemprop="dateModified" datetime="2020-05-19T20:27:35+08:00">2020-05-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -462,43 +397,14 @@
 <p>拉格朗日插值法的思路在于： 对于每个 <span class="math inline">\((x_i, y_i)\)</span> 找到 <span class="math inline">\(L_i(x)\)</span> 使得 <span class="math inline">\(L_i(x_i) = y_i, L_i(x_j) = 0\)</span> ， 其中 <span class="math inline">\(x_j\)</span> 是已知的 <span class="math inline">\(x\)</span> 中任意一个不等于 <span class="math inline">\(x_i\)</span> 的 <span class="math inline">\(x\)</span> 。</p>
 <p>而由 <span class="math inline">\(L\)</span> 的定义可知，<span class="math inline">\(f(k) = \sum_{i=1}^n L_i(k)\)</span> 。<br />
 代入上式即可求解。</p>
-<p>现在问题在于构造 <span class="math inline">\(L\)</span> 。 下面的 <span class="math inline">\(L\)</span> 可以满足定义：</p>
-<p><span class="math display">\[ L_i(x) = y_i \cdot \prod\limits_{j \ne i}\frac{x_j-x}{x_j-x_i} \]</span></p>
-<p>代入可得这对于任意 <span class="math inline">\(x_i\)</span> 可以使得 <span class="math inline">\(L_i(x_i) = y_i, L_i(x_j) = 0\)</span></p>
-<p>复杂度 $ O(n^2) $ 。</p>
-<h2 id="插系数">插系数</h2>
-<p>已知多项式 <span class="math inline">\(f(x)\)</span> 的 <span class="math inline">\(n\)</span> 个点值，求 <span class="math inline">\(f(x)\)</span> 的第 <span class="math inline">\(k\)</span> 次项系数 。</p>
-<p>先考虑插出一项 <span class="math inline">\(x^k\)</span> 的系数。</p>
-<p>首先依次考虑每个 <span class="math inline">\(L_i(x)\)</span> 的 <span class="math inline">\(x^k\)</span> 系数，最后累加即可。</p>
-<p>注意到分母和 <span class="math inline">\(y_i\)</span> 是常数可以直接算，考虑提出来，</p>
-<p><span class="math display">\[ L_i(x) = (y_i \cdot \prod\limits_{j \ne i}\frac{1}{x_j-x_i})
-    (\prod\limits_{j \ne i} (x_j - x)) \]</span></p>
-<p>左边的常数是一堆逆元相乘再乘上 <span class="math inline">\(y_i\)</span> ，逆元往往不是 <span class="math inline">\(O(1)\)</span> 计算的，<br />
-事实上可以先把分母中所有 <span class="math inline">\(x-x_j\)</span> 乘起来再一起求逆元，这样就只需要计算 1 次逆元，此时一般可以忽略逆元对复杂度的影响。</p>
-<p>那么只需要算分子部分，即上式右边的 <span class="math inline">\(\prod\)</span> 的 <span class="math inline">\(x^k\)</span> 系数即可。</p>
-<p>假设把这个连乘暴力拆开，其实 <span class="math inline">\(x^k\)</span> 的系数就是在之中选 <span class="math inline">\(n - k - 1\)</span> 个常数。<br />
-DP 预处理 <span class="math inline">\(pre(i, k)\)</span> 表示在 <span class="math inline">\(\prod\limits_{j \leq i} (x - x_j)\)</span> 中选 k 个常数的系数和，<br />
-同理 <span class="math inline">\(suf(i, k)\)</span> 表示在 <span class="math inline">\(\prod\limits_{j \geq i} (x - x_j)\)</span> 中选 k 个常数的系数和。<br />
-那么枚举 <span class="math inline">\(p + q = n - k - 1\)</span> 求 <span class="math inline">\(pre(i - 1, p)\)</span> 乘 <span class="math inline">\(suf(i + 1, q)\)</span> 的和就是上式的 <span class="math inline">\(x^k\)</span> 系数了。</p>
-<p>时间复杂度 <span class="math inline">\(O(n^2)\)</span> 。</p>
-<p>参考实现（未经过测试）：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 插出 L_i(x) 的 x^k 系数 */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">la</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> A = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n; j ++)</span><br><span class="line">		<span class="keyword">if</span>(i != j)</span><br><span class="line">			A *= X[i] - X[j];</span><br><span class="line">	<span class="keyword">int</span> B = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> l = <span class="number">0</span>; l &lt;= n - k - <span class="number">1</span>; l ++)</span><br><span class="line">		B += pre[i - <span class="number">1</span>][l] * suf[i + <span class="number">1</span>][n - k - <span class="number">1</span> - l];</span><br><span class="line">	<span class="keyword">return</span> B / A * X[i];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 初始化 suf 和 pre */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= n; i ++) &#123;</span><br><span class="line">		pre[i][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= i; j ++)</span><br><span class="line">			pre[i][j] = pre[i - <span class="number">1</span>][j] - pre[i - <span class="number">1</span>][j - <span class="number">1</span>] * X[i];</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = n + <span class="number">1</span>; i; i --) &#123;</span><br><span class="line">		suf[i][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n - i + <span class="number">1</span>; j ++)</span><br><span class="line">			suf[i][j] = suf[i + <span class="number">1</span>][j] - suf[i + <span class="number">1</span>][j - <span class="number">1</span>] * X[i];</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="插多项式">插多项式</h2>
-<p>已知 <span class="math inline">\(n-1\)</span> 次多项式 <span class="math inline">\(f(x)\)</span> 的 <span class="math inline">\(n\)</span> 个点值，求 <span class="math inline">\(f(x)\)</span> 的所有系数 。</p>
-<p>直接将所有暴力多项式相乘计算所有 <span class="math inline">\(L_i(x)\)</span> ，或者使用 <span class="math inline">\(n\)</span> 次上述的插系数，复杂度 <span class="math inline">\(O(n^3)\)</span> ，难以接受。</p>
-<p>点值比较特殊的情况下可以使用 FFT 或者 NTT ，但有失一般性。</p>
-<p>沿用上述分离常数的方法，考虑 <span class="math inline">\(O(n)\)</span> 求出每个 <span class="math inline">\(L_i(x)\)</span> 的所有系数：</p>
-<p><span class="math display">\[ L_i(x) = (y_i \cdot \prod\limits_{j \ne i}\frac{1}{x_j-x_i})
-    (\prod\limits_{j \ne i} (x_j - x)) \]</span></p>
-<p>左边的常数还是同样地处理，不同的是对于右边的多项式现在要求的不是某一项的系数而是所有系数。</p>
-<p>对于右边的多项式部分，可以看做：</p>
-<p><span class="math display">\[ \frac{\prod_{j=1}^n (x_j - x)}{x_i - x} \]</span></p>
-<p>其分子是个与 <span class="math inline">\(i\)</span> 无关的多项式，可以 <span class="math inline">\(O(n^2)\)</span> 暴力预处理，而其分母是个简单的一次二项式。<br />
-那么可以用短除法来进行多项式除二项式，复杂度 <span class="math inline">\(O(n)\)</span> 。</p>
-<p>总时间复杂度为 <span class="math inline">\(O(n^2)\)</span> 。</p>
-<p>参考实现（未经过测试）：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">la</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">	tmp[<span class="number">0</span>] = <span class="number">1</span>; <span class="comment">// tmp 表示 n 个二项式相乘的多项式</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i ++) &#123;</span><br><span class="line">		tmp[i] = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j = i; j; j --)</span><br><span class="line">			tmp[j] = tmp[j - <span class="number">1</span>] - X[i] * tmp[j];</span><br><span class="line">		tmp[<span class="number">0</span>] *= - X[i];</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i ++) &#123;</span><br><span class="line">		ll A = <span class="number">1</span>; <span class="comment">// A 表示 L_i 的常数部分</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n; j ++)</span><br><span class="line">			<span class="keyword">if</span>(i != j)</span><br><span class="line">				A *= X[i] - X[j];</span><br><span class="line">		A = Y[i] / A;</span><br><span class="line"></span><br><span class="line">		tmp2[n] = tmp[n]; <span class="comment">// tmp2 表示将 tmp 除以一个二项式的结果</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j = n; j; j --) &#123;</span><br><span class="line">			ll t = tmp2[j];</span><br><span class="line">			get[j - <span class="number">1</span>] += t * A; <span class="comment">// get 表示 f(x) 的系数</span></span><br><span class="line">			tmp2[j - <span class="number">1</span>] = tmp[j - <span class="number">1</span>] + t * X[i];</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 此时应有 tmp2[0] = 0 ，否则说明除法有余数</span></span><br><span class="line">		assert(tmp2[<span class="number">0</span>] == <span class="number">0</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/12/27/%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E6%8F%92%E5%80%BC%E6%B3%95/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -550,7 +456,7 @@ DP 预处理 <span class="math inline">\(pre(i, k)\)</span> 表示在 <span clas
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-01-21 10:48:33" itemprop="dateModified" datetime="2020-01-21T10:48:33+08:00">2020-01-21</time>
+                <time title="修改时间：2020-05-19 20:28:17" itemprop="dateModified" datetime="2020-05-19T20:28:17+08:00">2020-05-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -579,134 +485,14 @@ DP 预处理 <span class="math inline">\(pre(i, k)\)</span> 表示在 <span clas
 网站太慢了，就趁着加载的间隙打了一道题，边听歌边填表边打题，十分舒适。<br />
 然后实在是太慢了一节语文课还是不够，算上盖章一不小心把物理课也翘了一半，回来的时候正好全班人围在门口看老师做实验。<br />
 目测今年分数线不高，就迷之自信地在 12.06 这个时候就开坑写游记了。</p>
-<h2 id="day--1-12.19">Day -1 (12.19)</h2>
-<p>上午突然搞模拟面试？</p>
-<p>有点懵逼，随便准备了一下自我介绍，还是中英双份的。</p>
-<p>英语面试简直全程懵逼，问的问题基本都是这样回答的：</p>
-<p>Q: blablablabla ? A: emm...emm.. （沉默） maybe...emm...</p>
-<p>然后被要求读短文，发现好多词不认识，就瞎读，好不容易读完了，突然问我：<br />
-这篇文章讲了什么？<br />
-卧槽我刚才一直在纠结这个单词那个单词怎么读压根就没有去看文章本身啊。<br />
-然后 emm 了一下，就默默低下头又看了一遍。。。</p>
-<h2 id="day-0-12.20">Day 0 (12.20)</h2>
-<p>提前一天来到北京，说起来这是第 3 次了。</p>
-<p>下午先去了 PKU 转了转（PKUWC 的同学今天下午报到），见到了学长，然后就回到宾馆快乐颓废。<br />
-事实上并不是宾馆，西郊宾馆早没地了，住的是公寓楼。<br />
-租了两个套间，一开始为了不与教练住分组猜拳，最后 3 个人跟教练住，4 个人跟家长住。<br />
-我就是那 3 个人中的一个。<br />
-但是超级奈斯啊，最后教练压根就不住这，这里 3 人住 3 个房间，另外一边 5 人住 3 房间。<br />
-颓到 11:30 左右就睡了。</p>
-<h2 id="day-1-12.21">Day 1 (12.21)</h2>
-<p>报到，发了一个紫色的包（为啥 THU 如此钟情于紫色？）。</p>
-<p>下午一试，汉堡没 ACM 的好吃，差评。</p>
-<p>T1 是个签到题，对于每个维度离散化一下用个扫描线 + 树状数组就差不多了，1h 做了，</p>
-<p>T2 不会，打暴力。</p>
-<ul>
-<li><span class="math inline">\(q \cdot s = 10^7\)</span> 以及 <span class="math inline">\(m \cdot w = 10^7\)</span> 意味着跳的次数是十分有限的，直接模拟就好了。 (16')</li>
-<li>数据随机我不知道意味着什么，但是我的暴力莫名其妙就过了 pretest 。 (8')</li>
-<li><span class="math inline">\(w=10^{18}\)</span> 意味着边永远不会断，直接倍增维护每个点走 <span class="math inline">\(2^k\)</span> 步后的点即可。 (12')</li>
-<li><span class="math inline">\(m=n-1\)</span> 是颗根向树，只会往根上跳，树剖+线段树维护边权，当前重链无法跳到顶的时候倍增或者二分来确定跳的位置。 (13')</li>
-</ul>
-<p>T3 一开始看到题目名“某科学的动态仙人掌”就懵逼了，还好是标题党，可是还是不会，打暴力。</p>
-<ul>
-<li><span class="math inline">\(n, m, x\)</span> 极小的直接暴力搜。 (4')</li>
-<li><span class="math inline">\(x=n-1\)</span> 说明任意两个点都是可以相连的，输出 1 。 (4')</li>
-<li><span class="math inline">\(x=1\)</span> 的话就是计算联通块数量，大概离线下来然后扫描线+树状数组可做，但是没时间写。 (0')</li>
-<li>树退化为链的情况我搞了一个莫队，复杂度 <span class="math inline">\(O(n\sqrt{n}logn)\)</span> ，跑极限数据 7s+ ，时限 6s ， 本来链是有 16' 的，但是实在卡不过，最后只过了 <span class="math inline">\(l=1\)</span> 的那一档，此时莫队复杂度为 <span class="math inline">\(O(nlogn)\)</span> 。 (4')</li>
-</ul>
-<p>pretest 100 + 49 + 20 = 169.</p>
-<p>晚上快乐颓废，1 点才睡。</p>
-<h2 id="day2-12.22">Day2 (12.22)</h2>
-<h3 id="上">上</h3>
-<p>上午二试。</p>
-<p>T1 不会正解，打暴力。</p>
-<ul>
-<li><span class="math inline">\(n=10\)</span> 的直接阶乘爆搜。 (13')</li>
-<li><span class="math inline">\(c=0\)</span> 以及 <span class="math inline">\(a=0\)</span> 的都可以状压集合中可以得到的最权值和最大值来求最后的答案。</li>
-<li><span class="math inline">\(a=0\)</span> 时在确定顺序的前提下最后答案是关于 s 的一次函数，没有分段，因此 s 始终只需保留两个最值。 (19')</li>
-<li><span class="math inline">\(c=0\)</span> 时最优决策只与 s 的绝对值有关，考场上我似乎是晓得为什么只需要保留最值的，但现在忘了。 (23')</li>
-<li>正解不会，但是不知道为什么上面的状压做法能过所有 pretest 。 (45')</li>
-</ul>
-<p>T2 不会，打暴力。</p>
-<ul>
-<li><span class="math inline">\(n, q, m=10^3\)</span> 的直接暴力搜。 (20')</li>
-<li><span class="math inline">\(m=n\)</span> 说明非树边是唯一的，询问只需要对这条唯一的非树边分类讨论来确定它带来的影响即可，没有非树边之间的相互影响。 (11')</li>
-</ul>
-<p>T3 推了好久，想了好几个假做法，然而还是只能打暴力。</p>
-<ul>
-<li><span class="math inline">\(k=0\)</span> 说明根本就不进行排序，直接输出 1 。 (1')</li>
-<li><span class="math inline">\(n=10\)</span> 的直接阶乘枚举所有可能长度的所有全排列，然后用康拓展开把排列 hash 一下，处理出所有排列的答案即可。 (4'+3')</li>
-</ul>
-<p>pretest 100 + 31 + 8 = 139.</p>
-<p>鉴于昨晚睡得太晚，本来打算下午补觉的。<br />
-真香，饥荒真好玩。</p>
-<h3 id="下">下</h3>
-<p>晚上三试，学习题，身败名裂。</p>
-<p>这次是要简单地模拟 Cache 的底层工作。</p>
-<p>我 (wo) 带 (diao) 你 (ni) 们 (ma) 打 (de)。</p>
-<p>学习手册看得我一脸懵逼，看了整整 1 个小时才大概看懂意思，到这时候还没开始打代码。</p>
-<p>然后看 T1 直接就是 Cache 一致性协议，出现在学习手册的最后一页，好像还综合了只读、替换、读写一堆乱七八糟的。<br />
-最骚的是不久后管理发了通知：</p>
-<!-- ![通知](/images/thuwc.png) -->
-<p>（数据已删除）</p>
-<blockquote>
-<h1 id="提示">提示</h1>
-<p>请选手注意，题目顺序与作答难度并没有直接联系。</p>
-<p>此外，请任何对第一题有疑问的选手认真阅读和理解学习手册。我们保证手册中对于状态转移的描述是正确的，涉及了<strong>所有可能</strong>的情况。</p>
-</blockquote>
-<p>这是暗示啊！这直接让我以为 T1 是最难的，果断弃掉，开始码 T2 。</p>
-<p>码了前面 6 个子任务，把实现逻辑优化了一下，同样的逻辑用同样的调用，<br />
-只有不同的逻辑（也就是使用的替换算法 R ）用 6 个不同的函数，<br />
-框架打完后写起来就贼方便，敲完了 6 个子任务后就先弃了第 7 个去肝交互了。</p>
-<p>T3 交互直接在 T2 的框架上魔改，然后 6 个函数加个参数照样用，过了两个样例然而不停 WA 。<br />
-真的自闭了，后面一直在 debug 查错，肝到最后 5min 深感绝望，此时我还只有 T2 的 40' ，<br />
-大概是凉了吧。</p>
-<p>好在最后 3min 的时候通过静态差错发现魔改的时候漏了一个地方，T2 是没有 index 的，默认都是 0 ，<br />
-而在 R = 1 的最简单的那个子任务上 index 仍然默认是 0 没有改过来，哇塞这 B 玩意害死我了，改成 index 后就成功过了 pretest 。</p>
-<p>最后 pretest 40 + 32 = 72 。<br />
-考完后一问，好像大家都 100+ ，高如韬神 150+ ，低如 master 都有 90+ （一脸不屑）。<br />
-究其原因，是因为大家都只花了 1h 不到打了 T1 的 40' 。。。</p>
-<p>好吧，我自闭了，整个 thuwc 就栽在这场学习题上了。</p>
-<p>晚上快乐颓废，想着明天不考试，颓到了 1:30 ，饥荒真好玩，然而我活个 18d 就因为各种奇奇怪怪的东西狗带了。</p>
-<h2 id="day3-12.24">Day3 (12.24)</h2>
-<p>早上 6:40 就被家长的电话吵醒，说我进面试了，赶紧起来收拾行李直接去西郊宾馆。</p>
-<p>我擦？我才睡 5h 诶？</p>
-<p>没办法，昨晚的咖啡还没喝完，一口闷了下去，收拾收拾就出发了。</p>
-<p>面试人好多啊，目测 100+ ，数座位就有 150 左右。</p>
-<p>面试，自我介绍先理性自吹一波，感觉说自己的竞赛成绩太千篇一律了，比我强的人多了去了，<br />
-于是我就有很大一部分讲了自己的辉煌的小程序历史，诸如 yzzl, pychat, retest ，还有折腾的 keoj, keblog 等等。<br />
-还提到到了 tuna 。<br />
-然后面试基本就是针对自我介绍问的，一开始问我文化课成绩，然后就问我写的小程序最满意的是哪一个，<br />
-<del>都挺满意的</del>这时候不能犹豫，抱着情怀我说了 yzzl ，然后对于 yzzl 的整个游戏规划，<br />
-包括已经实现的和有想法实现但是咕咕咕的侃侃而谈。<br />
-然后有问我有没有 tuna 的线下活动，emm 我一草民只是平时用用镜像水水帖子刷刷聊天室，那谈得上线下活动？</p>
-<p>最后还问我对于昨天学习题的看法。</p>
-<p>这个我有话说！我可以说上一整天！<br />
-时间少，题目多，分数设置得极其不合理。<br />
-学习资料写得真是牛皮，尤其是给的那三张示意图我的天啊没有任何解释你还指望那这三张几乎一毛一样图来描述 cache 与主存的关系，<br />
-这图让我误解一脸懵逼，本来对 index, tag, offset 的解释就是一句话带过，<br />
-在图上就更迷了，直接就是 [x:y:z] 下面一排 tag, index, offset ，<br />
-尤其是 offset 这个东西我至始至终不知道是个啥，盲猜是个可以忽略的东西，<br />
-可以它又特么出现在输入数据中，占了两个二进制位啊你要我怎么办，<br />
-我又只能通过盲猜输入的地址中保证 offset=0 并且找到学习手册的一句话“保证给出的地址已经对齐”来解释这个猜想。 等等等等。。。<br />
-死在这上面真的让人非常不服气。</p>
-<p>所以我最后的回答是：</p>
-<p><strong>我觉得设置的很好，很考验选手的理解能力和实现能力。</strong></p>
-<p>:joy:</p>
-<p>最后阅读英语短文，还是懵逼，硬着头皮乱念。</p>
-<p>颁奖，二等奖。<br />
-<!--
-然而这个奖严重缩水，进了面试的 100 来号人都有奖，没进的也有一部分有奖，目测一共发了 200 个左右，  
-据我所知一等奖至少有 50 来个，按以往的标准来算，一等约似乎是无条件降一本的。  
-我真是服了，现在我真的感觉我拿回去一张废纸，  
-现在不是签约了，给你发奖大面积圈人，你要这个奖还是得向 tp 做出保证，  
-然而 tp 并不会对你做出任何保证，只是发给你一张纸，上面半句没提到你会得到怎样的优惠政策。  
-妙啊。
---> （数据已删除）</p>
-<p>晚上回去，订 11 点多的机票不知道是怎么想的，到了凌晨 1 点多才到长沙，<br />
-一个人回到寝室，大家都已经睡了，默默放下行李箱和背包，小心翼翼地走到床上，盖好被子，舒一口气。<br />
-结束了。</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/12/06/THUWC2020/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -758,7 +544,7 @@ DP 预处理 <span class="math inline">\(pre(i, k)\)</span> 表示在 <span clas
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-06 20:37:17" itemprop="dateModified" datetime="2019-12-06T20:37:17+08:00">2019-12-06</time>
+                <time title="修改时间：2020-05-19 20:28:28" itemprop="dateModified" datetime="2020-05-19T20:28:28+08:00">2020-05-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -796,31 +582,14 @@ DP 预处理 <span class="math inline">\(pre(i, k)\)</span> 表示在 <span clas
 </ul>
 <p>考完还听别人说 T1 卡 long long ，我靠，凉凉。<br />
 （话说回来考试前一天晚上我还在 OI-Wiki 上偶然翻到了格雷码，看着好复杂心想这玩意学了肯定没用就没看了）</p>
-<h2 id="day2">Day2</h2>
-<p>发现 Day1 普遍不会 T3 后心态稍微好了点，但是 T1 挂了还是影响很大的。</p>
-<p>想着今天稳健一点，然后真就安心打了三题暴力。。。<br />
-（其实是因为开场看了 30min 题意识到自己一题都不会做）</p>
-<p>T1 看着就是要枚举超过一半的菜去容斥，而超过一半的菜最多只会同时有一个，用 dp 是很好处理的，<br />
-写了个 <span class="math inline">\(O(n^3m)\)</span> 的 dp 交了，看着有 84 分，觉得先往后做比较妥，就没管了。<br />
-（后来听说那个 dp 稍微对状态做个小优化就是 <span class="math inline">\(O(n^2m)\)</span> 的了。。）</p>
-<p>T2 看着就是个 <span class="math inline">\(O(n^3)\)</span> 的大暴力 dp ，诶不行 36 分不太够啊，然后猜想 + 打表发现 dp 的决策点单调，<br />
-然后这怎么优化到 <span class="math inline">\(O(n^2)\)</span> ？不会，只晓得搞分治 dp ，好像带一个不满的 log ，实测大数据 1.0 s 。<br />
-（听别人说根据单调性可以直接优化到 <span class="math inline">\(O(n^2)\)</span> ？不懂，告辞）</p>
-<p>T3 看着就是个枚举断边暴力算重心，想着今天的目标定为打满暴力算了，<br />
-然后就认认真真地打了链的部分分（链上的重心可以 <span class="math inline">\(O(1)\)</span> 计算）和完全二叉树的部分分（本质不同的断边只有 <span class="math inline">\(O(logn)\)</span> 个）。<br />
-前所未有地耐心打暴力，不知道怎么坚持下来的，可能是终于认识到自己实力弱菜吧。</p>
-<h2 id="end">End</h2>
-<p>12.01</p>
-<p>两周没碰电脑了，今天补补总结。</p>
-<p>洛谷自测 438 ，D1T3 水了 35 分。<br />
-到牛客上就只有 408 了。</p>
-<p>csp 数据还算良心吧，D1T1 没有太丧心病狂（像洛谷牛客那样没写 unsigned 就被卡二三十分是真的想死），<br />
-只放在最后一个点卡了 5 分，这被卡了也服气，可以接受，权当买了个教训。<br />
-但数据强度还是有的，D2T2 搞分治还是被卡了一个点 4 分（然而如果开 O2 就过了），也行，技不如人甘拜下风。<br />
-最后的成绩拿官方数据自测就是 424 了，比去年高了一点点，没长进啊。</p>
-<p>那么接下来就是冬令营了，坐标新华都，母校再会。</p>
-<p><del>话说没进冬令营岂不身败名裂</del></p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/11/17/CSP2019/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -872,7 +641,7 @@ DP 预处理 <span class="math inline">\(pre(i, k)\)</span> 表示在 <span clas
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-26 20:14:37" itemprop="dateModified" datetime="2019-12-26T20:14:37+08:00">2019-12-26</time>
+                <time title="修改时间：2020-05-19 20:28:43" itemprop="dateModified" datetime="2020-05-19T20:28:43+08:00">2020-05-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -902,34 +671,14 @@ DP 预处理 <span class="math inline">\(pre(i, k)\)</span> 表示在 <span clas
 <strong>大力分类讨论</strong>！<br />
 果然是个分类讨论就巨多细节，判无解判边界判大小 blabla ，结果交 WA 了两发，在 16min AC 。<br />
 （ B 最快的 6min 就 A 了，16min 这时候 C 的一血都被拿了的说）</p>
-<p>C 维护一个序列？结果每次需要把所有序列复制一份并对复制的那一部分进行修改？<br />
-一脸懵逼.jpg<br />
-（然而水群的时候大佬们都说这题怎么怎么显然，和什么什么题一模一样）<br />
-还好看清楚了数据范围只有 2000 ，就去想单独考虑序列上每个点，这样就很好维护，<br />
-一个点每次复制就是权值翻倍，复制的位置被修改就是权值加上 修改值 乘 序列数量。<br />
-好像花了和 B 差不多的时间，在 33min AC 。</p>
-<p>D 题感觉很神，乍一看什么可追溯化数据结构，可一想哪有对线段树可追溯化的，还是追溯一段操作区间。<br />
-然后就感觉很不可做，但<del>看了 E 发现是个图论更不可做</del>还是头铁硬肝。<br />
-发现区间覆盖的性质还是很优秀的，然后 yy 了一个扫描线 + set + 树状数组的做法，<br />
-树状数组维护每个操作对当前扫描线上的询问的影响，<br />
-然后 set 维护一个蛇皮东西，扫描线扫过的操作执行后的区间覆盖长什么样子，<br />
-每次区间覆盖就可以直接在 set 上 lower_bound 到位置再换掉旧的覆盖。<br />
-（后来听人讲这就是 odt 。。。）</p>
-<p>在 81min 打完过了样例，仔细检查了检查，一交，WA 了。<br />
-懵逼，静态差错无果，对拍无果，查了半个小时，实在没发现什么错，<br />
-还以为我题目读错了，读了四五遍题感觉实在是没有什么坑，<br />
-抱着自闭的心态再交了一发， woc AC 了。<br />
-一脸懵逼.jpg<br />
-我感觉我什么地方都没改啊怎么突然从 WA 到 AC 啊！！！</p>
-<p>比完后查了查，发现是这样一句话：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"%d\n"</span>, i);</span><br><span class="line"><span class="comment">// 等价于 std::cerr &lt;&lt; i &lt;&lt; std::endl;</span></span><br></pre></td></tr></table></figure>
-<p>神 tm 我输出到标准错误流竟然就 WA 了？！<br />
-后面还 test 了一波，发现在 cometoj 上只要有标准错误流就会 WA/RE 。<br />
-引以为戒，祭奠为此逝去的半个小时。</p>
-<p>最后就在整个后半场卡 E 了，回头看了看每场 cometoj 常规赛都卡 E ，能 A 掉 ABCD ，<br />
-发现唯一一次拿到奖是因为那次只有 8 个人 A 掉了 D 。。</p>
-<p><del>写总结好累啊，以后打比赛就不写了吧。。</del></p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/11/08/cometoj-14/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -981,7 +730,7 @@ DP 预处理 <span class="math inline">\(pre(i, k)\)</span> 表示在 <span clas
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-05-10 19:12:16" itemprop="dateModified" datetime="2020-05-10T19:12:16+08:00">2020-05-10</time>
+                <time title="修改时间：2020-05-19 20:29:00" itemprop="dateModified" datetime="2020-05-19T20:29:00+08:00">2020-05-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1018,36 +767,14 @@ x \equiv a_n \pmod{m_n} \\\\
 \right.
 \end{equation}
 \]</span></p>
-<h2 id="crt">CRT</h2>
-<p>普通的 CRT 用于解决模数两两互质的情况（这个条件比较苛刻，实践中往往需要 exCRT ）。</p>
-<p>CRT 的主要思想是构造，对于每个方程组构造一个 <span class="math inline">\(b_i\)</span> 使得 <span class="math inline">\(b_i\)</span> 在其他所有模数下为 0 ，仅在模 <span class="math inline">\(m_i\)</span> 意义下为 1 。<br />
-感觉这个构造思路有点想拉格朗日插值法，那么不难得出：</p>
-<p><span class="math display">\[ b_i = \prod_{i \ne j} m_j (\prod_{i \ne j} m_j)_{m_i}^{-1} \]</span></p>
-<p>其中 <span class="math inline">\((\prod_{i \ne j} m_j)_{m_i}^{-1}\)</span> 是 <span class="math inline">\(\prod_{i \ne j} m_j\)</span> 在模 <span class="math inline">\(m_i\)</span> 意义下的逆元。</p>
-<p>那么整个方程组的一个解就是 <span class="math inline">\(\sum_{i=1}^n b_i a_i\)</span> ，通解就是：</p>
-<p><span class="math display">\[ x \equiv \sum_{i=1}^n b_i a_i \pmod{\prod_{i=1}^n m_i} \]</span></p>
-<h2 id="excrt">exCRT</h2>
-<p>CRT 只适用于模数两两互质的情况，因为用到了模数之间的逆元，而模数不互质是没有逆元的。</p>
-<p>exCRT 的主要思想是两两合并，考虑 <span class="math inline">\(n=2\)</span> 的情况：</p>
-<p><span class="math display">\[
-\begin{equation}
-\left\{
-\begin{aligned}
-x \equiv a_1 \pmod{m_1} \\\\
-x \equiv a_2 \pmod{m_2} \\\\
-\end{aligned}
-\right.
-\end{equation}
-\]</span></p>
-<p>那么此时方程组的解 <span class="math inline">\(x\)</span> 需要满足存在 <span class="math inline">\(i, j\)</span> 使得：</p>
-<p><span class="math display">\[ x = a_1 + i m_1 = a_2 + j m_2 \]</span></p>
-<p>对于右边的等式 <span class="math inline">\(a_1 + i m_1 = a_2 + j m_2\)</span> ，是关于 <span class="math inline">\(i, j\)</span> 的二元一次方程，<br />
-那么用扩展欧几里得解出一组解 <span class="math inline">\(i=i_0, j=j_0\)</span> 再回代到等式中即可求得一个 <span class="math inline">\(x = x_0\)</span> 。<br />
-而通解的话，根据 exgcd 的通解 <span class="math inline">\(i \equiv i_0 \pmod{\frac{m_2}{\gcd(m_1, m_2)}}\)</span> ，可以得到 <span class="math inline">\(x\)</span> 的通解：</p>
-<p><span class="math display">\[ x \equiv x_0 \pmod{lcm(m_1, m_2)} \]</span></p>
-<p>那么据此可以将任意两个同余方程合并为一个，也就可以通过两两合并的方式将整个同余方程组合并为一个方程。</p>
-<p>无解的话，当且仅当 exgcd 解 <span class="math inline">\(i, j\)</span> 的时候无解，只要有两个方程无法合并那么整个方程组都无法合并。</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/11/05/%E4%B8%AD%E5%9B%BD%E5%89%A9%E4%BD%99%E5%AE%9A%E7%90%86/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1099,7 +826,7 @@ x \equiv a_2 \pmod{m_2} \\\\
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-29 16:14:04" itemprop="dateModified" datetime="2019-12-29T16:14:04+08:00">2019-12-29</time>
+                <time title="修改时间：2020-05-19 20:29:15" itemprop="dateModified" datetime="2020-05-19T20:29:15+08:00">2020-05-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1131,101 +858,14 @@ x \equiv a_2 \pmod{m_2} \\\\
 <p><span class="math display">\[ C_i = \sum_{j \oplus k = i} A_j \cdot B_k \]</span></p>
 <p>其中 $ $ 是任意一种位运算。</p>
 <p>FWT 便是求这类卷积的快速算法。</p>
-<h2 id="构造">构造</h2>
-<p>FFT 的思想是把多项式转换成可以线性相乘的点值表示法 (DFT) ，<br />
-再把相乘的结果转换回系数表示法 (IDFT) 。</p>
-<p>同样的道理可以用在 FWT 上，用 DWT 将多项式转换成可以线性相乘的形式，即：</p>
-<p><span class="math display">\[ DWT(C)_i = DWT(A)_i \cdot DWT(B)_i \]</span></p>
-<p>再用 IDWT 将相乘的结果转换回来。</p>
-<h2 id="dwt">DWT</h2>
-<p>目标是构造一个转移系数函数 f(i, j) ，满足：</p>
-<p><span class="math display">\[ DWT(A)_i = \sum_j A_j \cdot f(i, j) \]</span></p>
-<p>考虑 f(i, j) 应满足什么样的性质。</p>
-<p>首先根据 DWT 的性质：</p>
-<p><span class="math display">\[ DWT(C)_i = DWT(A)_i \cdot DWT(B)_i \]</span></p>
-<p><span class="math display">\[ \sum_t C_t f(i, t) = \sum_j A_j f(i, j) \sum_k B_k f(i, k) \]</span></p>
-<p><span class="math display">\[ \sum_t \sum_{j \oplus k = t} A_j B_k f(i, t) = \sum_j \sum_k A_j f(i, j) B_k f(i, k) \]</span></p>
-<p><span class="math display">\[ \sum_t \sum_{j \oplus k = t} A_j B_k f(i, t) = \sum_t \sum_{j \oplus k = t} A_j f(i, j) B_k f(i, k) \]</span></p>
-<p>由上式可得出：</p>
-<p><span class="math display">\[ \forall i, j, k: f(i, j) f(i, k) = f(i, j \oplus k) \]</span></p>
-<p>这样还不够，为了让 DWT 快速进行，f(i, j) 还应满足以下性质：</p>
-<p><span class="math display">\[ f(i, j) = \prod_k f(i_k, j_k) \]</span></p>
-<p>其中 $ i_k $ 表示 i 二进制下的第 k 位（ 0 或 1 ）。</p>
-<p>有了这个性质，就可已通过 f(0, 0), f(0, 1), f(1, 0), f(1, 1) 的值相乘得出所有 f 。<br />
-有了这个性质，就可以考虑分治求 DWT ：</p>
-<p><span class="math display">\[DWT(A)_i = \sum_{j=0}^{n-1} A_j f(i, j)\]</span></p>
-<p><span class="math display">\[ = \sum_{j=0}^{n/2-1} A_j f(i, j) + \sum_{j=n/2}^{n-1} A_j f(i, j) \]</span></p>
-<p><span class="math display">\[ = \sum_{j=0}^{n/2-1} A_j \prod_k f(i_k, j_k) + \sum_{j=n/2}^{n-1} A_j \prod_k f(i_k, j_k) \]</span></p>
-<p><span class="math display">\[ = \sum_{j=0}^{n/2-1} f(i_0, j_0) A_j \prod_{k \geq 1} f(i_k, j_k) + \sum_{j=n/2}^{n-1} A_j f(i_0, j_0) \prod_{k \geq 1} f(i_k, j_k)\]</span></p>
-<p><span class="math display">\[ = f(i_0, 0) \sum_{j=0}^{n/2-1} A_j \prod_k f(i_k, j_k) + f(i_0, 1) \sum_{j=n/2}^{n-1} A_j \prod_k f(i_k, j_k) \]</span></p>
-<p>规模减小了一半，递归或迭代地分治下去。<br />
-每次将 A 分成左右两半 A0, A1 ：</p>
-<p><span class="math display">\[ DWT(A)_i = f(0, 0) DWT(A0)_i + f(0, 1) DWT(A1)_i , i &lt; n / 2 \]</span></p>
-<p><span class="math display">\[ DWT(A)_i = f(1, 0) DWT(A0)_i + f(1, 1) DWT(A1)_i , i \geq n / 2 \]</span></p>
-<p>想到 FFT 的蝴蝶变换没有？ <del>答：没有</del><br />
-迭代的 DWT 这里也有类似的蝴蝶变换：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> x = A[i], y = A[i + k];</span><br><span class="line">A[i] = f00 * x + f01 * y;</span><br><span class="line">A[i + k] = f10 * x + f11 * y;</span><br></pre></td></tr></table></figure>
-<p>DWT 的过程就是这样了，甚至不需要构造整个 f ，<br />
-只需要 f(0, 0), f(0, 1), f(1, 0), f(1, 1) 即可，<br />
-需要满足的就是 $ i, j, k: f(i, j) f(i, k) = f(i, j k) $ 。</p>
-<h2 id="idwt">IDWT</h2>
-<p>怎么将 DWT 的结果转换回来？ 观察 DWT 的蝴蝶变换：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = f00 * x + f01 * y;</span><br><span class="line">b = f10 * x + f11 * y;</span><br></pre></td></tr></table></figure>
-<p>DWT 通过 x, y 求出 a, b,<br />
-IDWT 就是通过 a, b 求 x, y 。</p>
-<p>解二元一次方程就好了：<br />
-x = (f11 * a - f01 * b) / (f00 * f11 - f01 * f10)<br />
-y = (f10 * a - f00 * b) / (f01 * f10 - f00 * f11)</p>
-<p>就是这么简单...</p>
-<p>个屁啊。</p>
-<p>考虑 f 的构造，<br />
-要满足 DWT 的性质把所有的 f 设为 0 不就可以了？<br />
-要满足 DWT 的性质把所有的 f 设为 1 不就可以了？</p>
-<p>这样且不是对于任何位运算都会有相同的结果？</p>
-<p><del>Naive.</del></p>
-<p>再看看 IDWT ，分母里边是不是有 (f01 * f11 - f01 * f10) ？<br />
-不幸的是把 f 全部设为 0 或者全设为 1 这个分母都是 0 ，<br />
-这意味着 IDWT 的二元一次方程无解，转过去就转不回来了。</p>
-<p>因此 f 的构造还要满足一个条件： <code>f01 * f11 != f01 * f10</code> 。</p>
-<h2 id="f-的构造">f 的构造</h2>
-<p>f 需要满足的性质已经讲的很详细了。</p>
-<p>这里给出常用位运算中 f 的构造：</p>
-<ul>
-<li>按位或： f00 = 1, f01 = 0, f10 = 1, f11 = 1</li>
-<li>按位与： f00 = 1, f01 = 1, f10 = 0, f11 = 1</li>
-<li>异或： f00 = 1, f01 = 1, f10 = 1, f11 = -1</li>
-</ul>
-<p>可以自行验证，这些 f 满足上述性质。</p>
-<h2 id="实际意义">实际意义</h2>
-<p>一个多项式 A DFT 后的 <span class="math inline">\(A2_x\)</span> 实际意义就是 A 在 $ W_n^x $ 上的值（点值表示）。</p>
-<p>那么 A DWT 后的结果的现实意义呢？<br />
-这得分类来说。</p>
-<h3 id="按位或">按位或</h3>
-<p>A 在做按位或的 DWT 之后得到的 A2 满足： <span class="math display">\[ A2_x = \sum_{i|x=x} A_i \]</span></p>
-<p>也就是说 <span class="math inline">\(A2_x\)</span> 表示 x 的每个子集 i 的 <span class="math inline">\(A_i\)</span> 的和。<br />
-不难得到，<span class="math inline">\(A2_x \cdot B2_x\)</span> 的结果 <span class="math inline">\(C2_x\)</span> 就是 A, B 卷积后的 C 的变换： <span class="math display">\[ A2_x \cdot B2_x = \sum_{i|x=x} A_i \sum_{j|x=x} B_j \]</span> <span class="math display">\[ A2_x \cdot B2_x = \sum_{i|x=x} \sum_{j|x=x} A_i B_j \]</span> <span class="math display">\[ A2_x \cdot B2_x = \sum_{k|x=x} \sum_{i|j=k} A_i B_j \]</span> <span class="math display">\[ A2_x \cdot B2_x = \sum_{k|x=x} C_k \]</span> <span class="math display">\[ A2_x \cdot B2_x = C2_x \]</span></p>
-<p>事实上，这也就是子集和变换 FMT （快速莫比乌斯变换） 。</p>
-<p><del>感性理解一下</del></p>
-<h3 id="按位与">按位与</h3>
-<p>和按位或类似的，A 在做按位与的 DWT 之后得到的 A2 满足： <span class="math display">\[ A2_x = \sum_{i\&amp;x=x} A_i \]</span></p>
-<p>也就是说 <span class="math inline">\(A2_x\)</span> 表示每个包含 x 的集合 i 的 <span class="math inline">\(A_i\)</span> 的和。<br />
-不难得到，<span class="math inline">\(A2_x \cdot B2_x\)</span> 的结果 <span class="math inline">\(C2_x\)</span> 就是 A, B 卷积后的 C 的变换： <span class="math display">\[ A2_x \cdot B2_x = \sum_{i\&amp;x=x} A_i \sum_{j\&amp;x=x} B_j \]</span> <span class="math display">\[ A2_x \cdot B2_x = \sum_{i\&amp;x=x} \sum_{j\&amp;x=x} A_i B_j \]</span> <span class="math display">\[ A2_x \cdot B2_x = \sum_{k\&amp;x=x} \sum_{i\&amp;j=k} A_i B_j \]</span> <span class="math display">\[ A2_x \cdot B2_x = \sum_{k\&amp;x=x} C_k \]</span> <span class="math display">\[ A2_x \cdot B2_x = C2_x \]</span></p>
-<p><del>和按位或一个模子里刻出来的</del></p>
-<h2 id="子集卷积">子集卷积</h2>
-<p>两个多项式 A, B 的子集卷积 C 的意义如下：</p>
-<p><span class="math display">\[ C(x) = \sum_{y|z=x, y\&amp;z=0} A(y) B(z) \]</span></p>
-<p>也就是把 x 划分为两个子集 y, z 的 A(y) * B(z) 的和。</p>
-<p>转换成 $ <em>{y|z=x} A(y) B(z) [y &amp; z = 0] $ ，似乎是一个按位或卷积。<br />
-再转换成 $ </em>{y|z=x} A(y) B(z) [bitcount(y) + bitcount(z) = bitcount(x)] $ 。</p>
-<p>此时需要考虑的就是 bitcount, 也就是集合大小，也就是二进制位中 1 的个数。<br />
-集合大小是 $ O(log(n)) $ 的，可以考虑枚举大小，设： <span class="math display">\[ A_i(x) = A(x) [bitcount(x) = i] \]</span> <span class="math display">\[ B_j(x) = B(x) [bitcount(x) = j] \]</span> <span class="math display">\[ C_k(x) = C(x) [bitcount(x) = k] \]</span></p>
-<p>那么有： <span class="math display">\[ C_k(x) = \sum_{y|z=x} A_i(y) B_j(z) [i + j = k] \]</span> <span class="math display">\[ C_k(x) = \sum_{i+j=k} \sum_{y|z=x} A_i(y) B_j(z) \]</span></p>
-<p>那么枚举 i, j 的值，将 $ A_i $ 和 $ B_j $ 卷积后贡献到 $ C_{i+j} $ 即可。</p>
-<p>这样复杂度似乎是 $ O(n log^3n) $ 的，<br />
-但是事实上每个 $ A_i, B_j $ 都可以提前 FWT 后 $ O(n) $ 相乘，<br />
-再贡献到 C 后不进行逆变换，而是确定了 C 的值后在进行逆变换。</p>
-<p>复杂度 $ O(n log^2n) $</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/11/03/%E5%BF%AB%E9%80%9F%E6%B2%83%E5%B0%94%E4%BB%80%E5%8F%98%E6%8D%A2/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1277,7 +917,7 @@ y = (f10 * a - f00 * b) / (f01 * f10 - f00 * f11)</p>
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-06 20:37:17" itemprop="dateModified" datetime="2019-12-06T20:37:17+08:00">2019-12-06</time>
+                <time title="修改时间：2020-05-19 20:29:28" itemprop="dateModified" datetime="2020-05-19T20:29:28+08:00">2020-05-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1313,28 +953,14 @@ TLE 了 4 个点。。。</p>
 那里维护有效点对的方式就是用 set + 二分。<br />
 然而这里特殊一点，用过的点不会在出现，直接并查集就好了。</p>
 <p><del>学傻了.jpg</del></p>
-<p>开 B 。</p>
-<p>一看卧槽模拟题，果然简单，然后码，然后交 WA 了，发现没清除头的位置（忘记测样例 3 了），<br />
-改了后在 55min AC 。</p>
-<p>看 D 。</p>
-<p>一看卧槽二项式定理 + 单位根反演板子题，果然不难，然后码，然后犯煞笔错误，调到 1h21min 才 A 。</p>
-<p>不过 D 的难点想必不在二项式定理和单位根反演<del>（因为这太裸了）</del>，<br />
-难点在于给定的 a 在模数任意的情况下可能是非二次剩余，不能开根。<br />
-然而只要会求二次剩余，就不难想到把 <span class="math inline">\(\sqrt{a}\)</span> 当做虚数单位进行扩域来做复数运算。</p>
-<p><del>还好我前几天才学二次剩余</del></p>
-<p>话说我一直调的一个错误竟然是复数乘法中的一个乘号打成了加号，一个字符调一年。</p>
-<p>对于剩下的 E, F ，就彻底凉了。</p>
-<p>剩下 1h40min 都在肝 E, F ，然而并没有什么卵用，<br />
-E 题有想法，但是实现巨巨巨麻烦，况且我计算几何渣的一批，就弃了。<br />
-F 题看上去是个神奇数据结构题，不会，告辞。</p>
-<p>在 1h21min 的时候是 rank31 ，在最后比赛结束仍然狗在 rank33 <del>（可见 E, F 毒瘤）</del> 。</p>
-<p><del>并没有拿到裙子，自闭了</del></p>
-<p>update on 10.26:</p>
-<p>E, F 都改完了， E 的正解在赛时其实就想到了，但是苦于没有实现思路，计几基础太差。<br />
-F 分块好题，赛时也的确想到了分块，对于区间左移也想到了块内记偏移量，但是由于对于偏移量的维护没有思路就弃了。<br />
-事实上这个偏移量其实很好搞，块内维护一个环状结构而不是普通的链状结构（我猜链状大概也能做，不过要动态增删点之类的？），<br />
-这样在整个块左移的时候只需把头指针向右移一个就可以简单地做到整体左移。</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/10/25/cometoj-13/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1386,7 +1012,7 @@ F 分块好题，赛时也的确想到了分块，对于区间左移也想到了
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-04-11 10:29:20" itemprop="dateModified" datetime="2020-04-11T10:29:20+08:00">2020-04-11</time>
+                <time title="修改时间：2020-05-19 20:29:40" itemprop="dateModified" datetime="2020-05-19T20:29:40+08:00">2020-05-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1414,78 +1040,14 @@ F 分块好题，赛时也的确想到了分块，对于区间左移也想到了
 <p><span class="math display">\[x^2 \equiv n \; (mod \; p)\]</span></p>
 <p>这里只介绍模数 <span class="math inline">\(p\)</span> 为奇素数的解法，也就是 Cipolla 算法。</p>
 <p>以下运算皆指模 <span class="math inline">\(p\)</span> 意义下的运算。</p>
-<h2 id="解的数量">解的数量</h2>
-<p>严格来讲，非 0 数 <span class="math inline">\(n\)</span> 是二次剩余当且仅当方程 <span class="math inline">\(x^2 \equiv n\)</span> 有解，也就是能开根。<br />
-上述方程无解的非 0 数 <span class="math inline">\(n\)</span> 称作非二次剩余。</p>
-<p>对于二次剩余 <span class="math inline">\(n\)</span> ，<span class="math inline">\(x^2 \equiv n\)</span> 有多少解？</p>
-<p>假设有多组解，对于任意两个不相等的解 <span class="math inline">\(x_0, x_1\)</span> ，有 <span class="math inline">\(x_0^2 \equiv x_1^2\)</span> 。<br />
-移项后平方差，得到 <span class="math inline">\((x_0 - x_1)(x_0 + x_1) \equiv 0\)</span> 。</p>
-<p>由于 <span class="math inline">\(p\)</span> 是奇素数，且 <span class="math inline">\(x_0 \ne x_1\)</span> ， <span class="math inline">\(x_0 - x_1\)</span> 在模 <span class="math inline">\(p\)</span> 意义下是不会为 0 的。<br />
-故有 <span class="math inline">\(x_0 + x_1 \equiv 0\)</span> ，也就是说两个不相等的解一定是相反数，<br />
-换言之，该方程只有两个解，且它们互为相反数。<br />
-而当 <span class="math inline">\(p\)</span> 为奇素数时模意义的两个相反数不会相等，因为奇偶性不同。</p>
-<p>还可以知道，任意一对相反数都对应一个二次剩余，而且这些二次剩余是两两不同的。<br />
-也就说二次剩余的数量恰为 <span class="math inline">\(\frac{p-1}{2}\)</span> ，其他的非 0 数都是非二次剩余，数量也是 <span class="math inline">\(\frac{p-1}{2}\)</span> 。</p>
-<h2 id="欧拉准则">欧拉准则</h2>
-<p>如何快速判断一个数 <span class="math inline">\(n\)</span> 是否为二次剩余？</p>
-<p>以下讨论假定 n 不为 0 。</p>
-<p>观察费马小定理 <span class="math inline">\(n^{p-1} \equiv 1\)</span> ，由于 <span class="math inline">\(p\)</span> 是奇素数，可以得到 <span class="math inline">\(n^{2(\frac{p-1}{2})} - 1\equiv 0\)</span> ，<br />
-也就是说 <span class="math inline">\(n^{\frac{p-1}{2}}\)</span> 是 1 开根的结果，根据上面所说， 1 开根只有两个解 1 和 -1 。<br />
-那么 <span class="math inline">\(n^{\frac{p-1}{2}}\)</span> 只能是 1 或 -1 。</p>
-<p>若 <span class="math inline">\(n\)</span> 是二次剩余，则有 <span class="math inline">\(n^{\frac{p-1}{2}} \equiv (x^2)^{\frac{p-1}{2}} \equiv x^{p-1} \equiv 1\)</span> 。</p>
-<p>若 <span class="math inline">\(n^{\frac{p-1}{2}} \equiv 1\)</span> ，将 <span class="math inline">\(n\)</span> 表示为 <span class="math inline">\(g^k\)</span> ， 其中 <span class="math inline">\(g\)</span> 是模 <span class="math inline">\(p\)</span> 意义下的原根。<br />
-那么有 <span class="math inline">\(g^{k\frac{p-1}{2}} \equiv 1\)</span> 由于 <span class="math inline">\(g\)</span> 是原根，必有 <span class="math inline">\(p-1|k\frac{p-1}{2}\)</span> ，<br />
-也就是说 <span class="math inline">\(k\)</span> 一定是偶数，那么令 <span class="math inline">\(x \equiv g^{\frac{k}{2}}\)</span> 即是 <span class="math inline">\(n\)</span> 开根的结果，这说明 <span class="math inline">\(n\)</span> 是二次剩余。</p>
-<p>也就是说 <span class="math inline">\(n^{\frac{p-1}{2}} \equiv 1\)</span> 与 <span class="math inline">\(n\)</span> 是二次剩余是等价的，<br />
-由于 <span class="math inline">\(n^{\frac{p-1}{2}}\)</span> 不为 1 就只能是 -1 ，那么 <span class="math inline">\(n^{\frac{p-1}{2}} \equiv -1\)</span> 与 <span class="math inline">\(n\)</span> 是非二次剩余等价。</p>
-<p><em>ps: 网上一堆伪证说若 <span class="math inline">\(n\)</span> 是非二次剩余，不存在 <span class="math inline">\(x\)</span> 使得上式为 1 ，但这只能说明上式为 -1 时 <span class="math inline">\(n\)</span> 是非二次剩余，并不能推翻“当 <span class="math inline">\(n\)</span> 是非二次剩余时上式为 1”</em></p>
-<h2 id="cipolla">Cipolla</h2>
-<p>对于二次剩余解方程 <span class="math inline">\(x^2 \equiv n\)</span> 。</p>
-<p>找到一个 <span class="math inline">\(a\)</span> 满足 <span class="math inline">\(a^2 - n\)</span> 是非二次剩余，由于非二次剩余的数量接近 <span class="math inline">\(\frac{p}{2}\)</span> ，<br />
-通过随机 + 检验的方式期望约 2 次可以找到这样一个 <span class="math inline">\(a\)</span> 。</p>
-<p>接下来定义 <span class="math inline">\(i^2 \equiv a^2 - n\)</span> 。<br />
-但是 <span class="math inline">\(a^2 - n\)</span> 不是二次剩余，怎么找得到这样一个 <span class="math inline">\(i\)</span> ？</p>
-<p>类比实数域到复数域的推广，定义这样一个 <span class="math inline">\(i\)</span> ，然后可以将所有数表示为 <span class="math inline">\(A+Bi\)</span> 的形式，<br />
-其中 <span class="math inline">\(A, B\)</span> 都是模 <span class="math inline">\(p\)</span> 意义下的数，类似于实部和虚部。</p>
-<p>那么 <span class="math inline">\((a + i)^{p+1} \equiv n\)</span> ，考虑证明。</p>
-<p><strong>引理 1</strong> ： <span class="math inline">\(i^p \equiv -i\)</span> 。</p>
-<p>证明： $i^p i(i<sup>2)</sup>{} i(a^2 - n)^{} -i $</p>
-<p><strong>引理 2</strong> ： <span class="math inline">\((A + B)^p \equiv A^p + B^p\)</span> 。</p>
-<p>证明：二项式定理展开后，由于 <span class="math inline">\(p\)</span> 是质数，除了 <span class="math inline">\(C_p^0, C_p^p\)</span> 外的组合数分子上的阶乘没法消掉，模 <span class="math inline">\(p\)</span> 都会为 0 ，剩下来的就是 <span class="math inline">\(C_p^0 A^0 B^p + C_p^p A^p B^0\)</span> 。</p>
-<p>现在证明上述结论：</p>
-<p><span class="math display">\[(a + i)^{p+1} \equiv (a^p + i^p) (a + i) \equiv (a - i) (a + i) \equiv a^2 - i^2 \equiv n\]</span></p>
-<p>那么 <span class="math inline">\((a + i)^{\frac{p+1}{2}}\)</span> 即是一个解，其相反数是另一个解。</p>
-<p>然而还剩最后一个问题， <span class="math inline">\((a + i)^{\frac{p+1}{2}}\)</span> 的“虚部”一定为 0 吗？</p>
-<p>幸运的是，的确如此，假设存在 <span class="math inline">\((A + Bi)^2 \equiv n\)</span> 且 <span class="math inline">\(B \ne 0\)</span> ，<br />
-那么有 <span class="math inline">\(A^2 + B^2i^2 + 2ABi \equiv n\)</span> ，即 <span class="math inline">\(A^2 + B^2(a^2 - n) - n \equiv -2ABi\)</span> 。<br />
-式子的左边“虚部”为 0 ，那么式子右边的“虚部”也一定为 0 ，也就是说 <span class="math inline">\(AB \equiv 0\)</span> 。<br />
-既然假设了 <span class="math inline">\(B \ne 0\)</span> 那么一定是 <span class="math inline">\(A \equiv 0\)</span> ，也就是说 <span class="math inline">\((Bi)^2 \equiv n\)</span> 。<br />
-也就是 <span class="math inline">\(i^2 \equiv nB^{-2}\)</span> ，由于 <span class="math inline">\(B^2\)</span> 是个二次剩余，其逆元 <span class="math inline">\(B^{-2}\)</span> 一定也是二次剩余，乘上二次剩余 <span class="math inline">\(n\)</span> 后一定还是二次剩余，这与 <span class="math inline">\(i^2\)</span> 是个非二次剩余产生矛盾。</p>
-<h2 id="实现">实现</h2>
-<p>实现的时候弄个“复数”类（据说也可以不用）即可。</p>
-<p>参考实现：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> lolong;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> mod;</span><br><span class="line">lolong I_mul_I; <span class="comment">// 虚数单位的平方</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">complex</span> &#123;</span></span><br><span class="line">	lolong real, imag;</span><br><span class="line">	<span class="keyword">complex</span>(lolong real = <span class="number">0</span>, lolong imag = <span class="number">0</span>): real(real), imag(imag) &#123; &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">inline</span> <span class="keyword">bool</span> <span class="keyword">operator</span> == (<span class="keyword">complex</span> x, <span class="keyword">complex</span> y) &#123;</span><br><span class="line">	<span class="keyword">return</span> x.real == y.real <span class="keyword">and</span> x.imag == y.imag;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">inline</span> <span class="keyword">complex</span> <span class="keyword">operator</span> * (<span class="keyword">complex</span> x, <span class="keyword">complex</span> y) &#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">complex</span>((x.real * y.real + I_mul_I * x.imag % mod * y.imag) % mod,</span><br><span class="line">			(x.imag * y.real + x.real * y.imag) % mod);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">complex</span> <span class="title">power</span><span class="params">(<span class="keyword">complex</span> x, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">complex</span> res = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span>(k) &#123;</span><br><span class="line">		<span class="keyword">if</span>(k &amp; <span class="number">1</span>) res = res * x;</span><br><span class="line">		x = x * x;</span><br><span class="line">		k &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">check_if_residue</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> power(x, (mod - <span class="number">1</span>) &gt;&gt; <span class="number">1</span>) == <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> p, <span class="keyword">int</span> &amp;x0, <span class="keyword">int</span> &amp;x1)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(n == <span class="number">0</span>) &#123;</span><br><span class="line">		x0 = x1 = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	mod = p;</span><br><span class="line"></span><br><span class="line">	lolong a = rand() % mod;</span><br><span class="line">	<span class="keyword">while</span>(!a <span class="keyword">or</span> check_if_residue((a * a + mod - n) % mod))</span><br><span class="line">		a = rand() % mod;</span><br><span class="line">	I_mul_I = (a * a + mod - n) % mod;</span><br><span class="line"></span><br><span class="line">	x0 = <span class="keyword">int</span>(power(<span class="keyword">complex</span>(a, <span class="number">1</span>), (mod + <span class="number">1</span>) &gt;&gt; <span class="number">1</span>).real);</span><br><span class="line">	x1 = mod - x0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="bsgs">BSGS</h2>
-<p>值得一提的是，模意义开根（甚至可以推广到开 <span class="math inline">\(k\)</span> 次方根）是可以通过原根转换为求对数问题从而使用 BSGS 的。<br />
-不过复杂度 <span class="math inline">\(O(\sqrt{p})\)</span> 远不如 Cipolla 的 <span class="math inline">\(O(logp)\)</span> 优秀，但很多情况下也足够了。</p>
-<p>具体地，将 <span class="math inline">\(x\)</span> 表示为 <span class="math inline">\(g^y\)</span> ，其中 <span class="math inline">\(g\)</span> 是原根，方程变为 <span class="math inline">\((g^y)^k \equiv n\)</span> ，即 <span class="math inline">\((g^k)^y \equiv n\)</span> ，解出 <span class="math inline">\(y\)</span> 即可。</p>
-<h2 id="非二次剩余开根">非二次剩余开根</h2>
-<p>事实上，大多数情况需要开根的数并不是个二次剩余。</p>
-<p>比如有一个递推式，为了化简需要开根，但是这时候被开根的数是个任意数。</p>
-<p>比如 <a href="https://cometoj.com/contest/72/problem/Ｄ?problem_id=4033" target="_blank" rel="noopener">这个</a> 还有 <a href="http://www.51nod.com/Challenge/ProblemSubmitDetail.html#judgeId=826009" target="_blank" rel="noopener">这个</a> 。</p>
-<p>其实很简单，像 Cipolla 那样直接扩域，把这个非二次剩余设为虚数单位即可。<br />
-但当然这仅适用于对仅仅一个非二次剩余开根的情况，如果式子需要同时对若干非二次剩余开根，扩域的代价（大概）会呈指数级别增长，即每一次复数乘法的复杂度会很大。</p>
-<h2 id="扩域后指数取模">扩域后指数取模</h2>
-<p>（以下前提是模数是质数）</p>
-<p>扩域后，费马小定理在复数上是不成立的，也就是说 <span class="math inline">\((A+Bi)^p\)</span> 不一定同余于 <span class="math inline">\(A+Bi\)</span> 。</p>
-<p>但有时需要对一个幂的指数取模，还是扩域后的，或者有时候需要对一个扩域后的数求逆元，怎么办？</p>
-<p>比如 <a href="http://www.51nod.com/Challenge/ProblemSubmitDetail.html#judgeId=826009" target="_blank" rel="noopener">这个</a> 。</p>
-<p>根据 Cipolla 中提到的公式 <span class="math inline">\((a + i)^{p+1} \equiv n\)</span> ，推广一下可以得到 <span class="math inline">\((A+Bi)^{p+1} \equiv A^2-B^2i^2\)</span> 。</p>
-<p>注意到此时 <span class="math inline">\(A^2 - B^2 i^2\)</span> 虚部为 0 ，设 <span class="math inline">\(x \equiv A^2 - B^2 i^2\)</span> 虚部为零的数是满足费马小定理的，<br />
-也就是说 <span class="math inline">\(x^p \equiv x\)</span> ，即 <span class="math inline">\(x^{p-1} \equiv 1\)</span>，那么有 <span class="math inline">\(((A+Bi)^{p+1})^{p-1} \equiv 1\)</span> 。<br />
-也就说指数对 <span class="math inline">\(p^2 - 1\)</span> 取模即可，换句话说，扩域后的复数 <span class="math inline">\(x\)</span> 满足：</p>
-<p><span class="math display">\[ x^{p^2} \equiv x \]</span></p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/10/21/%E4%BA%8C%E6%AC%A1%E5%89%A9%E4%BD%99/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
