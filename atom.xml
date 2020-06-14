@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://kewth.github.io/"/>
-  <updated>2020-05-19T11:24:53.542Z</updated>
+  <updated>2020-06-09T11:49:32.448Z</updated>
   <id>https://kewth.github.io/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="https://kewth.github.io/2020/05/14/syzoj-%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/"/>
     <id>https://kewth.github.io/2020/05/14/syzoj-%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/</id>
     <published>2020-05-14T09:12:53.000Z</published>
-    <updated>2020-05-19T11:24:53.542Z</updated>
+    <updated>2020-06-09T11:49:32.448Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="nameplate">nameplate</h2><p>syzoj 的数据库的 user 表有 nameplate 这个属性，代码里面也有关于 nameplate 的处理， 但是不知道为啥前端并没有给出任何关于 nameplate 的接口，自己写个前端接口就好了。</p><p>比如在 <code>views/user_edit.ejs</code> 里面添加关于 nameplate 的修改，然后在 <code>modules/user.js</code> 实现具体的修改即可。</p><p>当然不希望在前段开放接口的话也可以直接在数据库里操作。</p><a id="more"></a><h2 id="网站图标">网站图标</h2><p>配置里面似乎没有？</p><p>在 <code>views/header.ejs</code> 自行添加 <code>&lt;link rel="icon" href="XXXXXXXX" sizes="32x32"&gt;</code> 即可。</p><h2 id="一言">一言</h2><p>syzoj 的一言只选取了动画这一类，可以在 <code>views/index.ejs</code> 里修改，修改方式见一言官网。</p><h2 id="添加新属性">添加新属性</h2><p>例如给 problem 添加一个新的属性，容易想到在数据库里直接加一列。</p><p>但是这样的话每次重启服务该列会被清空，似乎每次 typeORM 会检查多余的列并删除。</p><p>在 <code>models/problem.ts</code> 和里面依葫芦画瓢加入新增的属性，然后 yarn 一遍即可。</p><h2 id="更精细的权限管理">更精细的权限管理</h2><p>syzoj 题目的状态分为两种：公开和未公开；用户对于题目的权限也只有两种：普通用户和管理员。</p><p>有特殊需求的话这可能不太够，为了实现更加精细的权限管理，就需要在 problem 添加新属性，修改 <code>models/problem.ts</code> ， 并且修改其中一些关于权限判定的函数。</p><p>这样不符合权限要求的就看不到题了，但是还是能看提交记录，为此还需要修改 <code>models/judge_state.ts</code> 的权限判定函数。</p><p>但是如果需求更特殊，需要限制管理员的权限的话，就更难搞。 因为管理员权限的优先级是很高的，有些地方的逻辑是只要用户有管理题目的权限就通行，而不会判断题目和用户具体的关系。</p><p>最麻烦的可能是 <code>modules/submission.js</code> ，事实上这里也没法逐个判断题目和用户具体的关系，所以要限制提交记录的查询， 就必须在 <code>judge_state</code> 上做出限制，原声版本只有 <code>is_public</code> 这个唯一的限制，需要更精细的话还要加上更多。</p>]]></content>
+    <content type="html"><![CDATA[<h2 id="nameplate">nameplate</h2><p>syzoj 的数据库的 user 表有 nameplate 这个属性，代码里面也有关于 nameplate 的处理， 但是不知道为啥前端并没有给出任何关于 nameplate 的接口，自己写个前端接口就好了。</p><p>比如在 <code>views/user_edit.ejs</code> 里面添加关于 nameplate 的修改，然后在 <code>modules/user.js</code> 实现具体的修改即可。</p><p>当然不希望在前段开放接口的话也可以直接在数据库里操作。</p><a id="more"></a><h2 id="网站图标">网站图标</h2><p>配置里面似乎没有？</p><p>在 <code>views/header.ejs</code> 自行添加 <code>&lt;link rel="icon" href="XXXXXXXX" sizes="32x32"&gt;</code> 即可。</p><h2 id="一言">一言</h2><p>syzoj 的一言只选取了动画这一类，可以在 <code>views/index.ejs</code> 里修改，修改方式见一言官网。</p><h2 id="添加新属性">添加新属性</h2><p>例如给 problem 添加一个新的属性，容易想到在数据库里直接加一列。</p><p>但是这样的话每次重启服务该列会被清空，似乎每次 typeORM 会检查多余的列并删除。</p><p>在 <code>models/problem.ts</code> 和里面依葫芦画瓢加入新增的属性，然后 yarn 一遍即可。</p><h2 id="更精细的权限管理">更精细的权限管理</h2><p>syzoj 题目的状态分为两种：公开和未公开；用户对于题目的权限也只有两种：普通用户和管理员。</p><p>有特殊需求的话这可能不太够，为了实现更加精细的权限管理，就需要在 problem 添加新属性，修改 <code>models/problem.ts</code> ， 并且修改其中一些关于权限判定的函数。</p><p>这样不符合权限要求的就看不到题了，但是还是能看提交记录，为此还需要修改 <code>models/judge_state.ts</code> 的权限判定函数。</p><p>但是如果需求更特殊，需要限制管理员的权限的话，就更难搞。 因为管理员权限的优先级是很高的，有些地方的逻辑是只要用户有管理题目的权限就通行，而不会判断题目和用户具体的关系。</p><p>最麻烦的可能是 <code>modules/submission.js</code> ，事实上这里也没法逐个判断题目和用户具体的关系，所以要限制提交记录的查询， 就必须在 <code>judge_state</code> 上做出限制，原声版本只有 <code>is_public</code> 这个唯一的限制，需要更精细的话还要加上更多。</p><h2 id="批量修改-tag">批量修改 tag</h2><p>直接写 sql 语句修改 <code>problem_tag_map</code> 这张表，改完后会发现有一些玄学问题。</p><p>翻了源码，发现题目的标签是有缓存的，要立即生效必须清除缓存，修改 <code>config.json</code> 的 <code>cache_size</code> 后重启即可。</p>]]></content>
     
     <summary type="html">
     
@@ -1100,9 +1100,9 @@ RMQ 真是流皮，每次深入思考都会有新的发现，所以有了新的�
     <link href="https://kewth.github.io/2019/10/09/%E6%95%B0%E8%AE%BA%E5%87%BD%E6%95%B0%E7%8E%84%E5%AD%A6%E6%93%8D%E4%BD%9C/"/>
     <id>https://kewth.github.io/2019/10/09/%E6%95%B0%E8%AE%BA%E5%87%BD%E6%95%B0%E7%8E%84%E5%AD%A6%E6%93%8D%E4%BD%9C/</id>
     <published>2019-10-08T16:00:00.000Z</published>
-    <updated>2020-01-10T14:47:10.288Z</updated>
+    <updated>2020-06-14T13:46:57.739Z</updated>
     
-    <content type="html"><![CDATA[<p>数论函数推式子是真的玄学， 乱七八糟的一脸懵逼， 好不容易看懂了转身又 <del>tm</del> 忘了， 这里列出一些我见过的。</p><p>持续更新。</p><p>update: 证明都删掉了，这是篇整理，目的是让结论更一目了然。<del>需要证明联系我我免费讲解</del></p><h2 id="常见数论函数卷积">常见数论函数卷积</h2><p><span class="math display">\[ \mu \cdot I = \epsilon \]</span></p><p><span class="math display">\[ \phi \cdot I = id \]</span></p><p><span class="math display">\[ \mu \cdot id = \phi \]</span></p><p><span class="math display">\[ id \cdot I = \sigma \]</span></p><h2 id="常见数论函数-fij-化简">常见数论函数 f(ij) 化简</h2><p><span class="math display">\[ d(i \cdot j) = \sum_{x|i} \sum_{y|j} [gcd(x, y) = 1] \]</span></p><p><span class="math display">\[ \phi(i \cdot j) = \phi(i) \phi(j) \frac{gcd(i, j)}{\phi(gcd(i, j))} \]</span></p><h2 id="常见数论函数求和">常见数论函数求和</h2><p><span class="math display">\[ \sum_{i=1}^n d(i) = \sum_{i=1}^n \lfloor \frac{n}{i} \rfloor \]</span></p><h2 id="互质条件转换">互质条件转换</h2><p><span class="math display">\[ [gcd(i, j) = 1] = \sum_{d|i,d|j} \mu(d) \]</span></p><p><span class="math display">\[ \sum_{i=1}^n \sum_{j=1}^m f(i, j) [gcd(i, j) = 1] = \sum_{d=1}^{min(n, m)} \mu(d) \sum_{i=1}^{n/d} \sum_{j=1}^{m/d} f(id, jd) \]</span></p>]]></content>
+    <content type="html"><![CDATA[<p>数论函数推式子是真的玄学， 乱七八糟的一脸懵逼， 好不容易看懂了转身又 <del>tm</del> 忘了， 这里列出一些我见过的。</p><p>持续更新。</p><p>update: 证明都删掉了，这是篇整理，目的是让结论更一目了然。<del>需要证明联系我我免费讲解</del></p><h2 id="常见数论函数卷积">常见数论函数卷积</h2><p><span class="math display">\[ \mu \cdot I = \epsilon \]</span></p><p><span class="math display">\[ \phi \cdot I = id \]</span></p><p><span class="math display">\[ \mu \cdot id = \phi \]</span></p><p><span class="math display">\[ id \cdot I = \sigma \]</span></p><h2 id="常见数论函数-fij-化简">常见数论函数 f(ij) 化简</h2><p><span class="math display">\[ d(i \cdot j) = \sum_{x|i} \sum_{y|j} [gcd(x, y) = 1] \]</span></p><p><span class="math display">\[ \sum_{d|ij} f(i \cdot j) = \sum_{x|i} \sum_{y|j} [gcd(x, y) = 1] f(\frac{iy}{x}) \]</span></p><p><span class="math display">\[ \phi(i \cdot j) = \phi(i) \phi(j) \frac{gcd(i, j)}{\phi(gcd(i, j))} \]</span></p><h2 id="常见数论函数求和">常见数论函数求和</h2><p><span class="math display">\[ \sum_{i=1}^n d(i) = \sum_{i=1}^n \lfloor \frac{n}{i} \rfloor \]</span></p><h2 id="互质条件转换">互质条件转换</h2><p><span class="math display">\[ [gcd(i, j) = 1] = \sum_{d|i,d|j} \mu(d) \]</span></p><p><span class="math display">\[ \sum_{i=1}^n \sum_{j=1}^m f(i, j) [gcd(i, j) = 1] = \sum_{d=1}^{min(n, m)} \mu(d) \sum_{i=1}^{n/d} \sum_{j=1}^{m/d} f(id, jd) \]</span></p>]]></content>
     
     <summary type="html">
     

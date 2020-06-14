@@ -38,6 +38,9 @@
 <p>这样不符合权限要求的就看不到题了，但是还是能看提交记录，为此还需要修改 <code>models/judge_state.ts</code> 的权限判定函数。</p>
 <p>但是如果需求更特殊，需要限制管理员的权限的话，就更难搞。 因为管理员权限的优先级是很高的，有些地方的逻辑是只要用户有管理题目的权限就通行，而不会判断题目和用户具体的关系。</p>
 <p>最麻烦的可能是 <code>modules/submission.js</code> ，事实上这里也没法逐个判断题目和用户具体的关系，所以要限制提交记录的查询， 就必须在 <code>judge_state</code> 上做出限制，原声版本只有 <code>is_public</code> 这个唯一的限制，需要更精细的话还要加上更多。</p>
+<h2 id="批量修改-tag">批量修改 tag</h2>
+<p>直接写 sql 语句修改 <code>problem_tag_map</code> 这张表，改完后会发现有一些玄学问题。</p>
+<p>翻了源码，发现题目的标签是有缓存的，要立即生效必须清除缓存，修改 <code>config.json</code> 的 <code>cache_size</code> 后重启即可。</p>
 ]]></content>
       <categories>
         <category>折腾</category>
@@ -2050,6 +2053,7 @@ dfs 到一个新点 v 一定会使深度 + 1 ，将当前深度 d 的线性基�
 <p><span class="math display">\[ id \cdot I = \sigma \]</span></p>
 <h2 id="常见数论函数-fij-化简">常见数论函数 f(ij) 化简</h2>
 <p><span class="math display">\[ d(i \cdot j) = \sum_{x|i} \sum_{y|j} [gcd(x, y) = 1] \]</span></p>
+<p><span class="math display">\[ \sum_{d|ij} f(i \cdot j) = \sum_{x|i} \sum_{y|j} [gcd(x, y) = 1] f(\frac{iy}{x}) \]</span></p>
 <p><span class="math display">\[ \phi(i \cdot j) = \phi(i) \phi(j) \frac{gcd(i, j)}{\phi(gcd(i, j))} \]</span></p>
 <h2 id="常见数论函数求和">常见数论函数求和</h2>
 <p><span class="math display">\[ \sum_{i=1}^n d(i) = \sum_{i=1}^n \lfloor \frac{n}{i} \rfloor \]</span></p>
