@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://kewth.github.io/2019/10/01/HNOI2019/</loc>
+    
+    <lastmod>2020-06-17T14:05:57.063Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://kewth.github.io/2020/06/16/HNOI2020/</loc>
     
-    <lastmod>2020-06-17T06:12:31.394Z</lastmod>
+    <lastmod>2020-06-17T14:03:46.182Z</lastmod>
     
   </url>
   
@@ -208,13 +215,6 @@
     <loc>https://kewth.github.io/2019/10/10/%E7%BB%84%E5%90%88%E6%95%B0%E5%85%AC%E5%BC%8F/</loc>
     
     <lastmod>2020-05-03T02:23:53.797Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://kewth.github.io/2019/10/01/HNOI2019/</loc>
-    
-    <lastmod>2020-04-09T08:07:44.759Z</lastmod>
     
   </url>
   
