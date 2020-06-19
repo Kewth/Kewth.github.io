@@ -125,7 +125,7 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">50</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">53</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -135,7 +135,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">51</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">52</span></a>
 
   </li>
   </ul>
@@ -252,6 +252,88 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2020/06/19/%E6%9C%80%E5%B0%8F%E7%8E%AF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Kewth">
+      <meta itemprop="description" content="HNFMS 现役 OIer">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KeBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/06/19/%E6%9C%80%E5%B0%8F%E7%8E%AF/" class="post-title-link" itemprop="url">最小环</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-06-19 15:07:38 / 修改时间：15:41:17" itemprop="dateCreated datePublished" datetime="2020-06-19T15:07:38+08:00">2020-06-19</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>给定一张图，求边权和最小的简单环的大小。</p>
+<p>无向图或者有向图都可以做，需要注意的是无向图直接转成有向图会得到不合法的重边二元环。</p>
+<p>以下讨论用 <span class="math inline">\(n, m\)</span> 分别表示图的点数和边数，为了方便，只讨论简单无向图，其他情况不难扩展。</p>
+<p>并且只考虑边权非负的情况。</p>
+<h2 id="一般解法">一般解法</h2>
+<p>对于一般图，可以使用 Floyd 算法。这里要利用到 Floyd 算法的一个性质，最外层循环枚举松弛 点 <span class="math inline">\(K\)</span> 更新后，最短路数组 <span class="math inline">\(dis_{u, v}\)</span> 的值实际上是 <span class="math inline">\(u\)</span> 到 <span class="math inline">\(v\)</span> （不包括 <span class="math inline">\(u, v\)</span> ）仅经过 编号在 <span class="math inline">\([1, k]\)</span> 中的点的最短路。</p>
+<p>根据以上性质，在 Floyd 使用点 <span class="math inline">\(k\)</span> 松弛之前，枚举所有小于 k 的 <span class="math inline">\(dis_{i, j}\)</span> 即可求出以 <span class="math inline">\(k\)</span> 为最大编号节点的最小环大小。</p>
+<h2 id="稀疏图做法">稀疏图做法</h2>
+<p>对于图较为稀疏的情况，即 <span class="math inline">\(O(n) \le O(m) &lt; O(n^2)\)</span> ，存在更优秀的解法，可以求出数组 <span class="math inline">\(f\)</span> ，其中 <span class="math inline">\(f_u\)</span> 表示包含 <span class="math inline">\(u\)</span> 节点的最小的环的长度。</p>
+<p>考虑计算 <span class="math inline">\(f_u\)</span> ，以 <span class="math inline">\(u\)</span> 为根，建出一颗最短路树，然后枚举非树边 <span class="math inline">\((x, y)\)</span> ，满足 <span class="math inline">\(lca(x, y) = u\)</span> ， 对于所有这样的非树边，有 <span class="math inline">\(f_u = min\{dis_x + len_{x, y} + dis_y\}\)</span> 。</p>
+<p>总复杂度 <span class="math inline">\(O(n m \log n)\)</span> ，如果边权很小，最大为 <span class="math inline">\(W\)</span> ，可以 bfs 求短路，复杂度 <span class="math inline">\(O(nmW)\)</span> 。</p>
+<p>如果只要单次求 <span class="math inline">\(f_u\)</span> ，这个做法也很合适，复杂度可以少一个 <span class="math inline">\(n\)</span> 。</p>
+<p>还有一个很有意思的单次求 <span class="math inline">\(f_u\)</span> 的做法，把与 <span class="math inline">\(u\)</span> 相连的点二进制分组，然后对于每一个划分方式跑多源最短路， 复杂度 <span class="math inline">\(O(m \log n \log D)\)</span> 或 <span class="math inline">\(O(m W \log D)\)</span> ，其中 <span class="math inline">\(D\)</span> 是 <span class="math inline">\(u\)</span> 的度数。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2020/06/16/HNOI2020/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -285,7 +367,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-06-18 19:52:14" itemprop="dateModified" datetime="2020-06-18T19:52:14+08:00">2020-06-18</time>
+                <time title="修改时间：2020-06-19 14:45:35" itemprop="dateModified" datetime="2020-06-19T14:45:35+08:00">2020-06-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -313,8 +395,8 @@
 <p>可惜后来慢慢地状态在下跌，直到省选时间终于敲定，就只剩两个星期了，争取能把状态提起来吧。</p>
 <p>关于省选这回事，过去两年没有什么压力，进了就进了，没进就没进，可是到了高二感觉完全不同，毕竟是关乎到退役以及参 加最后一次（对我而言也是唯一一次） NOI 的机会的。因此最近总是会突然感到紧张，心跳莫名的加速，甚至控制情绪都变得 困难起来。这大概是什么焦虑症吧，不过也无所谓，毕竟能这样焦虑的机会也不多。</p>
 <p>我参考了很多数据，也有认真思考过今年有多大把握进入省队。听说北京省选取消了，直接按 CSP 成绩划分，然后我也认真看 了看湖南去年的 CSP ，发现自己排在二十名开外（不过倒是有北京队线），因此这次省选我是不占优势的，起手就比别人低， 想要进队，还是需要不少的进步的。很迷茫，我并不知道这半年来的进步到底够不够，我很希望能用自己的实力赢得我想要的， 而不是靠运气，虽然运气的确是一个很重要的因素，但我不喜欢自己的命运完全被运气这种虚无缥缈的东西左右。</p>
-<p>说起运气，我似乎也曾被运气眷顾过，那是初二的 NOIP ，我学了几个月就意外地拿到了提高一等奖，这是完全出乎意料的，也 正是这个一等奖，直接促使我选择了坚持走 OI 这条路。至于后来的重要的几次考试，主要是有各种失误，那都是后话了。</p>
-<p>另外，学 OI 学得越久，见识到越多，就越发地认识到自己能力的不足，有些人实在就是强的离谱，实力超乎想象，那些我都不 曾敢去想象的高度就是能被他们轻松达到。这是客观事实，也许只能坦然接受，好在我并不需要去和他们相争，我没有那么大的 野心，但却也有自己的目标和想法，如果能实现自己的梦想，便也能心满意足了，尽管在部分人看来可能微不足道。</p>
+<p>说起运气，我似乎也曾被运气眷顾过，那是初三的 NOIP ，我学了几个月就意外地拿到了提高一等奖，这是完全出乎意料的，也 正是这个一等奖，直接促使我选择了坚持走 OI 这条路。至于后来的重要的几次考试，主要是有各种失误，那都是后话了。</p>
+<p>另外，学 OI 学得越久，见识到越多，就越发地认识到自己能力的不足，有些人实在就是强的离谱，实力超乎想象，那些我都不 曾敢去想象的高度就是能被他们轻松达到。这是客观事实，也许只能坦然接受，好在我并不必要去和他们相争，我没有那么大的 野心，但却也有自己的目标和想法，如果能实现自己的梦想，便也能心满意足了，尽管在部分人看来可能微不足道。</p>
 <p>以上，考前焦虑的 Kewth 在省选前的一些乱七八糟的杂想。</p>
           <!--noindex-->
             <div class="post-button">
@@ -946,96 +1028,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2020/01/10/%E7%89%9B%E5%AE%A2%E7%BB%83%E4%B9%A0%E8%B5%9B57/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-      <meta itemprop="name" content="Kewth">
-      <meta itemprop="description" content="HNFMS 现役 OIer">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="KeBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/01/10/%E7%89%9B%E5%AE%A2%E7%BB%83%E4%B9%A0%E8%B5%9B57/" class="post-title-link" itemprop="url">牛客练习赛57</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-01-10 22:05:52" itemprop="dateCreated datePublished" datetime="2020-01-10T22:05:52+08:00">2020-01-10</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-05-19 20:25:49" itemprop="dateModified" datetime="2020-05-19T20:25:49+08:00">2020-05-19</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%80%BB%E7%BB%93/" itemprop="url" rel="index"><span itemprop="name">总结</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>咕咕咕我又来写总结啦。</p>
-<p>第一次打牛客，一进牛客发现还有 30s 就有一场比赛，就报了名。<br />
-一开始只是打算玩玩，看看牛客的题来着。</p>
-<figure>
-<img src="/images/nowcoder.com.png" alt="" /><figcaption>牛客</figcaption>
-</figure>
-<p>一不小心上瘾了，可惜不计 rating 。<br />
-（另外 %%% <span class="citation" data-cites="CYJian">@CYJian</span> 喜提 rank1 ）</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/01/10/%E7%89%9B%E5%AE%A2%E7%BB%83%E4%B9%A0%E8%B5%9B57/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1107,7 +1099,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">51</span>
+          <span class="site-state-item-count">52</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1120,7 +1112,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">50</span>
+        <span class="site-state-item-count">53</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
