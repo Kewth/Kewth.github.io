@@ -22,6 +22,7 @@
 <p>无向图或者有向图都可以做，需要注意的是无向图直接转成有向图会得到不合法的重边二元环。</p>
 <p>以下讨论用 <span class="math inline">\(n, m\)</span> 分别表示图的点数和边数，为了方便，只讨论简单无向图，其他情况不难扩展。</p>
 <p>并且只考虑边权非负的情况。</p>
+<a id="more"></a>
 <h2 id="一般解法">一般解法</h2>
 <p>对于一般图，可以使用 Floyd 算法。这里要利用到 Floyd 算法的一个性质，最外层循环枚举松弛 点 <span class="math inline">\(K\)</span> 更新后，最短路数组 <span class="math inline">\(dis_{u, v}\)</span> 的值实际上是 <span class="math inline">\(u\)</span> 到 <span class="math inline">\(v\)</span> （不包括 <span class="math inline">\(u, v\)</span> ）仅经过 编号在 <span class="math inline">\([1, k]\)</span> 中的点的最短路。</p>
 <p>根据以上性质，在 Floyd 使用点 <span class="math inline">\(k\)</span> 松弛之前，枚举所有小于 k 的 <span class="math inline">\(dis_{i, j}\)</span> 即可求出以 <span class="math inline">\(k\)</span> 为最大编号节点的最小环大小。</p>
@@ -70,6 +71,8 @@
 <h2 id="day-1">Day-1</h2>
 <p>完全不知道该怎么准备，看了看以前做过的题，理了理思路。</p>
 <p>逛 LOJ 的时候看到 BJOI2020 的一道题？看了看题，不难，写了写一遍过，算是给自己涨了涨自信。</p>
+<p>最后还是 <a href="https://www.cnblogs.com/Lskkkno1" target="_blank" rel="noopener">Lskkkno1</a> 比较猛，这就是大佬的底气吗？！</p>
+<p>那么，今日早睡，明日进队。</p>
 ]]></content>
       <categories>
         <category>总结</category>
