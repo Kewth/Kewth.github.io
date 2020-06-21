@@ -73,6 +73,28 @@
 <p>逛 LOJ 的时候看到 BJOI2020 的一道题？看了看题，不难，写了写一遍过，算是给自己涨了涨自信。</p>
 <p>最后还是 <a href="https://www.cnblogs.com/Lskkkno1" target="_blank" rel="noopener">Lskkkno1</a> 比较猛，这就是大佬的底气吗？！</p>
 <p>那么，今日早睡，明日进队。</p>
+<h2 id="day1">Day1</h2>
+<p>佛了。</p>
+<p>开场开 T2 ，第一次推出来的东西要算逆元，大概是有个这样的递推式：</p>
+<p><span class="math display">\[f_i = \frac{1}{x+1} (n - i + 1) (f_{i-1} - g_{i-1}) + x g_i\]</span></p>
+<p>这模数不是质数啊，还想 CRT 想了好久。</p>
+<p>冷静下来后把 <span class="math inline">\(g\)</span> 的递推式也写了出来： <span class="math inline">\(g_i = \frac{n-i+1}{x} g_{i-1}\)</span> 。</p>
+<p><del>艹，我设的这 <span class="math inline">\(g\)</span> 有个寂寞用啊。</del></p>
+<p>然后就过了 2h+ ，回头看 T1 ，卧槽线段树二分啊，写完后跑了跑 5.5s ，我。。。。</p>
+<p>直接放弃卡常，肝 T3 ，屁也没肝出来，最后 rush 了一发贪心，在 12:57 调完，然后成功。。。</p>
+<p>。。。成功发现贪心假了。</p>
+<p>出来水 UOJ 群把我给水自闭了。</p>
+<h2 id="day2">Day2</h2>
+<p>佛了。</p>
+<p>Day1 妥妥劣势，想着靠 Day2 翻盘。</p>
+<p>结果，这题目我咋翻啊。。。</p>
+<p>T1 一看状压，啪啦啪啦写完发现 23 卡空间卡时间，直接 skip 放弃卡常。</p>
+<p>T2 一看 01 Trie 树，啪啦啪啦写完一遍过了大样例。</p>
+<p>T3 一看这 gcd 卧槽无脑莫反，然后就是求生成树的权值和的和。</p>
+<p>写完 280pts 后一看时间还没到 12:00 。。。沃日，搁这搞 noip 呢？这翻 P 啊。</p>
+<p>然后三道题一道道写暴力对拍，嗯，T3 果然打挂了，调了调算是拍上了。</p>
+<p>这咋办啊，到头来还是得看运气吧，害。</p>
+<p>问题不大，问题不大，问题不大。</p>
 ]]></content>
       <categories>
         <category>总结</category>
