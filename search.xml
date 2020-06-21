@@ -76,7 +76,7 @@
 <h2 id="day1">Day1</h2>
 <p>佛了。</p>
 <p>开场开 T2 ，第一次推出来的东西要算逆元，大概是有个这样的递推式：</p>
-<p><span class="math display">\[f_i = \frac{1}{x+1} (n - i + 1) (f_{i-1} - g_{i-1}) + x g_i\]</span></p>
+<p><span class="math display">\[f_i = \frac{1}{x+1} ((n - i + 1) (f_{i-1} - g_{i-1}) + x g_i)\]</span></p>
 <p>这模数不是质数啊，还想 CRT 想了好久。</p>
 <p>冷静下来后把 <span class="math inline">\(g\)</span> 的递推式也写了出来： <span class="math inline">\(g_i = \frac{n-i+1}{x} g_{i-1}\)</span> 。</p>
 <p><del>艹，我设的这 <span class="math inline">\(g\)</span> 有个寂寞用啊。</del></p>
@@ -94,8 +94,11 @@
 <p>（好像也不需要余子式直接无脑矩阵树就可以？）</p>
 <p>写完 280pts 后一看时间还没到 12:00 。。。沃日，搁这搞 noip 呢？这翻 P 啊。</p>
 <p>然后三道题一道道写暴力对拍，嗯，T3 果然打挂了，调了调算是拍上了。</p>
-<p>这咋办啊，到头来还是得看运气吧，害。</p>
+<p>这咋办啊，到头来还是得看运气吧，还是挺不甘心的，害。</p>
 <p>问题不大，问题不大，问题不大，也不是完全没有希望？</p>
+<p>晚上发现 D2T2 犯了傻逼错误 RE 了，明明写之前还提醒了自己，写的时候忘得干干净净，滚粗了。</p>
+<h2 id="end">End</h2>
+<p>出成绩了再更，进不了省队就搞文化课吧，至于校队，如果省队线能比 440 低再考虑吧，否则没有实力去参加屁的 NOI 。</p>
 ]]></content>
       <categories>
         <category>总结</category>
