@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="KIx9DF_OoeyQmEhcVAbjH5vg_i539tmILHmNH8lRDtw">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"kewth.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="去年写过的东西加点补充就算做今天写的了 基本概念 首先得知道链和反链是什么。 在 有向无环图（ DAG ） 中， 链是满足任意两点 x, y 要么 x 可以到达 y 要么 y 可以到达 x 的点集 （即使只有一个点）， 反链是任意两点没有路径的 点集 。 那么最长反链，就是点的个数最多的反链。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="最长反链长">
+<meta property="og:url" content="https://kewth.github.io/2020/07/15/%E6%9C%80%E9%95%BF%E5%8F%8D%E9%93%BE%E9%95%BF/index.html">
+<meta property="og:site_name" content="KeBlog">
+<meta property="og:description" content="去年写过的东西加点补充就算做今天写的了 基本概念 首先得知道链和反链是什么。 在 有向无环图（ DAG ） 中， 链是满足任意两点 x, y 要么 x 可以到达 y 要么 y 可以到达 x 的点集 （即使只有一个点）， 反链是任意两点没有路径的 点集 。 那么最长反链，就是点的个数最多的反链。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-07-15T13:00:30.000Z">
+<meta property="article:modified_time" content="2020-07-15T13:01:42.546Z">
+<meta property="article:author" content="Kewth">
+<meta property="article:tag" content="图论">
+<meta property="article:tag" content="最长反链">
+<meta property="article:tag" content="二分图">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://kewth.github.io/2020/07/15/%E6%9C%80%E9%95%BF%E5%8F%8D%E9%93%BE%E9%95%BF/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>最长反链长 | KeBlog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="KeBlog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">KeBlog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">The OI Algorithm Blog of Kewth</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">55</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">4</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">52</span></a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2020/07/15/%E6%9C%80%E9%95%BF%E5%8F%8D%E9%93%BE%E9%95%BF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Kewth">
+      <meta itemprop="description" content="HNFMS 现役 OIer">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KeBlog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          最长反链长
+        </h1>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-07-15 21:00:30 / 修改时间：21:01:42" itemprop="dateCreated datePublished" datetime="2020-07-15T21:00:30+08:00">2020-07-15</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><del>去年写过的东西加点补充就算做今天写的了</del></p>
+<h2 id="基本概念">基本概念</h2>
+<p>首先得知道链和反链是什么。</p>
+<p>在 <strong>有向无环图（ DAG ）</strong> 中，<br />
+链是满足任意两点 x, y 要么 x 可以到达 y 要么 y 可以到达 x 的<strong>点集</strong> （即使只有一个点），<br />
+反链是任意两点没有路径的 <strong>点集</strong> 。</p>
+<p>那么最长反链，就是点的个数最多的反链。</p>
+<a id="more"></a>
+<h2 id="定理">定理</h2>
+<p>不加证明地丢出两个定理：</p>
+<ol type="1">
+<li>最长反链长度 = 最小链覆盖（用最少的链覆盖所有顶点）</li>
+<li>最长链长度 = 最小反链覆盖（用最少的反链覆盖所有顶点）</li>
+</ol>
+<p>那么要求的其实是最小链覆盖。</p>
+<h2 id="不相交">不相交</h2>
+<p>假设最小链覆盖不会相交，怎么求出这个最小链覆盖？</p>
+<p>把每个点 i 拆成 i1 和 i2 ，考虑建立二分图。<br />
+如果存在一条边 (x, y) ，那么就在二分图中建立 (x1, y2) 的边。<br />
+这样建立二分图之后，原图的点数 - 二分图最大匹配 = 原图的最小链覆盖<br />
+（链不相交）。</p>
+<p>这样为什么是对的呢？<br />
+一个点也可以看作是一个链，因此可以将每个点独立来看做初始状态。<br />
+然后每次在二分图中选出一条边，就是将两条链连接成一条链，<br />
+使用的链数就减少一个。</p>
+<p>而链不会相交，所以在二分图中选出的边也是不相交的，也就是二分图的最大匹配。</p>
+<h2 id="栗子">栗子</h2>
+<p>如果链可以相交呢？</p>
+<p>举个栗子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">5 4 &#x2F;&#x2F; 五个点四条边</span><br><span class="line">1 3 &#x2F;&#x2F; 1 连向 3</span><br><span class="line">2 3 &#x2F;&#x2F; 2 连向 3</span><br><span class="line">3 4 &#x2F;&#x2F; 3 连向 4</span><br><span class="line">3 5 &#x2F;&#x2F; 3 连向 5</span><br></pre></td></tr></table></figure>
+<p>这里不相交的最小链覆盖是 3 ，而实际的最小链覆盖是 2 。</p>
+<p>观察不相交的最小链覆盖 {1-3-5, 2, 4} 与最小链覆盖 {1-3-5, 2-3-4} 。</p>
+<p>发现由于不能相交， 1-3-5 这条链把 2-3-4 这条链切断了，<br />
+分成 2 和 4 两条链，因此比最小链覆盖多了一条链。</p>
+<p>如果可以让 2 跨过 1-3-5 与 4 相连呢？</p>
+<h2 id="相交">相交</h2>
+<p>将原图做一次 Floyd ，<br />
+之后就可以知道任意两点 x, y ，x 是否能到达 y 。</p>
+<p>把建立二分图的方法改造了一下，只要 x 能到达 y ，<br />
+就直接连一条边 (x, y)，这样就可以“跨过”其它链来连接两条链了。</p>
+<p>这个时候，原图最长反链长度 = 最小链覆盖 = 原图点数 - 二分图最大匹配。</p>
+<h2 id="方案">方案</h2>
+<p>《 [CTSC2008] 祭祀》一题中需要具体地求出一组最长反链方案。</p>
+<p>对于上述的二分图，考虑求出其任意一组最大独立集，那么所有满足 x1 和 x2 都在最大独立集中的点 x 就构成了原图的一组最长反链。</p>
+<p>由于最大独立集和最小点覆盖互为补集，问题就是要在二分图上求一组最小点覆盖。</p>
+<p>从一组可行的点覆盖开始增广，最初的一组可行的点覆盖就是二分图左边的点的集合。</p>
+<p>先求出一组最大匹配。然后从左边所有非匹配点沿非匹配边 - 匹配边 - 非匹配边 - 匹配边开始 dfs ，也就是找増广路，但事实上最大 匹配是不存在増广路的，因此 dfs 出来的路径只能是“伪増广路”，然后标记所有“伪増广路”到达过的点。注意到一条“伪増广路”一定包含 奇数个点，并且左边的点数比右边的点数多一，那么把所有被标记的左边的点删掉，把所有被标记的右边的点加上，每一条“伪増广路”都 会使得当前点覆盖的大小尽可能变小，事实上这样最终就能得到一组最小点覆盖。</p>
+<p>严格的证明的话，利用最小点覆盖 = 最大匹配的这个条件，分别证明其是最小的以及是点覆盖即可，略。</p>
+<p>祭祀还要求所有最长反链的并，也就是要对于每个点判断其是否存在于任意一组最长反链中，钦定之重新求最长反链，如果重新求出来的 最长反链长恰为原图最长反链长就说明该点存在于一组最长反链中。</p>
+<p>（这玩意不画图一点都不直观）</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E5%9B%BE%E8%AE%BA/" rel="tag"><i class="fa fa-tag"></i> 图论</a>
+              <a href="/tags/%E6%9C%80%E9%95%BF%E5%8F%8D%E9%93%BE/" rel="tag"><i class="fa fa-tag"></i> 最长反链</a>
+              <a href="/tags/%E4%BA%8C%E5%88%86%E5%9B%BE/" rel="tag"><i class="fa fa-tag"></i> 二分图</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/06/19/%E6%9C%80%E5%B0%8F%E7%8E%AF/" rel="prev" title="最小环">
+      <i class="fa fa-chevron-left"></i> 最小环
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本概念"><span class="nav-number">1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#定理"><span class="nav-number">2.</span> <span class="nav-text">定理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#不相交"><span class="nav-number">3.</span> <span class="nav-text">不相交</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#栗子"><span class="nav-number">4.</span> <span class="nav-text">栗子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相交"><span class="nav-number">5.</span> <span class="nav-text">相交</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方案"><span class="nav-number">6.</span> <span class="nav-text">方案</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Kewth"
+      src="/images/avatar.jpeg">
+  <p class="site-author-name" itemprop="name">Kewth</p>
+  <div class="site-description" itemprop="description">HNFMS 现役 OIer</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">52</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">55</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Kewth" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Kewth" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:Kewth.K.D@outlook.com" title="E-Mail → mailto:Kewth.K.D@outlook.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="qq:1344205350" title="QQ → qq:1344205350" rel="noopener" target="_blank"><i class="fab fa-qq fa-fw"></i>QQ</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.luogu.org/space/show?uid=52232" title="Luogu → https:&#x2F;&#x2F;www.luogu.org&#x2F;space&#x2F;show?uid&#x3D;52232" rel="noopener" target="_blank"><i class="fab fa-code-fork fa-fw"></i>Luogu</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links | 友链
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://ricardoships.github.io/" title="https:&#x2F;&#x2F;ricardoships.github.io" rel="noopener" target="_blank">Ricardoships(AFO)</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://luoyuyang.cf/" title="https:&#x2F;&#x2F;luoyuyang.cf" rel="noopener" target="_blank">lyy(AFO)</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://zrz-orz.github.io/" title="https:&#x2F;&#x2F;zrz-orz.github.io" rel="noopener" target="_blank">zrz_orz(AFO)</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://qiuly.xyz/" title="https:&#x2F;&#x2F;qiuly.xyz" rel="noopener" target="_blank">Qiuly</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/Lskkkno1" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;Lskkkno1" rel="noopener" target="_blank">Lskkkno1</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.allenyou.wang/" title="https:&#x2F;&#x2F;www.allenyou.wang" rel="noopener" target="_blank">Allenyou</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heartbeat"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Kewth</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '5a2fdd60fe2f91777a6b',
+      clientSecret: '9ddb762244fffc5caff2490a05e53dbca8ae4902',
+      repo        : 'hexo-gitalk',
+      owner       : 'Kewth',
+      admin       : ['Kewth'],
+      id          : 'dd17dede0700644ef7d82c6fe53ab5c3',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>
