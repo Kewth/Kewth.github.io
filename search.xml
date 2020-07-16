@@ -16,6 +16,72 @@
 ]]></content>
   </entry>
   <entry>
+    <title>拟阵和贪心</title>
+    <url>/2020/07/16/%E6%8B%9F%E9%98%B5%E5%92%8C%E8%B4%AA%E5%BF%83/</url>
+    <content><![CDATA[<h2 id="理论基础">理论基础</h2>
+<p>一个拟阵是一个二元组 <span class="math inline">\(M = (U, I)\)</span> ，其中 <span class="math inline">\(U\)</span> 是一个<strong>有限</strong>集合，一般是待研究元素的全集，<span class="math inline">\(I\)</span> 是 <span class="math inline">\(U\)</span> 的一些子集的集合，一般是满足给定限制的子集的集合。</p>
+<p>另外，拟阵要满足两个性质：</p>
+<ul>
+<li>遗传性： <span class="math inline">\(\forall S \in I, T \subseteq S\)</span> 满足 <span class="math inline">\(T \in I\)</span> 。</li>
+<li>交换性： <span class="math inline">\(\forall A \in I, B \in I, |A| &lt; |B|\)</span> 满足 <span class="math inline">\(\exists x \in B, x \notin A\)</span> 使得 <span class="math inline">\(A \cup \{x\} \in I\)</span> 。</li>
+</ul>
+<p>有一部分贪心可以为这样的形式：给定一个映射 <span class="math inline">\(f: U \rightarrow R\)</span> ，要在 <span class="math inline">\(I\)</span> 中找到一个 <span class="math inline">\(S\)</span> 使得 <span class="math inline">\(\sum_{x \in S} f(x)\)</span> 最大。</p>
+<p>这类贪心都可以用如下流程解决：</p>
+<ol type="1">
+<li>设 <span class="math inline">\(U_0 := U\)</span> 表示可选集合，<span class="math inline">\(S := \emptyset\)</span> 表示要求的集合。</li>
+<li>在集合 <span class="math inline">\(U_0\)</span> 中找出 <span class="math inline">\(f(x)\)</span> 最大的元素 <span class="math inline">\(x\)</span> 。</li>
+<li>如果 <span class="math inline">\(S \cup \{x\} \in I\)</span> ，令 <span class="math inline">\(S := S \cup \{x\}\)</span> 。</li>
+<li>令 <span class="math inline">\(U_0 := U_0 \setminus \{x\}\)</span> ，若 <span class="math inline">\(U_0\)</span> 非空，返回第 2 步。</li>
+</ol>
+<h2 id="证明">证明</h2>
+<p>咕咕咕。</p>
+<h2 id="例子-1">例子 1</h2>
+<p>Kruskal 求最小生成树。</p>
+<p>咕咕咕。</p>
+<h2 id="例子-2">例子 2</h2>
+<p>CQOI2013 新 Nim 游戏。</p>
+<p>咕咕咕。</p>
+]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>贪心</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>最大权闭合子图</title>
+    <url>/2020/07/16/%E6%9C%80%E5%A4%A7%E6%9D%83%E9%97%AD%E5%90%88%E5%AD%90%E5%9B%BE/</url>
+    <content><![CDATA[<h2 id="概念">概念</h2>
+<p>一个有向图 <span class="math inline">\(G = (V, E)\)</span> 的闭合子图是一个导出子图 <span class="math inline">\(G_0 = (V_0, E_0)\)</span> ，满足 <span class="math inline">\(\forall u \in V_0, (u, x) \in E\)</span> 有 <span class="math inline">\(x \in V_0\)</span> 成立。</p>
+<p>最大权闭合子图即点权和最大的闭合子图。</p>
+<a id="more"></a>
+<h2 id="网络流模型">网络流模型</h2>
+<p>注意到对于任意两个点 <span class="math inline">\(u, v\)</span> 满足 <span class="math inline">\(u\)</span> 能到达 <span class="math inline">\(v\)</span> ，闭合子图必须满足以下两个限制之一：</p>
+<ul>
+<li><span class="math inline">\(u\)</span> 不在该闭合子图中</li>
+<li><span class="math inline">\(v\)</span> 在该闭合子图中</li>
+</ul>
+<p>容易联想到“割”，建源点 <span class="math inline">\(S\)</span> 连向所有点，所有点连向汇点 <span class="math inline">\(T\)</span> 。割掉 <span class="math inline">\((u, T)\)</span> 表示 <span class="math inline">\(u\)</span> 在闭合子图中，割掉 <span class="math inline">\((S, u)\)</span> 表示 <span class="math inline">\(u\)</span> 不在闭合子图中。那么新图的一组合法割就对应了原图的一个闭合子图。</p>
+<p>求最大权闭合子图就只要给新图定义合适的边权，使得最大权闭合子图的权值等于一个定值 <span class="math inline">\(K\)</span> 减去新图最小割。</p>
+<p>容易想到令原图边边权为 <span class="math inline">\(+\infty\)</span> ，<span class="math inline">\((S, u)\)</span> 的边权为 <span class="math inline">\(u\)</span> 的点权，<span class="math inline">\((u, T)\)</span> 的边权为 <span class="math inline">\(0\)</span> 。那么上述的定值 <span class="math inline">\(K\)</span> 就是点权和。但是 <span class="math inline">\(u\)</span> 的点权可能为负数，这样定权会导致负权边的出现。常规操作，对于点权为 <span class="math inline">\(-X (X &gt; 0)\)</span> 的点 <span class="math inline">\(u\)</span> ，不妨先“预流”一条 <span class="math inline">\(S -&gt; u -&gt; T\)</span> 的流量为 <span class="math inline">\(-X\)</span> 的路径，这样 <span class="math inline">\((S, u)\)</span> 的边权变为 <span class="math inline">\(0\)</span> ，<span class="math inline">\((u, T)\)</span> 的边权变为 <span class="math inline">\(X\)</span> 。算上“预流”的流量，此时 <span class="math inline">\(K\)</span> 是所有正权点的权值和。此时就可以简单地应用网络流解决这个问题。</p>
+<h2 id="最大密度子图">最大密度子图</h2>
+<p>对于无向图 <span class="math inline">\(G = (V, E)\)</span> ，其非空导出子图 <span class="math inline">\(G_0 = (V_0, E_0)\)</span> 的密度定义为边数与点数的比值，即 <span class="math inline">\(\frac{|E_0|}{|V_0|}\)</span> 。</p>
+<p>最大密度子图即密度最大的导出子图。</p>
+<p>问题实际上是一个分数规划，不难想到二分密度 <span class="math inline">\(X\)</span> 然后判断是否存在 <span class="math inline">\(G_0\)</span> 满足 <span class="math inline">\(|E_0| - X |V_0| &gt; 0\)</span> 。</p>
+<p>令每条边的权值为 <span class="math inline">\(1\)</span> ，每个点的权值为 <span class="math inline">\(-X\)</span> ，那么问题就是要求一个点权和加边权和最大的导出子图。</p>
+<p>注意到一条边出现在导出子图中当且仅当它的两个端点都在该导出子图中，根据这个限制关系可以把原图的边都抽象成点然后建新的有向图。判断新图的最大权导出子图的权值是否为<strong>正数</strong>即可。</p>
+<p>需要注意的是，空集也是一个导出子图，其密度是没有定义的，却始终满足 <span class="math inline">\(|E_0| - X |V_0| = 0\)</span> ，因此二分的判断条件一定是严格大于而不是大于等于。</p>
+]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>图论</tag>
+        <tag>网络流</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>最长反链长</title>
     <url>/2020/07/15/%E6%9C%80%E9%95%BF%E5%8F%8D%E9%93%BE%E9%95%BF/</url>
     <content><![CDATA[<p><del>去年写过的东西加点补充就算做今天写的了</del></p>

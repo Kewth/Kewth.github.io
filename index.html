@@ -125,7 +125,7 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">55</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">57</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -135,7 +135,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">52</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">54</span></a>
 
   </li>
   </ul>
@@ -229,6 +229,177 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2019/10/10/%E6%90%AC%E8%BF%81/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2020/07/16/%E6%8B%9F%E9%98%B5%E5%92%8C%E8%B4%AA%E5%BF%83/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Kewth">
+      <meta itemprop="description" content="HNFMS 现役 OIer">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KeBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/07/16/%E6%8B%9F%E9%98%B5%E5%92%8C%E8%B4%AA%E5%BF%83/" class="post-title-link" itemprop="url">拟阵和贪心</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-07-16 11:53:34 / 修改时间：12:22:23" itemprop="dateCreated datePublished" datetime="2020-07-16T11:53:34+08:00">2020-07-16</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="理论基础">理论基础</h2>
+<p>一个拟阵是一个二元组 <span class="math inline">\(M = (U, I)\)</span> ，其中 <span class="math inline">\(U\)</span> 是一个<strong>有限</strong>集合，一般是待研究元素的全集，<span class="math inline">\(I\)</span> 是 <span class="math inline">\(U\)</span> 的一些子集的集合，一般是满足给定限制的子集的集合。</p>
+<p>另外，拟阵要满足两个性质：</p>
+<ul>
+<li>遗传性： <span class="math inline">\(\forall S \in I, T \subseteq S\)</span> 满足 <span class="math inline">\(T \in I\)</span> 。</li>
+<li>交换性： <span class="math inline">\(\forall A \in I, B \in I, |A| &lt; |B|\)</span> 满足 <span class="math inline">\(\exists x \in B, x \notin A\)</span> 使得 <span class="math inline">\(A \cup \{x\} \in I\)</span> 。</li>
+</ul>
+<p>有一部分贪心可以为这样的形式：给定一个映射 <span class="math inline">\(f: U \rightarrow R\)</span> ，要在 <span class="math inline">\(I\)</span> 中找到一个 <span class="math inline">\(S\)</span> 使得 <span class="math inline">\(\sum_{x \in S} f(x)\)</span> 最大。</p>
+<p>这类贪心都可以用如下流程解决：</p>
+<ol type="1">
+<li>设 <span class="math inline">\(U_0 := U\)</span> 表示可选集合，<span class="math inline">\(S := \emptyset\)</span> 表示要求的集合。</li>
+<li>在集合 <span class="math inline">\(U_0\)</span> 中找出 <span class="math inline">\(f(x)\)</span> 最大的元素 <span class="math inline">\(x\)</span> 。</li>
+<li>如果 <span class="math inline">\(S \cup \{x\} \in I\)</span> ，令 <span class="math inline">\(S := S \cup \{x\}\)</span> 。</li>
+<li>令 <span class="math inline">\(U_0 := U_0 \setminus \{x\}\)</span> ，若 <span class="math inline">\(U_0\)</span> 非空，返回第 2 步。</li>
+</ol>
+<h2 id="证明">证明</h2>
+<p>咕咕咕。</p>
+<h2 id="例子-1">例子 1</h2>
+<p>Kruskal 求最小生成树。</p>
+<p>咕咕咕。</p>
+<h2 id="例子-2">例子 2</h2>
+<p>CQOI2013 新 Nim 游戏。</p>
+<p>咕咕咕。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2020/07/16/%E6%9C%80%E5%A4%A7%E6%9D%83%E9%97%AD%E5%90%88%E5%AD%90%E5%9B%BE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Kewth">
+      <meta itemprop="description" content="HNFMS 现役 OIer">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KeBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/07/16/%E6%9C%80%E5%A4%A7%E6%9D%83%E9%97%AD%E5%90%88%E5%AD%90%E5%9B%BE/" class="post-title-link" itemprop="url">最大权闭合子图</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-07-16 08:52:04 / 修改时间：12:25:49" itemprop="dateCreated datePublished" datetime="2020-07-16T08:52:04+08:00">2020-07-16</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="概念">概念</h2>
+<p>一个有向图 <span class="math inline">\(G = (V, E)\)</span> 的闭合子图是一个导出子图 <span class="math inline">\(G_0 = (V_0, E_0)\)</span> ，满足 <span class="math inline">\(\forall u \in V_0, (u, x) \in E\)</span> 有 <span class="math inline">\(x \in V_0\)</span> 成立。</p>
+<p>最大权闭合子图即点权和最大的闭合子图。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/07/16/%E6%9C%80%E5%A4%A7%E6%9D%83%E9%97%AD%E5%90%88%E5%AD%90%E5%9B%BE/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -847,185 +1018,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2020/04/29/%E5%8D%A2%E5%8D%A1%E6%96%AF%E5%AE%9A%E7%90%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-      <meta itemprop="name" content="Kewth">
-      <meta itemprop="description" content="HNFMS 现役 OIer">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="KeBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/04/29/%E5%8D%A2%E5%8D%A1%E6%96%AF%E5%AE%9A%E7%90%86/" class="post-title-link" itemprop="url">卢卡斯定理</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-04-29 19:35:35" itemprop="dateCreated datePublished" datetime="2020-04-29T19:35:35+08:00">2020-04-29</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-05-19 20:24:05" itemprop="dateModified" datetime="2020-05-19T20:24:05+08:00">2020-05-19</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>简单来说就是快速计算 <span class="math inline">\(\binom{n}{m} \mod p\)</span> 。</p>
-<h2 id="卢卡斯定理">卢卡斯定理</h2>
-<p>如果 <span class="math inline">\(p\)</span> 是质数，有 <span class="math inline">\(\binom{n}{m} \equiv \binom{n \mod p}{m \mod p} \binom{n/p}{m/p} \pmod{p}\)</span> ，其中 <span class="math inline">\(n/p\)</span> 和 <span class="math inline">\(m/p\)</span> 表示整除。</p>
-<p>直接递归调用，预处理阶乘，单次询问时间复杂度 <span class="math inline">\(O(p + \frac{\log n}{\log p})\)</span> 。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/04/29/%E5%8D%A2%E5%8D%A1%E6%96%AF%E5%AE%9A%E7%90%86/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2020/04/19/%E5%B8%B8%E7%B3%BB%E6%95%B0%E9%BD%90%E6%AC%A1%E7%BA%BF%E6%80%A7%E9%80%92%E6%8E%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-      <meta itemprop="name" content="Kewth">
-      <meta itemprop="description" content="HNFMS 现役 OIer">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="KeBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/04/19/%E5%B8%B8%E7%B3%BB%E6%95%B0%E9%BD%90%E6%AC%A1%E7%BA%BF%E6%80%A7%E9%80%92%E6%8E%A8/" class="post-title-link" itemprop="url">常系数齐次线性递推</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-04-19 16:03:50" itemprop="dateCreated datePublished" datetime="2020-04-19T16:03:50+08:00">2020-04-19</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-05-19 20:24:16" itemprop="dateModified" datetime="2020-05-19T20:24:16+08:00">2020-05-19</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>问题是这样的：</p>
-<p>对于一个无穷大的递推数列 <span class="math inline">\(\{h_i\}\)</span> 和长度为 <span class="math inline">\(k\)</span> 的已知数列 <span class="math inline">\(\{a_i\}\)</span>，满足<span class="math inline">\(\forall n, h_n = \sum_{i=1}^k a_i h_{n-i}\)</span> 。 已知 <span class="math inline">\(h_i (0 \le i &lt; k)\)</span> 求 <span class="math inline">\(h_n\)</span> 。</p>
-<p>直接递推复杂度 <span class="math inline">\(O(nk)\)</span> ，矩阵快速幂可以做到 <span class="math inline">\(O(k^3 logn)\)</span> 的复杂度，这里介绍一个更优秀的做法。</p>
-<h2 id="结论">结论</h2>
-<p>便于以后复习，先给出结论。</p>
-<ol type="1">
-<li>构造多项式 <span class="math inline">\(F(x) = x^k - \sum_{i=1}^k a_i x^{k-i}\)</span> 。</li>
-<li>求出多项式 <span class="math inline">\(G(x) = \sum_{i=0}^{k-1} c_i x^i = x^n \mod F(x)\)</span> 。</li>
-<li>有 <span class="math inline">\(h_n = \sum_{i=0}^{k-1} c_i h_i\)</span> 。</li>
-</ol>
-<p>第一步和第三步都是 <span class="math inline">\(O(k)\)</span> 的，而第二步通过多项式快速幂和多项式取模可以做到 <span class="math inline">\(O(k\log k\log n)\)</span> 的复杂度。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/04/19/%E5%B8%B8%E7%B3%BB%E6%95%B0%E9%BD%90%E6%AC%A1%E7%BA%BF%E6%80%A7%E9%80%92%E6%8E%A8/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1097,7 +1089,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">52</span>
+          <span class="site-state-item-count">54</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1110,7 +1102,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">55</span>
+        <span class="site-state-item-count">57</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
