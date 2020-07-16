@@ -33,6 +33,7 @@
 <li>如果 <span class="math inline">\(S \cup \{x\} \in I\)</span> ，令 <span class="math inline">\(S := S \cup \{x\}\)</span> 。</li>
 <li>令 <span class="math inline">\(U_0 := U_0 \setminus \{x\}\)</span> ，若 <span class="math inline">\(U_0\)</span> 非空，返回第 2 步。</li>
 </ol>
+<a id="more"></a>
 <h2 id="证明">证明</h2>
 <p>咕咕咕。</p>
 <h2 id="例子-1">例子 1</h2>

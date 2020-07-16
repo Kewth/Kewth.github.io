@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://kewth.github.io/"/>
-  <updated>2020-07-16T04:22:23.898Z</updated>
+  <updated>2020-07-16T04:27:14.381Z</updated>
   <id>https://kewth.github.io/</id>
   
   <author>
@@ -21,17 +21,27 @@
     <link href="https://kewth.github.io/2020/07/16/%E6%8B%9F%E9%98%B5%E5%92%8C%E8%B4%AA%E5%BF%83/"/>
     <id>https://kewth.github.io/2020/07/16/%E6%8B%9F%E9%98%B5%E5%92%8C%E8%B4%AA%E5%BF%83/</id>
     <published>2020-07-16T03:53:34.000Z</published>
-    <updated>2020-07-16T04:22:23.898Z</updated>
+    <updated>2020-07-16T04:27:14.381Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="理论基础">理论基础</h2><p>一个拟阵是一个二元组 <span class="math inline">\(M = (U, I)\)</span> ，其中 <span class="math inline">\(U\)</span> 是一个<strong>有限</strong>集合，一般是待研究元素的全集，<span class="math inline">\(I\)</span> 是 <span class="math inline">\(U\)</span> 的一些子集的集合，一般是满足给定限制的子集的集合。</p><p>另外，拟阵要满足两个性质：</p><ul><li>遗传性： <span class="math inline">\(\forall S \in I, T \subseteq S\)</span> 满足 <span class="math inline">\(T \in I\)</span> 。</li><li>交换性： <span class="math inline">\(\forall A \in I, B \in I, |A| &lt; |B|\)</span> 满足 <span class="math inline">\(\exists x \in B, x \notin A\)</span> 使得 <span class="math inline">\(A \cup \{x\} \in I\)</span> 。</li></ul><p>有一部分贪心可以为这样的形式：给定一个映射 <span class="math inline">\(f: U \rightarrow R\)</span> ，要在 <span class="math inline">\(I\)</span> 中找到一个 <span class="math inline">\(S\)</span> 使得 <span class="math inline">\(\sum_{x \in S} f(x)\)</span> 最大。</p><p>这类贪心都可以用如下流程解决：</p><ol type="1"><li>设 <span class="math inline">\(U_0 := U\)</span> 表示可选集合，<span class="math inline">\(S := \emptyset\)</span> 表示要求的集合。</li><li>在集合 <span class="math inline">\(U_0\)</span> 中找出 <span class="math inline">\(f(x)\)</span> 最大的元素 <span class="math inline">\(x\)</span> 。</li><li>如果 <span class="math inline">\(S \cup \{x\} \in I\)</span> ，令 <span class="math inline">\(S := S \cup \{x\}\)</span> 。</li><li>令 <span class="math inline">\(U_0 := U_0 \setminus \{x\}\)</span> ，若 <span class="math inline">\(U_0\)</span> 非空，返回第 2 步。</li></ol><h2 id="证明">证明</h2><p>咕咕咕。</p><h2 id="例子-1">例子 1</h2><p>Kruskal 求最小生成树。</p><p>咕咕咕。</p><h2 id="例子-2">例子 2</h2><p>CQOI2013 新 Nim 游戏。</p><p>咕咕咕。</p>]]></content>
+    <content type="html"><![CDATA[<h2 id="理论基础">理论基础</h2><p>一个拟阵是一个二元组 <span class="math inline">\(M = (U, I)\)</span> ，其中 <span class="math inline">\(U\)</span> 是一个<strong>有限</strong>集合，一般是待研究元素的全集，<span class="math inline">\(I\)</span> 是 <span class="math inline">\(U\)</span> 的一些子集的集合，一般是满足给定限制的子集的集合。</p><p>另外，拟阵要满足两个性质：</p><ul><li>遗传性： <span class="math inline">\(\forall S \in I, T \subseteq S\)</span> 满足 <span class="math inline">\(T \in I\)</span> 。</li><li>交换性： <span class="math inline">\(\forall A \in I, B \in I, |A| &lt; |B|\)</span> 满足 <span class="math inline">\(\exists x \in B, x \notin A\)</span> 使得 <span class="math inline">\(A \cup \{x\} \in I\)</span> 。</li></ul><p>有一部分贪心可以为这样的形式：给定一个映射 <span class="math inline">\(f: U \rightarrow R\)</span> ，要在 <span class="math inline">\(I\)</span> 中找到一个 <span class="math inline">\(S\)</span> 使得 <span class="math inline">\(\sum_{x \in S} f(x)\)</span> 最大。</p><p>这类贪心都可以用如下流程解决：</p><ol type="1"><li>设 <span class="math inline">\(U_0 := U\)</span> 表示可选集合，<span class="math inline">\(S := \emptyset\)</span> 表示要求的集合。</li><li>在集合 <span class="math inline">\(U_0\)</span> 中找出 <span class="math inline">\(f(x)\)</span> 最大的元素 <span class="math inline">\(x\)</span> 。</li><li>如果 <span class="math inline">\(S \cup \{x\} \in I\)</span> ，令 <span class="math inline">\(S := S \cup \{x\}\)</span> 。</li><li>令 <span class="math inline">\(U_0 := U_0 \setminus \{x\}\)</span> ，若 <span class="math inline">\(U_0\)</span> 非空，返回第 2 步。</li></ol><a id="more"></a><h2 id="证明">证明</h2><p>咕咕咕。</p><h2 id="例子-1">例子 1</h2><p>Kruskal 求最小生成树。</p><p>咕咕咕。</p><h2 id="例子-2">例子 2</h2><p>CQOI2013 新 Nim 游戏。</p><p>咕咕咕。</p>]]></content>
     
     <summary type="html">
     
-      
-      
-        &lt;h2 id=&quot;理论基础&quot;&gt;理论基础&lt;/h2&gt;
-&lt;p&gt;一个拟阵是一个二元组 &lt;span class=&quot;math inline&quot;&gt;\(M = (U, I)\)&lt;/span&gt; ，其中 &lt;span class=&quot;math inline&quot;&gt;\(U\)&lt;/span&gt; 是一个&lt;strong&gt;
-      
+      &lt;h2 id=&quot;理论基础&quot;&gt;理论基础&lt;/h2&gt;
+&lt;p&gt;一个拟阵是一个二元组 &lt;span class=&quot;math inline&quot;&gt;\(M = (U, I)\)&lt;/span&gt; ，其中 &lt;span class=&quot;math inline&quot;&gt;\(U\)&lt;/span&gt; 是一个&lt;strong&gt;有限&lt;/strong&gt;集合，一般是待研究元素的全集，&lt;span class=&quot;math inline&quot;&gt;\(I\)&lt;/span&gt; 是 &lt;span class=&quot;math inline&quot;&gt;\(U\)&lt;/span&gt; 的一些子集的集合，一般是满足给定限制的子集的集合。&lt;/p&gt;
+&lt;p&gt;另外，拟阵要满足两个性质：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;遗传性： &lt;span class=&quot;math inline&quot;&gt;\(\forall S \in I, T \subseteq S\)&lt;/span&gt; 满足 &lt;span class=&quot;math inline&quot;&gt;\(T \in I\)&lt;/span&gt; 。&lt;/li&gt;
+&lt;li&gt;交换性： &lt;span class=&quot;math inline&quot;&gt;\(\forall A \in I, B \in I, |A| &amp;lt; |B|\)&lt;/span&gt; 满足 &lt;span class=&quot;math inline&quot;&gt;\(\exists x \in B, x \notin A\)&lt;/span&gt; 使得 &lt;span class=&quot;math inline&quot;&gt;\(A \cup \{x\} \in I\)&lt;/span&gt; 。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;有一部分贪心可以为这样的形式：给定一个映射 &lt;span class=&quot;math inline&quot;&gt;\(f: U \rightarrow R\)&lt;/span&gt; ，要在 &lt;span class=&quot;math inline&quot;&gt;\(I\)&lt;/span&gt; 中找到一个 &lt;span class=&quot;math inline&quot;&gt;\(S\)&lt;/span&gt; 使得 &lt;span class=&quot;math inline&quot;&gt;\(\sum_{x \in S} f(x)\)&lt;/span&gt; 最大。&lt;/p&gt;
+&lt;p&gt;这类贪心都可以用如下流程解决：&lt;/p&gt;
+&lt;ol type=&quot;1&quot;&gt;
+&lt;li&gt;设 &lt;span class=&quot;math inline&quot;&gt;\(U_0 := U\)&lt;/span&gt; 表示可选集合，&lt;span class=&quot;math inline&quot;&gt;\(S := \emptyset\)&lt;/span&gt; 表示要求的集合。&lt;/li&gt;
+&lt;li&gt;在集合 &lt;span class=&quot;math inline&quot;&gt;\(U_0\)&lt;/span&gt; 中找出 &lt;span class=&quot;math inline&quot;&gt;\(f(x)\)&lt;/span&gt; 最大的元素 &lt;span class=&quot;math inline&quot;&gt;\(x\)&lt;/span&gt; 。&lt;/li&gt;
+&lt;li&gt;如果 &lt;span class=&quot;math inline&quot;&gt;\(S \cup \{x\} \in I\)&lt;/span&gt; ，令 &lt;span class=&quot;math inline&quot;&gt;\(S := S \cup \{x\}\)&lt;/span&gt; 。&lt;/li&gt;
+&lt;li&gt;令 &lt;span class=&quot;math inline&quot;&gt;\(U_0 := U_0 \setminus \{x\}\)&lt;/span&gt; ，若 &lt;span class=&quot;math inline&quot;&gt;\(U_0\)&lt;/span&gt; 非空，返回第 2 步。&lt;/li&gt;
+&lt;/ol&gt;
     
     </summary>
     
