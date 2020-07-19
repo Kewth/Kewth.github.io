@@ -16,6 +16,53 @@
 ]]></content>
   </entry>
   <entry>
+    <title>万能欧几里得</title>
+    <url>/2020/07/19/%E4%B8%87%E8%83%BD%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97/</url>
+    <content><![CDATA[<p>有一类问题可以归结为以下模型：</p>
+<p>有一种元素，它们之间可以定义乘法，且乘法满足结合律。给定两个元素 <span class="math inline">\(X, Y\)</span> 和正整数 <span class="math inline">\(n\)</span> ，求</p>
+<p><span class="math display">\[F(P, R, Q, n, X, Y) = \prod_{i=0}^n Y^{f(i) - f(i - 1)} X\]</span></p>
+<p>其中 <span class="math inline">\(f(x) = \lfloor \frac{xP+R}{Q} \rfloor\)</span> ，也就是说第 <span class="math inline">\(i\)</span> （从 <span class="math inline">\(0\)</span> 开始）个 <span class="math inline">\(X\)</span> 前面都有恰好 <span class="math inline">\(f(i)\)</span> 个 Y 。</p>
+<p>不难发现所有类欧几里得都可以归结为该模型。</p>
+<a id="more"></a>
+<h2 id="解法">解法</h2>
+<p>直奔主题，讲怎么做，其中奥妙自行体会。</p>
+<p>以下把连乘展开构成的字符串称作 <span class="math inline">\(S\)</span> 。</p>
+<p>首先 <span class="math inline">\(n = 0\)</span> 的时候可以直接求解，接下来假定 <span class="math inline">\(n \le 1\)</span> 。</p>
+<p>如果 <span class="math inline">\(R \ge Q\)</span> ，那么可以把 <span class="math inline">\(S\)</span> 开头的 <span class="math inline">\(Y\)</span> 全部提出来，有</p>
+<p><span class="math display">\[F(P, R, Q, n, X, Y) = Y^{\lfloor \frac{R}{Q} \rfloor} F(P, R \mod Q, Q, n, X, Y)\]</span></p>
+<p>接下来假定 <span class="math inline">\(R &lt; Q\)</span> ，那么 <span class="math inline">\(S\)</span> 的开头一定是个 <span class="math inline">\(X\)</span> 。</p>
+<hr />
+<p>然后就可以来一波辗转相除，<span class="math inline">\(P \ge Q\)</span> 时把 <span class="math inline">\(P\)</span> 转换为 <span class="math inline">\(P \mod Q\)</span> ，否则交换 <span class="math inline">\(P, Q\)</span> ，具体方法如下。</p>
+<p>如果 <span class="math inline">\(P \ge Q\)</span> ，不难发现把 <span class="math inline">\(S\)</span> 中每相邻两个 <span class="math inline">\(X\)</span> 之间都有至少一个 <span class="math inline">\(Y\)</span> ，把这个 <span class="math inline">\(Y\)</span> 绑在后面的 <span class="math inline">\(X\)</span> 上，不断绑定，但是注意到第一个 <span class="math inline">\(X\)</span> 是没法绑定的，把这个 <span class="math inline">\(X\)</span> 提出来，有</p>
+<p><span class="math display">\[F(P, R, Q, n, X, Y) = X F(P \mod Q, R + P \mod Q, Q, n - 1, Y^{\lfloor \frac{P}{Q} \rfloor} X, Y)\]</span></p>
+<hr />
+<p>否则考虑交换 <span class="math inline">\(P, Q\)</span> 的地位，如果放在二维平面上，就是翻转坐标系，这里来点数学推导。</p>
+<p>将 <span class="math inline">\(S\)</span> 中的 <span class="math inline">\(X, Y\)</span> 都从 <span class="math inline">\(0\)</span> 开始编号，根据 <span class="math inline">\(F\)</span> 的定义编号为 <span class="math inline">\(i\)</span> 的 <span class="math inline">\(X\)</span> 左边的 <span class="math inline">\(Y\)</span> 的数量恰为 <span class="math inline">\(f(i)\)</span> ，<span class="math inline">\(f\)</span> 是个线性函数向下取整的形式。那么考虑第编号为 <span class="math inline">\(i\)</span> 左边的 <span class="math inline">\(X\)</span> 的数量，设其为 <span class="math inline">\(g(i)\)</span> ，不难发现 <span class="math inline">\(g\)</span> 同样是个线性函数向下取整的形式！这意味着可以简单地交换 <span class="math inline">\(X, Y\)</span> 的地位，从而交换 <span class="math inline">\(P, Q\)</span> 。需要注意的是 <span class="math inline">\(S\)</span> 的末尾有若干 <span class="math inline">\(X\)</span> 需要特殊考虑。</p>
+<p>那么现在的问题就是求 <span class="math inline">\(g(i)\)</span> ，根据定义有</p>
+<p><span class="math display">\[
+\begin{aligned}
+g(i) &amp;= \sum_{j \ge 0} [f(j) \le i] \\\\
+&amp;= \sum_{j \ge 0} [\lfloor \frac{Pj+R}{Q} \rfloor \le i] \\\\
+&amp;= \sum_{j \ge 0} [Pj + R - Q + 1 \le Qi] \\\\
+&amp;= \sum_{j \ge 0} [j \le \lfloor \frac{Qi-R+Q-1}{P} \rfloor] \\\\
+&amp;= \lfloor \frac{Qi+P-R+Q-1}{P} \rfloor
+\end{aligned}
+\]</span></p>
+<p>于是，稍加整理，不难得到</p>
+<p><span class="math display">\[F(P, R, Q, n, X, Y) = F(Q, P - R + Q - 1, P, t - 1, Y, X) X^{n - \lfloor \frac{Qt-R-1}{P} \rfloor}\]</span></p>
+<p>其中 <span class="math inline">\(t\)</span> 是 <span class="math inline">\(S\)</span> 内 <span class="math inline">\(Y\)</span> 的数量，有 <span class="math inline">\(t = \lfloor \frac{nP+R}{Q} \rfloor\)</span> ，注意 <span class="math inline">\(t=0\)</span> 的边界情况。</p>
+<h2 id="实例">实例</h2>
+<p>咕咕咕。</p>
+]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>数论</tag>
+        <tag>欧几里得</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>拟阵和贪心</title>
     <url>/2020/07/16/%E6%8B%9F%E9%98%B5%E5%92%8C%E8%B4%AA%E5%BF%83/</url>
     <content><![CDATA[<h2 id="理论基础">理论基础</h2>
@@ -715,9 +762,10 @@
 <ul>
 <li><p>有小概率 <span class="math inline">\(M\)</span> 与 <span class="math inline">\(m\)</span> 恰好相等，在 <span class="math inline">\(b_i = b_{2i}\)</span> 的时候恰好有 <span class="math inline">\(a_i = a_{2i}\)</span> ，此时应该更换参数 <span class="math inline">\(c\)</span> 重新进行算法。</p></li>
 <li><p>当 <span class="math inline">\(v\)</span> 的乘积模 <span class="math inline">\(n\)</span> 为 0 时需要及时退出，否则算法会返回 <span class="math inline">\(n\)</span> ，而 <span class="math inline">\(n\)</span> 不是 <span class="math inline">\(n\)</span> 的非平凡因子。</p></li>
+<li><p><span class="math inline">\(n = 4\)</span> 时 无论怎么取参数 <span class="math inline">\(c\)</span> 和序列初值，<span class="math inline">\(M = m\)</span> 恒成立，需要特判。</p></li>
 </ul>
 <p>参考实现（经过测试，上接 miller-rabin 的部分）：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> ll <span class="title">nxt</span><span class="params">(ll x, ll c, ll n)</span> </span>&#123;</span><br><span class="line">	ll res = mul(x, x, n) + c;</span><br><span class="line">	<span class="keyword">return</span> res &gt;= n ? res - n : res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">ll <span class="title">pollard</span><span class="params">(ll n)</span> </span>&#123;</span><br><span class="line">	ll c = <span class="number">1l</span>l * rand() * rand() % n;</span><br><span class="line">	ll a = nxt(rand(), c, n);</span><br><span class="line">	ll a2 = nxt(a, c, n);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> lim = <span class="number">2</span>;</span><br><span class="line">	<span class="keyword">while</span>(a != a2) &#123;</span><br><span class="line">		ll v = <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; lim <span class="keyword">and</span> a != a2; i ++) &#123;</span><br><span class="line">			ll tov = mul(v, <span class="built_in">std</span>::<span class="built_in">abs</span>(a - a2), n);</span><br><span class="line">			<span class="keyword">if</span>(!tov) <span class="keyword">return</span> <span class="built_in">std</span>::__gcd(v, n);</span><br><span class="line">			v = tov;</span><br><span class="line">			a = nxt(a, c, n);</span><br><span class="line">			a2 = nxt(nxt(a2, c, n), c, n);</span><br><span class="line">		&#125;</span><br><span class="line">		ll d = <span class="built_in">std</span>::__gcd(v, n);</span><br><span class="line">		<span class="keyword">if</span>(d &gt; <span class="number">1</span>) <span class="keyword">return</span> d;</span><br><span class="line">		<span class="keyword">if</span>(lim &lt; <span class="number">128</span>) lim &lt;&lt;= <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> pollard(n);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> ll <span class="title">nxt</span><span class="params">(ll x, ll c, ll n)</span> </span>&#123;</span><br><span class="line">	ll res = mul(x, x, n) + c;</span><br><span class="line">	<span class="keyword">return</span> res &gt;= n ? res - n : res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">ll <span class="title">pollard</span><span class="params">(ll n)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(n == <span class="number">4</span>) <span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line">	ll c = <span class="number">1l</span>l * rand() * rand() % n;</span><br><span class="line">	ll a = nxt(rand(), c, n);</span><br><span class="line">	ll a2 = nxt(a, c, n);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> lim = <span class="number">2</span>;</span><br><span class="line">	<span class="keyword">while</span>(a != a2) &#123;</span><br><span class="line">		ll v = <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; lim <span class="keyword">and</span> a != a2; i ++) &#123;</span><br><span class="line">			ll tov = mul(v, <span class="built_in">std</span>::<span class="built_in">abs</span>(a - a2), n);</span><br><span class="line">			<span class="keyword">if</span>(!tov) <span class="keyword">return</span> <span class="built_in">std</span>::__gcd(v, n);</span><br><span class="line">			v = tov;</span><br><span class="line">			a = nxt(a, c, n);</span><br><span class="line">			a2 = nxt(nxt(a2, c, n), c, n);</span><br><span class="line">		&#125;</span><br><span class="line">		ll d = <span class="built_in">std</span>::__gcd(v, n);</span><br><span class="line">		<span class="keyword">if</span>(d &gt; <span class="number">1</span>) <span class="keyword">return</span> d;</span><br><span class="line">		<span class="keyword">if</span>(lim &lt; <span class="number">128</span>) lim &lt;&lt;= <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> pollard(n);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="应用">应用</h4>
 <p>求最小质因数，最大质因数，质因数分解等，<br />
 都只需要每次找到 <span class="math inline">\(n\)</span> 的非平凡因子 <span class="math inline">\(d\)</span> 然后不断令 <span class="math inline">\(n\)</span> 除以 <span class="math inline">\(d\)</span> 转换为子问题，<br />
@@ -2066,6 +2114,11 @@ f(a, b, c, n) &amp;= \sum_{i=0}^n \lfloor \frac{ai+b}{c} \rfloor \\\\
 a = 0 时上式不成立，因为上面的推导有除以 a 的步骤。<br />
 因此将 a = 0 作为终止状态，此时 f 的计算是常数数列求和。<br />
 复杂度是对数复杂度 log(a)，因为上面的过程规模的减小速度相当于 gcd 。</p>
+<h2 id="数形结合">数形结合</h2>
+<p>复习的时候看到这么多式子头都大了，但是这个类欧事实上就是数一个三角形内的整点数，第一步很好理解，第二步本质上就是把坐标轴翻转了一下然后用一个正方形的点数减去一个三角形的点数（事实上可以不用这个补集转换），很快就可以得到同样的结论，可以避免冗长的纯式子推导。</p>
+<p>放在二维平面上，第一步的本质就是把斜率固定在小于 1 的数，第二步的本质就是翻转坐标轴，翻转后斜率会变为原来的倒数，于是会超过 1 。这样反复进行就可以逐渐数完三角形内的所有整点。</p>
+<p>UPD: 准确来说不是三角形，是梯形，但显然两者可以相互转换。</p>
+<p>但是更复杂的类欧这个数形结合好像就不管用了，还是得用数学推导。</p>
 ]]></content>
       <categories>
         <category>算法</category>
