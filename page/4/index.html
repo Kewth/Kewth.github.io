@@ -125,7 +125,7 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">57</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">58</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -135,7 +135,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">55</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">56</span></a>
 
   </li>
   </ul>
@@ -162,6 +162,108 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2019/10/13/cf-592div2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Kewth">
+      <meta itemprop="description" content="HNFMS 现役 OIer">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KeBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/10/13/cf-592div2/" class="post-title-link" itemprop="url">cf-592div2</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-10-13 21:07:10" itemprop="dateCreated datePublished" datetime="2019-10-13T21:07:10+08:00">2019-10-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-05-19 20:31:24" itemprop="dateModified" datetime="2020-05-19T20:31:24+08:00">2020-05-19</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%80%BB%E7%BB%93/" itemprop="url" rel="index"><span itemprop="name">总结</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>自闭。<br />
+这大概是我打过最失败的一场比赛。</p>
+<p><del>UPDATE: 我还是太 naive 了，比起后面 Div1 爆零，这次还算好的。</del></p>
+<p>A 签到题，然而我在 14min 才 A ，我是真的不适合做手速题。</p>
+<p>B 行数开大点就是插头 DP ，然而行数只有 2 ，插头只有 3 种，<br />
+随便 DP 一下就行了，中间少考虑一种插头 WA 了一发，在 25min AC 。</p>
+<p>然后，就没有然后了。</p>
+<p>C 题解二元一次方程的整除解，woc 这不扩欧板题嘛，没想太多，直接码上去。<br />
+然后很轻松过了样例啊，交 WA 了，哦没判负数，又交 WA 了。。。<br />
+静态查错无果，遂对拍，拍了 1000+ 组全是 AC 。</p>
+<p>事情好像不太对劲.jpg</p>
+<p>skip 掉，直接开 E ，发现了个单调性，没想太多，直接码上去。<br />
+还是很轻松过了样例啊，交 WA 了。<br />
+静态查错无果，遂回去调 C 。</p>
+<p>冷静分析一波后发现 C 题神 tm 会爆 long long 。<br />
+这简单，改 int128 ，结果交 CE 了。<br />
+然后就到网上蒯 c++ 大整数模板，贴下来后，<br />
+样例都过不去了我天，然后我就去调那个模板，也是醉了。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Big n = <span class="number">10</span>, x = <span class="number">5</span>;</span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">clog</span> &lt;&lt; n &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">clog</span> &lt;&lt; n - x + x &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
+<p>上面代码第一行输出 10 ，第二行输出 20 。</p>
+<p>当时我心态就炸了，简直想去问候那个把模板贴他博客上的祖宗十八代。<br />
+写的这玩意连加减法都算不对心里没点 B 数吗也敢往网上放。</p>
+<p>服了，还是乖乖想不爆 long long 的解法吧。</p>
+<p>9102 年了还有人靠爆 long long 混饭吃。<br />
+这样明显卡语言啊，对 c++ 选手毫无公平性可言。</p>
+<p>至于正解，自然是没想出来。</p>
+<p>最后获得了 rank3400+ 的好成绩，掉分预定。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -1136,103 +1238,6 @@ dfs 到一个新点 v 一定会使深度 + 1 ，将当前深度 d 的线性基�
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2019/10/09/FFT/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-      <meta itemprop="name" content="Kewth">
-      <meta itemprop="description" content="HNFMS 现役 OIer">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="KeBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/10/09/FFT/" class="post-title-link" itemprop="url">FFT</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-10-09 21:00:00" itemprop="dateCreated datePublished" datetime="2019-10-09T21:00:00+08:00">2019-10-09</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-06 20:37:17" itemprop="dateModified" datetime="2019-12-06T20:37:17+08:00">2019-12-06</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="前置知识">前置知识</h2>
-<p>首先要知道关于 <a href="https://kewth.github.io/blog/2019/01/24/多项式的运算/">多项式</a> 的一些知识。</p>
-<p>其次要对复数有一些了解。</p>
-<h2 id="点值表示法">点值表示法</h2>
-<p>从 <a href="https://kewth.github.io/blog/2019/01/24/多项式的运算/">多项式</a> 中， 已经知道了多项式乘法的朴素算法时间复杂度为 $ O(n^2) $ 。 原因在于多项式是用系数表示法定义的。</p>
-<p>重新定义 n 次多项式 a 为满足 $ k (http://blog.miskcoo.com/2015/04/polynomial-multiplication-and-fast-fourier-transform) 。</p>
-<h2 id="迭代实现">迭代实现</h2>
-<p>上述过程用递归实现常数较大，因而有一个迭代实现 FFT 的快速版本。</p>
-<h3 id="蝴蝶操作">蝴蝶操作</h3>
-<p>FFT 的每个值都是由子问题的两个值转化而来，且这两个值可以转换成两个需要的值（ FFT 复杂度的保证）。 若用一个数组 a 表示多项式。 那么蝴蝶操作形如：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">complex</span> Wn; <span class="comment">// 单位根的幂</span></span><br><span class="line"><span class="keyword">complex</span> a0 = a[x], a1 = a[y];</span><br><span class="line">a[x] = a0 + a1 * Wn;</span><br><span class="line">a[y] = a1 + a0 * Wn;</span><br></pre></td></tr></table></figure>
-<p>这样取出了数组中两个值后再修改相应位置的两个值，就是蝴蝶操作。</p>
-<h3 id="rader-排序">Rader 排序</h3>
-<p>Rader 排序的目的是让表示多项式的数组可以进行蝴蝶操作。</p>
-<p>盗图一张： <img src="https://cdn.luogu.org/upload/pic/23926.png" alt="luogu" /></p>
-<p>摘自洛谷：</p>
-<pre><code>剩下的问题就是把初始的数组变成最后一层的样子了。
-先别急着写一个递归函数暴力把位置换过去。
-来观察一下最后序列的编号的二进制表示000, 100, 010, 110, 001, 101, 011, 111，
-是不是与原来 000, 001, 010, 011, 100, 101, 110, 111 相比，
-每个位置上的二进制位都反过来了？
-这样的变化叫做 Rader 排序。</code></pre>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1304,7 +1309,7 @@ dfs 到一个新点 v 一定会使深度 + 1 ，将当前深度 d 的线性基�
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">55</span>
+          <span class="site-state-item-count">56</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1317,7 +1322,7 @@ dfs 到一个新点 v 一定会使深度 + 1 ，将当前深度 d 的线性基�
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">57</span>
+        <span class="site-state-item-count">58</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

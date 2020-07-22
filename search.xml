@@ -16,6 +16,30 @@
 ]]></content>
   </entry>
   <entry>
+    <title>拉格朗日反演</title>
+    <url>/2020/07/22/%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E5%8F%8D%E6%BC%94/</url>
+    <content><![CDATA[<p>拉格朗日反演常用于提取一个幂级数 <span class="math inline">\(A(x)\)</span> 的 <span class="math inline">\(n\)</span> 次项系数。</p>
+<p>对于常数项为 0 ，一次项非零的幂级数 <span class="math inline">\(A(x)\)</span> ，设其复合逆为 <span class="math inline">\(F(x)\)</span> ，有</p>
+<p><span class="math display">\[[x^n] A(x) = \frac{1}{n} [x^{n-1}] (\frac{x}{F(x)})^n\]</span></p>
+<a id="more"></a>
+<p>举例，对于 <span class="math inline">\(A(x) = x e^{A(x)}\)</span> 求 <span class="math inline">\([x^n]A(x)\)</span> ，直接从等式下手解 <span class="math inline">\(A(x)\)</span> 比较麻烦，试试拉格朗日反演。</p>
+<p>将其复合逆 <span class="math inline">\(F(x)\)</span> 代入等式，得到 <span class="math inline">\(x = F(x) e^x\)</span> ，因此 <span class="math inline">\(F(x) = \frac{x}{e^x}\)</span> 。</p>
+<p>于是 <span class="math inline">\([x^n] A(x) = \frac{1}{n} [x^{n-1}] e^{nx} = \frac{n^{n-1}}{n!}\)</span> 。</p>
+<p>另外如果 <span class="math inline">\(A(x)\)</span> 常数项不为 0 或者一次项为 0 等等，乘个 <span class="math inline">\(x\)</span> 的整次幂总能转换到一般的情况。</p>
+<h2 id="证明">证明</h2>
+<p>咕咕咕。</p>
+<h2 id="扩展">扩展</h2>
+<p>咕咕咕。</p>
+]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>多项式</tag>
+        <tag>拉格朗日反演</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>万能欧几里得</title>
     <url>/2020/07/19/%E4%B8%87%E8%83%BD%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97/</url>
     <content><![CDATA[<p>有一类问题可以归结为以下模型：</p>
@@ -1456,7 +1480,7 @@ F 分块好题，赛时也的确想到了分块，对于区间左移也想到了
 其中 <span class="math inline">\(A, B\)</span> 都是模 <span class="math inline">\(p\)</span> 意义下的数，类似于实部和虚部。</p>
 <p>那么 <span class="math inline">\((a + i)^{p+1} \equiv n\)</span> ，考虑证明。</p>
 <p><strong>引理 1</strong> ： <span class="math inline">\(i^p \equiv -i\)</span> 。</p>
-<p>证明： $i^p i(i<sup>2)</sup>{} i(a^2 - n)^{} -i $</p>
+<p>证明： <span class="math inline">\(i^p \equiv i (i^2)^{\frac{p-1}{2}} \equiv i(a^2 - n)^{\frac{p-1}{2}} \equiv -i\)</span></p>
 <p><strong>引理 2</strong> ： <span class="math inline">\((A + B)^p \equiv A^p + B^p\)</span> 。</p>
 <p>证明：二项式定理展开后，由于 <span class="math inline">\(p\)</span> 是质数，除了 <span class="math inline">\(C_p^0, C_p^p\)</span> 外的组合数分子上的阶乘没法消掉，模 <span class="math inline">\(p\)</span> 都会为 0 ，剩下来的就是 <span class="math inline">\(C_p^0 A^0 B^p + C_p^p A^p B^0\)</span> 。</p>
 <p>现在证明上述结论：</p>
@@ -1536,37 +1560,29 @@ F 分块好题，赛时也的确想到了分块，对于区间左移也想到了
   <entry>
     <title>莫队二次离线</title>
     <url>/2019/10/16/%E8%8E%AB%E9%98%9F%E4%BA%8C%E6%AC%A1%E7%A6%BB%E7%BA%BF/</url>
-    <content><![CDATA[<p>莫队算法可以通过单点增量的方式以 <span class="math inline">\(O(n\sqrt{n}K)\)</span> （认为 <span class="math inline">\(n, q\)</span> 同阶）的复杂度离线处理若干区间信息询问。<br />
-其中每次单点增量，即每次端点移动的复杂度为 <span class="math inline">\(O(K)\)</span> 。<br />
-大多数情况下端点移动的复杂度是 <span class="math inline">\(O(1)\)</span> 的，这样的问题一般是统计区间内的“数”。<br />
-而统计区间内的“数对”这样的问题往往难以 <span class="math inline">\(O(1)\)</span> 处理端点移动。</p>
+    <content><![CDATA[<p>莫队算法可以通过单点增量的方式以 <span class="math inline">\(O(n\sqrt{n}K)\)</span> （认为 <span class="math inline">\(n, q\)</span> 同阶）的复杂度离线处理若干区间信息询问。 其中每次单点增量，即每次端点移动的复杂度为 <span class="math inline">\(O(K)\)</span> 。</p>
+<p>大多数情况下端点移动的复杂度是 <span class="math inline">\(O(1)\)</span> 的，这样的问题一般是统计区间内的“数”。 而统计区间内的“数对”这样的问题往往难以 <span class="math inline">\(O(1)\)</span> 处理端点移动。</p>
 <p>莫队二次离线或许能处理这样的问题。</p>
 <h2 id="什么用">什么用</h2>
-<p>一般莫队有 <span class="math inline">\(O(n\sqrt{n})\)</span> 次端点移动，如果要用数据结构维护信息的话，<br />
-就有 <span class="math inline">\(O(n\sqrt{n})\)</span> 次修改和 <span class="math inline">\(O(n\sqrt{n})\)</span> 次查询。</p>
-<p>而莫队二次离线能够优化为成 <span class="math inline">\(O(n)\)</span> 次修改和 <span class="math inline">\(O(n\sqrt{n})\)</span> 次查询，<br />
-从而允许使用一些修改复杂度大而查询复杂度小的方式来维护信息。<br />
-例如分块，如果能 <span class="math inline">\(O(\sqrt{n})\)</span> 修改和 <span class="math inline">\(O(1)\)</span> 查询的话，总的复杂度就是 <span class="math inline">\(O(n\sqrt{n})\)</span> 。</p>
-<p>但是有两个前提： - 维护的信息有一定可减性，换句话说必须保证每次询问 <span class="math inline">\([l, r]\)</span> 与 <span class="math inline">\(r + 1\)</span> 产生的贡献时，<br />
-需要能够用 <span class="math inline">\([1, r]\)</span> 与 <span class="math inline">\(r + 1\)</span> 产生的贡献减去（或者其他方式）<span class="math inline">\([1, l)\)</span> 与 <span class="math inline">\(r + 1\)</span> 产生的贡献代替。 - 维护的信息有一定可加性，换句话说在每次询问前在不知道当前的 Ans 的情况下可以得到 Ans 的改变量（或某种改变方式）。</p>
+<p>一般莫队有 <span class="math inline">\(O(n\sqrt{n})\)</span> 次端点移动，如果要用数据结构维护信息的话， 就有 <span class="math inline">\(O(n\sqrt{n})\)</span> 次修改和 <span class="math inline">\(O(n\sqrt{n})\)</span> 次查询。</p>
+<p>而莫队二次离线能够优化为成 <span class="math inline">\(O(n)\)</span> 次修改和 <span class="math inline">\(O(n\sqrt{n})\)</span> 次查询， 从而允许使用一些修改复杂度大而查询复杂度小的方式来维护信息。 例如分块，如果能 <span class="math inline">\(O(\sqrt{n})\)</span> 修改和 <span class="math inline">\(O(1)\)</span> 查询的话，总的复杂度就是 <span class="math inline">\(O(n\sqrt{n})\)</span> 。</p>
+<p>但是有两个前提：</p>
+<ul>
+<li>维护的信息有一定可减性，换句话说必须保证每次询问 <span class="math inline">\([l, r]\)</span> 与 <span class="math inline">\(r + 1\)</span> 产生的贡献时， 需要能够用 <span class="math inline">\([1, r]\)</span> 与 <span class="math inline">\(r + 1\)</span> 产生的贡献减去（或者其他方式）<span class="math inline">\([1, l)\)</span> 与 <span class="math inline">\(r + 1\)</span> 产生的贡献代替。</li>
+<li>维护的信息有一定可加性，换句话说在每次询问前在不知道当前的 Ans 的情况下可以得到 Ans 的改变量（或某种改变方式）。</li>
+</ul>
 <h2 id="怎么用">怎么用</h2>
 <p>考虑每次右端点右移的过程（右端点左移以及左端点移动是类似的）。</p>
-<p>每次右端点 <span class="math inline">\(r\)</span> 从 <span class="math inline">\(r_0\)</span> 移动到 <span class="math inline">\(r_1\)</span> 时，对于其中的每一个 <span class="math inline">\(r\)</span> ，都需要查询 <span class="math inline">\([l, r - 1]\)</span> 与该点产生的贡献。<br />
-考虑差分，利用上面提到过的可减性，查询 <span class="math inline">\([1, r]\)</span> 与 <span class="math inline">\(r + 1\)</span> 产生的贡献和 <span class="math inline">\([1, l)\)</span> 与 <span class="math inline">\(r + 1\)</span> 产生的贡献。</p>
+<p>每次右端点 <span class="math inline">\(r\)</span> 从 <span class="math inline">\(r_0\)</span> 移动到 <span class="math inline">\(r_1\)</span> 时，对于其中的每一个 <span class="math inline">\(r\)</span> ，都需要查询 <span class="math inline">\([l, r - 1]\)</span> 与该点产生的贡献。 考虑差分，利用上面提到过的可减性，查询 <span class="math inline">\([1, r]\)</span> 与 <span class="math inline">\(r + 1\)</span> 产生的贡献和 <span class="math inline">\([1, l)\)</span> 与 <span class="math inline">\(r + 1\)</span> 产生的贡献。</p>
 <h4 id="part-1">Part 1</h4>
-<p><span class="math inline">\([1, r]\)</span> 与 <span class="math inline">\(r + 1\)</span> 产生的贡献只与 <span class="math inline">\(r\)</span> 有关，可以记为 <span class="math inline">\(f_r\)</span> 。<br />
-那么预处理 <span class="math inline">\(f_r\)</span> 只需从小到大一个个加点维护当前的 <span class="math inline">\([1, r]\)</span> 并询问出 <span class="math inline">\(f_r\)</span> 。<br />
-这个过程需要 <span class="math inline">\(O(n)\)</span> 次修改和 <span class="math inline">\(O(n)\)</span> 次查询。</p>
+<p><span class="math inline">\([1, r]\)</span> 与 <span class="math inline">\(r + 1\)</span> 产生的贡献只与 <span class="math inline">\(r\)</span> 有关，可以记为 <span class="math inline">\(f_r\)</span> 。 那么预处理 <span class="math inline">\(f_r\)</span> 只需从小到大一个个加点维护当前的 <span class="math inline">\([1, r]\)</span> 并询问出 <span class="math inline">\(f_r\)</span> 。</p>
+<p>这个过程需要 <span class="math inline">\(O(n)\)</span> 次修改和 <span class="math inline">\(O(n)\)</span> 次查询。</p>
 <p>参考实现：</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// a[i] 是第 i 个元素</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i ++) &#123;</span><br><span class="line">	f[i] = Query(a[i]);</span><br><span class="line">	Modify(a[i]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>另外如果需要卡常，可以将 <span class="math inline">\(f\)</span> 做一遍前缀和，这样后续查询 <span class="math inline">\([r_0, r_1]\)</span> 总的贡献就可以 <span class="math inline">\(O(1)\)</span> 计算了（不影响复杂度）。</p>
 <h4 id="part-2">Part 2</h4>
-<p><span class="math inline">\([1, l)\)</span> 与 <span class="math inline">\(r + 1\)</span> 产生的贡献可以二次离线，在 <span class="math inline">\(l\)</span> 处存下 <span class="math inline">\(r + 1\)</span> 之后再考虑计算。<br />
-这样做的空间复杂度是 <span class="math inline">\(O(n\sqrt{n})\)</span> 的，<br />
-但事实上每次只需把 <span class="math inline">\([r_0, r_1]\)</span> 这个区间存进 <span class="math inline">\(l\)</span> 处而不是把每个数存进去就可以做到 <span class="math inline">\(O(n)\)</span> 的空间复杂度了，<br />
-这样询问的时候也只需求 <span class="math inline">\([r_0, r_1]\)</span> 整体的贡献，常数上还能少一个 <span class="math inline">\(O(n\sqrt{n})\)</span> 的瓶颈。 离线处理上述的贡献，也和求 <span class="math inline">\(f_r\)</span> 的过程类似，每次从小到大一个个加点维护当前的 <span class="math inline">\([1, l)\)</span> ，<br />
-并对于 <span class="math inline">\(l\)</span> 处存下的每一个数逐个询问 <span class="math inline">\([1, l)\)</span> 与其产生的贡献即可。<br />
-这个过程需要 <span class="math inline">\(O(n)\)</span> 次修改和 <span class="math inline">\(O(n\sqrt{n})\)</span> 次查询。</p>
+<p><span class="math inline">\([1, l)\)</span> 与 <span class="math inline">\(r + 1\)</span> 产生的贡献可以二次离线，在 <span class="math inline">\(l\)</span> 处存下 <span class="math inline">\(r + 1\)</span> 之后再考虑计算。 这样做的空间复杂度是 <span class="math inline">\(O(n\sqrt{n})\)</span> 的， 但事实上每次只需把 <span class="math inline">\([r_0, r_1]\)</span> 这个区间存进 <span class="math inline">\(l\)</span> 处而不是把每个数存进去就可以做到 <span class="math inline">\(O(n)\)</span> 的空间复杂度了， 这样询问的时候也只需求 <span class="math inline">\([r_0, r_1]\)</span> 整体的贡献，常数上还能少一个 <span class="math inline">\(O(n\sqrt{n})\)</span> 的瓶颈。</p>
+<p>离线处理上述的贡献，也和求 <span class="math inline">\(f_r\)</span> 的过程类似，每次从小到大一个个加点维护当前的 <span class="math inline">\([1, l)\)</span> ， 并对于 <span class="math inline">\(l\)</span> 处存下的每一个数逐个询问 <span class="math inline">\([1, l)\)</span> 与其产生的贡献即可。 这个过程需要 <span class="math inline">\(O(n)\)</span> 次修改和 <span class="math inline">\(O(n\sqrt{n})\)</span> 次查询。</p>
 <p>参考实现：</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> l = <span class="number">1</span>, r = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= q; i ++) &#123;</span><br><span class="line">	<span class="keyword">int</span> L = query[i].l, R = query[i].r; <span class="comment">// 排序后的询问</span></span><br><span class="line">	<span class="keyword">if</span>(r &lt; R) &#123;</span><br><span class="line">		<span class="built_in">vector</span>[l].push_back(<span class="built_in">std</span>::make_pair(r + <span class="number">1</span>, R));</span><br><span class="line">		r = R;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i ++) &#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">auto</span> par : <span class="built_in">vector</span>[i])</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> k = par.first; k &lt;= par.second; k ++)</span><br><span class="line">			Query(a[k]); <span class="comment">// 这里用什么东西存一下结果就好了</span></span><br><span class="line">	Modify(a[i]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
