@@ -45,7 +45,7 @@
     <content><![CDATA[<p>有一类问题可以归结为以下模型：</p>
 <p>有一种元素，它们之间可以定义乘法，且乘法满足结合律。给定两个元素 <span class="math inline">\(X, Y\)</span> 和正整数 <span class="math inline">\(n\)</span> ，求</p>
 <p><span class="math display">\[F(P, R, Q, n, X, Y) = \prod_{i=0}^n Y^{f(i) - f(i - 1)} X\]</span></p>
-<p>其中 <span class="math inline">\(f(x) = \lfloor \frac{xP+R}{Q} \rfloor\)</span> ，也就是说第 <span class="math inline">\(i\)</span> （从 <span class="math inline">\(0\)</span> 开始）个 <span class="math inline">\(X\)</span> 前面都有恰好 <span class="math inline">\(f(i)\)</span> 个 Y 。</p>
+<p>其中 <span class="math inline">\(f(x) = \lfloor \frac{xP+R}{Q} \rfloor\)</span> ，特别的 <span class="math inline">\(f(-1)=0\)</span> ，也就是说第 <span class="math inline">\(i\)</span> （从 <span class="math inline">\(0\)</span> 开始）个 <span class="math inline">\(X\)</span> 前面都有恰好 <span class="math inline">\(f(i)\)</span> 个 Y 。</p>
 <p>不难发现所有类欧几里得都可以归结为该模型。</p>
 <a id="more"></a>
 <h2 id="解法">解法</h2>
@@ -61,7 +61,7 @@
 <p><span class="math display">\[F(P, R, Q, n, X, Y) = X F(P \bmod Q, R + P \bmod Q, Q, n - 1, Y^{\lfloor \frac{P}{Q} \rfloor} X, Y)\]</span></p>
 <hr />
 <p>否则考虑交换 <span class="math inline">\(P, Q\)</span> 的地位，如果放在二维平面上，就是翻转坐标系，这里来点数学推导。</p>
-<p>将 <span class="math inline">\(S\)</span> 中的 <span class="math inline">\(X, Y\)</span> 都从 <span class="math inline">\(0\)</span> 开始编号，根据 <span class="math inline">\(F\)</span> 的定义编号为 <span class="math inline">\(i\)</span> 的 <span class="math inline">\(X\)</span> 左边的 <span class="math inline">\(Y\)</span> 的数量恰为 <span class="math inline">\(f(i)\)</span> ，<span class="math inline">\(f\)</span> 是个线性函数向下取整的形式。那么考虑第编号为 <span class="math inline">\(i\)</span> 左边的 <span class="math inline">\(X\)</span> 的数量，设其为 <span class="math inline">\(g(i)\)</span> ，不难发现 <span class="math inline">\(g\)</span> 同样是个线性函数向下取整的形式！这意味着可以简单地交换 <span class="math inline">\(X, Y\)</span> 的地位，从而交换 <span class="math inline">\(P, Q\)</span> 。需要注意的是 <span class="math inline">\(S\)</span> 的末尾有若干 <span class="math inline">\(X\)</span> 需要特殊考虑。</p>
+<p>将 <span class="math inline">\(S\)</span> 中的 <span class="math inline">\(X, Y\)</span> 都从 <span class="math inline">\(0\)</span> 开始编号，根据 <span class="math inline">\(F\)</span> 的定义编号为 <span class="math inline">\(i\)</span> 的 <span class="math inline">\(X\)</span> 左边的 <span class="math inline">\(Y\)</span> 的数量恰为 <span class="math inline">\(f(i)\)</span> ，<span class="math inline">\(f\)</span> 是个线性函数向下取整的形式。那么考虑第编号为 <span class="math inline">\(i\)</span> 的 <span class="math inline">\(Y\)</span> 左边的 <span class="math inline">\(X\)</span> 的数量，设其为 <span class="math inline">\(g(i)\)</span> ，不难发现 <span class="math inline">\(g\)</span> 同样是个线性函数向下取整的形式！这意味着可以简单地交换 <span class="math inline">\(X, Y\)</span> 的地位，从而交换 <span class="math inline">\(P, Q\)</span> 。需要注意的是 <span class="math inline">\(S\)</span> 的末尾有若干 <span class="math inline">\(X\)</span> 需要特殊考虑。</p>
 <p>那么现在的问题就是求 <span class="math inline">\(g(i)\)</span> ，根据定义有</p>
 <p><span class="math display">\[
 \begin{aligned}
