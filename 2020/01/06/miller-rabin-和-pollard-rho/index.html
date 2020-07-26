@@ -21,15 +21,15 @@
     var CONFIG = {"hostname":"kewth.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="miller-rabin 用于快速测试一个数 \(n\) 是否为质数，有概率出错。 不妨假设 \(n\) 是奇数，此外 miller-rabin 需要随意选取一个小质数 \(p\) 。 理论 miller-rabin 用到的两个基本定理：  费马小定理：如果 \(n\) 为质数，一定有 \(p^n \equiv p (mod \; n)\) ，即 \(p^{n-1} \equiv 1\) 。 二次">
+  <meta name="description" content="miller-rabin 用于快速测试一个数 \(n\) 是否为质数，有概率出错。 不妨假设 \(n\) 是奇数，此外 miller-rabin 需要随意选取一个小质数 \(p\) 。 理论 miller-rabin 用到的两个基本定理：  费马小定理：如果 \(n\) 为质数，一定有 \(p^n \equiv p \pmod{n}\) ，即 \(p^{n-1} \equiv 1\) 。 二次探测">
 <meta property="og:type" content="article">
 <meta property="og:title" content="miller-rabin 和 pollard-rho">
 <meta property="og:url" content="https://kewth.github.io/2020/01/06/miller-rabin-%E5%92%8C-pollard-rho/index.html">
 <meta property="og:site_name" content="KeBlog">
-<meta property="og:description" content="miller-rabin 用于快速测试一个数 \(n\) 是否为质数，有概率出错。 不妨假设 \(n\) 是奇数，此外 miller-rabin 需要随意选取一个小质数 \(p\) 。 理论 miller-rabin 用到的两个基本定理：  费马小定理：如果 \(n\) 为质数，一定有 \(p^n \equiv p (mod \; n)\) ，即 \(p^{n-1} \equiv 1\) 。 二次">
+<meta property="og:description" content="miller-rabin 用于快速测试一个数 \(n\) 是否为质数，有概率出错。 不妨假设 \(n\) 是奇数，此外 miller-rabin 需要随意选取一个小质数 \(p\) 。 理论 miller-rabin 用到的两个基本定理：  费马小定理：如果 \(n\) 为质数，一定有 \(p^n \equiv p \pmod{n}\) ，即 \(p^{n-1} \equiv 1\) 。 二次探测">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-01-06T07:41:21.000Z">
-<meta property="article:modified_time" content="2020-07-19T03:56:08.210Z">
+<meta property="article:modified_time" content="2020-07-26T00:33:48.807Z">
 <meta property="article:author" content="Kewth">
 <meta property="article:tag" content="随机">
 <meta property="article:tag" content="miller-rabin">
@@ -204,7 +204,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-19 11:56:08" itemprop="dateModified" datetime="2020-07-19T11:56:08+08:00">2020-07-19</time>
+                <time title="修改时间：2020-07-26 08:33:48" itemprop="dateModified" datetime="2020-07-26T08:33:48+08:00">2020-07-26</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -240,8 +240,8 @@
 <h4 id="理论">理论</h4>
 <p>miller-rabin 用到的两个基本定理：</p>
 <ul>
-<li><p>费马小定理：如果 <span class="math inline">\(n\)</span> 为质数，一定有 <span class="math inline">\(p^n \equiv p (mod \; n)\)</span> ，即 <span class="math inline">\(p^{n-1} \equiv 1\)</span> 。</p></li>
-<li><p>二次探测定理：如果 <span class="math inline">\(n\)</span> 为质数，对于 <span class="math inline">\(a^2 \equiv 1 (mod \; n)\)</span> 一定有 <span class="math inline">\(a \equiv -1\)</span> 或 <span class="math inline">\(a \equiv n - 1\)</span> 。</p></li>
+<li><p>费马小定理：如果 <span class="math inline">\(n\)</span> 为质数，一定有 <span class="math inline">\(p^n \equiv p \pmod{n}\)</span> ，即 <span class="math inline">\(p^{n-1} \equiv 1\)</span> 。</p></li>
+<li><p>二次探测定理：如果 <span class="math inline">\(n\)</span> 为质数，对于 <span class="math inline">\(a^2 \equiv 1 \pmod{n}\)</span> 一定有 <span class="math inline">\(a \equiv -1\)</span> 或 <span class="math inline">\(a \equiv n - 1\)</span> 。</p></li>
 </ul>
 <a id="more"></a>
 <p>如果 <span class="math inline">\(p^{n-1} \equiv 1\)</span> 不成立，根据费马小定理， <span class="math inline">\(n\)</span> 一定不为质数，<br />
@@ -274,7 +274,7 @@
 <h4 id="随机实验">随机实验</h4>
 <p>随机一个正整数 <span class="math inline">\(d(d &lt; n)\)</span> ，如果 <span class="math inline">\(d\)</span> 是 <span class="math inline">\(n\)</span> 的因子，那么就找到了 <span class="math inline">\(n\)</span> 的一个非平凡因子 <span class="math inline">\(d\)</span> 。<br />
 然而这样的概率很小，最坏情况下是 <span class="math inline">\(\frac{1}{n}\)</span> 的。</p>
-<p>随机一个正整数 <span class="math inline">\(v(v &lt; n)\)</span> ，求出 <span class="math inline">\(d = gcd(v, n)\)</span> ，如果 <span class="math inline">\(d &gt; 1\)</span> 那么就找到了 <span class="math inline">\(n\)</span> 的一个非平凡因子 <span class="math inline">\(d\)</span> 。<br />
+<p>随机一个正整数 <span class="math inline">\(v(v &lt; n)\)</span> ，求出 <span class="math inline">\(d = \gcd(v, n)\)</span> ，如果 <span class="math inline">\(d &gt; 1\)</span> 那么就找到了 <span class="math inline">\(n\)</span> 的一个非平凡因子 <span class="math inline">\(d\)</span> 。<br />
 这样成功的概率就大得多，最坏是 <span class="math inline">\(\frac{1}{\sqrt{n}}\)</span> 的。</p>
 <p>证明：<br />
 设 <span class="math inline">\(p = minp(n)\)</span> 是合数 <span class="math inline">\(n\)</span> 的最小质因子，那么 <span class="math inline">\(p \leq \sqrt{n}\)</span> ，而 <span class="math inline">\(p\)</span> 的倍数有 <span class="math inline">\(\lfloor\frac{n}{p}\rfloor\)</span> 个，<br />
@@ -287,21 +287,21 @@
 随机 <span class="math inline">\(\sqrt{p}\)</span> 个数 <span class="math inline">\(v\)</span> ，其中有 <span class="math inline">\(\frac{1}{2}\)</span> 的概率存在两个数 <span class="math inline">\(v_1, v_2\)</span> 模 <span class="math inline">\(p\)</span> 同余，<br />
 也就是说存在两个数的差是 <span class="math inline">\(p\)</span> 的倍数。<br />
 但是如果两两作差与 <span class="math inline">\(n\)</span> 取 gcd ，期望复杂度仍然是 <span class="math inline">\(O(p)\)</span> 的。</p>
-<!-- 算上 gcd 的复杂度，可以在期望复杂度 $O(\sqrt{p}logn)$ 的时间找到 $n$ 的一个非平凡因子。  
+<!-- 算上 gcd 的复杂度，可以在期望复杂度 $O(\sqrt{p}\log n)$ 的时间找到 $n$ 的一个非平凡因子。  
 但事实上可以每次取 $O(\sqrt{p})$ 个数为一组，每次对求一组数的乘积 $k$ ，求 $gcd(n, k)$ 即可。  
 而根据 $gcd(x, n) = gcd(x \% n, n)$ ，这个 $k$ 可以是模 $n$ 意义下的。  
-这样期望复杂度 $O(\sqrt{p} + logn)$ 。 -->
+这样期望复杂度 $O(\sqrt{p} + \log n)$ 。 -->
 <h4 id="rho">rho</h4>
 <p>pollard-rho 用到了一个特殊的伪随机数列 <span class="math inline">\(\{a\}\)</span> ，对于参数 <span class="math inline">\(c\)</span> ，其满足：</p>
-<p><span class="math display">\[ a_{i+1} = (a_i^2 + c) \mod n \]</span></p>
+<p><span class="math display">\[ a_{i+1} = (a_i^2 + c) \bmod n \]</span></p>
 <p>这个数列是个 <span class="math inline">\(\rho\)</span>(rho) 形，这也是 pollard-rho 的名字由来。<br />
 换言之，存在链长 <span class="math inline">\(T\)</span> 和环长 <span class="math inline">\(M\)</span> ，满足 <span class="math inline">\(\forall i,k&gt;0: a_{T+i} = a_{T+i+kM}\)</span> 。<br />
 如果把 <span class="math inline">\(a\)</span> 两两不同的前缀部分近似看做真随机数列，那么根据生日悖论，这个长度 <span class="math inline">\(T + M\)</span> 是期望 <span class="math inline">\(O(\sqrt{n})\)</span> 的。<br />
 也就是说 <span class="math inline">\(T\)</span> 和 <span class="math inline">\(M\)</span> 期望都是在 <span class="math inline">\(O(\sqrt{n})\)</span> 以内的。</p>
-<p>令 <span class="math inline">\(b_i = a_i \mod p\)</span> ，当然由于 <span class="math inline">\(p\)</span> 未知，<span class="math inline">\(b\)</span> 这个数列实际上是未知的。<br />
+<p>令 <span class="math inline">\(b_i = a_i \bmod p\)</span> ，当然由于 <span class="math inline">\(p\)</span> 未知，<span class="math inline">\(b\)</span> 这个数列实际上是未知的。<br />
 那么同样的道理，<span class="math inline">\(b\)</span> 的链长和环长 <span class="math inline">\(t, m\)</span> 是期望 <span class="math inline">\(O(\sqrt{p})\)</span> 的。</p>
 <p>现在要做的是通过对 <span class="math inline">\(a\)</span> 作差来间接对 <span class="math inline">\(b\)</span> 作差，目标是选到两个下标 <span class="math inline">\(i, j\)</span> 满足 <span class="math inline">\(b_i = b_j\)</span> ，<br />
-这样的话，<span class="math inline">\(|a_i - a_j|\)</span> 就是 <span class="math inline">\(p\)</span> 的倍数，也就是说 <span class="math inline">\(gcd(n, |a_i - a_j|) \geq p\)</span> 。<br />
+这样的话，<span class="math inline">\(|a_i - a_j|\)</span> 就是 <span class="math inline">\(p\)</span> 的倍数，也就是说 <span class="math inline">\(\gcd(n, |a_i - a_j|) \geq p\)</span> 。<br />
 关键在于环长，如果只选取下标 <span class="math inline">\((i, 2i)\)</span> 作差，那么当 <span class="math inline">\(i \geq t\)</span> 且 <span class="math inline">\(i=km\)</span> 时，<br />
 根据 <span class="math inline">\(b_i = b_{t+(i-t)} = b_{t+(i-t)+km} = b_{t+(i-t)+i} = b_{2i}\)</span> ，<br />
 可以确定此时一定有 <span class="math inline">\(b_i = b_{2i}\)</span> ，<br />
@@ -310,14 +310,14 @@
 <h4 id="实践">实践</h4>
 <p>算法流程就是随机一个生成序列的参数 <span class="math inline">\(c\)</span> 。<br />
 然后枚举 <span class="math inline">\(i\)</span> ，同时通过递推维护 <span class="math inline">\(a_i\)</span> 和 <span class="math inline">\(a_{2i}\)</span> ，<br />
-当 <span class="math inline">\(gcd(n, |a_i - a_{2i}|) &gt; 1\)</span> 时就得到了一个非平凡因子。<br />
-直接做考虑 gcd 期望复杂度 <span class="math inline">\(O(\sqrt{p}logn)\)</span> 。<br />
+当 <span class="math inline">\(\gcd(n, |a_i - a_{2i}|) &gt; 1\)</span> 时就得到了一个非平凡因子。<br />
+直接做考虑 gcd 期望复杂度 <span class="math inline">\(O(\sqrt{p} \log n)\)</span> 。<br />
 但这个 gcd 很好优化，设 <span class="math inline">\(v_i = |a_i - a_{2i}|\)</span> ，把 <span class="math inline">\(v\)</span> 相邻 <span class="math inline">\(k\)</span> 个乘起来再和 <span class="math inline">\(n\)</span> 做 gcd ，<br />
-根据 <span class="math inline">\(gcd(x, n) = gcd(x \mod n, n)\)</span> ，乘积可以是模 <span class="math inline">\(n\)</span> 意义下的。<br />
-理论上只要 <span class="math inline">\(k &gt; O(logn)\)</span> ，复杂度就能做到 <span class="math inline">\(O(\sqrt{p} + k + logn)\)</span> ，<br />
+根据 <span class="math inline">\(\gcd(x, n) = \gcd(x \bmod n, n)\)</span> ，乘积可以是模 <span class="math inline">\(n\)</span> 意义下的。<br />
+理论上只要 <span class="math inline">\(k &gt; O(\log n)\)</span> ，复杂度就能做到 <span class="math inline">\(O(\sqrt{p} + k + \log n)\)</span> ，<br />
 一般认为 <span class="math inline">\(p\)</span> 足够大，此时复杂度就是 <span class="math inline">\(O(\sqrt{p})\)</span> ，最坏情况下就是 <span class="math inline">\(O(n^{\frac{1}{4}})\)</span> 。<br />
 实践中往往采用倍增的方式，起初 <span class="math inline">\(k\)</span> 不断成倍增大，增大到 128 时保持不变。<br />
-这样可以保证在 <span class="math inline">\(p\)</span> 很小的时候不用算 <span class="math inline">\(logn\)</span> 次就能得到非平凡因子，减小常数。</p>
+这样可以保证在 <span class="math inline">\(p\)</span> 很小的时候不用算 <span class="math inline">\(\log n\)</span> 次就能得到非平凡因子，减小常数。</p>
 <p>有一些需要注意的地方：</p>
 <ul>
 <li><p>有小概率 <span class="math inline">\(M\)</span> 与 <span class="math inline">\(m\)</span> 恰好相等，在 <span class="math inline">\(b_i = b_{2i}\)</span> 的时候恰好有 <span class="math inline">\(a_i = a_{2i}\)</span> ，此时应该更换参数 <span class="math inline">\(c\)</span> 重新进行算法。</p></li>
