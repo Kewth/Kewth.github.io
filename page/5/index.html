@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.1">
+<meta name="generator" content="Hexo 5.0.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -15,10 +15,12 @@
 
 
 <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  
+  <link rel="stylesheet" href="/lib/animate-css/animate.min.css">
 
-<script id="hexo-configurations">
+<script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"kewth.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"kewth.github.io","root":"/","scheme":"Muse","version":"8.0.0-rc.5","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"path":"search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":3,"unescape":false,"preload":false}};
   </script>
 
   <meta name="description" content="HNFMS 现役 OIer">
@@ -34,7 +36,7 @@
 <link rel="canonical" href="https://kewth.github.io/page/5/">
 
 
-<script id="page-configurations">
+<script class="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
@@ -54,24 +56,36 @@
 
   <noscript>
   <style>
-  .use-motion .brand,
+  body { margin-top: 2rem; }
+
   .use-motion .menu-item,
-  .sidebar-inner,
+  .use-motion .sidebar,
   .use-motion .post-block,
   .use-motion .pagination,
   .use-motion .comments,
   .use-motion .post-header,
   .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
 
   .use-motion .site-title,
-  .use-motion .site-subtitle {
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
     opacity: initial;
     top: initial;
   }
 
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
   </style>
 </noscript>
 
@@ -82,32 +96,33 @@
   <div class="container use-motion">
     <div class="headband"></div>
 
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
+    <main class="main">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+        <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
     <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
   </div>
 
   <div class="site-meta">
 
     <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
+      <i class="logo-line"></i>
       <h1 class="site-title">KeBlog</h1>
-      <span class="logo-line-after"><i></i></span>
+      <i class="logo-line"></i>
     </a>
       <p class="site-subtitle" itemprop="description">The OI Algorithm Blog of Kewth</p>
   </div>
 
   <div class="site-nav-right">
     <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
-
 
 
 
@@ -125,43 +140,1026 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">58</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">61</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">4</span></a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">5</span></a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">56</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">64</span></a>
 
   </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
   </ul>
 </nav>
 
 
 
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
 
 </div>
-    </header>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
 
-    
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Kewth"
+      src="/images/avatar.jpeg">
+  <p class="site-author-name" itemprop="name">Kewth</p>
+  <div class="site-description" itemprop="description">HNFMS 现役 OIer</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">64</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">61</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Kewth" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Kewth" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:Kewth.K.D@outlook.com" title="E-Mail → mailto:Kewth.K.D@outlook.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="qq:1344205350" title="QQ → qq:1344205350" rel="noopener" target="_blank"><i class="fab fa-qq fa-fw"></i>QQ</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.luogu.org/space/show?uid=52232" title="Luogu → https:&#x2F;&#x2F;www.luogu.org&#x2F;space&#x2F;show?uid&#x3D;52232" rel="noopener" target="_blank"><i class="fas fa-code-branch fa-fw"></i>Luogu</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links | 友链
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="/" title="&#x2F;">无，欢迎互换友链</a>
+        </li>
+    </ul>
+  </div>
+
+      </section>
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </header>
+
+      
   <div class="back-to-top">
     <i class="fa fa-arrow-up"></i>
     <span>0%</span>
   </div>
   <div class="reading-progress-bar"></div>
 
+<noscript>
+  <div id="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
 
-    <main class="main">
+
       <div class="main-inner">
-        <div class="content-wrap">
+        
+
+        <div class="content index posts-expand">
+          
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2019/10/11/RMQ/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Kewth">
+      <meta itemprop="description" content="HNFMS 现役 OIer">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KeBlog">
+    </span>
+
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/10/11/RMQ/" class="post-title-link" itemprop="url">RMQ</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-10-11 19:00:00" itemprop="dateCreated datePublished" datetime="2019-10-11T19:00:00+08:00">2019-10-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-05-19 20:31:44" itemprop="dateModified" datetime="2020-05-19T20:31:44+08:00">2020-05-19</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                </span>
+            </span>
+
           
 
-          <div class="content index posts-expand">
-            
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>总结求各种 RMQ 的常用技巧和方法。<br />
+RMQ 真是流皮，每次深入思考都会有新的发现，所以有了新的发现会更新。</p>
+<p>以下 n 表示数列的大小，q 表示询问的次数，均以最大值为例。</p>
+<h2 id="一般性普通做法">一般性普通做法</h2>
+<p>线段树当然是可以在线维护的，复杂度 <span class="math inline">\(O(n + qlogn)\)</span> 。<br />
+甚至还可以支持单点修改或区间修改。</p>
+<p>但是如果只是静态询问的话，可以用 ST 表预处理后 <span class="math inline">\(O(1)\)</span> 在线处理询问，<br />
+复杂度 <span class="math inline">\(O(nlogn + q)\)</span> 。</p>
+<p>这两个做法烂大街了，是基础中的基础，不是本文讨论重点。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/10/11/RMQ/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2019/10/10/O(1)%E9%BB%91%E7%A7%91%E6%8A%80/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Kewth">
+      <meta itemprop="description" content="HNFMS 现役 OIer">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KeBlog">
+    </span>
+
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/10/10/O(1)%E9%BB%91%E7%A7%91%E6%8A%80/" class="post-title-link" itemprop="url">O(1)黑科技</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-10-10 18:00:01" itemprop="dateCreated datePublished" datetime="2019-10-10T18:00:01+08:00">2019-10-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-12-06 20:37:17" itemprop="dateModified" datetime="2019-12-06T20:37:17+08:00">2019-12-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><span class="citation" data-cites="CYJian">@CYJian</span> 出了一道黑科技二合一，我就顺便跟着学了学。</p>
+<h2 id="o1-gcd">O(1) gcd</h2>
+<p>在 O(V) 的预处理后可以做到 O(1) 查询 gcd ，其中 V 是权值的大小。</p>
+<p>主要利用到的一个性质是可以将任意 x 分解为三个数 a * b * c ， a, b, c 分别满足以下两个条件之一：</p>
+<ol type="1">
+<li>不超过 <span class="math inline">\(\sqrt{x}\)</span> 。</li>
+<li>是质数。</li>
+</ol>
+<p>update: 之前写假了，感谢 <span class="citation" data-cites="CYJian">@CYJian</span> 的 hack 。</p>
+<p>zzq 把满足这个性质的分解称为“迷之分解”，那我也这么叫吧。</p>
+<p>考虑证明一下，顺便构造一个“迷之分解”。</p>
+<p>找到 x 的最小质因子 p ，然后假设已知 x / p 的“迷之分解” A, B, C (A &lt;= B &lt;= C) 。<br />
+那么把 p 乘到 A 上就可以得到 x 的“迷之分解” A * p, B, C 。<br />
+分类讨论，如果 p 不超过 <span class="math inline">\(\sqrt[4]{x}\)</span> ，由于 A 是 A, B, C 三者中最小的，<br />
+一定满足 A 不超过 <span class="math inline">\(\sqrt[3]{x/p}\)</span> ，那么可得：</p>
+<p><span class="math display">\[A \cdot p \leq \sqrt[3]{x/p} \cdot p = \sqrt[3]{xp^2} \leq \sqrt{x}\]</span></p>
+<p>而如果 p 超过 <span class="math inline">\(\sqrt[4]{x}\)</span> ，由于 p 是最小质因子，<br />
+那么如果 x 的“迷之分解”有合数 C ， C 至少是 <span class="math inline">\(p^2\)</span> ，超过 <span class="math inline">\(\sqrt{x}\)</span> ，<br />
+那么 B 的大小就会比 p 小，与 p 是最小质因子矛盾，<br />
+因而此时 x 的“迷之分解”全是质数。</p>
+<p>“迷之分解”的分析就是这样，通过线性筛可以很好预处理出 O(V) 内的所有数的“迷之分解”。<br />
+只需筛出每个数的最小质因子即可按上述方法递推出“迷之分解”。<br />
+然后只需预处理出 <span class="math inline">\(O(\sqrt{V})\)</span> 内两两的 gcd ，为了不带 log ，需要递推预处理。<br />
+此时求 gcd(x, y) 只需对于 x 的“迷之分解” A, B, C 依次对 y 求 gcd （每次求 gcd 后把 y 除以该 gcd ），<br />
+以 A 为例，如果 A 不超过 <span class="math inline">\(\sqrt{x}\)</span> ，直接查表可以得到 gcd(A, y) （查的是 gcd(A mod y, A) ），<br />
+否则 A 为质数，简单讨论一下就可以得到 gcd(A, y) 了。</p>
+<p>关键部分参考实现：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> magic[maxv][<span class="number">3</span>]; <span class="comment">// 每个数的“迷之分解”</span></span><br><span class="line"><span class="keyword">int</span> gcd[maxb][maxb]; <span class="comment">// 预处理的 gcd</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">GCD</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> res = <span class="number">1</span>;</span><br><span class="line"> <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i ++) &#123;</span><br><span class="line">       <span class="keyword">int</span> X = magic[x][i];</span><br><span class="line">     <span class="keyword">int</span> d;</span><br><span class="line">       <span class="keyword">if</span>(X &lt; maxb)</span><br><span class="line">          d = gcd[X][y % X];</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(y % X)</span><br><span class="line">          d = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">         d = X;</span><br><span class="line">        res *= d;</span><br><span class="line">     y /= d;</span><br><span class="line">   &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="o1-快速幂">O(1) 快速幂</h2>
+<p>在 <span class="math inline">\(O(\sqrt{p})\)</span> 的预处理后可以做到对于一个固定的底数 O(1) 查询快速幂，<br />
+其中 p 是模数（或者上式是 <span class="math inline">\(\sqrt{\phi(p)}\)</span> ），或者是指数的范围。</p>
+<p>这个就简单得多，对于每个 <span class="math inline">\(a^k\)</span> 的指数 k 都可以表示为 <span class="math inline">\(a \sqrt{p} + b\)</span> 的形式，<br />
+满足 <span class="math inline">\(a, b &lt; \sqrt{p}\)</span> ，分别预处理即可，<br />
+即预处理 <span class="math inline">\(a^0, a^1, a^2 ... a^{\sqrt{p}}, a^{2\sqrt{p}}, a^{3\sqrt{p}} ... a^p\)</span> 。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2019/10/10/%E6%95%B4%E4%BD%93%E4%BA%8C%E5%88%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Kewth">
+      <meta itemprop="description" content="HNFMS 现役 OIer">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KeBlog">
+    </span>
+
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/10/10/%E6%95%B4%E4%BD%93%E4%BA%8C%E5%88%86/" class="post-title-link" itemprop="url">整体二分</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-10-10 18:00:00" itemprop="dateCreated datePublished" datetime="2019-10-10T18:00:00+08:00">2019-10-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-05-19 20:32:02" itemprop="dateModified" datetime="2020-05-19T20:32:02+08:00">2020-05-19</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>不久前学了整体二分，做了几道题，还在考试上派上用场过几次。<br />
+觉得自己大概懂了整体二分，直到一次碰上了强制在线的毒瘤题。。。</p>
+<p><del>整体二分：从离线到强制在线</del></p>
+<h2 id="基础">基础</h2>
+<p>大概讲讲整体二分吧。</p>
+<p>整体二分大概用于这样一个场景：<br />
+有多组询问，每个询问可以二分，但是每个询问二分的时间不能接受，<br />
+而不同询问的二分有共同点，这时就可以用整体二分把多个询问一起二分。<br />
+所以这是个离线算法。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/10/10/%E6%95%B4%E4%BD%93%E4%BA%8C%E5%88%86/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2019/10/10/%E6%95%B4%E9%99%A4%E5%88%86%E5%9D%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Kewth">
+      <meta itemprop="description" content="HNFMS 现役 OIer">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KeBlog">
+    </span>
+
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/10/10/%E6%95%B4%E9%99%A4%E5%88%86%E5%9D%97/" class="post-title-link" itemprop="url">整除分块</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-10-10 10:00:04" itemprop="dateCreated datePublished" datetime="2019-10-10T10:00:04+08:00">2019-10-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-07-26 08:27:52" itemprop="dateModified" datetime="2020-07-26T08:27:52+08:00">2020-07-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>（以下的除号皆表示整除）</p>
+<p>用数论函数计算的时候，总会遇到这样一种问题： <span class="math inline">\(\sum_{i=1}^n f(\frac{n}{i})\)</span> 。 <span class="math inline">\(O(n)\)</span> 求往往无法满足需要。</p>
+<p>但是<del>打表</del>可以发现， n/i 的取值对于一段连续的 i 是一致的， 那么可以考虑一块一块求。</p>
+<p>设已知当前块的左端点为 l ，如果知道右端点 r（左闭右开），意味着 <span class="math inline">\(\forall l&lt;=i&lt;r, \frac{n}{i} = \frac{n}{l}\)</span> ， 这一块对答案的贡献就是 <span class="math inline">\((r-l) \times f(\frac{n}{l})\)</span> 。</p>
+<p>结论是 <span class="math inline">\(r = n / (n / l) + 1\)</span> 。</p>
+<p>证明：</p>
+<ul>
+<li>对于 l 设 <span class="math inline">\(n / l = x\)</span></li>
+<li>那么由 <span class="math inline">\(n \bmod l = n - n / l \cdot l = n - l \cdot x\)</span> 可知 $ n - l x  $</li>
+<li>那么若 <span class="math inline">\(l + 1\)</span> 满足 <span class="math inline">\(n / (l + 1) = n / l\)</span> ，可知也有 <span class="math inline">\(n - (l + 1) \cdot x \geq 0\)</span></li>
+<li>即 <span class="math inline">\(n - l \cdot x \geq x\)</span></li>
+<li>对于 k 若 <span class="math inline">\(n / k = n / l\)</span> 而 <span class="math inline">\(n / (k + 1) != n / l\)</span></li>
+<li>那么根据上式可得 k 满足 $ 0 n - k x &lt; x$</li>
+<li>所以 <span class="math inline">\(n - k \cdot x = n \bmod x = n - n / x \cdot x\)</span></li>
+<li>所以 <span class="math inline">\(k = n / x = n / (n / l)\)</span></li>
+<li>由 k 的定义 <span class="math inline">\(n / k = n / l \&amp; n / (k + 1) != n / l\)</span> 可知 k+1 即是要求的 r</li>
+</ul>
+<p>那么可以枚举块，当前 l,r 可以求得，下一个块的 l 显然是当前 r。</p>
+<p>有时候会有点变化：</p>
+<p>要求 <span class="math inline">\(\sum_{i=1}^{min(n, m)} f(\frac{n}{i}) \cdot f(\frac{m}{i})\)</span> 。</p>
+<p>还是会存在 <span class="math inline">\(\forall l \le i &lt; r, \frac{n}{i} = \frac{n}{l} \&amp; \frac{m}{i} = \frac{m}{l}\)</span> 。</p>
+<p>所以这样的区间的右端点为：<span class="math inline">\(r = min(n / (n / l), m / (m / l)) + 1\)</span> 。</p>
+<p>所以还是可以一块一块的枚举求和。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2019/10/10/%E7%B1%BB%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Kewth">
+      <meta itemprop="description" content="HNFMS 现役 OIer">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KeBlog">
+    </span>
+
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/10/10/%E7%B1%BB%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97/" class="post-title-link" itemprop="url">类欧几里得</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-10-10 10:00:03" itemprop="dateCreated datePublished" datetime="2019-10-10T10:00:03+08:00">2019-10-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-07-19 16:34:44" itemprop="dateModified" datetime="2020-07-19T16:34:44+08:00">2020-07-19</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>这里只是类欧几里得的一种：<br />
+快速求下式： <span class="math display">\[f(a, b, c, n) = \sum_{i=0}^n \lfloor \frac{ai+b}{c} \rfloor\]</span></p>
+<p>其中 a, b, c, n 都是正整数。</p>
+<h2 id="缩小-a-b-规模">缩小 a, b 规模</h2>
+<p>首先的目标是让 a, b 小于 c 。</p>
+<p>结论 1 ：<br />
+<span class="math display">\[\lfloor \frac{Ax+B}{y} \rfloor =
+\lfloor \frac{A(x\%y)+B}{y} \rfloor + A\lfloor \frac{x}{y} \rfloor\]</span></p>
+<p>证明：<br />
+首先用到整除与取模的转换： <span class="math inline">\(\lfloor \frac{x}{y} \rfloor = \frac{x-x\%y}{y}\)</span> 。<br />
+得到原命题等价于：<br />
+<span class="math display">\[\frac{Ax+B-(Ax+B)\%y}{y} =
+\frac{A(x\%y)+B-(Ax+B)\%y}{y} + A\frac{x-x\%y}{y}\]</span> <span class="math display">\[Ax + B - (Ax+B)\%y = A(x\%y) + B - (Ax+B)\%y + A(x-x\%y)\]</span> <span class="math display">\[Ax - (Ax+B)\%y = A(x\%y) - (Ax+B)\%y + A(x-x\%y)\]</span> <span class="math display">\[Ax = A(x\%y) + A(x-x\%y)\]</span> <span class="math display">\[Ax = A(x\%y) + Ax - A(x\%y)\]</span><br />
+得证。</p>
+<p>那么通过这个结论可以得知：<br />
+<span class="math display">\[
+\begin{equation}
+\begin{aligned}
+f(a, b, c, n) &amp;= \sum_{i=0}^n \lfloor \frac{ai+b}{c} \rfloor \\\\
+&amp;= \sum_{i=0}^n (\lfloor \frac{(a\%c)i+b\%c}{c} \rfloor +
+i\lfloor \frac{a}{c} \rfloor + \lfloor \frac{b}{c} \rfloor) \\\\
+&amp;= f(a\%c, b\%c, c, n) + \sum_{i=0}^n (
+i\lfloor \frac{a}{c} \rfloor + \lfloor \frac{b}{c} \rfloor) \\\\
+\end{aligned}
+\end{equation}
+\]</span></p>
+<p>后面那一段就是一个等差数列求和，于是 a, b 被转换为小于 c 。</p>
+<h2 id="转换成子问题减小规模">转换成子问题减小规模</h2>
+<p>整除除了用取模代替外，还有一种方法。</p>
+<p>结论 2 ：<br />
+<span class="math display">\[\lfloor \frac{x}{y} \rfloor = \sum_{i=1}^{MAX} [i \leq \frac{x}{y}]\]</span><br />
+其中 MAX 是任意一个足够大的值。<br />
+证明？相当于从 1 开始数，感性理解即可。</p>
+<p>那么通过这个结论可以得知：<br />
+<span class="math display">\[
+\begin{equation}
+\begin{aligned}
+f(a, b, c, n) &amp;= \sum_{i=0}^n \lfloor \frac{ai+b}{c} \rfloor \\\\
+&amp;= \sum_{i=0}^n \sum_{j=1}^{(an+b)/c} [j \leq \frac{ai+b}{c}] \\\\
+&amp;= \sum_{i=0}^n \sum_{j=0}^{(an+b)/c-1} [j + 1 \leq \frac{ai+b}{c}] \\\\
+&amp;= \sum_{i=0}^n \sum_{j=0}^{(an+b)/c-1} [cj + c \leq ai+b] \\\\
+&amp;= \sum_{i=0}^n \sum_{j=0}^{(an+b)/c-1} [cj + c - 1 &lt; ai+b] \\\\
+&amp;= \sum_{i=0}^n \sum_{j=0}^{(an+b)/c-1} [\frac{cj+c-b-1}{a} &lt; i] \\\\
+&amp;= \sum_{j=0}^{(an+b)/c-1} \sum_{i=0}^n [\frac{cj+c-b-1}{a} &lt; i] \\\\
+&amp;= \sum_{j=0}^{(an+b)/c-1}
+(n + 1 - \sum_{i=0}^n [i \leq \frac{cj+c-b-1}{a}]) \\\\
+&amp;= \sum_{j=0}^{(an+b)/c-1}
+(n - \lfloor \frac{cj+c-b-1}{a} \rfloor) \\\\
+&amp;= n \lfloor \frac{an+b}{c} \rfloor -
+\sum_{j=0}^{(an+b)/c-1} (\lfloor \frac{cj+c-b-1}{a} \rfloor) \\\\
+&amp;= n \lfloor \frac{an+b}{c} \rfloor - f(c, c-b-1, a, (an+b)/c-1)
+\end{aligned}
+\end{equation}
+\]</span></p>
+<p>那么就得到了一个递归计算 f(a, b, c, n) 的算法，<br />
+a = 0 时上式不成立，因为上面的推导有除以 a 的步骤。<br />
+因此将 a = 0 作为终止状态，此时 f 的计算是常数数列求和。<br />
+复杂度是对数复杂度 log(a)，因为上面的过程规模的减小速度相当于 gcd 。</p>
+<h2 id="数形结合">数形结合</h2>
+<p>复习的时候看到这么多式子头都大了，但是这个类欧事实上就是数一个三角形内的整点数，第一步很好理解，第二步本质上就是把坐标轴翻转了一下然后用一个正方形的点数减去一个三角形的点数（事实上可以不用这个补集转换），很快就可以得到同样的结论，可以避免冗长的纯式子推导。</p>
+<p>放在二维平面上，第一步的本质就是把斜率固定在小于 1 的数，第二步的本质就是翻转坐标轴，翻转后斜率会变为原来的倒数，于是会超过 1 。这样反复进行就可以逐渐数完三角形内的所有整点。</p>
+<p>UPD: 准确来说不是三角形，是梯形，但显然两者可以相互转换。</p>
+<p>但是更复杂的类欧这个数形结合好像就不管用了，还是得用数学推导。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2019/10/10/%E7%BA%BF%E6%AE%B5%E6%A0%91%E5%88%86%E6%B2%BB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Kewth">
+      <meta itemprop="description" content="HNFMS 现役 OIer">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KeBlog">
+    </span>
+
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/10/10/%E7%BA%BF%E6%AE%B5%E6%A0%91%E5%88%86%E6%B2%BB/" class="post-title-link" itemprop="url">线段树分治</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-10-10 10:00:02" itemprop="dateCreated datePublished" datetime="2019-10-10T10:00:02+08:00">2019-10-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-12-06 20:37:17" itemprop="dateModified" datetime="2019-12-06T20:37:17+08:00">2019-12-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="作用">作用</h2>
+<p>线段树通过维护序列，可以维护一个承载各种操作的时间轴。</p>
+<p>通常用于辅助一些不支持删除操作的数据结构（线性基，并查集），<br />
+这种情况可以用线段树分治维护操作影响的时间来巧妙地避开删除。</p>
+<h2 id="线段树结构">线段树结构</h2>
+<p>线段树分治用到的线段树（以下简称线段树）是以询问的时间为键值，<br />
+没有权值只有标记的线段树。</p>
+<p>也就是线段树的一段区间对应的是一段询问（一段时间）。</p>
+<p>这样的线段树只需要支持区间修改（打标记）。<br />
+每一个操作都会影响一段时间，对应于线段树的区间修改。</p>
+<h2 id="例题">例题</h2>
+<p>这玩意需要一个例题才讲的清。<br />
+（由于线段树分治用于辅助其他数据结构，再看例题前得先会线性基）</p>
+<p>维护一个集合，每次操作可以加入一个数或删除一个已经存在与集合的数。<br />
+每次操作后要回答这个集合的最大异或和。<br />
+操作次数 1e5 。</p>
+<h3 id="暴力线性基">暴力线性基</h3>
+<p>如果只有插入没有删除，这题就是一遍线性基。</p>
+<p>但是不巧线性基不支持删除，所以只能在每次删除后重构线性基。<br />
+复杂度平方带对数，稳 T 。</p>
+<h3 id="时间轴">时间轴</h3>
+<p>将每次操作看做时间点，假设数 x 在时刻 l 被插入， r 被删除，<br />
+那么 x 只存在于 [l, r) 这段时间，<br />
+假如每个时刻开一个线性基，那么将 x 插入 [l, r) 的每个线性基，<br />
+这样就可以在最后通过线性基询问得到每个时刻的答案，<br />
+复杂度还是平方带对数，稳 T 的离线算法。</p>
+<h3 id="线段树优化">线段树优化</h3>
+<p>比较上述两种算法，<br />
+第一种复杂度瓶颈在于重构线性基，实在是没有什么优化空间，<br />
+但是第二种算法中，复杂度瓶颈在于将 x 插入到 [l, r) 的每个线性基，<br />
+这个操作相当于一个区间修改，可以用线段树优化。</p>
+<p>那么一个优秀的算法就出来了：<br />
+线段树每个节点维护一个 vector （相当于懒标记），插入 x 将直接加在线段树对应区间的 vector　内。<br />
+所有操作过后会得到一个只有懒标记的线段树，<br />
+然后考虑如何通过这样一颗线段树得出所有答案。</p>
+<h4 id="处理懒标记">处理懒标记</h4>
+<p>懒标记下传？<br />
+不存在的，因为懒标记是一个 vector, 下传的复杂度并不是 O(1) ，<br />
+不难验证下传所有懒标记会使复杂度重回 n 方。</p>
+<p>既然不能下传，那就进行 n 次单点查询？<br />
+一个道理，单点查询的复杂度并不是 log(n), 这样做同样对复杂度没有优化。</p>
+<p><del>那就没救了</del></p>
+<h4 id="分治">分治</h4>
+<p>线段树分治，不能只有线段树，还要分治啊。</p>
+<p>现在需要只把每个懒标记访问一遍就得出所有答案。</p>
+<p>dfs 整颗线段树（实际上就是分治），深度是 log 级别的，那么对每一个深度开一个线性基。<br />
+如能能让 dfs 每个节点时该深度线性基维护的是这个节点到根的所有懒标记，<br />
+最后 dfs 到每个叶子节点就可以得到该叶子节点到根的懒标记的线性基，也就可以求出这个叶子节点的答案。</p>
+<p>假设当前 dfs 到 u, 深度为 d, 深度对应的线性基已经是维护其到根的懒标记。<br />
+dfs 到一个新点 v 一定会使深度 + 1 ，将当前深度 d 的线性基拷贝到下个深度 d + 1 中。<br />
+那么 dfs 到 v 后再将 v 的懒标记加到 d + 1 的线性基中，d + 1 的线性基也就满足了要求。<br />
+通过这样的过程就能够做到只访问每个懒标记一遍。</p>
+<p>这就是线段树分治了。</p>
+<h2 id="真---例题">真 - 例题</h2>
+<p>这两道题就没有这么裸了。</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.org/problemnew/show/P3733">洛谷八纵八横</a> （线段树分治 + 线性基）</p>
+<p><a target="_blank" rel="noopener" href="https://www.lydsy.com/JudgeOnline/problem.php?id=4025">BZOJ 二分图</a> （线段树分治 + 并查集）</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2019/10/10/%E7%BB%84%E5%90%88%E6%95%B0%E5%85%AC%E5%BC%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Kewth">
+      <meta itemprop="description" content="HNFMS 现役 OIer">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KeBlog">
+    </span>
+
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/10/10/%E7%BB%84%E5%90%88%E6%95%B0%E5%85%AC%E5%BC%8F/" class="post-title-link" itemprop="url">组合数公式</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-10-10 10:00:01" itemprop="dateCreated datePublished" datetime="2019-10-10T10:00:01+08:00">2019-10-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-05-03 10:23:53" itemprop="dateModified" datetime="2020-05-03T10:23:53+08:00">2020-05-03</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>$ C_n^m $ 在组合数学中的意义：在 n 个元素选 m 个元素的方案数。</p>
+<h2 id="公式">公式</h2>
+<h3 id="公式-1">公式 1</h3>
+<p><span class="math display">\[ C_n^m = \frac{n!}{m! * (n-m)!} \]</span></p>
+<p>组合数的通项公式。</p>
+<p><strong>当要求组合数模一般模数时</strong> ，通项公式的分母可能没有逆元导致不可行。</p>
+<h3 id="公式-2">公式 2</h3>
+<p><span class="math display">\[ C_n^m = C_n^{n-m} \]</span></p>
+<p>基本性质，可以由通项公式得出。</p>
+<h3 id="公式-3">公式 3</h3>
+<p><span class="math display">\[ C_n^m * C_m^k = C_n^k * C_{n-k}^{m-k} \]</span></p>
+<h3 id="公式-4">公式 4</h3>
+<p><span class="math display">\[ C_n^m = C_{n-1}^{m-1} + C_{n-1}^m \]</span></p>
+<p>组合数的基本递推式。</p>
+<p><strong>当要求组合数模一般模数时</strong> ，常用这种方法预处理组合数。</p>
+<h3 id="公式-5">公式 5</h3>
+<p><span class="math display">\[ \sum_{i=0}^n C_n^i = 2^n \]</span></p>
+<p>组合意义： n 个元素选任意元素的方案数。 每个数都可以选或不选，所以方案数为 $ 2^n $ 。</p>
+<p>同样可以由二项式定理： $ (x + 1)^n = _{i=0}^n C_n^i * x^i $ 得出。</p>
+<h3 id="公式-6">公式 6</h3>
+<p><span class="math display">\[ \sum_{i=0}^n (C_n^i)^2 = C_{2n}^n \]</span></p>
+<h3 id="公式-7">公式 7</h3>
+<p><span class="math display">\[ C_{n+m}^k = \sum_{i=0}^k C_n^i * C_m^{k-i} \]</span></p>
+<p>从组合数学上的定义出发，在 n + m 个元素中选 k 个， 相当于先在前 n 个元素中选 i 个再在后 m 个元素中选 k - i 个。 枚举这个 i 把方案数相加就能得到最终方案数。</p>
+<h3 id="公式-8">公式 8</h3>
+<p><span class="math display">\[ \sum_{i=0}^n C_{k+i}^k = C_{k+n+1}^n \]</span></p>
+<p>进一步可以得到下式：</p>
+<p><span class="math display">\[ \sum_{i=0}^n \sum_{j=0}^m C_{i+j}^i = C_{n+m+2}^{m+1} - 1 \]</span></p>
+<p>类似的还有：</p>
+<p><span class="math display">\[ \sum_{i=0}^n C_{i}^k = C_{n+1}^{k+1} \]</span></p>
+<h3 id="lucas-定理">Lucas 定理</h3>
+<p><span class="math display">\[ C_n^m \% p = C_{n/p}^{m/p} * C_{n \% p}^{m \% p} \% p \]</span></p>
+<p>常用于模数较小的组合数取模。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2019/10/10/%E8%8E%AB%E6%AF%94%E4%B9%8C%E6%96%AF%E5%8F%8D%E6%BC%94/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Kewth">
+      <meta itemprop="description" content="HNFMS 现役 OIer">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KeBlog">
+    </span>
+
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/10/10/%E8%8E%AB%E6%AF%94%E4%B9%8C%E6%96%AF%E5%8F%8D%E6%BC%94/" class="post-title-link" itemprop="url">莫比乌斯反演</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-10-10 10:00:00" itemprop="dateCreated datePublished" datetime="2019-10-10T10:00:00+08:00">2019-10-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-05-10 19:01:09" itemprop="dateModified" datetime="2020-05-10T19:01:09+08:00">2020-05-10</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>（以下除号皆表示整除）<br />
+对于一些式子复杂度大的数论题，或许用莫比乌斯反演可以高效解决问题。</p>
+<p>前置技能：</p>
+<ul>
+<li><p>基本数论函数</p></li>
+<li><p>狄利克雷卷积</p></li>
+</ul>
+<p>莫比乌斯函数满足 <span class="math inline">\(\mu \times I = \epsilon\)</span></p>
+<p>即 <span class="math inline">\(\sum_{d|n}\mu(d) = [n = 1]\)</span></p>
+<p>表达式为：</p>
+<p><span class="math display">\[ n = 0 : \mu(n) = 1 \]</span> <span class="math display">\[ n = \prod_{p|n\,and\,p\,is\,prime} p : \mu(n)=(-1)^k \]</span> <span class="math display">\[ otherwise : \mu(n)=0 \]</span></p>
+<p>证明：<br />
+<del>暂时不会</del></p>
+<p>莫比乌斯反演：<br />
+对于数论函数 <span class="math inline">\(f(n)\)</span> ，设 <span class="math inline">\(F(n) = \sum_{d|n}f(d)\)</span><br />
+即 <span class="math inline">\(F = f \times I\)</span><br />
+则有 <span class="math inline">\(f(n) = \sum_{d|n}F(d)\cdot\mu(\frac{n}{d})\)</span><br />
+即 <span class="math inline">\(f = F \times \mu\)</span></p>
+<p>证明：</p>
+<p><span class="math display">\[ \because \; F = f\cdot I \]</span> <span class="math display">\[ \therefore \; F\cdot \mu = f\cdot I\cdot \mu \]</span> <span class="math display">\[ \because \; I\cdot \mu = \epsilon \]</span> <span class="math display">\[ \therefore \; F\cdot \mu = f\cdot \epsilon \]</span> <span class="math display">\[ \therefore \; f = F\cdot \mu \]</span></p>
+<p>莫比乌斯反演好像主要是用来推式子，F 比 f 好做的话，就可以试试莫比乌斯反演。</p>
+<p>另外事实上只需要熟知 <span class="math inline">\(\mu\)</span> 函数的性质，直接推式子就行了，<br />
+绝大多数情况下（至少是我遇到的所有情况下）并不需要莫比乌斯反演。</p>
+<p>另外莫比乌斯反演有个很简单的 <span class="math inline">\(O(nlogn)\)</span> 实现，不需要筛 <span class="math inline">\(\mu\)</span> ，直接按定义枚举每个数的倍数去筛即可。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -177,6 +1175,8 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="KeBlog">
     </span>
+
+    
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
@@ -220,8 +1220,6 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
           <h2 id="前置知识">前置知识</h2>
 <p>首先要知道关于 <a href="https://kewth.github.io/blog/2019/01/24/多项式的运算/">多项式</a> 的一些知识。</p>
 <p>其次要对复数有一些了解。</p>
@@ -232,7 +1230,7 @@
 <p>上述过程用递归实现常数较大，因而有一个迭代实现 FFT 的快速版本。</p>
 <h3 id="蝴蝶操作">蝴蝶操作</h3>
 <p>FFT 的每个值都是由子问题的两个值转化而来，且这两个值可以转换成两个需要的值（ FFT 复杂度的保证）。 若用一个数组 a 表示多项式。 那么蝴蝶操作形如：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">complex</span> Wn; <span class="comment">// 单位根的幂</span></span><br><span class="line"><span class="keyword">complex</span> a0 = a[x], a1 = a[y];</span><br><span class="line">a[x] = a0 + a1 * Wn;</span><br><span class="line">a[y] = a1 + a0 * Wn;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">complex</span> Wn; <span class="comment">// 单位根的幂</span></span><br><span class="line"><span class="built_in">complex</span> a0 = a[x], a1 = a[y];</span><br><span class="line">a[x] = a0 + a1 * Wn;</span><br><span class="line">a[y] = a1 + a0 * Wn;</span><br></pre></td></tr></table></figure>
 <p>这样取出了数组中两个值后再修改相应位置的两个值，就是蝴蝶操作。</p>
 <h3 id="rader-排序">Rader 排序</h3>
 <p>Rader 排序的目的是让表示多项式的数组可以进行蝴蝶操作。</p>
@@ -274,6 +1272,8 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="KeBlog">
     </span>
+
+    
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
@@ -317,8 +1317,6 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
           <p>在数列 a 中,逆序对即是满足 <span class="math inline">\(i &lt; j\)</span> 且 <span class="math inline">\(a_i &gt; a_j\)</span> 的数对。 许多情况下你推式子推着推着就推出个 <span class="math inline">\(\sum_{i=1}^n \sum_{j=i+1}^n a_i&gt; a_j\)</span>， 这就是逆序对的数量。</p>
 <h2 id="暴力">暴力</h2>
 <p>朴素的求法自然是 <span class="math inline">\(O(n^2)\)</span> 地枚举 <span class="math inline">\(i, j\)</span> 统计，这里不再赘述。</p>
@@ -362,978 +1360,16 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2019/10/09/%E6%95%B0%E8%AE%BA%E5%87%BD%E6%95%B0%E7%8E%84%E5%AD%A6%E6%93%8D%E4%BD%9C/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-      <meta itemprop="name" content="Kewth">
-      <meta itemprop="description" content="HNFMS 现役 OIer">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="KeBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/10/09/%E6%95%B0%E8%AE%BA%E5%87%BD%E6%95%B0%E7%8E%84%E5%AD%A6%E6%93%8D%E4%BD%9C/" class="post-title-link" itemprop="url">数论函数玄学操作</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-10-09 00:00:00" itemprop="dateCreated datePublished" datetime="2019-10-09T00:00:00+08:00">2019-10-09</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-06-14 21:46:57" itemprop="dateModified" datetime="2020-06-14T21:46:57+08:00">2020-06-14</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B4%E7%90%86/" itemprop="url" rel="index"><span itemprop="name">整理</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>数论函数推式子是真的玄学， 乱七八糟的一脸懵逼， 好不容易看懂了转身又 <del>tm</del> 忘了， 这里列出一些我见过的。</p>
-<p>持续更新。</p>
-<p>update: 证明都删掉了，这是篇整理，目的是让结论更一目了然。<del>需要证明联系我我免费讲解</del></p>
-<h2 id="常见数论函数卷积">常见数论函数卷积</h2>
-<p><span class="math display">\[ \mu \cdot I = \epsilon \]</span></p>
-<p><span class="math display">\[ \phi \cdot I = id \]</span></p>
-<p><span class="math display">\[ \mu \cdot id = \phi \]</span></p>
-<p><span class="math display">\[ id \cdot I = \sigma \]</span></p>
-<h2 id="常见数论函数-fij-化简">常见数论函数 f(ij) 化简</h2>
-<p><span class="math display">\[ d(i \cdot j) = \sum_{x|i} \sum_{y|j} [gcd(x, y) = 1] \]</span></p>
-<p><span class="math display">\[ \sum_{d|ij} f(i \cdot j) = \sum_{x|i} \sum_{y|j} [gcd(x, y) = 1] f(\frac{iy}{x}) \]</span></p>
-<p><span class="math display">\[ \phi(i \cdot j) = \phi(i) \phi(j) \frac{gcd(i, j)}{\phi(gcd(i, j))} \]</span></p>
-<h2 id="常见数论函数求和">常见数论函数求和</h2>
-<p><span class="math display">\[ \sum_{i=1}^n d(i) = \sum_{i=1}^n \lfloor \frac{n}{i} \rfloor \]</span></p>
-<h2 id="互质条件转换">互质条件转换</h2>
-<p><span class="math display">\[ [gcd(i, j) = 1] = \sum_{d|i,d|j} \mu(d) \]</span></p>
-<p><span class="math display">\[ \sum_{i=1}^n \sum_{j=1}^m f(i, j) [gcd(i, j) = 1]
- = \sum_{d=1}^{min(n, m)} \mu(d) \sum_{i=1}^{n/d} \sum_{j=1}^{m/d} f(id, jd) \]</span></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2019/10/01/HNOI2019/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-      <meta itemprop="name" content="Kewth">
-      <meta itemprop="description" content="HNFMS 现役 OIer">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="KeBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/10/01/HNOI2019/" class="post-title-link" itemprop="url">HNOI2019</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-10-01 00:00:00" itemprop="dateCreated datePublished" datetime="2019-10-01T00:00:00+08:00">2019-10-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-06-17 22:05:57" itemprop="dateModified" datetime="2020-06-17T22:05:57+08:00">2020-06-17</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>先喷一句，没有大样例，差评。<br />
-再喷一句，数据水，好评。</p>
-<p>预计 80' ，实际 110' 。</p>
-<p>我真是个奇葩实际分比预计分高。。。</p>
-<h2 id="day0-">Day0-</h2>
-<p>省选前三天教练每天给我们推一道题，都是主席树应用（教练曰“线段树模板”）。<br />
-都是看了题解的思路才做出来的，自己想就找不到用主席树维护的地方。</p>
-<p>不知道为什么这三天效率都挺高，这三天我 A 的题目估计有我平常一个星期的 A 题数。。。</p>
-<p>然而还没来得及复习每个知识点，省选就来了。</p>
-<h2 id="day1">Day1</h2>
-<p>预计 70' ，实际 40' 。</p>
-<h3 id="fish">fish</h3>
-<p>我看到这题的时候就意识到我只能打暴力了。<br />
-计算几何？我对这块一片空白。<br />
-好吧，硬要说思路我大概想得到枚举线段，按斜率搞个什么数据结构？<br />
-然后真的不会，敲暴力滚粗。</p>
-<p>预计 20' ，实际 20' 。</p>
-<h3 id="jojo">jojo</h3>
-<p>前缀和后缀相同？求 KMP 的 fail 数组嘛。<br />
-暴力求，一次加几个字符就求几次 fail, 全加起来就是答案。<br />
-可持久化？版本树像个 AC 自动机，但是没管这么多，无脑写了个可持久化数组。<br />
-因为是把每个字符暴力求的，只能过前 50' 。 结果我后面 30' tm TLE 了？ $ O(n log(n)) $ 的时空复杂度跑 1e5 要 6 秒？</p>
-<p>预计 50' ，实际 20' 。</p>
-<h3 id="polygon">polygon</h3>
-<p>什么鬼畜题啊，简化一波题意。<br />
-把线段看做一个区间，除 (x, x + 1) 外每个区间一定可以划分成两个子区间。<br />
-然后把每个区间看做一个点，相当于有了一个满二叉树。<br />
-然后旋转操作就相当于把一个点 blablabla 换一下位置。<br />
-旋转次数可以贪心，方案数不会，大概要 DP ？<br />
-然后想着就求旋转次数吧，看看数据范围。。。<br />
-沃日 90% 的数据都要求方案数？小 W 的心情得多差啊。。。<br />
-当时我还没打其他题，感觉比较亏，就先做前面的题了，结果最后都没打。</p>
-<p>预计 0' ，实际 0' 。</p>
-<h3 id="watering">Watering</h3>
-<p>下午直接去机房颓废，死神 vs 火影真好玩。<br />
-还有被 lyy 安利太阳系争夺战，画风清新，内容硬核。</p>
-<h2 id="day2">Day2</h2>
-<p>emm, 我是来测数据湿度的。。。<br />
-结果真被我水过去了。。。</p>
-<p>预计 10' ，实际 70' 。</p>
-<p>所以说有想法就要实现 <del>不然就没事干了</del> 2333 。</p>
-<h3 id="tour">tour</h3>
-<p>u = v 或者 s[u] = s[v] 且 u, v 相邻的时候 (u, v) 一定是可行的。<br />
-其他点对 (u, v) 可行当且仅当 s[u] = s[v] 且存在 u -&gt; u2, v -&gt; v2 且 (u2, v2) 可行。<br />
-DP ？有环。<br />
-然后就只能把一个点对看做一个点，对于新的点建图，如果从初始的可行点能跑到 (u, v) 则 (u, v) 可行。<br />
-点数 $ O(n^2) $ ，边数 $ O(m^2) $ ，复杂度 $ O(n^2 + m^2 + q) $ 。<br />
-然而第一档暴力 m 就有 1e4 ， <strong>纯随机数据开O2</strong> 本地测了一下跑 5s, 真棒。</p>
-<p>预计 0' ，实际 30' 。</p>
-<h3 id="dance">dance</h3>
-<p>好迷啊，看了看 n = 1 有 40' ，就去想 n = 1 怎么做，<br />
-推了推就是个式子： $ ans_i = _{j=0} C_L^{i+j k} W^{i+j k} $ 。 把每个 $ C_L^x W^x $ 算一遍，快速幂复杂度 $ O(L log(L)) $ ，<br />
-然而 L 有 1e8 。。。<br />
-线性都跑不过去吧这，但我实在没别的思路，就想试试线性。<br />
-做法就是预处理，预处理 L 以内的逆元和 $ W_i $ ，再线性求一排的组合数。<br />
-时空复杂度都是 $ O(L) $ ， <strong>开 O2</strong> 本地测试 17s, 就算不 TLE 都得 MLE 。</p>
-<p>预计 0' ，实际 30' （考完后再放本地测可以水 40' woc）。</p>
-<p>看了看实际的 L 只有 1e7 到 2e7 左右，真棒。 至于空间，我还算有点脑子搞了波动态开空间，不然直接开 1e8 的数组肯定得炸。</p>
-<h3 id="sequence">sequence</h3>
-<p>b 是整数的话还能枚举枚举。分数？没救了感觉。<br />
-于是只打了 10' 的整数 DP 。</p>
-<p>预计 10' ，实际 10' 。</p>
-<h3 id="watering-1">Watering</h3>
-<p>下午本来打算去黄兴街打游戏的，先去麦克唐纳德吃中饭，吃完后发现就已经 3 点多了没什么时间。<br />
-于是放弃了 xbox 又回到机房颓废，死神 vs 火影昨天已经玩熟练了，打起来比较轻松。</p>
-<h2 id="day3">Day3+</h2>
-<p>省选完了，结果并不想想象的那样，即使运气眷顾了我还是 wei 的一批。<br />
-实力不够啊，说啥都是扯淡。</p>
-<p>常规欠下的帐也该还了，滚回去学文化课啦，接受作业的洗礼。</p>
-<h2 id="one-year-later">One Year Later</h2>
-<p>update on 2020.04.08</p>
-<p>一年过去了，重新审视了去年的 HNOI ，再次分别总结一下吧。 （从去年省选到现在，这些题碰都没有碰过）</p>
-<p>新一轮省选不远了。</p>
-<h3 id="fish-1">fish</h3>
-<p>咕咕咕。</p>
-<h3 id="jojo-1">jojo</h3>
-<p>去年，我甚至不知道均摊数据结构是不能可持久化的，打了一个主席树满以为复杂度一个 log 。<br />
-可事实上 KMP 的最坏复杂度是 <span class="math inline">\(O(n)\)</span> ，可持久化后复杂度可以到 <span class="math inline">\(O(n^2)\)</span> 。</p>
-<p>可是现在我还是不会做 jojo ，甚至看题解也看不懂，现在上考场估计也还是 20pts 。</p>
-<h3 id="polygon-1">polygon</h3>
-<p>这题不难的啊，至少现在我看来如此。<br />
-不考虑修改的话就可以分治处理这个问题，考虑上修改就动态维护分治的树状形态即可。<br />
-而方案数就是分治树的拓扑序数量。</p>
-<p>A 了，现在上考场有信心拿到 100pts ，只不过可能得花上至少 2h 的时间。</p>
-<h3 id="tour-1">tour</h3>
-<p>思路很妙，同类型的边的偶环是没有意义的，可以删边使得同类型的边偶环不存在进而把边数控制在 <span class="math inline">\(O(n)\)</span> 。<br />
-可惜我没能独自得到这个结论，还是看了题解的，看了后有一种恍然大悟的感觉。</p>
-<p>现在上考场也许还是只会 <span class="math inline">\(O(m^2)\)</span> 暴力吧，时间足够的话说不定能想到正解，但没有把握，大概拿 30pts 。</p>
-<h3 id="dance-1">dance</h3>
-<p>现在看来这个式子并不难推，推完后就是对一个多项式求单位根上的点值。<br />
-但是在直到看题解前我都完全没听说过 bluestein ，算是技不如人，只能拿 60pts 。</p>
-<h3 id="sequence-1">sequence</h3>
-<p>花了 30min 打了个 50pts 的暴力 <span class="math inline">\(O(nm)\)</span> ，发现简直白给。<br />
-不过 100pts 确实难了不少，我觉得就算考场想到了也无法在考试时间内写对。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2019/10/01/Manjaro%20%E6%90%AD%E5%BB%BA%E5%86%85%E7%BD%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%88%96%E5%8D%9A%E5%AE%A2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-      <meta itemprop="name" content="Kewth">
-      <meta itemprop="description" content="HNFMS 现役 OIer">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="KeBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/10/01/Manjaro%20%E6%90%AD%E5%BB%BA%E5%86%85%E7%BD%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%88%96%E5%8D%9A%E5%AE%A2/" class="post-title-link" itemprop="url">Manjaro 搭建内网博客</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-10-01 00:00:00" itemprop="dateCreated datePublished" datetime="2019-10-01T00:00:00+08:00">2019-10-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-08 14:23:17" itemprop="dateModified" datetime="2019-12-08T14:23:17+08:00">2019-12-08</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>折腾了大半天，终于在本机搭了一个功能完备的服务器。<br />
-当然要记录一下啊。<br />
-不过这是搭建成功后的总结，可能有地方遗漏，有问题欢迎提出来。</p>
-<h2 id="静态页面博客">静态页面博客</h2>
-<p>这个用 hexo 和 jekyll 直接就可以做到，本地跑 server 不成问题，<br />
-比较 easy ，不赘述，详见 hexo 或者 jekyll 的官网。</p>
-<h2 id="动态页面博客">动态页面博客</h2>
-<p>动态页面要能跑 php ，有数据库。</p>
-<h2 id="apache">apache</h2>
-<p>这里用 apache(httpd) 搭建服务器：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S apache2</span><br></pre></td></tr></table></figure>
-<p>执行 <code>sudo httpd</code> 后打开 localhost ，就有一个东西了（虽然是空的）。<br />
-在 /srv/http/ 下新建 index.html 随便写点东西，是可以显示的。<br />
-路径具体查看 <code>httpd -S</code> 。</p>
-<p>启动服务：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl start httpd</span><br></pre></td></tr></table></figure>
-<h2 id="php">php</h2>
-<p>安装 php （ manjaro18.x 预装了 php7.x ，但还是要一些其他的东西）：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S php php-apache php-fpm</span><br></pre></td></tr></table></figure>
-<p>这时 apache 还是不支持 php 的，需要在配置里加上几行。<br />
-打开 /etc/httpd/conf/httpd.conf ，加入：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">LoadModule php7_module modules&#x2F;libphp7.so</span><br><span class="line">AddType application&#x2F;x-httpd-php-source .phps</span><br><span class="line">AddType application&#x2F;x-httpd-php .php</span><br><span class="line">DirectoryIndex index.php index.html index.htm</span><br></pre></td></tr></table></figure>
-<p>开启 php 服务：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl start php-fpm</span><br></pre></td></tr></table></figure>
-<p>编写 index.php 试试，也可以运行了。 如果出了问题，找到配置里的</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LoadModule mpm_event_module modules&#x2F;mod_mpm_event.so</span><br></pre></td></tr></table></figure>
-<p>改成（应该就在下面被注释了）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LoadModule mpm_prefork_module modules&#x2F;mod_mpm_prefork.so</span><br></pre></td></tr></table></figure>
-<h2 id="mysql">mysql</h2>
-<p>我跑 mysql 的服务会卡死，不知道为什么，<br />
-所以我用 mariadb （mysql 的一个衍生似乎是）替代。</p>
-<p>安装：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S mariadb mariadb-client</span><br></pre></td></tr></table></figure>
-<p>初始化（注册一个账号）：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo mysql_install_db --user=mysql --basedir=/usr --datadir=/var/lib/mysql</span><br><span class="line">sudo mysql_secure_installation</span><br></pre></td></tr></table></figure>
-<p>启动服务：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl start mysqld</span><br></pre></td></tr></table></figure>
-<p>试试能不能登上：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u&lt;用户名&gt; -p</span><br></pre></td></tr></table></figure>
-<p>让 php 支持 mysql 的调用，在 /etc/php/php.ini 找到 ;extension=mysqli 把分号去掉就行了。</p>
-<h2 id="使用-wordpress">使用 wordpress</h2>
-<p>Typecho 用 php7.2 似乎安装会出问题，<br />
-还是建议用 wordpress ，更加成熟，<br />
-安装方式在 wordpress 官网上把包下下来解压到 /srv/http/ ，<br />
-回了正常运行，需要改变 /srv/http 的权限，让 wordpress 能够对其做出修改。<br />
-这里不赘述，嫌麻烦可以 <code>chmod 777 -R /srv/http</code> 。</p>
-<p>然后进入 localhost 按照步骤来就行了。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2019/10/01/NTT/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-      <meta itemprop="name" content="Kewth">
-      <meta itemprop="description" content="HNFMS 现役 OIer">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="KeBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/10/01/NTT/" class="post-title-link" itemprop="url">NTT</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-10-01 00:00:00" itemprop="dateCreated datePublished" datetime="2019-10-01T00:00:00+08:00">2019-10-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-08 14:21:36" itemprop="dateModified" datetime="2019-12-08T14:21:36+08:00">2019-12-08</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>NTT ，快速数论变换，功能与 <a href="">FFT</a> 完全一致，用来求多项式卷积。<br />
-NTT 优点在于常数稍微小一点，没有精度误差。<br />
-但是 NTT 系数必须是取模意义下的整数，且对模数有特殊要求。</p>
-<h2 id="fft-的单位根">FFT 的单位根</h2>
-<p>建议前置 <a href="">FFT</a> 。</p>
-<p>FFT 可以分治优化复杂度的原因是用到了单位根的如下性质：<br />
-<span class="math display">\[ W_{2n}^{2k} = W_n^k \]</span> <span class="math display">\[ W_n^n = 1 \]</span> <span class="math display">\[ W_n^{k + n/2} + W_n^k = 0 \]</span></p>
-<p>可是用单位根做 FFT ，需要用到复数和浮点数，常数大而且有精度误差。<br />
-还有别的数有这样的性质来替换单位根吗？<br />
-遗憾的是，可以证明复数域下只有单位根有这样的性质。</p>
-<h2 id="取模">取模</h2>
-<p>实际计算多项式卷积时，常常要求对系数取模以避免不必要的麻烦。<br />
-那么这时候系数实际上是在模意义下的， FFT 将它转到复数域上运算，似乎没有必要。<br />
-模意义下什么数可以有单位根那样的性质？<br />
-有的，那就是原根。</p>
-<h2 id="原根">原根</h2>
-<p>对于某些模数 P ，模 P 意义下的原根 g 满足：<br />
-对任意 $ 0 k P - 2 $ ， $ g^k $ 互不相同。 有些模数可能不存在原根，这里先假设模数都有原根。</p>
-<p>假设系数是模 P 意义下的，P 是形如 $ 2^k + 1 $ 的质数，其原根为 g ，<br />
-设 $ G_n = g^{} mod P $ ，其中 n 是小于 P 的 2 的整次幂 。<br />
-那么在模 P 意义下， G 满足：</p>
-<p><span class="math display">\[ G_{2n}^{2k} = G_n^k \]</span></p>
-<p>由 G 定义可证：<br />
-$ G_{2n}^{2k} = g^{2k} = g^{k} = G_n^k$</p>
-<p><span class="math display">\[ G_n^n = 1 \]</span></p>
-<p>由 G 定义可得：<br />
-$ G_n^n = g^{n} = g^{P-1} $<br />
-由费马小定理：<br />
-$ G_n^n = g^{P-1} = 1 $</p>
-<p><span class="math display">\[ G_n^{k + n/2} + G_n^k = 0 \]</span></p>
-<p>有第一条性质可得：<br />
-$ G_n^{n/2} = G_2^1 = g^{} $<br />
-因为 $ (g<sup>{})</sup>2 = g^{P-1} = 1 $<br />
-根据原根的性质：<br />
-$ g^{} g^{P-1} $<br />
-那么 $ g^{} = -1 $ （即 P - 1）。<br />
-那么可以证得：<br />
-$ G_n^{k + n/2} = G_n^k G_n^{n/2} = G_n^k(-1) $<br />
-于是 $ G_n^{k + n/2} + G_n^k = 0 $</p>
-<h2 id="ntt">NTT</h2>
-<p>于是 NTT 的算法思路就呼之欲出了：把 $ W_n $ 全部替换为 $ G_n $ 即可。<br />
-这样就可以算出模 P 意义下的多项式卷积了。<br />
-其中 n 必须是 2 的整次幂，不足的补零即可。</p>
-<p>现在唯一的问题是，模数 P 要满足什么条件，以及如何求模 P 意义下的原根 g 。<br />
-然而我并不想深入展开，大多数情况下模数都是 998244353 ，其原根为 3 。<br />
-一般 NTT 只会用这个模数，不会有毒瘤出题人卡这个模数的（我不对这句话负责）。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2019/10/01/NOIP%202018/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-      <meta itemprop="name" content="Kewth">
-      <meta itemprop="description" content="HNFMS 现役 OIer">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="KeBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/10/01/NOIP%202018/" class="post-title-link" itemprop="url">NOIP 2018</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-10-01 00:00:00" itemprop="dateCreated datePublished" datetime="2019-10-01T00:00:00+08:00">2019-10-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-08 14:24:25" itemprop="dateModified" datetime="2019-12-08T14:24:25+08:00">2019-12-08</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="吐槽">吐槽</h2>
-<p>一天普及一天省选，弄到一起就出成了一套提高组试题。</p>
-<h2 id="day1">Day1</h2>
-<p>原题大作战。 然而我一题都没做过。</p>
-<p>总的来说 Day1 比去年好像容易点（不然我也不会留出一个多小时给每道题造数据对拍）。</p>
-<h3 id="t1">T1</h3>
-<p>CCF 直接把 2013 的题原封不动搬到了 Day1T1 。</p>
-<p>一开始想着递归，发现会被卡成 <span class="math inline">\(O(n^2)\)</span> ， 再想 DP 的时候简化一下式子就直接可以扫一遍出结果。</p>
-<h3 id="t2">T2</h3>
-<p>bzoj 权限题。</p>
-<p>如果一种货币能被其它若干货币代替，就扔掉。 设 f[i] 表示价值为 i 的货币是否会被代替，做一遍完全背包就好了。</p>
-<h3 id="t3">T3</h3>
-<p>bzoj 权限题。</p>
-<p>听说可以二分加贪心，不过我考场想的比较复杂 <del>是二分答案再 DP ，DP 转移再套一层用链表维护的 DP</del> 。</p>
-<p>首先容易想到二分答案，二分一个答案 mid 后求最多可以有多少条赛道满足长度不小于 mid ， 若有不少于 m 条，则答案可行。</p>
-<p>求赛道数量可以 DP ，设 f[u] 为 u 的子树中满足条件的赛道的数量， g[u] 表示在满足 f[u] 最大的前提下 u 向下不经过赛道的最长路径长。</p>
-<p>转移的时候先把 u 的儿子 v 的 f[v] 累加，同时将所有 g[v]+w 存起来（w 表示 u 到 v 的长度）。</p>
-<p>对于 g[v]+w 大于等于 mid 的直接把 f[u]++ 然后扔掉，于是只需要考虑小于 mid 的 g[v]+w 的贡献。</p>
-<p>两个不同的 g[v]+w 若大于等于 mid 就同样可以作为一条赛道让 f[u]++ ，先排序然后再次 DP 统计这样的赛道数量， 然后若所有的 g[v]+w 都有另外一个构成赛道， g[u]=0 ，否则 g[u] 等于剩下的最大的 g[v]+w 。</p>
-<h2 id="day2">Day2</h2>
-<p>Day1 的比赛对我造成了巨大的影响，Day1 考完后信心爆棚， <del>以 AKIOI 的自信</del> 走进 Day2 考场。</p>
-<p>结果什么题都死磕正解，到最后连暴力都没打全。</p>
-<p>看题，WTF?</p>
-<p>看完 T1 我以为是个稠密无向图，想了好久感觉是要求一种特殊的生成树，感觉巨不可做。 顿时有点小慌，突然想到考前教练提醒要看完题，说不定后面的题反而简单。</p>
-<p>嗯，有道理，直接翻到 T2 ，推了波结论认定是一道状压 DP，松了口气。</p>
-<p>不急，再看 T3 ，哦，好像树形 DP ，但是 m 个询问难住了我。</p>
-<p>于是认定 T2 比较容易，开始死磕 T2 ，打完状压后跑了遍 2,2 的样例，诶过了。 再跑一遍 3,3 ，输出 144 ，于是手推了 3,3 的样例发现还是 144 , 意识到推的结论有误，瞬间慌的一批。 推了好久才发现了问题，得到正确的结论后发现对于新结论状压 DP 似乎变得不可行。</p>
-<p>这个时候考试已经过了一个小时多了。慌。</p>
-<p>换换思路吧，于是去做 T3 , 想了很久 DP 最后写了个平方复杂度的， 跑过了所有样例就没管了，没多少时间了，又回去看 T1 。</p>
-<p>往回看了看 T1 里 m 的数据范围我才发现只有树和换套树两种情况。 那还求个鬼生成树，迅速打掉树的 60 部分分，n 看都没看只知道 <span class="math inline">\(O(n)\)</span> 稳了。 再去想换套树，感觉差不多，继续 <span class="math inline">\(O(n)\)</span>做。</p>
-<p>结果？一直死磕 T1 的 <span class="math inline">\(O(n)\)</span> 做法，直到最后考试结束都没写出来。</p>
-<p>考试听别人说直接枚举删边 <span class="math inline">\(O(n^2)\)</span> 就可以过的时候我才意识到 n 只有 5000 ，整个人懵的。</p>
-<p>结果 T1 还是 60' ，T3 不晓得哪里炸掉了爆零， 有意思的是 T2 我错误的打法样例都没过在 ccf 的数据里水到了 45' 。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2019/10/01/i3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-      <meta itemprop="name" content="Kewth">
-      <meta itemprop="description" content="HNFMS 现役 OIer">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="KeBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/10/01/i3/" class="post-title-link" itemprop="url">i3</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-10-01 00:00:00" itemprop="dateCreated datePublished" datetime="2019-10-01T00:00:00+08:00">2019-10-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-08 14:21:48" itemprop="dateModified" datetime="2019-12-08T14:21:48+08:00">2019-12-08</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="历程">历程</h2>
-<ul>
-<li>最先用的是 Ubuntu 16.04 自带的 Unity 。</li>
-<li>更新 Ubuntu 后用的 Ubuntu 18.04 自带的 Gnome 。</li>
-<li>用了 Gnome 后学会了折腾，各种配置堆上。</li>
-<li>后来发现 Gnome 太卡太吃内存，并且才知道系统可以换桌面， 于是在 master 安利下换上 xfce 。</li>
-<li>xfce 很稳定很流畅，但是太丑，可玩性太低，于是换上高大上的 KDE 。</li>
-<li>中途还换过 enlightenment ，但是 enlightenment 的稳定性实在不敢恭维。</li>
-<li>最后用上了 i3 ，原因不详。</li>
-</ul>
-<p>WARNING:<br />
-既然你打算尝试 i3 ，本文假设你有一定的动手能力（说白了就是能折腾）。</p>
-<h2 id="安装">安装</h2>
-<p><code>sudo aptitude install i3-wm</code> 后注销重进选择 i3 即可。</p>
-<p>然后你会发现弹出个窗口，接下来黑屏，没有动静。<br />
-WTF ?<br />
-其实 i3 已经开了，只是没背景而已，按 win+Enter 打开终端。</p>
-<h2 id="配置">配置</h2>
-<p>弹出一个菜单给你设置？想多了，要配置就写 ~/.config/i3/config 去吧。</p>
-<p>$mod 是 i3 的灵魂，每一个快捷键最好都以 $mod 开头，<br />
-一般 $mod 被设置成 Mod4 ，也就是 Win 键。<br />
-bindsym 是绑定快捷键，注释很详细，自己看，下面列出一些重要的配置。</p>
-<h3 id="方向">方向</h3>
-<p>i3 默认把 jkl; 做方向键，也许你会更喜欢 hjkl ，自己替换掉就是了。<br />
-另外分号不是 ; 而是 semicolon 。</p>
-<h3 id="壁纸">壁纸</h3>
-<p>i3 默认没有壁纸，因为它是个平铺式的窗口管理器。<br />
-但壁纸是第一生产力啊，不要壁纸怎么行。</p>
-<p>下载 feh: <code>sudo aptitude install feh</code>.<br />
-<code>feh --bg-fill (YOUR_IMG)</code> 就可以设置壁纸了，至于实现原理，你不会想知道的。</p>
-<h3 id="锁屏">锁屏</h3>
-<p>i3 默认没有锁屏，为了防机惨，锁屏还是很有必要的。</p>
-<p>下载 i3lock: <code>sudo aptitude install i3lock</code>.<br />
-直接 <code>i3lcok</code> 就可以锁屏，<code>i3lock -i (YOUR_PNG)</code> 还可以设置锁屏壁纸。<br />
-需要快捷键锁屏的话，加上一句配置就行了：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bindsym $mod+Tab exec i3lock # Win+Tab 锁屏</span><br></pre></td></tr></table></figure>
-<h3 id="工作区">工作区</h3>
-<p>i3 对工作区的数量没有限制，工作区的名字甚至可以有字母。<br />
-i3 默认配置里只提供了切换到 1 至 10 的快捷键，<br />
-但是有时候“切换到下一个工作区”和“切换到上一个工作区”可能更方便。<br />
-加上两句：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bindsym $mod+comma workspace prev # Win+逗号</span><br><span class="line">bindsym $mod+period workspace next # Win+句号</span><br></pre></td></tr></table></figure>
-<p>另外，默认配置里，把一个窗口移动到某工作区的时候仍会停留在原工作区，<br />
-想改变这点， 把 <code>move container to workspace x</code> 后面加上 <code>; workspace x</code> 即可。</p>
-<h3 id="i3bar">i3bar</h3>
-<p>个人超喜欢 i3bar ，因为它可以接受任何一个程序的输出。<br />
-这意味着你可以完全自由地定制 i3bar 。</p>
-<p>找到 <code>bar {</code> 这行。<br />
-bar 的模式有三种：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mode hide # Auto display</span><br><span class="line">mode invisible # Never display</span><br><span class="line">mode dock # Alway display</span><br></pre></td></tr></table></figure>
-<p>位置有两种：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">position top</span><br><span class="line">position bottom</span><br></pre></td></tr></table></figure>
-<p>重点来了，定义处理程序这一项：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">status_command i3status</span><br></pre></td></tr></table></figure>
-<p>可以看到默认使用 i3status 作为处理，i3status 本身也可以配置，<br />
-但是如果想自由配置，你可以写个程序，输出一个 json ，接口比较复杂，<br />
-在此不赘述，你可以在 ~/.config/i3status/config 里加几行：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">general &#123;</span><br><span class="line">	   output_format &#x3D; &quot;i3bar&quot;</span><br><span class="line">	   colors &#x3D; true</span><br><span class="line">	   interval &#x3D; 5</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>再运行 <code>i3status</code> 依葫芦画瓢就是了。</p>
-<h3 id="i3-gaps">i3-gaps</h3>
-<p>如果你希望窗口平铺之间会有间隙，i3-gaps 会满足你。<br />
-如果你用 Debian, Ubuntu ， 去 github 上搜 i3-gaps-deb clone 下来后运行 i3-gaps-deb 就行了。<br />
-如果用 Arch ，软件包管理器里有，直接下。</p>
-<h3 id="透明">透明</h3>
-<p>也许你给终端模拟器设置了透明度，很遗憾，在 i3 上没用。<br />
-解决方案是下载 compton ，运行 <code>compton -b</code> 即可。</p>
-<h2 id="接口">接口</h2>
-<p>你可以很自由地向 i3 发送命令，<code>i3-msg</code> 提供了一系列接口，<br />
-足以帮助完成更复杂的定制。</p>
-<p>使用 <code>i3-input</code> 可以直接向 i3 发送一条命令。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2019/10/01/i3lock/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-      <meta itemprop="name" content="Kewth">
-      <meta itemprop="description" content="HNFMS 现役 OIer">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="KeBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/10/01/i3lock/" class="post-title-link" itemprop="url">i3lock</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-10-01 00:00:00" itemprop="dateCreated datePublished" datetime="2019-10-01T00:00:00+08:00">2019-10-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-08 14:24:00" itemprop="dateModified" datetime="2019-12-08T14:24:00+08:00">2019-12-08</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <figure>
-<img src="http://kewth.gq/wp-content/uploads/2019/07/2_054-1.png" alt="" /><figcaption>i3lock-fancy</figcaption>
-</figure>
-<p>折腾了半天 i3lock ，不写篇博客可惜了。</p>
-<p>i3lock 有啥好折腾的？不就是挂个壁纸锁屏嘛。<br />
-就是因为 i3lock 太鸡肋了折腾啊。<br />
-于是我试过了 i3lock 的各种民间 fork 版本，在此总结。</p>
-<h2 id="i3lock"><a href="https://github.com/i3/i3lock" target="_blank" rel="noopener">i3lock</a></h2>
-<p>官方版本 i3lock ，稳定可靠，但是鸡肋。</p>
-<p>安装： <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo aptitude install i3lock</span><br></pre></td></tr></table></figure></p>
-<p>使用： <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">i3lock</span><br></pre></td></tr></table></figure></p>
-<h2 id="i3lock-lixxia"><a href="https://github.com/Lixxia/i3lock" target="_blank" rel="noopener">i3lock-lixxia</a></h2>
-<p>最友好，最简单的一个 i3lock fork ，<br />
-优化了中间显示的圆形框，并支持一些颜色自定义。</p>
-<p>安装： <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sudo aptitude remove i3lock</span><br><span class="line">sudo aptitude install pkg-config libxcb1-dev libxcb1 libgl2ps-dev libx11-dev libglc0 libglc-dev libcairo2-dev libcairo-gobject2 libcairo2-dev libxkbfile-dev libxkbfile1 libxkbcommon-dev libxkbcommon-x11-dev libxcb-xkb-dev libxcb-dpms0-dev libxcb-damage0-dev libpam0g-dev libev-dev libxcb-image0-dev libxcb-util0-dev libxcb-composite0-dev libxcb-xinerama0-dev</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/Lixxia/i3lock.git</span><br><span class="line"><span class="built_in">cd</span> i3lock</span><br><span class="line">autoreconf -<span class="keyword">fi</span></span><br><span class="line">mkdir -p build &amp;&amp; <span class="built_in">cd</span> build</span><br><span class="line">../configure</span><br><span class="line">make &amp;&amp; sudo make install</span><br></pre></td></tr></table></figure></p>
-<p>顺带一提，只有这个 fork 给出了靠谱的源码安装方式，<br />
-其他 fork 甚至 i3lock 本身的安装方式都给得很不靠谱。</p>
-<p>使用： <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">i3lock</span><br></pre></td></tr></table></figure></p>
-<h2 id="i3lock-blur"><a href="https://github.com/karulont/i3lock-blur" target="_blank" rel="noopener">i3lock-blur</a></h2>
-<p>支持模糊背景，毛玻璃特效。</p>
-<p>安装： <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sudo aptitude remove i3lock</span><br><span class="line">sudo aptitude install pkg-config libxcb1-dev libxcb1 libgl2ps-dev libx11-dev libglc0 libglc-dev libcairo2-dev libcairo-gobject2 libcairo2-dev libxkbfile-dev libxkbfile1 libxkbcommon-dev libxkbcommon-x11-dev libxcb-xkb-dev libxcb-dpms0-dev libxcb-damage0-dev libpam0g-dev libev-dev libxcb-image0-dev libxcb-util0-dev libxcb-composite0-dev libxcb-xinerama0-dev</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/karulont/i3lock-blur.git</span><br><span class="line"><span class="built_in">cd</span> i3lock-blur</span><br><span class="line">autoreconf -<span class="keyword">fi</span></span><br><span class="line">mkdir -p build &amp;&amp; <span class="built_in">cd</span> build</span><br><span class="line">../configure</span><br><span class="line">make &amp;&amp; sudo make install</span><br></pre></td></tr></table></figure></p>
-<p>再顺带一提，只有这个 fork 直接给出了需要安装那些库。</p>
-<p>使用： <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">i3lock --fuzzy</span><br></pre></td></tr></table></figure></p>
-<h2 id="i3lockr"><a href="https://github.com/owenthewizard/i3lockr" target="_blank" rel="noopener">i3lockr</a></h2>
-<p>支持模糊背景，毛玻璃特效。</p>
-<p>安装： <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget https://github.com/owenthewizard/i3lockr/releases/download/v1.0.0-final/i3lockr</span><br><span class="line">sudo mv i3lockr /usr/<span class="built_in">local</span>/bin</span><br></pre></td></tr></table></figure></p>
-<p>使用： <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">i3lockr --blur=25</span><br></pre></td></tr></table></figure></p>
-<h2 id="i3lock-color"><a href="https://github.com/PandorasFox/i3lock-color" target="_blank" rel="noopener">i3lock-color</a></h2>
-<p>对于颜色的自定义十分全面。</p>
-<p>安装： <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sudo aptitude remove i3lock</span><br><span class="line">sudo aptitude install pkg-config libxcb1-dev libxcb1 libgl2ps-dev libx11-dev libglc0 libglc-dev libcairo2-dev libcairo-gobject2 libcairo2-dev libxkbfile-dev libxkbfile1 libxkbcommon-dev libxkbcommon-x11-dev libxcb-xkb-dev libxcb-dpms0-dev libxcb-damage0-dev libpam0g-dev libev-dev libxcb-image0-dev libxcb-util0-dev libxcb-composite0-dev libxcb-xinerama0-dev</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/PandorasFox/i3lock-color</span><br><span class="line"><span class="built_in">cd</span> i3lock-color</span><br><span class="line">autoreconf -<span class="keyword">fi</span></span><br><span class="line">mkdir -p build &amp;&amp; <span class="built_in">cd</span> build</span><br><span class="line">../configure</span><br><span class="line">make &amp;&amp; sudo make install</span><br></pre></td></tr></table></figure></p>
-<p>使用： <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">i3lock</span><br></pre></td></tr></table></figure></p>
-<h2 id="i3lock-fancy"><a href="https://github.com/meskarune/i3lock-fancy" target="_blank" rel="noopener">i3lock-fancy</a></h2>
-<p>重头戏，star 最多的 fork ，甚至比 i3lock 本身更多，被广泛使用。</p>
-<p>安装： <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo aptitude install i3lock-fancy</span><br></pre></td></tr></table></figure></p>
-<p>使用： <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">i3lock-fancy</span><br></pre></td></tr></table></figure></p>
-<p>依赖 i3lock ，实际上是产生了背景图片再调用 i3lock 。<br />
-默认使用模糊背景，用起来没什么问题，但是事实上，<br />
-圆形框的颜色并不是最正确的，而是兼容的。</p>
-<p>源码里有这样一条： <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># try to use a forked version of i3lock with prepared parameters</span></span><br><span class="line"><span class="keyword">if</span> ! i3lock -n <span class="string">"<span class="variable">$&#123;PARAM[@]&#125;</span>"</span> -i <span class="string">"<span class="variable">$IMAGE</span>"</span> &gt; /dev/null 2&gt;&amp;1; <span class="keyword">then</span></span><br><span class="line">    <span class="comment"># We have failed, lets get back to stock one</span></span><br><span class="line">    i3lock -n -i <span class="string">"<span class="variable">$IMAGE</span>"</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure></p>
-<p>bash -x i3lock-fancy 就知道，<br />
-if 上的命令往往失败了，执行的是 if 里头的命令。</p>
-<p>事实上这需要 i3lock-color 。<br />
-那么，安装 i3lock-color 代替 i3lock 后，执行 i3lock-fancy ，<br />
-会发现圆形框的颜色与背景更加配了。</p>
-<h2 id="关于模糊背景">关于模糊背景</h2>
-<p>事实上，如果你用了 compton 再用 i3lock ，效果十分差劲。<br />
-解决这个方案，可以在调用 i3lock 前 kill compton ，结束后重新启动 compton 。</p>
-<p>拿 i3lock-fancy 举例，把之前展示的代码改成这样： <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># try to use a forked version of i3lock with prepared parameters</span></span><br><span class="line">pkill compton</span><br><span class="line"><span class="keyword">if</span> ! i3lock -n <span class="string">"<span class="variable">$&#123;PARAM[@]&#125;</span>"</span> -i <span class="string">"<span class="variable">$IMAGE</span>"</span> &gt; /dev/null 2&gt;&amp;1; <span class="keyword">then</span></span><br><span class="line">    <span class="comment"># We have failed, lets get back to stock one</span></span><br><span class="line">    i3lock -n -i <span class="string">"<span class="variable">$IMAGE</span>"</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line">compton -i 0.8 -b</span><br></pre></td></tr></table></figure></p>
-<p>其次，用模糊背景通常会比较慢，尤其是 i3lock-fancy ，需等上 3 秒左右。<br />
-那么如果调用 i3lock-fancy 之后你又做了一些别的操作，比如关闭一个窗口，<br />
-这时锁屏了，你会发现背景和原来的不一样。 :)</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2019/10/01/ncurses/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-      <meta itemprop="name" content="Kewth">
-      <meta itemprop="description" content="HNFMS 现役 OIer">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="KeBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/10/01/ncurses/" class="post-title-link" itemprop="url">ncurses</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-10-01 00:00:00" itemprop="dateCreated datePublished" datetime="2019-10-01T00:00:00+08:00">2019-10-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-01-21 11:57:34" itemprop="dateModified" datetime="2020-01-21T11:57:34+08:00">2020-01-21</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>ncurses 是基于终端的十分强大的图形库。 Vim, screen, sl 等终端程序都用到了这个库（足以见其强大）。</p>
-<h2 id="安装">安装</h2>
-<p>部分系统默认安装了 ncurses ，手动安装的方式是： <code>sudo aptitude install ncurses-dev</code> 。</p>
-<p>使用的程序需要 <code>#include &lt;ncurses.h&gt;</code>　。 编译时需要添加 <code>-lncurses</code> 参数进行链接。</p>
-<h2 id="开始和结束">开始和结束</h2>
-<p>调用 initscr 初始化窗口，endwin 结束窗口。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;curses.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function">WINDOW *<span class="title">initscr</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">endwin</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br></pre></td></tr></table></figure>
-<h2 id="输出">输出</h2>
-<p>调用 initscr 后调用 endwin 前，printf, std::cout 等标准输出不会显示在屏幕上。 而输出到屏幕上需要 ncurses 提供的相应函数。</p>
-<h3 id="函数">函数</h3>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">addch</span><span class="params">(<span class="keyword">const</span> chtype char_to_add)</span></span>;   <span class="comment">// 当前位置添加字符</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">addstr</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *string_to_add)</span></span>;    <span class="comment">// 当前位置添加字符串</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">printw</span><span class="params">(<span class="keyword">char</span> *format, ...)</span></span>;   <span class="comment">// 类似于 printf</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">refresh</span><span class="params">(<span class="keyword">void</span>)</span></span>;    <span class="comment">// 强制刷新物理屏幕</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">beep</span><span class="params">(<span class="keyword">void</span>)</span></span>;   <span class="comment">// 终端响铃</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">flash</span><span class="params">(<span class="keyword">void</span>)</span></span>;   <span class="comment">// 屏幕闪烁</span></span><br></pre></td></tr></table></figure>
-<h2 id="输入">输入</h2>
-<p>调用 scanf, getchar, cin 等标准输入函数同样无效。</p>
-<h3 id="函数-1">函数</h3>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">cbreak</span><span class="params">()</span></span>;   <span class="comment">// 字符一键入，直接传给程序（不用按下回车）</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">nocbreak</span><span class="params">()</span></span>;  <span class="comment">// 关闭 cbreak</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">echo</span><span class="params">(<span class="keyword">void</span>)</span></span>; <span class="comment">// 开启输入回显</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">noecho</span><span class="params">(<span class="keyword">void</span>)</span></span>; <span class="comment">// 关闭输入回显</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getch</span><span class="params">(<span class="keyword">void</span>)</span></span>; <span class="comment">// 读入一个字符</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">scanw</span><span class="params">(<span class="keyword">char</span> *format, ...)</span></span>; <span class="comment">// 类似于 scanf</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">clear</span><span class="params">(<span class="keyword">void</span>)</span></span>; <span class="comment">// 清屏</span></span><br></pre></td></tr></table></figure>
-<p>输入函数通常是阻塞的，但是通过调用 nodelay(stdscr, TRUE); 可以关闭阻塞。 此时若输入函数未读取到内容会返回 ERR 。</p>
-<h2 id="光标">光标</h2>
-<p>控制光标。 调用 initscr 后调用 endwin 前，输出终端控制符改变光标是无效的。</p>
-<h3 id="函数及示例">函数及示例</h3>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">move</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>; <span class="comment">// 将光标移动到 [x] 行 [y] 列，左上角为 0 行 0 列</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">curs_set</span><span class="params">(<span class="keyword">int</span> visiblility)</span></span>; <span class="comment">// 参数为 0 表示隐藏光标，1 表示显示光标</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getyx</span><span class="params">(WINDOW* win, <span class="keyword">int</span> &amp;x, <span class="keyword">int</span> &amp;y)</span></span>; <span class="comment">// 获取指定窗口光标位置，示例如下</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">move_up</span><span class="params">()</span> </span>&#123; <span class="comment">// 将光标上移</span></span><br><span class="line">	<span class="keyword">int</span> x, y;</span><br><span class="line">	getyx(stdscr, x, y); <span class="comment">// stdscr 表示标准屏幕</span></span><br><span class="line">	move(x - <span class="number">1</span>, y);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="指定位置输出">指定位置输出</h3>
-<p>在指定位置输出不必先 move 再 printw ， ncurses 提供了 mv 函数前缀在指定位置输出。 例如 <code>mvprintw(1, 2, "%d", 2)</code> 在 1 行 2 列输出 3 。 类似的有 mvaddch, mvaddstr 等。</p>
-<h2 id="颜色">颜色</h2>
-<h3 id="初始化">初始化</h3>
-<p>首先需要调用 has_color() 查看当前运行环境是否支持彩色。 调用 start_color() 初始化颜色，成功则返回 OK 。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">has_colors</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">start_color</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br></pre></td></tr></table></figure>
-<p>成功后会初始化全局变量 COLORS 表示终端支持的颜色数量 还会有 COLOT_WHITE, COLOR_RED 等 8 个表示颜色的变量。</p>
-<h3 id="使用">使用</h3>
-<p>例如希望打印白底黑字的信息：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *info)</span> </span>&#123;</span><br><span class="line">	init_pair(<span class="number">1</span>, COLOR_BLACK, COLOR_WHITE);</span><br><span class="line">		<span class="comment">// 的一个参数表示编号，后面两个分别表示字体和背景颜色</span></span><br><span class="line">	attron(COLOR_PAIR(<span class="number">1</span>));</span><br><span class="line">		<span class="comment">// attron 是一个设置函数，COLOR_PAIR 返回指定编号的颜色信息</span></span><br><span class="line">	addstr(info);</span><br><span class="line">	attroff(COLOR_PAIR(<span class="number">1</span>));</span><br><span class="line">		<span class="comment">// attroff 关闭设置（若接下来需要用其他颜色可以不调用 attroff 而直接使用 attron 覆盖设置</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="错误示例">错误示例</h3>
-<p>值得注意的是，必须保证 init_pair 的编号不与其他已初始化的编号重复 一个错误的调用如下：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> *info = <span class="string">"ERROR CODE"</span>;</span><br><span class="line">init_pair(<span class="number">1</span>, COLOR_BLACK, COLOR_WHITE);</span><br><span class="line">attron(COLOR_PAIR(<span class="number">1</span>));</span><br><span class="line">addstr(info); <span class="comment">// 打印白底黑字</span></span><br><span class="line">init_pair(<span class="number">1</span>, COLOR_BLACK, COLOR_RED);</span><br><span class="line">attron(COLOR_PAIR(<span class="number">1</span>));</span><br><span class="line">addstr(info); <span class="comment">// 打印白底红字</span></span><br></pre></td></tr></table></figure>
-<p>上述代码的期望打印出白字和黑字两种不同的颜色， 但事实上只会打印出红色一种。 解决方案便是将白底红字的 pair 编号设为 2 。</p>
-<h2 id="窗口">窗口</h2>
-<p>ncurses 有窗口类 WINDOW 并提供了 stdscr 作为默认窗口。 有时一个窗口无法满足需要，此时需要自己新建窗口。</p>
-<h3 id="新建窗口">新建窗口</h3>
-<p>调用 newwin 来新建窗口。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 从 ([x], [y]) 开始新建 [line] 行 [column] 列的窗口。</span></span><br><span class="line"><span class="function">WINDOW *<span class="title">newwin</span><span class="params">(<span class="keyword">int</span> line, <span class="keyword">int</span> column, <span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>;</span><br></pre></td></tr></table></figure>
-<p>新建的窗口</p>
-<h3 id="通用输出">通用输出</h3>
-<p>addch, printw 等输出方式只输出到 stdscr 。 ncurses 提供了 w 前缀来输出到指定窗口。 例如 <code>wprintw(win, "%d", 1)</code> 在 [win] 窗口输出 1 。 但是自己新建的窗口与 stdscr 不同， 若想在屏幕上显示需要调用 <code>wrefresh(win)</code> 刷新窗口。</p>
-<p>若想在窗口中指定位置输出，可以用 mvw 前缀函数。 例如 <code>mvwprintw(win, 1, 2, "%d", 3)</code> 在 [win] 窗口的 1 行 2 列（ <strong>相对位置</strong> ）输出 3 。</p>
-<h3 id="子窗口">子窗口</h3>
-<p>调用 subwin 创建子窗口。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 从 ([x], [y]) 开始新建 [line] 行 [column] 列属于 [parent] 的子窗口。</span></span><br><span class="line"><span class="function">WINDOW *<span class="title">subwin</span><span class="params">(WINDOW *parent, <span class="keyword">int</span> line, <span class="keyword">int</span> column, <span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>;</span><br></pre></td></tr></table></figure>
-<p>子窗口与普通窗口的区别在于它与其父窗口共用屏幕储存空间， 子窗口修改时父窗口会直接受到影响。 比如新建了 stdscr 的子窗口 win ， 那么输出到 win 后想显示在屏幕不调用 wrefresh 而是调用 touchwin(stdscr) 。 touchwin 用于标记一个窗口被修改。</p>
-<h3 id="销毁窗口">销毁窗口</h3>
-<p>调用 delwin 销毁窗口。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">delwin</span><span class="params">(WINDOW *win)</span></span>; <span class="comment">// 销毁 [win] 窗口</span></span><br></pre></td></tr></table></figure>
-<p>窗口销毁后其在屏幕上对应的内容不会改变。</p>
-<h2 id="离开">离开</h2>
-<p>有时候可能需要离开 ncurses 回到行缓冲模式做些事情而且需要在之后回到 ncurses 。 例如 Vim 里面输入 :!ls 就会退出 ncurses 运行 ls 命令，并在用户敲下回车后回到 ncurses。</p>
-<p>调用 def_prog_mode 暂存，调用 reset_prog_mode 恢复。</p>
-<h3 id="示例">示例</h3>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	initscr();</span><br><span class="line">	printw(<span class="string">"Hello World !!!\n"</span>);</span><br><span class="line">	getch(); <span class="comment">// 等待用户输入</span></span><br><span class="line">	def_prog_mode(); <span class="comment">// 存储当前tty 模式</span></span><br><span class="line">	endwin(); <span class="comment">// 退出 ncurses 模式</span></span><br><span class="line">	system(<span class="string">"sh"</span>); <span class="comment">// 返回普通的行缓冲模式</span></span><br><span class="line">	reset_prog_mode(); <span class="comment">// 返回到 def_prog_mode() 存储的 tty 模式</span></span><br><span class="line">	refresh(); <span class="comment">// 刷新屏幕（必须！）</span></span><br><span class="line">	getch(); <span class="comment">// 等待用户输入</span></span><br><span class="line">	endwin(); <span class="comment">// 退出 ncurses 模式</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="输出中文等非-ascii-字符">输出中文等非 ASCII 字符</h2>
-<p>事实上 ncurses 并不支持直接输出中文， 这意味着调用 printw("中文") 会是一堆乱码。 解决方案如下：</p>
-<h3 id="安装库">安装库</h3>
-<p>这需要另一个库。 通过 <code>sudo aptitude install libncurses5 libncursesw5 libncursesw5-dbg libncursesw5-dev</code> 安装</p>
-<h3 id="头文件">头文件</h3>
-<p>一定是 <code>#include &lt;ncurses.h&gt;</code> 而不是 <code>#include &lt;curses.h&gt;</code> 。 另外在 main.cpp <code>#include &lt;locale.h&gt;</code> 。</p>
-<h3 id="调用">调用</h3>
-<p>在调用 initscr() <strong>之前</strong> 调用 setlocale(LC_ALL, "") 。</p>
-<h3 id="编译">编译</h3>
-<p>将 <code>-lncurses</code> 参数改为 <code>-lncursesw</code> 。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
 
-          </div>
-          
+        </div>
+        
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -1357,111 +1393,6 @@ if 上的命令往往失败了，执行的是 if 里头的命令。</p>
   }
 </script>
 
-        </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="Kewth"
-      src="/images/avatar.jpeg">
-  <p class="site-author-name" itemprop="name">Kewth</p>
-  <div class="site-description" itemprop="description">HNFMS 现役 OIer</div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">56</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-          
-        <span class="site-state-item-count">4</span>
-        <span class="site-state-item-name">分类</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-          
-        <span class="site-state-item-count">58</span>
-        <span class="site-state-item-name">标签</span></a>
-      </div>
-  </nav>
-</div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-        <a href="https://github.com/Kewth" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Kewth" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="mailto:Kewth.K.D@outlook.com" title="E-Mail → mailto:Kewth.K.D@outlook.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="qq:1344205350" title="QQ → qq:1344205350" rel="noopener" target="_blank"><i class="fab fa-qq fa-fw"></i>QQ</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://www.luogu.org/space/show?uid=52232" title="Luogu → https:&#x2F;&#x2F;www.luogu.org&#x2F;space&#x2F;show?uid&#x3D;52232" rel="noopener" target="_blank"><i class="fab fa-code-fork fa-fw"></i>Luogu</a>
-      </span>
-  </div>
-
-
-  <div class="links-of-blogroll motion-element">
-    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
-      Links | 友链
-    </div>
-    <ul class="links-of-blogroll-list">
-        <li class="links-of-blogroll-item">
-          <a href="https://ricardoships.github.io/" title="https:&#x2F;&#x2F;ricardoships.github.io" rel="noopener" target="_blank">Ricardoships(AFO)</a>
-        </li>
-        <li class="links-of-blogroll-item">
-          <a href="https://luoyuyang.cf/" title="https:&#x2F;&#x2F;luoyuyang.cf" rel="noopener" target="_blank">lyy(AFO)</a>
-        </li>
-        <li class="links-of-blogroll-item">
-          <a href="https://zrz-orz.github.io/" title="https:&#x2F;&#x2F;zrz-orz.github.io" rel="noopener" target="_blank">zrz_orz(AFO)</a>
-        </li>
-        <li class="links-of-blogroll-item">
-          <a href="https://qiuly.xyz/" title="https:&#x2F;&#x2F;qiuly.xyz" rel="noopener" target="_blank">Qiuly</a>
-        </li>
-        <li class="links-of-blogroll-item">
-          <a href="https://www.cnblogs.com/Lskkkno1" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;Lskkkno1" rel="noopener" target="_blank">Lskkkno1</a>
-        </li>
-        <li class="links-of-blogroll-item">
-          <a href="https://www.allenyou.wang/" title="https:&#x2F;&#x2F;www.allenyou.wang" rel="noopener" target="_blank">Allenyou</a>
-        </li>
-    </ul>
-  </div>
-
-      </div>
-
-    </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
-
-
       </div>
     </main>
 
@@ -1480,7 +1411,7 @@ if 上的命令往往失败了，执行的是 if 里头的命令。</p>
   </span>
   <span class="author" itemprop="copyrightHolder">Kewth</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
   </div>
 
         
@@ -1518,8 +1449,6 @@ if 上的命令往往失败了，执行的是 if 里头的命令。</p>
 
   
   <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
 
 <script src="/js/utils.js"></script>
 
@@ -1532,11 +1461,13 @@ if 上的命令往往失败了，执行的是 if 里头的命令。</p>
 <script src="/js/next-boot.js"></script>
 
 
-
-
   
 
 
+
+
+  
+<script src="/js/local-search.js"></script>
 
 
 
@@ -1593,7 +1524,7 @@ if 上的命令往往失败了，执行的是 if 里头的命令。</p>
       }
     };
     (function () {
-      var script = document.createElement('script');
+      const script = document.createElement('script');
       script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
       script.defer = true;
       document.head.appendChild(script);

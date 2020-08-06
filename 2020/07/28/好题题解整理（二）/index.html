@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="KIx9DF_OoeyQmEhcVAbjH5vg_i539tmILHmNH8lRDtw">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  
+  <link rel="stylesheet" href="/lib/animate-css/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"kewth.github.io","root":"/","scheme":"Muse","version":"8.0.0-rc.5","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"path":"search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":3,"unescape":false,"preload":false}};
+  </script>
+
+  <meta name="description" content="没有摘要。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="好题题解整理（二）">
+<meta property="og:url" content="https://kewth.github.io/2020/07/28/%E5%A5%BD%E9%A2%98%E9%A2%98%E8%A7%A3%E6%95%B4%E7%90%86%EF%BC%88%E4%BA%8C%EF%BC%89/index.html">
+<meta property="og:site_name" content="KeBlog">
+<meta property="og:description" content="没有摘要。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://kewth.github.io/images/2.png">
+<meta property="og:image" content="https://kewth.github.io/images/3.png">
+<meta property="og:image" content="https://kewth.github.io/images/4.png">
+<meta property="og:image" content="https://kewth.github.io/images/5.png">
+<meta property="article:published_time" content="2020-07-28T08:29:20.000Z">
+<meta property="article:modified_time" content="2020-08-06T00:29:11.195Z">
+<meta property="article:author" content="Kewth">
+<meta property="article:tag" content="好题">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://kewth.github.io/images/2.png">
+
+<link rel="canonical" href="https://kewth.github.io/2020/07/28/%E5%A5%BD%E9%A2%98%E9%A2%98%E8%A7%A3%E6%95%B4%E7%90%86%EF%BC%88%E4%BA%8C%EF%BC%89/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>好题题解整理（二） | KeBlog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="KeBlog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <main class="main">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+        <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">KeBlog</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">The OI Algorithm Blog of Kewth</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">61</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">5</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">64</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#loj576-libreoj-noi-round-2%E7%AD%BE%E5%88%B0%E6%B8%B8%E6%88%8F"><span class="nav-number">1.</span> <span class="nav-text">loj576 「LibreOJ NOI Round #2」签到游戏</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%95%E7%90%86-1"><span class="nav-number">1.1.</span> <span class="nav-text">引理 1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%95%E7%90%86-2"><span class="nav-number">1.2.</span> <span class="nav-text">引理 2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A3%E9%A2%98"><span class="nav-number">1.3.</span> <span class="nav-text">正题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#zr1390-%E4%BA%94%E4%B8%80%E7%9C%81%E9%80%89%E9%9B%86%E8%AE%ADday1a"><span class="nav-number">2.</span> <span class="nav-text">zr1390 【五一省选集训day1】a</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#th1691-a-%E6%9C%80%E7%9F%AD%E8%B7%AF"><span class="nav-number">3.</span> <span class="nav-text">th1691-a 最短路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#bz2560-%E4%B8%B2%E7%8F%A0%E5%AD%90"><span class="nav-number">4.</span> <span class="nav-text">bz2560 串珠子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#th1691-c-%E9%9B%86%E5%90%88%E6%93%8D%E4%BD%9C"><span class="nav-number">5.</span> <span class="nav-text">th1691-c 集合操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AE%E9%A2%98-1"><span class="nav-number">5.1.</span> <span class="nav-text">问题 1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AE%E9%A2%98-2"><span class="nav-number">5.2.</span> <span class="nav-text">问题 2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AE%E9%A2%98-3"><span class="nav-number">5.3.</span> <span class="nav-text">问题 3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AE%E9%A2%98-4"><span class="nav-number">5.4.</span> <span class="nav-text">问题 4</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A3%E9%A2%98"><span class="nav-number">5.5.</span> <span class="nav-text">正题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#uoj21-ur-1%E7%BC%A9%E8%BF%9B%E4%BC%98%E5%8C%96"><span class="nav-number">6.</span> <span class="nav-text">uoj21 【UR #1】缩进优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#loj6400-yww-%E4%B8%8E%E8%BF%9E%E9%80%9A%E5%9D%97%E8%AE%A1%E6%95%B0"><span class="nav-number">7.</span> <span class="nav-text">loj6400 yww 与连通块计数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#loj6399-yww-%E4%B8%8E%E9%AD%94%E6%B3%95%E9%98%B5"><span class="nav-number">8.</span> <span class="nav-text">loj6399 yww 与魔法阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cf1349d-slime-and-biscuits"><span class="nav-number">9.</span> <span class="nav-text">cf1349d Slime and Biscuits</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#bz2688-green-hackenbush"><span class="nav-number">10.</span> <span class="nav-text">bz2688 Green Hackenbush</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cf1067e-random-forest-rank"><span class="nav-number">11.</span> <span class="nav-text">cf1067e Random Forest Rank</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%95%E7%90%86-1"><span class="nav-number">11.1.</span> <span class="nav-text">引理 1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%95%E7%90%86-2"><span class="nav-number">11.2.</span> <span class="nav-text">引理 2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A3%E9%A2%98"><span class="nav-number">11.3.</span> <span class="nav-text">正题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#th1693-b-%E7%BB%84%E5%90%88%E6%95%B0%E9%97%AE%E9%A2%98"><span class="nav-number">12.</span> <span class="nav-text">th1693-b 组合数问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#th1693-c-%E4%B8%89%E8%A7%92%E5%BD%A2"><span class="nav-number">13.</span> <span class="nav-text">th1693-c 三角形</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#pick-%E5%AE%9A%E7%90%86"><span class="nav-number">13.1.</span> <span class="nav-text">Pick 定理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%95%E7%90%86-1"><span class="nav-number">13.2.</span> <span class="nav-text">引理 1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%95%E7%90%86-2"><span class="nav-number">13.3.</span> <span class="nav-text">引理 2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%95%E7%90%86-3"><span class="nav-number">13.4.</span> <span class="nav-text">引理 3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A3%E9%A2%98"><span class="nav-number">13.5.</span> <span class="nav-text">正题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lg5284-%E5%8D%81%E4%BA%8C%E7%9C%81%E8%81%94%E8%80%832019-%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%97%AE%E9%A2%98"><span class="nav-number">14.</span> <span class="nav-text">lg5284 [十二省联考2019] 字符串问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%8E%E7%BC%80%E6%A0%91%E4%BC%98%E5%8C%96%E5%BB%BA%E5%9B%BE"><span class="nav-number">14.1.</span> <span class="nav-text">后缀树优化建图</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cf102465jgym-mona-lisa"><span class="nav-number">15.</span> <span class="nav-text">cf102465j(gym) Mona Lisa</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%9F%E6%97%A5%E6%82%96%E8%AE%BA"><span class="nav-number">15.1.</span> <span class="nav-text">生日悖论</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A3%E9%A2%98"><span class="nav-number">15.2.</span> <span class="nav-text">正题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#nowcoder6766-a-%E7%AD%89%E7%BA%A7%E4%B9%8B%E9%A2%98-n18.3"><span class="nav-number">16.</span> <span class="nav-text">nowcoder6766-a 等级之题 N1（8.3）</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Kewth"
+      src="/images/avatar.jpeg">
+  <p class="site-author-name" itemprop="name">Kewth</p>
+  <div class="site-description" itemprop="description">HNFMS 现役 OIer</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">64</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">61</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Kewth" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Kewth" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:Kewth.K.D@outlook.com" title="E-Mail → mailto:Kewth.K.D@outlook.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="qq:1344205350" title="QQ → qq:1344205350" rel="noopener" target="_blank"><i class="fab fa-qq fa-fw"></i>QQ</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.luogu.org/space/show?uid=52232" title="Luogu → https:&#x2F;&#x2F;www.luogu.org&#x2F;space&#x2F;show?uid&#x3D;52232" rel="noopener" target="_blank"><i class="fas fa-code-branch fa-fw"></i>Luogu</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links | 友链
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="/" title="&#x2F;">无，欢迎互换友链</a>
+        </li>
+    </ul>
+  </div>
+
+      </section>
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </header>
+
+      
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div id="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+      <div class="main-inner">
+        
+
+        <div class="content post posts-expand">
+          
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2020/07/28/%E5%A5%BD%E9%A2%98%E9%A2%98%E8%A7%A3%E6%95%B4%E7%90%86%EF%BC%88%E4%BA%8C%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Kewth">
+      <meta itemprop="description" content="HNFMS 现役 OIer">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KeBlog">
+    </span>
+
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          好题题解整理（二）
+        </h1>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-28 16:29:20" itemprop="dateCreated datePublished" datetime="2020-07-28T16:29:20+08:00">2020-07-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-08-06 08:29:11" itemprop="dateModified" datetime="2020-08-06T08:29:11+08:00">2020-08-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B4%E7%90%86/" itemprop="url" rel="index"><span itemprop="name">整理</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>没有摘要。</p>
+<a id="more"></a>
+<hr />
+<h2 id="loj576-libreoj-noi-round-2签到游戏">loj576 「LibreOJ NOI Round #2」签到游戏</h2>
+<p>有一个长为 <span class="math inline">\(n\)</span> 的序列 <span class="math inline">\(\{B\}\)</span> ，每次可以选一个区间 <span class="math inline">\([l, r]\)</span> ，代价是 <span class="math inline">\(B\)</span> 在该区间的 <span class="math inline">\(\gcd\)</span> ，得到一个方程 <span class="math inline">\(\sum_{i=l}^k x_i = K\)</span> ，要求花费最小的代价得到 <span class="math inline">\(n\)</span> 个线性无关的方程。</p>
+<p><span class="math inline">\(q\)</span> 次询问和修改，每次修改会修改 <span class="math inline">\(B\)</span> 的一个位置的值。</p>
+<p>时间复杂度：<span class="math inline">\(O(n\log+q\log^2)\)</span> 。</p>
+<details class="note primary"><summary><p>题解</p>
+</summary>
+<p>（未实现）</p>
+<h3 id="引理-1">引理 1</h3>
+<p><strong>存在最优解选择的每个区间满足 <span class="math inline">\(l=1 \lor r=n\)</span> 且存在 <span class="math inline">\([1, n]\)</span> 。</strong></p>
+<p>设 <span class="math inline">\(y_i = \sum_{j=1}^i x_j\)</span> ，那么选择区间 <span class="math inline">\([l, r]\)</span> 实质上是选择方程 <span class="math inline">\(y_r - y_{l-1} = K\)</span> ，注意有 <span class="math inline">\(y_0 = 0\)</span> 。</p>
+<p>转换为图论问题，每个 <span class="math inline">\(y_i\)</span> 是一个节点，一个方程是一条边，方程线性无关等价于图无环<del>，那么这个问题本质上是求最小生成树</del>。</p>
+<p>在这个图论问题的基础上该引理是很自然的。定 <span class="math inline">\(0\)</span> 为树根，把边定向，从父亲指向儿子，那么对于一条边 <span class="math inline">\(u \rightarrow v\)</span> ，若 <span class="math inline">\(u &lt; v\)</span> 则把 <span class="math inline">\((u, v)\)</span> 换成 <span class="math inline">\((0, v)\)</span> ，否则换成 <span class="math inline">\((u, 0)\)</span> 。容易发现每条边的代价不增，并且新图仍然是一颗树。此时每条边必然连向 <span class="math inline">\(0\)</span> 或 <span class="math inline">\(n\)</span> ，并且必然有边 <span class="math inline">\((0, n)\)</span> 。</p>
+<h3 id="引理-2">引理 2</h3>
+<p><strong>存在最优解满足：存在参数 <span class="math inline">\(p\)</span> 使得选择的区间由 <span class="math inline">\([1, n]\)</span> ，<span class="math inline">\([1, i] (p \le i &lt; n)\)</span> 和 <span class="math inline">\([j, n] (1 &lt; j \le p)\)</span> 组成。</strong></p>
+<p>根据引理 1 ，由于选了 <span class="math inline">\([1, n]\)</span> ，选前缀 <span class="math inline">\([1, i]\)</span> 和选后缀 <span class="math inline">\([i + 1, n]\)</span> 是等价的。那么最优解显然就是在每个 <span class="math inline">\([1, i]\)</span> 和 <span class="math inline">\([i+1, n]\)</span> 中选代价较小的一个，前者随 <span class="math inline">\(i\)</span> 单调不增，后者随 <span class="math inline">\(i\)</span> 单调不减。那么选前者的必然是一段后缀 <span class="math inline">\(i\)</span> ，选后者的必然是一段前缀 <span class="math inline">\(i\)</span> 。</p>
+<h3 id="正题">正题</h3>
+<p>由引理 2 ，可以二分参数 <span class="math inline">\(p\)</span> ，比较 <span class="math inline">\([1, p]\)</span> 和 <span class="math inline">\([p, n]\)</span> 的 gcd 大小进行判定。然后根据不同前后缀 gcd 的数量是 <span class="math inline">\(O(\log)\)</span> 的，求答案枚举不同的 gcd 算贡献数量即可。</p>
+<p>用线段树维护序列 <span class="math inline">\(B\)</span> ，需要支持 <span class="math inline">\(O(\log)\)</span> 的区间 gcd 查询或者把二分放在线段树上。具体细节不在讨论范围内。</p>
+
+</details>
+<hr />
+<h2 id="zr1390-五一省选集训day1a">zr1390 【五一省选集训day1】a</h2>
+<p>给定 <span class="math inline">\(k\)</span> 次多项式 <span class="math inline">\(f(x) = \sum_{i=0}^k a_i x^i\)</span> ，求多项式快速幂 <span class="math inline">\(f(x)^n \bmod x^m\)</span> 的各项系数。</p>
+<p>时间复杂度：<span class="math inline">\(O(mk)\)</span> 。</p>
+<details class="note primary"><summary><p>题解</p>
+</summary>
+<p>这应该算一个经典套路？</p>
+<p>设 <span class="math inline">\(P(x) = f(x)^n = \sum_{i\ge{0}} b_i x^i\)</span> ，对等式 <span class="math inline">\(P(x) f(x) = f(x)^{n+1}\)</span> 两边求导，整理得到</p>
+<p><span class="math display">\[P&#39;(x) f(x) = n P(x) f&#39;(x)\]</span></p>
+<p>比较等式第 <span class="math inline">\(r\)</span> 项系数，有</p>
+<p><span class="math display">\[\sum_{i=0}^k a_i b_{r-i+1} (r-i+1) = n \sum_{i=1}^k a_i i b_{r-i+1}\]</span></p>
+<p>上式就是 <span class="math inline">\(b\)</span> 的递推式，<span class="math inline">\(O(mk)\)</span> 递推出所有项即可。</p>
+
+</details>
+<hr />
+<h2 id="th1691-a-最短路">th1691-a 最短路</h2>
+<p><span class="math inline">\(n\)</span> 个点的简单有向图，点有正权，找一个权值和最小的导出子图满足 <span class="math inline">\(1\)</span> 和 <span class="math inline">\(n\)</span> 相互可达，求最小权值和。</p>
+<p>时间复杂度：<span class="math inline">\(O(n^3)\)</span> 。</p>
+<details class="note primary"><summary><p>题解</p>
+</summary>
+<p>对于一个合法的导出子图，把任意一条从 <span class="math inline">\(1\)</span> 到 <span class="math inline">\(n\)</span> 的简单路径称为主路径。由于要满足 <span class="math inline">\(n\)</span> 可以到达 <span class="math inline">\(1\)</span> ，主路径上会挂一些往回走的路径，称为回溯路径，如下图所示：</p>
+<p><img src="/images/2.png" /></p>
+<p>底下的直线是主路径，上面的弧线是回溯路径，称一个回溯路径的起点和终点分别为 A 类点和 B 类点，可以发现存在最优解主路径上只考虑 <span class="math inline">\(n\)</span> 以外的这两类点的话，它们交替出现。</p>
+<p>据此可以设计 DP ，状态内只需要考虑主路径最后两个特殊点，转移就是最短路的松弛。两种状态 <span class="math inline">\(f_{i,j}, g_{i,j}\)</span> 的意义如下两图：</p>
+<p><img src="/images/3.png" /></p>
+<p><img src="/images/4.png" /></p>
+
+</details>
+<hr />
+<h2 id="bz2560-串珠子">bz2560 串珠子</h2>
+<p>有 <span class="math inline">\(n\)</span> 个点的无向图，第 <span class="math inline">\(i\)</span> 个点和第 <span class="math inline">\(j\)</span> 个点之间有 <span class="math inline">\(c_{i,j}\)</span> 条无向边，求简单连通子图数目。</p>
+<p>时间复杂度：<span class="math inline">\(O(2^n n^2)\)</span> 。</p>
+<details class="note primary"><summary><p>题解</p>
+</summary>
+<p>（未实现）</p>
+<p>设集合幂级数 <span class="math inline">\(f_S\)</span> 表示只点集 <span class="math inline">\(S\)</span> 的导出子图的连通子图数目。连通的限制很强，考虑忽略限制得到类似的集合幂级数 <span class="math inline">\(g\)</span> ，然后反演。对于 <span class="math inline">\(g_S (S \neq \emptyset)\)</span>，枚举任意一个点所在连通块，有</p>
+<p><span class="math display">\[\forall x \in S, g_S = \sum_{x\in{T} \land T \subset S} f_T g_{S \setminus T}\]</span></p>
+<p>从这个式子直接做就是 <span class="math inline">\(O(3^n)\)</span> 的，但是注意到这很能和子集卷积扯上关系，如果把每个上式枚举每个 <span class="math inline">\(x\)</span> 累加，可以得到</p>
+<p><span class="math display">\[|S| g_S = \sum_{T \subset S} |T| f_T g_{S \setminus T}\]</span></p>
+<p>另设两个集合幂级数 <span class="math inline">\(F_S = |S| f_S\)</span> 和 <span class="math inline">\(G_S = |S| g_S\)</span> ，上式即 <span class="math inline">\(G = F \times g\)</span> ，于是</p>
+<p><span class="math display">\[F = \frac{G}{g}\]</span></p>
+<p>利用集合幂级数的占位多项式科技即可。</p>
+<p>事实上 <span class="math inline">\(F\)</span> 就是 <span class="math inline">\(f\)</span> 这个集合幂级数求导的结果，上式两边积分，还可以得到 <span class="math inline">\(f = 1 + \ln g\)</span> ，加 <span class="math inline">\(1\)</span> 是因为求导再积分损失了常数项。</p>
+<p>从另一个角度考虑，反演那一步改成枚举实际连通块数量，就有 <span class="math inline">\(g = \sum_{i\ge{0}} \frac{(f-1)^i}{i!} = e^{f-1}\)</span> ，减一是因为实际连通块不能算空的。</p>
+
+</details>
+<hr />
+<h2 id="th1691-c-集合操作">th1691-c 集合操作</h2>
+<p>给定一个长为 <span class="math inline">\(n\)</span> 的数组 <span class="math inline">\(a\)</span> 和 <span class="math inline">\(n\)</span> 个下标集合，第 <span class="math inline">\(i\)</span> 个集合 <span class="math inline">\(S_i\)</span> 初始只有一个元素 <span class="math inline">\(i\)</span> 。</p>
+<p>定义 <span class="math inline">\(F(S, i) = \sum_{j\in{S}} [a_i = a_j]\)</span> ，以及 <span class="math inline">\(G(S, k) = \sum_{i\in{S}} \sum_{j\in{S}} [F(S, i) + F(S, j) \le k]\)</span> ，要求维护两种操作（一共 <span class="math inline">\(n\)</span> 次）：</p>
+<ol type="1">
+<li>给定 <span class="math inline">\(i, j\)</span> 令 <span class="math inline">\(S_i \leftarrow S_i \cup S_j, S_j \leftarrow \emptyset\)</span> 。</li>
+<li>给定 <span class="math inline">\(i, l, r, k\)</span> 求 <span class="math inline">\(G(S_i \cap [l, r], k)\)</span> 。</li>
+</ol>
+<p>时间复杂度：<span class="math inline">\(O(n^{\frac{5}{3}})\)</span> 。</p>
+<details class="note primary"><summary><p>题解</p>
+</summary>
+<p>（未实现）</p>
+<h3 id="问题-1">问题 1</h3>
+<p><strong>只有一个不变的下标集合 <span class="math inline">\(S\)</span> ，每次询问给定 <span class="math inline">\(l, r, k\)</span> 求 <span class="math inline">\(G(S \cap [l, r], k)\)</span> 。</strong></p>
+<p>对于一个询问，设 <span class="math inline">\(T = S \cap [l, r]\)</span> ，构造序列 <span class="math inline">\(b\)</span> 满足 <span class="math inline">\(b_i = \sum_{j\in{T}} [a_j=i]\)</span> ，那么不难发现答案实际上是 <span class="math inline">\(\sum_{i} \sum_{j} b_i b_j [b_i + b_j \le k]\)</span> 。</p>
+<p>注意到 <span class="math inline">\(\sum_i b_i = O(n)\)</span> ，因此 <span class="math inline">\(b\)</span> 不同的取值只有 <span class="math inline">\(O(\sqrt{n})\)</span> 种，把相同的取值放一起考虑，双指针一下就可以 <span class="math inline">\(O(\sqrt{n})\)</span> 处理。那么问题转换为怎么维护这个 <span class="math inline">\(b\)</span> ，<span class="math inline">\(T\)</span> 中每个元素对 <span class="math inline">\(b\)</span> 的影响是 <span class="math inline">\(O(1)\)</span> 的，因此使用莫队处理询问即可。</p>
+<h3 id="问题-2">问题 2</h3>
+<p><strong>只有一个下标集合 <span class="math inline">\(S\)</span> ，每次询问给定 <span class="math inline">\(l, r, k\)</span> 求 <span class="math inline">\(G(S \cap [l, r], k)\)</span> ，每次修改在 <span class="math inline">\(S\)</span> 中添加一个新的下标 <span class="math inline">\(i\)</span> 。</strong></p>
+<p>在问题 1 的基础上要支持插入一个元素。不难想到带修莫队，每次插入就是时间轴的一个移动，容易发现时间轴的一次移动对 <span class="math inline">\(b\)</span> 的影响也是 <span class="math inline">\(O(1)\)</span> 的。</p>
+<h3 id="问题-3">问题 3</h3>
+<p><strong>有若干不变的下标集合 <span class="math inline">\(S_i\)</span> ，每次询问给定 <span class="math inline">\(i, l, r, k\)</span> 求 <span class="math inline">\(G(S_i \cap [l, r], k)\)</span> 。</strong></p>
+<p>沿用问题 1 的解决思路，对每个集合单独开一个莫队显然不行，注意到 <span class="math inline">\(\sum_i |S_i| = O(n)\)</span> ，不妨考虑阈值分块，称 <span class="math inline">\(|S_i| \le n^{\frac{2}{3}}\)</span> 的为小集合，反之为大集合。对于小集合的每个询问，线性地求出答案，对于大集合沿用莫队，由于大集合只有 <span class="math inline">\(O(\sqrt[3]{n})\)</span> 个，询问总数是 <span class="math inline">\(O(n)\)</span> ，可以证明莫队总复杂度是 <span class="math inline">\(O(n^{\frac{5}{3}})\)</span> 而不是看上去的 <span class="math inline">\(O(n^{\frac{11}{6}})\)</span> 。复杂度分析时应该注意普通莫队的复杂度事实上是 <span class="math inline">\(O(n\sqrt{q})\)</span> ，而且 <span class="math inline">\(\sqrt{q}\)</span> 是个凹函数。</p>
+<h3 id="问题-4">问题 4</h3>
+<p><strong>有若干下标集合 <span class="math inline">\(S_i\)</span> ，每次询问给定 <span class="math inline">\(i, l, r, k\)</span> 求 <span class="math inline">\(G(S_i \cap [l, r], k)\)</span> ，每次修改在 <span class="math inline">\(S_i\)</span> 中添加一个新的下标 <span class="math inline">\(j\)</span> 。</strong></p>
+<p>在问题 3 的基础上会多一些情况。小集合可能变成大集合，可能前一段时间暴力算后一段时间莫队，不影响复杂度。大集合添加元素时，沿用问题 2 的思路，应该使用带修莫队。注意到询问总数是 <span class="math inline">\(O(n)\)</span> 的，因此所有大集合的时间轴长度和是 <span class="math inline">\(O(n)\)</span> 的。这里的带修莫队可能会比较复杂，但不会增加复杂度。一个可行的做法是每次时间轴的长度达到 <span class="math inline">\(O(n^{\frac{2}{3}})\)</span> 时就把莫队的答案跑出来，然后把时间轴清理掉。这个复杂度和问题 3 的复杂度分析一致。</p>
+<h3 id="正题">正题</h3>
+<p>好了，通过层层递进已经得到了弱化问题的解法。那么对于完整的问题，无非就是把插入元素换成了合并集合，容易想到启发式合并，那么本质上仍然是插入。但是插入的次数并不是 <span class="math inline">\(O(n)\)</span> 的，它带个 <span class="math inline">\(\log\)</span> 。乍一看这个复杂度分析爆了，但实际上是不会变的，因为集合的大小和始终是 <span class="math inline">\(O(n)\)</span> 的，时间轴的清理次数仍然是 <span class="math inline">\(O(\sqrt[3]{n})\)</span> 而并非看上去的 <span class="math inline">\(O(\sqrt[3]{n}\log)\)</span> 。</p>
+<p><del>不愧是 lxl 出的数据结构题。</del></p>
+
+</details>
+<hr />
+<h2 id="uoj21-ur-1缩进优化">uoj21 【UR #1】缩进优化</h2>
+<p>一份 <span class="math inline">\(n\)</span> 行的代码，第 <span class="math inline">\(i\)</span> 行有 <span class="math inline">\(a_i\)</span> (<span class="math inline">\(a_i \le M\)</span>) 个空格作为缩进，要求确定一个 Tab 宽度 <span class="math inline">\(x\)</span> 使得每一行尽量把空格替换成 Tab 后字符总数最小。</p>
+<p>时间复杂度；<span class="math inline">\(O(n+M\log{M})\)</span> 。</p>
+<details class="note primary"><summary><p>题解</p>
+</summary>
+<p>（未实现）</p>
+<p>降智好题？</p>
+<p>不难发现问题等价于最大化 <span class="math inline">\(\sum_{i=1}^n \lfloor \frac{a_i}{x} \rfloor (x - 1)\)</span> 。碰到这个整除第一反应可能是整除分块，于是可以得到一个 <span class="math inline">\(O(M+n\sqrt{M})\)</span> 的做法。</p>
+<p>然而不妨枚举答案 <span class="math inline">\(x\)</span> ，可以发现整除的值的上界是 <span class="math inline">\(\lfloor \frac{M}{x} \rfloor\)</span> ，此时可以枚举每个可能的值算贡献，复杂度是调和级数。</p>
+<p>这告诉我们，当对多个数分别进行整除分块算贡献的时候，可以结合到一起转换为调和级数的复杂度。</p>
+
+</details>
+<hr />
+<h2 id="loj6400-yww-与连通块计数">loj6400 yww 与连通块计数</h2>
+<p>给定一颗 <span class="math inline">\(n\)</span> 个节点的树，每个点有点权，称一个连通块是合法的当且仅当其点权的 gcd 和 lcm 分别为 <span class="math inline">\(P, Q\)</span> ，求合法连通块数目。所有点权没有平方因子，且质因子不超过 50 。</p>
+<p>时间复杂度；<span class="math inline">\(O(2^w n)\)</span> ，其中 <span class="math inline">\(w\)</span> 是点权的质因子数目。</p>
+<details class="note primary"><summary><p>题解</p>
+</summary>
+<p>（未实现）</p>
+<p>由于点权没有平方因子，事实上可以把点权看成一个集合，那么一个连通块合法的条件可以转换为点权交为空集，点权并为全集。把集合看成 <span class="math inline">\(w\)</span> 位二进制数，这个条件也等价于每个二进制位在连通块中同时存在点权为 0 的点和点权为 1 的点。</p>
+<p>到这里做法其实很多。一个容易理解的做法是子集容斥，注意到一个二进制位同时存在 0 和 1 是较难计算的，但是其否定形式，一个二进制位的数全部相同，这个条件是很好处理的。设 <span class="math inline">\(f_S\)</span> 表示钦定 <span class="math inline">\(S\)</span> 二进制位为 1 的位置必须满足所有点权全部相同的连通块数目。那么答案就是</p>
+<p><span class="math display">\[\sum_{S} f_S (-1)^{|S|}\]</span></p>
+<p>而每次计算一个 <span class="math inline">\(f_S\)</span> 显然可以只需要考虑每个点权在 <span class="math inline">\(S\)</span> 上的取值，那么在这种意义下一个连通块是合法的当且仅当所有点权相同。那么只把相同点权的两个相邻点连边，问题转换为求一个森林的连通块数目，这就很朴素了，线性 DP 即可。</p>
+
+</details>
+<hr />
+<h2 id="loj6399-yww-与魔法阵">loj6399 yww 与魔法阵</h2>
+<p>给定长 <span class="math inline">\(n\)</span> 的一个 01 构成的三角形，求一个子三角形满足边界位置都是 0 且面积最大。这里三角形就长这样子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">0</span><br><span class="line">00</span><br><span class="line">000</span><br><span class="line">0000</span><br></pre></td></tr></table></figure>
+<p>时间复杂度；<span class="math inline">\(O(n^2)\)</span> 。</p>
+<details class="note primary"><summary><p>题解</p>
+</summary>
+<p>子三角形的数目是 <span class="math inline">\(O(n^3)\)</span> 的，显然无法显式地一一枚举<del>（甚至不能隐式地一一枚举）</del>。事实上由于只是需要最大化面积没有必要考虑到每个子三角形。考虑增量法，对于当前的最优面积 <span class="math inline">\(S\)</span> ，只需要考虑面积超过 <span class="math inline">\(S\)</span> 的子三角形。</p>
+<p>从下到上枚举，枚举每一个点作为子三角形的最上方顶点考虑更新答案。只需要判断是否存在子三角形比当前面积大。经过一些预处理后可以 <span class="math inline">\(O(1)\)</span> 检查。预处理的东西有点多，这里略去。</p>
+<p>显然答案的增长次数是 <span class="math inline">\(O(n)\)</span> 的。</p>
+
+</details>
+<hr />
+<h2 id="cf1349d-slime-and-biscuits">cf1349d Slime and Biscuits</h2>
+<p>有 <span class="math inline">\(n\)</span> 个人，第 <span class="math inline">\(i\)</span> 个人一开始有 <span class="math inline">\(a_i\)</span> 个石头（<span class="math inline">\(\sum_{i=1}^n a_i = m\)</span>）。每一轮依次执行如下两个操作直到有一个人拥有 <span class="math inline">\(m\)</span> 个石头：</p>
+<blockquote>
+<p>在 <span class="math inline">\(m\)</span> 个石头中随机选择一个，设该石头的所有者为 <span class="math inline">\(i\)</span> ，在 <span class="math inline">\(i\)</span> 除外的 <span class="math inline">\(n-1\)</span> 个人中随机选择一个 <span class="math inline">\(j\)</span> ，把该石头从 <span class="math inline">\(i\)</span> 移动到 <span class="math inline">\(j\)</span> 。</p>
+</blockquote>
+<p>求期望轮数。</p>
+<p>时间复杂度：<span class="math inline">\(O(n+m)\)</span> 。</p>
+<details class="note primary"><summary><p>题解</p>
+</summary>
+<p>若第 <span class="math inline">\(i\)</span> 个人拥有 <span class="math inline">\(m\)</span> 个石头，则称游戏停留于 <span class="math inline">\(i\)</span> 。</p>
+<p>设 <span class="math inline">\(f_i\)</span> 表示第 <span class="math inline">\(i\)</span> 个位置对答案的贡献，也就是答案的期望中停留在第 <span class="math inline">\(i\)</span> 个位置的组成部分。严格来讲是一个条件期望，是在停留于 <span class="math inline">\(i\)</span> 的条件下的期望轮数乘上停留于 <span class="math inline">\(i\)</span> 的概率。那么根据 <span class="math inline">\(f\)</span> 的定义容易知道答案即 <span class="math inline">\(\sum_{i=1}^n f_i\)</span> 。</p>
+<p>但是直接计算 <span class="math inline">\(f_i\)</span> 是困难的，因为要停留于 <span class="math inline">\(i\)</span> ，最难以处理的限制是停留于 <span class="math inline">\(i\)</span> 之前不能在任何位置停留。不妨忽略该限制，让游戏无休止的进行，设 <span class="math inline">\(g_i\)</span> 表示第一次停留于 <span class="math inline">\(i\)</span> 时的轮数的期望。考虑两者关系，枚举第一次停留的位置 <span class="math inline">\(j\)</span> ，有</p>
+<p><span class="math display">\[g_i = \sum_{j=1}^n (f_j + A_{j,i} p_j)\]</span></p>
+<p>其中 <span class="math inline">\(p_j\)</span> 表示第一次停留的位置恰好是 <span class="math inline">\(j\)</span> 的概率，<span class="math inline">\(A_{j,i}\)</span> 表示把停留于 <span class="math inline">\(j\)</span> 作为初始状态，到第一次停留于 <span class="math inline">\(i\)</span> 经过的轮数的期望。</p>
+<p>考虑计算 <span class="math inline">\(g_i\)</span> ，此时只需要关注第 <span class="math inline">\(i\)</span> 个人拥有的石头，不难发现其他的石头不管在谁手里都是没有区别的，那么 <span class="math inline">\(g_i\)</span> 的值只和 <span class="math inline">\(a_i\)</span> 有关，不妨构造 <span class="math inline">\(h\)</span> 满足 <span class="math inline">\(h_{a_i} = g_i\)</span> ，而计算 <span class="math inline">\(h\)</span> 是很简单的，可以线性消元解出。</p>
+<p>然后考虑计算 <span class="math inline">\(A\)</span> ，不难发现 <span class="math inline">\(i \neq j\)</span> 时有 <span class="math inline">\(A_{j,i} = h_0\)</span> ，反之有 <span class="math inline">\(A_{i,i} = 0\)</span> 。</p>
+<p>那么只需要计算出 <span class="math inline">\(p\)</span> 就可以得到 <span class="math inline">\(f\)</span> 了，可惜 <span class="math inline">\(p\)</span> 是很难计算的，但是注意到我们并不需要关注 <span class="math inline">\(f\)</span> 具体的值，只需要知道 <span class="math inline">\(\sum f_i\)</span> ，另外尽管无法求出 <span class="math inline">\(p\)</span> ，但是可以知道有 <span class="math inline">\(\sum p_i = 1\)</span> 。到这里不难想到把上式求和，得到</p>
+<p><span class="math display">\[\sum g_i = n \sum f_i + (n - 1) h_0\]</span></p>
+
+</details>
+<hr />
+<h2 id="bz2688-green-hackenbush">bz2688 Green Hackenbush</h2>
+<p>两个人轮流在一棵树上删边，每次删边后不与根联通的子树直接被删去，不能删边的游戏者输。</p>
+<p>现有 <span class="math inline">\(n\)</span> 棵树，第 <span class="math inline">\(i\)</span> 棵树是含有 <span class="math inline">\(a_i\)</span> 个节点的二叉树（从 <span class="math inline">\(C_{a_i}\)</span> 个里面随机选一个）。求先手必胜概率。</p>
+<p>时间复杂度：<span class="math inline">\(O(n^4)\)</span> 。</p>
+<details class="note primary"><summary><p>题解</p>
+</summary>
+<p>如何得到一棵树的 SG 值？</p>
+<p>如果根的度数恰为 0 ，SG 值显然为 0 。</p>
+<p>如果根的度数恰为 1 ，设与根相连的点为 <span class="math inline">\(u\)</span> ，设 <span class="math inline">\(u\)</span> 的子树对应的 SG 值为 <span class="math inline">\(k\)</span> ，不难发现原树的 SG 值即 <span class="math inline">\(k+1\)</span> 。</p>
+<p>如果根的度数大于 1 ，那么可以把根“分裂”，把原树拆成一个森林，每个森林的根的度数都恰好为 1 。容易发现这个森林与原树等价，那么应用 SG 定理，原树的 SG 值就是每个子树的 SG 值加一的异或和。</p>
+<p>然后就可以 DP 求解了，设 <span class="math inline">\(f_{i,j}\)</span> 表示 <span class="math inline">\(i\)</span> 个节点的二叉树中 SG 值为 <span class="math inline">\(j\)</span> 的概率。然后合并答案就利用 SG 定理和背包合并即可。</p>
+
+</details>
+<hr />
+<h2 id="cf1067e-random-forest-rank">cf1067e Random Forest Rank</h2>
+<p>给定一颗 <span class="math inline">\(n\)</span> 个节点的树，随机生成一个子图，每条边都有 <span class="math inline">\(\frac{1}{2}\)</span> 的概率出现，求该子图的邻接矩阵的秩的期望。</p>
+<p>时间复杂度：<span class="math inline">\(O(n)\)</span> 。</p>
+<details class="note primary"><summary><p>题解</p>
+</summary>
+<h3 id="引理-1">引理 1</h3>
+<p><strong>一颗树的邻接矩阵的秩就是其最大匹配数的两倍。</strong></p>
+<p>咕咕咕。</p>
+<h3 id="引理-2">引理 2</h3>
+<p><strong>一个森林的邻接矩阵的秩就是其最大匹配数的两倍。</strong></p>
+<p>显然如果图有多个连通块，其邻接矩阵的秩就是每个连通块的邻接矩阵的秩的和。那么根据引理 1 不难推广到引理 2 。</p>
+<h3 id="正题">正题</h3>
+<p>有了引理 2 就能直接 DP 了。首先树的最大匹配基于一个贪心：选一个根，然后每个子树分别匹配，如果有一个儿子是非匹配点，就把当前节点与该节点匹配。森林的话是类似的。朴素的一个 DP 是设 <span class="math inline">\(f_{u,0/1}, g_{u,0/1}\)</span> 什么的，边匹配边计数，但这里有个更简洁巧妙的 DP 设计。</p>
+<p>设 <span class="math inline">\(f_u\)</span> 表示在上述贪心过程中 <span class="math inline">\(u\)</span> 与一个儿子匹配的概率，把每个匹配的贡献算在父亲上，不难发现答案就是 <span class="math inline">\(\sum 2f_u\)</span> 。转移计算 <span class="math inline">\(u\)</span> 无法与儿子匹配的概率，此时 <span class="math inline">\(u\)</span> 的每个儿子 <span class="math inline">\(v\)</span> 对“无法匹配”这个事件而言是独立的，有</p>
+<p><span class="math display">\[f_u = 1 - \sum_v (\frac{1}{2} + \frac{1}{2} f_v)\]</span></p>
+
+</details>
+<hr />
+<h2 id="th1693-b-组合数问题">th1693-b 组合数问题</h2>
+<p>给定 <span class="math inline">\(n, m\)</span> 求 <span class="math inline">\(\sum_{i=0}^{n}(-1)^{i} \sum_{j=0}^{n} j^{m} \binom{j}{i} (m+i)^{j}\)</span> 。</p>
+<p>时间复杂度：<span class="math inline">\(O(n\log m)\)</span> 。</p>
+<details class="note primary"><summary><p>题解</p>
+</summary>
+<p>式子那么长唬你的，交换求和顺序，原式即</p>
+<p><span class="math display">\[\sum_{j=0}^{n} j^{m} \sum_{i=0}^{j} (-1)^{i} \binom{j}{i} (m+i)^{j}\]</span></p>
+<p>二项式定理展开后面的幂次，原式即</p>
+<p><span class="math display">\[\sum_{j=0}^{n} j^{m} \sum_{k=0}^{j} \binom{j}{k} m^{j-k} \sum_{i=0}^{j} (-1)^{i} \binom{j}{i} i^{k}\]</span></p>
+<p>看上去式子变复杂了，问题不大，因为最后一个求和符号里头的式子很友好，看上去很像第二类斯特林数的通项公式：</p>
+<p><span class="math display">\[\genfrac\{\}{0pt}{}{k}{j} = \frac{1}{j!} \sum_{i=0}^j (-1)^{j-i} \binom{j}{i} i^k\]</span></p>
+<p>代入，原式等于</p>
+<p><span class="math display">\[\sum_{j=0}^{n} j^{m} \sum_{k=0}^{j} \binom{j}{k} m^{j-k} \genfrac\{\}{0pt}{}{k}{j} j! (-1)^j\]</span></p>
+<p>然后会发现 <span class="math inline">\(k\)</span> 枚举了个寂寞，<span class="math inline">\(k &lt; j\)</span> 时这个斯特林数都没有值，直接令 <span class="math inline">\(k=j\)</span> ，于是原式等于</p>
+<p><span class="math display">\[\sum_{j=0}^{n} j^{m} j! (-1)^j\]</span></p>
+<p>虽然不难，但还是很妙，原式后面 <span class="math inline">\((m+i)^j\)</span> 这个幂次替换成任意 <span class="math inline">\((K+i)^j\)</span> 都不会影响答案，<span class="math inline">\(m\)</span> 的贡献仅仅在于 <span class="math inline">\(j^m\)</span> 。一旦发现这个巧妙的性质问题就很明了了。</p>
+
+</details>
+<hr />
+<h2 id="th1693-c-三角形">th1693-c 三角形</h2>
+<p>给定一个点数 <span class="math inline">\(N \times M\)</span> 的网格图，求有多少定点都在格点上的三角形，满足三角形区域内（包括边上）只有恰好 3 个格点。</p>
+<p>时间复杂度：<span class="math inline">\(O(N^{\frac{2}{3}} + M^{\frac{2}{3}})\)</span> 。</p>
+<details class="note primary"><summary><p>题解</p>
+</summary>
+<p>要统计的三角形可以分为以下两类：</p>
+<p><img src="/images/5.png" /></p>
+<h3 id="pick-定理">Pick 定理</h3>
+<p><strong>一个顶点都在个点上的多边形的面积恰好为 <span class="math inline">\(a + \frac{b}{2} - 1\)</span> ，其中 <span class="math inline">\(a, b\)</span> 分别是多边形内部的格点数和边上的格点数。</strong></p>
+<h3 id="引理-1">引理 1</h3>
+<p><strong>一个顶点在格点上的三角形只在区域内有恰好三个个点当且仅当其面积为 <span class="math inline">\(\frac{1}{2}\)</span> 。</strong></p>
+<p>必要性：直接套用 pick 定理，有 <span class="math inline">\(a=0,b=3\)</span> ，面积就是 <span class="math inline">\(\frac{1}{2}\)</span> 。</p>
+<p>充分性：还是套用 pick 定理，有 <span class="math inline">\(a + \frac{b}{2} - 1 = \frac{1}{2} \land a \ge 0 \land b \ge 3\)</span> ，容易解出恰有 <span class="math inline">\(a=0,b=3\)</span> 。</p>
+<h3 id="引理-2">引理 2</h3>
+<p><strong>第二类三角形面积始终不为二分之一。</strong></p>
+<p>不妨设上图的左下右上坐标分别为 <span class="math inline">\((0, 0), (n, m)\)</span> ，另外两个顶点坐标分别为 <span class="math inline">\((a, m), (n, b)\)</span> ，那么三角形面积即 <span class="math inline">\(\frac{nm-ab}{2}\)</span> 。应用反证法，若面积恰为二分之一则 <span class="math inline">\(ab=nm-1\)</span> 。由于 <span class="math inline">\(ab &lt; am &lt; nm\)</span> ，那么 <span class="math inline">\(ab \le nm - 2\)</span> ，矛盾。</p>
+<h3 id="引理-3">引理 3</h3>
+<p><strong>在确定对角线的前提下，使得第一类三角形面积恰为二分之一的合法的第三个顶点不超过一个，并且当且仅当对角线上没有其他格点时存在一个合法第三顶点。</strong></p>
+<p>不妨设上图的左下右上坐标分别为 <span class="math inline">\((0, 0), (n, m)\)</span> ，第三个顶点坐标 <span class="math inline">\((a, b)\)</span> ，那么有 <span class="math inline">\(am - bn = 1\)</span> ，根据不定方程那一套理论，方程有解当且仅当 <span class="math inline">\(n \bot m\)</span> ，并且对于任意一组解 <span class="math inline">\((a_0, b_0)\)</span> ，所有解都可以表示为 <span class="math inline">\((a_0 + kn, b_0 + km)\)</span> 。</p>
+<p><del>接下来证明 <span class="math inline">\(n \bot m\)</span> 时恰有一组合法解。</del>这部分咕了。</p>
+<h3 id="正题">正题</h3>
+<p>需要注意第一类三角形有一些对称的情况，只考虑上图中的一种然后乘 4 即可。那么根据三个引理，答案就是</p>
+<p><span class="math display">\[4 \sum_{i=1}^N \sum_{j=1}^M (N - i) (M - j) [i \bot j]\]</span></p>
+<p>到这里终于转换为数论问题，看到互质无脑莫反，得到原式等于</p>
+<p><span class="math display">\[4 \sum_{k\ge{1}} \mu(k) \sum_{i=1}^{N/k} \sum_{j=1}^{M/k} (N - ik) (M - jk)\]</span></p>
+<p>注意到 <span class="math inline">\((\lfloor \frac{N}{k} \rfloor, \lfloor \frac{M}{k} \rfloor)\)</span> 的值只有 <span class="math inline">\(O(\sqrt{N} + \sqrt{M})\)</span> 种，枚举每一种算答案，不难发现只要杜教筛筛出 <span class="math inline">\(\mu(k), \mu(k)k, \mu(k)k^2\)</span> 三个函数的前缀和即可。</p>
+<p>这玩意应该叫。。。双关键字整除分块？</p>
+
+</details>
+<hr />
+<h2 id="lg5284-十二省联考2019-字符串问题">lg5284 [十二省联考2019] 字符串问题</h2>
+<p>给定字符串 <span class="math inline">\(S\)</span> 。有 <span class="math inline">\(n\)</span> 个 A 类子串<del>（可以加五分）</del>和 <span class="math inline">\(m\)</span> 个 B 类子串，每个 A 类子串有个支配集合，由 B 类子串构成。支配集合的大小总和不超过 <span class="math inline">\(k\)</span> 。</p>
+<p>求一个长度最大的串 <span class="math inline">\(T\)</span> ，使得存在一个分割 <span class="math inline">\(T = t_1 + t_2 + t_3 + ... + t_p\)</span> ，满足：</p>
+<ul>
+<li><span class="math inline">\(\forall 1 \le i \le p\)</span> ，<span class="math inline">\(t_i\)</span> 是 A 类子串。</li>
+<li><span class="math inline">\(\forall 1 \le i &lt; p\)</span> ，存在 B 类子串 <span class="math inline">\(r\)</span> 属于 <span class="math inline">\(t_i\)</span> 的支配集合，使得 <span class="math inline">\(r\)</span> 是 <span class="math inline">\(t_{i+1}\)</span> 的前缀。</li>
+</ul>
+<p>时间复杂度：<span class="math inline">\(O(|S|+(n+m)\log+k)\)</span> （这里认为字符集大小为 <span class="math inline">\(O(1)\)</span>）。</p>
+<details class="note primary"><summary><p>题解</p>
+</summary>
+<p>（未实现）</p>
+<p>容易想到转换为图论问题，把所有 A 类子串和 B 类子串看做一个节点，A 类子串的出边集合就是其支配集合，B 类子串的出边集合就是它作为前缀出现的 A 类子串集合。</p>
+<p>定义 A 类子串的权值为其长度，B 类子串的权值为 0 ，那么问题就是在这张有向图上求最长路（不一定是简单路）。由于权值都是非负且不存在零环，只要有环 <span class="math inline">\(T\)</span> 的长度就可以是无穷大。而没有环的时候它是张 DAG ，直接 DP 求最长路即可。</p>
+<p>看起来做完了，然而有一个问题，可以发现 B 类子串的出边集合大小是 <span class="math inline">\(O(n)\)</span> 的，这张图的边数是 <span class="math inline">\(O(nm)\)</span> 的。</p>
+<h3 id="后缀树优化建图">后缀树优化建图</h3>
+<p>搞个标题看起来逼格一些，咱不会后缀树，还是用 SAM 吧。</p>
+<p>注意到 B 类子串 <span class="math inline">\(q\)</span> 向 A 类子串 <span class="math inline">\(r\)</span> 有边当且仅当 <span class="math inline">\(q\)</span> 是 <span class="math inline">\(r\)</span> 前缀，也就是前者的反串是后者的后缀。而所有节点都是 <span class="math inline">\(S\)</span> 的子串，不妨对 <span class="math inline">\(S\)</span> 的反串建 SAM ，那么此时有边的条件就是在 parent 树上 <span class="math inline">\(r\)</span> 在 <span class="math inline">\(q\)</span> 的子树内。那就好办了，利用 parent 树优化建图，但是要考虑到只有 B 类串向 A 类串连边，直接建图会产生 A 类串到 A 类串或者 B 到 B 的不合法边。另外 SAM 的一个节点代表了多个子串，为了避免连出自环的情况可能需要额外拆点（舍弃了 SAM 最简的性质）。</p>
+
+</details>
+<hr />
+<h2 id="cf102465jgym-mona-lisa">cf102465j(gym) Mona Lisa</h2>
+<p>有四个随机数生成器 <span class="math inline">\(A, B, C, D\)</span> ，每次可以从一个随机数生成器中等概率获得一个 <span class="math inline">\([0, 2^n)\)</span> 的整数。要求分别从四个生成器获得整数 <span class="math inline">\(a, b, c, d\)</span> 满足 <span class="math inline">\(a \oplus b \oplus c \oplus d = 0\)</span> 。</p>
+<p>时间复杂度：<span class="math inline">\(O(2^{\frac{n}{3}})\)</span> 。</p>
+<details class="note primary"><summary><p>题解</p>
+</summary>
+<h3 id="生日悖论">生日悖论</h3>
+<p>表述一：对于两个长度为 <span class="math inline">\(O(\sqrt{n})\)</span> 而值域 <span class="math inline">\(O(n)\)</span> 的随机数列，它们的交集的大小的期望是 <span class="math inline">\(O(1)\)</span> 的。</p>
+<p>表述二：对于两个长度为 <span class="math inline">\(O(n)\)</span> 而值域 <span class="math inline">\(O(n)\)</span> 的随机数列，它们的交集的大小的期望是 <span class="math inline">\(O(n)\)</span> 的。</p>
+<h3 id="正题">正题</h3>
+<p>这种类似于碰撞的东西往往就要考虑生日悖论，生日悖论总能带来很好的效果。</p>
+<p>对于每个随机数生成器，分别取 <span class="math inline">\(O(2^{n/3})\)</span> 个元素得到集合 <span class="math inline">\(S_a, S_b, S_c, S_d\)</span> 。然后称前 <span class="math inline">\(\frac{n}{3}\)</span> 个二进制位为关键位，找到 <span class="math inline">\(S_a, S_b\)</span> 中关键位异或为 0 的值，并把它们的异或和加入集合 <span class="math inline">\(P\)</span> ，那么 <span class="math inline">\(P\)</span> 的每个元素在关键位上的取值都是 0 。对 <span class="math inline">\(S_c, S_d\)</span> 做同样的处理得到 <span class="math inline">\(Q\)</span> 。</p>
+<p>根据生日悖论的表述二，<span class="math inline">\(P, Q\)</span> 的大小的期望都是 <span class="math inline">\(O(2^{n/3})\)</span> 。</p>
+<p>接下来在 <span class="math inline">\(P, Q\)</span> 中分别找到两个元素 <span class="math inline">\(x, y\)</span> 满足 <span class="math inline">\(x \oplus y = 0\)</span> ，这样的 <span class="math inline">\(x, y\)</span> 就对应一组解。事实上就是求 <span class="math inline">\(P \cap Q\)</span> ，注意到由于 <span class="math inline">\(P, Q\)</span> 的元素只在 <span class="math inline">\(\frac{2n}{3}\)</span> 个非关键位上有值，可以认为它们是值域范围 <span class="math inline">\(2^{2n/3}\)</span> 的随机数，那么根据生日悖论的表述一，它们交集的大小期望是 <span class="math inline">\(O(1)\)</span> 的。</p>
+
+</details>
+<hr />
+<h2 id="nowcoder6766-a-等级之题-n18.3">nowcoder6766-a 等级之题 N1（8.3）</h2>
+<p>初始时有 <span class="math inline">\(n\)</span> 个黑球和 <span class="math inline">\(m\)</span> 个蓝球。进行 <span class="math inline">\(k\)</span> 轮操作，每一轮操作如下：</p>
+<ol type="1">
+<li>有 <span class="math inline">\(p\)</span> 的概率添加一个黑球，有 <span class="math inline">\(1-p\)</span> 的概率添加一个蓝球。</li>
+<li>从所有球中随机扔掉一个球。</li>
+</ol>
+<p>求最后黑球的数量的期望。</p>
+<p>时间复杂度：<span class="math inline">\(O(\log k)\)</span> 。</p>
+<details class="note primary"><summary><p>题解</p>
+</summary>
+<p>容易发现操作不会改变球数，设 <span class="math inline">\(N = n + m + 1\)</span> 。容易想到设 <span class="math inline">\(f_{i,x}\)</span> 表示 <span class="math inline">\(i\)</span> 轮操作后黑球数量为 <span class="math inline">\(x\)</span> 的概率然后 DP 。那么 <span class="math inline">\(f_{i,x}\)</span> 有 <span class="math inline">\(P_{x,-} = \frac{x}{N}(1-p)\)</span> 的概率转移到 <span class="math inline">\(f_{i+1,x-1}\)</span> ，有 <span class="math inline">\(P_{x,+} = \frac{N-x-1}{N}p\)</span> 的概率转移到 <span class="math inline">\(f_{i+1,x-1}\)</span> 。</p>
+<p>设 <span class="math inline">\(i\)</span> 轮操作后的黑球期望 <span class="math inline">\(E_i = \sum_{x=0}^N f_{i,x} x\)</span> 。然后考虑 <span class="math inline">\(f_{i,x}\)</span> 在一轮转移中对期望值的贡献，有 <span class="math inline">\(P_{x,-}\)</span> 的概率减一，<span class="math inline">\(P_{x,+}\)</span> 的概率加一，这部分期望的改变量就是 <span class="math inline">\(P_{x,+} - P_{x,-} = \frac{N-1}{N}p - \frac{x}{N}\)</span> 。</p>
+<p>为了方便，设 <span class="math inline">\(a = \frac{N-1}{N}\)</span> ，有</p>
+<p><span class="math display">\[E_{i+1} = E_i + \sum_{x=0}^N f_{i,x} (ap - \frac{x}{N}) = E_i + ap - \sum_{x=0}^N f_{i,x} \frac{x}{N} = a(p+E_i)\]</span></p>
+<p>妙啊，迭代一下这个递推式就可以快速幂了，最后整理可以得到</p>
+<p><span class="math display">\[E_k = a^k E_0 + p (N-1) (1 - a^k)\]</span></p>
+
+</details>
+<hr />
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%A5%BD%E9%A2%98/" rel="tag"><i class="fa fa-tag"></i> 好题</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/07/27/%E5%A5%BD%E9%A2%98%E9%A2%98%E8%A7%A3%E6%95%B4%E7%90%86%EF%BC%88%E4%B8%80%EF%BC%89/" rel="prev" title="好题题解整理（一）">
+      <i class="fa fa-chevron-left"></i> 好题题解整理（一）
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/08/01/Green-Hackenbush/" rel="next" title="Green Hackenbush">
+      Green Hackenbush <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+        </div>
+        
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heartbeat"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Kewth</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      const script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments('#gitalk-container', () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '5a2fdd60fe2f91777a6b',
+      clientSecret: '9ddb762244fffc5caff2490a05e53dbca8ae4902',
+      repo        : 'hexo-gitalk',
+      owner       : 'Kewth',
+      admin       : ['Kewth'],
+      id          : '0d563f8bad86365e9530ff9ab6281da7',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>

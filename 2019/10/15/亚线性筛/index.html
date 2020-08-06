@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.1">
+<meta name="generator" content="Hexo 5.0.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -15,10 +15,12 @@
 
 
 <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  
+  <link rel="stylesheet" href="/lib/animate-css/animate.min.css">
 
-<script id="hexo-configurations">
+<script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"kewth.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"kewth.github.io","root":"/","scheme":"Muse","version":"8.0.0-rc.5","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"path":"search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":3,"unescape":false,"preload":false}};
   </script>
 
   <meta name="description" content="亚线性筛，就是以低于线性的复杂度预处理一些线性信息的筛法统称。 目前我会杜教筛和 min25 还有 powerful number。 杜教筛 篇幅过长，点击此处。 min25 min25 筛是扩展埃氏筛，也可以筛一类（更复杂的）积性函数的前缀和，并且通常是同类亚线性筛中最快的一个。 而且灵活运用 min25 可以处理一些特殊的关于质因子的问题。 理论 假设要求 \(S(n) &#x3D; \sum_{i&#x3D;1">
@@ -41,7 +43,7 @@
 <link rel="canonical" href="https://kewth.github.io/2019/10/15/%E4%BA%9A%E7%BA%BF%E6%80%A7%E7%AD%9B/">
 
 
-<script id="page-configurations">
+<script class="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
@@ -61,24 +63,36 @@
 
   <noscript>
   <style>
-  .use-motion .brand,
+  body { margin-top: 2rem; }
+
   .use-motion .menu-item,
-  .sidebar-inner,
+  .use-motion .sidebar,
   .use-motion .post-block,
   .use-motion .pagination,
   .use-motion .comments,
   .use-motion .post-header,
   .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
 
   .use-motion .site-title,
-  .use-motion .site-subtitle {
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
     opacity: initial;
     top: initial;
   }
 
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
   </style>
 </noscript>
 
@@ -89,32 +103,33 @@
   <div class="container use-motion">
     <div class="headband"></div>
 
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
+    <main class="main">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+        <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
     <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
   </div>
 
   <div class="site-meta">
 
     <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
+      <i class="logo-line"></i>
       <h1 class="site-title">KeBlog</h1>
-      <span class="logo-line-after"><i></i></span>
+      <i class="logo-line"></i>
     </a>
       <p class="site-subtitle" itemprop="description">The OI Algorithm Blog of Kewth</p>
   </div>
 
   <div class="site-nav-right">
     <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
-
 
 
 
@@ -132,43 +147,161 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">58</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">61</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">4</span></a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">5</span></a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">56</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">64</span></a>
 
   </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
   </ul>
 </nav>
 
 
 
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
 
 </div>
-    </header>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
 
-    
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9D%9C%E6%95%99%E7%AD%9B"><span class="nav-number">1.</span> <span class="nav-text">杜教筛</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#min25"><span class="nav-number">2.</span> <span class="nav-text">min25</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%90%86%E8%AE%BA"><span class="nav-number">2.0.1.</span> <span class="nav-text">理论</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#step-1"><span class="nav-number">2.0.1.1.</span> <span class="nav-text">Step 1</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#step-2"><span class="nav-number">2.0.1.2.</span> <span class="nav-text">Step 2</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#powerful-number"><span class="nav-number">3.</span> <span class="nav-text">Powerful number</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Kewth"
+      src="/images/avatar.jpeg">
+  <p class="site-author-name" itemprop="name">Kewth</p>
+  <div class="site-description" itemprop="description">HNFMS 现役 OIer</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">64</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">61</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Kewth" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Kewth" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:Kewth.K.D@outlook.com" title="E-Mail → mailto:Kewth.K.D@outlook.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="qq:1344205350" title="QQ → qq:1344205350" rel="noopener" target="_blank"><i class="fab fa-qq fa-fw"></i>QQ</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.luogu.org/space/show?uid=52232" title="Luogu → https:&#x2F;&#x2F;www.luogu.org&#x2F;space&#x2F;show?uid&#x3D;52232" rel="noopener" target="_blank"><i class="fas fa-code-branch fa-fw"></i>Luogu</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links | 友链
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="/" title="&#x2F;">无，欢迎互换友链</a>
+        </li>
+    </ul>
+  </div>
+
+      </section>
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </header>
+
+      
   <div class="back-to-top">
     <i class="fa fa-arrow-up"></i>
     <span>0%</span>
   </div>
   <div class="reading-progress-bar"></div>
 
+<noscript>
+  <div id="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
 
-    <main class="main">
+
       <div class="main-inner">
-        <div class="content-wrap">
-          
+        
 
-          <div class="content post posts-expand">
-            
+        <div class="content post posts-expand">
+          
 
     
   
@@ -185,6 +318,8 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="KeBlog">
     </span>
+
+    
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           亚线性筛
@@ -234,8 +369,6 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
         <p>亚线性筛，就是以低于线性的复杂度预处理一些线性信息的筛法统称。</p>
 <p>目前我会杜教筛和 min25 还有 powerful number。</p>
 <h2 id="杜教筛">杜教筛</h2>
@@ -292,11 +425,11 @@ g(n, i) &amp;= g(n, i - 1) - h(P_i) \sum_{x=1}^{n/P_i} [minp(x) \geq P_i] h(x) \
 <p>其中 <span class="math inline">\(pf_i\)</span> 就是 <span class="math inline">\(f\)</span> 在前 <span class="math inline">\(i\)</span> 个质数上的取值和，注意 <span class="math inline">\(P_i \leq \sqrt{n}\)</span> ，这是可以直接筛的。</p>
 <p>同样地第一维的取值都是 <span class="math inline">\(\frac{n}{d}\)</span> 的形式，但是第二维无法滚动，<br />
 但事实上后面的部分直接递归计算即可，以下是参考实现：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> lolong;</span><br><span class="line"><span class="function">lolong <span class="title">S</span><span class="params">(lolong i, <span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(prime[j] &gt; i) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	lolong res = S_F[id(i)] - pf[j];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> k = j + <span class="number">1</span>; k &lt;= p <span class="keyword">and</span> <span class="number">1l</span>l * prime[k] * prime[k] &lt;= i; k ++) &#123;</span><br><span class="line">		<span class="keyword">int</span> e = <span class="number">1</span>;</span><br><span class="line">		lolong pr = prime[k];</span><br><span class="line">		<span class="keyword">while</span>(pr &lt;= i) &#123;</span><br><span class="line">			res += (prime[k] ^ e) * (S(i / pr, k) + (e &gt; <span class="number">1</span>));</span><br><span class="line">			pr *= prime[k];</span><br><span class="line">			e ++;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> lolong;</span><br><span class="line"><span class="function">lolong <span class="title">S</span><span class="params">(lolong i, <span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line"> <span class="keyword">if</span>(prime[j] &gt; i) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">   lolong res = S_F[id(i)] - pf[j];</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> k = j + <span class="number">1</span>; k &lt;= p <span class="keyword">and</span> <span class="number">1l</span>l * prime[k] * prime[k] &lt;= i; k ++) &#123;</span><br><span class="line">       <span class="keyword">int</span> e = <span class="number">1</span>;</span><br><span class="line">       lolong pr = prime[k];</span><br><span class="line">     <span class="keyword">while</span>(pr &lt;= i) &#123;</span><br><span class="line">         res += (prime[k] ^ e) * (S(i / pr, k) + (e &gt; <span class="number">1</span>));</span><br><span class="line">          pr *= prime[k];</span><br><span class="line">           e ++;</span><br><span class="line">     &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>复杂度似乎是 <span class="math inline">\(O(\frac{n^{\frac{3}{4}}}{logn})\)</span> ，大概是能跑 <span class="math inline">\(10^{11}\)</span> 的。</p>
 <p>另外 min25 筛还有个树状数组的优化版本，也是 min25 本人引入的，复杂度 <span class="math inline">\(O(n^{\frac{2}{3}})\)</span> ，<br />
 大概能跑 <span class="math inline">\(10^{13}\)</span> ？<br />
-但很不常见，网上可供学习的资料很少，有兴趣可以直接看 <a href="https://min-25.hatenablog.com/entry/2018/11/11/172216" target="_blank" rel="noopener">min25 的博客</a>。</p>
+但很不常见，网上可供学习的资料很少，有兴趣可以直接看 <a target="_blank" rel="noopener" href="https://min-25.hatenablog.com/entry/2018/11/11/172216">min25 的博客</a>。</p>
 <h2 id="powerful-number">Powerful number</h2>
 <p>这个在 OI 中用得少，我也只是做过两道题，大概提一下。</p>
 <p>称 1 和每个质因子次数大于 1 的合数为 Powerful number 。<br />
@@ -317,7 +450,6 @@ g(n, i) &amp;= g(n, i - 1) - h(P_i) \sum_{x=1}^{n/P_i} [minp(x) \geq P_i] h(x) \
     
 
       <footer class="post-footer">
-          
           <div class="post-tags">
               <a href="/tags/%E6%95%B0%E8%AE%BA/" rel="tag"><i class="fa fa-tag"></i> 数论</a>
               <a href="/tags/%E7%AD%9B%E6%B3%95/" rel="tag"><i class="fa fa-tag"></i> 筛法</a>
@@ -349,8 +481,8 @@ g(n, i) &amp;= g(n, i - 1) - h(P_i) \sum_{x=1}^{n/P_i} [minp(x) \geq P_i] h(x) \
 
 
 
-          </div>
-          
+        </div>
+        
     <div class="comments" id="gitalk-container"></div>
 
 <script>
@@ -375,112 +507,6 @@ g(n, i) &amp;= g(n, i - 1) - h(P_i) \sum_{x=1}^{n/P_i} [minp(x) \geq P_i] h(x) \
   }
 </script>
 
-        </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#杜教筛"><span class="nav-number">1.</span> <span class="nav-text">杜教筛</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#min25"><span class="nav-number">2.</span> <span class="nav-text">min25</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#理论"><span class="nav-number">2.0.1.</span> <span class="nav-text">理论</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#step-1"><span class="nav-number">2.0.1.1.</span> <span class="nav-text">Step 1</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#step-2"><span class="nav-number">2.0.1.2.</span> <span class="nav-text">Step 2</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#powerful-number"><span class="nav-number">3.</span> <span class="nav-text">Powerful number</span></a></li></ol></div>
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="Kewth"
-      src="/images/avatar.jpeg">
-  <p class="site-author-name" itemprop="name">Kewth</p>
-  <div class="site-description" itemprop="description">HNFMS 现役 OIer</div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">56</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-          
-        <span class="site-state-item-count">4</span>
-        <span class="site-state-item-name">分类</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-          
-        <span class="site-state-item-count">58</span>
-        <span class="site-state-item-name">标签</span></a>
-      </div>
-  </nav>
-</div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-        <a href="https://github.com/Kewth" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Kewth" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="mailto:Kewth.K.D@outlook.com" title="E-Mail → mailto:Kewth.K.D@outlook.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="qq:1344205350" title="QQ → qq:1344205350" rel="noopener" target="_blank"><i class="fab fa-qq fa-fw"></i>QQ</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://www.luogu.org/space/show?uid=52232" title="Luogu → https:&#x2F;&#x2F;www.luogu.org&#x2F;space&#x2F;show?uid&#x3D;52232" rel="noopener" target="_blank"><i class="fab fa-code-fork fa-fw"></i>Luogu</a>
-      </span>
-  </div>
-
-
-  <div class="links-of-blogroll motion-element">
-    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
-      Links | 友链
-    </div>
-    <ul class="links-of-blogroll-list">
-        <li class="links-of-blogroll-item">
-          <a href="https://ricardoships.github.io/" title="https:&#x2F;&#x2F;ricardoships.github.io" rel="noopener" target="_blank">Ricardoships(AFO)</a>
-        </li>
-        <li class="links-of-blogroll-item">
-          <a href="https://luoyuyang.cf/" title="https:&#x2F;&#x2F;luoyuyang.cf" rel="noopener" target="_blank">lyy(AFO)</a>
-        </li>
-        <li class="links-of-blogroll-item">
-          <a href="https://zrz-orz.github.io/" title="https:&#x2F;&#x2F;zrz-orz.github.io" rel="noopener" target="_blank">zrz_orz(AFO)</a>
-        </li>
-        <li class="links-of-blogroll-item">
-          <a href="https://qiuly.xyz/" title="https:&#x2F;&#x2F;qiuly.xyz" rel="noopener" target="_blank">Qiuly</a>
-        </li>
-        <li class="links-of-blogroll-item">
-          <a href="https://www.cnblogs.com/Lskkkno1" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;Lskkkno1" rel="noopener" target="_blank">Lskkkno1</a>
-        </li>
-        <li class="links-of-blogroll-item">
-          <a href="https://www.allenyou.wang/" title="https:&#x2F;&#x2F;www.allenyou.wang" rel="noopener" target="_blank">Allenyou</a>
-        </li>
-    </ul>
-  </div>
-
-      </div>
-
-    </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
-
-
       </div>
     </main>
 
@@ -499,7 +525,7 @@ g(n, i) &amp;= g(n, i - 1) - h(P_i) \sum_{x=1}^{n/P_i} [minp(x) \geq P_i] h(x) \
   </span>
   <span class="author" itemprop="copyrightHolder">Kewth</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
   </div>
 
         
@@ -537,8 +563,6 @@ g(n, i) &amp;= g(n, i - 1) - h(P_i) \sum_{x=1}^{n/P_i} [minp(x) \geq P_i] h(x) \
 
   
   <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
 
 <script src="/js/utils.js"></script>
 
@@ -551,11 +575,13 @@ g(n, i) &amp;= g(n, i - 1) - h(P_i) \sum_{x=1}^{n/P_i} [minp(x) \geq P_i] h(x) \
 <script src="/js/next-boot.js"></script>
 
 
-
-
   
 
 
+
+
+  
+<script src="/js/local-search.js"></script>
 
 
 
@@ -612,7 +638,7 @@ g(n, i) &amp;= g(n, i - 1) - h(P_i) \sum_{x=1}^{n/P_i} [minp(x) \geq P_i] h(x) \
       }
     };
     (function () {
-      var script = document.createElement('script');
+      const script = document.createElement('script');
       script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
       script.defer = true;
       document.head.appendChild(script);
@@ -631,7 +657,7 @@ g(n, i) &amp;= g(n, i - 1) - h(P_i) \sum_{x=1}^{n/P_i} [minp(x) \geq P_i] h(x) \
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
 
 <script>
-NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+NexT.utils.loadComments('#gitalk-container', () => {
   NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
     var gitalk = new Gitalk({
       clientID    : '5a2fdd60fe2f91777a6b',

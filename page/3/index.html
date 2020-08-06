@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.1">
+<meta name="generator" content="Hexo 5.0.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -15,10 +15,12 @@
 
 
 <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  
+  <link rel="stylesheet" href="/lib/animate-css/animate.min.css">
 
-<script id="hexo-configurations">
+<script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"kewth.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"kewth.github.io","root":"/","scheme":"Muse","version":"8.0.0-rc.5","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"path":"search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":3,"unescape":false,"preload":false}};
   </script>
 
   <meta name="description" content="HNFMS 现役 OIer">
@@ -34,7 +36,7 @@
 <link rel="canonical" href="https://kewth.github.io/page/3/">
 
 
-<script id="page-configurations">
+<script class="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
@@ -54,24 +56,36 @@
 
   <noscript>
   <style>
-  .use-motion .brand,
+  body { margin-top: 2rem; }
+
   .use-motion .menu-item,
-  .sidebar-inner,
+  .use-motion .sidebar,
   .use-motion .post-block,
   .use-motion .pagination,
   .use-motion .comments,
   .use-motion .post-header,
   .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
 
   .use-motion .site-title,
-  .use-motion .site-subtitle {
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
     opacity: initial;
     top: initial;
   }
 
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
   </style>
 </noscript>
 
@@ -82,32 +96,33 @@
   <div class="container use-motion">
     <div class="headband"></div>
 
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
+    <main class="main">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+        <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
     <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
   </div>
 
   <div class="site-meta">
 
     <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
+      <i class="logo-line"></i>
       <h1 class="site-title">KeBlog</h1>
-      <span class="logo-line-after"><i></i></span>
+      <i class="logo-line"></i>
     </a>
       <p class="site-subtitle" itemprop="description">The OI Algorithm Blog of Kewth</p>
   </div>
 
   <div class="site-nav-right">
     <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
-
 
 
 
@@ -125,43 +140,861 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">58</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">61</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">4</span></a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">5</span></a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">56</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">64</span></a>
 
   </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
   </ul>
 </nav>
 
 
 
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
 
 </div>
-    </header>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
 
-    
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Kewth"
+      src="/images/avatar.jpeg">
+  <p class="site-author-name" itemprop="name">Kewth</p>
+  <div class="site-description" itemprop="description">HNFMS 现役 OIer</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">64</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">61</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Kewth" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Kewth" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:Kewth.K.D@outlook.com" title="E-Mail → mailto:Kewth.K.D@outlook.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="qq:1344205350" title="QQ → qq:1344205350" rel="noopener" target="_blank"><i class="fab fa-qq fa-fw"></i>QQ</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.luogu.org/space/show?uid=52232" title="Luogu → https:&#x2F;&#x2F;www.luogu.org&#x2F;space&#x2F;show?uid&#x3D;52232" rel="noopener" target="_blank"><i class="fas fa-code-branch fa-fw"></i>Luogu</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links | 友链
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="/" title="&#x2F;">无，欢迎互换友链</a>
+        </li>
+    </ul>
+  </div>
+
+      </section>
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </header>
+
+      
   <div class="back-to-top">
     <i class="fa fa-arrow-up"></i>
     <span>0%</span>
   </div>
   <div class="reading-progress-bar"></div>
 
+<noscript>
+  <div id="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
 
-    <main class="main">
+
       <div class="main-inner">
-        <div class="content-wrap">
+        
+
+        <div class="content index posts-expand">
+          
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2020/04/29/%E5%8D%A2%E5%8D%A1%E6%96%AF%E5%AE%9A%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Kewth">
+      <meta itemprop="description" content="HNFMS 现役 OIer">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KeBlog">
+    </span>
+
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/04/29/%E5%8D%A2%E5%8D%A1%E6%96%AF%E5%AE%9A%E7%90%86/" class="post-title-link" itemprop="url">卢卡斯定理</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-04-29 19:35:35" itemprop="dateCreated datePublished" datetime="2020-04-29T19:35:35+08:00">2020-04-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-07-26 08:27:28" itemprop="dateModified" datetime="2020-07-26T08:27:28+08:00">2020-07-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                </span>
+            </span>
+
           
 
-          <div class="content index posts-expand">
-            
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>简单来说就是快速计算 <span class="math inline">\(\binom{n}{m} \bmod p\)</span> 。</p>
+<h2 id="卢卡斯定理">卢卡斯定理</h2>
+<p>如果 <span class="math inline">\(p\)</span> 是质数，有 <span class="math inline">\(\binom{n}{m} \equiv \binom{n \bmod p}{m \bmod p} \binom{n/p}{m/p} \pmod{p}\)</span> ，其中 <span class="math inline">\(n/p\)</span> 和 <span class="math inline">\(m/p\)</span> 表示整除。</p>
+<p>直接递归调用，预处理阶乘，单次询问时间复杂度 <span class="math inline">\(O(p + \frac{\log n}{\log p})\)</span> 。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/04/29/%E5%8D%A2%E5%8D%A1%E6%96%AF%E5%AE%9A%E7%90%86/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2020/04/19/%E5%B8%B8%E7%B3%BB%E6%95%B0%E9%BD%90%E6%AC%A1%E7%BA%BF%E6%80%A7%E9%80%92%E6%8E%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Kewth">
+      <meta itemprop="description" content="HNFMS 现役 OIer">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KeBlog">
+    </span>
+
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/04/19/%E5%B8%B8%E7%B3%BB%E6%95%B0%E9%BD%90%E6%AC%A1%E7%BA%BF%E6%80%A7%E9%80%92%E6%8E%A8/" class="post-title-link" itemprop="url">常系数齐次线性递推</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-04-19 16:03:50" itemprop="dateCreated datePublished" datetime="2020-04-19T16:03:50+08:00">2020-04-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-07-26 08:30:33" itemprop="dateModified" datetime="2020-07-26T08:30:33+08:00">2020-07-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>问题是这样的：</p>
+<p>对于一个无穷大的递推数列 <span class="math inline">\(\{h_i\}\)</span> 和长度为 <span class="math inline">\(k\)</span> 的已知数列 <span class="math inline">\(\{a_i\}\)</span>，满足<span class="math inline">\(\forall n, h_n = \sum_{i=1}^k a_i h_{n-i}\)</span> 。 已知 <span class="math inline">\(h_i (0 \le i &lt; k)\)</span> 求 <span class="math inline">\(h_n\)</span> 。</p>
+<p>直接递推复杂度 <span class="math inline">\(O(nk)\)</span> ，矩阵快速幂可以做到 <span class="math inline">\(O(k^3 logn)\)</span> 的复杂度，这里介绍一个更优秀的做法。</p>
+<h2 id="结论">结论</h2>
+<p>便于以后复习，先给出结论。</p>
+<ol type="1">
+<li>构造多项式 <span class="math inline">\(F(x) = x^k - \sum_{i=1}^k a_i x^{k-i}\)</span> 。</li>
+<li>求出多项式 <span class="math inline">\(G(x) = \sum_{i=0}^{k-1} c_i x^i = x^n \bmod F(x)\)</span> 。</li>
+<li>有 <span class="math inline">\(h_n = \sum_{i=0}^{k-1} c_i h_i\)</span> 。</li>
+</ol>
+<p>第一步和第三步都是 <span class="math inline">\(O(k)\)</span> 的，而第二步通过多项式快速幂和多项式取模可以做到 <span class="math inline">\(O(k\log k\log n)\)</span> 的复杂度。</p>
+<p>当然暴力做多项式快速幂和多项式取模也能做到 <span class="math inline">\(O(k^2 \log n)\)</span> 的复杂度，大多时候这就足够了。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/04/19/%E5%B8%B8%E7%B3%BB%E6%95%B0%E9%BD%90%E6%AC%A1%E7%BA%BF%E6%80%A7%E9%80%92%E6%8E%A8/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2020/01/16/code-trick/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Kewth">
+      <meta itemprop="description" content="HNFMS 现役 OIer">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KeBlog">
+    </span>
+
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/16/code-trick/" class="post-title-link" itemprop="url">code-trick</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-01-16 14:36:13" itemprop="dateCreated datePublished" datetime="2020-01-16T14:36:13+08:00">2020-01-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-08-03 11:32:05" itemprop="dateModified" datetime="2020-08-03T11:32:05+08:00">2020-08-03</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B4%E7%90%86/" itemprop="url" rel="index"><span itemprop="name">整理</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>总结一些 code-trick ，这种东西看看别人的代码，有时能够大开眼界。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/01/16/code-trick/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2020/01/10/%E7%89%9B%E5%AE%A2%E7%BB%83%E4%B9%A0%E8%B5%9B57/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Kewth">
+      <meta itemprop="description" content="HNFMS 现役 OIer">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KeBlog">
+    </span>
+
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/10/%E7%89%9B%E5%AE%A2%E7%BB%83%E4%B9%A0%E8%B5%9B57/" class="post-title-link" itemprop="url">牛客练习赛57</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-01-10 22:05:52" itemprop="dateCreated datePublished" datetime="2020-01-10T22:05:52+08:00">2020-01-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-05-19 20:25:49" itemprop="dateModified" datetime="2020-05-19T20:25:49+08:00">2020-05-19</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%80%BB%E7%BB%93/" itemprop="url" rel="index"><span itemprop="name">总结</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>咕咕咕我又来写总结啦。</p>
+<p>第一次打牛客，一进牛客发现还有 30s 就有一场比赛，就报了名。<br />
+一开始只是打算玩玩，看看牛客的题来着。</p>
+<figure>
+<img src="/images/nowcoder.com.png" alt="" /><figcaption>牛客</figcaption>
+</figure>
+<p>一不小心上瘾了，可惜不计 rating 。<br />
+（另外 %%% <span class="citation" data-cites="CYJian">@CYJian</span> 喜提 rank1 ）</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/01/10/%E7%89%9B%E5%AE%A2%E7%BB%83%E4%B9%A0%E8%B5%9B57/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2020/01/06/miller-rabin-%E5%92%8C-pollard-rho/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Kewth">
+      <meta itemprop="description" content="HNFMS 现役 OIer">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KeBlog">
+    </span>
+
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/06/miller-rabin-%E5%92%8C-pollard-rho/" class="post-title-link" itemprop="url">miller-rabin 和 pollard-rho</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-01-06 15:41:21" itemprop="dateCreated datePublished" datetime="2020-01-06T15:41:21+08:00">2020-01-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-07-26 08:33:48" itemprop="dateModified" datetime="2020-07-26T08:33:48+08:00">2020-07-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="miller-rabin">miller-rabin</h2>
+<p>用于快速测试一个数 <span class="math inline">\(n\)</span> 是否为质数，有概率出错。</p>
+<p>不妨假设 <span class="math inline">\(n\)</span> 是奇数，此外 miller-rabin 需要随意选取一个小质数 <span class="math inline">\(p\)</span> 。</p>
+<h4 id="理论">理论</h4>
+<p>miller-rabin 用到的两个基本定理：</p>
+<ul>
+<li><p>费马小定理：如果 <span class="math inline">\(n\)</span> 为质数，一定有 <span class="math inline">\(p^n \equiv p \pmod{n}\)</span> ，即 <span class="math inline">\(p^{n-1} \equiv 1\)</span> 。</p></li>
+<li><p>二次探测定理：如果 <span class="math inline">\(n\)</span> 为质数，对于 <span class="math inline">\(a^2 \equiv 1 \pmod{n}\)</span> 一定有 <span class="math inline">\(a \equiv -1\)</span> 或 <span class="math inline">\(a \equiv n - 1\)</span> 。</p></li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/01/06/miller-rabin-%E5%92%8C-pollard-rho/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2020/01/02/%E7%BB%84%E5%90%88%E6%95%B0%E5%AD%A6%E7%8E%84%E5%AD%A6%E6%93%8D%E4%BD%9C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Kewth">
+      <meta itemprop="description" content="HNFMS 现役 OIer">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KeBlog">
+    </span>
+
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/02/%E7%BB%84%E5%90%88%E6%95%B0%E5%AD%A6%E7%8E%84%E5%AD%A6%E6%93%8D%E4%BD%9C/" class="post-title-link" itemprop="url">组合数学玄学操作</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-01-02 21:19:33" itemprop="dateCreated datePublished" datetime="2020-01-02T21:19:33+08:00">2020-01-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-05-19 20:26:38" itemprop="dateModified" datetime="2020-05-19T20:26:38+08:00">2020-05-19</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B4%E7%90%86/" itemprop="url" rel="index"><span itemprop="name">整理</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>以下公式均不给出证明，目的是为了让结论一目了然。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/01/02/%E7%BB%84%E5%90%88%E6%95%B0%E5%AD%A6%E7%8E%84%E5%AD%A6%E6%93%8D%E4%BD%9C/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2020/01/02/%E6%9D%9C%E6%95%99%E7%AD%9B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Kewth">
+      <meta itemprop="description" content="HNFMS 现役 OIer">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KeBlog">
+    </span>
+
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/02/%E6%9D%9C%E6%95%99%E7%AD%9B/" class="post-title-link" itemprop="url">杜教筛</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-01-02 11:56:25" itemprop="dateCreated datePublished" datetime="2020-01-02T11:56:25+08:00">2020-01-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-05-19 20:26:54" itemprop="dateModified" datetime="2020-05-19T20:26:54+08:00">2020-05-19</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>杜教筛一般用于求一类数论函数的前缀和。</p>
+<p>假设要求数论函数 <span class="math inline">\(f(x)\)</span> 的前缀和 <span class="math inline">\(S(n) = \sum_{i=1}^n f(i)\)</span> 。</p>
+<p>杜教筛的关键在于构造两个合适的函数 <span class="math inline">\(g, h\)</span> 满足 <span class="math inline">\(h = f \cdot g\)</span> 。</p>
+<p>这里的函数相乘指的是狄利克雷卷积。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/01/02/%E6%9D%9C%E6%95%99%E7%AD%9B/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2019/12/27/%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E6%8F%92%E5%80%BC%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Kewth">
+      <meta itemprop="description" content="HNFMS 现役 OIer">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KeBlog">
+    </span>
+
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/12/27/%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E6%8F%92%E5%80%BC%E6%B3%95/" class="post-title-link" itemprop="url">拉格朗日插值法</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-12-27 16:36:22" itemprop="dateCreated datePublished" datetime="2019-12-27T16:36:22+08:00">2019-12-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-07-23 15:57:29" itemprop="dateModified" datetime="2020-07-23T15:57:29+08:00">2020-07-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>这里只介绍关于多项式的拉格朗日插值法，对于一般函数的拟合当做一个多项式就好了。</p>
+<h2 id="插点值">插点值</h2>
+<p>已知多项式 <span class="math inline">\(f(x)\)</span> 的 <span class="math inline">\(n\)</span> 个点值 <span class="math inline">\((x_i, y_i = f(x_i))\)</span> ，求 <span class="math inline">\(f(k)\)</span> 。</p>
+<p>拉格朗日插值法的思路在于： 对于每个 <span class="math inline">\((x_i, y_i)\)</span> 找到 <span class="math inline">\(L_i(x)\)</span> 使得 <span class="math inline">\(L_i(x_i) = y_i, L_i(x_j) = 0\)</span> ， 其中 <span class="math inline">\(x_j\)</span> 是已知的 <span class="math inline">\(x\)</span> 中任意一个不等于 <span class="math inline">\(x_i\)</span> 的 <span class="math inline">\(x\)</span> 。</p>
+<p>而由 <span class="math inline">\(L\)</span> 的定义可知，<span class="math inline">\(f(k) = \sum_{i=1}^n L_i(k)\)</span> 。<br />
+代入上式即可求解。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/12/27/%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E6%8F%92%E5%80%BC%E6%B3%95/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -177,6 +1010,8 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="KeBlog">
     </span>
+
+    
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
@@ -199,7 +1034,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-05-19 20:28:17" itemprop="dateModified" datetime="2020-05-19T20:28:17+08:00">2020-05-19</time>
+                <time title="修改时间：2020-08-06 07:54:49" itemprop="dateModified" datetime="2020-08-06T07:54:49+08:00">2020-08-06</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -220,8 +1055,6 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
           <h2 id="day--inf-12.06">Day -inf (12.06)</h2>
 <p>thuwc 的报名网站反应是真的慢，中午特意请假去机房填表，结果被这反应速度折服了，一中午还没填完。<br />
 好事是，借着这个，我得以手动翘掉了下午的语文课，又跑去机房填表，<br />
@@ -265,6 +1098,8 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="KeBlog">
     </span>
+
+    
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
@@ -308,8 +1143,6 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
           <h2 id="day1">Day1</h2>
 <p>体验极差，真的就是极差，做梦都没想到 Day1 竟然是这样的。</p>
 <p>开考花 30min 交完前面两题，看看时间还剩 3h 。<br />
@@ -347,761 +1180,16 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2019/11/08/cometoj-14/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-      <meta itemprop="name" content="Kewth">
-      <meta itemprop="description" content="HNFMS 现役 OIer">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="KeBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/11/08/cometoj-14/" class="post-title-link" itemprop="url">cometoj-14</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-11-08 22:43:00" itemprop="dateCreated datePublished" datetime="2019-11-08T22:43:00+08:00">2019-11-08</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-05-19 20:28:43" itemprop="dateModified" datetime="2020-05-19T20:28:43+08:00">2020-05-19</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%80%BB%E7%BB%93/" itemprop="url" rel="index"><span itemprop="name">总结</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>万年卡 E 题系列。</p>
-<p>这次 A 竟然不是字符串，<del>开始我已经准备了字符串的输入输出等一堆东西结果发现没卵用</del><br />
-花 1min49 AC ，好像在这之前已经有 12 个人 A 了。</p>
-<p>B 第一眼看上去是个 DP ，再看一眼（看成最小值最大）以为是二分，发现是让最大值最大而且还只有三个段后。。。<br />
-<strong>大力分类讨论</strong>！<br />
-果然是个分类讨论就巨多细节，判无解判边界判大小 blabla ，结果交 WA 了两发，在 16min AC 。<br />
-（ B 最快的 6min 就 A 了，16min 这时候 C 的一血都被拿了的说）</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/11/08/cometoj-14/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2019/11/05/%E4%B8%AD%E5%9B%BD%E5%89%A9%E4%BD%99%E5%AE%9A%E7%90%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-      <meta itemprop="name" content="Kewth">
-      <meta itemprop="description" content="HNFMS 现役 OIer">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="KeBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/11/05/%E4%B8%AD%E5%9B%BD%E5%89%A9%E4%BD%99%E5%AE%9A%E7%90%86/" class="post-title-link" itemprop="url">中国剩余定理</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-11-05 19:19:39" itemprop="dateCreated datePublished" datetime="2019-11-05T19:19:39+08:00">2019-11-05</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-05-19 20:29:00" itemprop="dateModified" datetime="2020-05-19T20:29:00+08:00">2020-05-19</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>relearn 了一遍 exCRT ，发现之前学的可能是假的（这种情况出现不止一次了 233 ）。</p>
-<p>简单来说，中国剩余定理（以下简称 CRT ）主要用于解线性同余方程组：</p>
-<p><span class="math display">\[
-\begin{equation}
-\left\{
-\begin{aligned}
-x \equiv a_1 \pmod{m_1} \\\\
-x \equiv a_2 \pmod{m_2} \\\\
-... \\\\
-x \equiv a_n \pmod{m_n} \\\\
-\end{aligned}
-\right.
-\end{equation}
-\]</span></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/11/05/%E4%B8%AD%E5%9B%BD%E5%89%A9%E4%BD%99%E5%AE%9A%E7%90%86/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2019/11/03/%E5%BF%AB%E9%80%9F%E6%B2%83%E5%B0%94%E4%BB%80%E5%8F%98%E6%8D%A2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-      <meta itemprop="name" content="Kewth">
-      <meta itemprop="description" content="HNFMS 现役 OIer">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="KeBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/11/03/%E5%BF%AB%E9%80%9F%E6%B2%83%E5%B0%94%E4%BB%80%E5%8F%98%E6%8D%A2/" class="post-title-link" itemprop="url">快速沃尔什变换</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-11-03 17:35:00" itemprop="dateCreated datePublished" datetime="2019-11-03T17:35:00+08:00">2019-11-03</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-05-19 20:29:15" itemprop="dateModified" datetime="2020-05-19T20:29:15+08:00">2020-05-19</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>快速沃尔什变换，简称 FWT 。</p>
-<h2 id="用处">用处</h2>
-<p>多项式卷积一般是这样的：</p>
-<p><span class="math display">\[ C_i = \sum_{j + k = i} A_j \cdot B_k \]</span></p>
-<p>这个可以用 FFT 快速求解。</p>
-<p>然而还有一个诡异的卷积：</p>
-<p><span class="math display">\[ C_i = \sum_{j \oplus k = i} A_j \cdot B_k \]</span></p>
-<p>其中 $ $ 是任意一种位运算。</p>
-<p>FWT 便是求这类卷积的快速算法。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/11/03/%E5%BF%AB%E9%80%9F%E6%B2%83%E5%B0%94%E4%BB%80%E5%8F%98%E6%8D%A2/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2019/10/25/cometoj-13/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-      <meta itemprop="name" content="Kewth">
-      <meta itemprop="description" content="HNFMS 现役 OIer">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="KeBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/10/25/cometoj-13/" class="post-title-link" itemprop="url">cometoj-13</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-10-25 21:44:37" itemprop="dateCreated datePublished" datetime="2019-10-25T21:44:37+08:00">2019-10-25</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-05-19 20:29:28" itemprop="dateModified" datetime="2020-05-19T20:29:28+08:00">2020-05-19</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%80%BB%E7%BB%93/" itemprop="url" rel="index"><span itemprop="name">总结</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>淦。</p>
-<p>Skip 掉 A ，直接开 C1 。</p>
-<p>一看卧槽搜索题，果然简单，然后码，然后码挂了，调了一波，在 8min AC 。</p>
-<p>然后既然做了 C1 那就继续看 C2 嘛，</p>
-<p>一看卧槽煞笔题，果然简单，然后码，然后没码挂，交了一波，<br />
-TLE 了 4 个点。。。</p>
-<p>回去看 A ，卧槽果然签到题，花 2min A 了。</p>
-<p>然而对于 C2 还是一脸懵逼，后来理性分析了复杂度上界，发现用 set 多了个 log ，<br />
-想着怎么撸掉这个 log ，卧槽并查集不就行了，几乎重构了一遍，在 41min AC 。</p>
-<p>说起来我第一个想到的是用 set 的原因是做过策爷的“基础排序算法练习题”，<br />
-那里维护有效点对的方式就是用 set + 二分。<br />
-然而这里特殊一点，用过的点不会在出现，直接并查集就好了。</p>
-<p><del>学傻了.jpg</del></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/10/25/cometoj-13/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2019/10/21/%E4%BA%8C%E6%AC%A1%E5%89%A9%E4%BD%99/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-      <meta itemprop="name" content="Kewth">
-      <meta itemprop="description" content="HNFMS 现役 OIer">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="KeBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/10/21/%E4%BA%8C%E6%AC%A1%E5%89%A9%E4%BD%99/" class="post-title-link" itemprop="url">二次剩余</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-10-21 20:10:01" itemprop="dateCreated datePublished" datetime="2019-10-21T20:10:01+08:00">2019-10-21</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-22 21:36:54" itemprop="dateModified" datetime="2020-07-22T21:36:54+08:00">2020-07-22</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>二次剩余，<del>俗称模意义开根</del>。<br />
-也就是对于常数 <span class="math inline">\(n\)</span> 解这样一个方程：</p>
-<p><span class="math display">\[x^2 \equiv n \; (mod \; p)\]</span></p>
-<p>这里只介绍模数 <span class="math inline">\(p\)</span> 为奇素数的解法，也就是 Cipolla 算法。</p>
-<p>以下运算皆指模 <span class="math inline">\(p\)</span> 意义下的运算。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/10/21/%E4%BA%8C%E6%AC%A1%E5%89%A9%E4%BD%99/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2019/10/20/LGR-061-XR-4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-      <meta itemprop="name" content="Kewth">
-      <meta itemprop="description" content="HNFMS 现役 OIer">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="KeBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/10/20/LGR-061-XR-4/" class="post-title-link" itemprop="url">LGR-061&XR-4</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-10-20 18:46:05" itemprop="dateCreated datePublished" datetime="2019-10-20T18:46:05+08:00">2019-10-20</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-06 20:37:17" itemprop="dateModified" datetime="2019-12-06T20:37:17+08:00">2019-12-06</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%80%BB%E7%BB%93/" itemprop="url" rel="index"><span itemprop="name">总结</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>开场 30min 才反应过来有场比赛。<br />
-不知道哪来的自信就去报了 Div.1 。。。</p>
-<p>第一次打 IOI 赛制的网络赛，感觉海星，不像 ACM 一样必须 A 题，<br />
-打部分分的话就和平时训练的感觉一样，操作起来相对顺手。</p>
-<p><del>但是打网络赛为什么要拿部分分呢，当然冲着 A 题去啊是吧</del></p>
-<p>然而全场只能做出 A 题。并没有平时打 ACM 赛制的时候有签到题。<br />
-不过还好，反正我不适合打手速题。</p>
-<p>Skip 掉了 B （还好 Skip 掉了，后来全程肝 B 没肝出来），直接开 C 。<br />
-发现 C 的 63' 巨水，打了个神奇剪枝交了一发，我一直感觉这玩意复杂度是 <span class="math inline">\(O(np)\)</span> 的，<br />
-但是没用，TLE ，复杂度假了呗，虽然我并不知道原因，但觉得剩下的 37' 性价比不高，就 Skip 掉了。</p>
-<p>提答题好评。</p>
-<p>洛谷不支持提答题差评。</p>
-<p>但是它给的输入文件的坐标都是有理数，小数点后面一堆数我 TM 怎么知道它的具体位置啊，在图里面标注坐标的无理数表示会死吗。。<br />
-第一个点蛮简单的，然后第二个点就卡死了。</p>
-<p>弃疗，回去肝 B 。</p>
-<p>但是我觉得 B 真的难啊，好多细节？反正是没肝出来，最后 173' 狗到 rank21 。</p>
-<p>然而这场比赛参加的人少，只有 300+ 个人打，而且好像很多流皮的人都不打洛谷月赛哦，<br />
-所以不太理解为什么 XRound 为什么坚持在洛谷办<del>（难道是 py 交易？）</del>，<br />
-平心而论对于 XR 这种比赛 CometOJ 应该是个更合适的平台。</p>
-<p><span class="math inline">\(\color{white}{事实上，洛谷的确为办一场月赛出了不少钱，出题人的待遇比在 cf 等比赛要高}\)</span></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2019/10/16/%E8%8E%AB%E9%98%9F%E4%BA%8C%E6%AC%A1%E7%A6%BB%E7%BA%BF/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-      <meta itemprop="name" content="Kewth">
-      <meta itemprop="description" content="HNFMS 现役 OIer">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="KeBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/10/16/%E8%8E%AB%E9%98%9F%E4%BA%8C%E6%AC%A1%E7%A6%BB%E7%BA%BF/" class="post-title-link" itemprop="url">莫队二次离线</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-10-16 19:55:40" itemprop="dateCreated datePublished" datetime="2019-10-16T19:55:40+08:00">2019-10-16</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-22 20:21:17" itemprop="dateModified" datetime="2020-07-22T20:21:17+08:00">2020-07-22</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>莫队算法可以通过单点增量的方式以 <span class="math inline">\(O(n\sqrt{n}K)\)</span> （认为 <span class="math inline">\(n, q\)</span> 同阶）的复杂度离线处理若干区间信息询问。 其中每次单点增量，即每次端点移动的复杂度为 <span class="math inline">\(O(K)\)</span> 。</p>
-<p>大多数情况下端点移动的复杂度是 <span class="math inline">\(O(1)\)</span> 的，这样的问题一般是统计区间内的“数”。 而统计区间内的“数对”这样的问题往往难以 <span class="math inline">\(O(1)\)</span> 处理端点移动。</p>
-<p>莫队二次离线或许能处理这样的问题。</p>
-<h2 id="什么用">什么用</h2>
-<p>一般莫队有 <span class="math inline">\(O(n\sqrt{n})\)</span> 次端点移动，如果要用数据结构维护信息的话， 就有 <span class="math inline">\(O(n\sqrt{n})\)</span> 次修改和 <span class="math inline">\(O(n\sqrt{n})\)</span> 次查询。</p>
-<p>而莫队二次离线能够优化为成 <span class="math inline">\(O(n)\)</span> 次修改和 <span class="math inline">\(O(n\sqrt{n})\)</span> 次查询， 从而允许使用一些修改复杂度大而查询复杂度小的方式来维护信息。 例如分块，如果能 <span class="math inline">\(O(\sqrt{n})\)</span> 修改和 <span class="math inline">\(O(1)\)</span> 查询的话，总的复杂度就是 <span class="math inline">\(O(n\sqrt{n})\)</span> 。</p>
-<p>但是有两个前提：</p>
-<ul>
-<li>维护的信息有一定可减性，换句话说必须保证每次询问 <span class="math inline">\([l, r]\)</span> 与 <span class="math inline">\(r + 1\)</span> 产生的贡献时， 需要能够用 <span class="math inline">\([1, r]\)</span> 与 <span class="math inline">\(r + 1\)</span> 产生的贡献减去（或者其他方式）<span class="math inline">\([1, l)\)</span> 与 <span class="math inline">\(r + 1\)</span> 产生的贡献代替。</li>
-<li>维护的信息有一定可加性，换句话说在每次询问前在不知道当前的 Ans 的情况下可以得到 Ans 的改变量（或某种改变方式）。</li>
-</ul>
-<h2 id="怎么用">怎么用</h2>
-<p>考虑每次右端点右移的过程（右端点左移以及左端点移动是类似的）。</p>
-<p>每次右端点 <span class="math inline">\(r\)</span> 从 <span class="math inline">\(r_0\)</span> 移动到 <span class="math inline">\(r_1\)</span> 时，对于其中的每一个 <span class="math inline">\(r\)</span> ，都需要查询 <span class="math inline">\([l, r - 1]\)</span> 与该点产生的贡献。 考虑差分，利用上面提到过的可减性，查询 <span class="math inline">\([1, r]\)</span> 与 <span class="math inline">\(r + 1\)</span> 产生的贡献和 <span class="math inline">\([1, l)\)</span> 与 <span class="math inline">\(r + 1\)</span> 产生的贡献。</p>
-<h4 id="part-1">Part 1</h4>
-<p><span class="math inline">\([1, r]\)</span> 与 <span class="math inline">\(r + 1\)</span> 产生的贡献只与 <span class="math inline">\(r\)</span> 有关，可以记为 <span class="math inline">\(f_r\)</span> 。 那么预处理 <span class="math inline">\(f_r\)</span> 只需从小到大一个个加点维护当前的 <span class="math inline">\([1, r]\)</span> 并询问出 <span class="math inline">\(f_r\)</span> 。</p>
-<p>这个过程需要 <span class="math inline">\(O(n)\)</span> 次修改和 <span class="math inline">\(O(n)\)</span> 次查询。</p>
-<p>参考实现：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// a[i] 是第 i 个元素</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i ++) &#123;</span><br><span class="line">	f[i] = Query(a[i]);</span><br><span class="line">	Modify(a[i]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>另外如果需要卡常，可以将 <span class="math inline">\(f\)</span> 做一遍前缀和，这样后续查询 <span class="math inline">\([r_0, r_1]\)</span> 总的贡献就可以 <span class="math inline">\(O(1)\)</span> 计算了（不影响复杂度）。</p>
-<h4 id="part-2">Part 2</h4>
-<p><span class="math inline">\([1, l)\)</span> 与 <span class="math inline">\(r + 1\)</span> 产生的贡献可以二次离线，在 <span class="math inline">\(l\)</span> 处存下 <span class="math inline">\(r + 1\)</span> 之后再考虑计算。 这样做的空间复杂度是 <span class="math inline">\(O(n\sqrt{n})\)</span> 的， 但事实上每次只需把 <span class="math inline">\([r_0, r_1]\)</span> 这个区间存进 <span class="math inline">\(l\)</span> 处而不是把每个数存进去就可以做到 <span class="math inline">\(O(n)\)</span> 的空间复杂度了， 这样询问的时候也只需求 <span class="math inline">\([r_0, r_1]\)</span> 整体的贡献，常数上还能少一个 <span class="math inline">\(O(n\sqrt{n})\)</span> 的瓶颈。</p>
-<p>离线处理上述的贡献，也和求 <span class="math inline">\(f_r\)</span> 的过程类似，每次从小到大一个个加点维护当前的 <span class="math inline">\([1, l)\)</span> ， 并对于 <span class="math inline">\(l\)</span> 处存下的每一个数逐个询问 <span class="math inline">\([1, l)\)</span> 与其产生的贡献即可。 这个过程需要 <span class="math inline">\(O(n)\)</span> 次修改和 <span class="math inline">\(O(n\sqrt{n})\)</span> 次查询。</p>
-<p>参考实现：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> l = <span class="number">1</span>, r = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= q; i ++) &#123;</span><br><span class="line">	<span class="keyword">int</span> L = query[i].l, R = query[i].r; <span class="comment">// 排序后的询问</span></span><br><span class="line">	<span class="keyword">if</span>(r &lt; R) &#123;</span><br><span class="line">		<span class="built_in">vector</span>[l].push_back(<span class="built_in">std</span>::make_pair(r + <span class="number">1</span>, R));</span><br><span class="line">		r = R;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i ++) &#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">auto</span> par : <span class="built_in">vector</span>[i])</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> k = par.first; k &lt;= par.second; k ++)</span><br><span class="line">			Query(a[k]); <span class="comment">// 这里用什么东西存一下结果就好了</span></span><br><span class="line">	Modify(a[i]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2019/10/15/%E4%BA%9A%E7%BA%BF%E6%80%A7%E7%AD%9B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-      <meta itemprop="name" content="Kewth">
-      <meta itemprop="description" content="HNFMS 现役 OIer">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="KeBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/10/15/%E4%BA%9A%E7%BA%BF%E6%80%A7%E7%AD%9B/" class="post-title-link" itemprop="url">亚线性筛</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-10-15 17:24:07" itemprop="dateCreated datePublished" datetime="2019-10-15T17:24:07+08:00">2019-10-15</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-05-19 20:30:23" itemprop="dateModified" datetime="2020-05-19T20:30:23+08:00">2020-05-19</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>亚线性筛，就是以低于线性的复杂度预处理一些线性信息的筛法统称。</p>
-<p>目前我会杜教筛和 min25 还有 powerful number。</p>
-<h2 id="杜教筛">杜教筛</h2>
-<p>篇幅过长，<a href="/2020/01/02/杜教筛">点击此处</a>。</p>
-<h2 id="min25">min25</h2>
-<p>min25 筛是扩展埃氏筛，也可以筛一类（更复杂的）<strong>积性函数</strong>的前缀和，并且通常是同类亚线性筛中最快的一个。<br />
-而且灵活运用 min25 可以处理一些特殊的关于质因子的问题。</p>
-<h4 id="理论">理论</h4>
-<p>假设要求 <span class="math inline">\(S(n) = \sum_{i=1}^n f(i)\)</span> 。</p>
-<p>min25 筛可大致分为两步。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/10/15/%E4%BA%9A%E7%BA%BF%E6%80%A7%E7%AD%9B/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
 
-          </div>
-          
+        </div>
+        
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -1125,111 +1213,6 @@ TLE 了 4 个点。。。</p>
   }
 </script>
 
-        </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="Kewth"
-      src="/images/avatar.jpeg">
-  <p class="site-author-name" itemprop="name">Kewth</p>
-  <div class="site-description" itemprop="description">HNFMS 现役 OIer</div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">56</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-          
-        <span class="site-state-item-count">4</span>
-        <span class="site-state-item-name">分类</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-          
-        <span class="site-state-item-count">58</span>
-        <span class="site-state-item-name">标签</span></a>
-      </div>
-  </nav>
-</div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-        <a href="https://github.com/Kewth" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Kewth" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="mailto:Kewth.K.D@outlook.com" title="E-Mail → mailto:Kewth.K.D@outlook.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="qq:1344205350" title="QQ → qq:1344205350" rel="noopener" target="_blank"><i class="fab fa-qq fa-fw"></i>QQ</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://www.luogu.org/space/show?uid=52232" title="Luogu → https:&#x2F;&#x2F;www.luogu.org&#x2F;space&#x2F;show?uid&#x3D;52232" rel="noopener" target="_blank"><i class="fab fa-code-fork fa-fw"></i>Luogu</a>
-      </span>
-  </div>
-
-
-  <div class="links-of-blogroll motion-element">
-    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
-      Links | 友链
-    </div>
-    <ul class="links-of-blogroll-list">
-        <li class="links-of-blogroll-item">
-          <a href="https://ricardoships.github.io/" title="https:&#x2F;&#x2F;ricardoships.github.io" rel="noopener" target="_blank">Ricardoships(AFO)</a>
-        </li>
-        <li class="links-of-blogroll-item">
-          <a href="https://luoyuyang.cf/" title="https:&#x2F;&#x2F;luoyuyang.cf" rel="noopener" target="_blank">lyy(AFO)</a>
-        </li>
-        <li class="links-of-blogroll-item">
-          <a href="https://zrz-orz.github.io/" title="https:&#x2F;&#x2F;zrz-orz.github.io" rel="noopener" target="_blank">zrz_orz(AFO)</a>
-        </li>
-        <li class="links-of-blogroll-item">
-          <a href="https://qiuly.xyz/" title="https:&#x2F;&#x2F;qiuly.xyz" rel="noopener" target="_blank">Qiuly</a>
-        </li>
-        <li class="links-of-blogroll-item">
-          <a href="https://www.cnblogs.com/Lskkkno1" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;Lskkkno1" rel="noopener" target="_blank">Lskkkno1</a>
-        </li>
-        <li class="links-of-blogroll-item">
-          <a href="https://www.allenyou.wang/" title="https:&#x2F;&#x2F;www.allenyou.wang" rel="noopener" target="_blank">Allenyou</a>
-        </li>
-    </ul>
-  </div>
-
-      </div>
-
-    </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
-
-
       </div>
     </main>
 
@@ -1248,7 +1231,7 @@ TLE 了 4 个点。。。</p>
   </span>
   <span class="author" itemprop="copyrightHolder">Kewth</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
   </div>
 
         
@@ -1286,8 +1269,6 @@ TLE 了 4 个点。。。</p>
 
   
   <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
 
 <script src="/js/utils.js"></script>
 
@@ -1300,11 +1281,13 @@ TLE 了 4 个点。。。</p>
 <script src="/js/next-boot.js"></script>
 
 
-
-
   
 
 
+
+
+  
+<script src="/js/local-search.js"></script>
 
 
 
@@ -1361,7 +1344,7 @@ TLE 了 4 个点。。。</p>
       }
     };
     (function () {
-      var script = document.createElement('script');
+      const script = document.createElement('script');
       script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
       script.defer = true;
       document.head.appendChild(script);
