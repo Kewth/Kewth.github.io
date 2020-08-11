@@ -150,7 +150,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">64</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">66</span></a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -224,7 +224,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">64</span>
+          <span class="site-state-item-count">66</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -294,6 +294,216 @@
 
         <div class="content index posts-expand">
           
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2019/10/13/cf-592div2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Kewth">
+      <meta itemprop="description" content="HNFMS 现役 OIer">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KeBlog">
+    </span>
+
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/10/13/cf-592div2/" class="post-title-link" itemprop="url">cf-592div2</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-10-13 21:07:10" itemprop="dateCreated datePublished" datetime="2019-10-13T21:07:10+08:00">2019-10-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-05-19 20:31:24" itemprop="dateModified" datetime="2020-05-19T20:31:24+08:00">2020-05-19</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%80%BB%E7%BB%93/" itemprop="url" rel="index"><span itemprop="name">总结</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>自闭。<br />
+这大概是我打过最失败的一场比赛。</p>
+<p><del>UPDATE: 我还是太 naive 了，比起后面 Div1 爆零，这次还算好的。</del></p>
+<p>A 签到题，然而我在 14min 才 A ，我是真的不适合做手速题。</p>
+<p>B 行数开大点就是插头 DP ，然而行数只有 2 ，插头只有 3 种，<br />
+随便 DP 一下就行了，中间少考虑一种插头 WA 了一发，在 25min AC 。</p>
+<p>然后，就没有然后了。</p>
+<p>C 题解二元一次方程的整除解，woc 这不扩欧板题嘛，没想太多，直接码上去。<br />
+然后很轻松过了样例啊，交 WA 了，哦没判负数，又交 WA 了。。。<br />
+静态查错无果，遂对拍，拍了 1000+ 组全是 AC 。</p>
+<p>事情好像不太对劲.jpg</p>
+<p>skip 掉，直接开 E ，发现了个单调性，没想太多，直接码上去。<br />
+还是很轻松过了样例啊，交 WA 了。<br />
+静态查错无果，遂回去调 C 。</p>
+<p>冷静分析一波后发现 C 题神 tm 会爆 long long 。<br />
+这简单，改 int128 ，结果交 CE 了。<br />
+然后就到网上蒯 c++ 大整数模板，贴下来后，<br />
+样例都过不去了我天，然后我就去调那个模板，也是醉了。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Big n = <span class="number">10</span>, x = <span class="number">5</span>;</span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">clog</span> &lt;&lt; n &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">clog</span> &lt;&lt; n - x + x &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
+<p>上面代码第一行输出 10 ，第二行输出 20 。</p>
+<p>当时我心态就炸了，简直想去问候那个把模板贴他博客上的祖宗十八代。<br />
+写的这玩意连加减法都算不对心里没点 B 数吗也敢往网上放。</p>
+<p>服了，还是乖乖想不爆 long long 的解法吧。</p>
+<p>9102 年了还有人靠爆 long long 混饭吃。<br />
+这样明显卡语言啊，对 c++ 选手毫无公平性可言。</p>
+<p>至于正解，自然是没想出来。</p>
+<p>最后获得了 rank3400+ 的好成绩，掉分预定。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2019/10/13/cometoj-12/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Kewth">
+      <meta itemprop="description" content="HNFMS 现役 OIer">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KeBlog">
+    </span>
+
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/10/13/cometoj-12/" class="post-title-link" itemprop="url">cometoj-12</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-10-13 20:27:30" itemprop="dateCreated datePublished" datetime="2019-10-13T20:27:30+08:00">2019-10-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-12-06 20:37:17" itemprop="dateModified" datetime="2019-12-06T20:37:17+08:00">2019-12-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%80%BB%E7%BB%93/" itemprop="url" rel="index"><span itemprop="name">总结</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>以后打比赛写总结。</p>
+<p><del>话说今天打到短裙好开心啊</del></p>
+<p>A 题签到题。</p>
+<p>为什么我第一个想的就是 O(1) 的哈希？<br />
+表示完全没有去想好写得多的排序，而是直接把三个字符用 int 表示去搞。<br />
+然后本地测样例玄学错误，最后发现哈希的数组开小了。<br />
+7min 做出 A 题表示自闭。</p>
+<p><del>真是可怕交题的时候刷新就有 40+ AC 了</del></p>
+<p>B 题还是签到题，以为能在 5min AC 结果打了 9min ，感觉我不适合这种手速题。</p>
+<p>然后我 C 题看都没看一眼直接 skip 掉就去开了 D 题。<br />
+看了 3min 哇这不数位 DP 吗，现在还没人交，我还有拿一血的想法。<br />
+然后打了出来，测样例， woc 过了，这个时候还是 4 提交 0 通过。<br />
+我在机房大呼卧槽我要拿一血了，然后自信满满地交了上去。</p>
+<p>成功 WA 掉所有点。</p>
+<p>再刷新 D 题一血就已经被拿了。</p>
+<p>然后我的心路历程是这样的：</p>
+<p>我要拿二血。</p>
+<p>我要拿三血。</p>
+<p>我要拿四血。</p>
+<p>算了我凉了还是做好长期打算拿个十血什么的吧。。。</p>
+<p>期间各种被 master 嘲讽，各种互怼。</p>
+<p>master 走后没人跟我说话了，然后冷静分析了一波，发现限制条件搞错了，<br />
+然后随便搓了几行代码就 A 了。</p>
+<p><del>所以以后打比赛要远离 master</del><br />
+所以以后打比赛还是要在快节奏中冷静下来。</p>
+<p>A 完 D 已经是 2h 了，回去看 C ，<del>这 tm 不最短路板题嘛</del>。<br />
+然而 C 题有坑，卡了好久，最后在比赛结束前 3min rush 了一发成功 AC 。</p>
+<p>然后靠着 4 题 + 罚时 8h 狗进 rank8 <del>拿到短裙啦</del>。</p>
+<p>这场比赛绝对是我打的最爽的一场网络赛，感觉 cometoj 的 ACM 比赛才是最刺激的，<br />
+题目质量高，节奏快，竞争激烈，尤其是相对于 cf 和 atcoder 来说没有网速杀和题意杀。<br />
+体验感极好。<br />
+<del>最主要的还是有短裙拿</del></p>
+<p>然而拿短裙又没人肯女装，我还是选择拿杯子吧。。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -1145,206 +1355,6 @@ dfs 到一个新点 v 一定会使深度 + 1 ，将当前深度 d 的线性基�
 <p>另外事实上只需要熟知 <span class="math inline">\(\mu\)</span> 函数的性质，直接推式子就行了，<br />
 绝大多数情况下（至少是我遇到的所有情况下）并不需要莫比乌斯反演。</p>
 <p>另外莫比乌斯反演有个很简单的 <span class="math inline">\(O(nlogn)\)</span> 实现，不需要筛 <span class="math inline">\(\mu\)</span> ，直接按定义枚举每个数的倍数去筛即可。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2019/10/09/FFT/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-      <meta itemprop="name" content="Kewth">
-      <meta itemprop="description" content="HNFMS 现役 OIer">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="KeBlog">
-    </span>
-
-    
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/10/09/FFT/" class="post-title-link" itemprop="url">FFT</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-10-09 21:00:00" itemprop="dateCreated datePublished" datetime="2019-10-09T21:00:00+08:00">2019-10-09</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-06 20:37:17" itemprop="dateModified" datetime="2019-12-06T20:37:17+08:00">2019-12-06</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="前置知识">前置知识</h2>
-<p>首先要知道关于 <a href="https://kewth.github.io/blog/2019/01/24/多项式的运算/">多项式</a> 的一些知识。</p>
-<p>其次要对复数有一些了解。</p>
-<h2 id="点值表示法">点值表示法</h2>
-<p>从 <a href="https://kewth.github.io/blog/2019/01/24/多项式的运算/">多项式</a> 中， 已经知道了多项式乘法的朴素算法时间复杂度为 $ O(n^2) $ 。 原因在于多项式是用系数表示法定义的。</p>
-<p>重新定义 n 次多项式 a 为满足 $ k (http://blog.miskcoo.com/2015/04/polynomial-multiplication-and-fast-fourier-transform) 。</p>
-<h2 id="迭代实现">迭代实现</h2>
-<p>上述过程用递归实现常数较大，因而有一个迭代实现 FFT 的快速版本。</p>
-<h3 id="蝴蝶操作">蝴蝶操作</h3>
-<p>FFT 的每个值都是由子问题的两个值转化而来，且这两个值可以转换成两个需要的值（ FFT 复杂度的保证）。 若用一个数组 a 表示多项式。 那么蝴蝶操作形如：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">complex</span> Wn; <span class="comment">// 单位根的幂</span></span><br><span class="line"><span class="built_in">complex</span> a0 = a[x], a1 = a[y];</span><br><span class="line">a[x] = a0 + a1 * Wn;</span><br><span class="line">a[y] = a1 + a0 * Wn;</span><br></pre></td></tr></table></figure>
-<p>这样取出了数组中两个值后再修改相应位置的两个值，就是蝴蝶操作。</p>
-<h3 id="rader-排序">Rader 排序</h3>
-<p>Rader 排序的目的是让表示多项式的数组可以进行蝴蝶操作。</p>
-<p>盗图一张： <img src="https://cdn.luogu.org/upload/pic/23926.png" alt="luogu" /></p>
-<p>摘自洛谷：</p>
-<pre><code>剩下的问题就是把初始的数组变成最后一层的样子了。
-先别急着写一个递归函数暴力把位置换过去。
-来观察一下最后序列的编号的二进制表示000, 100, 010, 110, 001, 101, 011, 111，
-是不是与原来 000, 001, 010, 011, 100, 101, 110, 111 相比，
-每个位置上的二进制位都反过来了？
-这样的变化叫做 Rader 排序。</code></pre>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2019/10/09/%E9%80%86%E5%BA%8F%E5%AF%B9/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-      <meta itemprop="name" content="Kewth">
-      <meta itemprop="description" content="HNFMS 现役 OIer">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="KeBlog">
-    </span>
-
-    
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/10/09/%E9%80%86%E5%BA%8F%E5%AF%B9/" class="post-title-link" itemprop="url">逆序对</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-10-09 21:00:00" itemprop="dateCreated datePublished" datetime="2019-10-09T21:00:00+08:00">2019-10-09</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-06 20:37:17" itemprop="dateModified" datetime="2019-12-06T20:37:17+08:00">2019-12-06</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>在数列 a 中,逆序对即是满足 <span class="math inline">\(i &lt; j\)</span> 且 <span class="math inline">\(a_i &gt; a_j\)</span> 的数对。 许多情况下你推式子推着推着就推出个 <span class="math inline">\(\sum_{i=1}^n \sum_{j=i+1}^n a_i&gt; a_j\)</span>， 这就是逆序对的数量。</p>
-<h2 id="暴力">暴力</h2>
-<p>朴素的求法自然是 <span class="math inline">\(O(n^2)\)</span> 地枚举 <span class="math inline">\(i, j\)</span> 统计，这里不再赘述。</p>
-<h2 id="归并">归并</h2>
-<p>前置技能：归并排序。</p>
-<p>这应该是最主流的求逆序对的方法了。</p>
-<p>要求一个区间内的逆序对数，假设已经递归求出两个子区间的逆序对数， 接下来要做的就是求一个在左区间，一个在右区间的逆序对数。</p>
-<p>考虑归并排序的过程，在两个指针比较大小时进行统计。</p>
-<p>设左右区间的当前比较指针（下标）为 p1, p2, 当找到第一个 p2 使 <span class="math inline">\(a_{p1}&lt; a_{p2}\)</span> 时，可知 <span class="math inline">\(\forall i\in [p1max+1, p2),\;a_{p1}&gt; a_{p2}\)</span> 。 那么横跨两个子区间的以 p1 为左端点的逆序对就有 p2-p1max-1 个。 对所有 p1 统计和即可。</p>
-<p>值得注意的是，p2&gt;r（区间右端点）退出时， 此时左区间未处理的数对答案都有 r-p1max 的贡献因为此时左区间剩下的数都比右区间所有数大。</p>
-<p>复杂度 <span class="math inline">\(O(n \cdot log_2n)\)</span> 。</p>
-<h2 id="线段树树状数组">线段树/树状数组：</h2>
-<p>前置技能：线段树（或树状数组）。</p>
-<p>以线段树为例。</p>
-<h3 id="做法-1">做法 1</h3>
-<p>用线段树维护区间内有效数的个数。 之所以是有效的数，是因为要从小到大删数。 如果一个数 <span class="math inline">\(a_i\)</span> 是最小的，那么以其为右端点的逆序对就是 1 至 i-1 的数的个数。</p>
-<p>接下来呢？ 在线段树中删掉最小的数（单点修改 -1）， 那么第二小的数 <span class="math inline">\(a_j\)</span> 在此时就是最小的数，同样有 1 至 j-1 的数的个数（区间查询）的贡献。 以此类推从小到大一个个删数即可。</p>
-<p>复杂度<span class="math inline">\(O(n \cdot log_2n)\)</span>。</p>
-<h3 id="做法-2">做法 2</h3>
-<p>离散化后用线段树维护一个桶。</p>
-<p>从左到右依次计算每个数为右端点的逆序对并加入桶，即对每个数求该数左边比该数大的数的个数。 设第 i 个数左边有 <span class="math inline">\(f_i\)</span> 个比 <span class="math inline">\(a_i\)</span> 大的数，那么 <span class="math inline">\(f_i\)</span> 的值即是当前线段树上 <span class="math inline">\(a_i+1~a_{max}\)</span> 的询问。</p>
-<p>同样复杂度是 <span class="math inline">\(O(n \cdot log_2n)\)</span>。</p>
-<p>这种做法稍稍改变可以高效解决一种特殊的问题：</p>
-<p>对于 01 串求串中 1 的数量比 0 的数量大的区间的数量。</p>
-<p>比较容易想到的做法是将 0 看成 -1，区间中 1 比 0(-1) 多等价于区间和大于 0 。 区间和可以转换为前缀和 s，那么 l,r 这一区间和大于 0 等价于 <span class="math inline">\(s_r - s_{l-1} &gt; 0 (r &gt;= l)\)</span>。 移项后即是 <span class="math inline">\(s_r &gt; s_{l-1} (r &gt; l-1)\)</span>，所以题目可以转换为求前缀和的逆序对， 复杂度 <span class="math inline">\(O(n \cdot log_2n)\)</span> 。</p>
-<p><strong>但是</strong> 这个问题有特殊性，由 01 串的至可知相邻两个前缀和的差值一定是 1 ， 利用这一个性质可以有更高效的方法。</p>
-<p>用做法 2 求逆序对，从左到右依次扫，对于当前 <span class="math inline">\(a_i\)</span> 一定比 <span class="math inline">\(a_{i-1}\)</span> 大 1 或者小 1， 利用到这个差值，比 <span class="math inline">\(a_i\)</span> 大的数相当于当前线段树 <span class="math inline">\(a_i+1\)</span> 到 <span class="math inline">\(a_{max}\)</span> 的询问， 若 <span class="math inline">\(a_i = a_{i-1}+1\)</span> ，那么 <span class="math inline">\(f_{i-1}\)</span> 就是 <span class="math inline">\(a_i\)</span> 到 <span class="math inline">\(a_{maxn}\)</span> 的询问，否则就是 <span class="math inline">\(a_i+2\)</span> 到 <span class="math inline">\(a_{max}\)</span> 的询问。 那么 <span class="math inline">\(f_i\)</span> 与 <span class="math inline">\(f_{i-1}\)</span> 的差只在 <span class="math inline">\(a_i\)</span> 或 <span class="math inline">\(a_i+2\)</span> 中，长度为一， 完全没必要用线段树，用数组维护桶即可。</p>
-<p>复杂度 <span class="math inline">\(O(n)\)</span>。</p>
 
       
     </div>
