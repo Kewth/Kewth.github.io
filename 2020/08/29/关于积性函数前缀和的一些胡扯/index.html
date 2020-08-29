@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.0.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="KIx9DF_OoeyQmEhcVAbjH5vg_i539tmILHmNH8lRDtw">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  
+  <link rel="stylesheet" href="/lib/animate-css/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"kewth.github.io","root":"/","scheme":"Muse","version":"8.0.0-rc.5","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"path":"search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":3,"unescape":false,"preload":false}};
+  </script>
+
+  <meta name="description" content="想出一道不一般的积性函数前缀和的题，题没出出来，倒是发现不少有意思的东西。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于积性函数前缀和的一些胡扯">
+<meta property="og:url" content="https://kewth.github.io/2020/08/29/%E5%85%B3%E4%BA%8E%E7%A7%AF%E6%80%A7%E5%87%BD%E6%95%B0%E5%89%8D%E7%BC%80%E5%92%8C%E7%9A%84%E4%B8%80%E4%BA%9B%E8%83%A1%E6%89%AF/index.html">
+<meta property="og:site_name" content="KeBlog">
+<meta property="og:description" content="想出一道不一般的积性函数前缀和的题，题没出出来，倒是发现不少有意思的东西。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-08-29T00:34:54.000Z">
+<meta property="article:modified_time" content="2020-08-29T01:41:04.385Z">
+<meta property="article:author" content="Kewth">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://kewth.github.io/2020/08/29/%E5%85%B3%E4%BA%8E%E7%A7%AF%E6%80%A7%E5%87%BD%E6%95%B0%E5%89%8D%E7%BC%80%E5%92%8C%E7%9A%84%E4%B8%80%E4%BA%9B%E8%83%A1%E6%89%AF/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>关于积性函数前缀和的一些胡扯 | KeBlog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="KeBlog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <main class="main">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+        <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">KeBlog</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">The OI Algorithm Blog of Kewth</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">61</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">5</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">70</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B%E5%AE%9A%E4%B9%89"><span class="nav-number">1.</span> <span class="nav-text">一些定义</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E7%89%B9%E5%BE%81%E5%87%BD%E6%95%B0"><span class="nav-number">1.1.</span> <span class="nav-text">关于特征函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#powerful-number"><span class="nav-number">2.</span> <span class="nav-text">Powerful Number</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%B7%E7%A7%AF%E6%9E%84%E9%80%A0"><span class="nav-number">3.</span> <span class="nav-text">卷积构造</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9E%E5%88%B0-powerful-number"><span class="nav-number">4.</span> <span class="nav-text">回到 Powerful Number</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9B%B4%E4%B8%80%E8%88%AC%E7%9A%84%E6%83%85%E5%86%B5"><span class="nav-number">5.</span> <span class="nav-text">更一般的情况</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#min25-%E7%AD%9B"><span class="nav-number">6.</span> <span class="nav-text">min25 筛</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#end"><span class="nav-number">7.</span> <span class="nav-text">End</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Kewth"
+      src="/images/avatar.jpeg">
+  <p class="site-author-name" itemprop="name">Kewth</p>
+  <div class="site-description" itemprop="description">HNFMS 现役 OIer</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">70</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">61</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Kewth" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Kewth" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:Kewth.K.D@outlook.com" title="E-Mail → mailto:Kewth.K.D@outlook.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="qq:1344205350" title="QQ → qq:1344205350" rel="noopener" target="_blank"><i class="fab fa-qq fa-fw"></i>QQ</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.luogu.org/space/show?uid=52232" title="Luogu → https:&#x2F;&#x2F;www.luogu.org&#x2F;space&#x2F;show?uid&#x3D;52232" rel="noopener" target="_blank"><i class="fas fa-code-branch fa-fw"></i>Luogu</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links | 友链
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="/" title="&#x2F;">无，欢迎互换友链</a>
+        </li>
+    </ul>
+  </div>
+
+      </section>
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </header>
+
+      
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div id="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+      <div class="main-inner">
+        
+
+        <div class="content post posts-expand">
+          
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2020/08/29/%E5%85%B3%E4%BA%8E%E7%A7%AF%E6%80%A7%E5%87%BD%E6%95%B0%E5%89%8D%E7%BC%80%E5%92%8C%E7%9A%84%E4%B8%80%E4%BA%9B%E8%83%A1%E6%89%AF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Kewth">
+      <meta itemprop="description" content="HNFMS 现役 OIer">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KeBlog">
+    </span>
+
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          关于积性函数前缀和的一些胡扯
+        </h1>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-08-29 08:34:54 / 修改时间：09:41:04" itemprop="dateCreated datePublished" datetime="2020-08-29T08:34:54+08:00">2020-08-29</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>想出一道不一般的积性函数前缀和的题，题没出出来，倒是发现不少有意思的东西。</p>
+<a id="more"></a>
+<h2 id="一些定义">一些定义</h2>
+<p>有些定义是我胡扯的。</p>
+<p>对于积性函数 <span class="math inline">\(f\)</span> ，称其特征函数 <span class="math inline">\(F\)</span> 为 <span class="math inline">\(f\)</span> 关于质数 <span class="math inline">\(p\)</span> 的函数，准确来说 <span class="math inline">\(F\)</span> 是 <span class="math inline">\(f\)</span> 的特征函数当且仅当对于任意质数 <span class="math inline">\(p\)</span> 有 <span class="math inline">\(F(p) = f(p)\)</span> ，可以发现 <span class="math inline">\(F\)</span> 并不是唯一的，但是我们只考虑最简单的那个，例如对于任意质数 <span class="math inline">\(p\)</span> 有 <span class="math inline">\(f(p) = p + 1\)</span> ，不妨令任意 <span class="math inline">\(x\)</span> 有 <span class="math inline">\(F(x) = x + 1\)</span> ，可以发现 <span class="math inline">\(F\)</span> 并不一定是积性函数。</p>
+<p>记积性函数 <span class="math inline">\(I_m(x) = x^m\)</span> 。</p>
+<p>对于数论函数 <span class="math inline">\(f\)</span> ，其前缀和函数记为 <span class="math inline">\(S_f\)</span> ，满足 <span class="math inline">\(S_f(n) = \sum_{i=1}^n f(i)\)</span> 。</p>
+<p>记 <span class="math inline">\(B(n) = \lfloor \sqrt{n} \rfloor\)</span> ，<span class="math inline">\(n / i = \lfloor \frac{n}{i} \rfloor\)</span> 。</p>
+<h3 id="关于特征函数">关于特征函数</h3>
+<p>两个积性函数相乘（狄利克雷卷积），它们的特征函数相加（线性相加）。</p>
+<h2 id="powerful-number">Powerful Number</h2>
+<p>众所周知 Powerful Number 可以快速求一类积性函数前缀和，这玩意的本质是什么呢？</p>
+<p>对于积性函数 <span class="math inline">\(f\)</span> ，称其为 Powerful Function ，当且仅当其有特征函数 <span class="math inline">\(F\)</span> 恒为 0 。</p>
+<ul>
+<li>定理 1 ：Powerful Function 在 <span class="math inline">\(n\)</span> 以内的非零的值只有 <span class="math inline">\(O(\sqrt{n})\)</span> 个。</li>
+</ul>
+<p>那么 Powerful Number 求 <span class="math inline">\(S_f(n)\)</span> 的本质就是找一个与 <span class="math inline">\(f\)</span> 特征函数相同的数论函数 <span class="math inline">\(h\)</span> ，然后令 <span class="math inline">\(g = f \times h^{-1}\)</span> ，可以知道 <span class="math inline">\(g\)</span> 特征函数是两者相减，那么 <span class="math inline">\(g\)</span> 一定是 Powerful Function ，于是根据</p>
+<p><span class="math display">\[S_f(n) = \sum_{i=1}^n g(i) S_h(\lfloor \frac{n}{i} \rfloor)\]</span></p>
+<p>枚举 <span class="math inline">\(g\)</span> 的有效值，也就是 Powerful Number ，问题可以从求 <span class="math inline">\(S_f\)</span> 转换为求 <span class="math inline">\(S_h\)</span> 。</p>
+<p>如果 <span class="math inline">\(S_h(n)\)</span> 可以 <span class="math inline">\(O(1)\)</span> 求，那么 <span class="math inline">\(S_f(n)\)</span> 就可以 <span class="math inline">\(O(\sqrt{n})\)</span> 求，但大多数时候并非如此。</p>
+<h2 id="卷积构造">卷积构造</h2>
+<p>卷积构造也是求积性函数前缀和的利器，杜教筛便是广为人知的一个例子。</p>
+<p>构造狄利克雷卷积 <span class="math inline">\(f \times g = h\)</span> ，那么根据</p>
+<p><span class="math display">\[S_f(n) = S_h(n) - S_g(n) + S_f(B(n)) S_g(B(n)) - \sum_{i=2}^{B(n)} (g(i) S_f(n / i) + f(i) S_g(n / i))\]</span></p>
+<p>即可把求 <span class="math inline">\(S_f(n)\)</span> 的问题转换为求 <span class="math inline">\(S_g, S_h\)</span> 。</p>
+<p>事实上，把上式换个方向，构造卷积 <span class="math inline">\(f = g \times h\)</span> ，根据</p>
+<p><span class="math display">\[S_f(n) = \sum_{i=1}^{B(n)} (g(i) S_f(n / i) + f(i) S_g(n / i)) - S_f(B(n)) S_g(B(n))\]</span></p>
+<p>也同样可以把求 <span class="math inline">\(S_f(n)\)</span> 的问题转换为求 <span class="math inline">\(S_g, S_h\)</span> 。</p>
+<h2 id="回到-powerful-number">回到 Powerful Number</h2>
+<p>有时候找不到特征函数相同的可以 <span class="math inline">\(O(1)\)</span> 求前缀和的数论函数，但是可以把特征函数拆成两部分的和，然后两部分分别可以找到对应可以 <span class="math inline">\(O(1)\)</span> 求的数论函数，这时候也是可以用 Powerful Number 去算的。</p>
+<p>也就是构造卷积 <span class="math inline">\(h = a \times b\)</span> ，如果 <span class="math inline">\(S_a, S_b\)</span> 都可以 <span class="math inline">\(O(1)\)</span> 求值，那么根据上文的卷积构造的式子，就可以 <span class="math inline">\(O(\sqrt{n})\)</span> 求出 <span class="math inline">\(S_h(n)\)</span> ，这时候对于任意与 <span class="math inline">\(h\)</span> 特征函数相同的 <span class="math inline">\(f\)</span> ，都可以利用 Powerful Number 来 <span class="math inline">\(O(\sqrt{n}\log{n})\)</span> 求出 <span class="math inline">\(S_f(n)\)</span> 。</p>
+<p>注意到对于任意常数 <span class="math inline">\(m\)</span> ，<span class="math inline">\(I_m\)</span> 都是可以 <span class="math inline">\(O(1)\)</span> 求值的，那么只要 <span class="math inline">\(f\)</span> 的特征函数可以表示为恰好两个形如 <span class="math inline">\(x^k\)</span> 的单项式的和，<span class="math inline">\(S_f\)</span> 就是可以 <span class="math inline">\(O(\sqrt{n}\log{n})\)</span> 求的。</p>
+<p>例如 <span class="math inline">\(f(p) = 2, f(p) = p + 1, f(p) = p^5 + p^3\)</span> 等。</p>
+<p>由于上文构造卷积两个方向都可行，那么如果 <span class="math inline">\(f\)</span> 的特征函数可以表示为恰好两个形如 <span class="math inline">\(x^k\)</span> 的单项式的差，是否可以以同样复杂度求前缀和呢？</p>
+<p>很遗憾答案（似乎）是否定的，因为另一个方向（杜教筛的方向）需要递归用到自身的函数值。不过虽然没法做到 <span class="math inline">\(O(\sqrt{n}\log{n})\)</span> ，用杜教筛的 trick 可以把这类问题都做到 <span class="math inline">\(O(n^{\frac{2}{3}})\)</span> 。</p>
+<p>这里顺便可以思考思考，为什么约数个数函数，约数和函数有 <span class="math inline">\(O(\sqrt{n})\)</span> 算前缀和的公式？本质上就是因为约数个数函数是 <span class="math inline">\(I_0 \times I_0\)</span> ，约数和函数是 <span class="math inline">\(I_0 \times I_1\)</span> ，两者的特征函数分别是 <span class="math inline">\(1 + 1\)</span> 和 <span class="math inline">\(x + 1\)</span> 。</p>
+<h2 id="更一般的情况">更一般的情况</h2>
+<p>如果 <span class="math inline">\(f\)</span> 的特征函数可以是一个多项式，如何求 <span class="math inline">\(S_f(n)\)</span> ？</p>
+<p>多项式可以拆成若干单项式的和，单项式可以拆成若干系数为 <span class="math inline">\(1\)</span> 的单项式的和，也就是说这样的 <span class="math inline">\(f\)</span> 总可以找到对应的 <span class="math inline">\(h\)</span> 表示为若干 <span class="math inline">\(I_m\)</span> 的狄利克雷卷积。</p>
+<p>例如 <span class="math inline">\(f(p) = 3p^3 + p^2 - p + 1\)</span> ，那么设 <span class="math inline">\(h = I_3 \times I_3 \times I_3 \times I_2 \times I_1^{-1} \times I_0\)</span> ，不难发现逐个合并可以以 <span class="math inline">\(O(n^{\frac{2}{3}})\)</span> 的复杂度算出所有 <span class="math inline">\(S_h(n/i)\)</span> ，然后用 Powerful Number 的做法可以 <span class="math inline">\(O(\sqrt{n})\)</span> 求 <span class="math inline">\(S_f(n)\)</span> ，也可以 <span class="math inline">\(O(n^{\frac{2}{3}})\)</span> 求出所有 <span class="math inline">\(S_f(n/i)\)</span> 。</p>
+<p>如果系数更大，比如 <span class="math inline">\(f(p) = K p\)</span> ，那么设 <span class="math inline">\(h = I_1^K\)</span> ，快速幂合并，可以以 <span class="math inline">\(O(n^{\frac{2}{3}}\log{K})\)</span> 的复杂度求出所有 <span class="math inline">\(S_f(n/i)\)</span> 。</p>
+<p>更一般的结论就不难导出了，如果 <span class="math inline">\(f\)</span> 的特征函数可以是一个多项式，可以以 <span class="math inline">\(O(Ln^{\frac{2}{3}}\log)\)</span> 的复杂度求出所有 <span class="math inline">\(S_f(n/i)\)</span> ，其中 <span class="math inline">\(L\)</span> 是多项式的次数。</p>
+<h2 id="min25-筛">min25 筛</h2>
+<p>众所周知的是，如果 <span class="math inline">\(f\)</span> 的特征函数可以是一个多项式，min25 筛也可以求 <span class="math inline">\(S_f(n)\)</span> ，虽然复杂度是 <span class="math inline">\(O(L(n^{1-\epsilon}+n^{\frac{3}{4}}/\log)\)</span> 但是实际运用非常优秀。</p>
+<p>所以上述做法在实际运用中并不理想，这也是我没能出出一道题目的原因，除非 <span class="math inline">\(n\)</span> 开到特别大放到天河一号上面跑，否则上述做法的实际运行效率就不会优于 min25 筛。</p>
+<p>但是上述做法的复杂度确实更优秀，或许可以为这类问题的理论研究提供一定的思路。</p>
+<p>有意思的是，这两种做法的思路和方向虽然截然不同，但它们都只关注积性函数的特征函数，这或许能带来一些启发。</p>
+<h2 id="end">End</h2>
+<p>本文尽是一些胡扯，主要是为自己突发的灵感记个笔记，如有错误的地方还请指正。</p>
+<p>可惜的是这个做法在实际应用中没啥用，但是我目前没有进一步的优化思路，如有想法欢迎讨论。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/08/24/peplus/" rel="prev" title="peplus">
+      <i class="fa fa-chevron-left"></i> peplus
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+        </div>
+        
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heartbeat"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Kewth</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      const script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments('#gitalk-container', () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '5a2fdd60fe2f91777a6b',
+      clientSecret: '9ddb762244fffc5caff2490a05e53dbca8ae4902',
+      repo        : 'hexo-gitalk',
+      owner       : 'Kewth',
+      admin       : ['Kewth'],
+      id          : '81831e28d67a0785fc61b2670370975a',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>
