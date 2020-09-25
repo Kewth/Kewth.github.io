@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.0.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="KIx9DF_OoeyQmEhcVAbjH5vg_i539tmILHmNH8lRDtw">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  
+  <link rel="stylesheet" href="/lib/animate-css/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"kewth.github.io","root":"/","scheme":"Muse","version":"8.0.0-rc.5","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"path":"search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":3,"unescape":false,"preload":false}};
+  </script>
+
+  <meta name="description" content="没有摘要。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NOI2020 题解报告">
+<meta property="og:url" content="https://kewth.github.io/2020/09/03/NOI2020-%E9%A2%98%E8%A7%A3%E6%8A%A5%E5%91%8A/index.html">
+<meta property="og:site_name" content="KeBlog">
+<meta property="og:description" content="没有摘要。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-09-03T08:56:34.000Z">
+<meta property="article:modified_time" content="2020-09-17T06:41:38.910Z">
+<meta property="article:author" content="Kewth">
+<meta property="article:tag" content="NOI">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://kewth.github.io/2020/09/03/NOI2020-%E9%A2%98%E8%A7%A3%E6%8A%A5%E5%91%8A/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>NOI2020 题解报告 | KeBlog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="KeBlog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <main class="main">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+        <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">KeBlog</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">The OI Algorithm Blog of Kewth</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">61</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">5</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">70</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BE%8E%E9%A3%9F%E5%AE%B6"><span class="nav-number">1.</span> <span class="nav-text">美食家</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E5%A4%A7%E6%84%8F"><span class="nav-number">1.1.</span> <span class="nav-text">题目大意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%81%9A%E6%B3%95-1"><span class="nav-number">1.2.</span> <span class="nav-text">做法 1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%81%9A%E6%B3%95-2"><span class="nav-number">1.3.</span> <span class="nav-text">做法 2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%81%9A%E6%B3%95-3-%E6%AD%A3%E8%A7%A3"><span class="nav-number">1.4.</span> <span class="nav-text">做法 3 （正解）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%91%BD%E8%BF%90"><span class="nav-number">2.</span> <span class="nav-text">命运</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E5%A4%A7%E6%84%8F-1"><span class="nav-number">2.1.</span> <span class="nav-text">题目大意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%81%9A%E6%B3%95-1-1"><span class="nav-number">2.2.</span> <span class="nav-text">做法 1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%81%9A%E6%B3%95-2-%E6%AD%A3%E8%A7%A3"><span class="nav-number">2.3.</span> <span class="nav-text">做法 2 （正解）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%B6%E4%BB%A3%E7%9A%84%E7%9C%BC%E6%B3%AA"><span class="nav-number">3.</span> <span class="nav-text">时代的眼泪</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E5%A4%A7%E6%84%8F-2"><span class="nav-number">3.1.</span> <span class="nav-text">题目大意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%81%9A%E6%B3%95-1-2"><span class="nav-number">3.2.</span> <span class="nav-text">做法 1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%81%9A%E6%B3%95-2-1"><span class="nav-number">3.3.</span> <span class="nav-text">做法 2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%81%9A%E6%B3%95-3-%E6%AD%A3%E8%A7%A3-1"><span class="nav-number">3.4.</span> <span class="nav-text">做法 3 （正解）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%B6%E4%BD%9C%E8%8F%9C%E5%93%81"><span class="nav-number">4.</span> <span class="nav-text">制作菜品</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E5%A4%A7%E6%84%8F-3"><span class="nav-number">4.1.</span> <span class="nav-text">题目大意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%81%9A%E6%B3%95-1-3"><span class="nav-number">4.2.</span> <span class="nav-text">做法 1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%81%9A%E6%B3%95-2-%E6%AD%A3%E8%A7%A3-1"><span class="nav-number">4.3.</span> <span class="nav-text">做法 2 （正解）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B6%85%E7%8E%B0%E5%AE%9E%E6%A0%91"><span class="nav-number">5.</span> <span class="nav-text">超现实树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%81%9A%E6%B3%95-1-%E6%AD%A3%E8%A7%A3"><span class="nav-number">5.1.</span> <span class="nav-text">做法 1 （正解）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BF%BB%E4%BF%AE%E9%81%93%E8%B7%AF"><span class="nav-number">6.</span> <span class="nav-text">翻修道路</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%81%9A%E6%B3%95-1-4"><span class="nav-number">6.1.</span> <span class="nav-text">做法 1</span></a></li></ol></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Kewth"
+      src="/images/avatar.jpeg">
+  <p class="site-author-name" itemprop="name">Kewth</p>
+  <div class="site-description" itemprop="description">HNFMS 现役 OIer</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">70</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">61</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Kewth" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Kewth" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:Kewth.K.D@outlook.com" title="E-Mail → mailto:Kewth.K.D@outlook.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="qq:1344205350" title="QQ → qq:1344205350" rel="noopener" target="_blank"><i class="fab fa-qq fa-fw"></i>QQ</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.luogu.org/space/show?uid=52232" title="Luogu → https:&#x2F;&#x2F;www.luogu.org&#x2F;space&#x2F;show?uid&#x3D;52232" rel="noopener" target="_blank"><i class="fas fa-code-branch fa-fw"></i>Luogu</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links | 友链
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="/" title="&#x2F;">无，欢迎互换友链</a>
+        </li>
+    </ul>
+  </div>
+
+      </section>
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </header>
+
+      
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div id="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+      <div class="main-inner">
+        
+
+        <div class="content post posts-expand">
+          
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2020/09/03/NOI2020-%E9%A2%98%E8%A7%A3%E6%8A%A5%E5%91%8A/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Kewth">
+      <meta itemprop="description" content="HNFMS 现役 OIer">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KeBlog">
+    </span>
+
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          NOI2020 题解报告
+        </h1>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-09-03 16:56:34" itemprop="dateCreated datePublished" datetime="2020-09-03T16:56:34+08:00">2020-09-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-09-17 14:41:38" itemprop="dateModified" datetime="2020-09-17T14:41:38+08:00">2020-09-17</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B4%E7%90%86/" itemprop="url" rel="index"><span itemprop="name">整理</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>没有摘要。</p>
+<a id="more"></a>
+<h2 id="美食家">美食家</h2>
+<h3 id="题目大意">题目大意</h3>
+<p>给定一张 <span class="math inline">\(n\)</span> 点 <span class="math inline">\(m\)</span> 边的有向图，边有不超过 <span class="math inline">\(w\)</span> 的长度。现要求从点 <span class="math inline">\(1\)</span> 出发经过长度恰为 <span class="math inline">\(T\)</span> 的路径回到点 <span class="math inline">\(1\)</span> ，每到达一个点就会获得等于该点点权的愉悦值。特别地，有 <span class="math inline">\(k\)</span> 个美食节，形如“于时刻 <span class="math inline">\(t\)</span> 到达点 <span class="math inline">\(x\)</span> 会额外获得 <span class="math inline">\(y\)</span> 的愉悦值”。最大化获得的愉悦值总和。</p>
+<h3 id="做法-1">做法 1</h3>
+<p>考虑 <span class="math inline">\(k = 0\)</span> 的情况，也就是忽略美食节。</p>
+<p>不难得到这样一个 DP ：设 <span class="math inline">\(f_{i,j}\)</span> 表示在时刻 <span class="math inline">\(i\)</span> 到达点 <span class="math inline">\(j\)</span> 的最大愉悦值，转移枚举 <span class="math inline">\(j\)</span> 的出边即可，复杂度 <span class="math inline">\(O(T(n+m))\)</span> 。</p>
+<h3 id="做法-2">做法 2</h3>
+<p>做法 1 的 DP 中转移与 <span class="math inline">\(i\)</span> 无关，可以想到把 <span class="math inline">\(f_i\)</span> 看做一个向量，用 max+ 矩阵描述转移，但是由于边有不等的长度，需要把连续 <span class="math inline">\(w\)</span> 个时刻的状态合并为一个向量，这样一来就可以用 max+ 矩阵描述转移，使用矩阵快速幂，复杂度 <span class="math inline">\(O(m + (wn)^3 \log T)\)</span> 。</p>
+<h3 id="做法-3-正解">做法 3 （正解）</h3>
+<p>现在考虑美食节，称有美食节的时刻为关键时刻，两个相邻的关键时刻之间是不受美食节影响的，可以套用矩阵快速幂的做法。那么就以关键时刻把时间轴分为 <span class="math inline">\(k+1\)</span> 段，每段用矩阵快速幂，在关键时刻把美食节的影响加到状态上即可。这里矩阵快速幂不能每次暴力矩阵乘矩阵，需要预处理矩阵乘积的幂次，然后用向量乘矩阵的方式处理每一段。复杂度 <span class="math inline">\(O(m + (wn)^3 \log T + k (wn)^2 \log T)\)</span> 。</p>
+<h2 id="命运">命运</h2>
+<h3 id="题目大意-1">题目大意</h3>
+<p>给定一棵 <span class="math inline">\(n\)</span> 个点的有根树和 <span class="math inline">\(m\)</span> 个点对，第 <span class="math inline">\(i\)</span> 个点对 <span class="math inline">\((x, y)\)</span> 满足 <span class="math inline">\(x\)</span> 是 <span class="math inline">\(y\)</span> 的祖先。求有多少把边黑白染色的方案使得任意给定的点对都满足 <span class="math inline">\(x\)</span> 到 <span class="math inline">\(y\)</span> 的路径上存在染黑的边。</p>
+<h3 id="做法-1-1">做法 1</h3>
+<p>容易想到树形 DP ，设 <span class="math inline">\(f_{u,i}\)</span> 表示考虑 <span class="math inline">\(u\)</span> 的子树，<span class="math inline">\(u\)</span> 向根一直走白边能走到深度 <span class="math inline">\(i\)</span> 的前提下的合法染色方案数。然后这个状态如果有一个点对可以从 <span class="math inline">\(u\)</span> 向上走白边完全经过，这个状态钦定为 0 。于是可以预处理出每个点 <span class="math inline">\(u\)</span> 的最小的有值的深度 <span class="math inline">\(a_u\)</span> ，设点 <span class="math inline">\(u\)</span> 的深度为 <span class="math inline">\(d_u\)</span> ，转移即</p>
+<p><span class="math display">\[f_{u,i} = [a_u \le i \le d_u] \prod_{u \rightarrow v} (f_{v,i} + f_{v,d_v})\]</span></p>
+<p>复杂度 <span class="math inline">\(O(nh)\)</span> ，其中 <span class="math inline">\(h\)</span> 是树高。</p>
+<h3 id="做法-2-正解">做法 2 （正解）</h3>
+<p>上述的转移看上去形式很优秀。</p>
+<p>把 <span class="math inline">\(f_u\)</span> 看做一个一维向量，用线段树维护这个向量。观察转移可以发现需要对这个向量进行三个操作：</p>
+<ol type="1">
+<li>全局加一个数</li>
+<li>两个向量点乘合并</li>
+<li>保留一个区间的值</li>
+<li>求点值</li>
+</ol>
+<p>操作 1 和操作 3 就是经典的区间加和区间乘，操作 2 是不那么平凡的线段树合并，这个合并是没法维护区间信息的，不过为什么要维护区间信息呢？由于查询操作只有点值查询，那么只有叶子维护信息就行了，非叶子节点只需要维护其他操作的懒标记，那么合并两个节点的时候先把标记下传然后就可以直接合并了。</p>
+<h2 id="时代的眼泪">时代的眼泪</h2>
+<h3 id="题目大意-2">题目大意</h3>
+<p>给定一个 <span class="math inline">\(1\)</span> 到 <span class="math inline">\(n\)</span> 的排列，<span class="math inline">\(q\)</span> 次询问，每次给定一个下标区间和一个值域区间求在给定区间内的元素的逆序对数。</p>
+<h3 id="做法-1-2">做法 1</h3>
+<p>如果值域区间是全集，那么问题就是区间逆序对，这是个比较经典的问题，有两种复杂度同样优秀的做法，一种是在线的序列分块，一种是莫队二次离线。</p>
+<p>回顾一下序列分块的做法，设块大小为 <span class="math inline">\(B\)</span> 。</p>
+<p>如果询问区间在一个块内，考虑差分，用块的一个前缀减另一个前缀，然后减去两部分之间的贡献，后者可以归并计算。</p>
+<p>否则把询问区间分成三个部分 L, M, R 分别表示左端零散块，中间完整块，右端零散块。L, M, R 内部的贡献都可以预处理，对于它们之间的贡献分类讨论。</p>
+<ul>
+<li>LM, MR: 以 LM 为例，预处理 <span class="math inline">\(c_{i,j}\)</span> 表示前 <span class="math inline">\(i\)</span> 个块中值不超过 <span class="math inline">\(j\)</span> 的数量，这样就可以 <span class="math inline">\(O(1)\)</span> 求出任意块区间的任意值域区间的数量，枚举 L 的每个元素算贡献即可。</li>
+<li>LR: 预处理每个块的排序序列，就可以 <span class="math inline">\(O(B)\)</span> 扫描得到每个块的子序列的排序序列，得到两边的排序序列后归并即可。</li>
+</ul>
+<p>复杂度 <span class="math inline">\(O(\frac{n^2}{B} + n\log{n} + qB) = O(n\log{n} + q + n\sqrt{q})\)</span> 。</p>
+<h3 id="做法-2-1">做法 2</h3>
+<p>莫队的做法似乎难以向值域区间的限制推广，因此考虑序列分块。</p>
+<p>先考虑询问的值域区间都是形如 <span class="math inline">\([1, r]\)</span> 的情况，不妨假定 <span class="math inline">\(r\)</span> 单调不降。</p>
+<p>每次 <span class="math inline">\(r\)</span> 增加的时候，相当于新加入一个数，是可以简单地 <span class="math inline">\(O(B)\)</span> 维护对应块的每个前后缀的逆序对数的。</p>
+<p>那么如果询问区间在一个块内，仍然可以用同样的方法处理。</p>
+<p>否则同样把询问区间分为三部分 L, M, R 讨论，L, R 内部的贡献仍然是被预处理的，那么可以发现不同于做法 1 的部分仅有 MM 。</p>
+<p>维护一个矩阵 <span class="math inline">\(f_{l,r}\)</span> 表示第 <span class="math inline">\(l\)</span> 个块到第 <span class="math inline">\(r\)</span> 个块之间的逆序对数，每次加入一个数的时候枚举 <span class="math inline">\(r\)</span> 相当于要做若干次区间加，每次询问只需要单点查。容易想到再次分块维护这个矩阵，但是注意到矩阵的每一行的长度只有 <span class="math inline">\(O(\frac{n}{B})\)</span> ，事实上修改的时候打标记然后查询的时候暴力扫描即可。</p>
+<p>复杂度 <span class="math inline">\(O(\frac{n^2}{B} + nB + n\log{n} + qB + \frac{nq}{B}) = O((n + q) \sqrt{n} + n\log{n})\)</span> 。</p>
+<h3 id="做法-3-正解-1">做法 3 （正解）</h3>
+<p>现在考虑完整的问题。以下直接默认块大小为 <span class="math inline">\(B = \sqrt{n}\)</span> 。</p>
+<p>如果询问区间在一个块内，每个块内把值离散化，处理 <span class="math inline">\(b_{i,j}\)</span> 表示第 <span class="math inline">\(i\)</span> 个位置到其所在的块的左端点中离散化后的值不超过 <span class="math inline">\(j\)</span> 的数量，<span class="math inline">\(b\)</span> 的大小是 <span class="math inline">\(O(n^{1.5})\)</span> 的。然后枚举的每个元素通过 <span class="math inline">\(b\)</span> 查询贡献即可。</p>
+<p>否则还是分三个部分 L, M, R 分类讨论。</p>
+<ul>
+<li>LL, RR: 同询问区间在一个块内的情况。</li>
+<li>LR: 同做法 1 （其实仍用上述做法也是可以的）。</li>
+<li>MM: 设值域区间为 <span class="math inline">\([x, y]\)</span> 。先用做法 2 算出 <span class="math inline">\([1, y]\)</span> 和 <span class="math inline">\([1, x - 1]\)</span> 的答案，然后问题转换为求区间内有多少数对满足左边的值在 <span class="math inline">\([x, y]\)</span> 内且右边的值在 <span class="math inline">\([1, x - 1]\)</span> 内。这个问题怎么处理呢？我也暂时不会（咕咕咕）。</li>
+<li>LM, MR: 同做法 1 。</li>
+</ul>
+<p>复杂度同做法 2 。</p>
+<h2 id="制作菜品">制作菜品</h2>
+<h3 id="题目大意-3">题目大意</h3>
+<p>有 <span class="math inline">\(n\)</span> 种材料，第 <span class="math inline">\(i\)</span> 种材料有 <span class="math inline">\(a_i\)</span> 个。现要制作 <span class="math inline">\(m\)</span> 种菜，每种菜恰好使用 <span class="math inline">\(k\)</span> 个材料并且使用至多两种材料。求是否存在方案，如果存在则给出任意一个方案。</p>
+<p>保证 <span class="math inline">\(\sum a_i = m \times k\)</span> 。</p>
+<h3 id="做法-1-3">做法 1</h3>
+<p>考虑 <span class="math inline">\(m \ge n - 1\)</span> 的情况，我们证明，每次把数量最少的材料和数量最多的材料放一起做菜并尽可能多地使用最少的那个材料，这样一定能得到一个合法的方案。</p>
+<p>应用数学归纳法，<span class="math inline">\(n = 1\)</span> 时由于 <span class="math inline">\(a_1 = m \times k\)</span> ，此时必然有解。接下来假设 <span class="math inline">\(1\)</span> 到 <span class="math inline">\(n-1\)</span> 都是成立的。不妨假定 <span class="math inline">\(a\)</span> 是升序的。</p>
+<p>如果 <span class="math inline">\(a_1 \ge k\)</span> ，把第一种材料拿 <span class="math inline">\(k\)</span> 个出来单独做菜，直到 <span class="math inline">\(a_1 &lt; k\)</span> 。此时 <span class="math inline">\(a_2\)</span> 到 <span class="math inline">\(a_n\)</span> 都是不小于 <span class="math inline">\(k\)</span> 的，由 <span class="math inline">\(\sum a_i = m \times k\)</span> 可以知道此时仍然有 <span class="math inline">\(m \ge n - 1\)</span> 。</p>
+<p>如果 <span class="math inline">\(a_1 &lt; k\)</span> ，把第一种材料全部拿出来，和第 <span class="math inline">\(n\)</span> 个材料里拿 <span class="math inline">\(k - a_1\)</span> 个一起做一道菜，需要证明 <span class="math inline">\(a_n \ge k - a_1\)</span> ，否则做不成菜。反证法，如果 <span class="math inline">\(a_n &lt; k - a_1\)</span> ，那么任意 <span class="math inline">\(i\)</span> 都有 <span class="math inline">\(a_i &lt; k - a_1\)</span> ，求和后有</p>
+<p><span class="math display">\[mk = \sum a_i &lt; (n-1)(k - a_1) + a_1 = k + (n-2)(k-a_1) \le (n-1)k\]</span></p>
+<p>所以 <span class="math inline">\(m &lt; n - 1\)</span> ，与前提产生矛盾。</p>
+<h3 id="做法-2-正解-1">做法 2 （正解）</h3>
+<p>注意到 <span class="math inline">\(m &lt; n - 1\)</span> 的时候必有 <span class="math inline">\(m = n - 2\)</span> ，因此我们只讨论 <span class="math inline">\(m = n - 2\)</span> 的情况。</p>
+<p>容易想到把所有材料划分成两个集合，然后两个集合当做一个 <span class="math inline">\(m = n - 1\)</span> 的子问题。如果存在合法的划分，那么原问题有解。我们证明，如果原问题有解，也一定存在合法的划分。</p>
+<p>把一道菜看做连接两个材料的边，那么对于 <span class="math inline">\(m = n - 2\)</span> 时的一组解，得到的图一定有至少两个联通块，并且可以发现有至少一个联通块是一颗树（反证，如果都不是树，把点数和边数累加可以得到 <span class="math inline">\(m \ge n\)</span> ，产生矛盾）。那么把任意一颗树看做集合 <span class="math inline">\(A\)</span> ，其他的所有联通块看做集合 <span class="math inline">\(B\)</span> ，这就是一个合法的划分。</p>
+<p>这里一个划分是合法的当且仅当两个集合都满足 <span class="math inline">\(\sum a_i = (n&#39; - 1) \times k\)</span> 。</p>
+<p>设 <span class="math inline">\(b_i = k - a_i\)</span> ，上述条件等价于 <span class="math inline">\(\sum b_i = k\)</span> ，问题转换为在 <span class="math inline">\(b\)</span> 中找到一个和恰好为 <span class="math inline">\(k\)</span> 的子集，经典的 01 背包问题，用 bitset 优化即可。</p>
+<p>复杂度 <span class="math inline">\(O(T \frac{n m k}{w})\)</span> 。</p>
+<h2 id="超现实树">超现实树</h2>
+<h3 id="做法-1-正解">做法 1 （正解）</h3>
+<p>对于两棵树 <span class="math inline">\(A, B\)</span> ，称 <span class="math inline">\(A &lt; B\)</span> 当且仅当 <span class="math inline">\(A\)</span> 可以生成 <span class="math inline">\(B\)</span> 。</p>
+<p>不难发现树林不是完备的当且仅当存在一颗无限大的树不能被生成，设该树为 <span class="math inline">\(T\)</span> ，不妨假设在所有足条件的树中 <span class="math inline">\(T\)</span> 是极小的。注意到如果 <span class="math inline">\(T\)</span> 的某个点满足左右儿子的大小都超过 <span class="math inline">\(1\)</span> ，那么一定存在另一颗比 <span class="math inline">\(T\)</span> 小的树 <span class="math inline">\(T&#39;\)</span> 同样满足条件，这违背了 <span class="math inline">\(T\)</span> 的极小性。那么称一颗不存在任何点的左右儿子大小都超过 <span class="math inline">\(1\)</span> 的树为备选树，可以发现，树林非完备当且仅当存在一颗无限大的备选树不能被生成。</p>
+<p>那么我们只需关注树林是否可以生成所有无限大的备选树，注意到非备选树始终无法生成备选树，因此我们即使在树林中我们也只需要考虑备选树。</p>
+<p>我们递归地判定树林 <span class="math inline">\(e\)</span> 是否可以生成所有无限大的备选树，如果 <span class="math inline">\(e\)</span> 中存在大小为 <span class="math inline">\(1\)</span> 的树，<span class="math inline">\(e\)</span> 显然是完备的，如果 <span class="math inline">\(e\)</span> 中没有树，<span class="math inline">\(e\)</span> 显然不是完备的。否则，可以发现 <span class="math inline">\(e\)</span> 中的备选树可以分为四类：</p>
+<ol type="1">
+<li>没有左儿子</li>
+<li>没有右儿子</li>
+<li>左儿子大小为 1</li>
+<li>右儿子大小为 1</li>
+</ol>
+<p>设这四种树去掉根保留另一个较大的儿子后分别构成树林 <span class="math inline">\(a, b, c, d\)</span> ，那么不难发现此时 <span class="math inline">\(e\)</span> 是完备的当且仅当 <span class="math inline">\(a, b, c, d\)</span> 都是完备的，递归判定即可。</p>
+<h2 id="翻修道路">翻修道路</h2>
+<h3 id="做法-1-4">做法 1</h3>
+<p>考虑所有道路长度都为 <span class="math inline">\(1\)</span> 的情况。</p>
+<p>弦图遇事不决完美消除序列。不妨假定 <span class="math inline">\(1\)</span> 到 <span class="math inline">\(n\)</span> 就是一个完美消除序列且 <span class="math inline">\(t = n\)</span> 。设翻修的路径是有向的，从 <span class="math inline">\(s\)</span> 指向 <span class="math inline">\(t\)</span> 。</p>
+<p>首先翻修的路径中的任意一条边 <span class="math inline">\((x, y)\)</span> 都满足 <span class="math inline">\(x &lt; y\)</span> 。反证法，对于翻修路径上某一个点 <span class="math inline">\(x\)</span> ，其前驱后继分别为 <span class="math inline">\(y, z\)</span> 。如果 <span class="math inline">\(y &gt; x \land z &gt; x\)</span> ，那么 <span class="math inline">\(y, z\)</span> 之间一定有边，把翻修路径中的 <span class="math inline">\(y \rightarrow x \rightarrow z\)</span> 换成 <span class="math inline">\(y \rightarrow z\)</span> 一定不劣，并且一定仍然合法。</p>
+<p>那么直接从小到大连有向边然后 bfs 求个最短路即可，复杂度 <span class="math inline">\(O(n + m)\)</span> 。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/NOI/" rel="tag"><i class="fa fa-tag"></i> NOI</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/08/29/%E5%85%B3%E4%BA%8E%E7%A7%AF%E6%80%A7%E5%87%BD%E6%95%B0%E5%89%8D%E7%BC%80%E5%92%8C%E7%9A%84%E4%B8%80%E4%BA%9B%E8%83%A1%E6%89%AF/" rel="prev" title="关于积性函数前缀和的一些胡扯">
+      <i class="fa fa-chevron-left"></i> 关于积性函数前缀和的一些胡扯
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+        </div>
+        
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heartbeat"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Kewth</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      const script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments('#gitalk-container', () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '5a2fdd60fe2f91777a6b',
+      clientSecret: '9ddb762244fffc5caff2490a05e53dbca8ae4902',
+      repo        : 'hexo-gitalk',
+      owner       : 'Kewth',
+      admin       : ['Kewth'],
+      id          : 'c9000d109cf615a18456c53c481094e9',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>
