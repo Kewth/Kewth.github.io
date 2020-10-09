@@ -150,7 +150,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">70</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">71</span></a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -224,7 +224,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">70</span>
+          <span class="site-state-item-count">71</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -294,6 +294,104 @@
 
         <div class="content index posts-expand">
           
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2019/10/10/%E6%95%B4%E9%99%A4%E5%88%86%E5%9D%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Kewth">
+      <meta itemprop="description" content="HNFMS 现役 OIer">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KeBlog">
+    </span>
+
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/10/10/%E6%95%B4%E9%99%A4%E5%88%86%E5%9D%97/" class="post-title-link" itemprop="url">整除分块</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-10-10 10:00:04" itemprop="dateCreated datePublished" datetime="2019-10-10T10:00:04+08:00">2019-10-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-07-26 08:27:52" itemprop="dateModified" datetime="2020-07-26T08:27:52+08:00">2020-07-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>（以下的除号皆表示整除）</p>
+<p>用数论函数计算的时候，总会遇到这样一种问题： <span class="math inline">\(\sum_{i=1}^n f(\frac{n}{i})\)</span> 。 <span class="math inline">\(O(n)\)</span> 求往往无法满足需要。</p>
+<p>但是<del>打表</del>可以发现， n/i 的取值对于一段连续的 i 是一致的， 那么可以考虑一块一块求。</p>
+<p>设已知当前块的左端点为 l ，如果知道右端点 r（左闭右开），意味着 <span class="math inline">\(\forall l&lt;=i&lt;r, \frac{n}{i} = \frac{n}{l}\)</span> ， 这一块对答案的贡献就是 <span class="math inline">\((r-l) \times f(\frac{n}{l})\)</span> 。</p>
+<p>结论是 <span class="math inline">\(r = n / (n / l) + 1\)</span> 。</p>
+<p>证明：</p>
+<ul>
+<li>对于 l 设 <span class="math inline">\(n / l = x\)</span></li>
+<li>那么由 <span class="math inline">\(n \bmod l = n - n / l \cdot l = n - l \cdot x\)</span> 可知 $ n - l x  $</li>
+<li>那么若 <span class="math inline">\(l + 1\)</span> 满足 <span class="math inline">\(n / (l + 1) = n / l\)</span> ，可知也有 <span class="math inline">\(n - (l + 1) \cdot x \geq 0\)</span></li>
+<li>即 <span class="math inline">\(n - l \cdot x \geq x\)</span></li>
+<li>对于 k 若 <span class="math inline">\(n / k = n / l\)</span> 而 <span class="math inline">\(n / (k + 1) != n / l\)</span></li>
+<li>那么根据上式可得 k 满足 $ 0 n - k x &lt; x$</li>
+<li>所以 <span class="math inline">\(n - k \cdot x = n \bmod x = n - n / x \cdot x\)</span></li>
+<li>所以 <span class="math inline">\(k = n / x = n / (n / l)\)</span></li>
+<li>由 k 的定义 <span class="math inline">\(n / k = n / l \&amp; n / (k + 1) != n / l\)</span> 可知 k+1 即是要求的 r</li>
+</ul>
+<p>那么可以枚举块，当前 l,r 可以求得，下一个块的 l 显然是当前 r。</p>
+<p>有时候会有点变化：</p>
+<p>要求 <span class="math inline">\(\sum_{i=1}^{min(n, m)} f(\frac{n}{i}) \cdot f(\frac{m}{i})\)</span> 。</p>
+<p>还是会存在 <span class="math inline">\(\forall l \le i &lt; r, \frac{n}{i} = \frac{n}{l} \&amp; \frac{m}{i} = \frac{m}{l}\)</span> 。</p>
+<p>所以这样的区间的右端点为：<span class="math inline">\(r = min(n / (n / l), m / (m / l)) + 1\)</span> 。</p>
+<p>所以还是可以一块一块的枚举求和。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -1337,109 +1435,10 @@ DP ？有环。<br />
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2019/10/01/NOIP%202018/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-      <meta itemprop="name" content="Kewth">
-      <meta itemprop="description" content="HNFMS 现役 OIer">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="KeBlog">
-    </span>
-
-    
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/10/01/NOIP%202018/" class="post-title-link" itemprop="url">NOIP 2018</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-10-01 00:00:00" itemprop="dateCreated datePublished" datetime="2019-10-01T00:00:00+08:00">2019-10-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-08 14:24:25" itemprop="dateModified" datetime="2019-12-08T14:24:25+08:00">2019-12-08</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="吐槽">吐槽</h2>
-<p>一天普及一天省选，弄到一起就出成了一套提高组试题。</p>
-<h2 id="day1">Day1</h2>
-<p>原题大作战。 然而我一题都没做过。</p>
-<p>总的来说 Day1 比去年好像容易点（不然我也不会留出一个多小时给每道题造数据对拍）。</p>
-<h3 id="t1">T1</h3>
-<p>CCF 直接把 2013 的题原封不动搬到了 Day1T1 。</p>
-<p>一开始想着递归，发现会被卡成 <span class="math inline">\(O(n^2)\)</span> ， 再想 DP 的时候简化一下式子就直接可以扫一遍出结果。</p>
-<h3 id="t2">T2</h3>
-<p>bzoj 权限题。</p>
-<p>如果一种货币能被其它若干货币代替，就扔掉。 设 f[i] 表示价值为 i 的货币是否会被代替，做一遍完全背包就好了。</p>
-<h3 id="t3">T3</h3>
-<p>bzoj 权限题。</p>
-<p>听说可以二分加贪心，不过我考场想的比较复杂 <del>是二分答案再 DP ，DP 转移再套一层用链表维护的 DP</del> 。</p>
-<p>首先容易想到二分答案，二分一个答案 mid 后求最多可以有多少条赛道满足长度不小于 mid ， 若有不少于 m 条，则答案可行。</p>
-<p>求赛道数量可以 DP ，设 f[u] 为 u 的子树中满足条件的赛道的数量， g[u] 表示在满足 f[u] 最大的前提下 u 向下不经过赛道的最长路径长。</p>
-<p>转移的时候先把 u 的儿子 v 的 f[v] 累加，同时将所有 g[v]+w 存起来（w 表示 u 到 v 的长度）。</p>
-<p>对于 g[v]+w 大于等于 mid 的直接把 f[u]++ 然后扔掉，于是只需要考虑小于 mid 的 g[v]+w 的贡献。</p>
-<p>两个不同的 g[v]+w 若大于等于 mid 就同样可以作为一条赛道让 f[u]++ ，先排序然后再次 DP 统计这样的赛道数量， 然后若所有的 g[v]+w 都有另外一个构成赛道， g[u]=0 ，否则 g[u] 等于剩下的最大的 g[v]+w 。</p>
-<h2 id="day2">Day2</h2>
-<p>Day1 的比赛对我造成了巨大的影响，Day1 考完后信心爆棚， <del>以 AKIOI 的自信</del> 走进 Day2 考场。</p>
-<p>结果什么题都死磕正解，到最后连暴力都没打全。</p>
-<p>看题，WTF?</p>
-<p>看完 T1 我以为是个稠密无向图，想了好久感觉是要求一种特殊的生成树，感觉巨不可做。 顿时有点小慌，突然想到考前教练提醒要看完题，说不定后面的题反而简单。</p>
-<p>嗯，有道理，直接翻到 T2 ，推了波结论认定是一道状压 DP，松了口气。</p>
-<p>不急，再看 T3 ，哦，好像树形 DP ，但是 m 个询问难住了我。</p>
-<p>于是认定 T2 比较容易，开始死磕 T2 ，打完状压后跑了遍 2,2 的样例，诶过了。 再跑一遍 3,3 ，输出 144 ，于是手推了 3,3 的样例发现还是 144 , 意识到推的结论有误，瞬间慌的一批。 推了好久才发现了问题，得到正确的结论后发现对于新结论状压 DP 似乎变得不可行。</p>
-<p>这个时候考试已经过了一个小时多了。慌。</p>
-<p>换换思路吧，于是去做 T3 , 想了很久 DP 最后写了个平方复杂度的， 跑过了所有样例就没管了，没多少时间了，又回去看 T1 。</p>
-<p>往回看了看 T1 里 m 的数据范围我才发现只有树和换套树两种情况。 那还求个鬼生成树，迅速打掉树的 60 部分分，n 看都没看只知道 <span class="math inline">\(O(n)\)</span> 稳了。 再去想换套树，感觉差不多，继续 <span class="math inline">\(O(n)\)</span>做。</p>
-<p>结果？一直死磕 T1 的 <span class="math inline">\(O(n)\)</span> 做法，直到最后考试结束都没写出来。</p>
-<p>考试听别人说直接枚举删边 <span class="math inline">\(O(n^2)\)</span> 就可以过的时候我才意识到 n 只有 5000 ，整个人懵的。</p>
-<p>结果 T1 还是 60' ，T3 不晓得哪里炸掉了爆零， 有意思的是 T2 我错误的打法样例都没过在 ccf 的数据里水到了 45' 。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
