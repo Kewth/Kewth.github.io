@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://kewth.github.io/"/>
-  <updated>2020-10-05T13:11:06.363Z</updated>
+  <updated>2020-10-22T13:56:04.672Z</updated>
   <id>https://kewth.github.io/</id>
   
   <author>
@@ -15,6 +15,101 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>IOI2021 集训队作业（二）</title>
+    <link href="https://kewth.github.io/2020/10/20/IOI2021-%E9%9B%86%E8%AE%AD%E9%98%9F%E4%BD%9C%E4%B8%9A%EF%BC%88%E4%BA%8C%EF%BC%89/"/>
+    <id>https://kewth.github.io/2020/10/20/IOI2021-%E9%9B%86%E8%AE%AD%E9%98%9F%E4%BD%9C%E4%B8%9A%EF%BC%88%E4%BA%8C%EF%BC%89/</id>
+    <published>2020-10-20T08:43:36.000Z</published>
+    <updated>2020-10-22T13:56:04.672Z</updated>
+    
+    <content type="html"><![CDATA[<p>有生之年。</p><a id="more"></a><hr /><h2 id="chain-co.">135. Chain &amp; Co.</h2><p>在三维空间上给定 <span class="math inline">\(n\)</span> 个四条边都与轴线平行的矩形，称两个矩形是连接的，当且仅当一个矩形总是无法在不穿过另一个矩形的前提下平移到某个指定位置。把矩阵分为两组，使得两组非空且任意不同组的两个矩形都是连接的。</p><p>时间复杂度：<span class="math inline">\(O(n \log n)\)</span> 。</p><details class="note primary"><summary><p>题解</p></summary><p>首先矩形一定平行于某个轴平面，两个矩形连接的一个必要条件是它们平行的轴平面不同。那么所平行的轴平面相同的矩形必须分在同一组。由于轴平面只有三个，那么分组的方式只有三种，枚举三种情况，问题转换为判断两组矩形是否两两连接。</p><p>不妨假设一组矩形全部平行于 x-y 平面（称为 A 组，另一组为 B 组），那么 B 组的矩形在 x-y 平面上的投影总是一个线段。考虑 B 组的矩形的 z 轴坐标要满足什么限制，显然每个 B 组矩形的 z 轴坐标范围内要包含所有 A 组矩形的 z 轴坐标，这个很好判断，接下来的问题忽略 z 轴而转换为二维平面上的问题。</p><p>现在的问题是，对于每个线段，判断其是否与每个矩形都连接，这里线段和矩形连接当且仅当线段一个端点在矩形内另一个端点在矩形外。不妨假设这些线段都是平行于 x 轴的，同样地我们可以先考虑 y 轴上的限制，和 z 轴的判定类似，接下来问题可以进一步放到数轴上。在数轴上问题最终转换为有 C, D 两组线段判断是否存在一个 C 组线段完全包含一个 D 组线段，排个序双指针即可。</p></details><hr /><h2 id="cow-confinement">145. Cow Confinement</h2><p>在平面上给定 <span class="math inline">\(f\)</span> 个矩形，<span class="math inline">\(n\)</span> 头牛和 <span class="math inline">\(m\)</span> 朵花的位置，对于每头牛求如果它只往 x, y 轴正方向走，不越过任何矩形的前提下有多少花是可以到达的。保证矩形两两之间没有交点且都与坐标轴平行。</p><p>时间复杂度：<span class="math inline">\(O((n + m + t) \log)\)</span> 。</p><details class="note primary"><summary><p>题解</p></summary><p>很佩服官方题解，全文一句话也没有说，仅仅通过几张示意图就把核心思想描述地很清楚，剩下的部分就是简单的数据结构。</p><p>假设没有矩形的阻挡，那么问题就是查询矩形内的花的数量，但还可以这样描述，把花看做向 y 负方向的射线，把牛看做向 x 正方向的射线，那么牛能到的花的数量就对应于射线的交点数量。</p><p>考虑矩形的阻挡，如果牛的射线经过一个矩形，那么事实上的影响就是把当前射线分成两部分，经过矩形前是一个线段，经过矩形后是一个新的射线，新的射线沿着矩形边想 y 正方向移动。特别地，如果触碰到的矩形边是矩形内的话，就不会有新的射线。同理处理花的射线，但是注意到花的射线拆分后一个花可能对一头牛贡献多次。把花的射线拆分归则稍加修改即可。</p><p>爬两张官方题解的图，其中 A, B 分别是牛和花，蓝色的即牛对应的射线，红色的即花对应的射线。</p><p><img src="/images/ioi2021homework-1.png" /></p><p><img src="/images/ioi2021homework-2.png" /></p><p>总而言之，矩形的影响就是让经过它的射线发生“偏移”，最后转换的问题仍然是有若干横向射线，若干纵向射线，求每个横向射线与多少纵向射线有交点这样的问题。扫描线加树状数组即可。</p></details><hr /><h2 id="money-for-nothing">255. Money for Nothing</h2><p>在二维平面上给定 <span class="math inline">\(n\)</span> 个白点和 <span class="math inline">\(m\)</span> 个黑点，求一个面积最大的矩形满足左下角是黑点右上角是白点。</p><p>时间复杂度：<span class="math inline">\(O((n + m) \log)\)</span> 。</p><details class="note primary"><summary><p>题解</p></summary><p>不妨假设白点和黑点都是横纵坐标同时单调递减的（否则的话一定存在一个点可以完全替代另一个点）。</p><p>然后考虑对于每个白点求对应的最优的黑点，不难想到是最优黑点是单调的，因此决策单调分治处理即可。</p><p>特别地，有些白点压根没有合法的黑点与它构成矩形，这种情况需要稍加处理。</p></details>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;有生之年。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="整理" scheme="https://kewth.github.io/categories/%E6%95%B4%E7%90%86/"/>
+    
+    
+      <category term="集训队" scheme="https://kewth.github.io/tags/%E9%9B%86%E8%AE%AD%E9%98%9F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>IOI2021 集训队作业（一）</title>
+    <link href="https://kewth.github.io/2020/10/19/IOI2021-%E9%9B%86%E8%AE%AD%E9%98%9F%E4%BD%9C%E4%B8%9A%EF%BC%88%E4%B8%80%EF%BC%89/"/>
+    <id>https://kewth.github.io/2020/10/19/IOI2021-%E9%9B%86%E8%AE%AD%E9%98%9F%E4%BD%9C%E4%B8%9A%EF%BC%88%E4%B8%80%EF%BC%89/</id>
+    <published>2020-10-19T08:51:16.000Z</published>
+    <updated>2020-10-20T08:43:51.816Z</updated>
+    
+    <content type="html"><![CDATA[<p>有生之年。</p><a id="more"></a><hr /><h2 id="rubiks-rectangle">233. Rubik's Rectangle</h2><p>给定一个 <span class="math inline">\(H \times W\)</span> 的网格，每个网格有个数字，每次操作可以翻转某行或某列，求一组合法操作使得该网格的数字排好序。</p><p>时间复杂度：<span class="math inline">\(O(HW(H+W))\)</span> 。</p><details class="note primary"><summary><p>题解</p></summary><p>不妨假设 n, m 都是偶数（如果是奇数那么中间的一行或列可以独立）。</p><p>可以发现可以把格子染色，每种颜色恰好四个格子，满足任意翻转操作后颜色矩阵不变。</p><p>不妨假设每个数字在正确的颜色位置上。考虑每个颜色内的四个点，可以发现如果这些点构成偶排列那么就总可以在不影响其他颜色的前提下把这四个点排好序，如果是奇排列则总是不能。称每个颜色的左上角的点为代表点，把颜色的排列奇偶性作为标记放到代表点上，对于代表点标记构成的 01 矩阵 A ，如果 A 是全 0 矩阵自然是有解的。</p><p>而每次翻转对 A 的影响就是讲某一行或某一列的 01 给全部反转，因此只要能通过这个操作把 A 弄成 01 矩阵就能得到解，这就是个很 simple 的贪心了。</p></details><details class="note info"><summary><p>数据</p></summary><p><del>这 spj 真难写。</del></p><p>不难想到如果随机选择一个排列放到网格上，那么极大的概率是无解。采用逆推的方式，从一个排好序的网格随机执行若干次操作得到一个打乱的网格，这样就可以保证数据有解。在此基础上加上一些扰动改变一些代表点的奇偶性即可得到强度较大的无解数据。</p></details><hr /><h2 id="hiking-in-the-hills">234. Hiking in the Hills</h2><p>在三维空间上给定一个曲面，该曲面由 <span class="math inline">\(n\)</span> 个三角形构成，在曲面上给出两个点，求曲面上连接两点的一条折线使得折线上的最高的点的高度最小（高度指 z 轴坐标）。</p><p>保证任意直线 <span class="math inline">\(x=x_0, y=y_0\)</span> 与该曲面的交点至多只有一个。</p><p>时间复杂度：<span class="math inline">\(O(n \log n)\)</span> 。</p><details class="note primary"><summary><p>题解</p></summary><p>容易发现这条折线可以只走三角形端点，把三角形端点和起点终点拿出来建图然后把点按高度排序，用个并查集维护即可。</p></details><details class="note info"><summary><p>数据</p></summary><p><del>这 spj 真难写。</del></p><p>这题造数据比写标程难。先确定所有三角形端点，再构造三角形，把端点投影到 xy 平面上，那么构造三角形就是在平面上求一组三角剖分。</p></details><hr /><h2 id="single-cut-of-failure">235. Single Cut of Failure</h2><p>有一个矩形，称一条端点落在矩形的不同的两条边的线段为合法线段。给定 <span class="math inline">\(n\)</span> 条合法线段，要求添加最少的合法线段使得每条给定的合法线段与至少一条添加的合法线段有交。</p><p>时间复杂度：<span class="math inline">\(O(n \log n)\)</span> 。</p><details class="note primary"><summary><p>题解</p></summary><p>比较降智的一点是，添加两条对角线总是满足条件的。那么我们只需要关注是否可以找到一条合法线段与所有给定线段有交。</p><p>把矩形的边展开为一个数轴，每个给定线段对应数轴上一段区间，那么目标是选两个点满足它们所在的区间的集合的不交并是全集。假设区间没有包含关系，排个序后枚举一个点双指针处理另一个点即可。对于有包含关系的区间，稍加特殊处理就可以合并为一个区间。</p></details><details class="note info"><summary><p>数据</p></summary><p><del>这 spj 真难写。</del></p><p>不难想到如果在矩形内随机给出 <span class="math inline">\(n\)</span> 条合法线段，那么有极大的概率不存在一条线段的解。不妨先确定最后需要添加的线段，然后给出 <span class="math inline">\(n\)</span> 条与之有交的合法线段。</p></details><hr /><h2 id="bipartite-blanket">121. Bipartite Blanket</h2><p>给定一个二分图，左右分别 <span class="math inline">\(n, m\)</span> 个点，点有点权，称一个点集是合法的当且仅当存在一组匹配是该点集的父集，求有多少合法点集的点权和不小于 <span class="math inline">\(t\)</span> 。</p><p>时间复杂度：<span class="math inline">\(O(n 2^n + m 2^m)\)</span> 。</p><details class="note primary"><summary><p>题解</p></summary><p>对于点集 <span class="math inline">\(S\)</span> 考虑判断是否存在匹配覆盖了 <span class="math inline">\(S\)</span> 。如果 <span class="math inline">\(S\)</span> 只包含左边的点或者只包含右边的点，容易发现用 Hall 定理就能判断。否则设 <span class="math inline">\(S = X \cup Y, X \cap Y = \emptyset\)</span> ，其中 <span class="math inline">\(X, Y\)</span> 分别是左右边集。那么可以证 明，存在匹配覆盖 <span class="math inline">\(S\)</span> 当且仅当存在匹配覆盖 <span class="math inline">\(X\)</span> 且存在匹配覆盖 <span class="math inline">\(Y\)</span> 。</p><p>必要性很显然，证明充分性，假设已知一个覆盖 <span class="math inline">\(X\)</span> 的匹配和一个覆盖 <span class="math inline">\(Y\)</span> 的匹配，考虑取构造一个覆盖 <span class="math inline">\(S\)</span> 的匹配，首先把覆盖 <span class="math inline">\(X\)</span> 的匹配作为初始匹配，然后逐个加入 <span class="math inline">\(Y\)</span> 中的点和对应的匹配点，分类讨论不难得到一个简单的构造方法。</p><p>那么把两边的能被匹配覆盖的点集分别处理出来排个序然后双指针即可。</p></details><hr /><h2 id="intellectual-property">122. Intellectual Property</h2><p>有三个三元组 <span class="math inline">\((1, 2, 3), (4, 5, 6), (7, 8, 9)\)</span> ，对数独定义若干操作：</p><ol type="1"><li>选择两个数字 <span class="math inline">\(x, y\)</span> 并把所有 <span class="math inline">\(x\)</span> 变为 <span class="math inline">\(y\)</span> ，把所有 <span class="math inline">\(y\)</span> 变为 <span class="math inline">\(x\)</span> 。</li><li>选择同一三元组的两行交换。</li><li>交换两个三元组对应的行。</li><li>选择同一三元组的两列交换。</li><li>交换两个三元组对应的列。</li><li>沿左上-右下对角线翻折。</li></ol><p>给定 <span class="math inline">\(n\)</span> 个数独，对于每两个数独求出一组操作序列使得一个数独操作后与另一个相同或输出无解。</p><p>时间复杂度：<span class="math inline">\(O(1296 (9^2 n + n^2))\)</span> 。</p><details class="note primary"><summary><p>题解</p></summary><p>容易发现由于存在三元组的限制，行和列的置换数都是 <span class="math inline">\(1296\)</span> 而非 <span class="math inline">\(9!\)</span> 。对于两个待检查的数独 <span class="math inline">\(a\)</span> 和 <span class="math inline">\(b\)</span> ，朴素的想法是在 <span class="math inline">\(a\)</span> 上枚举所有行的置换和所有列的置换然后比对，但是由于行列之间不影响，不难想到折半，在 <span class="math inline">\(a\)</span> 上枚举所有行的置换，然后在 <span class="math inline">\(b\)</span> 上枚举所有列的置换，在两边检查有没有相同的数独即可。</p><p>对角线翻折操作最多只进行一次，并且如果需要进行的话可以在任意时刻进行，因此如果需要这个操作不妨假定它在最后，额外检查一次即可。</p></details><hr /><h2 id="gem-island">123. Gem Island</h2><p>以前做过，略。</p><hr /><h2 id="j">134. J</h2><p>给定一个长为 <span class="math inline">\(L\)</span> 的表达式。表达式对向量和标量进行运算，有加法减法乘法取反自平方和折叠共六个运算，其中折叠是对一个向量求各个分量的和。表达式中会出现各种标量，但出现的向量仅有 <span class="math inline">\(X\)</span> 。给定 <span class="math inline">\(X\)</span> 求表达式的值。</p><p>特别地，每个子表达式中关于 <span class="math inline">\(X\)</span> 的复杂度不超过 <span class="math inline">\(X^K\)</span> 。</p><p>时间复杂度：<span class="math inline">\(O(|X| K + L K^2)\)</span> 。</p><details class="note primary"><summary><p>题解</p></summary><p>直接把向量拿进去模拟运算的话瓶颈复杂度 <span class="math inline">\(O(L |X|)\)</span> 无法接受。但是注意到表达式中出现的向量仅有 <span class="math inline">\(X\)</span> ，并且折叠操作对加法有分配率，那么总可以用一个关于 <span class="math inline">\(X\)</span> 的多项式来表示一个表达式的值，并且题目中的限制保证了这个多项式的次数不超过 <span class="math inline">\(K\)</span> 。</p></details><hr /><h2 id="tile-cutting">146. Tile Cutting</h2><p>对于一个 <span class="math inline">\(n \times m\)</span> 的网格矩形 <span class="math inline">\(M\)</span> ，称一个平行四边形 <span class="math inline">\(A\)</span> 被 <span class="math inline">\(M\)</span> 包裹当且仅当：</p><ol type="1"><li><span class="math inline">\(AS\)</span> 的四个顶点分别落在 <span class="math inline">\(M\)</span> 的四条边上。</li><li><span class="math inline">\(AS\)</span> 的四个顶点恰好落在格点上。</li></ol><p>设 <span class="math inline">\(f(S)\)</span> 表示满足以下限制的二元组 <span class="math inline">\((M, A)\)</span> 的数目：</p><ol type="1"><li><span class="math inline">\(A\)</span> 被 <span class="math inline">\(M\)</span> 包裹。</li><li><span class="math inline">\(A\)</span> 的面积恰为 <span class="math inline">\(S\)</span> 。</li></ol><p><span class="math inline">\(Q\)</span> 次询问，每次给定区间 <span class="math inline">\([l, r]\)</span> 求 <span class="math inline">\(S \in [l, r]\)</span> 时 <span class="math inline">\(f(S)\)</span> 的最大值。保证 <span class="math inline">\(r \le V\)</span> 。</p><p>时间复杂度：<span class="math inline">\(O((V + Q) \log V)\)</span> 。</p><details class="note primary"><summary><p>题解</p></summary><p>把面积关于平行四边形的位置的式子写出来，稍加整理，不难发现 <span class="math inline">\(f(S)\)</span> 就是满足 <span class="math inline">\(ab + cd = S\)</span> 的正整数四元组 <span class="math inline">\((a, b, c, d)\)</span> 的数量：</p><p><span class="math display">\[f(S) = \sum_{x+y=S} \sum_{a,b} [ab = x] \sum_{c,d} [cd = y] = \sum_{x+y=S} d(x) d(y)\]</span></p><p>FFT 即可。</p></details><hr /><h2 id="fygon-2.0">153. Fygon 2.0</h2><p>给定一个 <span class="math inline">\(m\)</span> 层嵌套 <code>for</code> 循环，循环的左边界要么是前文出现过的循环变量要么是 <span class="math inline">\(1\)</span> ，右边界要么是前文出现过的循环变量要么是常数 <span class="math inline">\(n\)</span> 。求该循环最后的语句的执行次数的渐进复杂度 $C n^K% 。</p><p>时间复杂度：<span class="math inline">\(O(m^3 + m 2^m)\)</span> 。</p><details class="note primary"><summary><p>题解</p></summary><p>首先不难注意到一个 <code>for</code> 循环就是一个形如 <span class="math inline">\(l \le i \le r\)</span> 的不等式，最后的语句的运行次数实际上是满足所有不等式的循环变量组数。</p><p>按不等关系连边，显然 SCC 内的值要相同，缩点得到一张新图 <span class="math inline">\(G\)</span> 。不难想到 <span class="math inline">\(K\)</span> 就是 <span class="math inline">\(G\)</span> 的点数，接下来着重考虑计算渐进复杂度的常数。</p><p>由于渐进复杂度是在 <span class="math inline">\(n\)</span> 趋于正无穷时体现出来的，不妨假定 <span class="math inline">\(n\)</span> 为正无穷，那么每个变量的取值范围就是整个正整数域，不妨钦定 <span class="math inline">\(G\)</span> 内循环变量的取值是两两不同的，考虑每个变量随机取值，满足所有限制的概率。事实上这个概率就是我们要计算的系数 <span class="math inline">\(C\)</span> 。</p><p>由于我们只关心变量之间的大小关系，按变量从小到大得到排列 <span class="math inline">\(p\)</span> ，每个排列 <span class="math inline">\(p\)</span> 的出现概率都是 <span class="math inline">\(\dfrac{1}{K!}\)</span> 。假设合法的排列数量是 <span class="math inline">\(x\)</span> ，那么要计算的系数就是 <span class="math inline">\(\dfrac{x}{K!}\)</span> 。于是问题转换为求合法的排列数，也就是拓扑排序的方案数，用状压 DP 可以很好解决。</p></details><hr /><h2 id="equal-numbers">173. Equal Numbers</h2><p>给定长为 <span class="math inline">\(n\)</span> 的值不超过 <span class="math inline">\(V\)</span> 的正整数数列 <span class="math inline">\(a\)</span> ，可以执行的操作是选择 <span class="math inline">\(i, x\)</span> 令 <span class="math inline">\(a_i \leftarrow x \times a_i\)</span> 。</p><p>对于每个 <span class="math inline">\(k \in [0, n]\)</span> 计算执行 <span class="math inline">\(k\)</span> 次操作能得到的数字种类数的最小值。</p><p>时间复杂度：<span class="math inline">\(O(n + V \log V)\)</span> 。</p><details class="note primary"><summary><p>题解</p></summary><p>设 <span class="math inline">\(X\)</span> 是 <span class="math inline">\(1\)</span> 到 <span class="math inline">\(V\)</span> 的 lcm ，不难想到操作只有两种情况：</p><ol type="1"><li>选 <span class="math inline">\(k\)</span> 个数修改为 <span class="math inline">\(X\)</span> 。</li><li>选 <span class="math inline">\(k\)</span> 个数修改为已经在数列中存在的数。</li></ol><p>分别考虑两种情况。对于情况 1 ，贪心从出现次数最少的数开始修改即可。对于情况 2 ，把能够修改的数拿出来按情况 1 的方法贪心即可。</p></details>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;有生之年。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="整理" scheme="https://kewth.github.io/categories/%E6%95%B4%E7%90%86/"/>
+    
+    
+      <category term="集训队" scheme="https://kewth.github.io/tags/%E9%9B%86%E8%AE%AD%E9%98%9F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>CSP 2020</title>
+    <link href="https://kewth.github.io/2020/10/11/CSP-2020/"/>
+    <id>https://kewth.github.io/2020/10/11/CSP-2020/</id>
+    <published>2020-10-11T07:04:42.000Z</published>
+    <updated>2020-10-11T07:14:54.178Z</updated>
+    
+    <content type="html"><![CDATA[<p>初赛到了考场才真实地认识到一个新的赛季又开始了，不过我已经精神退役了，所以考的比较佛。</p><a id="more"></a><h2 id="初赛">初赛</h2><p>10.09 才知道初赛日期是 10.11 ，没啥感觉，10.11 就跟过去裸考了。</p><p><del>湖南大学好热闹，但是没人和我面基。</del></p><p>不过碰到个小哥哥（应该是湖南大学的学生）问我这么多人是干啥，了解了一波情况后给我说了加油。</p><p>考试的时候那个字符串的题目把我整懵了，猜了几个结论糊弄过去。</p><p>考后发现 <code>nth_element</code> 那题还错了一个，看懂是个 <code>nth_element</code> 后就没仔细看实现了，没注意到它的实现有缺陷。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;初赛到了考场才真实地认识到一个新的赛季又开始了，不过我已经精神退役了，所以考的比较佛。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="总结" scheme="https://kewth.github.io/categories/%E6%80%BB%E7%BB%93/"/>
+    
+    
+      <category term="csp" scheme="https://kewth.github.io/tags/csp/"/>
+    
+      <category term="游记" scheme="https://kewth.github.io/tags/%E6%B8%B8%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Manjaro 使用 Deepin-wine 中文乱码问题</title>
+    <link href="https://kewth.github.io/2020/10/09/Manjaro-%E4%BD%BF%E7%94%A8-Deepin-wine-%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98/"/>
+    <id>https://kewth.github.io/2020/10/09/Manjaro-%E4%BD%BF%E7%94%A8-Deepin-wine-%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98/</id>
+    <published>2020-10-09T11:05:35.000Z</published>
+    <updated>2020-10-09T11:16:07.036Z</updated>
+    
+    <content type="html"><![CDATA[<p>本来装好 deepin.com.qq.im 后就可以愉快使用了，但是在某次滚动更新后突然发现 QQ/TIM 都中文乱码，困惑了很久都没找到解决方案。</p><p>在失败和重新尝试的断断续续的反复循环中，今天终于解决了。</p><p>其实就是下载 simsun.ttc 和 simsun.ttf 放到 .deepinwine/Deepin-QQ/drive_c/windows/Fonts 里头。</p><p>可能还要写个 zh.reg ，像下面这样，然而 deepin-wine 自带的 deepin-regedit 用不了，把 /usr/lib/deepin-wine/wine 拷贝到 /usr/lib/i386-linux-gnu/deepin-wine/wine 后似乎就好一点，但还是用不了，因此我并没有注册，但好像也还可以。</p><a id="more"></a><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">REGEDIT4</span><br><span class="line">[HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\FontSubstitutes]</span><br><span class="line">&quot;Arial&quot;&#x3D;&quot;simsun&quot;</span><br><span class="line">&quot;Arial CE,238&quot;&#x3D;&quot;simsun&quot;</span><br><span class="line">&quot;Arial CYR,204&quot;&#x3D;&quot;simsun&quot;</span><br><span class="line">&quot;Arial Greek,161&quot;&#x3D;&quot;simsun&quot;</span><br><span class="line">&quot;Arial TUR,162&quot;&#x3D;&quot;simsun&quot;</span><br><span class="line">&quot;Courier New&quot;&#x3D;&quot;simsun&quot;</span><br><span class="line">&quot;Courier New CE,238&quot;&#x3D;&quot;simsun&quot;</span><br><span class="line">&quot;Courier New CYR,204&quot;&#x3D;&quot;simsun&quot;</span><br><span class="line">&quot;Courier New Greek,161&quot;&#x3D;&quot;simsun&quot;</span><br><span class="line">&quot;Courier New TUR,162&quot;&#x3D;&quot;simsun&quot;</span><br><span class="line">&quot;FixedSys&quot;&#x3D;&quot;simsun&quot;</span><br><span class="line">&quot;Helv&quot;&#x3D;&quot;simsun&quot;</span><br><span class="line">&quot;Helvetica&quot;&#x3D;&quot;simsun&quot;</span><br><span class="line">&quot;MS Sans Serif&quot;&#x3D;&quot;simsun&quot;</span><br><span class="line">&quot;MS Shell Dlg&quot;&#x3D;&quot;simsun&quot;</span><br><span class="line">&quot;MS Shell Dlg 2&quot;&#x3D;&quot;simsun&quot;</span><br><span class="line">&quot;System&quot;&#x3D;&quot;simsun&quot;</span><br><span class="line">&quot;Tahoma&quot;&#x3D;&quot;simsun&quot;</span><br><span class="line">&quot;Times&quot;&#x3D;&quot;simsun&quot;</span><br><span class="line">&quot;Times New Roman CE,238&quot;&#x3D;&quot;simsun&quot;</span><br><span class="line">&quot;Times New Roman CYR,204&quot;&#x3D;&quot;simsun&quot;</span><br><span class="line">&quot;Times New Roman Greek,161&quot;&#x3D;&quot;simsun&quot;</span><br><span class="line">&quot;Times New Roman TUR,162&quot;&#x3D;&quot;simsun&quot;</span><br><span class="line">&quot;Tms Rmn&quot;&#x3D;&quot;simsun&quot;</span><br></pre></td></tr></table></figure><p>不过还是有一点点小问题，某些地方仍然乱码（如个性签名），TIM 的效果要好很多。</p><p>回过头来看这不是蛮简单的嘛？为啥我搞了这么久？</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;本来装好 deepin.com.qq.im 后就可以愉快使用了，但是在某次滚动更新后突然发现 QQ/TIM 都中文乱码，困惑了很久都没找到解决方案。&lt;/p&gt;
+&lt;p&gt;在失败和重新尝试的断断续续的反复循环中，今天终于解决了。&lt;/p&gt;
+&lt;p&gt;其实就是下载 simsun.ttc 和 simsun.ttf 放到 .deepinwine/Deepin-QQ/drive_c/windows/Fonts 里头。&lt;/p&gt;
+&lt;p&gt;可能还要写个 zh.reg ，像下面这样，然而 deepin-wine 自带的 deepin-regedit 用不了，把 /usr/lib/deepin-wine/wine 拷贝到 /usr/lib/i386-linux-gnu/deepin-wine/wine 后似乎就好一点，但还是用不了，因此我并没有注册，但好像也还可以。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="折腾" scheme="https://kewth.github.io/categories/%E6%8A%98%E8%85%BE/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>Manjaro 连接 Wifi</title>
@@ -981,7 +1076,7 @@
     <link href="https://kewth.github.io/2019/11/17/CSP2019/"/>
     <id>https://kewth.github.io/2019/11/17/CSP2019/</id>
     <published>2019-11-17T12:33:24.000Z</published>
-    <updated>2020-05-19T12:28:28.996Z</updated>
+    <updated>2020-10-11T07:05:25.117Z</updated>
     
     <content type="html"><![CDATA[<h2 id="day1">Day1</h2><p>体验极差，真的就是极差，做梦都没想到 Day1 竟然是这样的。</p><p>开考花 30min 交完前面两题，看看时间还剩 3h 。<br />我觉得换谁在这个处境都会觉得稳得一批，我有三个小时你 Day1T3 能秒我？<br />我时间都规划好了，花 2h 肝 T3 ，拿 1h 对拍测试检查细节。</p><ul><li>30min 后：我有一个贪心想法，似乎有理有据</li><li>1h 后：终于打完了，过了样例，nice 稳了，测测大样例， woc 怎么全 WA 了</li><li>1.5h 后：（写暴力造数据对拍）妈呀贪心假了，这个只需要怎么怎么随便就卡掉了，这也能过样例</li><li>2h 后：只剩一个小时了，我要不要写一写链和菊花的暴力啊？算了前面两题应该不会挂，继续肝</li><li>2.5h 后：（濒临崩溃）我一道联赛题只会 10 分怕不是不要混了，算了还是写暴力吧</li><li>考试结束 3min 前：（自闭）我 !@#@!%$!@%@@ 暴力怎么这么难打？链的数据怎么死循环啊</li></ul><p>考完还听别人说 T1 卡 long long ，我靠，凉凉。<br />（话说回来考试前一天晚上我还在 OI-Wiki 上偶然翻到了格雷码，看着好复杂心想这玩意学了肯定没用就没看了）</p><a id="more"></a><h2 id="day2">Day2</h2><p>发现 Day1 普遍不会 T3 后心态稍微好了点，但是 T1 挂了还是影响很大的。</p><p>想着今天稳健一点，然后真就安心打了三题暴力。。。<br />（其实是因为开场看了 30min 题意识到自己一题都不会做）</p><p>T1 看着就是要枚举超过一半的菜去容斥，而超过一半的菜最多只会同时有一个，用 dp 是很好处理的，<br />写了个 <span class="math inline">\(O(n^3m)\)</span> 的 dp 交了，看着有 84 分，觉得先往后做比较妥，就没管了。<br />（后来听说那个 dp 稍微对状态做个小优化就是 <span class="math inline">\(O(n^2m)\)</span> 的了。。）</p><p>T2 看着就是个 <span class="math inline">\(O(n^3)\)</span> 的大暴力 dp ，诶不行 36 分不太够啊，然后猜想 + 打表发现 dp 的决策点单调，<br />然后这怎么优化到 <span class="math inline">\(O(n^2)\)</span> ？不会，只晓得搞分治 dp ，好像带一个不满的 log ，实测大数据 1.0 s 。<br />（听别人说根据单调性可以直接优化到 <span class="math inline">\(O(n^2)\)</span> ？不懂，告辞）</p><p>T3 看着就是个枚举断边暴力算重心，想着今天的目标定为打满暴力算了，<br />然后就认认真真地打了链的部分分（链上的重心可以 <span class="math inline">\(O(1)\)</span> 计算）和完全二叉树的部分分（本质不同的断边只有 <span class="math inline">\(O(logn)\)</span> 个）。<br />前所未有地耐心打暴力，不知道怎么坚持下来的，可能是终于认识到自己实力弱菜吧。</p><h2 id="end">End</h2><p>12.01</p><p>两周没碰电脑了，今天补补总结。</p><p>洛谷自测 438 ，D1T3 水了 35 分。<br />到牛客上就只有 408 了。</p><p>csp 数据还算良心吧，D1T1 没有太丧心病狂（像洛谷牛客那样没写 unsigned 就被卡二三十分是真的想死），<br />只放在最后一个点卡了 5 分，这被卡了也服气，可以接受，权当买了个教训。<br />但数据强度还是有的，D2T2 搞分治还是被卡了一个点 4 分（然而如果开 O2 就过了），也行，技不如人甘拜下风。<br />最后的成绩拿官方数据自测就是 424 了，比去年高了一点点，没长进啊。</p><p>那么接下来就是冬令营了，坐标新华都，母校再会。</p><p><del>话说没进冬令营岂不身败名裂</del></p>]]></content>
     

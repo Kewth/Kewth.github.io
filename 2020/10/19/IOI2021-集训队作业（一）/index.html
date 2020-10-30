@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.0.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="KIx9DF_OoeyQmEhcVAbjH5vg_i539tmILHmNH8lRDtw">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  
+  <link rel="stylesheet" href="/lib/animate-css/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"kewth.github.io","root":"/","scheme":"Muse","version":"8.0.0-rc.5","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"path":"search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":3,"unescape":false,"preload":false}};
+  </script>
+
+  <meta name="description" content="有生之年。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="IOI2021 集训队作业（一）">
+<meta property="og:url" content="https://kewth.github.io/2020/10/19/IOI2021-%E9%9B%86%E8%AE%AD%E9%98%9F%E4%BD%9C%E4%B8%9A%EF%BC%88%E4%B8%80%EF%BC%89/index.html">
+<meta property="og:site_name" content="KeBlog">
+<meta property="og:description" content="有生之年。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-10-19T08:51:16.000Z">
+<meta property="article:modified_time" content="2020-10-20T08:43:51.816Z">
+<meta property="article:author" content="Kewth">
+<meta property="article:tag" content="集训队">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://kewth.github.io/2020/10/19/IOI2021-%E9%9B%86%E8%AE%AD%E9%98%9F%E4%BD%9C%E4%B8%9A%EF%BC%88%E4%B8%80%EF%BC%89/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>IOI2021 集训队作业（一） | KeBlog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="KeBlog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <main class="main">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+        <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">KeBlog</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">The OI Algorithm Blog of Kewth</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">62</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">5</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">75</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#rubiks-rectangle"><span class="nav-number">1.</span> <span class="nav-text">233. Rubik&#39;s Rectangle</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hiking-in-the-hills"><span class="nav-number">2.</span> <span class="nav-text">234. Hiking in the Hills</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#single-cut-of-failure"><span class="nav-number">3.</span> <span class="nav-text">235. Single Cut of Failure</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#bipartite-blanket"><span class="nav-number">4.</span> <span class="nav-text">121. Bipartite Blanket</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#intellectual-property"><span class="nav-number">5.</span> <span class="nav-text">122. Intellectual Property</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gem-island"><span class="nav-number">6.</span> <span class="nav-text">123. Gem Island</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#j"><span class="nav-number">7.</span> <span class="nav-text">134. J</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tile-cutting"><span class="nav-number">8.</span> <span class="nav-text">146. Tile Cutting</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fygon-2.0"><span class="nav-number">9.</span> <span class="nav-text">153. Fygon 2.0</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#equal-numbers"><span class="nav-number">10.</span> <span class="nav-text">173. Equal Numbers</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Kewth"
+      src="/images/avatar.jpeg">
+  <p class="site-author-name" itemprop="name">Kewth</p>
+  <div class="site-description" itemprop="description">HNFMS 现役 OIer</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">75</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">62</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Kewth" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Kewth" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:Kewth.K.D@outlook.com" title="E-Mail → mailto:Kewth.K.D@outlook.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="qq:1344205350" title="QQ → qq:1344205350" rel="noopener" target="_blank"><i class="fab fa-qq fa-fw"></i>QQ</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.luogu.org/space/show?uid=52232" title="Luogu → https:&#x2F;&#x2F;www.luogu.org&#x2F;space&#x2F;show?uid&#x3D;52232" rel="noopener" target="_blank"><i class="fas fa-code-branch fa-fw"></i>Luogu</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links | 友链
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="/" title="&#x2F;">无，欢迎互换友链</a>
+        </li>
+    </ul>
+  </div>
+
+      </section>
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </header>
+
+      
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div id="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+      <div class="main-inner">
+        
+
+        <div class="content post posts-expand">
+          
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2020/10/19/IOI2021-%E9%9B%86%E8%AE%AD%E9%98%9F%E4%BD%9C%E4%B8%9A%EF%BC%88%E4%B8%80%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Kewth">
+      <meta itemprop="description" content="HNFMS 现役 OIer">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KeBlog">
+    </span>
+
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          IOI2021 集训队作业（一）
+        </h1>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-10-19 16:51:16" itemprop="dateCreated datePublished" datetime="2020-10-19T16:51:16+08:00">2020-10-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-10-20 16:43:51" itemprop="dateModified" datetime="2020-10-20T16:43:51+08:00">2020-10-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B4%E7%90%86/" itemprop="url" rel="index"><span itemprop="name">整理</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>有生之年。</p>
+<a id="more"></a>
+<hr />
+<h2 id="rubiks-rectangle">233. Rubik's Rectangle</h2>
+<p>给定一个 <span class="math inline">\(H \times W\)</span> 的网格，每个网格有个数字，每次操作可以翻转某行或某列，求一组合法操作使得该网格的数字排好序。</p>
+<p>时间复杂度：<span class="math inline">\(O(HW(H+W))\)</span> 。</p>
+<details class="note primary"><summary><p>题解</p>
+</summary>
+<p>不妨假设 n, m 都是偶数（如果是奇数那么中间的一行或列可以独立）。</p>
+<p>可以发现可以把格子染色，每种颜色恰好四个格子，满足任意翻转操作后颜色矩阵不变。</p>
+<p>不妨假设每个数字在正确的颜色位置上。考虑每个颜色内的四个点，可以发现如果这些点构成偶排列那么就总可以在不影响其他颜色的前提下把这四个点排好序，如果是奇排列则总是不能。称每个颜色的左上角的点为代表点，把颜色的排列奇偶性作为标记放到代表点上，对于代表点标记构成的 01 矩阵 A ，如果 A 是全 0 矩阵自然是有解的。</p>
+<p>而每次翻转对 A 的影响就是讲某一行或某一列的 01 给全部反转，因此只要能通过这个操作把 A 弄成 01 矩阵就能得到解，这就是个很 simple 的贪心了。</p>
+
+</details>
+<details class="note info"><summary><p>数据</p>
+</summary>
+<p><del>这 spj 真难写。</del></p>
+<p>不难想到如果随机选择一个排列放到网格上，那么极大的概率是无解。采用逆推的方式，从一个排好序的网格随机执行若干次操作得到一个打乱的网格，这样就可以保证数据有解。在此基础上加上一些扰动改变一些代表点的奇偶性即可得到强度较大的无解数据。</p>
+
+</details>
+<hr />
+<h2 id="hiking-in-the-hills">234. Hiking in the Hills</h2>
+<p>在三维空间上给定一个曲面，该曲面由 <span class="math inline">\(n\)</span> 个三角形构成，在曲面上给出两个点，求曲面上连接两点的一条折线使得折线上的最高的点的高度最小（高度指 z 轴坐标）。</p>
+<p>保证任意直线 <span class="math inline">\(x=x_0, y=y_0\)</span> 与该曲面的交点至多只有一个。</p>
+<p>时间复杂度：<span class="math inline">\(O(n \log n)\)</span> 。</p>
+<details class="note primary"><summary><p>题解</p>
+</summary>
+<p>容易发现这条折线可以只走三角形端点，把三角形端点和起点终点拿出来建图然后把点按高度排序，用个并查集维护即可。</p>
+
+</details>
+<details class="note info"><summary><p>数据</p>
+</summary>
+<p><del>这 spj 真难写。</del></p>
+<p>这题造数据比写标程难。先确定所有三角形端点，再构造三角形，把端点投影到 xy 平面上，那么构造三角形就是在平面上求一组三角剖分。</p>
+
+</details>
+<hr />
+<h2 id="single-cut-of-failure">235. Single Cut of Failure</h2>
+<p>有一个矩形，称一条端点落在矩形的不同的两条边的线段为合法线段。给定 <span class="math inline">\(n\)</span> 条合法线段，要求添加最少的合法线段使得每条给定的合法线段与至少一条添加的合法线段有交。</p>
+<p>时间复杂度：<span class="math inline">\(O(n \log n)\)</span> 。</p>
+<details class="note primary"><summary><p>题解</p>
+</summary>
+<p>比较降智的一点是，添加两条对角线总是满足条件的。那么我们只需要关注是否可以找到一条合法线段与所有给定线段有交。</p>
+<p>把矩形的边展开为一个数轴，每个给定线段对应数轴上一段区间，那么目标是选两个点满足它们所在的区间的集合的不交并是全集。假设区间没有包含关系，排个序后枚举一个点双指针处理另一个点即可。对于有包含关系的区间，稍加特殊处理就可以合并为一个区间。</p>
+
+</details>
+<details class="note info"><summary><p>数据</p>
+</summary>
+<p><del>这 spj 真难写。</del></p>
+<p>不难想到如果在矩形内随机给出 <span class="math inline">\(n\)</span> 条合法线段，那么有极大的概率不存在一条线段的解。不妨先确定最后需要添加的线段，然后给出 <span class="math inline">\(n\)</span> 条与之有交的合法线段。</p>
+
+</details>
+<hr />
+<h2 id="bipartite-blanket">121. Bipartite Blanket</h2>
+<p>给定一个二分图，左右分别 <span class="math inline">\(n, m\)</span> 个点，点有点权，称一个点集是合法的当且仅当存在一组匹配是该点集的父集，求有多少合法点集的点权和不小于 <span class="math inline">\(t\)</span> 。</p>
+<p>时间复杂度：<span class="math inline">\(O(n 2^n + m 2^m)\)</span> 。</p>
+<details class="note primary"><summary><p>题解</p>
+</summary>
+<p>对于点集 <span class="math inline">\(S\)</span> 考虑判断是否存在匹配覆盖了 <span class="math inline">\(S\)</span> 。如果 <span class="math inline">\(S\)</span> 只包含左边的点或者只包含右边的点，容易发现用 Hall 定理就能判断。否则设 <span class="math inline">\(S = X \cup Y, X \cap Y = \emptyset\)</span> ，其中 <span class="math inline">\(X, Y\)</span> 分别是左右边集。那么可以证 明，存在匹配覆盖 <span class="math inline">\(S\)</span> 当且仅当存在匹配覆盖 <span class="math inline">\(X\)</span> 且存在匹配覆盖 <span class="math inline">\(Y\)</span> 。</p>
+<p>必要性很显然，证明充分性，假设已知一个覆盖 <span class="math inline">\(X\)</span> 的匹配和一个覆盖 <span class="math inline">\(Y\)</span> 的匹配，考虑取构造一个覆盖 <span class="math inline">\(S\)</span> 的匹配，首先把覆盖 <span class="math inline">\(X\)</span> 的匹配作为初始匹配，然后逐个加入 <span class="math inline">\(Y\)</span> 中的点和对应的匹配点，分类讨论不难得到一个简单的构造方法。</p>
+<p>那么把两边的能被匹配覆盖的点集分别处理出来排个序然后双指针即可。</p>
+
+</details>
+<hr />
+<h2 id="intellectual-property">122. Intellectual Property</h2>
+<p>有三个三元组 <span class="math inline">\((1, 2, 3), (4, 5, 6), (7, 8, 9)\)</span> ，对数独定义若干操作：</p>
+<ol type="1">
+<li>选择两个数字 <span class="math inline">\(x, y\)</span> 并把所有 <span class="math inline">\(x\)</span> 变为 <span class="math inline">\(y\)</span> ，把所有 <span class="math inline">\(y\)</span> 变为 <span class="math inline">\(x\)</span> 。</li>
+<li>选择同一三元组的两行交换。</li>
+<li>交换两个三元组对应的行。</li>
+<li>选择同一三元组的两列交换。</li>
+<li>交换两个三元组对应的列。</li>
+<li>沿左上-右下对角线翻折。</li>
+</ol>
+<p>给定 <span class="math inline">\(n\)</span> 个数独，对于每两个数独求出一组操作序列使得一个数独操作后与另一个相同或输出无解。</p>
+<p>时间复杂度：<span class="math inline">\(O(1296 (9^2 n + n^2))\)</span> 。</p>
+<details class="note primary"><summary><p>题解</p>
+</summary>
+<p>容易发现由于存在三元组的限制，行和列的置换数都是 <span class="math inline">\(1296\)</span> 而非 <span class="math inline">\(9!\)</span> 。对于两个待检查的数独 <span class="math inline">\(a\)</span> 和 <span class="math inline">\(b\)</span> ，朴素的想法是在 <span class="math inline">\(a\)</span> 上枚举所有行的置换和所有列的置换然后比对，但是由于行列之间不影响，不难想到折半，在 <span class="math inline">\(a\)</span> 上枚举所有行的置换，然后在 <span class="math inline">\(b\)</span> 上枚举所有列的置换，在两边检查有没有相同的数独即可。</p>
+<p>对角线翻折操作最多只进行一次，并且如果需要进行的话可以在任意时刻进行，因此如果需要这个操作不妨假定它在最后，额外检查一次即可。</p>
+
+</details>
+<hr />
+<h2 id="gem-island">123. Gem Island</h2>
+<p>以前做过，略。</p>
+<hr />
+<h2 id="j">134. J</h2>
+<p>给定一个长为 <span class="math inline">\(L\)</span> 的表达式。表达式对向量和标量进行运算，有加法减法乘法取反自平方和折叠共六个运算，其中折叠是对一个向量求各个分量的和。表达式中会出现各种标量，但出现的向量仅有 <span class="math inline">\(X\)</span> 。给定 <span class="math inline">\(X\)</span> 求表达式的值。</p>
+<p>特别地，每个子表达式中关于 <span class="math inline">\(X\)</span> 的复杂度不超过 <span class="math inline">\(X^K\)</span> 。</p>
+<p>时间复杂度：<span class="math inline">\(O(|X| K + L K^2)\)</span> 。</p>
+<details class="note primary"><summary><p>题解</p>
+</summary>
+<p>直接把向量拿进去模拟运算的话瓶颈复杂度 <span class="math inline">\(O(L |X|)\)</span> 无法接受。但是注意到表达式中出现的向量仅有 <span class="math inline">\(X\)</span> ，并且折叠操作对加法有分配率，那么总可以用一个关于 <span class="math inline">\(X\)</span> 的多项式来表示一个表达式的值，并且题目中的限制保证了这个多项式的次数不超过 <span class="math inline">\(K\)</span> 。</p>
+
+</details>
+<hr />
+<h2 id="tile-cutting">146. Tile Cutting</h2>
+<p>对于一个 <span class="math inline">\(n \times m\)</span> 的网格矩形 <span class="math inline">\(M\)</span> ，称一个平行四边形 <span class="math inline">\(A\)</span> 被 <span class="math inline">\(M\)</span> 包裹当且仅当：</p>
+<ol type="1">
+<li><span class="math inline">\(AS\)</span> 的四个顶点分别落在 <span class="math inline">\(M\)</span> 的四条边上。</li>
+<li><span class="math inline">\(AS\)</span> 的四个顶点恰好落在格点上。</li>
+</ol>
+<p>设 <span class="math inline">\(f(S)\)</span> 表示满足以下限制的二元组 <span class="math inline">\((M, A)\)</span> 的数目：</p>
+<ol type="1">
+<li><span class="math inline">\(A\)</span> 被 <span class="math inline">\(M\)</span> 包裹。</li>
+<li><span class="math inline">\(A\)</span> 的面积恰为 <span class="math inline">\(S\)</span> 。</li>
+</ol>
+<p><span class="math inline">\(Q\)</span> 次询问，每次给定区间 <span class="math inline">\([l, r]\)</span> 求 <span class="math inline">\(S \in [l, r]\)</span> 时 <span class="math inline">\(f(S)\)</span> 的最大值。保证 <span class="math inline">\(r \le V\)</span> 。</p>
+<p>时间复杂度：<span class="math inline">\(O((V + Q) \log V)\)</span> 。</p>
+<details class="note primary"><summary><p>题解</p>
+</summary>
+<p>把面积关于平行四边形的位置的式子写出来，稍加整理，不难发现 <span class="math inline">\(f(S)\)</span> 就是满足 <span class="math inline">\(ab + cd = S\)</span> 的正整数四元组 <span class="math inline">\((a, b, c, d)\)</span> 的数量：</p>
+<p><span class="math display">\[
+f(S) = \sum_{x+y=S} \sum_{a,b} [ab = x] \sum_{c,d} [cd = y] = \sum_{x+y=S} d(x) d(y)
+\]</span></p>
+<p>FFT 即可。</p>
+
+</details>
+<hr />
+<h2 id="fygon-2.0">153. Fygon 2.0</h2>
+<p>给定一个 <span class="math inline">\(m\)</span> 层嵌套 <code>for</code> 循环，循环的左边界要么是前文出现过的循环变量要么是 <span class="math inline">\(1\)</span> ，右边界要么是前文出现过的循环变量要么是常数 <span class="math inline">\(n\)</span> 。求该循环最后的语句的执行次数的渐进复杂度 $C n^K% 。</p>
+<p>时间复杂度：<span class="math inline">\(O(m^3 + m 2^m)\)</span> 。</p>
+<details class="note primary"><summary><p>题解</p>
+</summary>
+<p>首先不难注意到一个 <code>for</code> 循环就是一个形如 <span class="math inline">\(l \le i \le r\)</span> 的不等式，最后的语句的运行次数实际上是满足所有不等式的循环变量组数。</p>
+<p>按不等关系连边，显然 SCC 内的值要相同，缩点得到一张新图 <span class="math inline">\(G\)</span> 。不难想到 <span class="math inline">\(K\)</span> 就是 <span class="math inline">\(G\)</span> 的点数，接下来着重考虑计算渐进复杂度的常数。</p>
+<p>由于渐进复杂度是在 <span class="math inline">\(n\)</span> 趋于正无穷时体现出来的，不妨假定 <span class="math inline">\(n\)</span> 为正无穷，那么每个变量的取值范围就是整个正整数域，不妨钦定 <span class="math inline">\(G\)</span> 内循环变量的取值是两两不同的，考虑每个变量随机取值，满足所有限制的概率。事实上这个概率就是我们要计算的系数 <span class="math inline">\(C\)</span> 。</p>
+<p>由于我们只关心变量之间的大小关系，按变量从小到大得到排列 <span class="math inline">\(p\)</span> ，每个排列 <span class="math inline">\(p\)</span> 的出现概率都是 <span class="math inline">\(\dfrac{1}{K!}\)</span> 。假设合法的排列数量是 <span class="math inline">\(x\)</span> ，那么要计算的系数就是 <span class="math inline">\(\dfrac{x}{K!}\)</span> 。于是问题转换为求合法的排列数，也就是拓扑排序的方案数，用状压 DP 可以很好解决。</p>
+
+</details>
+<hr />
+<h2 id="equal-numbers">173. Equal Numbers</h2>
+<p>给定长为 <span class="math inline">\(n\)</span> 的值不超过 <span class="math inline">\(V\)</span> 的正整数数列 <span class="math inline">\(a\)</span> ，可以执行的操作是选择 <span class="math inline">\(i, x\)</span> 令 <span class="math inline">\(a_i \leftarrow x \times a_i\)</span> 。</p>
+<p>对于每个 <span class="math inline">\(k \in [0, n]\)</span> 计算执行 <span class="math inline">\(k\)</span> 次操作能得到的数字种类数的最小值。</p>
+<p>时间复杂度：<span class="math inline">\(O(n + V \log V)\)</span> 。</p>
+<details class="note primary"><summary><p>题解</p>
+</summary>
+<p>设 <span class="math inline">\(X\)</span> 是 <span class="math inline">\(1\)</span> 到 <span class="math inline">\(V\)</span> 的 lcm ，不难想到操作只有两种情况：</p>
+<ol type="1">
+<li>选 <span class="math inline">\(k\)</span> 个数修改为 <span class="math inline">\(X\)</span> 。</li>
+<li>选 <span class="math inline">\(k\)</span> 个数修改为已经在数列中存在的数。</li>
+</ol>
+<p>分别考虑两种情况。对于情况 1 ，贪心从出现次数最少的数开始修改即可。对于情况 2 ，把能够修改的数拿出来按情况 1 的方法贪心即可。</p>
+
+</details>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E9%9B%86%E8%AE%AD%E9%98%9F/" rel="tag"><i class="fa fa-tag"></i> 集训队</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/10/11/CSP-2020/" rel="prev" title="CSP 2020">
+      <i class="fa fa-chevron-left"></i> CSP 2020
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/10/20/IOI2021-%E9%9B%86%E8%AE%AD%E9%98%9F%E4%BD%9C%E4%B8%9A%EF%BC%88%E4%BA%8C%EF%BC%89/" rel="next" title="IOI2021 集训队作业（二）">
+      IOI2021 集训队作业（二） <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+        </div>
+        
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heartbeat"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Kewth</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      const script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments('#gitalk-container', () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '5a2fdd60fe2f91777a6b',
+      clientSecret: '9ddb762244fffc5caff2490a05e53dbca8ae4902',
+      repo        : 'hexo-gitalk',
+      owner       : 'Kewth',
+      admin       : ['Kewth'],
+      id          : '6c1641df315fc51655095fbc1fea8a9d',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>
