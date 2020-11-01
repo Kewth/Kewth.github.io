@@ -168,6 +168,21 @@
 <p>特别地，有些白点压根没有合法的黑点与它构成矩形，这种情况需要稍加处理。</p>
 
 </details>
+<hr />
+<h2 id="weather-report">293. Weather Report</h2>
+<p>给所有长度为 <span class="math inline">\(n\)</span> 的四进制数一个二进制编码，要求编码之间两两没有前缀关系。以 <span class="math inline">\(\prod_{i=1}^n P_{a_i}\)</span> 的概率选中四进制数 <span class="math inline">\(a\)</span> ，其中 <span class="math inline">\(a_i\)</span> 表示 <span class="math inline">\(a\)</span> 的第 <span class="math inline">\(i\)</span> 个数位的值。<span class="math inline">\(P_0, P_1, P_2, P_3\)</span> 给定且和为 <span class="math inline">\(1\)</span> 。</p>
+<p>最小化选中的四进制数的编码的长度的数学期望。</p>
+<p>时间复杂度：<span class="math inline">\(O((\dfrac{n}{w}) n^4 \log n)\)</span></p>
+<details class="note primary"><summary><p>题解</p>
+</summary>
+<p>把所有四进制数的编码建 Trie ，由于编码之间两两没有前缀关系，那么 Trie 的单词节点两两没有祖先关系。一个 Trie （即编码方式）的代价就是每个叶子的权值（对应的四进制数的出现概率）乘上其深度的和。</p>
+<p>而最小化这个 Trie 的代价是很简单的，每次贪心选两个最小的叶子合并即可。</p>
+<p>唯一的问题在于节点数 <span class="math inline">\(4^n\)</span> 太多，不过许多都是权值相同的，爆搜四种天气的数量，用组合数算一类权值的节点的数量，将它们作为整体应用到贪心算法即可。</p>
+<p>这个最优编码就是 Huffman 编码，上文的 Trie 树就是 Huffman 树，上文的贪心算法就是构建 Huffman 树的一个常用算法。</p>
+<p>事实上，由于需要记录一类权值的数量，而这个数量 <span class="math inline">\(t\)</span> 的值是 <span class="math inline">\(O(4^n)\)</span> 的（上确界应该是 <span class="math inline">\(\dfrac{n!}{(\frac{n}{4}!)^4}\)</span> ），因此这个数值的运算复杂度是 <span class="math inline">\(O(\dfrac{n}{w})\)</span> ，然后一类数量为 <span class="math inline">\(t\)</span> 的权值最多被重复取出 <span class="math inline">\(\log t\)</span> 次，也就是 <span class="math inline">\(O(n)\)</span> 次，这样算下来就得到了上述的复杂度上界（可能未必是上确界）。</p>
+<p>如果数量 <span class="math inline">\(t\)</span> 用整数记录的话，有 <span class="math inline">\(n &lt; w\)</span> ，这个 <span class="math inline">\(n\)</span> 实际上是不大的。</p>
+
+</details>
 ]]></content>
       <categories>
         <category>整理</category>
