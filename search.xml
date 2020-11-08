@@ -183,6 +183,82 @@
 <p>如果数量 <span class="math inline">\(t\)</span> 用整数记录的话，有 <span class="math inline">\(n &lt; w\)</span> ，这个 <span class="math inline">\(n\)</span> 实际上是不大的。</p>
 
 </details>
+<hr />
+<h2 id="correcting-curiosity">101. Correcting Curiosity</h2>
+<p>给定两个不相等的非空串 <span class="math inline">\(s\)</span> 和 <span class="math inline">\(t\)</span> ，要求找到两个串 <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span> 使得在 Vim 内对 <span class="math inline">\(s\)</span> 执行 <code>s/A/B/g</code> 命令后得到的串恰为 <span class="math inline">\(t\)</span> ，并使得 <span class="math inline">\(|A| + |B|\)</span> 最小。</p>
+<p>时间复杂度：<span class="math inline">\(O(|s|^2 + |t|)\)</span> 。</p>
+<details class="note primary"><summary><p>题解</p>
+</summary>
+<p>直接从 <span class="math inline">\(s\)</span> 的所有子串中枚举 <span class="math inline">\(A\)</span> ，不难发现只要确定了 <span class="math inline">\(A\)</span> 就可以唯一确定 <span class="math inline">\(B\)</span> ，然后在 <span class="math inline">\(s\)</span> 上模拟替换命令，这样的复杂度是三次方的。</p>
+<p>预处理 <span class="math inline">\(s\)</span>, <span class="math inline">\(t\)</span> 的哈希值，就可以做到单次替换 <span class="math inline">\(O(1)\)</span> ，总复杂度就是平方了。</p>
+
+</details>
+<hr />
+<h2 id="replicate-replicate-rfplicbte">102. Replicate Replicate Rfplicbte</h2>
+<p>对于一个无限大的 01 矩阵，每一次变化定义为依次执行两个操作：</p>
+<ol type="1">
+<li>把每个位置变成操作前其相邻共九个位置的异或和。</li>
+<li>选择至多一个位置将其取反。</li>
+</ol>
+<p>定义一个无限大的 01 矩阵的大小为，能包含所有 1 的子矩阵的面积的最小值。</p>
+<p>现给出一个矩阵 <span class="math inline">\(A\)</span> ，大小为 <span class="math inline">\(n \times m\)</span> ，求一个大小最小的能通过若干次变化变成 <span class="math inline">\(A\)</span> 的矩阵。</p>
+<p>时间复杂度：<span class="math inline">\(O(nm(n+m))\)</span> 。</p>
+<details class="note primary"><summary><p>题解</p>
+</summary>
+<p>首先注意到，无论有没有二操作，每一次变化后，矩阵的“边界”都会想上下左右四个方向个扩展至少一格。</p>
+<p>通过这一点，如果没有二操作，对于一个矩阵 <span class="math inline">\(A\)</span> ，我们可以唯一确定能一次变化到 <span class="math inline">\(A\)</span> 的矩阵 <span class="math inline">\(B\)</span> ，或判断不存在这样的 <span class="math inline">\(B\)</span> 。</p>
+<p>具体方法就是递推，把 <span class="math inline">\(B\)</span> 的每个位置看做变量，<span class="math inline">\(A\)</span> 的每个位置就是异或方程，但是由于可以确定 <span class="math inline">\(B\)</span> 的边界至少向内缩一格，也就可以确定在 <span class="math inline">\(A\)</span> 的外侧的位置上 <span class="math inline">\(B\)</span> 都是 0 。</p>
+<p>考虑如果有二操作，怎么找到二操作的执行位置。</p>
+<p>假设我们逐行递推，那么每一行只有 <span class="math inline">\(n-2\)</span> 个变量但有 <span class="math inline">\(n\)</span> 个方程。找到第一个方程组无解的行，那么如果有二操作，二操作的执行位置一定在该行。同理我们可以确定列，进而得到二操作的位置，然后还原二操作再检验即可。</p>
+
+</details>
+<hr />
+<h2 id="boys-and-girls">103. Boys and Girls</h2>
+<p>求一个长为 <span class="math inline">\(n\)</span> 的由 01 构成的环，满足恰有 <span class="math inline">\(x\)</span> 个点的两侧有 0 ，恰有 <span class="math inline">\(y\)</span> 个点的两侧有 1 。</p>
+<p>时间复杂度：<span class="math inline">\(O(n)\)</span> 。</p>
+<details class="note primary"><summary><p>题解</p>
+</summary>
+<p>注意到每个点的两侧有三种情况：全是 0 ，全是 1 ，一边 0 一边 1 ，设上述三种情况的点的数量分别为 <span class="math inline">\(a\)</span>, <span class="math inline">\(b\)</span>, <span class="math inline">\(c\)</span> ，容易知道有 <span class="math inline">\(c = x + y - n\)</span>, <span class="math inline">\(a = x - c\)</span>, <span class="math inline">\(b = y - c\)</span> 。</p>
+<p>我们把距离恰为 <span class="math inline">\(2\)</span> 的点连边，得到一个新的环，准确来说，如果 <span class="math inline">\(n\)</span> 是奇数，得到的是一个长为 <span class="math inline">\(n\)</span> 的环，否则得到的是两个长为 <span class="math inline">\(dfrac{n}{2}\)</span> 的环。</p>
+<p>那么我们现在要做的就是在环上填 01 使得三种边的数量分别为 <span class="math inline">\(a, b, c\)</span> ，注意到 <span class="math inline">\(c\)</span> 必须是偶数，且 <span class="math inline">\(c\)</span> 为 <span class="math inline">\(0\)</span> 的时候必须有 <span class="math inline">\(ab = 0\)</span> 。假设只有一个环，就很容易构造一个解，两个环的话就把边集分成两个大小相等的部分，只要满足每个部分都合法即可。</p>
+
+</details>
+<hr />
+<h2 id="knapsack-cryptosystem">Knapsack Cryptosystem</h2>
+<p>Hellman-Knapsack Cryptosystem 这一密码系统的描述如下：</p>
+<p>A 的密钥由长为 <span class="math inline">\(n\)</span> 的正整数序列 <span class="math inline">\(a\)</span> 和两个互质的正整数 <span class="math inline">\(r, q\)</span> 组成，满足 <span class="math inline">\(\forall i, a_i &gt; \sum_{j=1}^{i-1} a_j\)</span> 且 <span class="math inline">\(q &gt; \sum_{i=1}^n a_i\)</span> 。</p>
+<p>A 的公钥是一个长为 <span class="math inline">\(n\)</span> 的正整数序列 <span class="math inline">\(b\)</span> ，其中 <span class="math inline">\(b_i = (a_i \cdot r) \bmod q\)</span> 。</p>
+<p>需要传输给 A 的信息是一个长为 <span class="math inline">\(n\)</span> 的 01 序列 <span class="math inline">\(z\)</span> ，加密方式是计算 <span class="math inline">\(s = \sum_{i=1} z_i b_i\)</span> ，然后将 <span class="math inline">\(s\)</span> 传输给 A 。</p>
+<p>（这样一来，仅知道公钥破译 <span class="math inline">\(z\)</span> 的难度远远比通过密钥计算 <span class="math inline">\(z\)</span> 的大）</p>
+<p>现在你窃取到了 <span class="math inline">\(q\)</span> 的值和 <span class="math inline">\(s \bmod q\)</span> 的值，求出 <span class="math inline">\(z\)</span> （公钥也是已知的）。</p>
+<p>时间复杂度：<span class="math inline">\(O(\sqrt[3]{q} \log q)\)</span> 。</p>
+<details class="note primary"><summary><p>题解</p>
+</summary>
+<p>首先注意到 <span class="math inline">\(n \le \log_2 q\)</span> ，如果 <span class="math inline">\(n\)</span> 非常小，不难想到直接枚举 <span class="math inline">\(z\)</span> 然后加以验证，这样的复杂度是 <span class="math inline">\(O(2^n)\)</span> 的。</p>
+<p>上述做法很好加以优化，不难想到折半搜索，做到 <span class="math inline">\(O(n 2^{n/2})\)</span> 。</p>
+<p>但如果 <span class="math inline">\(n\)</span> 非常大呢？注意到 <span class="math inline">\(n\)</span> 越大对 <span class="math inline">\(a\)</span> 的限制就越强，具体来说，这个限制是 <span class="math inline">\(a_1 2^{n-1} &lt; q\)</span> ，当 <span class="math inline">\(n\)</span> 很大的时候，<span class="math inline">\(a_1\)</span> 的可能的取值会很少，不妨枚举 <span class="math inline">\(a_1\)</span> ，进而通过 <span class="math inline">\(a_1\)</span> 和 <span class="math inline">\(b_1\)</span> 的值确定 <span class="math inline">\(r\)</span> （并不能唯一确定，枚举所有可能的 <span class="math inline">\(r\)</span> 即可）。知道 <span class="math inline">\(r\)</span> 后就可以还原整个密钥，进而得到 <span class="math inline">\(z\)</span> 。</p>
+<p>得到 <span class="math inline">\(z\)</span> 的具体方法是，求出 <span class="math inline">\(t = (s \cdot r^{-1}) \bmod q)\)</span> ，那么 <span class="math inline">\(t = \sum_{i=1} z_i a_i\)</span> ，由于 <span class="math inline">\(a\)</span> 的性质特殊，可以直接确定 <span class="math inline">\(z\)</span> 。</p>
+<p>这一做法的复杂度是 <span class="math inline">\(O(\dfrac{q}{2^n} n)\)</span> 。</p>
+<p>综合两者，总复杂度是 <span class="math inline">\(O(\sqrt[3]q \log q)\)</span> 。</p>
+
+</details>
+<hr />
+<h2 id="heavy-chain-clusterization">Heavy Chain Clusterization</h2>
+<p>给定 <span class="math inline">\(n\)</span> 个长度至少为 <span class="math inline">\(k\)</span> 的串 <span class="math inline">\(s_i\)</span> ，要求将它们划分成若干集合，使得每个集合的串满足以下至少一个条件：</p>
+<ol type="1">
+<li>它们的最长公共前缀至少为 <span class="math inline">\(k\)</span> 。</li>
+<li>它们的最长公共后缀至少为 <span class="math inline">\(k\)</span> 。</li>
+</ol>
+<p>在此基础上，最小化划分的集合的数量。</p>
+<p>时间复杂度：<span class="math inline">\(O(n^2 + \sum_{i=1}^n |s_i|)\)</span> 。</p>
+<details class="note primary"><summary><p>题解</p>
+</summary>
+<p>每个 <span class="math inline">\(s_i\)</span> 可以抽象为一个二元组 <span class="math inline">\((x_i, y_i)\)</span> ，其中 <span class="math inline">\(x_i\)</span> 和 <span class="math inline">\(y_i\)</span> 分别表示 <span class="math inline">\(s_i\)</span> 长为 <span class="math inline">\(k\)</span> 的前缀和后缀。</p>
+<p>那么一个集合要满足的条件就是集合内二元组的 <span class="math inline">\(x\)</span> 均相同或 <span class="math inline">\(y\)</span> 均相同。</p>
+<p>进一步把二元组抽象为连接两点的边，那么形成一个有 <span class="math inline">\(n\)</span> 条边的二分图，要求对边集进行划分，每个边集要满足的条件即：<strong>该边集存在一个公共点</strong>。</p>
+<p>那么实际上我们可以用公共点来代表该边集，那么最小的边集划分实际上就是最小的点覆盖。对二分图求最小点覆盖是容易的。</p>
+
+</details>
 ]]></content>
       <categories>
         <category>整理</category>
@@ -358,6 +434,22 @@ f(S) = \sum_{x+y=S} \sum_{a,b} [ab = x] \sum_{c,d} [cd = y] = \sum_{x+y=S} d(x) 
 <p>不过碰到个小哥哥（应该是湖南大学的学生）问我这么多人是干啥，了解了一波情况后给我说了加油。</p>
 <p>考试的时候那个字符串的题目把我整懵了，猜了几个结论糊弄过去。</p>
 <p>考后发现 <code>nth_element</code> 那题还错了一个，看懂是个 <code>nth_element</code> 后就没仔细看实现了，没注意到它的实现有缺陷。</p>
+<p>update: 膜拜我校高一选手初赛 AK ！</p>
+<h2 id="复赛">复赛</h2>
+<p>摸了一个月鱼，又跟过去裸考。</p>
+<p>理论上来说 2:20 就要公布密码了，但是我们考场快到 2:30 才直到正确密码，原因是写密码的老师没分清 k 的大小写，以及 0 和 O 的区别，最后还漏掉了两边的括号。。。</p>
+<p>看完 T1 暗暗问候了一下出题人就跳过去看 T2 ，一看这不送的嘛花十几分钟写完，并特意检查了 <code>unsigned long long</code> （去年因为这个挂了 5 分）。然后回去写 T1 ，反正迟早要写，长痛不如短痛。对着 T1 自闭了三四十分钟终于写完了，过了大样例，就没管了。</p>
+<p>看到 T3 人傻了，我转换问题得到了一个子问题是“在 DAG 上统计每个点能到达的点的点权和”，众所周知这个问题没有高效解法，很懵逼，总感觉哪里不对，重新读了几遍题感觉也没读错，就跳过去看 T4 了。T4 很快发现可能出现的状态只有 <span class="math inline">\(n\)</span> 种，在这些状态中 DP 即可，瓶颈在于通过模拟来求出所有 <span class="math inline">\(n\)</span> 个状态，用平衡树会带个 <span class="math inline">\(\log\)</span> ，肯定跑不过去，但是看了眼数据范围发现至少也有 70 分，感觉还不错，就写了写然后继续回去看 T3 。</p>
+<p>自闭了一会终于发现问题转换错了，实际上要解决的子问题是“在 DAG 上统计每个点能到达的点的点权乘上到达该点的路径数的和”，这个就简单很多，最后写了两个拓扑排序就过了大样例。</p>
+<p>写 T3 的时候不知道为什么脑壳疼，而且有点困，期间不停在打哈欠。迷迷糊糊写完后就也没检查了，坐等考试结束。</p>
+<p>我们考场那收卷效率是真的令人堪忧啊，由几个老师分工收卷，提前分配了哪个老师收哪些考生的卷。但是啊但是啊，不同老师收卷效率和收卷的考生数量都不同，所以导致几个老师收完了没事干，在旁边干看着最后一个没收完的老师，然而还有一堆考生坐着等着他收卷，好巧不巧我就是这些等着的考生中的最后一个。</p>
+<p>晚上又去摸鱼，希望不要挂分吧。</p>
+<hr />
+<p>自测了一波，这里再次对 T1 出题人表示深切的问候。</p>
+<p>T1 一个地方判错了，洛谷民间数据只过了一个点，理论得分下限是 0 。这种以分类讨论为核心的题目你大样例还不把分类的情况给全？</p>
+<p>T2 我真是万万没有想到居然可以有 <span class="math inline">\(n = m = 0, k = 64\)</span> 这样的阴间数据，这个答案是 <span class="math inline">\(2^64\)</span> ，这波 <code>unsigned long long</code> 都存不下，这个神必操作可能又要卡我至少五分了。</p>
+<p>然后听说 T1 直接 Day by Day 模拟有 80 分，这个做为 T1 把暴力分放到 80 本来没啥问题，可你这以分类讨论为核心的题，剩下 20 分你咋区分各种情况？区分个锤子，我估计像我这样少讨论一种情况的得分估计不如暴力模拟的 80 。</p>
+<p>理论得分下限 0 + 60 + 100 + 70 = 230 ，牛批。</p>
 ]]></content>
       <categories>
         <category>总结</category>
