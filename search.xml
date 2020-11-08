@@ -447,9 +447,9 @@ f(S) = \sum_{x+y=S} \sum_{a,b} [ab = x] \sum_{c,d} [cd = y] = \sum_{x+y=S} d(x) 
 <hr />
 <p>自测了一波，这里再次对 T1 出题人表示深切的问候。</p>
 <p>T1 一个地方判错了，洛谷民间数据只过了一个点，理论得分下限是 0 。这种以分类讨论为核心的题目你大样例还不把分类的情况给全？</p>
-<p>T2 我真是万万没有想到居然可以有 <span class="math inline">\(n = m = 0, k = 64\)</span> 这样的阴间数据，这个答案是 <span class="math inline">\(2^64\)</span> ，这波 <code>unsigned long long</code> 都存不下，这个神必操作可能又要卡我至少五分了。</p>
+<p>T2 我真是万万没有想到居然可以有 <span class="math inline">\(n = m = 0, k = 64\)</span> 这样的阴间数据，这个答案是 <span class="math inline">\(2^{64}\)</span> ，这波 <code>unsigned long long</code> 都存不下，这个神必操作可能又要卡我至少五分了。</p>
 <p>然后听说 T1 直接 Day by Day 模拟有 80 分，这个做为 T1 把暴力分放到 80 本来没啥问题，可你这以分类讨论为核心的题，剩下 20 分你咋区分各种情况？区分个锤子，我估计像我这样少讨论一种情况的得分估计不如暴力模拟的 80 。</p>
-<p>理论得分下限 0 + 60 + 100 + 70 = 230 ，牛批。</p>
+<p>理论得分下限 0 + 60 + 100 + 70 = 230 ，可真牛批。</p>
 ]]></content>
       <categories>
         <category>总结</category>
