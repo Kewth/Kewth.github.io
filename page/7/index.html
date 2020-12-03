@@ -150,7 +150,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">75</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">77</span></a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -224,7 +224,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">75</span>
+          <span class="site-state-item-count">77</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -297,6 +297,202 @@
 
         <div class="content index posts-expand">
           
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2019/10/10/%E8%8E%AB%E6%AF%94%E4%B9%8C%E6%96%AF%E5%8F%8D%E6%BC%94/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Kewth">
+      <meta itemprop="description" content="HNFMS 现役 OIer">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KeBlog">
+    </span>
+
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/10/10/%E8%8E%AB%E6%AF%94%E4%B9%8C%E6%96%AF%E5%8F%8D%E6%BC%94/" class="post-title-link" itemprop="url">莫比乌斯反演</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-10-10 10:00:00" itemprop="dateCreated datePublished" datetime="2019-10-10T10:00:00+08:00">2019-10-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-05-10 19:01:09" itemprop="dateModified" datetime="2020-05-10T19:01:09+08:00">2020-05-10</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>（以下除号皆表示整除）<br />
+对于一些式子复杂度大的数论题，或许用莫比乌斯反演可以高效解决问题。</p>
+<p>前置技能：</p>
+<ul>
+<li><p>基本数论函数</p></li>
+<li><p>狄利克雷卷积</p></li>
+</ul>
+<p>莫比乌斯函数满足 <span class="math inline">\(\mu \times I = \epsilon\)</span></p>
+<p>即 <span class="math inline">\(\sum_{d|n}\mu(d) = [n = 1]\)</span></p>
+<p>表达式为：</p>
+<p><span class="math display">\[ n = 0 : \mu(n) = 1 \]</span> <span class="math display">\[ n = \prod_{p|n\,and\,p\,is\,prime} p : \mu(n)=(-1)^k \]</span> <span class="math display">\[ otherwise : \mu(n)=0 \]</span></p>
+<p>证明：<br />
+<del>暂时不会</del></p>
+<p>莫比乌斯反演：<br />
+对于数论函数 <span class="math inline">\(f(n)\)</span> ，设 <span class="math inline">\(F(n) = \sum_{d|n}f(d)\)</span><br />
+即 <span class="math inline">\(F = f \times I\)</span><br />
+则有 <span class="math inline">\(f(n) = \sum_{d|n}F(d)\cdot\mu(\frac{n}{d})\)</span><br />
+即 <span class="math inline">\(f = F \times \mu\)</span></p>
+<p>证明：</p>
+<p><span class="math display">\[ \because \; F = f\cdot I \]</span> <span class="math display">\[ \therefore \; F\cdot \mu = f\cdot I\cdot \mu \]</span> <span class="math display">\[ \because \; I\cdot \mu = \epsilon \]</span> <span class="math display">\[ \therefore \; F\cdot \mu = f\cdot \epsilon \]</span> <span class="math display">\[ \therefore \; f = F\cdot \mu \]</span></p>
+<p>莫比乌斯反演好像主要是用来推式子，F 比 f 好做的话，就可以试试莫比乌斯反演。</p>
+<p>另外事实上只需要熟知 <span class="math inline">\(\mu\)</span> 函数的性质，直接推式子就行了，<br />
+绝大多数情况下（至少是我遇到的所有情况下）并不需要莫比乌斯反演。</p>
+<p>另外莫比乌斯反演有个很简单的 <span class="math inline">\(O(nlogn)\)</span> 实现，不需要筛 <span class="math inline">\(\mu\)</span> ，直接按定义枚举每个数的倍数去筛即可。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2019/10/09/FFT/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Kewth">
+      <meta itemprop="description" content="HNFMS 现役 OIer">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KeBlog">
+    </span>
+
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/10/09/FFT/" class="post-title-link" itemprop="url">FFT</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-10-09 21:00:00" itemprop="dateCreated datePublished" datetime="2019-10-09T21:00:00+08:00">2019-10-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-12-06 20:37:17" itemprop="dateModified" datetime="2019-12-06T20:37:17+08:00">2019-12-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="前置知识">前置知识</h2>
+<p>首先要知道关于 <a href="https://kewth.github.io/blog/2019/01/24/多项式的运算/">多项式</a> 的一些知识。</p>
+<p>其次要对复数有一些了解。</p>
+<h2 id="点值表示法">点值表示法</h2>
+<p>从 <a href="https://kewth.github.io/blog/2019/01/24/多项式的运算/">多项式</a> 中， 已经知道了多项式乘法的朴素算法时间复杂度为 $ O(n^2) $ 。 原因在于多项式是用系数表示法定义的。</p>
+<p>重新定义 n 次多项式 a 为满足 $ k (http://blog.miskcoo.com/2015/04/polynomial-multiplication-and-fast-fourier-transform) 。</p>
+<h2 id="迭代实现">迭代实现</h2>
+<p>上述过程用递归实现常数较大，因而有一个迭代实现 FFT 的快速版本。</p>
+<h3 id="蝴蝶操作">蝴蝶操作</h3>
+<p>FFT 的每个值都是由子问题的两个值转化而来，且这两个值可以转换成两个需要的值（ FFT 复杂度的保证）。 若用一个数组 a 表示多项式。 那么蝴蝶操作形如：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">complex</span> Wn; <span class="comment">// 单位根的幂</span></span><br><span class="line"><span class="built_in">complex</span> a0 = a[x], a1 = a[y];</span><br><span class="line">a[x] = a0 + a1 * Wn;</span><br><span class="line">a[y] = a1 + a0 * Wn;</span><br></pre></td></tr></table></figure>
+<p>这样取出了数组中两个值后再修改相应位置的两个值，就是蝴蝶操作。</p>
+<h3 id="rader-排序">Rader 排序</h3>
+<p>Rader 排序的目的是让表示多项式的数组可以进行蝴蝶操作。</p>
+<p>盗图一张： <img src="https://cdn.luogu.org/upload/pic/23926.png" alt="luogu" /></p>
+<p>摘自洛谷：</p>
+<pre><code>剩下的问题就是把初始的数组变成最后一层的样子了。
+先别急着写一个递归函数暴力把位置换过去。
+来观察一下最后序列的编号的二进制表示000, 100, 010, 110, 001, 101, 011, 111，
+是不是与原来 000, 001, 010, 011, 100, 101, 110, 111 相比，
+每个位置上的二进制位都反过来了？
+这样的变化叫做 Rader 排序。</code></pre>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -1215,308 +1411,6 @@ if 上的命令往往失败了，执行的是 if 里头的命令。</p>
 <p>其次，用模糊背景通常会比较慢，尤其是 i3lock-fancy ，需等上 3 秒左右。<br />
 那么如果调用 i3lock-fancy 之后你又做了一些别的操作，比如关闭一个窗口，<br />
 这时锁屏了，你会发现背景和原来的不一样。 :)</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2019/10/01/terminal-tool/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-      <meta itemprop="name" content="Kewth">
-      <meta itemprop="description" content="HNFMS 现役 OIer">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="KeBlog">
-    </span>
-
-    
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/10/01/terminal-tool/" class="post-title-link" itemprop="url">终端（娱乐）工具</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-10-01 00:00:00" itemprop="dateCreated datePublished" datetime="2019-10-01T00:00:00+08:00">2019-10-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-08 14:22:43" itemprop="dateModified" datetime="2019-12-08T14:22:43+08:00">2019-12-08</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="sl-ls">sl / LS</h2>
-<p>在你 ls 打累的时候开小火车。</p>
-<h3 id="安装方式">安装方式</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo aptitude install sl</span><br></pre></td></tr></table></figure>
-<h2 id="lolcat">lolcat</h2>
-<p>用彩虹为输出着色！</p>
-<h3 id="示例">示例</h3>
-<figure>
-<img src="https://pic4.zhimg.com/v2-3bf6b7552162441dd638ac6d5fb3717b_r.jpg" alt="lolcat" /><figcaption aria-hidden="true">lolcat</figcaption>
-</figure>
-<h3 id="安装方式-1">安装方式</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo aptitude install rubygems</span><br><span class="line">gem install lolcat</span><br></pre></td></tr></table></figure>
-<h3 id="管道处理">管道处理</h3>
-<p>非常有意思的是，将大多数 ncurses 程序的输出通过管道用 lolcat 后仍然可以正常运行！</p>
-<p>比如 <code>nano | lolcat</code> 可以打开一个彩虹编辑器；<br />
-<code>ncdu | lolcat</code> 可以打开一个彩虹文件查看器；<br />
-<code>sl | lolcat</code> 可以开彩虹火车；<br />
-<code>nethack | lolcat</code> 可以玩彩虹游戏！</p>
-<h2 id="cowsay">cowsay</h2>
-<p>让一只奶牛（或者其它乱七八糟的东西）说出一句话！</p>
-<h3 id="示例-1">示例</h3>
-<p>运行 <code>cowsay hiahiahia</code></p>
-<p>然后你会得到像这样的输出：</p>
-<pre><code> ___________
-&lt; hiahiahia &gt;
- -----------
-        \   ^__^
-         \  (oo)\_______
-            (__)\       )\/\
-                ||----w |
-                ||     ||</code></pre>
-<p>类似的你也可以用 <code>cowthink</code> 。</p>
-<h3 id="安装方式-2">安装方式</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo aptitude install cowsay</span><br></pre></td></tr></table></figure>
-<h2 id="chafa">chafa</h2>
-<p>在终端里面打印图片或者视频！</p>
-<h3 id="示例-2">示例</h3>
-<figure>
-<img src="https://pic4.zhimg.com/v2-91254499e2880bbe3068ce2a3e086977_b.gif" alt="chafa" /><figcaption aria-hidden="true">chafa</figcaption>
-</figure>
-<p>小诀窍：把终端字体调小并开全屏可以让图片更清晰（但是更慢）。<br />
-给你一图片自行意会（记住这张图是在终端上打印的！！！）：</p>
-<figure>
-<img src="http://kewth.gq/wp-content/uploads/2019/03/选区_017.png" alt="chafabig" /><figcaption aria-hidden="true">chafabig</figcaption>
-</figure>
-<h3 id="安装">安装</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/hpjansson/chafa.git &amp;&amp; <span class="built_in">cd</span> chafa</span><br><span class="line">sudo aptitude install libmagickwand-dev</span><br><span class="line">./autogen.sh</span><br><span class="line">make</span><br><span class="line">sudo make install</span><br></pre></td></tr></table></figure>
-<p>这个安装过程相对比较麻烦，详细过程见 <a target="_blank" rel="noopener" href="https://github.com/hpjansson/chafa">Github</a> 。</p>
-<h2 id="img2txt-cacaview">img2txt / cacaview</h2>
-<p>在终端里用 ASCII 打印图片！</p>
-<p>或者用 cacaview 打开一个窗口查看。</p>
-<p>upd: 后来我才知道 w3m 也可以查看图片，和 cacaview 的效果一模一样。</p>
-<h3 id="安装-1">安装</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo aptitude install caca-utils</span><br></pre></td></tr></table></figure>
-<h2 id="w3m-lynx-browsh">w3m / lynx / browsh</h2>
-<p>在终端浏览网页！</p>
-<h3 id="示例-3">示例</h3>
-<p>w3m 和 lynx 大同小异，没有什么本质上的区别。 （别喷我，我这么说是拿 browsh 作参照）</p>
-<p>但是， browsh 不同，它内部调用 Firefox 渲染网页并处理后打印在终端， 因此 browsh 几乎能 <strong>在终端</strong> 支持任何现代浏览器支持的！</p>
-<p>只给出一张 browsh 浏览 youtubu 的图片：</p>
-<figure>
-<img src="https://oscimg.oschina.net/oscnet/cc8d81d3c93d858a0a3f39e08293e4b6535.jpg" alt="browsh" /><figcaption aria-hidden="true">browsh</figcaption>
-</figure>
-<h3 id="安装-2">安装</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># w3m</span></span><br><span class="line">sudo aptitude install w3m</span><br><span class="line"><span class="comment"># lynx</span></span><br><span class="line">sudo aptitude install lynx</span><br><span class="line"><span class="comment"># browsh</span></span><br><span class="line">wget https://github.com/browsh-org/browsh/releases/download/v1.5.0/browsh_1.5.0_linux_amd64.deb</span><br><span class="line">sudo dpkg -i ./browsh_1.5.0_linux_amd64.deb</span><br></pre></td></tr></table></figure>
-<h2 id="cmatrix">cmatrix</h2>
-<p>终端黑客风动画</p>
-<p><code>cmatrix | lolcat</code> 简直可以来当屏保。</p>
-<h3 id="安装-3">安装</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo aptitude install cmatrix</span><br></pre></td></tr></table></figure>
-<h2 id="typespeed">typespeed</h2>
-<p>在终端 <del>玩打字游戏</del> 测试打字速度！</p>
-<h3 id="示例-4">示例</h3>
-<figure>
-<img src="http://kewth.gq/wp-content/uploads/2019/03/选区_027.png" alt="typespeed" /><figcaption aria-hidden="true">typespeed</figcaption>
-</figure>
-<h3 id="安装-4">安装</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo aptitude install typespeed</span><br></pre></td></tr></table></figure>
-<h3 id="自定义词库">自定义词库</h3>
-<p>我是真的爱折腾，竟然自己找出了 typespeed 的词库位置并且自己加了词库。。。</p>
-<p>顺便夸一下 typespeed 的扩展性真的好，它考虑到了用户的自定义词库需求。</p>
-<p>只需要在 /usr/share/typespeed/words/ 目录下添加 words.xxx 文件（ xxx 随意填），<br />
-文件第一行是这个词库的名称，接下来每行一个单词就可以了。</p>
-<p>然后进入 typespeed 就能看到你自己的词库啦（ kewth's xxx 就是我自己加的）：</p>
-<figure>
-<img src="http://kewth.gq/wp-content/uploads/2019/03/选区_028.png" alt="mywords" /><figcaption aria-hidden="true">mywords</figcaption>
-</figure>
-<h2 id="nethack">nethack</h2>
-<p>世界上最棒的终端游戏（绝无夸大）！<br />
-nethack 太博大精深了，玩法不赘述。</p>
-<p>另外： <code>nethack | lolcat</code> 的效果真的很棒。</p>
-<h3 id="安装-5">安装</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo aptitude install nethack</span><br></pre></td></tr></table></figure>
-<h2 id="task">task</h2>
-<p>全名 taskwarrior 。</p>
-<p>个人认为终端上最好用的 todo list manager 。<br />
-功能十分强大，可以简单上手，<br />
-如果愿意折腾也可以深入挖掘它的各种功能，最精细地管理你的任务计划。</p>
-<h3 id="安装-6">安装</h3>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo aptitude install taskwarrior</span><br></pre></td></tr></table></figure>
-<h3 id="简单上手">简单上手</h3>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">task add test1</span><br><span class="line">task add test2</span><br><span class="line">task start 1</span><br><span class="line">task long</span><br><span class="line">task <span class="keyword">done</span> 1</span><br><span class="line">task <span class="keyword">done</span> 2</span><br></pre></td></tr></table></figure>
-<h3 id="tasksh">tasksh</h3>
-<p>整合 taskwarrior 的交互命令行，里面可以直接敲 <code>add ...</code> 或 <code>list</code> 等命令。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2019/10/01/ncurses/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-      <meta itemprop="name" content="Kewth">
-      <meta itemprop="description" content="HNFMS 现役 OIer">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="KeBlog">
-    </span>
-
-    
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/10/01/ncurses/" class="post-title-link" itemprop="url">ncurses</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-10-01 00:00:00" itemprop="dateCreated datePublished" datetime="2019-10-01T00:00:00+08:00">2019-10-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-01-21 11:57:34" itemprop="dateModified" datetime="2020-01-21T11:57:34+08:00">2020-01-21</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>ncurses 是基于终端的十分强大的图形库。 Vim, screen, sl 等终端程序都用到了这个库（足以见其强大）。</p>
-<h2 id="安装">安装</h2>
-<p>部分系统默认安装了 ncurses ，手动安装的方式是： <code>sudo aptitude install ncurses-dev</code> 。</p>
-<p>使用的程序需要 <code>#include &lt;ncurses.h&gt;</code>　。 编译时需要添加 <code>-lncurses</code> 参数进行链接。</p>
-<h2 id="开始和结束">开始和结束</h2>
-<p>调用 initscr 初始化窗口，endwin 结束窗口。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;curses.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function">WINDOW *<span class="title">initscr</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">endwin</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br></pre></td></tr></table></figure>
-<h2 id="输出">输出</h2>
-<p>调用 initscr 后调用 endwin 前，printf, std::cout 等标准输出不会显示在屏幕上。 而输出到屏幕上需要 ncurses 提供的相应函数。</p>
-<h3 id="函数">函数</h3>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">addch</span><span class="params">(<span class="keyword">const</span> chtype char_to_add)</span></span>;   <span class="comment">// 当前位置添加字符</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">addstr</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *string_to_add)</span></span>;    <span class="comment">// 当前位置添加字符串</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">printw</span><span class="params">(<span class="keyword">char</span> *format, ...)</span></span>;   <span class="comment">// 类似于 printf</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">refresh</span><span class="params">(<span class="keyword">void</span>)</span></span>;    <span class="comment">// 强制刷新物理屏幕</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">beep</span><span class="params">(<span class="keyword">void</span>)</span></span>;   <span class="comment">// 终端响铃</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">flash</span><span class="params">(<span class="keyword">void</span>)</span></span>;   <span class="comment">// 屏幕闪烁</span></span><br></pre></td></tr></table></figure>
-<h2 id="输入">输入</h2>
-<p>调用 scanf, getchar, cin 等标准输入函数同样无效。</p>
-<h3 id="函数-1">函数</h3>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">cbreak</span><span class="params">()</span></span>;   <span class="comment">// 字符一键入，直接传给程序（不用按下回车）</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">nocbreak</span><span class="params">()</span></span>;  <span class="comment">// 关闭 cbreak</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">echo</span><span class="params">(<span class="keyword">void</span>)</span></span>; <span class="comment">// 开启输入回显</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">noecho</span><span class="params">(<span class="keyword">void</span>)</span></span>; <span class="comment">// 关闭输入回显</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getch</span><span class="params">(<span class="keyword">void</span>)</span></span>; <span class="comment">// 读入一个字符</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">scanw</span><span class="params">(<span class="keyword">char</span> *format, ...)</span></span>; <span class="comment">// 类似于 scanf</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">clear</span><span class="params">(<span class="keyword">void</span>)</span></span>; <span class="comment">// 清屏</span></span><br></pre></td></tr></table></figure>
-<p>输入函数通常是阻塞的，但是通过调用 nodelay(stdscr, TRUE); 可以关闭阻塞。 此时若输入函数未读取到内容会返回 ERR 。</p>
-<h2 id="光标">光标</h2>
-<p>控制光标。 调用 initscr 后调用 endwin 前，输出终端控制符改变光标是无效的。</p>
-<h3 id="函数及示例">函数及示例</h3>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">move</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>; <span class="comment">// 将光标移动到 [x] 行 [y] 列，左上角为 0 行 0 列</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">curs_set</span><span class="params">(<span class="keyword">int</span> visiblility)</span></span>; <span class="comment">// 参数为 0 表示隐藏光标，1 表示显示光标</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getyx</span><span class="params">(WINDOW* win, <span class="keyword">int</span> &amp;x, <span class="keyword">int</span> &amp;y)</span></span>; <span class="comment">// 获取指定窗口光标位置，示例如下</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">move_up</span><span class="params">()</span> </span>&#123; <span class="comment">// 将光标上移</span></span><br><span class="line">   <span class="keyword">int</span> x, y;</span><br><span class="line">    getyx(stdscr, x, y); <span class="comment">// stdscr 表示标准屏幕</span></span><br><span class="line">    move(x - <span class="number">1</span>, y);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="指定位置输出">指定位置输出</h3>
-<p>在指定位置输出不必先 move 再 printw ， ncurses 提供了 mv 函数前缀在指定位置输出。 例如 <code>mvprintw(1, 2, "%d", 2)</code> 在 1 行 2 列输出 3 。 类似的有 mvaddch, mvaddstr 等。</p>
-<h2 id="颜色">颜色</h2>
-<h3 id="初始化">初始化</h3>
-<p>首先需要调用 has_color() 查看当前运行环境是否支持彩色。 调用 start_color() 初始化颜色，成功则返回 OK 。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">has_colors</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">start_color</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br></pre></td></tr></table></figure>
-<p>成功后会初始化全局变量 COLORS 表示终端支持的颜色数量 还会有 COLOT_WHITE, COLOR_RED 等 8 个表示颜色的变量。</p>
-<h3 id="使用">使用</h3>
-<p>例如希望打印白底黑字的信息：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *info)</span> </span>&#123;</span><br><span class="line">  init_pair(<span class="number">1</span>, COLOR_BLACK, COLOR_WHITE);</span><br><span class="line">       <span class="comment">// 的一个参数表示编号，后面两个分别表示字体和背景颜色</span></span><br><span class="line"> attron(COLOR_PAIR(<span class="number">1</span>));</span><br><span class="line">        <span class="comment">// attron 是一个设置函数，COLOR_PAIR 返回指定编号的颜色信息</span></span><br><span class="line"> addstr(info);</span><br><span class="line"> attroff(COLOR_PAIR(<span class="number">1</span>));</span><br><span class="line">       <span class="comment">// attroff 关闭设置（若接下来需要用其他颜色可以不调用 attroff 而直接使用 attron 覆盖设置</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="错误示例">错误示例</h3>
-<p>值得注意的是，必须保证 init_pair 的编号不与其他已初始化的编号重复 一个错误的调用如下：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> *info = <span class="string">&quot;ERROR CODE&quot;</span>;</span><br><span class="line">init_pair(<span class="number">1</span>, COLOR_BLACK, COLOR_WHITE);</span><br><span class="line">attron(COLOR_PAIR(<span class="number">1</span>));</span><br><span class="line">addstr(info); <span class="comment">// 打印白底黑字</span></span><br><span class="line">init_pair(<span class="number">1</span>, COLOR_BLACK, COLOR_RED);</span><br><span class="line">attron(COLOR_PAIR(<span class="number">1</span>));</span><br><span class="line">addstr(info); <span class="comment">// 打印白底红字</span></span><br></pre></td></tr></table></figure>
-<p>上述代码的期望打印出白字和黑字两种不同的颜色， 但事实上只会打印出红色一种。 解决方案便是将白底红字的 pair 编号设为 2 。</p>
-<h2 id="窗口">窗口</h2>
-<p>ncurses 有窗口类 WINDOW 并提供了 stdscr 作为默认窗口。 有时一个窗口无法满足需要，此时需要自己新建窗口。</p>
-<h3 id="新建窗口">新建窗口</h3>
-<p>调用 newwin 来新建窗口。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 从 ([x], [y]) 开始新建 [line] 行 [column] 列的窗口。</span></span><br><span class="line"><span class="function">WINDOW *<span class="title">newwin</span><span class="params">(<span class="keyword">int</span> line, <span class="keyword">int</span> column, <span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>;</span><br></pre></td></tr></table></figure>
-<p>新建的窗口</p>
-<h3 id="通用输出">通用输出</h3>
-<p>addch, printw 等输出方式只输出到 stdscr 。 ncurses 提供了 w 前缀来输出到指定窗口。 例如 <code>wprintw(win, "%d", 1)</code> 在 [win] 窗口输出 1 。 但是自己新建的窗口与 stdscr 不同， 若想在屏幕上显示需要调用 <code>wrefresh(win)</code> 刷新窗口。</p>
-<p>若想在窗口中指定位置输出，可以用 mvw 前缀函数。 例如 <code>mvwprintw(win, 1, 2, "%d", 3)</code> 在 [win] 窗口的 1 行 2 列（ <strong>相对位置</strong> ）输出 3 。</p>
-<h3 id="子窗口">子窗口</h3>
-<p>调用 subwin 创建子窗口。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 从 ([x], [y]) 开始新建 [line] 行 [column] 列属于 [parent] 的子窗口。</span></span><br><span class="line"><span class="function">WINDOW *<span class="title">subwin</span><span class="params">(WINDOW *parent, <span class="keyword">int</span> line, <span class="keyword">int</span> column, <span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>;</span><br></pre></td></tr></table></figure>
-<p>子窗口与普通窗口的区别在于它与其父窗口共用屏幕储存空间， 子窗口修改时父窗口会直接受到影响。 比如新建了 stdscr 的子窗口 win ， 那么输出到 win 后想显示在屏幕不调用 wrefresh 而是调用 touchwin(stdscr) 。 touchwin 用于标记一个窗口被修改。</p>
-<h3 id="销毁窗口">销毁窗口</h3>
-<p>调用 delwin 销毁窗口。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">delwin</span><span class="params">(WINDOW *win)</span></span>; <span class="comment">// 销毁 [win] 窗口</span></span><br></pre></td></tr></table></figure>
-<p>窗口销毁后其在屏幕上对应的内容不会改变。</p>
-<h2 id="离开">离开</h2>
-<p>有时候可能需要离开 ncurses 回到行缓冲模式做些事情而且需要在之后回到 ncurses 。 例如 Vim 里面输入 :!ls 就会退出 ncurses 运行 ls 命令，并在用户敲下回车后回到 ncurses。</p>
-<p>调用 def_prog_mode 暂存，调用 reset_prog_mode 恢复。</p>
-<h3 id="示例">示例</h3>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  initscr();</span><br><span class="line">    printw(<span class="string">&quot;Hello World !!!\n&quot;</span>);</span><br><span class="line">    getch(); <span class="comment">// 等待用户输入</span></span><br><span class="line">   def_prog_mode(); <span class="comment">// 存储当前tty 模式</span></span><br><span class="line">   endwin(); <span class="comment">// 退出 ncurses 模式</span></span><br><span class="line">   system(<span class="string">&quot;sh&quot;</span>); <span class="comment">// 返回普通的行缓冲模式</span></span><br><span class="line">    reset_prog_mode(); <span class="comment">// 返回到 def_prog_mode() 存储的 tty 模式</span></span><br><span class="line"> refresh(); <span class="comment">// 刷新屏幕（必须！）</span></span><br><span class="line">  getch(); <span class="comment">// 等待用户输入</span></span><br><span class="line">   endwin(); <span class="comment">// 退出 ncurses 模式</span></span><br><span class="line">   <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="输出中文等非-ascii-字符">输出中文等非 ASCII 字符</h2>
-<p>事实上 ncurses 并不支持直接输出中文， 这意味着调用 printw("中文") 会是一堆乱码。 解决方案如下：</p>
-<h3 id="安装库">安装库</h3>
-<p>这需要另一个库。 通过 <code>sudo aptitude install libncurses5 libncursesw5 libncursesw5-dbg libncursesw5-dev</code> 安装</p>
-<h3 id="头文件">头文件</h3>
-<p>一定是 <code>#include &lt;ncurses.h&gt;</code> 而不是 <code>#include &lt;curses.h&gt;</code> 。 另外在 main.cpp <code>#include &lt;locale.h&gt;</code> 。</p>
-<h3 id="调用">调用</h3>
-<p>在调用 initscr() <strong>之前</strong> 调用 setlocale(LC_ALL, "") 。</p>
-<h3 id="编译">编译</h3>
-<p>将 <code>-lncurses</code> 参数改为 <code>-lncursesw</code> 。</p>
 
       
     </div>
