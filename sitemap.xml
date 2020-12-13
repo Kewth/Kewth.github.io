@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://kewth.github.io/about/index.html</loc>
+    
+    <lastmod>2020-12-13</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://kewth.github.io/2020/10/11/CSP-2020/</loc>
     
     <lastmod>2020-12-13</lastmod>
@@ -68,13 +75,6 @@
     <loc>https://kewth.github.io/2020/10/19/IOI2021-%E9%9B%86%E8%AE%AD%E9%98%9F%E4%BD%9C%E4%B8%9A%EF%BC%88%E4%B8%80%EF%BC%89/</loc>
     
     <lastmod>2020-11-11</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://kewth.github.io/about/index.html</loc>
-    
-    <lastmod>2020-11-01</lastmod>
     
   </url>
   
