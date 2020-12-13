@@ -723,11 +723,12 @@ f(S) = \sum_{x+y=S} \sum_{a,b} [ab = x] \sum_{c,d} [cd = y] = \sum_{x+y=S} d(x) 
 <h2 id="noip-2020">NOIP 2020</h2>
 <p>干脆把 NOIP 也写这了。</p>
 <p>只能说又摸了一个月鱼，就跑去裸考了，有图为证：</p>
-<figure>
-<img src="/images/noip2020.png" alt="noip2020" /><figcaption aria-hidden="true">noip2020</figcaption>
-</figure>
+<p><img src="/images/noip2020.png" /></p>
 <p>考的自然也很炸裂：T1 没写高精，T2 跑不过去，T3 只会暴力，T4 没调出来。</p>
 <p>如上，预计得分 90 + 80 + 40 + 30 = 240 ，丢人现眼。</p>
+<hr />
+<p>update:</p>
+<p>实际得分 60 + 84 + 40 + 75 = 259 ，那真是非常 amazing 啊。</p>
 ]]></content>
       <categories>
         <category>总结</category>
