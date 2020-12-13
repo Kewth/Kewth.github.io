@@ -150,7 +150,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">77</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">78</span></a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -224,7 +224,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">77</span>
+          <span class="site-state-item-count">78</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -297,6 +297,106 @@
 
         <div class="content index posts-expand">
           
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2019/10/16/%E8%8E%AB%E9%98%9F%E4%BA%8C%E6%AC%A1%E7%A6%BB%E7%BA%BF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Kewth">
+      <meta itemprop="description" content="HNFMS 现役 OIer">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KeBlog">
+    </span>
+
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/10/16/%E8%8E%AB%E9%98%9F%E4%BA%8C%E6%AC%A1%E7%A6%BB%E7%BA%BF/" class="post-title-link" itemprop="url">莫队二次离线</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-10-16 19:55:40" itemprop="dateCreated datePublished" datetime="2019-10-16T19:55:40+08:00">2019-10-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-07-22 20:21:17" itemprop="dateModified" datetime="2020-07-22T20:21:17+08:00">2020-07-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>莫队算法可以通过单点增量的方式以 <span class="math inline">\(O(n\sqrt{n}K)\)</span> （认为 <span class="math inline">\(n, q\)</span> 同阶）的复杂度离线处理若干区间信息询问。 其中每次单点增量，即每次端点移动的复杂度为 <span class="math inline">\(O(K)\)</span> 。</p>
+<p>大多数情况下端点移动的复杂度是 <span class="math inline">\(O(1)\)</span> 的，这样的问题一般是统计区间内的“数”。 而统计区间内的“数对”这样的问题往往难以 <span class="math inline">\(O(1)\)</span> 处理端点移动。</p>
+<p>莫队二次离线或许能处理这样的问题。</p>
+<h2 id="什么用">什么用</h2>
+<p>一般莫队有 <span class="math inline">\(O(n\sqrt{n})\)</span> 次端点移动，如果要用数据结构维护信息的话， 就有 <span class="math inline">\(O(n\sqrt{n})\)</span> 次修改和 <span class="math inline">\(O(n\sqrt{n})\)</span> 次查询。</p>
+<p>而莫队二次离线能够优化为成 <span class="math inline">\(O(n)\)</span> 次修改和 <span class="math inline">\(O(n\sqrt{n})\)</span> 次查询， 从而允许使用一些修改复杂度大而查询复杂度小的方式来维护信息。 例如分块，如果能 <span class="math inline">\(O(\sqrt{n})\)</span> 修改和 <span class="math inline">\(O(1)\)</span> 查询的话，总的复杂度就是 <span class="math inline">\(O(n\sqrt{n})\)</span> 。</p>
+<p>但是有两个前提：</p>
+<ul>
+<li>维护的信息有一定可减性，换句话说必须保证每次询问 <span class="math inline">\([l, r]\)</span> 与 <span class="math inline">\(r + 1\)</span> 产生的贡献时， 需要能够用 <span class="math inline">\([1, r]\)</span> 与 <span class="math inline">\(r + 1\)</span> 产生的贡献减去（或者其他方式）<span class="math inline">\([1, l)\)</span> 与 <span class="math inline">\(r + 1\)</span> 产生的贡献代替。</li>
+<li>维护的信息有一定可加性，换句话说在每次询问前在不知道当前的 Ans 的情况下可以得到 Ans 的改变量（或某种改变方式）。</li>
+</ul>
+<h2 id="怎么用">怎么用</h2>
+<p>考虑每次右端点右移的过程（右端点左移以及左端点移动是类似的）。</p>
+<p>每次右端点 <span class="math inline">\(r\)</span> 从 <span class="math inline">\(r_0\)</span> 移动到 <span class="math inline">\(r_1\)</span> 时，对于其中的每一个 <span class="math inline">\(r\)</span> ，都需要查询 <span class="math inline">\([l, r - 1]\)</span> 与该点产生的贡献。 考虑差分，利用上面提到过的可减性，查询 <span class="math inline">\([1, r]\)</span> 与 <span class="math inline">\(r + 1\)</span> 产生的贡献和 <span class="math inline">\([1, l)\)</span> 与 <span class="math inline">\(r + 1\)</span> 产生的贡献。</p>
+<h4 id="part-1">Part 1</h4>
+<p><span class="math inline">\([1, r]\)</span> 与 <span class="math inline">\(r + 1\)</span> 产生的贡献只与 <span class="math inline">\(r\)</span> 有关，可以记为 <span class="math inline">\(f_r\)</span> 。 那么预处理 <span class="math inline">\(f_r\)</span> 只需从小到大一个个加点维护当前的 <span class="math inline">\([1, r]\)</span> 并询问出 <span class="math inline">\(f_r\)</span> 。</p>
+<p>这个过程需要 <span class="math inline">\(O(n)\)</span> 次修改和 <span class="math inline">\(O(n)\)</span> 次查询。</p>
+<p>参考实现：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// a[i] 是第 i 个元素</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i ++) &#123;</span><br><span class="line">  f[i] = Query(a[i]);</span><br><span class="line">   Modify(a[i]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>另外如果需要卡常，可以将 <span class="math inline">\(f\)</span> 做一遍前缀和，这样后续查询 <span class="math inline">\([r_0, r_1]\)</span> 总的贡献就可以 <span class="math inline">\(O(1)\)</span> 计算了（不影响复杂度）。</p>
+<h4 id="part-2">Part 2</h4>
+<p><span class="math inline">\([1, l)\)</span> 与 <span class="math inline">\(r + 1\)</span> 产生的贡献可以二次离线，在 <span class="math inline">\(l\)</span> 处存下 <span class="math inline">\(r + 1\)</span> 之后再考虑计算。 这样做的空间复杂度是 <span class="math inline">\(O(n\sqrt{n})\)</span> 的， 但事实上每次只需把 <span class="math inline">\([r_0, r_1]\)</span> 这个区间存进 <span class="math inline">\(l\)</span> 处而不是把每个数存进去就可以做到 <span class="math inline">\(O(n)\)</span> 的空间复杂度了， 这样询问的时候也只需求 <span class="math inline">\([r_0, r_1]\)</span> 整体的贡献，常数上还能少一个 <span class="math inline">\(O(n\sqrt{n})\)</span> 的瓶颈。</p>
+<p>离线处理上述的贡献，也和求 <span class="math inline">\(f_r\)</span> 的过程类似，每次从小到大一个个加点维护当前的 <span class="math inline">\([1, l)\)</span> ， 并对于 <span class="math inline">\(l\)</span> 处存下的每一个数逐个询问 <span class="math inline">\([1, l)\)</span> 与其产生的贡献即可。 这个过程需要 <span class="math inline">\(O(n)\)</span> 次修改和 <span class="math inline">\(O(n\sqrt{n})\)</span> 次查询。</p>
+<p>参考实现：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> l = <span class="number">1</span>, r = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= q; i ++) &#123;</span><br><span class="line"> <span class="keyword">int</span> L = query[i].l, R = query[i].r; <span class="comment">// 排序后的询问</span></span><br><span class="line">   <span class="keyword">if</span>(r &lt; R) &#123;</span><br><span class="line">      <span class="built_in">vector</span>[l].push_back(<span class="built_in">std</span>::<span class="built_in">make_pair</span>(r + <span class="number">1</span>, R));</span><br><span class="line">      r = R;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i ++) &#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">auto</span> par : <span class="built_in">vector</span>[i])</span><br><span class="line">     <span class="keyword">for</span>(<span class="keyword">int</span> k = par.first; k &lt;= par.second; k ++)</span><br><span class="line">            Query(a[k]); <span class="comment">// 这里用什么东西存一下结果就好了</span></span><br><span class="line">  Modify(a[i]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -1243,114 +1343,6 @@ dfs 到一个新点 v 一定会使深度 + 1 ，将当前深度 d 的线性基�
 <p>这两道题就没有这么裸了。</p>
 <p><a target="_blank" rel="noopener" href="https://www.luogu.org/problemnew/show/P3733">洛谷八纵八横</a> （线段树分治 + 线性基）</p>
 <p><a target="_blank" rel="noopener" href="https://www.lydsy.com/JudgeOnline/problem.php?id=4025">BZOJ 二分图</a> （线段树分治 + 并查集）</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2019/10/10/%E7%BB%84%E5%90%88%E6%95%B0%E5%85%AC%E5%BC%8F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-      <meta itemprop="name" content="Kewth">
-      <meta itemprop="description" content="HNFMS 现役 OIer">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="KeBlog">
-    </span>
-
-    
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/10/10/%E7%BB%84%E5%90%88%E6%95%B0%E5%85%AC%E5%BC%8F/" class="post-title-link" itemprop="url">组合数公式</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-10-10 10:00:01" itemprop="dateCreated datePublished" datetime="2019-10-10T10:00:01+08:00">2019-10-10</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-05-03 10:23:53" itemprop="dateModified" datetime="2020-05-03T10:23:53+08:00">2020-05-03</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>$ C_n^m $ 在组合数学中的意义：在 n 个元素选 m 个元素的方案数。</p>
-<h2 id="公式">公式</h2>
-<h3 id="公式-1">公式 1</h3>
-<p><span class="math display">\[ C_n^m = \frac{n!}{m! * (n-m)!} \]</span></p>
-<p>组合数的通项公式。</p>
-<p><strong>当要求组合数模一般模数时</strong> ，通项公式的分母可能没有逆元导致不可行。</p>
-<h3 id="公式-2">公式 2</h3>
-<p><span class="math display">\[ C_n^m = C_n^{n-m} \]</span></p>
-<p>基本性质，可以由通项公式得出。</p>
-<h3 id="公式-3">公式 3</h3>
-<p><span class="math display">\[ C_n^m * C_m^k = C_n^k * C_{n-k}^{m-k} \]</span></p>
-<h3 id="公式-4">公式 4</h3>
-<p><span class="math display">\[ C_n^m = C_{n-1}^{m-1} + C_{n-1}^m \]</span></p>
-<p>组合数的基本递推式。</p>
-<p><strong>当要求组合数模一般模数时</strong> ，常用这种方法预处理组合数。</p>
-<h3 id="公式-5">公式 5</h3>
-<p><span class="math display">\[ \sum_{i=0}^n C_n^i = 2^n \]</span></p>
-<p>组合意义： n 个元素选任意元素的方案数。 每个数都可以选或不选，所以方案数为 $ 2^n $ 。</p>
-<p>同样可以由二项式定理： $ (x + 1)^n = _{i=0}^n C_n^i * x^i $ 得出。</p>
-<h3 id="公式-6">公式 6</h3>
-<p><span class="math display">\[ \sum_{i=0}^n (C_n^i)^2 = C_{2n}^n \]</span></p>
-<h3 id="公式-7">公式 7</h3>
-<p><span class="math display">\[ C_{n+m}^k = \sum_{i=0}^k C_n^i * C_m^{k-i} \]</span></p>
-<p>从组合数学上的定义出发，在 n + m 个元素中选 k 个， 相当于先在前 n 个元素中选 i 个再在后 m 个元素中选 k - i 个。 枚举这个 i 把方案数相加就能得到最终方案数。</p>
-<h3 id="公式-8">公式 8</h3>
-<p><span class="math display">\[ \sum_{i=0}^n C_{k+i}^k = C_{k+n+1}^n \]</span></p>
-<p>进一步可以得到下式：</p>
-<p><span class="math display">\[ \sum_{i=0}^n \sum_{j=0}^m C_{i+j}^i = C_{n+m+2}^{m+1} - 1 \]</span></p>
-<p>类似的还有：</p>
-<p><span class="math display">\[ \sum_{i=0}^n C_{i}^k = C_{n+1}^{k+1} \]</span></p>
-<h3 id="lucas-定理">Lucas 定理</h3>
-<p><span class="math display">\[ C_n^m \% p = C_{n/p}^{m/p} * C_{n \% p}^{m \% p} \% p \]</span></p>
-<p>常用于模数较小的组合数取模。</p>
 
       
     </div>
