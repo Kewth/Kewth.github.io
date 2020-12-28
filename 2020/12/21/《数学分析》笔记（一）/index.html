@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.0.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="KIx9DF_OoeyQmEhcVAbjH5vg_i539tmILHmNH8lRDtw">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  
+  <link rel="stylesheet" href="/lib/animate-css/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"kewth.github.io","root":"/","scheme":"Muse","version":"8.0.0-rc.5","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"path":"search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":3,"unescape":false,"preload":false}};
+  </script>
+
+  <meta name="description" content="朴素的集合论，即康托尔集合论，存在逻辑上的基本矛盾，例如经典的罗素悖论。 朴素集合论的基本前提可归结为：  集合可由任何有区别的对象组成。 集合由其组成对象整体唯一确定。 任何性质都确定一个具有该性质的对象的集合。  那么对于集合 \(M\) 和性质 \(P\) ，记 \(P(M)\) 表示 \(M\) 不以其本身为元素。根据直观上的认知，所有集合都应当满足 \(P\) ，那么根据第 3 条基本前">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《数学分析》笔记（一）">
+<meta property="og:url" content="https://kewth.github.io/2020/12/21/%E3%80%8A%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90%E3%80%8B%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/index.html">
+<meta property="og:site_name" content="KeBlog">
+<meta property="og:description" content="朴素的集合论，即康托尔集合论，存在逻辑上的基本矛盾，例如经典的罗素悖论。 朴素集合论的基本前提可归结为：  集合可由任何有区别的对象组成。 集合由其组成对象整体唯一确定。 任何性质都确定一个具有该性质的对象的集合。  那么对于集合 \(M\) 和性质 \(P\) ，记 \(P(M)\) 表示 \(M\) 不以其本身为元素。根据直观上的认知，所有集合都应当满足 \(P\) ，那么根据第 3 条基本前">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-12-21T11:40:32.000Z">
+<meta property="article:modified_time" content="2020-12-26T03:54:39.253Z">
+<meta property="article:author" content="Kewth">
+<meta property="article:tag" content="数学分析">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://kewth.github.io/2020/12/21/%E3%80%8A%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90%E3%80%8B%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>《数学分析》笔记（一） | KeBlog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="KeBlog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <main class="main">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+        <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">KeBlog</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">The OI Algorithm Blog of Kewth</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">64</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">7</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">80</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Kewth"
+      src="/images/avatar.jpeg">
+  <p class="site-author-name" itemprop="name">Kewth</p>
+  <div class="site-description" itemprop="description">HNFMS 现役 OIer</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">80</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">64</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Kewth" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Kewth" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:Kewth.K.D@outlook.com" title="E-Mail → mailto:Kewth.K.D@outlook.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="qq:1344205350" title="QQ → qq:1344205350" rel="noopener" target="_blank"><i class="fab fa-qq fa-fw"></i>QQ</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.luogu.org/space/show?uid=52232" title="Luogu → https:&#x2F;&#x2F;www.luogu.org&#x2F;space&#x2F;show?uid&#x3D;52232" rel="noopener" target="_blank"><i class="fas fa-code-branch fa-fw"></i>Luogu</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links | 友链
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="/" title="&#x2F;">欢迎互换友链呀</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/evenbao" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;evenbao" rel="noopener" target="_blank">Even_bao</a>
+        </li>
+    </ul>
+  </div>
+
+      </section>
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </header>
+
+      
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div id="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+      <div class="main-inner">
+        
+
+        <div class="content post posts-expand">
+          
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2020/12/21/%E3%80%8A%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90%E3%80%8B%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Kewth">
+      <meta itemprop="description" content="HNFMS 现役 OIer">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KeBlog">
+    </span>
+
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          《数学分析》笔记（一）
+        </h1>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-12-21 19:40:32" itemprop="dateCreated datePublished" datetime="2020-12-21T19:40:32+08:00">2020-12-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-12-26 11:54:39" itemprop="dateModified" datetime="2020-12-26T11:54:39+08:00">2020-12-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>朴素的集合论，即康托尔集合论，存在逻辑上的基本矛盾，例如经典的罗素悖论。</p>
+<p>朴素集合论的基本前提可归结为：</p>
+<ol type="1">
+<li>集合可由任何有区别的对象组成。</li>
+<li>集合由其组成对象整体唯一确定。</li>
+<li>任何性质都确定一个具有该性质的对象的集合。</li>
+</ol>
+<p>那么对于集合 <span class="math inline">\(M\)</span> 和性质 <span class="math inline">\(P\)</span> ，记 <span class="math inline">\(P(M)\)</span> 表示 <span class="math inline">\(M\)</span> 不以其本身为元素。根据直观上的认知，所有集合都应当满足 <span class="math inline">\(P\)</span> ，那么根据第 3 条基本前提，性质 <span class="math inline">\(P\)</span> 确定了一个集合 <span class="math inline">\(K = \{M | P(M)\}\)</span> 。不难发现我们可以同时推导出 <span class="math inline">\(P(K)\)</span> 和 <span class="math inline">\(\lnot P(K)\)</span> 成立，进而得到一个矛盾，这就是罗素悖论。</p>
+<p>ZFC 集合论给出了一组公理严格定义了集合，这些公理更像是一些集合的标准构造方式，使得集合都能通过这些公理被构造出来，而所谓的“所有集合构成的集合”是不能被构造出来的。</p>
+<p>需要注意的是，每个数都有与之对应的集合的模型。</p>
+<a id="more"></a>
+<hr />
+<p>定义有序对 <span class="math inline">\((a, b) = \{\{a\}, \{a, b\}\}\)</span> ，证明对于任意两个有序对 <span class="math inline">\((a, b)\)</span> 和 <span class="math inline">\((c, d)\)</span> ：</p>
+<p><span class="math display">\[
+(a, b) = (c, d) \Leftrightarrow a = c \land b = d
+\]</span></p>
+<p>充分性：</p>
+<p>由 <span class="math inline">\(\{a\} \in (a, b) \Rightarrow \{a\} \in (c, d)\)</span> 可知 <span class="math inline">\(\{a\} = \{c\} \lor \{a\} = \{c, d\}\)</span> ，即 <span class="math inline">\(a = c\)</span> 。</p>
+<p>由 <span class="math inline">\(\{a, b\} \in (a, b) \Rightarrow \{a, b\} \in (c, d)\)</span> 可知 <span class="math inline">\(\{a, b\} = \{c\} \lor \{a, b\} = \{c, d\}\)</span> ，即 <span class="math inline">\(a = b \lor b = d\)</span> 。</p>
+<p>进一步可以知道 <span class="math inline">\((a = b \lor b = d) \land (c = d \lor b = d)\)</span> ，即 <span class="math inline">\((a = b \land c = d) \lor b = d\)</span> ，由于 <span class="math inline">\(a = c\)</span> ，前后两者都等价于 <span class="math inline">\(b = d\)</span> 。</p>
+<p>必要性：</p>
+<p><span class="math inline">\((a, b) = \{\{a\}, \{a, b\}\} = \{\{c\}, \{c, d\}\} = (c, d)\)</span></p>
+<hr />
+<p>具有自反性，传递性，对称性的关系 <span class="math inline">\(\mathcal{R}\)</span> 称为等价关系，通常用 <span class="math inline">\(\sim\)</span> 表示。</p>
+<p>具有自反性，传递性，反对称性的关系 <span class="math inline">\(\mathcal{R}\)</span> 称为偏序关系，通常用 <span class="math inline">\(\preceq\)</span> 表示。</p>
+<p>对于关系 <span class="math inline">\(\mathcal{R} \subset X^2\)</span> 和其转置 <span class="math inline">\(\mathcal{R}&#39;\)</span> ：</p>
+<ul>
+<li><span class="math inline">\(\mathcal{R}\)</span> 具有自反性 <span class="math inline">\(\Leftrightarrow \triangle_X \subset \mathcal{R}\)</span> 。</li>
+<li><span class="math inline">\(\mathcal{R}\)</span> 具有传递性 <span class="math inline">\(\Leftrightarrow \mathcal{R} \circ \mathcal{R} \subset \mathcal{R}\)</span> 。</li>
+<li><span class="math inline">\(\mathcal{R}\)</span> 具有对称性 <span class="math inline">\(\Leftrightarrow \mathcal{R} = \mathcal{R}&#39;\)</span> 。</li>
+<li><span class="math inline">\(\mathcal{R}\)</span> 具有反对称性 <span class="math inline">\(\Leftrightarrow \mathcal{R} \cap \mathcal{R}&#39; \subset \triangle_X\)</span> 。</li>
+</ul>
+<hr />
+<p>对于映射 <span class="math inline">\(f : X \rightarrow Y\)</span> ：</p>
+<ul>
+<li><span class="math inline">\(f\)</span> 是满射当且仅当 <span class="math inline">\(f(X) = Y\)</span></li>
+<li><span class="math inline">\(f\)</span> 是单射当且仅当 <span class="math inline">\(\forall x_1, x_2 \in X, f(x_1) = f(x_2) \Rightarrow x_1 = x_2\)</span> 。</li>
+<li><span class="math inline">\(f\)</span> 是双射当且仅当 <span class="math inline">\(f\)</span> 同时是满射和单射。</li>
+</ul>
+<p>单射具有左逆映射（不一定唯一），满射具有右逆映射（不一定唯一），双射具有唯一的逆映射。</p>
+<hr />
+<p>对于两个集合 <span class="math inline">\(X, Y\)</span> ，记它们的势分别为 <span class="math inline">\(|X|, |Y|\)</span> ：</p>
+<ul>
+<li><span class="math inline">\(|X| = |Y| \Leftrightarrow \exists f : X \rightarrow Y\)</span> 使得 <span class="math inline">\(f\)</span> 是一个双射。</li>
+<li><span class="math inline">\(|X| \le |Y| \Leftrightarrow \exists Z \subset Y \;\; |X| = |Z|\)</span> 。</li>
+</ul>
+<p>容易证明这里的 <span class="math inline">\(|X| \le |Y|\)</span> 是一个偏序关系，而康托尔定理 (?) 指出任意两个集合都是可比的，即</p>
+<p><span class="math display">\[
+\forall X, Y \;\; |X| \le |Y| \lor |Y| \le |X|
+\]</span></p>
+<p>因此这事实上这个关系是 <strong>线性序</strong> ，可以定义 <span class="math inline">\(|X| &lt; |Y| \Leftrightarrow |X| \le |Y| \land |X| \ne |Y|\)</span> 。</p>
+<p>有限集的势严格小于 <span class="math inline">\(|\mathbb{N}|\)</span> ，可数无限集的势恰好等于 <span class="math inline">\(|\mathbb{N}|\)</span> ，不可数无限集的势严格大于 <span class="math inline">\(|\mathbb{N}|\)</span> 。</p>
+<hr />
+<p>用集合表示自然数，<span class="math inline">\(0 = \varnothing, \forall x \;\; x + 1 = x \cup \{x\}\)</span> ，证明 <span class="math inline">\(\forall x \;\; |x| &lt; |x + 1|\)</span> ，这里 <span class="math inline">\(|x|\)</span> 指的是集合的势。</p>
+<p>利用数学归纳法，<span class="math inline">\(x = 0\)</span> 时 <span class="math inline">\(|\varnothing| &lt; |\{\varnothing\}|\)</span> 显然成立，对于 <span class="math inline">\(x \ge 1\)</span> ，假设 <span class="math inline">\(\forall y &lt; x\)</span> 命题都成立。</p>
+<p>设 <span class="math inline">\(A = x - 1\)</span> ，那么 <span class="math inline">\(x = A \cup \{A\}, x + 1 = A \cup \{A\} \cup \{A \cup \{A\}\}\)</span> ，由于 <span class="math inline">\(x \subset x + 1\)</span> ，<span class="math inline">\(|x| \le |x + 1|\)</span> 成立，只需要证明 <span class="math inline">\(x\)</span> 和 <span class="math inline">\(x + 1\)</span> 不等势。</p>
+<p>利用反证法，假设存在双射 <span class="math inline">\(f : A \cup \{A\} \rightarrow A \cup \{A\} \cup \{A \cup \{A\}\}\)</span> ，设 <span class="math inline">\(f(b) = A \cup \{A\}\)</span> ，构造映射 <span class="math inline">\(g : A \rightarrow A \cup \{A\}\)</span> 使得</p>
+<p><span class="math display">\[
+g(a) = \left\{
+\begin{aligned}
+&amp; f(a), a \in A \setminus \{b\} \\
+&amp; f(A), a = b
+\end{aligned}
+\right.
+\]</span></p>
+<p>容易发现，<span class="math inline">\(g\)</span> 是双射，这与 <span class="math inline">\(|A| &lt; |A \cup \{A\}|\)</span> 矛盾，因此不存在满足条件的双射 <span class="math inline">\(f\)</span> 。</p>
+<hr />
+<p>根据完备性公理，实数 <span class="math inline">\(\mathbb{R}\)</span> 的任意有上界（有下界）的非空子集都存在唯一的上确界（下确界）。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/" rel="tag"><i class="fa fa-tag"></i> 数学分析</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/12/13/CTT-2020-%E9%80%80%E5%BD%B9%E8%AE%B0/" rel="prev" title="CTT 2020 退役记 （北大集训）">
+      <i class="fa fa-chevron-left"></i> CTT 2020 退役记 （北大集训）
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/12/27/OI-%E5%9B%9E%E5%BF%86%E5%BD%95/" rel="next" title="OI 回忆录">
+      OI 回忆录 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+        </div>
+        
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heartbeat"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Kewth</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      const script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments('#gitalk-container', () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '5a2fdd60fe2f91777a6b',
+      clientSecret: '9ddb762244fffc5caff2490a05e53dbca8ae4902',
+      repo        : 'hexo-gitalk',
+      owner       : 'Kewth',
+      admin       : ['Kewth'],
+      id          : 'da7154366e649aa4b022837f2ba97aee',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>
