@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.0.2">
+<meta name="generator" content="Hexo 5.3.0">
+
+
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -14,16 +16,15 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
-  
-  <link rel="stylesheet" href="/lib/animate-css/animate.min.css">
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
 
 <script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"kewth.github.io","root":"/","scheme":"Muse","version":"8.0.0-rc.5","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"path":"search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":3,"unescape":false,"preload":false}};
+    var CONFIG = {"hostname":"kewth.github.io","root":"/","images":"/images","scheme":"Muse","version":"8.1.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":3,"unescape":false,"preload":false}};
   </script>
-
-  <meta name="description" content="miller-rabin 用于快速测试一个数 \(n\) 是否为质数，有概率出错。 不妨假设 \(n\) 是奇数，此外 miller-rabin 需要随意选取一个小质数 \(p\) 。 理论 miller-rabin 用到的两个基本定理：  费马小定理：如果 \(n\) 为质数，一定有 \(p^n \equiv p \pmod{n}\) ，即 \(p^{n-1} \equiv 1\) 。 二次探测">
+<meta name="description" content="miller-rabin 用于快速测试一个数 \(n\) 是否为质数，有概率出错。 不妨假设 \(n\) 是奇数，此外 miller-rabin 需要随意选取一个小质数 \(p\) 。 理论 miller-rabin 用到的两个基本定理：  费马小定理：如果 \(n\) 为质数，一定有 \(p^n \equiv p \pmod{n}\) ，即 \(p^{n-1} \equiv 1\) 。 二次探测">
 <meta property="og:type" content="article">
 <meta property="og:title" content="miller-rabin 和 pollard-rho">
 <meta property="og:url" content="https://kewth.github.io/2020/01/06/miller-rabin-%E5%92%8C-pollard-rho/index.html">
@@ -38,6 +39,7 @@
 <meta property="article:tag" content="pollard-rho">
 <meta name="twitter:card" content="summary">
 
+
 <link rel="canonical" href="https://kewth.github.io/2020/01/06/miller-rabin-%E5%92%8C-pollard-rho/">
 
 
@@ -50,12 +52,8 @@
     lang   : 'zh-CN'
   };
 </script>
-
-  <title>miller-rabin 和 pollard-rho | KeBlog</title>
+<title>miller-rabin 和 pollard-rho | KeBlog</title>
   
-
-
-
 
 
 
@@ -94,16 +92,132 @@
   </style>
 </noscript>
 
-<link rel="alternate" href="/atom.xml" title="KeBlog" type="application/atom+xml">
+<style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"] > svg a {
+  fill: blue;
+  stroke: blue;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style><link rel="alternate" href="/atom.xml" title="KeBlog" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <div class="headband"></div>
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="headband"></div>
 
-    <main class="main">
-      <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-        <div class="header-inner"><div class="site-brand-container">
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
     <div class="toggle" aria-label="切换导航栏">
         <span class="toggle-line"></span>
@@ -132,7 +246,7 @@
 
 
 <nav class="site-nav">
-  <ul id="menu" class="main-menu menu">
+  <ul class="main-menu menu">
         <li class="menu-item menu-item-home">
 
     <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
@@ -168,8 +282,7 @@
 
 
   <div class="search-pop-overlay">
-    <div class="popup search-popup">
-        <div class="search-header">
+    <div class="popup search-popup"><div class="search-header">
   <span class="search-icon">
     <i class="fa fa-search"></i>
   </span>
@@ -182,8 +295,8 @@
     <i class="fa fa-times-circle"></i>
   </span>
 </div>
-<div id="search-result">
-  <div id="no-result">
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
     <i class="fa fa-spinner fa-pulse fa-5x"></i>
   </div>
 </div>
@@ -192,7 +305,7 @@
   </div>
 
 </div>
-          
+        
   
   <div class="toggle sidebar-toggle">
     <span class="toggle-line"></span>
@@ -212,20 +325,21 @@
         </li>
       </ul>
 
-      <!--noindex-->
-      <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#miller-rabin"><span class="nav-number">1.</span> <span class="nav-text">miller-rabin</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%90%86%E8%AE%BA"><span class="nav-number">1.0.1.</span> <span class="nav-text">理论</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.0.2.</span> <span class="nav-text">实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BC%98%E5%8C%96"><span class="nav-number">1.0.3.</span> <span class="nav-text">优化</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pollard-rho"><span class="nav-number">2.</span> <span class="nav-text">pollard-rho</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9D%9E%E5%B9%B3%E5%87%A1%E5%9B%A0%E5%AD%90"><span class="nav-number">2.0.1.</span> <span class="nav-text">非平凡因子</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9A%8F%E6%9C%BA%E5%AE%9E%E9%AA%8C"><span class="nav-number">2.0.2.</span> <span class="nav-text">随机实验</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%94%9F%E6%97%A5%E6%82%96%E8%AE%BA"><span class="nav-number">2.0.3.</span> <span class="nav-text">生日悖论</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#rho"><span class="nav-number">2.0.4.</span> <span class="nav-text">rho</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9E%E8%B7%B5"><span class="nav-number">2.0.5.</span> <span class="nav-text">实践</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BA%94%E7%94%A8"><span class="nav-number">2.0.6.</span> <span class="nav-text">应用</span></a></li></ol></li></ol></li></ol></div>
-      </section>
-      <!--/noindex-->
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <section class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#miller-rabin"><span class="nav-number">1.</span> <span class="nav-text">miller-rabin</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%90%86%E8%AE%BA"><span class="nav-number">1.0.1.</span> <span class="nav-text">理论</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.0.2.</span> <span class="nav-text">实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BC%98%E5%8C%96"><span class="nav-number">1.0.3.</span> <span class="nav-text">优化</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pollard-rho"><span class="nav-number">2.</span> <span class="nav-text">pollard-rho</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9D%9E%E5%B9%B3%E5%87%A1%E5%9B%A0%E5%AD%90"><span class="nav-number">2.0.1.</span> <span class="nav-text">非平凡因子</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9A%8F%E6%9C%BA%E5%AE%9E%E9%AA%8C"><span class="nav-number">2.0.2.</span> <span class="nav-text">随机实验</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%94%9F%E6%97%A5%E6%82%96%E8%AE%BA"><span class="nav-number">2.0.3.</span> <span class="nav-text">生日悖论</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#rho"><span class="nav-number">2.0.4.</span> <span class="nav-text">rho</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9E%E8%B7%B5"><span class="nav-number">2.0.5.</span> <span class="nav-text">实践</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BA%94%E7%94%A8"><span class="nav-number">2.0.6.</span> <span class="nav-text">应用</span></a></li></ol></li></ol></li></ol></div>
+        </section>
+        <!--/noindex-->
 
-      <section class="site-overview-wrap sidebar-panel">
-        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <section class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <img class="site-author-image" itemprop="image" alt="Kewth"
       src="/images/avatar.jpeg">
   <p class="site-author-name" itemprop="name">Kewth</p>
   <div class="site-description" itemprop="description">HNFMS 现役 OIer</div>
 </div>
-<div class="site-state-wrap animated">
+<div class="site-state-wrap site-overview-item animated">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
@@ -248,7 +362,7 @@
       </div>
   </nav>
 </div>
-  <div class="links-of-author animated">
+  <div class="links-of-author site-overview-item animated">
       <span class="links-of-author-item">
         <a href="https://github.com/Kewth" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Kewth" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
       </span>
@@ -264,7 +378,7 @@
   </div>
 
 
-  <div class="links-of-blogroll animated">
+  <div class="links-of-blogroll site-overview-item animated">
     <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
       Links | 友链
     </div>
@@ -278,15 +392,16 @@
     </ul>
   </div>
 
-      </section>
+        </section>
+      </div>
     </div>
   </aside>
-  <div id="sidebar-dimmer"></div>
+  <div class="sidebar-dimmer"></div>
 
 
-      </header>
+    </header>
 
-      
+    
   <div class="back-to-top">
     <i class="fa fa-arrow-up"></i>
     <span>0%</span>
@@ -294,20 +409,21 @@
   <div class="reading-progress-bar"></div>
 
 <noscript>
-  <div id="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
 </noscript>
 
 
-      <div class="main-inner">
-        
+    <div class="main-inner post posts-expand">
 
-        <div class="content post posts-expand">
-          
 
-    
+  
+
+
+<div class="post-block">
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2020/01/06/miller-rabin-%E5%92%8C-pollard-rho/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -319,49 +435,47 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="KeBlog">
     </span>
-
-    
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           miller-rabin 和 pollard-rho
         </h1>
 
-        <div class="post-meta">
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
 
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
+      <time title="创建时间：2020-01-06 15:41:21" itemprop="dateCreated datePublished" datetime="2020-01-06T15:41:21+08:00">2020-01-06</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-07-26 08:33:48" itemprop="dateModified" datetime="2020-07-26T08:33:48+08:00">2020-07-26</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+        </span>
+    </span>
 
-              <time title="创建时间：2020-01-06 15:41:21" itemprop="dateCreated datePublished" datetime="2020-01-06T15:41:21+08:00">2020-01-06</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-26 08:33:48" itemprop="dateModified" datetime="2020-07-26T08:33:48+08:00">2020-07-26</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
-                </span>
-            </span>
-
-          
-            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span id="busuanzi_value_page_pv"></span>
-            </span>
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
 
         </div>
       </header>
@@ -398,7 +512,7 @@
 原本 <span class="math inline">\(x\)</span> 是从 <span class="math inline">\(2^s t\)</span> 到 <span class="math inline">\(t\)</span> ，考虑倒着进行，<span class="math inline">\(x\)</span> 从 <span class="math inline">\(t\)</span> 到 <span class="math inline">\(2^s t\)</span> ，<br />
 这样只需要一次快速幂计算 <span class="math inline">\(y = p^t\)</span> ，每次 <span class="math inline">\(x\)</span> 扩大一倍时将 <span class="math inline">\(y\)</span> 平方即可。</p>
 <p>参考实现（经过测试）：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">miller</span><span class="params">(ll n, <span class="keyword">int</span> p)</span> </span>&#123;</span><br><span class="line">   ll t = n - <span class="number">1</span>;</span><br><span class="line"> <span class="keyword">while</span>(!(t &amp; <span class="number">1</span>)) t &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">   ll y = power(p, t, n), ny;</span><br><span class="line">    <span class="keyword">while</span>((t &lt;&lt; <span class="number">1</span>) &lt; n) &#123;</span><br><span class="line">      ny = mul(y, y, n);</span><br><span class="line">        <span class="keyword">if</span>(ny == <span class="number">1</span> <span class="keyword">and</span> !(y == <span class="number">1</span> <span class="keyword">or</span> y == n - <span class="number">1</span>)) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">     t &lt;&lt;= <span class="number">1</span>;</span><br><span class="line">        y = ny;</span><br><span class="line">   &#125;</span><br><span class="line">    <span class="keyword">return</span> y == <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">is_prime</span><span class="params">(ll n)</span> </span>&#123;</span><br><span class="line">   <span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">int</span> len = <span class="number">9</span>, p[len] = &#123;<span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">11</span>, <span class="number">13</span>, <span class="number">17</span>, <span class="number">19</span>, <span class="number">23</span>&#125;;</span><br><span class="line"> <span class="keyword">if</span>(n == <span class="number">1</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i ++) <span class="keyword">if</span>(n == p[i]) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">if</span>(!(n &amp; <span class="number">1</span>)) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i ++) <span class="keyword">if</span>(!miller(n, p[i])) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">   <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">miller</span><span class="params">(ll n, <span class="keyword">int</span> p)</span> </span>&#123;</span><br><span class="line">	ll t = n - <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span>(!(t &amp; <span class="number">1</span>)) t &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">	ll y = power(p, t, n), ny;</span><br><span class="line">	<span class="keyword">while</span>((t &lt;&lt; <span class="number">1</span>) &lt; n) &#123;</span><br><span class="line">		ny = mul(y, y, n);</span><br><span class="line">		<span class="keyword">if</span>(ny == <span class="number">1</span> <span class="keyword">and</span> !(y == <span class="number">1</span> <span class="keyword">or</span> y == n - <span class="number">1</span>)) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">		t &lt;&lt;= <span class="number">1</span>;</span><br><span class="line">		y = ny;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> y == <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">is_prime</span><span class="params">(ll n)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">int</span> len = <span class="number">9</span>, p[len] = &#123;<span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">11</span>, <span class="number">13</span>, <span class="number">17</span>, <span class="number">19</span>, <span class="number">23</span>&#125;;</span><br><span class="line">	<span class="keyword">if</span>(n == <span class="number">1</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i ++) <span class="keyword">if</span>(n == p[i]) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">if</span>(!(n &amp; <span class="number">1</span>)) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i ++) <span class="keyword">if</span>(!miller(n, p[i])) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="pollard-rho">pollard-rho</h2>
 <p>用于快速找到一个数 <span class="math inline">\(n\)</span> 的一个非平凡因子，常应用于大数的质因数分解。</p>
 <p>这玩意大家似乎都是背代码，很难找到关于原理以及复杂度的证明，学习资料很少，如果有误，还请指正。</p>
@@ -461,7 +575,7 @@
 <li><p><span class="math inline">\(n = 4\)</span> 时 无论怎么取参数 <span class="math inline">\(c\)</span> 和序列初值，<span class="math inline">\(M = m\)</span> 恒成立，需要特判。</p></li>
 </ul>
 <p>参考实现（经过测试，上接 miller-rabin 的部分）：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> ll <span class="title">nxt</span><span class="params">(ll x, ll c, ll n)</span> </span>&#123;</span><br><span class="line"> ll res = mul(x, x, n) + c;</span><br><span class="line">    <span class="keyword">return</span> res &gt;= n ? res - n : res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">ll <span class="title">pollard</span><span class="params">(ll n)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(n == <span class="number">4</span>) <span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line">    ll c = <span class="number">1l</span>l * rand() * rand() % n;</span><br><span class="line"> ll a = nxt(rand(), c, n);</span><br><span class="line"> ll a2 = nxt(a, c, n);</span><br><span class="line"></span><br><span class="line">   <span class="keyword">int</span> lim = <span class="number">2</span>;</span><br><span class="line"> <span class="keyword">while</span>(a != a2) &#123;</span><br><span class="line">        ll v = <span class="number">1</span>;</span><br><span class="line">     <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; lim <span class="keyword">and</span> a != a2; i ++) &#123;</span><br><span class="line">            ll tov = mul(v, <span class="built_in">std</span>::<span class="built_in">abs</span>(a - a2), n);</span><br><span class="line">         <span class="keyword">if</span>(!tov) <span class="keyword">return</span> <span class="built_in">std</span>::__gcd(v, n);</span><br><span class="line">         v = tov;</span><br><span class="line">          a = nxt(a, c, n);</span><br><span class="line">         a2 = nxt(nxt(a2, c, n), c, n);</span><br><span class="line">        &#125;</span><br><span class="line">        ll d = <span class="built_in">std</span>::__gcd(v, n);</span><br><span class="line">        <span class="keyword">if</span>(d &gt; <span class="number">1</span>) <span class="keyword">return</span> d;</span><br><span class="line">      <span class="keyword">if</span>(lim &lt; <span class="number">128</span>) lim &lt;&lt;= <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> pollard(n);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> ll <span class="title">nxt</span><span class="params">(ll x, ll c, ll n)</span> </span>&#123;</span><br><span class="line">	ll res = mul(x, x, n) + c;</span><br><span class="line">	<span class="keyword">return</span> res &gt;= n ? res - n : res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">ll <span class="title">pollard</span><span class="params">(ll n)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(n == <span class="number">4</span>) <span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line">	ll c = <span class="number">1ll</span> * rand() * rand() % n;</span><br><span class="line">	ll a = nxt(rand(), c, n);</span><br><span class="line">	ll a2 = nxt(a, c, n);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> lim = <span class="number">2</span>;</span><br><span class="line">	<span class="keyword">while</span>(a != a2) &#123;</span><br><span class="line">		ll v = <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; lim <span class="keyword">and</span> a != a2; i ++) &#123;</span><br><span class="line">			ll tov = mul(v, <span class="built_in">std</span>::<span class="built_in">abs</span>(a - a2), n);</span><br><span class="line">			<span class="keyword">if</span>(!tov) <span class="keyword">return</span> <span class="built_in">std</span>::__gcd(v, n);</span><br><span class="line">			v = tov;</span><br><span class="line">			a = nxt(a, c, n);</span><br><span class="line">			a2 = nxt(nxt(a2, c, n), c, n);</span><br><span class="line">		&#125;</span><br><span class="line">		ll d = <span class="built_in">std</span>::__gcd(v, n);</span><br><span class="line">		<span class="keyword">if</span>(d &gt; <span class="number">1</span>) <span class="keyword">return</span> d;</span><br><span class="line">		<span class="keyword">if</span>(lim &lt; <span class="number">128</span>) lim &lt;&lt;= <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> pollard(n);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="应用">应用</h4>
 <p>求最小质因数，最大质因数，质因数分解等，<br />
 都只需要每次找到 <span class="math inline">\(n\)</span> 的非平凡因子 <span class="math inline">\(d\)</span> 然后不断令 <span class="math inline">\(n\)</span> 除以 <span class="math inline">\(d\)</span> 转换为子问题，<br />
@@ -474,7 +588,7 @@
     
     
 
-      <footer class="post-footer">
+    <footer class="post-footer">
           <div class="post-tags">
               <a href="/tags/%E9%9A%8F%E6%9C%BA/" rel="tag"><i class="fa fa-tag"></i> 随机</a>
               <a href="/tags/miller-rabin/" rel="tag"><i class="fa fa-tag"></i> miller-rabin</a>
@@ -483,29 +597,27 @@
 
         
 
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2020/01/02/%E7%BB%84%E5%90%88%E6%95%B0%E5%AD%A6%E7%8E%84%E5%AD%A6%E6%93%8D%E4%BD%9C/" rel="prev" title="组合数学玄学操作">
-      <i class="fa fa-chevron-left"></i> 组合数学玄学操作
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/01/10/%E7%89%9B%E5%AE%A2%E7%BB%83%E4%B9%A0%E8%B5%9B57/" rel="next" title="牛客练习赛57">
-      牛客练习赛57 <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/01/02/%E7%BB%84%E5%90%88%E6%95%B0%E5%AD%A6%E7%8E%84%E5%AD%A6%E6%93%8D%E4%BD%9C/" rel="prev" title="组合数学玄学操作">
+                  <i class="fa fa-chevron-left"></i> 组合数学玄学操作
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/01/10/%E7%89%9B%E5%AE%A2%E7%BB%83%E4%B9%A0%E8%B5%9B57/" rel="next" title="牛客练习赛57">
+                  牛客练习赛57 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
   </article>
-  
-  
-  
+</div>
 
 
 
-        </div>
-        
+
+
+
     <div class="comments" id="gitalk-container"></div>
 
 <script>
@@ -515,7 +627,7 @@
       activeClass = localStorage.getItem('comments_active') || activeClass;
     }
     if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
       if (activeTab) {
         activeTab.click();
       }
@@ -524,36 +636,27 @@
   if (CONFIG.comments.storage) {
     window.addEventListener('tabs:click', event => {
       if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
+      const commentClass = event.target.classList[1];
       localStorage.setItem('comments_active', commentClass);
     });
   }
 </script>
+</div>
+  </main>
 
-      </div>
-    </main>
+  <footer class="footer">
+    <div class="footer-inner">
 
-    <footer class="footer">
-      <div class="footer-inner">
-        
-
-        
 
 <div class="copyright">
-  
-  &copy; 
-  <span itemprop="copyrightYear">2020</span>
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-heartbeat"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Kewth</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
-  </div>
-
-        
 <div class="busuanzi-count">
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
       <span class="post-meta-item-icon">
         <i class="fa fa-user"></i>
@@ -562,7 +665,6 @@
         <span id="busuanzi_value_site_uv"></span>
       </span>
     </span>
-    <span class="post-meta-divider">|</span>
     <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
       <span class="post-meta-item-icon">
         <i class="fa fa-eye"></i>
@@ -572,38 +674,18 @@
       </span>
     </span>
 </div>
-
-
-
-
-
-
-
-
-      </div>
-    </footer>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
   </div>
 
+    </div>
+  </footer>
+
   
-  <script src="/lib/anime.min.js"></script>
-
-<script src="/js/utils.js"></script>
-
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/schemes/muse.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
-
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
 
   
 
-
-
-
-  
 <script src="/js/local-search.js"></script>
 
 
@@ -611,27 +693,16 @@
 
 
 
-
-
-
-
-
-
-
   
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
-  
-      
 
-<script>
+
+
+
+  <script>
   if (typeof MathJax === 'undefined') {
     window.MathJax = {
-      loader: {
-        source: {
-          '[tex]/amsCd': '[tex]/amscd',
-          '[tex]/AMScd': '[tex]/amscd'
-        }
-      },
       tex: {
         inlineMath: {'[+]': [['$', '$']]},
         tags: 'ams'
@@ -651,7 +722,7 @@
           }, '', false],
           insertedScript: [200, () => {
             document.querySelectorAll('mjx-container').forEach(node => {
-              let target = node.parentNode;
+              const target = node.parentNode;
               if (target.nodeName.toLowerCase() === 'li') {
                 target.parentNode.classList.add('has-jax');
               }
@@ -660,28 +731,25 @@
         }
       }
     };
-    (function () {
-      const script = document.createElement('script');
-      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
-      script.defer = true;
-      document.head.appendChild(script);
-    })();
+    const script = document.createElement('script');
+    script.src = '//cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-mml-chtml.js';
+    script.defer = true;
+    document.head.appendChild(script);
   } else {
     MathJax.startup.document.state(0);
+    MathJax.typesetClear();
     MathJax.texReset();
     MathJax.typeset();
   }
 </script>
 
-    
 
-  
 
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1.7.0/dist/gitalk.css">
 
 <script>
 NexT.utils.loadComments('#gitalk-container', () => {
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1.7.0/dist/gitalk.min.js', () => {
     var gitalk = new Gitalk({
       clientID    : '5a2fdd60fe2f91777a6b',
       clientSecret: '9ddb762244fffc5caff2490a05e53dbca8ae4902',
@@ -695,7 +763,7 @@ NexT.utils.loadComments('#gitalk-container', () => {
     gitalk.render('gitalk-container');
   }, window.Gitalk);
 });
-</script>
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 </body>
 </html>

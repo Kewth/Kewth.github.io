@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.0.2">
+<meta name="generator" content="Hexo 5.3.0">
+
+
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -14,16 +16,15 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
-  
-  <link rel="stylesheet" href="/lib/animate-css/animate.min.css">
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
 
 <script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"kewth.github.io","root":"/","scheme":"Muse","version":"8.0.0-rc.5","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"path":"search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":3,"unescape":false,"preload":false}};
+    var CONFIG = {"hostname":"kewth.github.io","root":"/","images":"/images","scheme":"Muse","version":"8.1.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":3,"unescape":false,"preload":false}};
   </script>
-
-  <meta name="description" content="历程  最先用的是 Ubuntu 16.04 自带的 Unity 。 更新 Ubuntu 后用的 Ubuntu 18.04 自带的 Gnome 。 用了 Gnome 后学会了折腾，各种配置堆上。 后来发现 Gnome 太卡太吃内存，并且才知道系统可以换桌面， 于是在 master 安利下换上 xfce 。 xfce 很稳定很流畅，但是太丑，可玩性太低，于是换上高大上的 KDE 。 中途还换过 en">
+<meta name="description" content="历程  最先用的是 Ubuntu 16.04 自带的 Unity 。 更新 Ubuntu 后用的 Ubuntu 18.04 自带的 Gnome 。 用了 Gnome 后学会了折腾，各种配置堆上。 后来发现 Gnome 太卡太吃内存，并且才知道系统可以换桌面， 于是在 master 安利下换上 xfce 。 xfce 很稳定很流畅，但是太丑，可玩性太低，于是换上高大上的 KDE 。 中途还换过 en">
 <meta property="og:type" content="article">
 <meta property="og:title" content="i3">
 <meta property="og:url" content="https://kewth.github.io/2019/10/01/i3/index.html">
@@ -34,6 +35,7 @@
 <meta property="article:modified_time" content="2019-12-08T06:21:48.947Z">
 <meta property="article:author" content="Kewth">
 <meta name="twitter:card" content="summary">
+
 
 <link rel="canonical" href="https://kewth.github.io/2019/10/01/i3/">
 
@@ -47,12 +49,8 @@
     lang   : 'zh-CN'
   };
 </script>
-
-  <title>i3 | KeBlog</title>
+<title>i3 | KeBlog</title>
   
-
-
-
 
 
 
@@ -91,16 +89,132 @@
   </style>
 </noscript>
 
-<link rel="alternate" href="/atom.xml" title="KeBlog" type="application/atom+xml">
+<style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"] > svg a {
+  fill: blue;
+  stroke: blue;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style><link rel="alternate" href="/atom.xml" title="KeBlog" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <div class="headband"></div>
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="headband"></div>
 
-    <main class="main">
-      <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-        <div class="header-inner"><div class="site-brand-container">
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
     <div class="toggle" aria-label="切换导航栏">
         <span class="toggle-line"></span>
@@ -129,7 +243,7 @@
 
 
 <nav class="site-nav">
-  <ul id="menu" class="main-menu menu">
+  <ul class="main-menu menu">
         <li class="menu-item menu-item-home">
 
     <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
@@ -165,8 +279,7 @@
 
 
   <div class="search-pop-overlay">
-    <div class="popup search-popup">
-        <div class="search-header">
+    <div class="popup search-popup"><div class="search-header">
   <span class="search-icon">
     <i class="fa fa-search"></i>
   </span>
@@ -179,8 +292,8 @@
     <i class="fa fa-times-circle"></i>
   </span>
 </div>
-<div id="search-result">
-  <div id="no-result">
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
     <i class="fa fa-spinner fa-pulse fa-5x"></i>
   </div>
 </div>
@@ -189,7 +302,7 @@
   </div>
 
 </div>
-          
+        
   
   <div class="toggle sidebar-toggle">
     <span class="toggle-line"></span>
@@ -209,20 +322,21 @@
         </li>
       </ul>
 
-      <!--noindex-->
-      <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%86%E7%A8%8B"><span class="nav-number">1.</span> <span class="nav-text">历程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-number">2.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE"><span class="nav-number">3.</span> <span class="nav-text">配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E5%90%91"><span class="nav-number">3.1.</span> <span class="nav-text">方向</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A3%81%E7%BA%B8"><span class="nav-number">3.2.</span> <span class="nav-text">壁纸</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%94%81%E5%B1%8F"><span class="nav-number">3.3.</span> <span class="nav-text">锁屏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B7%A5%E4%BD%9C%E5%8C%BA"><span class="nav-number">3.4.</span> <span class="nav-text">工作区</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#i3bar"><span class="nav-number">3.5.</span> <span class="nav-text">i3bar</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#i3-gaps"><span class="nav-number">3.6.</span> <span class="nav-text">i3-gaps</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%8F%E6%98%8E"><span class="nav-number">3.7.</span> <span class="nav-text">透明</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%A5%E5%8F%A3"><span class="nav-number">4.</span> <span class="nav-text">接口</span></a></li></ol></div>
-      </section>
-      <!--/noindex-->
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <section class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%86%E7%A8%8B"><span class="nav-number">1.</span> <span class="nav-text">历程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-number">2.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE"><span class="nav-number">3.</span> <span class="nav-text">配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E5%90%91"><span class="nav-number">3.1.</span> <span class="nav-text">方向</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A3%81%E7%BA%B8"><span class="nav-number">3.2.</span> <span class="nav-text">壁纸</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%94%81%E5%B1%8F"><span class="nav-number">3.3.</span> <span class="nav-text">锁屏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B7%A5%E4%BD%9C%E5%8C%BA"><span class="nav-number">3.4.</span> <span class="nav-text">工作区</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#i3bar"><span class="nav-number">3.5.</span> <span class="nav-text">i3bar</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#i3-gaps"><span class="nav-number">3.6.</span> <span class="nav-text">i3-gaps</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%8F%E6%98%8E"><span class="nav-number">3.7.</span> <span class="nav-text">透明</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%A5%E5%8F%A3"><span class="nav-number">4.</span> <span class="nav-text">接口</span></a></li></ol></div>
+        </section>
+        <!--/noindex-->
 
-      <section class="site-overview-wrap sidebar-panel">
-        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <section class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <img class="site-author-image" itemprop="image" alt="Kewth"
       src="/images/avatar.jpeg">
   <p class="site-author-name" itemprop="name">Kewth</p>
   <div class="site-description" itemprop="description">HNFMS 现役 OIer</div>
 </div>
-<div class="site-state-wrap animated">
+<div class="site-state-wrap site-overview-item animated">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
@@ -245,7 +359,7 @@
       </div>
   </nav>
 </div>
-  <div class="links-of-author animated">
+  <div class="links-of-author site-overview-item animated">
       <span class="links-of-author-item">
         <a href="https://github.com/Kewth" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Kewth" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
       </span>
@@ -261,7 +375,7 @@
   </div>
 
 
-  <div class="links-of-blogroll animated">
+  <div class="links-of-blogroll site-overview-item animated">
     <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
       Links | 友链
     </div>
@@ -275,15 +389,16 @@
     </ul>
   </div>
 
-      </section>
+        </section>
+      </div>
     </div>
   </aside>
-  <div id="sidebar-dimmer"></div>
+  <div class="sidebar-dimmer"></div>
 
 
-      </header>
+    </header>
 
-      
+    
   <div class="back-to-top">
     <i class="fa fa-arrow-up"></i>
     <span>0%</span>
@@ -291,20 +406,21 @@
   <div class="reading-progress-bar"></div>
 
 <noscript>
-  <div id="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
 </noscript>
 
 
-      <div class="main-inner">
-        
+    <div class="main-inner post posts-expand">
 
-        <div class="content post posts-expand">
-          
 
-    
+  
+
+
+<div class="post-block">
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2019/10/01/i3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -316,40 +432,38 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="KeBlog">
     </span>
-
-    
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           i3
         </h1>
 
-        <div class="post-meta">
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
 
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
+      <time title="创建时间：2019-10-01 00:00:00" itemprop="dateCreated datePublished" datetime="2019-10-01T00:00:00+08:00">2019-10-01</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2019-12-08 14:21:48" itemprop="dateModified" datetime="2019-12-08T14:21:48+08:00">2019-12-08</time>
+      </span>
 
-              <time title="创建时间：2019-10-01 00:00:00" itemprop="dateCreated datePublished" datetime="2019-10-01T00:00:00+08:00">2019-10-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-08 14:21:48" itemprop="dateModified" datetime="2019-12-08T14:21:48+08:00">2019-12-08</time>
-              </span>
-
-          
-            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span id="busuanzi_value_page_pv"></span>
-            </span>
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
 
         </div>
       </header>
@@ -415,7 +529,7 @@ bar 的模式有三种：</p>
 <p>可以看到默认使用 i3status 作为处理，i3status 本身也可以配置，<br />
 但是如果想自由配置，你可以写个程序，输出一个 json ，接口比较复杂，<br />
 在此不赘述，你可以在 ~/.config/i3status/config 里加几行：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">general &#123;</span><br><span class="line">    output_format &#x3D; &quot;i3bar&quot;</span><br><span class="line">    colors &#x3D; true</span><br><span class="line">    interval &#x3D; 5</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">general &#123;</span><br><span class="line">	   output_format &#x3D; &quot;i3bar&quot;</span><br><span class="line">	   colors &#x3D; true</span><br><span class="line">	   interval &#x3D; 5</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>再运行 <code>i3status</code> 依葫芦画瓢就是了。</p>
 <h3 id="i3-gaps">i3-gaps</h3>
 <p>如果你希望窗口平铺之间会有间隙，i3-gaps 会满足你。<br />
@@ -435,33 +549,31 @@ bar 的模式有三种：</p>
     
     
 
-      <footer class="post-footer">
+    <footer class="post-footer">
 
         
 
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2019/10/01/i3lock/" rel="prev" title="i3lock">
-      <i class="fa fa-chevron-left"></i> i3lock
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2019/10/01/NTT/" rel="next" title="NTT">
-      NTT <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2019/10/01/i3lock/" rel="prev" title="i3lock">
+                  <i class="fa fa-chevron-left"></i> i3lock
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2019/10/01/NTT/" rel="next" title="NTT">
+                  NTT <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
   </article>
-  
-  
-  
+</div>
 
 
 
-        </div>
-        
+
+
+
     <div class="comments" id="gitalk-container"></div>
 
 <script>
@@ -471,7 +583,7 @@ bar 的模式有三种：</p>
       activeClass = localStorage.getItem('comments_active') || activeClass;
     }
     if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
       if (activeTab) {
         activeTab.click();
       }
@@ -480,36 +592,27 @@ bar 的模式有三种：</p>
   if (CONFIG.comments.storage) {
     window.addEventListener('tabs:click', event => {
       if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
+      const commentClass = event.target.classList[1];
       localStorage.setItem('comments_active', commentClass);
     });
   }
 </script>
+</div>
+  </main>
 
-      </div>
-    </main>
+  <footer class="footer">
+    <div class="footer-inner">
 
-    <footer class="footer">
-      <div class="footer-inner">
-        
-
-        
 
 <div class="copyright">
-  
-  &copy; 
-  <span itemprop="copyrightYear">2020</span>
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-heartbeat"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Kewth</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
-  </div>
-
-        
 <div class="busuanzi-count">
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
       <span class="post-meta-item-icon">
         <i class="fa fa-user"></i>
@@ -518,7 +621,6 @@ bar 的模式有三种：</p>
         <span id="busuanzi_value_site_uv"></span>
       </span>
     </span>
-    <span class="post-meta-divider">|</span>
     <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
       <span class="post-meta-item-icon">
         <i class="fa fa-eye"></i>
@@ -528,38 +630,18 @@ bar 的模式有三种：</p>
       </span>
     </span>
 </div>
-
-
-
-
-
-
-
-
-      </div>
-    </footer>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
   </div>
 
+    </div>
+  </footer>
+
   
-  <script src="/lib/anime.min.js"></script>
-
-<script src="/js/utils.js"></script>
-
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/schemes/muse.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
-
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
 
   
 
-
-
-
-  
 <script src="/js/local-search.js"></script>
 
 
@@ -567,27 +649,16 @@ bar 的模式有三种：</p>
 
 
 
-
-
-
-
-
-
-
   
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
-  
-      
 
-<script>
+
+
+
+  <script>
   if (typeof MathJax === 'undefined') {
     window.MathJax = {
-      loader: {
-        source: {
-          '[tex]/amsCd': '[tex]/amscd',
-          '[tex]/AMScd': '[tex]/amscd'
-        }
-      },
       tex: {
         inlineMath: {'[+]': [['$', '$']]},
         tags: 'ams'
@@ -607,7 +678,7 @@ bar 的模式有三种：</p>
           }, '', false],
           insertedScript: [200, () => {
             document.querySelectorAll('mjx-container').forEach(node => {
-              let target = node.parentNode;
+              const target = node.parentNode;
               if (target.nodeName.toLowerCase() === 'li') {
                 target.parentNode.classList.add('has-jax');
               }
@@ -616,28 +687,25 @@ bar 的模式有三种：</p>
         }
       }
     };
-    (function () {
-      const script = document.createElement('script');
-      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
-      script.defer = true;
-      document.head.appendChild(script);
-    })();
+    const script = document.createElement('script');
+    script.src = '//cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-mml-chtml.js';
+    script.defer = true;
+    document.head.appendChild(script);
   } else {
     MathJax.startup.document.state(0);
+    MathJax.typesetClear();
     MathJax.texReset();
     MathJax.typeset();
   }
 </script>
 
-    
 
-  
 
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1.7.0/dist/gitalk.css">
 
 <script>
 NexT.utils.loadComments('#gitalk-container', () => {
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1.7.0/dist/gitalk.min.js', () => {
     var gitalk = new Gitalk({
       clientID    : '5a2fdd60fe2f91777a6b',
       clientSecret: '9ddb762244fffc5caff2490a05e53dbca8ae4902',
@@ -651,7 +719,7 @@ NexT.utils.loadComments('#gitalk-container', () => {
     gitalk.render('gitalk-container');
   }, window.Gitalk);
 });
-</script>
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 </body>
 </html>

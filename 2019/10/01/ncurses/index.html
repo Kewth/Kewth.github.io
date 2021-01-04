@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.0.2">
+<meta name="generator" content="Hexo 5.3.0">
+
+
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -14,16 +16,15 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
-  
-  <link rel="stylesheet" href="/lib/animate-css/animate.min.css">
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
 
 <script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"kewth.github.io","root":"/","scheme":"Muse","version":"8.0.0-rc.5","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"path":"search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":3,"unescape":false,"preload":false}};
+    var CONFIG = {"hostname":"kewth.github.io","root":"/","images":"/images","scheme":"Muse","version":"8.1.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":3,"unescape":false,"preload":false}};
   </script>
-
-  <meta name="description" content="ncurses 是基于终端的十分强大的图形库。 Vim, screen, sl 等终端程序都用到了这个库（足以见其强大）。 安装 部分系统默认安装了 ncurses ，手动安装的方式是： sudo aptitude install ncurses-dev 。 使用的程序需要 #include &lt;ncurses.h&gt;　。 编译时需要添加 -lncurses 参数进行链接。 开始和结束 调">
+<meta name="description" content="ncurses 是基于终端的十分强大的图形库。 Vim, screen, sl 等终端程序都用到了这个库（足以见其强大）。 安装 部分系统默认安装了 ncurses ，手动安装的方式是： sudo aptitude install ncurses-dev 。 使用的程序需要 #include &lt;ncurses.h&gt;　。 编译时需要添加 -lncurses 参数进行链接。 开始和结束 调">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ncurses">
 <meta property="og:url" content="https://kewth.github.io/2019/10/01/ncurses/index.html">
@@ -34,6 +35,7 @@
 <meta property="article:modified_time" content="2020-01-21T03:57:34.522Z">
 <meta property="article:author" content="Kewth">
 <meta name="twitter:card" content="summary">
+
 
 <link rel="canonical" href="https://kewth.github.io/2019/10/01/ncurses/">
 
@@ -47,12 +49,8 @@
     lang   : 'zh-CN'
   };
 </script>
-
-  <title>ncurses | KeBlog</title>
+<title>ncurses | KeBlog</title>
   
-
-
-
 
 
 
@@ -91,16 +89,132 @@
   </style>
 </noscript>
 
-<link rel="alternate" href="/atom.xml" title="KeBlog" type="application/atom+xml">
+<style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"] > svg a {
+  fill: blue;
+  stroke: blue;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style><link rel="alternate" href="/atom.xml" title="KeBlog" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <div class="headband"></div>
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="headband"></div>
 
-    <main class="main">
-      <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-        <div class="header-inner"><div class="site-brand-container">
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
     <div class="toggle" aria-label="切换导航栏">
         <span class="toggle-line"></span>
@@ -129,7 +243,7 @@
 
 
 <nav class="site-nav">
-  <ul id="menu" class="main-menu menu">
+  <ul class="main-menu menu">
         <li class="menu-item menu-item-home">
 
     <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
@@ -165,8 +279,7 @@
 
 
   <div class="search-pop-overlay">
-    <div class="popup search-popup">
-        <div class="search-header">
+    <div class="popup search-popup"><div class="search-header">
   <span class="search-icon">
     <i class="fa fa-search"></i>
   </span>
@@ -179,8 +292,8 @@
     <i class="fa fa-times-circle"></i>
   </span>
 </div>
-<div id="search-result">
-  <div id="no-result">
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
     <i class="fa fa-spinner fa-pulse fa-5x"></i>
   </div>
 </div>
@@ -189,7 +302,7 @@
   </div>
 
 </div>
-          
+        
   
   <div class="toggle sidebar-toggle">
     <span class="toggle-line"></span>
@@ -209,20 +322,21 @@
         </li>
       </ul>
 
-      <!--noindex-->
-      <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%80%E5%A7%8B%E5%92%8C%E7%BB%93%E6%9D%9F"><span class="nav-number">2.</span> <span class="nav-text">开始和结束</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BE%93%E5%87%BA"><span class="nav-number">3.</span> <span class="nav-text">输出</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%BD%E6%95%B0"><span class="nav-number">3.1.</span> <span class="nav-text">函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BE%93%E5%85%A5"><span class="nav-number">4.</span> <span class="nav-text">输入</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%BD%E6%95%B0-1"><span class="nav-number">4.1.</span> <span class="nav-text">函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%89%E6%A0%87"><span class="nav-number">5.</span> <span class="nav-text">光标</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E5%8F%8A%E7%A4%BA%E4%BE%8B"><span class="nav-number">5.1.</span> <span class="nav-text">函数及示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8C%87%E5%AE%9A%E4%BD%8D%E7%BD%AE%E8%BE%93%E5%87%BA"><span class="nav-number">5.2.</span> <span class="nav-text">指定位置输出</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%9C%E8%89%B2"><span class="nav-number">6.</span> <span class="nav-text">颜色</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-number">6.1.</span> <span class="nav-text">初始化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8"><span class="nav-number">6.2.</span> <span class="nav-text">使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%94%99%E8%AF%AF%E7%A4%BA%E4%BE%8B"><span class="nav-number">6.3.</span> <span class="nav-text">错误示例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AA%97%E5%8F%A3"><span class="nav-number">7.</span> <span class="nav-text">窗口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B0%E5%BB%BA%E7%AA%97%E5%8F%A3"><span class="nav-number">7.1.</span> <span class="nav-text">新建窗口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%9A%E7%94%A8%E8%BE%93%E5%87%BA"><span class="nav-number">7.2.</span> <span class="nav-text">通用输出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%90%E7%AA%97%E5%8F%A3"><span class="nav-number">7.3.</span> <span class="nav-text">子窗口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%94%80%E6%AF%81%E7%AA%97%E5%8F%A3"><span class="nav-number">7.4.</span> <span class="nav-text">销毁窗口</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A6%BB%E5%BC%80"><span class="nav-number">8.</span> <span class="nav-text">离开</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B"><span class="nav-number">8.1.</span> <span class="nav-text">示例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BE%93%E5%87%BA%E4%B8%AD%E6%96%87%E7%AD%89%E9%9D%9E-ascii-%E5%AD%97%E7%AC%A6"><span class="nav-number">9.</span> <span class="nav-text">输出中文等非 ASCII 字符</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E5%BA%93"><span class="nav-number">9.1.</span> <span class="nav-text">安装库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%B4%E6%96%87%E4%BB%B6"><span class="nav-number">9.2.</span> <span class="nav-text">头文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B0%83%E7%94%A8"><span class="nav-number">9.3.</span> <span class="nav-text">调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%96%E8%AF%91"><span class="nav-number">9.4.</span> <span class="nav-text">编译</span></a></li></ol></li></ol></div>
-      </section>
-      <!--/noindex-->
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <section class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%80%E5%A7%8B%E5%92%8C%E7%BB%93%E6%9D%9F"><span class="nav-number">2.</span> <span class="nav-text">开始和结束</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BE%93%E5%87%BA"><span class="nav-number">3.</span> <span class="nav-text">输出</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%BD%E6%95%B0"><span class="nav-number">3.1.</span> <span class="nav-text">函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BE%93%E5%85%A5"><span class="nav-number">4.</span> <span class="nav-text">输入</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%BD%E6%95%B0-1"><span class="nav-number">4.1.</span> <span class="nav-text">函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%89%E6%A0%87"><span class="nav-number">5.</span> <span class="nav-text">光标</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E5%8F%8A%E7%A4%BA%E4%BE%8B"><span class="nav-number">5.1.</span> <span class="nav-text">函数及示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8C%87%E5%AE%9A%E4%BD%8D%E7%BD%AE%E8%BE%93%E5%87%BA"><span class="nav-number">5.2.</span> <span class="nav-text">指定位置输出</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%9C%E8%89%B2"><span class="nav-number">6.</span> <span class="nav-text">颜色</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-number">6.1.</span> <span class="nav-text">初始化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8"><span class="nav-number">6.2.</span> <span class="nav-text">使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%94%99%E8%AF%AF%E7%A4%BA%E4%BE%8B"><span class="nav-number">6.3.</span> <span class="nav-text">错误示例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AA%97%E5%8F%A3"><span class="nav-number">7.</span> <span class="nav-text">窗口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B0%E5%BB%BA%E7%AA%97%E5%8F%A3"><span class="nav-number">7.1.</span> <span class="nav-text">新建窗口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%9A%E7%94%A8%E8%BE%93%E5%87%BA"><span class="nav-number">7.2.</span> <span class="nav-text">通用输出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%90%E7%AA%97%E5%8F%A3"><span class="nav-number">7.3.</span> <span class="nav-text">子窗口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%94%80%E6%AF%81%E7%AA%97%E5%8F%A3"><span class="nav-number">7.4.</span> <span class="nav-text">销毁窗口</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A6%BB%E5%BC%80"><span class="nav-number">8.</span> <span class="nav-text">离开</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B"><span class="nav-number">8.1.</span> <span class="nav-text">示例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BE%93%E5%87%BA%E4%B8%AD%E6%96%87%E7%AD%89%E9%9D%9E-ascii-%E5%AD%97%E7%AC%A6"><span class="nav-number">9.</span> <span class="nav-text">输出中文等非 ASCII 字符</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E5%BA%93"><span class="nav-number">9.1.</span> <span class="nav-text">安装库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%B4%E6%96%87%E4%BB%B6"><span class="nav-number">9.2.</span> <span class="nav-text">头文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B0%83%E7%94%A8"><span class="nav-number">9.3.</span> <span class="nav-text">调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%96%E8%AF%91"><span class="nav-number">9.4.</span> <span class="nav-text">编译</span></a></li></ol></li></ol></div>
+        </section>
+        <!--/noindex-->
 
-      <section class="site-overview-wrap sidebar-panel">
-        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <section class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <img class="site-author-image" itemprop="image" alt="Kewth"
       src="/images/avatar.jpeg">
   <p class="site-author-name" itemprop="name">Kewth</p>
   <div class="site-description" itemprop="description">HNFMS 现役 OIer</div>
 </div>
-<div class="site-state-wrap animated">
+<div class="site-state-wrap site-overview-item animated">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
@@ -245,7 +359,7 @@
       </div>
   </nav>
 </div>
-  <div class="links-of-author animated">
+  <div class="links-of-author site-overview-item animated">
       <span class="links-of-author-item">
         <a href="https://github.com/Kewth" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Kewth" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
       </span>
@@ -261,7 +375,7 @@
   </div>
 
 
-  <div class="links-of-blogroll animated">
+  <div class="links-of-blogroll site-overview-item animated">
     <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
       Links | 友链
     </div>
@@ -275,15 +389,16 @@
     </ul>
   </div>
 
-      </section>
+        </section>
+      </div>
     </div>
   </aside>
-  <div id="sidebar-dimmer"></div>
+  <div class="sidebar-dimmer"></div>
 
 
-      </header>
+    </header>
 
-      
+    
   <div class="back-to-top">
     <i class="fa fa-arrow-up"></i>
     <span>0%</span>
@@ -291,20 +406,21 @@
   <div class="reading-progress-bar"></div>
 
 <noscript>
-  <div id="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
 </noscript>
 
 
-      <div class="main-inner">
-        
+    <div class="main-inner post posts-expand">
 
-        <div class="content post posts-expand">
-          
 
-    
+  
+
+
+<div class="post-block">
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2019/10/01/ncurses/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -316,40 +432,38 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="KeBlog">
     </span>
-
-    
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           ncurses
         </h1>
 
-        <div class="post-meta">
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
 
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
+      <time title="创建时间：2019-10-01 00:00:00" itemprop="dateCreated datePublished" datetime="2019-10-01T00:00:00+08:00">2019-10-01</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-01-21 11:57:34" itemprop="dateModified" datetime="2020-01-21T11:57:34+08:00">2020-01-21</time>
+      </span>
 
-              <time title="创建时间：2019-10-01 00:00:00" itemprop="dateCreated datePublished" datetime="2019-10-01T00:00:00+08:00">2019-10-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-01-21 11:57:34" itemprop="dateModified" datetime="2020-01-21T11:57:34+08:00">2020-01-21</time>
-              </span>
-
-          
-            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span id="busuanzi_value_page_pv"></span>
-            </span>
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
 
         </div>
       </header>
@@ -377,7 +491,7 @@
 <h2 id="光标">光标</h2>
 <p>控制光标。 调用 initscr 后调用 endwin 前，输出终端控制符改变光标是无效的。</p>
 <h3 id="函数及示例">函数及示例</h3>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">move</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>; <span class="comment">// 将光标移动到 [x] 行 [y] 列，左上角为 0 行 0 列</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">curs_set</span><span class="params">(<span class="keyword">int</span> visiblility)</span></span>; <span class="comment">// 参数为 0 表示隐藏光标，1 表示显示光标</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getyx</span><span class="params">(WINDOW* win, <span class="keyword">int</span> &amp;x, <span class="keyword">int</span> &amp;y)</span></span>; <span class="comment">// 获取指定窗口光标位置，示例如下</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">move_up</span><span class="params">()</span> </span>&#123; <span class="comment">// 将光标上移</span></span><br><span class="line">   <span class="keyword">int</span> x, y;</span><br><span class="line">    getyx(stdscr, x, y); <span class="comment">// stdscr 表示标准屏幕</span></span><br><span class="line">    move(x - <span class="number">1</span>, y);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">move</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>; <span class="comment">// 将光标移动到 [x] 行 [y] 列，左上角为 0 行 0 列</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">curs_set</span><span class="params">(<span class="keyword">int</span> visiblility)</span></span>; <span class="comment">// 参数为 0 表示隐藏光标，1 表示显示光标</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getyx</span><span class="params">(WINDOW* win, <span class="keyword">int</span> &amp;x, <span class="keyword">int</span> &amp;y)</span></span>; <span class="comment">// 获取指定窗口光标位置，示例如下</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">move_up</span><span class="params">()</span> </span>&#123; <span class="comment">// 将光标上移</span></span><br><span class="line">	<span class="keyword">int</span> x, y;</span><br><span class="line">	getyx(stdscr, x, y); <span class="comment">// stdscr 表示标准屏幕</span></span><br><span class="line">	move(x - <span class="number">1</span>, y);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="指定位置输出">指定位置输出</h3>
 <p>在指定位置输出不必先 move 再 printw ， ncurses 提供了 mv 函数前缀在指定位置输出。 例如 <code>mvprintw(1, 2, "%d", 2)</code> 在 1 行 2 列输出 3 。 类似的有 mvaddch, mvaddstr 等。</p>
 <h2 id="颜色">颜色</h2>
@@ -387,7 +501,7 @@
 <p>成功后会初始化全局变量 COLORS 表示终端支持的颜色数量 还会有 COLOT_WHITE, COLOR_RED 等 8 个表示颜色的变量。</p>
 <h3 id="使用">使用</h3>
 <p>例如希望打印白底黑字的信息：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *info)</span> </span>&#123;</span><br><span class="line">  init_pair(<span class="number">1</span>, COLOR_BLACK, COLOR_WHITE);</span><br><span class="line">       <span class="comment">// 的一个参数表示编号，后面两个分别表示字体和背景颜色</span></span><br><span class="line"> attron(COLOR_PAIR(<span class="number">1</span>));</span><br><span class="line">        <span class="comment">// attron 是一个设置函数，COLOR_PAIR 返回指定编号的颜色信息</span></span><br><span class="line"> addstr(info);</span><br><span class="line"> attroff(COLOR_PAIR(<span class="number">1</span>));</span><br><span class="line">       <span class="comment">// attroff 关闭设置（若接下来需要用其他颜色可以不调用 attroff 而直接使用 attron 覆盖设置</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *info)</span> </span>&#123;</span><br><span class="line">	init_pair(<span class="number">1</span>, COLOR_BLACK, COLOR_WHITE);</span><br><span class="line">		<span class="comment">// 的一个参数表示编号，后面两个分别表示字体和背景颜色</span></span><br><span class="line">	attron(COLOR_PAIR(<span class="number">1</span>));</span><br><span class="line">		<span class="comment">// attron 是一个设置函数，COLOR_PAIR 返回指定编号的颜色信息</span></span><br><span class="line">	addstr(info);</span><br><span class="line">	attroff(COLOR_PAIR(<span class="number">1</span>));</span><br><span class="line">		<span class="comment">// attroff 关闭设置（若接下来需要用其他颜色可以不调用 attroff 而直接使用 attron 覆盖设置</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="错误示例">错误示例</h3>
 <p>值得注意的是，必须保证 init_pair 的编号不与其他已初始化的编号重复 一个错误的调用如下：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> *info = <span class="string">&quot;ERROR CODE&quot;</span>;</span><br><span class="line">init_pair(<span class="number">1</span>, COLOR_BLACK, COLOR_WHITE);</span><br><span class="line">attron(COLOR_PAIR(<span class="number">1</span>));</span><br><span class="line">addstr(info); <span class="comment">// 打印白底黑字</span></span><br><span class="line">init_pair(<span class="number">1</span>, COLOR_BLACK, COLOR_RED);</span><br><span class="line">attron(COLOR_PAIR(<span class="number">1</span>));</span><br><span class="line">addstr(info); <span class="comment">// 打印白底红字</span></span><br></pre></td></tr></table></figure>
@@ -413,7 +527,7 @@
 <p>有时候可能需要离开 ncurses 回到行缓冲模式做些事情而且需要在之后回到 ncurses 。 例如 Vim 里面输入 :!ls 就会退出 ncurses 运行 ls 命令，并在用户敲下回车后回到 ncurses。</p>
 <p>调用 def_prog_mode 暂存，调用 reset_prog_mode 恢复。</p>
 <h3 id="示例">示例</h3>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  initscr();</span><br><span class="line">    printw(<span class="string">&quot;Hello World !!!\n&quot;</span>);</span><br><span class="line">    getch(); <span class="comment">// 等待用户输入</span></span><br><span class="line">   def_prog_mode(); <span class="comment">// 存储当前tty 模式</span></span><br><span class="line">   endwin(); <span class="comment">// 退出 ncurses 模式</span></span><br><span class="line">   system(<span class="string">&quot;sh&quot;</span>); <span class="comment">// 返回普通的行缓冲模式</span></span><br><span class="line">    reset_prog_mode(); <span class="comment">// 返回到 def_prog_mode() 存储的 tty 模式</span></span><br><span class="line"> refresh(); <span class="comment">// 刷新屏幕（必须！）</span></span><br><span class="line">  getch(); <span class="comment">// 等待用户输入</span></span><br><span class="line">   endwin(); <span class="comment">// 退出 ncurses 模式</span></span><br><span class="line">   <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	initscr();</span><br><span class="line">	printw(<span class="string">&quot;Hello World !!!\n&quot;</span>);</span><br><span class="line">	getch(); <span class="comment">// 等待用户输入</span></span><br><span class="line">	def_prog_mode(); <span class="comment">// 存储当前tty 模式</span></span><br><span class="line">	endwin(); <span class="comment">// 退出 ncurses 模式</span></span><br><span class="line">	system(<span class="string">&quot;sh&quot;</span>); <span class="comment">// 返回普通的行缓冲模式</span></span><br><span class="line">	reset_prog_mode(); <span class="comment">// 返回到 def_prog_mode() 存储的 tty 模式</span></span><br><span class="line">	refresh(); <span class="comment">// 刷新屏幕（必须！）</span></span><br><span class="line">	getch(); <span class="comment">// 等待用户输入</span></span><br><span class="line">	endwin(); <span class="comment">// 退出 ncurses 模式</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="输出中文等非-ascii-字符">输出中文等非 ASCII 字符</h2>
 <p>事实上 ncurses 并不支持直接输出中文， 这意味着调用 printw("中文") 会是一堆乱码。 解决方案如下：</p>
 <h3 id="安装库">安装库</h3>
@@ -431,33 +545,31 @@
     
     
 
-      <footer class="post-footer">
+    <footer class="post-footer">
 
         
 
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2019/10/01/%E5%8C%97%E4%BA%AC%E6%B8%B8%E8%AE%B0/" rel="prev" title="北京游记">
-      <i class="fa fa-chevron-left"></i> 北京游记
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2019/10/01/terminal-tool/" rel="next" title="终端（娱乐）工具">
-      终端（娱乐）工具 <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2019/10/01/terminal-tool/" rel="prev" title="终端（娱乐）工具">
+                  <i class="fa fa-chevron-left"></i> 终端（娱乐）工具
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2019/10/01/i3lock/" rel="next" title="i3lock">
+                  i3lock <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
   </article>
-  
-  
-  
+</div>
 
 
 
-        </div>
-        
+
+
+
     <div class="comments" id="gitalk-container"></div>
 
 <script>
@@ -467,7 +579,7 @@
       activeClass = localStorage.getItem('comments_active') || activeClass;
     }
     if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
       if (activeTab) {
         activeTab.click();
       }
@@ -476,36 +588,27 @@
   if (CONFIG.comments.storage) {
     window.addEventListener('tabs:click', event => {
       if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
+      const commentClass = event.target.classList[1];
       localStorage.setItem('comments_active', commentClass);
     });
   }
 </script>
+</div>
+  </main>
 
-      </div>
-    </main>
+  <footer class="footer">
+    <div class="footer-inner">
 
-    <footer class="footer">
-      <div class="footer-inner">
-        
-
-        
 
 <div class="copyright">
-  
-  &copy; 
-  <span itemprop="copyrightYear">2020</span>
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-heartbeat"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Kewth</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
-  </div>
-
-        
 <div class="busuanzi-count">
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
       <span class="post-meta-item-icon">
         <i class="fa fa-user"></i>
@@ -514,7 +617,6 @@
         <span id="busuanzi_value_site_uv"></span>
       </span>
     </span>
-    <span class="post-meta-divider">|</span>
     <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
       <span class="post-meta-item-icon">
         <i class="fa fa-eye"></i>
@@ -524,38 +626,18 @@
       </span>
     </span>
 </div>
-
-
-
-
-
-
-
-
-      </div>
-    </footer>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
   </div>
 
+    </div>
+  </footer>
+
   
-  <script src="/lib/anime.min.js"></script>
-
-<script src="/js/utils.js"></script>
-
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/schemes/muse.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
-
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
 
   
 
-
-
-
-  
 <script src="/js/local-search.js"></script>
 
 
@@ -563,27 +645,16 @@
 
 
 
-
-
-
-
-
-
-
   
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
-  
-      
 
-<script>
+
+
+
+  <script>
   if (typeof MathJax === 'undefined') {
     window.MathJax = {
-      loader: {
-        source: {
-          '[tex]/amsCd': '[tex]/amscd',
-          '[tex]/AMScd': '[tex]/amscd'
-        }
-      },
       tex: {
         inlineMath: {'[+]': [['$', '$']]},
         tags: 'ams'
@@ -603,7 +674,7 @@
           }, '', false],
           insertedScript: [200, () => {
             document.querySelectorAll('mjx-container').forEach(node => {
-              let target = node.parentNode;
+              const target = node.parentNode;
               if (target.nodeName.toLowerCase() === 'li') {
                 target.parentNode.classList.add('has-jax');
               }
@@ -612,28 +683,25 @@
         }
       }
     };
-    (function () {
-      const script = document.createElement('script');
-      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
-      script.defer = true;
-      document.head.appendChild(script);
-    })();
+    const script = document.createElement('script');
+    script.src = '//cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-mml-chtml.js';
+    script.defer = true;
+    document.head.appendChild(script);
   } else {
     MathJax.startup.document.state(0);
+    MathJax.typesetClear();
     MathJax.texReset();
     MathJax.typeset();
   }
 </script>
 
-    
 
-  
 
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1.7.0/dist/gitalk.css">
 
 <script>
 NexT.utils.loadComments('#gitalk-container', () => {
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1.7.0/dist/gitalk.min.js', () => {
     var gitalk = new Gitalk({
       clientID    : '5a2fdd60fe2f91777a6b',
       clientSecret: '9ddb762244fffc5caff2490a05e53dbca8ae4902',
@@ -647,7 +715,7 @@ NexT.utils.loadComments('#gitalk-container', () => {
     gitalk.render('gitalk-container');
   }, window.Gitalk);
 });
-</script>
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 </body>
 </html>
