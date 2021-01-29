@@ -24,12 +24,12 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"kewth.github.io","root":"/","images":"/images","scheme":"Muse","version":"8.1.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":3,"unescape":false,"preload":false}};
   </script>
-<meta name="description" content="HNFMS 现役 OIer">
+<meta name="description" content="HNFMS 退役 OIer">
 <meta property="og:type" content="website">
 <meta property="og:title" content="KeBlog">
 <meta property="og:url" content="https://kewth.github.io/page/2/index.html">
 <meta property="og:site_name" content="KeBlog">
-<meta property="og:description" content="HNFMS 现役 OIer">
+<meta property="og:description" content="HNFMS 退役 OIer">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="Kewth">
 <meta name="twitter:card" content="summary">
@@ -264,7 +264,7 @@ mjx-container[display="true"] + br {
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">80</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">81</span></a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -331,14 +331,14 @@ mjx-container[display="true"] + br {
     <img class="site-author-image" itemprop="image" alt="Kewth"
       src="/images/avatar.jpeg">
   <p class="site-author-name" itemprop="name">Kewth</p>
-  <div class="site-description" itemprop="description">HNFMS 现役 OIer</div>
+  <div class="site-description" itemprop="description">HNFMS 退役 OIer</div>
 </div>
 <div class="site-state-wrap site-overview-item animated">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">80</span>
+          <span class="site-state-item-count">81</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -417,12 +417,97 @@ mjx-container[display="true"] + br {
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2020/10/09/Manjaro-%E4%BD%BF%E7%94%A8-Deepin-wine-%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Kewth">
+      <meta itemprop="description" content="HNFMS 退役 OIer">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KeBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2020/10/09/Manjaro-%E4%BD%BF%E7%94%A8-Deepin-wine-%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">Manjaro 使用 Deepin-wine 中文乱码问题</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2020-10-09 19:05:35 / 修改时间：19:16:07" itemprop="dateCreated datePublished" datetime="2020-10-09T19:05:35+08:00">2020-10-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%98%E8%85%BE/" itemprop="url" rel="index"><span itemprop="name">折腾</span></a>
+        </span>
+    </span>
+
+  
+
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>本来装好 deepin.com.qq.im 后就可以愉快使用了，但是在某次滚动更新后突然发现 QQ/TIM 都中文乱码，困惑了很久都没找到解决方案。</p>
+<p>在失败和重新尝试的断断续续的反复循环中，今天终于解决了。</p>
+<p>其实就是下载 simsun.ttc 和 simsun.ttf 放到 .deepinwine/Deepin-QQ/drive_c/windows/Fonts 里头。</p>
+<p>可能还要写个 zh.reg ，像下面这样，然而 deepin-wine 自带的 deepin-regedit 用不了，把 /usr/lib/deepin-wine/wine 拷贝到 /usr/lib/i386-linux-gnu/deepin-wine/wine 后似乎就好一点，但还是用不了，因此我并没有注册，但好像也还可以。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/10/09/Manjaro-%E4%BD%BF%E7%94%A8-Deepin-wine-%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2020/10/05/Manjaro-%E8%BF%9E%E6%8E%A5-Wifi/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpeg">
       <meta itemprop="name" content="Kewth">
-      <meta itemprop="description" content="HNFMS 现役 OIer">
+      <meta itemprop="description" content="HNFMS 退役 OIer">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -455,6 +540,7 @@ mjx-container[display="true"] + br {
     </span>
 
   
+
 </div>
 
         </div>
@@ -504,7 +590,7 @@ mjx-container[display="true"] + br {
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpeg">
       <meta itemprop="name" content="Kewth">
-      <meta itemprop="description" content="HNFMS 现役 OIer">
+      <meta itemprop="description" content="HNFMS 退役 OIer">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -543,6 +629,7 @@ mjx-container[display="true"] + br {
     </span>
 
   
+
 </div>
 
         </div>
@@ -591,7 +678,7 @@ mjx-container[display="true"] + br {
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpeg">
       <meta itemprop="name" content="Kewth">
-      <meta itemprop="description" content="HNFMS 现役 OIer">
+      <meta itemprop="description" content="HNFMS 退役 OIer">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -630,6 +717,7 @@ mjx-container[display="true"] + br {
     </span>
 
   
+
 </div>
 
         </div>
@@ -678,7 +766,7 @@ mjx-container[display="true"] + br {
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpeg">
       <meta itemprop="name" content="Kewth">
-      <meta itemprop="description" content="HNFMS 现役 OIer">
+      <meta itemprop="description" content="HNFMS 退役 OIer">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -702,6 +790,7 @@ mjx-container[display="true"] + br {
     </span>
 
   
+
 </div>
 
         </div>
@@ -751,7 +840,7 @@ mjx-container[display="true"] + br {
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpeg">
       <meta itemprop="name" content="Kewth">
-      <meta itemprop="description" content="HNFMS 现役 OIer">
+      <meta itemprop="description" content="HNFMS 退役 OIer">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -790,6 +879,7 @@ mjx-container[display="true"] + br {
     </span>
 
   
+
 </div>
 
         </div>
@@ -838,7 +928,7 @@ mjx-container[display="true"] + br {
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpeg">
       <meta itemprop="name" content="Kewth">
-      <meta itemprop="description" content="HNFMS 现役 OIer">
+      <meta itemprop="description" content="HNFMS 退役 OIer">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -877,6 +967,7 @@ mjx-container[display="true"] + br {
     </span>
 
   
+
 </div>
 
         </div>
@@ -926,7 +1017,7 @@ mjx-container[display="true"] + br {
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpeg">
       <meta itemprop="name" content="Kewth">
-      <meta itemprop="description" content="HNFMS 现役 OIer">
+      <meta itemprop="description" content="HNFMS 退役 OIer">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -959,6 +1050,7 @@ mjx-container[display="true"] + br {
     </span>
 
   
+
 </div>
 
         </div>
@@ -1011,7 +1103,7 @@ mjx-container[display="true"] + br {
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpeg">
       <meta itemprop="name" content="Kewth">
-      <meta itemprop="description" content="HNFMS 现役 OIer">
+      <meta itemprop="description" content="HNFMS 退役 OIer">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -1050,6 +1142,7 @@ mjx-container[display="true"] + br {
     </span>
 
   
+
 </div>
 
         </div>
@@ -1101,7 +1194,7 @@ mjx-container[display="true"] + br {
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpeg">
       <meta itemprop="name" content="Kewth">
-      <meta itemprop="description" content="HNFMS 现役 OIer">
+      <meta itemprop="description" content="HNFMS 退役 OIer">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -1140,6 +1233,7 @@ mjx-container[display="true"] + br {
     </span>
 
   
+
 </div>
 
         </div>
@@ -1180,101 +1274,8 @@ mjx-container[display="true"] + br {
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2020/08/04/%E5%BC%A6%E5%9B%BE%E7%9B%B8%E5%85%B3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-      <meta itemprop="name" content="Kewth">
-      <meta itemprop="description" content="HNFMS 现役 OIer">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="KeBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/08/04/%E5%BC%A6%E5%9B%BE%E7%9B%B8%E5%85%B3/" class="post-title-link" itemprop="url">弦图相关</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2020-08-04 20:28:13 / 修改时间：20:43:54" itemprop="dateCreated datePublished" datetime="2020-08-04T20:28:13+08:00">2020-08-04</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>简单记录弦图相关概念和算法。</p>
-<details class="note info"><summary><p>一些定义</p>
-</summary>
-<p>弦：连接环上不相邻两点的边。</p>
-<p>弦图：每个简单环都有至少一条弦的无向图。</p>
-<blockquote>
-<p>事实上，可以预见的是，弦图的每个简单环都可以表示为若干三元环的对称差。</p>
-</blockquote>
-<p>团：任意两点都有边的无向图。</p>
-<p>单纯点：与其相邻的点集的导出子图是团。</p>
-<p>完美消除序列：点集的一个排列 <span class="math inline">\(\{p\}\)</span> ，满足每个点 <span class="math inline">\(p_i\)</span> 在 <span class="math inline">\(p_j (j &gt; i)\)</span> 的导出子图中都是单纯点。</p>
-
-</details>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/08/04/%E5%BC%A6%E5%9B%BE%E7%9B%B8%E5%85%B3/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
