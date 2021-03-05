@@ -24,15 +24,15 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"kewth.github.io","root":"/","images":"/images","scheme":"Muse","version":"8.1.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":3,"unescape":false,"preload":false}};
   </script>
-<meta name="description" content="以下序列仅讨论实数列。 一些理论 数列 \(\{a_n\}\) 收敛于 \(A\) ，当且仅当 \(\forall \varepsilon &gt; 0 \;\; \exists N \in \mathbb{N}^+ \;\; \forall n &gt; N \;\; |a_n - A| &lt; \varepsilon\) 。 另一个等价的定义是令 \(S(\varepsilon) :&#x3D; \{">
+<meta name="description" content="\(\newcommand{\bbR}{\mathbb{R}}\) \(\newcommand{\bbN}{\mathbb{N}^+}\) \(\newcommand{\Lim}{\lim\limits_}\) \(\newcommand{\eps}{\varepsilon}\) 以下数列仅讨论实数列。 一些理论 数列 \(\{a_n\}\) 收敛于 \(A\) ，当且仅当 \(\forall \">
 <meta property="og:type" content="article">
-<meta property="og:title" content="《数学分析》笔记（二）">
+<meta property="og:title" content="《数学分析》笔记二（极限）">
 <meta property="og:url" content="https://kewth.github.io/2021/01/08/%E3%80%8A%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90%E3%80%8B%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/index.html">
 <meta property="og:site_name" content="KeBlog">
-<meta property="og:description" content="以下序列仅讨论实数列。 一些理论 数列 \(\{a_n\}\) 收敛于 \(A\) ，当且仅当 \(\forall \varepsilon &gt; 0 \;\; \exists N \in \mathbb{N}^+ \;\; \forall n &gt; N \;\; |a_n - A| &lt; \varepsilon\) 。 另一个等价的定义是令 \(S(\varepsilon) :&#x3D; \{">
+<meta property="og:description" content="\(\newcommand{\bbR}{\mathbb{R}}\) \(\newcommand{\bbN}{\mathbb{N}^+}\) \(\newcommand{\Lim}{\lim\limits_}\) \(\newcommand{\eps}{\varepsilon}\) 以下数列仅讨论实数列。 一些理论 数列 \(\{a_n\}\) 收敛于 \(A\) ，当且仅当 \(\forall \">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-01-08T09:46:11.000Z">
-<meta property="article:modified_time" content="2021-01-16T03:25:01.404Z">
+<meta property="article:modified_time" content="2021-03-03T09:22:21.496Z">
 <meta property="article:author" content="Kewth">
 <meta property="article:tag" content="数学分析">
 <meta name="twitter:card" content="summary">
@@ -50,7 +50,7 @@
     lang   : 'zh-CN'
   };
 </script>
-<title>《数学分析》笔记（二） | KeBlog</title>
+<title>《数学分析》笔记二（极限） | KeBlog</title>
   
 
 
@@ -326,7 +326,7 @@ mjx-container[display="true"] + br {
       <div class="sidebar-panel-container">
         <!--noindex-->
         <section class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B%E7%90%86%E8%AE%BA"><span class="nav-number">1.</span> <span class="nav-text">一些理论</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B%E7%90%86%E8%AE%BA"><span class="nav-number">1.</span> <span class="nav-text">一些理论</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B%E4%B9%A0%E9%A2%98"><span class="nav-number">2.</span> <span class="nav-text">一些习题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E4%BA%9B%E7%90%86%E8%AE%BA"><span class="nav-number">3.</span> <span class="nav-text">二些理论</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E4%BA%9B%E4%B9%A0%E9%A2%98"><span class="nav-number">4.</span> <span class="nav-text">二些习题</span></a></li></ol></div>
         </section>
         <!--/noindex-->
 
@@ -435,7 +435,7 @@ mjx-container[display="true"] + br {
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          《数学分析》笔记（二）
+          《数学分析》笔记二（极限）
         </h1>
 
         <div class="post-meta-container">
@@ -453,7 +453,7 @@ mjx-container[display="true"] + br {
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-01-16 11:25:01" itemprop="dateModified" datetime="2021-01-16T11:25:01+08:00">2021-01-16</time>
+        <time title="修改时间：2021-03-03 17:22:21" itemprop="dateModified" datetime="2021-03-03T17:22:21+08:00">2021-03-03</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -483,17 +483,18 @@ mjx-container[display="true"] + br {
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>以下序列仅讨论实数列。</p>
+        <p><span class="math inline">\(\newcommand{\bbR}{\mathbb{R}}\)</span> <span class="math inline">\(\newcommand{\bbN}{\mathbb{N}^+}\)</span> <span class="math inline">\(\newcommand{\Lim}{\lim\limits_}\)</span> <span class="math inline">\(\newcommand{\eps}{\varepsilon}\)</span></p>
+<p>以下数列仅讨论实数列。</p>
 <h2 id="一些理论">一些理论</h2>
-<p>数列 <span class="math inline">\(\{a_n\}\)</span> 收敛于 <span class="math inline">\(A\)</span> ，当且仅当 <span class="math inline">\(\forall \varepsilon &gt; 0 \;\; \exists N \in \mathbb{N}^+ \;\; \forall n &gt; N \;\; |a_n - A| &lt; \varepsilon\)</span> 。</p>
-<p>另一个等价的定义是令 <span class="math inline">\(S(\varepsilon) := \{n \in \mathbb{N}^+ | |a_n - A| \ge \varepsilon\}\)</span> ，则对于正数 <span class="math inline">\(\varepsilon\)</span> ，<span class="math inline">\(S(\varepsilon)\)</span> 总是有限集。</p>
+<p>数列 <span class="math inline">\(\{a_n\}\)</span> 收敛于 <span class="math inline">\(A\)</span> ，当且仅当 <span class="math inline">\(\forall \eps &gt; 0 \;\; \exists N \in \bbN \;\; \forall n &gt; N \;\; |a_n - A| &lt; \eps\)</span> 。</p>
+<p>另一个等价的定义是令 <span class="math inline">\(S(\eps) := \{n \in \bbN \mid |a_n - A| \ge \eps\}\)</span> ，则对于正数 <span class="math inline">\(\eps\)</span> ，<span class="math inline">\(S(\eps)\)</span> 总是有限集。</p>
 <p>简单来说就是 <span class="math inline">\(A\)</span> 的任何邻域都包含了 <span class="math inline">\(\{a_n\}\)</span> 的某个后缀。</p>
 <hr />
-<p>数列 <span class="math inline">\(\{a_n\}\)</span> 是柯西数列，当且仅当 <span class="math inline">\(\forall \varepsilon &gt; 0 \;\; \exists N \in \mathbb{N}^+ \;\; \forall n, m &gt; N \;\; |a_n - a_m| &lt; \varepsilon\)</span> 。</p>
+<p>数列 <span class="math inline">\(\{a_n\}\)</span> 是柯西数列，当且仅当 <span class="math inline">\(\forall \eps &gt; 0 \;\; \exists N \in \bbN \;\; \forall n, m &gt; N \;\; |a_n - a_m| &lt; \eps\)</span> 。</p>
 <p>数列收敛当且仅当其是柯西数列，由于柯西数列的定义并不关心数列收敛于何值，常用于判定数列是否收敛。</p>
 <hr />
 <p>单调数列收敛当且仅当其有界。</p>
-<p>将数列去掉任意有限项后其收敛性以及其收敛的值都不会改变。因此若数列在某一确定项之后开始单调，该数列收敛当且仅当其有界。</p>
+<p>将数列去掉任意有限项后其收敛性以及其收敛的值都不会改变。因此若数列在某一确定项之后开始单调（即“最终单调”），该数列收敛当且仅当其有界。</p>
 <p>而无界单调数列一定趋于无穷。</p>
 <hr />
 <p>两个收敛数列逐项相加/减/乘/除，新数列收敛于原来两个数列极限的和/差/积/商。</p>
@@ -504,15 +505,154 @@ mjx-container[display="true"] + br {
 <p>而数列收敛于 <span class="math inline">\(x\)</span> 当且仅当其任何子列都收敛于 <span class="math inline">\(x\)</span> 。</p>
 <hr />
 <p><span class="math inline">\(x\)</span> 是数列 <span class="math inline">\(\{a_n\}\)</span> 的部分极限，当且仅当存在该数列的某个子列收敛于 <span class="math inline">\(x\)</span> 。</p>
-<p>数列 <span class="math inline">\(a\)</span> 的下极限 <span class="math inline">\(\varliminf a_n = \lim\limits_{N \rightarrow \infty} \inf \{a_n | n &gt; N\}\)</span> 是 <span class="math inline">\(a\)</span> 的所有部分极限的最小值。</p>
-<p>数列 <span class="math inline">\(a\)</span> 的上极限 <span class="math inline">\(\varlimsup a_n = \lim\limits_{N \rightarrow \infty} \sup \{a_n | n &gt; N\}\)</span> 是 <span class="math inline">\(a\)</span> 的所有部分极限的最大值。</p>
+<p>数列 <span class="math inline">\(a\)</span> 的下极限 <span class="math inline">\(\varliminf a_n = \Lim{N \to \infty} \inf \{a_n | n &gt; N\}\)</span> 是 <span class="math inline">\(a\)</span> 的所有部分极限的最小值。</p>
+<p>数列 <span class="math inline">\(a\)</span> 的上极限 <span class="math inline">\(\varlimsup a_n = \Lim{N \to \infty} \sup \{a_n | n &gt; N\}\)</span> 是 <span class="math inline">\(a\)</span> 的所有部分极限的最大值。</p>
 <p>那么数列收敛当且仅当上下极限相等。</p>
 <p>如果把趋于正负无穷的数列看作是收敛于 <span class="math inline">\(+\infty\)</span> 或 <span class="math inline">\(-\infty\)</span> ，上述命题仍是成立的。</p>
 <hr />
-<p>数列 <span class="math inline">\(\{a_n\}\)</span> 的无穷级数 <span class="math inline">\(\sum\limits_{n=1}^{\infty} a_n := \lim\limits_{n \rightarrow \infty} \sum\limits_{k=1}^n a_k\)</span> ，若后者发散，则该级数发散。</p>
-<p>级数收敛的必要条件是 <span class="math inline">\(lim a_n = 0\)</span> 。</p>
+<p>数列 <span class="math inline">\(\{a_n\}\)</span> 的无穷级数 <span class="math inline">\(\sum\limits_{n=1}^{\infty} a_n := \Lim{n \to \infty} \sum\limits_{k=1}^n a_k\)</span> ，若后者发散，则该级数发散。</p>
+<p>级数收敛的必要条件是 <span class="math inline">\(\Lim{n \to \infty} a_n = 0\)</span> 。</p>
 <p>如果总有 <span class="math inline">\(|a_n| \le b_n\)</span> 且 <span class="math inline">\(\sum\limits_{n=1}^{\infty} b_n\)</span> 收敛，那么 <span class="math inline">\(\sum\limits_{n=1}^{\infty} |a_n|\)</span> 一定收敛。</p>
 <p><span class="math inline">\(\sum\limits_{n=1}^{\infty} |a_n|\)</span> 收敛蕴含了 <span class="math inline">\(\sum\limits_{n=1}^{\infty} a_n\)</span> 收敛。</p>
+<hr />
+<p>对于无穷级数 <span class="math inline">\(\sum\limits_{n=1}^{\infty} a_n\)</span> ，令 <span class="math inline">\(A := \varlimsup \sqrt[n]{|a_n|}\)</span> （或 <span class="math inline">\(A := \Lim{n \to \infty} |\dfrac{a_{n+1}}{a_n}|\)</span> ，如果该极限存在）：</p>
+<ul>
+<li><span class="math inline">\(A &lt; 1 \Rightarrow \sum\limits_{n=1}^{\infty} a_n\)</span> 绝对收敛。</li>
+<li><span class="math inline">\(A &gt; 1 \Rightarrow \sum\limits_{n=1}^{\infty} a_n\)</span> 发散。</li>
+</ul>
+<h2 id="一些习题">一些习题</h2>
+<p>证明无穷连分数 <span class="math inline">\([a_1, a_2, a_3 \dots]\)</span> <span class="math inline">\((a_i \in \bbN)\)</span> 总是收敛的。</p>
+<p>ps: 渐进分数 <span class="math inline">\([a_1, a_2 \dots a_n]\)</span> 的值可以表示为 <span class="math inline">\(\dfrac{P_n}{Q_n}\)</span> ，并满足 <span class="math inline">\(P_{n+2} = P_{n+1} a_{n+2} + P_n\)</span> 以及 <span class="math inline">\(Q_{n+2} = Q_{n+1} a_{n+2} + Q_n\)</span> 。</p>
+<details class="note primary"><summary><p>Answer</p>
+</summary>
+<p>令 <span class="math inline">\(R_n := \dfrac{P_n}{Q_n}\)</span> ，我们要证明 <span class="math inline">\(\Lim{n \to \infty} R_n\)</span> 存在。</p>
+<p>首先注意到</p>
+<p><span class="math display">\[
+\begin{aligned}
+    P_{n+2} Q_{n+1} - P_{n+1} Q_{n+2} &amp;= (P_{n+1} a_{n+2} + P_n) Q_{n+1} - P_{n+1} (Q_{n+1} a_{n+2} + Q_n) \\
+                                      &amp;= P_n Q_{n+1} - P_{n+1} Q_n
+\end{aligned}
+\]</span></p>
+<p>迭代上式后可以得到 <span class="math inline">\(P_{n+1} Q_n - P_n Q_{n+1} = (-1)^{n-1} (P_2 Q_1 - P_1 Q_2) = (-1)^{n-1}\)</span> 。</p>
+<p>那么对相邻项作差：</p>
+<p><span class="math display">\[
+    R_{n+1} - R_n = \frac{P_{n+1}}{Q_{n+1}} - \frac{P_n}{Q_n} = \frac{(-1)^{n+1}}{Q_{n+1} Q_n}
+\]</span></p>
+<p>这启发我们按将下标按奇偶性分类，于是</p>
+<p><span class="math display">\[
+\begin{aligned}
+    R_{2k+1} - R_{2k-1} &amp;= \frac{(-1)^{2k+1}}{Q_{2k+1} Q_{2k}} + \frac{(-1)^{2k}}{Q_{2k} Q_{2k-1}} \\
+                        &amp;= \frac{a_{2k+1}}{Q_{2k+1} Q_{2k-1}} \\
+                        &amp;&gt; 0 \\
+    R_{2k+2} - R_{2k}   &amp;= \frac{(-1)^{2k+2}}{Q_{2k+2} Q_{2k+1}} + \frac{(-1)^{2k+1}}{Q_{2k+1} Q_{2k}} \\
+                        &amp;= - \frac{a_{2k+2}}{Q_{2k+2} Q_{2k}} \\
+                        &amp;&lt; 0
+\end{aligned}
+\]</span></p>
+<p>故 <span class="math inline">\(R_{2k-1}\)</span> 单调递增，<span class="math inline">\(R_{2k}\)</span> 单调递减。</p>
+<p>且由于 <span class="math inline">\(R_{2k} - R_{2k-1} &gt; 0\)</span> ，所以 <span class="math inline">\(R_{2k-1} &lt; R_{2k} \le R_2\)</span> ，<span class="math inline">\(R_2\)</span> 是 <span class="math inline">\(R_{2k-1}\)</span> 的一个上界。同理 <span class="math inline">\(R_1\)</span> 是 <span class="math inline">\(R_{2k}\)</span> 的一个下界。故 <span class="math inline">\(\Lim{k \to \infty} R_{2k}\)</span> 和 <span class="math inline">\(\Lim{k \to \infty} R_{2k-1}\)</span> 都是存在的。于是</p>
+<p><span class="math display">\[
+    \Lim{k \to \infty} R_{2k} - \Lim{k \to \infty} R_{2k-1} = \Lim{k \to \infty} (R_{2k} - R_{2k-1}) = \Lim{k \to \infty} \frac{(-1)^{2k}}{Q_{2k} Q_{2k-1}} = 0
+\]</span></p>
+<p>所以奇数项和偶数项收敛于同值 <span class="math inline">\(r\)</span> ，这就可以导出 <span class="math inline">\(R_n\)</span> 收敛于 <span class="math inline">\(r\)</span> ：</p>
+<p><span class="math display">\[
+\begin{aligned}
+    &amp; \because \forall \eps &gt; 0 \;\; \exists N, M \;\; \forall n &gt; N, m &gt; M \;\; \max\{|R_{2n-1} - r|, |R_{2m} - r|\} &lt; \eps \\
+    &amp; \therefore \forall \eps &gt; 0 \;\; \exists K = \max\{2N-1, 2M\} \;\; \forall n &gt; K \;\; |R_n - r| &lt; \eps
+\end{aligned}
+\]</span></p>
+
+</details>
+<hr />
+<p>对于 <span class="math inline">\(0 &lt; a \le b\)</span> 求 <span class="math inline">\(\Lim{n \to \infty} \sqrt[n]{\dfrac{a^n + b^n}{2}}\)</span> 。</p>
+<details class="note primary"><summary><p>Answer</p>
+</summary>
+<p>令 <span class="math inline">\(r_n := \sqrt[n]{\dfrac{a^n + b^n}{2}}\)</span> ，注意到 <span class="math inline">\(\dfrac{r_n}{b} = \sqrt[n]{\dfrac{(a/b)^n + 1}{2}}\)</span> ，令 <span class="math inline">\(q := \dfrac{a}{b}\)</span> ，则 <span class="math inline">\(0 &lt; q \le 1\)</span> 。</p>
+<p>注意到 <span class="math inline">\(1 &lt; q^n + 1 \le 2\)</span> 可以导出以下不等式：</p>
+<p><span class="math display">\[
+    \sqrt[n]{\dfrac{1}{2}} &lt; \sqrt[n]{\dfrac{q^n + 1}{2}} \le \sqrt[n]{\dfrac{2}{2}}
+\]</span></p>
+<p>而左式和右式的极限都是 <span class="math inline">\(1\)</span> ，故 <span class="math inline">\(\Lim{n \to \infty} \dfrac{r_n}{b} = 1\)</span> ，于是 <span class="math inline">\(\Lim{n \to \infty} r_n = b\)</span> 。</p>
+
+</details>
+<hr />
+<p>数列 <span class="math inline">\(\{x_n\}\)</span> 满足 <span class="math inline">\(x_{n+1} = \dfrac{x_n^2 + a}{2 x_n}\)</span> 且 <span class="math inline">\(x_1, a &gt; 0\)</span> ，求 <span class="math inline">\(\Lim{n \to \infty} x_n\)</span> 。</p>
+<details class="note primary"><summary><p>Answer</p>
+</summary>
+<p>注意到 <span class="math inline">\(x_{n+1} = \dfrac{1}{2} (\sqrt{x_n} - \sqrt{\dfrac{a}{x_n}})^2 + \sqrt{a} \ge \sqrt{a}\)</span> ，不失一般性地，不妨假定 <span class="math inline">\(x_1 \ge \sqrt{a}\)</span> 。</p>
+<p>而 <span class="math inline">\(x_1 = \sqrt{a}\)</span> 时显然 <span class="math inline">\(\Lim{n \to \infty} x_n = \sqrt{a}\)</span> ，考虑 <span class="math inline">\(x_1 &gt; \sqrt{a}\)</span> 。</p>
+<p>令 <span class="math inline">\(\Delta_n := x_n - \sqrt{a}\)</span> ，那么</p>
+<p><span class="math display">\[
+    \Delta_{n+1} = \frac{x_n^2 + a}{2 x_n} - \sqrt{a} = \frac{\Delta_n^2 + 2 \sqrt{a} \Delta_n + 2 a}{2 \Delta_n + 2 \sqrt{a}} - \sqrt{a} = \frac{\Delta_n^2}{2 \Delta_n + 2 \sqrt{a}}
+\]</span></p>
+<p>可以发现 <span class="math inline">\(\Delta_n &gt; 0\)</span> 恒成立，于是</p>
+<p><span class="math display">\[
+    \Delta_{n+1}^{-1} = \frac{2 \Delta_n + 2 \sqrt{a}}{\Delta_n^2} = 2 \Delta_n^{-1} + 2 \sqrt{a} \Delta_n^{-2} &gt; 2 \Delta_n^{-1} &gt; 2^n \Delta_1^{-1}
+\]</span></p>
+<p>于是有不等式 <span class="math inline">\(0 &lt; \Delta_{n+1} &lt; \dfrac{\Delta_1}{2^n}\)</span> ，左式和右式的极限均为 <span class="math inline">\(0\)</span> ，故 <span class="math inline">\(\Lim{n \to \infty} \Delta_n = 0\)</span> ，即 <span class="math inline">\(\Lim{n \to \infty} x_n = \sqrt{a}\)</span> 。</p>
+<p>另外，我们顺便求得了 <span class="math inline">\(\{x_n\}\)</span> 的收敛速度，而这个逼近的方法正是牛顿迭代。</p>
+
+</details>
+<h2 id="二些理论">二些理论</h2>
+<p>对于函数 <span class="math inline">\(f \colon E \to \bbR\)</span> ，称在 <span class="math inline">\(x\)</span> 趋于 <span class="math inline">\(a\)</span> 时函数 <span class="math inline">\(f\)</span> 趋于 <span class="math inline">\(A\)</span> ，当且仅当 <span class="math inline">\(\forall U(A) \;\; \exists \mathring{V}(a) \;\; f(\mathring{V}(a) \cap E) \subset U(A)\)</span> 。记为 <span class="math inline">\(\Lim{E \ni x \to a} f(x) = A\)</span> 。如果存在 <span class="math inline">\(\mathring{V}(a) \subset E\)</span> ，一般简记为 <span class="math inline">\(\Lim{x \to a} f(x) = A\)</span> 。</p>
+<p>另一个等价的定义是，所有满足 <span class="math inline">\(x_n \in E \setminus \{a\}\)</span> 且收敛于 <span class="math inline">\(a\)</span> 的数列 <span class="math inline">\(\{x_n\}\)</span> 都有 <span class="math inline">\(\{f(x_n)\}\)</span> 收敛于 <span class="math inline">\(A\)</span> 。</p>
+<p>根据第二个定义可以很快地将数列极限的部分理论推广到函数极限上。</p>
+<hr />
+<p>由集合 <span class="math inline">\(E\)</span> 的某些子集 <span class="math inline">\(B \subset E\)</span> 组成的集合族 <span class="math inline">\(\mathcal B\)</span> 称为 <span class="math inline">\(E\)</span> 的滤子基（下文简称为基），当且仅当：</p>
+<ol type="1">
+<li><span class="math inline">\(\forall B \in \mathcal B \;\; B \neq \varnothing\)</span> 。</li>
+<li><span class="math inline">\(\forall B_1, B_2 \in \mathcal B \;\; \exists B \in \mathcal B \;\; B \subset B_1 \cap B_2\)</span> 。</li>
+</ol>
+<p>事实上可以直接在基上定义极限：</p>
+<p><span class="math display">\[
+    (\Lim{\mathcal B} f(x) = A) := \forall U(A) \;\; \exists B \in \mathcal B \;\; f(B) \subset U(A)
+\]</span></p>
+<p>而数列极限和函数极限都可以归约到上述定义。例如对于数列极限 <span class="math inline">\(\Lim{n \to \infty} a_n = A\)</span> 有 <span class="math inline">\(\{n \in \bbN | n &gt; N\} \in \mathcal B, f(n) = a_n\)</span> 。函数极限 <span class="math inline">\(\Lim{E \ni x \to a} f(x) = A\)</span> 有 <span class="math inline">\(\mathring{V}(a) \cap E \in \mathcal B\)</span> 。</p>
+<hr />
+<p><span class="math inline">\(\Lim{\mathcal B_Y} g(y) = \Lim{\mathcal B_X} g(f(x))\)</span> ，如果 <span class="math inline">\(\forall B_Y \in \mathcal B_Y \;\; \exists B_X \in \mathcal B_X \;\; f(B_X) \subset B_Y\)</span> 。</p>
+<hr />
+<p>如果某个条件在基 <span class="math inline">\(\mathcal B\)</span> 上的某个元素 <span class="math inline">\(B\)</span> 上成立，就称该条件在 <span class="math inline">\(\mathcal B\)</span> 上最终成立。</p>
+<p>对于基 <span class="math inline">\(\mathcal B = E \ni x \to \sup E\)</span> ，最终单调不减（不增）函数 <span class="math inline">\(f \colon E \to \bbR\)</span> 有极限当且仅当其最终上（下）有界。注意该结论的 <span class="math inline">\(\mathcal B\)</span> 不是任意的，但不难导出 <span class="math inline">\(\mathcal B = E \ni x \to \inf E\)</span> 的类似结论。</p>
+<hr />
+<p>对于基 <span class="math inline">\(\mathcal B\)</span> ：记 <span class="math inline">\(f = o(g)\)</span> 当且仅当存在 <span class="math inline">\(\Lim{\mathcal B} \alpha(x) = 0\)</span> 使得 <span class="math inline">\(f(x) = \alpha(x) g(x)\)</span> 最终成立；记 <span class="math inline">\(f = O(g)\)</span> 当且仅当存在最终有界函数 <span class="math inline">\(\beta(x)\)</span> 使得 <span class="math inline">\(f(x) = \beta(x) g(x)\)</span> 最终成立；记 <span class="math inline">\(f \sim g\)</span> 当且仅当 <span class="math inline">\(f = O(g) \land g = O(f)\)</span> 。</p>
+<hr />
+<p><span class="math display">\[
+\begin{aligned}
+    e^x &amp;= \sum_{n=0}^{\infty} \frac{1}{n!} x^n, &amp; x \in \bbR \\
+    \cos x &amp;= \sum_{n=0}^{\infty} \frac{(-1)^n}{(2n)!} x^{2n}, &amp; x \in \bbR \\
+    \sin x &amp;= \sum_{n=0}^{\infty} \frac{(-1)^n}{(2n+1)!} x^{2n+1}, &amp; x \in \bbR \\
+    \ln (1 + x) &amp;= \sum_{n=0}^{\infty} \frac{(-1)^n}{n+1} x^{n+1}, &amp; |x| &lt; 1 \\
+    (1 + x)^{\alpha} &amp;= \sum_{n=0}^{\infty} \frac{\alpha^{\underline n}}{n!} x^n, &amp; |x| &lt; 1 \\
+\end{aligned}
+\]</span></p>
+<h2 id="二些习题">二些习题</h2>
+<p>证明在 <span class="math inline">\(\bbN \ni n \to \infty\)</span> 上有 <span class="math inline">\(\sum\limits_{k=1}^n \dfrac{1}{k} = \ln n + c + o(1)\)</span> ，其中 <span class="math inline">\(c \in \bbR\)</span> 是某常数。</p>
+<details class="note primary"><summary><p>Answer</p>
+</summary>
+<p>令 <span class="math inline">\(a_n := \sum\limits_{k=1}^n \dfrac{1}{k} - \ln n\)</span> ，命题等价于数列 <span class="math inline">\(\{a_n\}\)</span> 收敛。</p>
+<p>令 <span class="math inline">\(b_n := a_{n+1} - a_n\)</span> ，则</p>
+<p><span class="math display">\[
+\begin{aligned}
+    b_n
+    &amp;= \frac{1}{n+1} - \ln \frac{n+1}{n} \\
+    &amp;= \frac{1}{n+1} - \ln (1 + \frac{1}{n}) \\
+    &amp;= \frac{1}{n+1} - \frac{1}{n} + O(\frac{1}{n^2}) \\
+    &amp;= - \frac{1}{n(n+1)} + O(\frac{1}{n^2}) \\
+    &amp;= O(\frac{1}{n^2}) \\
+    &amp;= \beta_n \frac{1}{n^2}
+\end{aligned}
+\]</span></p>
+<p>其中 <span class="math inline">\(\{\beta_n\}\)</span> 是有界数列。那么</p>
+<p><span class="math display">\[
+    \Lim{n \to \infty} a_n = a_1 + \sum_{n=1}^{\infty} b_n = a_1 + \sum_{n=1}^{\infty} \beta_n \frac{1}{n^2}
+\]</span></p>
+<p>令 <span class="math inline">\(s, i\)</span> 分别为 <span class="math inline">\(\{\beta_n\}\)</span> 的上确界和下确界，于是</p>
+<p><span class="math display">\[
+    a_1 + i \sum_{n=1}^{\infty} \frac{1}{n^2} \le \Lim{n \to \infty} a_n \le a_1 + s \sum_{n=1}^{\infty} \frac{1}{n^2}
+\]</span></p>
+<p>左右两式均收敛，故 <span class="math inline">\(\Lim{n \to \infty} a_n\)</span> 存在。</p>
+
+</details>
 
     </div>
 
@@ -534,6 +674,9 @@ mjx-container[display="true"] + br {
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/2021/03/03/Manjaro-%E8%BF%9E%E6%8E%A5-Wifi/" rel="next" title="Manjaro Wifi 相关">
+                  Manjaro Wifi 相关 <i class="fa fa-chevron-right"></i>
+                </a>
             </div>
           </div>
     </footer>
