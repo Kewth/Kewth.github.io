@@ -254,7 +254,7 @@ mjx-container[display="true"] + br {
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">64</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">65</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -264,7 +264,7 @@ mjx-container[display="true"] + br {
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">81</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">82</span></a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -338,7 +338,7 @@ mjx-container[display="true"] + br {
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">81</span>
+          <span class="site-state-item-count">82</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -351,7 +351,7 @@ mjx-container[display="true"] + br {
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">64</span>
+        <span class="site-state-item-count">65</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -408,6 +408,102 @@ mjx-container[display="true"] + br {
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2019/11/03/%E5%BF%AB%E9%80%9F%E6%B2%83%E5%B0%94%E4%BB%80%E5%8F%98%E6%8D%A2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Kewth">
+      <meta itemprop="description" content="HNFMS 退役 OIer">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KeBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2019/11/03/%E5%BF%AB%E9%80%9F%E6%B2%83%E5%B0%94%E4%BB%80%E5%8F%98%E6%8D%A2/" class="post-title-link" itemprop="url">快速沃尔什变换</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-11-03 17:35:00" itemprop="dateCreated datePublished" datetime="2019-11-03T17:35:00+08:00">2019-11-03</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-05-19 20:29:15" itemprop="dateModified" datetime="2020-05-19T20:29:15+08:00">2020-05-19</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+        </span>
+    </span>
+
+  
+
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>快速沃尔什变换，简称 FWT 。</p>
+<h2 id="用处">用处</h2>
+<p>多项式卷积一般是这样的：</p>
+<p><span class="math display">\[ C_i = \sum_{j + k = i} A_j \cdot B_k \]</span></p>
+<p>这个可以用 FFT 快速求解。</p>
+<p>然而还有一个诡异的卷积：</p>
+<p><span class="math display">\[ C_i = \sum_{j \oplus k = i} A_j \cdot B_k \]</span></p>
+<p>其中 $ $ 是任意一种位运算。</p>
+<p>FWT 便是求这类卷积的快速算法。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/11/03/%E5%BF%AB%E9%80%9F%E6%B2%83%E5%B0%94%E4%BB%80%E5%8F%98%E6%8D%A2/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1316,102 +1412,6 @@ RMQ 真是流皮，每次深入思考都会有新的发现，所以有了新的�
 满足 <span class="math inline">\(a, b &lt; \sqrt{p}\)</span> ，分别预处理即可，<br />
 即预处理 <span class="math inline">\(a^0, a^1, a^2 ... a^{\sqrt{p}}, a^{2\sqrt{p}}, a^{3\sqrt{p}} ... a^p\)</span> 。</p>
 
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2019/10/10/%E6%95%B4%E4%BD%93%E4%BA%8C%E5%88%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-      <meta itemprop="name" content="Kewth">
-      <meta itemprop="description" content="HNFMS 退役 OIer">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="KeBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2019/10/10/%E6%95%B4%E4%BD%93%E4%BA%8C%E5%88%86/" class="post-title-link" itemprop="url">整体二分</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2019-10-10 18:00:00" itemprop="dateCreated datePublished" datetime="2019-10-10T18:00:00+08:00">2019-10-10</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-05-19 20:32:02" itemprop="dateModified" datetime="2020-05-19T20:32:02+08:00">2020-05-19</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
-        </span>
-    </span>
-
-  
-
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>不久前学了整体二分，做了几道题，还在考试上派上用场过几次。<br />
-觉得自己大概懂了整体二分，直到一次碰上了强制在线的毒瘤题。。。</p>
-<p><del>整体二分：从离线到强制在线</del></p>
-<h2 id="基础">基础</h2>
-<p>大概讲讲整体二分吧。</p>
-<p>整体二分大概用于这样一个场景：<br />
-有多组询问，每个询问可以二分，但是每个询问二分的时间不能接受，<br />
-而不同询问的二分有共同点，这时就可以用整体二分把多个询问一起二分。<br />
-所以这是个离线算法。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/10/10/%E6%95%B4%E4%BD%93%E4%BA%8C%E5%88%86/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
       
     </div>
 
