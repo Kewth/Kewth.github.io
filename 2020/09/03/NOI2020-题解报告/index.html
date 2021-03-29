@@ -24,17 +24,18 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"kewth.github.io","root":"/","images":"/images","scheme":"Muse","version":"8.1.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":3,"unescape":false,"preload":false}};
   </script>
-<meta name="description" content="没有摘要。">
+<meta name="description" content="美食家 题目大意 给定一张 \(n\) 点 \(m\) 边的有向图，边有不超过 \(w\) 的长度。现要求从点 \(1\) 出发经过长度恰为 \(T\) 的路径回到点 \(1\) ，每到达一个点就会获得等于该点点权的愉悦值。特别地，有 \(k\) 个美食节，形如“于时刻 \(t\) 到达点 \(x\) 会额外获得 \(y\) 的愉悦值”。最大化获得的愉悦值总和。 做法 1 考虑 \(k &#x3D; 0\)">
 <meta property="og:type" content="article">
 <meta property="og:title" content="NOI2020 题解报告">
 <meta property="og:url" content="https://kewth.github.io/2020/09/03/NOI2020-%E9%A2%98%E8%A7%A3%E6%8A%A5%E5%91%8A/index.html">
 <meta property="og:site_name" content="KeBlog">
-<meta property="og:description" content="没有摘要。">
+<meta property="og:description" content="美食家 题目大意 给定一张 \(n\) 点 \(m\) 边的有向图，边有不超过 \(w\) 的长度。现要求从点 \(1\) 出发经过长度恰为 \(T\) 的路径回到点 \(1\) ，每到达一个点就会获得等于该点点权的愉悦值。特别地，有 \(k\) 个美食节，形如“于时刻 \(t\) 到达点 \(x\) 会额外获得 \(y\) 的愉悦值”。最大化获得的愉悦值总和。 做法 1 考虑 \(k &#x3D; 0\)">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-09-03T08:56:34.000Z">
-<meta property="article:modified_time" content="2020-09-17T06:41:38.910Z">
+<meta property="article:modified_time" content="2021-03-29T07:50:09.123Z">
 <meta property="article:author" content="Kewth">
-<meta property="article:tag" content="NOI">
+<meta property="article:tag" content="题解">
+<meta property="article:tag" content="noi">
 <meta name="twitter:card" content="summary">
 
 
@@ -257,12 +258,12 @@ mjx-container[display="true"] + br {
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">65</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">68</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">7</span></a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a>
 
   </li>
         <li class="menu-item menu-item-archives">
@@ -349,13 +350,13 @@ mjx-container[display="true"] + br {
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">65</span>
+        <span class="site-state-item-count">68</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -383,6 +384,15 @@ mjx-container[display="true"] + br {
     <ul class="links-of-blogroll-list">
         <li class="links-of-blogroll-item">
           <a href="/" title="&#x2F;">欢迎互换友链呀</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://daniel-yuan.github.io/" title="https:&#x2F;&#x2F;daniel-yuan.github.io&#x2F;" rel="noopener" target="_blank">Daniel_yuan</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/lsq147/" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;lsq147&#x2F;" rel="noopener" target="_blank">xiaolilsq</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/imakf/" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;imakf&#x2F;" rel="noopener" target="_blank">Imakf</a>
         </li>
         <li class="links-of-blogroll-item">
           <a href="https://www.cnblogs.com/evenbao" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;evenbao" rel="noopener" target="_blank">Even_bao</a>
@@ -453,7 +463,7 @@ mjx-container[display="true"] + br {
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-09-17 14:41:38" itemprop="dateModified" datetime="2020-09-17T14:41:38+08:00">2020-09-17</time>
+        <time title="修改时间：2021-03-29 15:50:09" itemprop="dateModified" datetime="2021-03-29T15:50:09+08:00">2021-03-29</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -483,9 +493,7 @@ mjx-container[display="true"] + br {
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>没有摘要。</p>
-<a id="more"></a>
-<h2 id="美食家">美食家</h2>
+        <h2 id="美食家">美食家</h2>
 <h3 id="题目大意">题目大意</h3>
 <p>给定一张 <span class="math inline">\(n\)</span> 点 <span class="math inline">\(m\)</span> 边的有向图，边有不超过 <span class="math inline">\(w\)</span> 的长度。现要求从点 <span class="math inline">\(1\)</span> 出发经过长度恰为 <span class="math inline">\(T\)</span> 的路径回到点 <span class="math inline">\(1\)</span> ，每到达一个点就会获得等于该点点权的愉悦值。特别地，有 <span class="math inline">\(k\)</span> 个美食节，形如“于时刻 <span class="math inline">\(t\)</span> 到达点 <span class="math inline">\(x\)</span> 会额外获得 <span class="math inline">\(y\)</span> 的愉悦值”。最大化获得的愉悦值总和。</p>
 <h3 id="做法-1">做法 1</h3>
@@ -495,6 +503,7 @@ mjx-container[display="true"] + br {
 <p>做法 1 的 DP 中转移与 <span class="math inline">\(i\)</span> 无关，可以想到把 <span class="math inline">\(f_i\)</span> 看做一个向量，用 max+ 矩阵描述转移，但是由于边有不等的长度，需要把连续 <span class="math inline">\(w\)</span> 个时刻的状态合并为一个向量，这样一来就可以用 max+ 矩阵描述转移，使用矩阵快速幂，复杂度 <span class="math inline">\(O(m + (wn)^3 \log T)\)</span> 。</p>
 <h3 id="做法-3-正解">做法 3 （正解）</h3>
 <p>现在考虑美食节，称有美食节的时刻为关键时刻，两个相邻的关键时刻之间是不受美食节影响的，可以套用矩阵快速幂的做法。那么就以关键时刻把时间轴分为 <span class="math inline">\(k+1\)</span> 段，每段用矩阵快速幂，在关键时刻把美食节的影响加到状态上即可。这里矩阵快速幂不能每次暴力矩阵乘矩阵，需要预处理矩阵乘积的幂次，然后用向量乘矩阵的方式处理每一段。复杂度 <span class="math inline">\(O(m + (wn)^3 \log T + k (wn)^2 \log T)\)</span> 。</p>
+<a id="more"></a>
 <h2 id="命运">命运</h2>
 <h3 id="题目大意-1">题目大意</h3>
 <p>给定一棵 <span class="math inline">\(n\)</span> 个点的有根树和 <span class="math inline">\(m\)</span> 个点对，第 <span class="math inline">\(i\)</span> 个点对 <span class="math inline">\((x, y)\)</span> 满足 <span class="math inline">\(x\)</span> 是 <span class="math inline">\(y\)</span> 的祖先。求有多少把边黑白染色的方案使得任意给定的点对都满足 <span class="math inline">\(x\)</span> 到 <span class="math inline">\(y\)</span> 的路径上存在染黑的边。</p>
@@ -590,7 +599,8 @@ mjx-container[display="true"] + br {
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/NOI/" rel="tag"><i class="fa fa-tag"></i> NOI</a>
+              <a href="/tags/%E9%A2%98%E8%A7%A3/" rel="tag"><i class="fa fa-tag"></i> 题解</a>
+              <a href="/tags/noi/" rel="tag"><i class="fa fa-tag"></i> noi</a>
           </div>
 
         

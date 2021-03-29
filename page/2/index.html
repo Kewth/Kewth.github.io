@@ -254,12 +254,12 @@ mjx-container[display="true"] + br {
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">65</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">68</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">7</span></a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a>
 
   </li>
         <li class="menu-item menu-item-archives">
@@ -345,13 +345,13 @@ mjx-container[display="true"] + br {
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">65</span>
+        <span class="site-state-item-count">68</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -379,6 +379,15 @@ mjx-container[display="true"] + br {
     <ul class="links-of-blogroll-list">
         <li class="links-of-blogroll-item">
           <a href="/" title="&#x2F;">欢迎互换友链呀</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://daniel-yuan.github.io/" title="https:&#x2F;&#x2F;daniel-yuan.github.io&#x2F;" rel="noopener" target="_blank">Daniel_yuan</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/lsq147/" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;lsq147&#x2F;" rel="noopener" target="_blank">xiaolilsq</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/imakf/" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;imakf&#x2F;" rel="noopener" target="_blank">Imakf</a>
         </li>
         <li class="links-of-blogroll-item">
           <a href="https://www.cnblogs.com/evenbao" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;evenbao" rel="noopener" target="_blank">Even_bao</a>
@@ -448,7 +457,7 @@ mjx-container[display="true"] + br {
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-11-11 21:38:27" itemprop="dateModified" datetime="2020-11-11T21:38:27+08:00">2020-11-11</time>
+        <time title="修改时间：2021-03-29 15:48:02" itemprop="dateModified" datetime="2021-03-29T15:48:02+08:00">2021-03-29</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -472,6 +481,24 @@ mjx-container[display="true"] + br {
     
     <div class="post-body" itemprop="articleBody">
           <p>有生之年。</p>
+<hr />
+<h2 id="rubiks-rectangle">233. Rubik's Rectangle</h2>
+<p>给定一个 <span class="math inline">\(H \times W\)</span> 的网格，每个网格有个数字，每次操作可以翻转某行或某列，求一组合法操作使得该网格的数字排好序。</p>
+<p>时间复杂度：<span class="math inline">\(O(HW(H+W))\)</span> 。</p>
+<details class="note primary"><summary><p>题解</p>
+</summary>
+<p>不妨假设 n, m 都是偶数（如果是奇数那么中间的一行或列可以独立）。</p>
+<p>可以发现可以把格子染色，每种颜色恰好四个格子，满足任意翻转操作后颜色矩阵不变。</p>
+<p>不妨假设每个数字在正确的颜色位置上。考虑每个颜色内的四个点，可以发现如果这些点构成偶排列那么就总可以在不影响其他颜色的前提下把这四个点排好序，如果是奇排列则总是不能。称每个颜色的左上角的点为代表点，把颜色的排列奇偶性作为标记放到代表点上，对于代表点标记构成的 01 矩阵 A ，如果 A 是全 0 矩阵自然是有解的。</p>
+<p>而每次翻转对 A 的影响就是讲某一行或某一列的 01 给全部反转，因此只要能通过这个操作把 A 弄成 01 矩阵就能得到解，这就是个很 simple 的贪心了。</p>
+
+</details>
+<details class="note info"><summary><p>数据</p>
+</summary>
+<p><del>这 spj 真难写。</del></p>
+<p>不难想到如果随机选择一个排列放到网格上，那么极大的概率是无解。采用逆推的方式，从一个排好序的网格随机执行若干次操作得到一个打乱的网格，这样就可以保证数据有解。在此基础上加上一些扰动改变一些代表点的奇偶性即可得到强度较大的无解数据。</p>
+
+</details>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2020/10/19/IOI2021-%E9%9B%86%E8%AE%AD%E9%98%9F%E4%BD%9C%E4%B8%9A%EF%BC%88%E4%B8%80%EF%BC%89/#more" rel="contents">
@@ -536,7 +563,7 @@ mjx-container[display="true"] + br {
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-12-13 22:19:32" itemprop="dateModified" datetime="2020-12-13T22:19:32+08:00">2020-12-13</time>
+        <time title="修改时间：2021-03-29 15:49:07" itemprop="dateModified" datetime="2021-03-29T15:49:07+08:00">2021-03-29</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -560,6 +587,13 @@ mjx-container[display="true"] + br {
     
     <div class="post-body" itemprop="articleBody">
           <p>初赛到了考场才真实地认识到一个新的赛季又开始了，不过我已经精神退役了，所以考的比较佛。</p>
+<h2 id="初赛">初赛</h2>
+<p>10.09 才知道初赛日期是 10.11 ，没啥感觉，10.11 就跟过去裸考了。</p>
+<p><del>湖南大学好热闹，但是没人和我面基。</del></p>
+<p>不过碰到个小哥哥（应该是湖南大学的学生）问我这么多人是干啥，了解了一波情况后给我说了加油。</p>
+<p>考试的时候那个字符串的题目把我整懵了，猜了几个结论糊弄过去。</p>
+<p>考后发现 <code>nth_element</code> 那题还错了一个，看懂是个 <code>nth_element</code> 后就没仔细看实现了，没注意到它的实现有缺陷。</p>
+<p>update: 膜拜我校高一选手初赛 AK ！</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2020/10/11/CSP-2020/#more" rel="contents">
@@ -616,10 +650,16 @@ mjx-container[display="true"] + br {
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2020-10-09 19:05:35 / 修改时间：19:16:07" itemprop="dateCreated datePublished" datetime="2020-10-09T19:05:35+08:00">2020-10-09</time>
+      <time title="创建时间：2020-10-09 19:05:35" itemprop="dateCreated datePublished" datetime="2020-10-09T19:05:35+08:00">2020-10-09</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-03-29 15:36:12" itemprop="dateModified" datetime="2021-03-29T15:36:12+08:00">2021-03-29</time>
+      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
@@ -709,7 +749,7 @@ mjx-container[display="true"] + br {
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-09-17 14:41:38" itemprop="dateModified" datetime="2020-09-17T14:41:38+08:00">2020-09-17</time>
+        <time title="修改时间：2021-03-29 15:50:09" itemprop="dateModified" datetime="2021-03-29T15:50:09+08:00">2021-03-29</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -732,7 +772,16 @@ mjx-container[display="true"] + br {
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>没有摘要。</p>
+          <h2 id="美食家">美食家</h2>
+<h3 id="题目大意">题目大意</h3>
+<p>给定一张 <span class="math inline">\(n\)</span> 点 <span class="math inline">\(m\)</span> 边的有向图，边有不超过 <span class="math inline">\(w\)</span> 的长度。现要求从点 <span class="math inline">\(1\)</span> 出发经过长度恰为 <span class="math inline">\(T\)</span> 的路径回到点 <span class="math inline">\(1\)</span> ，每到达一个点就会获得等于该点点权的愉悦值。特别地，有 <span class="math inline">\(k\)</span> 个美食节，形如“于时刻 <span class="math inline">\(t\)</span> 到达点 <span class="math inline">\(x\)</span> 会额外获得 <span class="math inline">\(y\)</span> 的愉悦值”。最大化获得的愉悦值总和。</p>
+<h3 id="做法-1">做法 1</h3>
+<p>考虑 <span class="math inline">\(k = 0\)</span> 的情况，也就是忽略美食节。</p>
+<p>不难得到这样一个 DP ：设 <span class="math inline">\(f_{i,j}\)</span> 表示在时刻 <span class="math inline">\(i\)</span> 到达点 <span class="math inline">\(j\)</span> 的最大愉悦值，转移枚举 <span class="math inline">\(j\)</span> 的出边即可，复杂度 <span class="math inline">\(O(T(n+m))\)</span> 。</p>
+<h3 id="做法-2">做法 2</h3>
+<p>做法 1 的 DP 中转移与 <span class="math inline">\(i\)</span> 无关，可以想到把 <span class="math inline">\(f_i\)</span> 看做一个向量，用 max+ 矩阵描述转移，但是由于边有不等的长度，需要把连续 <span class="math inline">\(w\)</span> 个时刻的状态合并为一个向量，这样一来就可以用 max+ 矩阵描述转移，使用矩阵快速幂，复杂度 <span class="math inline">\(O(m + (wn)^3 \log T)\)</span> 。</p>
+<h3 id="做法-3-正解">做法 3 （正解）</h3>
+<p>现在考虑美食节，称有美食节的时刻为关键时刻，两个相邻的关键时刻之间是不受美食节影响的，可以套用矩阵快速幂的做法。那么就以关键时刻把时间轴分为 <span class="math inline">\(k+1\)</span> 段，每段用矩阵快速幂，在关键时刻把美食节的影响加到状态上即可。这里矩阵快速幂不能每次暴力矩阵乘矩阵，需要预处理矩阵乘积的幂次，然后用向量乘矩阵的方式处理每一段。复杂度 <span class="math inline">\(O(m + (wn)^3 \log T + k (wn)^2 \log T)\)</span> 。</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2020/09/03/NOI2020-%E9%A2%98%E8%A7%A3%E6%8A%A5%E5%91%8A/#more" rel="contents">
@@ -797,7 +846,7 @@ mjx-container[display="true"] + br {
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-12-03 18:35:11" itemprop="dateModified" datetime="2020-12-03T18:35:11+08:00">2020-12-03</time>
+        <time title="修改时间：2021-03-29 16:03:02" itemprop="dateModified" datetime="2021-03-29T16:03:02+08:00">2021-03-29</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -821,6 +870,12 @@ mjx-container[display="true"] + br {
     
     <div class="post-body" itemprop="articleBody">
           <p>想出一道不一般的积性函数前缀和的题，题没出出来，倒是发现不少有意思的东西。</p>
+<h2 id="一些定义">一些定义</h2>
+<p>有些定义是我胡扯的。</p>
+<p>对于积性函数 <span class="math inline">\(f\)</span> ，称其特征函数 <span class="math inline">\(F\)</span> 为 <span class="math inline">\(f\)</span> 关于质数 <span class="math inline">\(p\)</span> 的函数，准确来说 <span class="math inline">\(F\)</span> 是 <span class="math inline">\(f\)</span> 的特征函数当且仅当对于任意质数 <span class="math inline">\(p\)</span> 有 <span class="math inline">\(F(p) = f(p)\)</span> ，可以发现 <span class="math inline">\(F\)</span> 并不是唯一的，但是我们只考虑最简单的那个，例如对于任意质数 <span class="math inline">\(p\)</span> 有 <span class="math inline">\(f(p) = p + 1\)</span> ，不妨令任意 <span class="math inline">\(x\)</span> 有 <span class="math inline">\(F(x) = x + 1\)</span> ，可以发现 <span class="math inline">\(F\)</span> 并不一定是积性函数。</p>
+<p>记积性函数 <span class="math inline">\(I_m(x) = x^m\)</span> 。</p>
+<p>对于数论函数 <span class="math inline">\(f\)</span> ，其前缀和函数记为 <span class="math inline">\(S_f\)</span> ，满足 <span class="math inline">\(S_f(n) = \sum_{i=1}^n f(i)\)</span> 。</p>
+<p>记 <span class="math inline">\(B(n) = \lfloor \sqrt{n} \rfloor\)</span> ，<span class="math inline">\(n / i = \lfloor \frac{n}{i} \rfloor\)</span> 。</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2020/08/29/%E5%85%B3%E4%BA%8E%E7%A7%AF%E6%80%A7%E5%87%BD%E6%95%B0%E5%89%8D%E7%BC%80%E5%92%8C%E7%9A%84%E4%B8%80%E4%BA%9B%E8%83%A1%E6%89%AF/#more" rel="contents">
@@ -877,9 +932,24 @@ mjx-container[display="true"] + br {
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2020-08-15 12:04:00 / 修改时间：14:11:34" itemprop="dateCreated datePublished" datetime="2020-08-15T12:04:00+08:00">2020-08-15</time>
+      <time title="创建时间：2020-08-15 12:04:00" itemprop="dateCreated datePublished" datetime="2020-08-15T12:04:00+08:00">2020-08-15</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-03-29 15:53:58" itemprop="dateModified" datetime="2021-03-29T15:53:58+08:00">2021-03-29</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%B8%B8%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">游记</span></a>
+        </span>
     </span>
 
   
@@ -1128,10 +1198,16 @@ mjx-container[display="true"] + br {
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2020-08-09 14:58:28 / 修改时间：17:23:31" itemprop="dateCreated datePublished" datetime="2020-08-09T14:58:28+08:00">2020-08-09</time>
+      <time title="创建时间：2020-08-09 14:58:28" itemprop="dateCreated datePublished" datetime="2020-08-09T14:58:28+08:00">2020-08-09</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-03-29 15:56:24" itemprop="dateModified" datetime="2021-03-29T15:56:24+08:00">2021-03-29</time>
+      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
@@ -1222,7 +1298,7 @@ mjx-container[display="true"] + br {
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-12-13 20:35:08" itemprop="dateModified" datetime="2020-12-13T20:35:08+08:00">2020-12-13</time>
+        <time title="修改时间：2021-03-29 15:58:30" itemprop="dateModified" datetime="2021-03-29T15:58:30+08:00">2021-03-29</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1249,6 +1325,21 @@ mjx-container[display="true"] + br {
 <p>士别三日，当刮目相待。</p>
 
 </blockquote>
+<p><a href="#noi2020">跳过瞎扯，进入正题</a></p>
+<h2 id="备考期">备考期</h2>
+<p>省选一结束就被搞过去准备学考。学考结束后又开始停课。</p>
+<p>不过是最后一次了，只有一个月，就要迎来 NOI 了。</p>
+<h3 id="part1">Part1</h3>
+<p>07.14 - 07.16</p>
+<p>主要是做了做 SNOI2020/ZJOI2020 的几道题，但没有什么具体的计划，效率很低。</p>
+<h3 id="part2">Part2</h3>
+<p>07.17 - 07.22</p>
+<p>cy 把我拉去谈话，说要我先花一两周整理复习知识点，要复习后做到以下两点：</p>
+<ul>
+<li>具备做出每道题的可能（即考察的知识点都会）</li>
+<li>只要能想到就能写出来</li>
+</ul>
+<p>我觉得挺有道理，但一两周感觉太多了，占了整个备考计划近一半的时间，于是列出详细的计划表，在计划里开了六天时间。</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2020/08/05/NOI2020/#more" rel="contents">

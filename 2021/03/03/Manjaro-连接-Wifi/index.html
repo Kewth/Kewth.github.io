@@ -24,16 +24,17 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"kewth.github.io","root":"/","images":"/images","scheme":"Muse","version":"8.1.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":3,"unescape":false,"preload":false}};
   </script>
-<meta name="description" content="Part 1 (连接 WIFI) 购置了移动硬盘后马上把系统塞进去弄了个 &quot;linux to go&quot; ，回家直接用，美滋滋，然后就发现不会联网。 把联网的手机用 USB 共享网络就好了嘛">
+<meta name="description" content="Part 1 (连接 WIFI) 购置了移动硬盘后马上把系统塞进去弄了个 &quot;linux to go&quot; ，回家直接用，美滋滋，然后就发现不会联网。 把联网的手机用 USB 共享网络就好了嘛 网上搜了一大堆不靠谱的东西，踩了无数个雷后终于在 Arch-wiki 上发现一个神必软件 NetworkManager1 。 首先安装 yay -S networkmanager （一般会自带）。 然后执行 nm">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Manjaro Wifi 相关">
 <meta property="og:url" content="https://kewth.github.io/2021/03/03/Manjaro-%E8%BF%9E%E6%8E%A5-Wifi/index.html">
 <meta property="og:site_name" content="KeBlog">
-<meta property="og:description" content="Part 1 (连接 WIFI) 购置了移动硬盘后马上把系统塞进去弄了个 &quot;linux to go&quot; ，回家直接用，美滋滋，然后就发现不会联网。 把联网的手机用 USB 共享网络就好了嘛">
+<meta property="og:description" content="Part 1 (连接 WIFI) 购置了移动硬盘后马上把系统塞进去弄了个 &quot;linux to go&quot; ，回家直接用，美滋滋，然后就发现不会联网。 把联网的手机用 USB 共享网络就好了嘛 网上搜了一大堆不靠谱的东西，踩了无数个雷后终于在 Arch-wiki 上发现一个神必软件 NetworkManager1 。 首先安装 yay -S networkmanager （一般会自带）。 然后执行 nm">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-03-03T14:37:29.000Z">
-<meta property="article:modified_time" content="2021-03-11T11:17:02.293Z">
+<meta property="article:modified_time" content="2021-03-29T07:36:48.973Z">
 <meta property="article:author" content="Kewth">
+<meta property="article:tag" content="manjaro">
 <meta name="twitter:card" content="summary">
 
 
@@ -256,12 +257,12 @@ mjx-container[display="true"] + br {
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">65</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">68</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">7</span></a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a>
 
   </li>
         <li class="menu-item menu-item-archives">
@@ -348,13 +349,13 @@ mjx-container[display="true"] + br {
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">65</span>
+        <span class="site-state-item-count">68</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -382,6 +383,15 @@ mjx-container[display="true"] + br {
     <ul class="links-of-blogroll-list">
         <li class="links-of-blogroll-item">
           <a href="/" title="&#x2F;">欢迎互换友链呀</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://daniel-yuan.github.io/" title="https:&#x2F;&#x2F;daniel-yuan.github.io&#x2F;" rel="noopener" target="_blank">Daniel_yuan</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/lsq147/" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;lsq147&#x2F;" rel="noopener" target="_blank">xiaolilsq</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/imakf/" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;imakf&#x2F;" rel="noopener" target="_blank">Imakf</a>
         </li>
         <li class="links-of-blogroll-item">
           <a href="https://www.cnblogs.com/evenbao" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;evenbao" rel="noopener" target="_blank">Even_bao</a>
@@ -452,7 +462,7 @@ mjx-container[display="true"] + br {
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-03-11 19:17:02" itemprop="dateModified" datetime="2021-03-11T19:17:02+08:00">2021-03-11</time>
+        <time title="修改时间：2021-03-29 15:36:48" itemprop="dateModified" datetime="2021-03-29T15:36:48+08:00">2021-03-29</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -485,13 +495,13 @@ mjx-container[display="true"] + br {
         <h2 id="part-1-连接-wifi">Part 1 (连接 WIFI)</h2>
 <p>购置了移动硬盘后马上把系统塞进去弄了个 "linux to go" ，回家直接用，美滋滋，然后就发现不会联网。</p>
 <p><del>把联网的手机用 USB 共享网络就好了嘛</del></p>
-<a id="more"></a>
 <p>网上搜了一大堆不靠谱的东西，踩了无数个雷后终于在 Arch-wiki 上发现一个神必软件 NetworkManager<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> 。</p>
 <p>首先安装 <code>yay -S networkmanager</code> （一般会自带）。</p>
 <p>然后执行 <code>nmcli</code> 就可以非常友好的列出各个连接设备以及它们的状态。</p>
 <p>执行 <code>nmcli device wifi</code> 就可以扫描出附近所有无线网络以及测试它们的网速。</p>
 <p>最后执行 <code>nmcli device wifi connect 无线网络名称 password 无线网络密码</code> 就可以连接了。</p>
 <p>就是这么简单，当然如果桌面软件自带连接 wifi 功能就最好了（i3 没人权），拒绝折腾。</p>
+<a id="more"></a>
 <h2 id="part-2-创建热点">Part 2 (创建热点)</h2>
 <p>由于学校机房电脑没有无线网卡，向 <code>CYJian</code> 借了一个 USB 的无线网卡来折腾。</p>
 <p>首先 <code>lsusb</code> 或 <code>lsusb -v</code> 查看无线网卡的芯片型号<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>，例如我借来的那个就是 <code>RTL8188GU</code> 。然后找对应的驱动安装，一般 AUR 都有，不巧的该型号除外。</p>
@@ -504,7 +514,7 @@ mjx-container[display="true"] + br {
 <p>Google 了一下发现在 Linux 上用 RTL8188GU 普遍有类似的问题。</p>
 <p>解决方案：使用钞能力，下单一个新的无线网卡。等用上了再更新。</p>
 <p>update:</p>
-<p>新的无限网卡到了，这次芯片是 8192CU ，不知道为啥默认就有了，直接插上去跑 <code>create_ap</code> 就能用了。。。</p>
+<p>新的无限网卡到了，这次芯片是 8192CU ，不知道为啥驱动默认就有了，直接插上去跑 <code>create_ap</code> 就能用了。。。</p>
 <p>但是发现 <code>nmcli device wifi list</code> 并不能搜索到附近 WiFi ，感到困惑便去调查了一下原因，发现是因为配置文件 <code>/etc/NetworkManager/NetworkManager.conf</code> 里头有这样一行：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">unmanaged-devices&#x3D;interface-name:wlp0s20f0u4</span><br></pre></td></tr></table></figure>
 <p>这个是忽略 wlp0s20f0u4 这个设备的意思，把它注释掉然后通过 <code>systemctl restart NetworkManager</code> 重启即可。</p>
@@ -529,6 +539,9 @@ mjx-container[display="true"] + br {
     
 
     <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/manjaro/" rel="tag"><i class="fa fa-tag"></i> manjaro</a>
+          </div>
 
         
 

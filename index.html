@@ -254,12 +254,12 @@ mjx-container[display="true"] + br {
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">65</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">68</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">7</span></a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a>
 
   </li>
         <li class="menu-item menu-item-archives">
@@ -345,13 +345,13 @@ mjx-container[display="true"] + br {
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">65</span>
+        <span class="site-state-item-count">68</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -379,6 +379,15 @@ mjx-container[display="true"] + br {
     <ul class="links-of-blogroll-list">
         <li class="links-of-blogroll-item">
           <a href="/" title="&#x2F;">欢迎互换友链呀</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://daniel-yuan.github.io/" title="https:&#x2F;&#x2F;daniel-yuan.github.io&#x2F;" rel="noopener" target="_blank">Daniel_yuan</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/lsq147/" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;lsq147&#x2F;" rel="noopener" target="_blank">xiaolilsq</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/imakf/" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;imakf&#x2F;" rel="noopener" target="_blank">Imakf</a>
         </li>
         <li class="links-of-blogroll-item">
           <a href="https://www.cnblogs.com/evenbao" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;evenbao" rel="noopener" target="_blank">Even_bao</a>
@@ -448,7 +457,7 @@ mjx-container[display="true"] + br {
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-01-29 16:06:06" itemprop="dateModified" datetime="2021-01-29T16:06:06+08:00">2021-01-29</time>
+        <time title="修改时间：2021-03-29 16:19:23" itemprop="dateModified" datetime="2021-03-29T16:19:23+08:00">2021-03-29</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -730,7 +739,7 @@ mjx-container[display="true"] + br {
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-03-11 19:17:02" itemprop="dateModified" datetime="2021-03-11T19:17:02+08:00">2021-03-11</time>
+        <time title="修改时间：2021-03-29 15:36:48" itemprop="dateModified" datetime="2021-03-29T15:36:48+08:00">2021-03-29</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -756,6 +765,12 @@ mjx-container[display="true"] + br {
           <h2 id="part-1-连接-wifi">Part 1 (连接 WIFI)</h2>
 <p>购置了移动硬盘后马上把系统塞进去弄了个 "linux to go" ，回家直接用，美滋滋，然后就发现不会联网。</p>
 <p><del>把联网的手机用 USB 共享网络就好了嘛</del></p>
+<p>网上搜了一大堆不靠谱的东西，踩了无数个雷后终于在 Arch-wiki 上发现一个神必软件 NetworkManager<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> 。</p>
+<p>首先安装 <code>yay -S networkmanager</code> （一般会自带）。</p>
+<p>然后执行 <code>nmcli</code> 就可以非常友好的列出各个连接设备以及它们的状态。</p>
+<p>执行 <code>nmcli device wifi</code> 就可以扫描出附近所有无线网络以及测试它们的网速。</p>
+<p>最后执行 <code>nmcli device wifi connect 无线网络名称 password 无线网络密码</code> 就可以连接了。</p>
+<p>就是这么简单，当然如果桌面软件自带连接 wifi 功能就最好了（i3 没人权），拒绝折腾。</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2021/03/03/Manjaro-%E8%BF%9E%E6%8E%A5-Wifi/#more" rel="contents">
@@ -820,7 +835,7 @@ mjx-container[display="true"] + br {
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-03-28 17:45:08" itemprop="dateModified" datetime="2021-03-28T17:45:08+08:00">2021-03-28</time>
+        <time title="修改时间：2021-03-28 19:13:03" itemprop="dateModified" datetime="2021-03-28T19:13:03+08:00">2021-03-28</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -922,7 +937,7 @@ mjx-container[display="true"] + br {
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-02-24 19:39:46" itemprop="dateModified" datetime="2021-02-24T19:39:46+08:00">2021-02-24</time>
+        <time title="修改时间：2021-03-29 15:40:11" itemprop="dateModified" datetime="2021-03-29T15:40:11+08:00">2021-03-29</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -956,6 +971,16 @@ mjx-container[display="true"] + br {
 <p>那么对于集合 <span class="math inline">\(M\)</span> 和性质 <span class="math inline">\(P\)</span> ，记 <span class="math inline">\(P(M)\)</span> 表示 <span class="math inline">\(M\)</span> 不以其本身为元素。根据直观上的认知，所有集合都应当满足 <span class="math inline">\(P\)</span> ，那么根据第 3 条基本前提，性质 <span class="math inline">\(P\)</span> 确定了一个集合 <span class="math inline">\(K = \{M | P(M)\}\)</span> 。不难发现我们可以同时推导出 <span class="math inline">\(P(K)\)</span> 和 <span class="math inline">\(\lnot P(K)\)</span> 成立，进而得到一个矛盾，这就是罗素悖论。</p>
 <p>ZFC 集合论给出了一组公理严格定义了集合，这些公理更像是一些集合的标准构造方式，使得集合都能通过这些公理被构造出来，而所谓的“所有集合构成的集合”是不能被构造出来的。</p>
 <p>需要注意的是，每个数都有与之对应的集合的模型。</p>
+<hr />
+<p>具有自反性，传递性，对称性的关系 <span class="math inline">\(\mathcal{R}\)</span> 称为等价关系，通常用 <span class="math inline">\(\sim\)</span> 表示。</p>
+<p>具有自反性，传递性，反对称性的关系 <span class="math inline">\(\mathcal{R}\)</span> 称为偏序关系，通常用 <span class="math inline">\(\preceq\)</span> 表示。</p>
+<p>对于关系 <span class="math inline">\(\mathcal{R} \subset X^2\)</span> 和其转置 <span class="math inline">\(\mathcal{R}&#39;\)</span> ：</p>
+<ul>
+<li><span class="math inline">\(\mathcal{R}\)</span> 具有自反性 <span class="math inline">\(\Leftrightarrow \triangle_X \subset \mathcal{R}\)</span> 。</li>
+<li><span class="math inline">\(\mathcal{R}\)</span> 具有传递性 <span class="math inline">\(\Leftrightarrow \mathcal{R} \circ \mathcal{R} \subset \mathcal{R}\)</span> 。</li>
+<li><span class="math inline">\(\mathcal{R}\)</span> 具有对称性 <span class="math inline">\(\Leftrightarrow \mathcal{R} = \mathcal{R}&#39;\)</span> 。</li>
+<li><span class="math inline">\(\mathcal{R}\)</span> 具有反对称性 <span class="math inline">\(\Leftrightarrow \mathcal{R} \cap \mathcal{R}&#39; \subset \triangle_X\)</span> 。</li>
+</ul>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2020/12/21/%E3%80%8A%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90%E3%80%8B%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/#more" rel="contents">
@@ -1020,7 +1045,7 @@ mjx-container[display="true"] + br {
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-12-28 11:17:27" itemprop="dateModified" datetime="2020-12-28T11:17:27+08:00">2020-12-28</time>
+        <time title="修改时间：2021-03-29 15:44:27" itemprop="dateModified" datetime="2021-03-29T15:44:27+08:00">2021-03-29</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1046,6 +1071,10 @@ mjx-container[display="true"] + br {
           <p>北大集训垫底了，虽然对此早有预期。因为至始至终都是以 NOI2020 的金牌为最终目标，达到目标后也没啥冲的必要了。并且我也自知我并没有冲到最后的实力。</p>
 <p>对于最后的结果，其实完全没有感到很失落，更不会感到很满足，相对地倒是比较无感。</p>
 <p>总之就是并不轰烈地退役了。</p>
+<h2 id="day-0">Day 0</h2>
+<p>做了一晚上动卧，6:30 就到北京了，教练住北大博雅，我们也跟过去休息，大概到了十一点左右才去报道。</p>
+<p><img src="/images/ctt-1.jpg" /></p>
+<p>一看志愿者，居然是大我三届的一中信息组学姐，说实话我有点小激动，毕竟她的男朋友是我偶像。</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2020/12/13/CTT-2020-%E9%80%80%E5%BD%B9%E8%AE%B0/#more" rel="contents">
@@ -1102,9 +1131,24 @@ mjx-container[display="true"] + br {
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2020-11-30 11:58:01 / 修改时间：20:56:54" itemprop="dateCreated datePublished" datetime="2020-11-30T11:58:01+08:00">2020-11-30</time>
+      <time title="创建时间：2020-11-30 11:58:01" itemprop="dateCreated datePublished" datetime="2020-11-30T11:58:01+08:00">2020-11-30</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-03-29 15:46:16" itemprop="dateModified" datetime="2021-03-29T15:46:16+08:00">2021-03-29</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%95%B4%E7%90%86/" itemprop="url" rel="index"><span itemprop="name">整理</span></a>
+        </span>
     </span>
 
   
@@ -1119,6 +1163,21 @@ mjx-container[display="true"] + br {
     
     <div class="post-body" itemprop="articleBody">
           <p>有生之年。</p>
+<hr />
+<h2 id="surveillance">297. Surveillance</h2>
+<p>对于一个长为 <span class="math inline">\(n\)</span> 的环，给定环上 <span class="math inline">\(m\)</span> 个区间，使用最少的区间覆盖整个环。</p>
+<p>时间复杂度：<span class="math inline">\(O(m + n \log n)\)</span> 。</p>
+<details class="note primary"><summary><p>题解</p>
+</summary>
+<p>如果是链的话，容易得到一个贪心做法。</p>
+<p>把环剖成一个长为 <span class="math inline">\(2n\)</span> 的链，问题转换为用最少的区间覆盖长为 <span class="math inline">\(n\)</span> 的任意一段。</p>
+<p>然后沿用贪心做法，利用倍增，设 <span class="math inline">\(f(k,i)\)</span> 表示从 <span class="math inline">\([1, i]\)</span> 中任意选一个起点，贪心地使用 <span class="math inline">\(2^k\)</span> 个区间能到达的终点位置，有</p>
+<p><span class="math display">\[
+f(k, i) = f(k - 1, f(k - 1, i))
+\]</span></p>
+<p>预处理 <span class="math inline">\(f\)</span> 数组后枚举起点就可以 <span class="math inline">\(O(\log n)\)</span> 得到该起点的答案。</p>
+
+</details>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2020/11/30/IOI2021-%E9%9B%86%E8%AE%AD%E9%98%9F%E4%BD%9C%E4%B8%9A%EF%BC%88%E4%B8%89%EF%BC%89/#more" rel="contents">
@@ -1183,7 +1242,7 @@ mjx-container[display="true"] + br {
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-03-28 17:47:02" itemprop="dateModified" datetime="2021-03-28T17:47:02+08:00">2021-03-28</time>
+        <time title="修改时间：2021-03-29 15:46:36" itemprop="dateModified" datetime="2021-03-29T15:46:36+08:00">2021-03-29</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1207,6 +1266,67 @@ mjx-container[display="true"] + br {
     
     <div class="post-body" itemprop="articleBody">
           <p><del>重操旧业。</del></p>
+<hr />
+<h2 id="agc049e-increment-decrement">agc049e Increment Decrement</h2>
+<p>对于一个非负整数序列，我们可以做两个操作：</p>
+<ol type="1">
+<li>选定一项令其加一或减一，代价为 <span class="math inline">\(1\)</span> 。</li>
+<li>选定一个区间令其中每一项同时加一或同时减一，代价为 <span class="math inline">\(C\)</span> 。</li>
+</ol>
+<p>定义一个非负整数序列的代价为从一个全 0 序列操作得到该序列所需要花费的最小代价。</p>
+<p>先给定 <span class="math inline">\(N\)</span> 和 <span class="math inline">\(K\)</span> 以及一个 <span class="math inline">\(N \times K\)</span> 的非负整数矩阵 <span class="math inline">\(B\)</span> ，依次将每个 <span class="math inline">\(A_i\)</span> 赋值为 <span class="math inline">\(B_{i,1}, B_{i,2} ... B_{i,K}\)</span> ，求所有 <span class="math inline">\(K^N\)</span> 个可能的 <span class="math inline">\(A\)</span> 序列的代价的和。</p>
+<p>时间复杂度：<span class="math inline">\(O(N^2 K (K + C))\)</span> 。</p>
+<details class="note primary"><summary><p>题解</p>
+</summary>
+<h3 id="子问题引入">子问题引入</h3>
+<p>先来考虑对于给定的长度为 <span class="math inline">\(N\)</span> 的序列 <span class="math inline">\(A\)</span> ，如何求出 <span class="math inline">\(A\)</span> 的代价？</p>
+<p>不妨先进行所有 2 操作得到序列 <span class="math inline">\(D\)</span> ，然后对 <span class="math inline">\(D\)</span> 执行 1 操作得到 <span class="math inline">\(A\)</span> ，如果 <span class="math inline">\(D\)</span> 确定的话两个操作的代价都是容易求的，总代价即（默认 <span class="math inline">\(D_0 = 0\)</span>）：</p>
+<p><span class="math display">\[
+\sum_{i=1}^N C \max(D_i - D_{i-1}, 0) + |A_i - D_i|
+\]</span></p>
+<p>据此不难想到一个 DP ，设 <span class="math inline">\(f_{i,j}\)</span> 表示钦定 <span class="math inline">\(D_i = j\)</span> 的前提下上式前 <span class="math inline">\(i\)</span> 项的最小值，转移有</p>
+<p><span class="math display">\[
+f_{i,j} = \min_{k \ge 0} (f_{i-1,k} + C \max(j - k, 0) + |j - A_i|)
+\]</span></p>
+<p>设 <span class="math inline">\(F_i(x) = f_{i,x}\)</span> ，接下来我们证明，<span class="math inline">\(F_i(x)\)</span> 总是凸函数（离散意义上）。</p>
+<h3 id="凸性证明">凸性证明</h3>
+<p>采用数学归纳法，对于 <span class="math inline">\(i = 0\)</span> ，我们不妨令 <span class="math inline">\(F_0(x) = (C + 1) x\)</span> 。</p>
+<p>设 <span class="math inline">\(G(x) = F_i(x) - |x - A_i|\)</span> ，如果 <span class="math inline">\(G(x)\)</span> 是凸的，由于 <span class="math inline">\(|x - A_i|\)</span> 也是凸的，就可以证明 <span class="math inline">\(F_i(x)\)</span> 是凸的。</p>
+<p><span class="math inline">\(F_{i-1}(x)\)</span> 最小值取在 <span class="math inline">\(x = k\)</span> 。那么首先显而易见的是：</p>
+<p><span class="math display">\[
+\forall x \in [0, k], G(x) = F_{i-1}(k)
+\]</span></p>
+<p>设 <span class="math inline">\(x_0\)</span> 是最大的满足 <span class="math inline">\(G(x_0) - G(x_0 - 1) &lt; C\)</span> 的值，那么可以发现</p>
+<p><span class="math display">\[
+\forall x \in [k + 1, x_0], G(x) = F_{i-1}(x)
+\]</span></p>
+<p>对于 <span class="math inline">\(x &gt; x_0\)</span> 的部分，由于 <span class="math inline">\(F_{i-1}(x)\)</span> 增长过快，最优的转移点就不会变了，因此</p>
+<p><span class="math display">\[
+\forall x \ge x_0 + 1, G(x) = F_{i-1}(x_0) + C (x - x_0)
+\]</span></p>
+<p>那么 <span class="math inline">\(G(x)\)</span> 被分为三个部分，第一部分是斜率为 <span class="math inline">\(0\)</span> 的折线，第二部分基于归纳假设是凸的斜率在 <span class="math inline">\([1, C - 1]\)</span> 内的折线，第三部分是斜率为 <span class="math inline">\(C\)</span> 的折线，因此 <span class="math inline">\(G(x)\)</span> 是凸的，<span class="math inline">\(F_i(x)\)</span> 也是凸的。</p>
+<h3 id="问题简化">问题简化</h3>
+<p>注意到 <span class="math inline">\(G(x)\)</span> 是一个折线，由斜率从 <span class="math inline">\(0\)</span> 到 <span class="math inline">\(C\)</span> 的线段依次组成，这意味着折线的端点至多有 <span class="math inline">\(C\)</span> 个，不妨设 <span class="math inline">\(X_i\)</span> 表示斜率为 <span class="math inline">\(i\)</span> 的线段的起点横坐标，我们考虑通过维护 <span class="math inline">\(X_i\)</span> 来间接维护 <span class="math inline">\(G(x)\)</span> 所代表的折线。</p>
+<p>首先我们要支持在 <span class="math inline">\(G(x)\)</span> 上加上 <span class="math inline">\(|x - A_i|\)</span> ，可以发现这个操作后，<span class="math inline">\(A_i\)</span> 左侧的直线都减小了 <span class="math inline">\(1\)</span> ，<span class="math inline">\(A_i\)</span> 右侧的直线都增加了 <span class="math inline">\(1\)</span> ，这其实就是在 <span class="math inline">\(X\)</span> 序列里添加两个 <span class="math inline">\(A_i\)</span> 。</p>
+<p>紧跟着我们要把 <span class="math inline">\(G(x)\)</span> 进行一次转移，也就是按照前面所说的分成三段，第一段就是把斜率为 <span class="math inline">\(-1\)</span> 的直线调整为斜率为 <span class="math inline">\(0\)</span> ，第二段不变，第三段是把斜率为 <span class="math inline">\(C+1\)</span> 的直线调整为斜率为 <span class="math inline">\(C\)</span> 。那么事实上，这就是在 <span class="math inline">\(X\)</span> 序列里头删掉最小值和最大值。</p>
+<p>而每次查询 <span class="math inline">\(G(x)\)</span> 的最小值的位置，也就是每次被删掉的最小值。</p>
+<p>综上所述，求一个序列 <span class="math inline">\(A\)</span> 的代价的过程可以被描述为：</p>
+<ol type="1">
+<li>建立一个可重集 <span class="math inline">\(S\)</span> ，包含 <span class="math inline">\(C\)</span> 个 <span class="math inline">\(0\)</span> 。</li>
+<li>从小到大对于每个 <span class="math inline">\(i\)</span> ，将两个 <span class="math inline">\(A_i\)</span> 放入 <span class="math inline">\(S\)</span> 中，将答案加上 <span class="math inline">\(A_i - \min S\)</span> ，然后删除 <span class="math inline">\(S\)</span> 中的最小值和最大值</li>
+</ol>
+<h3 id="dp-计数">DP 计数</h3>
+<p>现在回到原问题，怎么记数。</p>
+<p>不妨对于每个值 <span class="math inline">\(x\)</span> ，求出它在 <span class="math inline">\(S\)</span> 中作为最小值被删去的次数 <span class="math inline">\(tot(x)\)</span> 。枚举值 <span class="math inline">\(x\)</span> ，由于只关注大小，不妨把小于 <span class="math inline">\(x\)</span> 的数都看做 <span class="math inline">\(0\)</span> ，不小于 <span class="math inline">\(x\)</span> 的数都看做 <span class="math inline">\(1\)</span> ，这样一来 <span class="math inline">\(S\)</span> 中始终只有 <span class="math inline">\(0\)</span> 和 <span class="math inline">\(1\)</span> ，可以用 <span class="math inline">\(1\)</span> 的数量表示 <span class="math inline">\(S\)</span> 。设 <span class="math inline">\(h_{i,j}\)</span> 表示考虑刚加入两个 <span class="math inline">\(A_i\)</span> 时 <span class="math inline">\(S\)</span> 中有恰好 <span class="math inline">\(j\)</span> 个 <span class="math inline">\(1\)</span> 的方案数，然后不难算出</p>
+<p><span class="math display">\[
+\sum_{i=0}^{x-1} tot(i) = \sum_{i=1}^N \sum_{j=0}^{C+1} h_{i,j} = K^N - \sum_{i=1}^N h_{i,C+2}
+\]</span></p>
+<p>最后答案即</p>
+<p><span class="math display">\[
+\sum_{i=1}^N \sum_{j=1}^K (K^{N-1} - tot(B_{i,j})) B_{i,j}
+\]</span></p>
+
+</details>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2020/11/16/%E5%A5%BD%E9%A2%98%E9%A2%98%E8%A7%A3%E6%95%B4%E7%90%86%EF%BC%88%E5%9B%9B%EF%BC%89/#more" rel="contents">
@@ -1271,7 +1391,7 @@ mjx-container[display="true"] + br {
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-11-27 10:14:56" itemprop="dateModified" datetime="2020-11-27T10:14:56+08:00">2020-11-27</time>
+        <time title="修改时间：2021-03-29 15:47:13" itemprop="dateModified" datetime="2021-03-29T15:47:13+08:00">2021-03-29</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1295,6 +1415,17 @@ mjx-container[display="true"] + br {
     
     <div class="post-body" itemprop="articleBody">
           <p>有生之年。</p>
+<hr />
+<h2 id="boys-and-girls">103. Boys and Girls</h2>
+<p>求一个长为 <span class="math inline">\(n\)</span> 的由 01 构成的环，满足恰有 <span class="math inline">\(x\)</span> 个点的两侧有 0 ，恰有 <span class="math inline">\(y\)</span> 个点的两侧有 1 。</p>
+<p>时间复杂度：<span class="math inline">\(O(n)\)</span> 。</p>
+<details class="note primary"><summary><p>题解</p>
+</summary>
+<p>注意到每个点的两侧有三种情况：全是 0 ，全是 1 ，一边 0 一边 1 ，设上述三种情况的点的数量分别为 <span class="math inline">\(a\)</span>, <span class="math inline">\(b\)</span>, <span class="math inline">\(c\)</span> ，容易知道有 <span class="math inline">\(c = x + y - n\)</span>, <span class="math inline">\(a = x - c\)</span>, <span class="math inline">\(b = y - c\)</span> 。</p>
+<p>我们把距离恰为 <span class="math inline">\(2\)</span> 的点连边，得到一个新的环，准确来说，如果 <span class="math inline">\(n\)</span> 是奇数，得到的是一个长为 <span class="math inline">\(n\)</span> 的环，否则得到的是两个长为 <span class="math inline">\(dfrac{n}{2}\)</span> 的环。</p>
+<p>那么我们现在要做的就是在环上填 01 使得三种边的数量分别为 <span class="math inline">\(a, b, c\)</span> ，注意到 <span class="math inline">\(c\)</span> 必须是偶数，且 <span class="math inline">\(c\)</span> 为 <span class="math inline">\(0\)</span> 的时候必须有 <span class="math inline">\(ab = 0\)</span> 。假设只有一个环，就很容易构造一个解，两个环的话就把边集分成两个大小相等的部分，只要满足每个部分都合法即可。</p>
+
+</details>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2020/10/20/IOI2021-%E9%9B%86%E8%AE%AD%E9%98%9F%E4%BD%9C%E4%B8%9A%EF%BC%88%E4%BA%8C%EF%BC%89/#more" rel="contents">

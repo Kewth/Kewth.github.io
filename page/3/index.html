@@ -254,12 +254,12 @@ mjx-container[display="true"] + br {
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">65</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">68</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">7</span></a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a>
 
   </li>
         <li class="menu-item menu-item-archives">
@@ -345,13 +345,13 @@ mjx-container[display="true"] + br {
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">65</span>
+        <span class="site-state-item-count">68</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -379,6 +379,15 @@ mjx-container[display="true"] + br {
     <ul class="links-of-blogroll-list">
         <li class="links-of-blogroll-item">
           <a href="/" title="&#x2F;">欢迎互换友链呀</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://daniel-yuan.github.io/" title="https:&#x2F;&#x2F;daniel-yuan.github.io&#x2F;" rel="noopener" target="_blank">Daniel_yuan</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/lsq147/" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;lsq147&#x2F;" rel="noopener" target="_blank">xiaolilsq</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/imakf/" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;imakf&#x2F;" rel="noopener" target="_blank">Imakf</a>
         </li>
         <li class="links-of-blogroll-item">
           <a href="https://www.cnblogs.com/evenbao" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;evenbao" rel="noopener" target="_blank">Even_bao</a>
@@ -635,7 +644,7 @@ mjx-container[display="true"] + br {
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-11-16 20:29:43" itemprop="dateModified" datetime="2020-11-16T20:29:43+08:00">2020-11-16</time>
+        <time title="修改时间：2021-03-29 16:00:12" itemprop="dateModified" datetime="2021-03-29T16:00:12+08:00">2021-03-29</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -659,6 +668,32 @@ mjx-container[display="true"] + br {
     
     <div class="post-body" itemprop="articleBody">
           <p>没有摘要。</p>
+<hr />
+<h2 id="cf1368f-lamps-on-a-circle">cf1368f Lamps on a Circle</h2>
+<p>有一个长为 <span class="math inline">\(n\)</span> 的环，环上每个点是一个开关，Alice Bob 玩游戏，每轮执行以下流程：</p>
+<ol type="1">
+<li>Alice 选择是否结束游戏。如果是则游戏结束。</li>
+<li>Alice 选择一个参数 <span class="math inline">\(k\)</span> ，并将任意 <span class="math inline">\(k\)</span> 个开关打开。</li>
+<li>Bob 将任意<strong>连续</strong>的 <span class="math inline">\(k\)</span> 个开关关闭。</li>
+</ol>
+<p>Alice Bob 分别想要最大最小化最后打开的开关数量。设 <span class="math inline">\(R(n)\)</span> 是双方执行最优策略时最后打开的开关数量。</p>
+<p>交互题，实现 Alice 的策略，使得最后打开的开关数量不少于 <span class="math inline">\(R(n)\)</span> 。</p>
+<details class="note primary"><summary><p>题解</p>
+</summary>
+<p>不妨让 Alice 去复制 Bob 的操作，那么只要 Bob 选择连续 <span class="math inline">\(k\)</span> 个开关不是全开的，通过一次复制后回到 Bob 操作，局面不变，但是 <span class="math inline">\(k\)</span> 会变小，因为 Alice 只需要选择那些实际上被 Bob 关闭的开关。</p>
+<p>那么可以发现 Bob 实际上只能关掉不超过 <span class="math inline">\(k\)</span> 的一个全部打开的连续段。游戏的一轮可以转换为以下流程：</p>
+<ol type="1">
+<li>Alice 选择是否结束游戏。如果是则游戏结束。</li>
+<li>Alice 选择一个参数 <span class="math inline">\(k\)</span> ，并将任意 <span class="math inline">\(k\)</span> 个开关打开。</li>
+<li>Bob 选择长度不超过 <span class="math inline">\(k\)</span> 的 <strong>连续</strong> 的一段 <strong>打开的</strong> 开关关闭。</li>
+</ol>
+<p>进一步可以发现这个游戏只需要进行一轮，进行多轮是没有意义的。这样一来，游戏的最终局面仅仅由 Alice 第一次打开的开关集合有关，设 Alice 打开了 <span class="math inline">\(p\)</span> 个连续段，第 <span class="math inline">\(i\)</span> 个连续段长度为 <span class="math inline">\(a_i\)</span> 。那么问题就是在满足 <span class="math inline">\(\sum_{i=1}^p (a_i+1) \le n\)</span> 的前提下最大化</p>
+<p><span class="math display">\[\sum_{i=1}^p a_i - max\{a_i\}\]</span></p>
+<p>显然前者的和最大不超过 <span class="math inline">\(n-p\)</span> ，只需要最小化后者，尽量使得 <span class="math inline">\(a\)</span> 平均时最优，可以得到</p>
+<p><span class="math display">\[R(n) = max\{n - p - \lceil \frac{n-p}{p} \rceil\}\]</span></p>
+<p>用上述策略实现 Alice 即可。</p>
+
+</details>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2020/08/03/%E5%A5%BD%E9%A2%98%E9%A2%98%E8%A7%A3%E6%95%B4%E7%90%86%EF%BC%88%E4%B8%89%EF%BC%89/#more" rel="contents">
@@ -723,7 +758,7 @@ mjx-container[display="true"] + br {
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-08-31 21:24:44" itemprop="dateModified" datetime="2020-08-31T21:24:44+08:00">2020-08-31</time>
+        <time title="修改时间：2021-03-29 16:00:34" itemprop="dateModified" datetime="2021-03-29T16:00:34+08:00">2021-03-29</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -749,6 +784,11 @@ mjx-container[display="true"] + br {
           <p>最近看到一个有意思的博弈问题。</p>
 <p>对于一张无向连通图（不一定是简单图），规定一个点为根，两个玩家轮流操作，每次可以删掉根可以到达的一条边，不能操作者输。</p>
 <p>这类博弈即 Green Hackenbush 。</p>
+<h2 id="树">树</h2>
+<p>从简单情况入手，对一棵有根树做 Green Hackenbush ，如何得到一棵树的 SG 值？</p>
+<p>首先，如果树的点数恰为 1 ，SG 值显然为 0 。</p>
+<p>如果根的度数恰为 1 ，设与根相连的点为 <span class="math inline">\(u\)</span> ，设 <span class="math inline">\(u\)</span> 的子树对应的 SG 值为 <span class="math inline">\(k\)</span> ，不难发现原树的 SG 值即 <span class="math inline">\(k+1\)</span> 。</p>
+<p>如果根的度数大于 1 ，那么可以把根“分裂”，把原树拆成一个森林，每个森林的根的度数都恰好为 1 。容易发现这个森林与原树等价，那么应用 SG 定理，原树的 SG 值就是每个子树的 SG 值加一的异或和。</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2020/08/01/Green-Hackenbush/#more" rel="contents">
@@ -813,7 +853,7 @@ mjx-container[display="true"] + br {
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-11-27 16:16:35" itemprop="dateModified" datetime="2020-11-27T16:16:35+08:00">2020-11-27</time>
+        <time title="修改时间：2021-03-29 15:59:49" itemprop="dateModified" datetime="2021-03-29T15:59:49+08:00">2021-03-29</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -837,6 +877,27 @@ mjx-container[display="true"] + br {
     
     <div class="post-body" itemprop="articleBody">
           <p>没有摘要。</p>
+<hr />
+<h2 id="loj576-libreoj-noi-round-2签到游戏">loj576 「LibreOJ NOI Round #2」签到游戏</h2>
+<p>有一个长为 <span class="math inline">\(n\)</span> 的序列 <span class="math inline">\(\{B\}\)</span> ，每次可以选一个区间 <span class="math inline">\([l, r]\)</span> ，代价是 <span class="math inline">\(B\)</span> 在该区间的 <span class="math inline">\(\gcd\)</span> ，得到一个方程 <span class="math inline">\(\sum_{i=l}^k x_i = K\)</span> ，要求花费最小的代价得到 <span class="math inline">\(n\)</span> 个线性无关的方程。</p>
+<p><span class="math inline">\(q\)</span> 次询问和修改，每次修改会修改 <span class="math inline">\(B\)</span> 的一个位置的值。</p>
+<p>时间复杂度：<span class="math inline">\(O(n\log+q\log^2)\)</span> 。</p>
+<details class="note primary"><summary><p>题解</p>
+</summary>
+<p>（未实现）</p>
+<h3 id="引理-1">引理 1</h3>
+<p><strong>存在最优解选择的每个区间满足 <span class="math inline">\(l=1 \lor r=n\)</span> 且存在 <span class="math inline">\([1, n]\)</span> 。</strong></p>
+<p>设 <span class="math inline">\(y_i = \sum_{j=1}^i x_j\)</span> ，那么选择区间 <span class="math inline">\([l, r]\)</span> 实质上是选择方程 <span class="math inline">\(y_r - y_{l-1} = K\)</span> ，注意有 <span class="math inline">\(y_0 = 0\)</span> 。</p>
+<p>转换为图论问题，每个 <span class="math inline">\(y_i\)</span> 是一个节点，一个方程是一条边，方程线性无关等价于图无环<del>，那么这个问题本质上是求最小生成树</del>。</p>
+<p>在这个图论问题的基础上该引理是很自然的。定 <span class="math inline">\(0\)</span> 为树根，把边定向，从父亲指向儿子，那么对于一条边 <span class="math inline">\(u \rightarrow v\)</span> ，若 <span class="math inline">\(u &lt; v\)</span> 则把 <span class="math inline">\((u, v)\)</span> 换成 <span class="math inline">\((0, v)\)</span> ，否则换成 <span class="math inline">\((u, 0)\)</span> 。容易发现每条边的代价不增，并且新图仍然是一颗树。此时每条边必然连向 <span class="math inline">\(0\)</span> 或 <span class="math inline">\(n\)</span> ，并且必然有边 <span class="math inline">\((0, n)\)</span> 。</p>
+<h3 id="引理-2">引理 2</h3>
+<p><strong>存在最优解满足：存在参数 <span class="math inline">\(p\)</span> 使得选择的区间由 <span class="math inline">\([1, n]\)</span> ，<span class="math inline">\([1, i] (p \le i &lt; n)\)</span> 和 <span class="math inline">\([j, n] (1 &lt; j \le p)\)</span> 组成。</strong></p>
+<p>根据引理 1 ，由于选了 <span class="math inline">\([1, n]\)</span> ，选前缀 <span class="math inline">\([1, i]\)</span> 和选后缀 <span class="math inline">\([i + 1, n]\)</span> 是等价的。那么最优解显然就是在每个 <span class="math inline">\([1, i]\)</span> 和 <span class="math inline">\([i+1, n]\)</span> 中选代价较小的一个，前者随 <span class="math inline">\(i\)</span> 单调不增，后者随 <span class="math inline">\(i\)</span> 单调不减。那么选前者的必然是一段后缀 <span class="math inline">\(i\)</span> ，选后者的必然是一段前缀 <span class="math inline">\(i\)</span> 。</p>
+<h3 id="正题">正题</h3>
+<p>由引理 2 ，可以二分参数 <span class="math inline">\(p\)</span> ，比较 <span class="math inline">\([1, p]\)</span> 和 <span class="math inline">\([p, n]\)</span> 的 gcd 大小进行判定。然后根据不同前后缀 gcd 的数量是 <span class="math inline">\(O(\log)\)</span> 的，求答案枚举不同的 gcd 算贡献数量即可。</p>
+<p>用线段树维护序列 <span class="math inline">\(B\)</span> ，需要支持 <span class="math inline">\(O(\log)\)</span> 的区间 gcd 查询或者把二分放在线段树上。具体细节不在讨论范围内。</p>
+
+</details>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2020/07/28/%E5%A5%BD%E9%A2%98%E9%A2%98%E8%A7%A3%E6%95%B4%E7%90%86%EF%BC%88%E4%BA%8C%EF%BC%89/#more" rel="contents">
@@ -901,7 +962,7 @@ mjx-container[display="true"] + br {
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-08-15 08:00:19" itemprop="dateModified" datetime="2020-08-15T08:00:19+08:00">2020-08-15</time>
+        <time title="修改时间：2021-03-29 16:00:07" itemprop="dateModified" datetime="2021-03-29T16:00:07+08:00">2021-03-29</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -924,8 +985,19 @@ mjx-container[display="true"] + br {
     
     
     <div class="post-body" itemprop="articleBody">
-          <!-- 一场真实的模拟考后意识到自己思维能力严重不足，遂暂停了正在进行的真题训练计划，提前执行思维训练。-->
-<p>没有摘要。</p>
+          <p>没有摘要。</p>
+<hr />
+<h2 id="th1690-a">th1690-a</h2>
+<p>给定一个 <span class="math inline">\(n\)</span> 个点的竞赛图，求一个 <span class="math inline">\(m\)</span> 边染色方案。（<span class="math inline">\(n=3000, m=14\)</span> ）</p>
+<blockquote>
+<p>竞赛图是任意一对点都有恰好一条有向边的有向图。</p>
+</blockquote>
+<details class="note primary"><summary><p>题解</p>
+</summary>
+<p>这样转换问题：允许边染上多种颜色，给每个点 <span class="math inline">\(u\)</span> 一个颜色集合 <span class="math inline">\(S_u\)</span> ，对于一条边 <span class="math inline">\((u, v)\)</span> ，它染上颜色 <span class="math inline">\(c\)</span> 当且仅当 <span class="math inline">\(c \in S_u \wedge c \notin S_v\)</span> 。</p>
+<p>这样一来很容易给出一个构造方案：把大小恰为 <span class="math inline">\(\frac{m}{2}\)</span> 的颜色集合任意分配给每个点即可。这样任意一对点 <span class="math inline">\(u, v\)</span> 都存在一个 <span class="math inline">\(u\)</span> 拥有而 <span class="math inline">\(v\)</span> 没有的颜色。并且有 <span class="math inline">\(\dbinom{m}{\frac{m}{2}} \ge n\)</span> 。</p>
+
+</details>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2020/07/27/%E5%A5%BD%E9%A2%98%E9%A2%98%E8%A7%A3%E6%95%B4%E7%90%86%EF%BC%88%E4%B8%80%EF%BC%89/#more" rel="contents">
@@ -990,7 +1062,7 @@ mjx-container[display="true"] + br {
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-08-21 08:30:06" itemprop="dateModified" datetime="2020-08-21T08:30:06+08:00">2020-08-21</time>
+        <time title="修改时间：2021-03-29 16:01:49" itemprop="dateModified" datetime="2021-03-29T16:01:49+08:00">2021-03-29</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1015,6 +1087,11 @@ mjx-container[display="true"] + br {
     <div class="post-body" itemprop="articleBody">
           <p>真题训练，不依靠外力做题，多写几个部分分，研究高效得分方法。</p>
 <p>以下评测分数以 loj 提交为准（冒泡排序除外）。分数统计仅代表极限水平，并不代表真实水平，不供参考。</p>
+<h2 id="noi2017">NOI2017</h2>
+<p>0 + 76 + 100 + 70 + 100 + 88 + 20 = 454</p>
+<p>集训队线 438 。</p>
+<h3 id="整数">整数</h3>
+<p>看完题就有了一个压位的平方暴力的思路，码了码 WA 在了减法的情况，改对后得到了 56 分，本来对照数据表以为只有 30 分左右。</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2020/07/26/NOI%E7%9C%9F%E9%A2%98%E8%AE%AD%E7%BB%83/#more" rel="contents">

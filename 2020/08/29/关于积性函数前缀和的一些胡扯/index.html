@@ -24,16 +24,20 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"kewth.github.io","root":"/","images":"/images","scheme":"Muse","version":"8.1.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":3,"unescape":false,"preload":false}};
   </script>
-<meta name="description" content="想出一道不一般的积性函数前缀和的题，题没出出来，倒是发现不少有意思的东西。">
+<meta name="description" content="想出一道不一般的积性函数前缀和的题，题没出出来，倒是发现不少有意思的东西。 一些定义 有些定义是我胡扯的。 对于积性函数 \(f\) ，称其特征函数 \(F\) 为 \(f\) 关于质数 \(p\) 的函数，准确来说 \(F\) 是 \(f\) 的特征函数当且仅当对于任意质数 \(p\) 有 \(F(p) &#x3D; f(p)\) ，可以发现 \(F\) 并不是唯一的，但是我们只考虑最简单的那个，例如对于">
 <meta property="og:type" content="article">
 <meta property="og:title" content="关于积性函数前缀和的一些胡扯">
 <meta property="og:url" content="https://kewth.github.io/2020/08/29/%E5%85%B3%E4%BA%8E%E7%A7%AF%E6%80%A7%E5%87%BD%E6%95%B0%E5%89%8D%E7%BC%80%E5%92%8C%E7%9A%84%E4%B8%80%E4%BA%9B%E8%83%A1%E6%89%AF/index.html">
 <meta property="og:site_name" content="KeBlog">
-<meta property="og:description" content="想出一道不一般的积性函数前缀和的题，题没出出来，倒是发现不少有意思的东西。">
+<meta property="og:description" content="想出一道不一般的积性函数前缀和的题，题没出出来，倒是发现不少有意思的东西。 一些定义 有些定义是我胡扯的。 对于积性函数 \(f\) ，称其特征函数 \(F\) 为 \(f\) 关于质数 \(p\) 的函数，准确来说 \(F\) 是 \(f\) 的特征函数当且仅当对于任意质数 \(p\) 有 \(F(p) &#x3D; f(p)\) ，可以发现 \(F\) 并不是唯一的，但是我们只考虑最简单的那个，例如对于">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-08-29T00:34:54.000Z">
-<meta property="article:modified_time" content="2020-12-03T10:35:11.080Z">
+<meta property="article:modified_time" content="2021-03-29T08:03:02.323Z">
 <meta property="article:author" content="Kewth">
+<meta property="article:tag" content="数论">
+<meta property="article:tag" content="杜教筛">
+<meta property="article:tag" content="powerful number">
+<meta property="article:tag" content="min25 筛">
 <meta name="twitter:card" content="summary">
 
 
@@ -256,12 +260,12 @@ mjx-container[display="true"] + br {
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">65</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">68</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">7</span></a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a>
 
   </li>
         <li class="menu-item menu-item-archives">
@@ -348,13 +352,13 @@ mjx-container[display="true"] + br {
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">65</span>
+        <span class="site-state-item-count">68</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -382,6 +386,15 @@ mjx-container[display="true"] + br {
     <ul class="links-of-blogroll-list">
         <li class="links-of-blogroll-item">
           <a href="/" title="&#x2F;">欢迎互换友链呀</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://daniel-yuan.github.io/" title="https:&#x2F;&#x2F;daniel-yuan.github.io&#x2F;" rel="noopener" target="_blank">Daniel_yuan</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/lsq147/" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;lsq147&#x2F;" rel="noopener" target="_blank">xiaolilsq</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/imakf/" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;imakf&#x2F;" rel="noopener" target="_blank">Imakf</a>
         </li>
         <li class="links-of-blogroll-item">
           <a href="https://www.cnblogs.com/evenbao" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;evenbao" rel="noopener" target="_blank">Even_bao</a>
@@ -452,7 +465,7 @@ mjx-container[display="true"] + br {
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-12-03 18:35:11" itemprop="dateModified" datetime="2020-12-03T18:35:11+08:00">2020-12-03</time>
+        <time title="修改时间：2021-03-29 16:03:02" itemprop="dateModified" datetime="2021-03-29T16:03:02+08:00">2021-03-29</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -483,13 +496,13 @@ mjx-container[display="true"] + br {
     
     <div class="post-body" itemprop="articleBody">
         <p>想出一道不一般的积性函数前缀和的题，题没出出来，倒是发现不少有意思的东西。</p>
-<a id="more"></a>
 <h2 id="一些定义">一些定义</h2>
 <p>有些定义是我胡扯的。</p>
 <p>对于积性函数 <span class="math inline">\(f\)</span> ，称其特征函数 <span class="math inline">\(F\)</span> 为 <span class="math inline">\(f\)</span> 关于质数 <span class="math inline">\(p\)</span> 的函数，准确来说 <span class="math inline">\(F\)</span> 是 <span class="math inline">\(f\)</span> 的特征函数当且仅当对于任意质数 <span class="math inline">\(p\)</span> 有 <span class="math inline">\(F(p) = f(p)\)</span> ，可以发现 <span class="math inline">\(F\)</span> 并不是唯一的，但是我们只考虑最简单的那个，例如对于任意质数 <span class="math inline">\(p\)</span> 有 <span class="math inline">\(f(p) = p + 1\)</span> ，不妨令任意 <span class="math inline">\(x\)</span> 有 <span class="math inline">\(F(x) = x + 1\)</span> ，可以发现 <span class="math inline">\(F\)</span> 并不一定是积性函数。</p>
 <p>记积性函数 <span class="math inline">\(I_m(x) = x^m\)</span> 。</p>
 <p>对于数论函数 <span class="math inline">\(f\)</span> ，其前缀和函数记为 <span class="math inline">\(S_f\)</span> ，满足 <span class="math inline">\(S_f(n) = \sum_{i=1}^n f(i)\)</span> 。</p>
 <p>记 <span class="math inline">\(B(n) = \lfloor \sqrt{n} \rfloor\)</span> ，<span class="math inline">\(n / i = \lfloor \frac{n}{i} \rfloor\)</span> 。</p>
+<a id="more"></a>
 <h3 id="关于特征函数">关于特征函数</h3>
 <p>两个积性函数相乘（狄利克雷卷积），它们的特征函数相加（线性相加）。</p>
 <h2 id="powerful-number">Powerful Number</h2>
@@ -541,6 +554,12 @@ mjx-container[display="true"] + br {
     
 
     <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%95%B0%E8%AE%BA/" rel="tag"><i class="fa fa-tag"></i> 数论</a>
+              <a href="/tags/%E6%9D%9C%E6%95%99%E7%AD%9B/" rel="tag"><i class="fa fa-tag"></i> 杜教筛</a>
+              <a href="/tags/powerful-number/" rel="tag"><i class="fa fa-tag"></i> powerful number</a>
+              <a href="/tags/min25-%E7%AD%9B/" rel="tag"><i class="fa fa-tag"></i> min25 筛</a>
+          </div>
 
         
 

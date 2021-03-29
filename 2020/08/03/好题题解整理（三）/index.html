@@ -24,17 +24,17 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"kewth.github.io","root":"/","images":"/images","scheme":"Muse","version":"8.1.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":3,"unescape":false,"preload":false}};
   </script>
-<meta name="description" content="没有摘要。">
+<meta name="description" content="没有摘要。  cf1368f Lamps on a Circle 有一个长为 \(n\) 的环，环上每个点是一个开关，Alice Bob 玩游戏，每轮执行以下流程：  Alice 选择是否结束游戏。如果是则游戏结束。 Alice 选择一个参数 \(k\) ，并将任意 \(k\) 个开关打开。 Bob 将任意连续的 \(k\) 个开关关闭。  Alice Bob 分别想要最大最小化最后打开的开关数量">
 <meta property="og:type" content="article">
 <meta property="og:title" content="好题题解整理（三）">
 <meta property="og:url" content="https://kewth.github.io/2020/08/03/%E5%A5%BD%E9%A2%98%E9%A2%98%E8%A7%A3%E6%95%B4%E7%90%86%EF%BC%88%E4%B8%89%EF%BC%89/index.html">
 <meta property="og:site_name" content="KeBlog">
-<meta property="og:description" content="没有摘要。">
+<meta property="og:description" content="没有摘要。  cf1368f Lamps on a Circle 有一个长为 \(n\) 的环，环上每个点是一个开关，Alice Bob 玩游戏，每轮执行以下流程：  Alice 选择是否结束游戏。如果是则游戏结束。 Alice 选择一个参数 \(k\) ，并将任意 \(k\) 个开关打开。 Bob 将任意连续的 \(k\) 个开关关闭。  Alice Bob 分别想要最大最小化最后打开的开关数量">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-08-03T13:59:45.000Z">
-<meta property="article:modified_time" content="2020-11-16T12:29:43.320Z">
+<meta property="article:modified_time" content="2021-03-29T08:00:12.437Z">
 <meta property="article:author" content="Kewth">
-<meta property="article:tag" content="好题">
+<meta property="article:tag" content="题解">
 <meta name="twitter:card" content="summary">
 
 
@@ -257,12 +257,12 @@ mjx-container[display="true"] + br {
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">65</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">68</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">7</span></a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a>
 
   </li>
         <li class="menu-item menu-item-archives">
@@ -349,13 +349,13 @@ mjx-container[display="true"] + br {
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">65</span>
+        <span class="site-state-item-count">68</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -383,6 +383,15 @@ mjx-container[display="true"] + br {
     <ul class="links-of-blogroll-list">
         <li class="links-of-blogroll-item">
           <a href="/" title="&#x2F;">欢迎互换友链呀</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://daniel-yuan.github.io/" title="https:&#x2F;&#x2F;daniel-yuan.github.io&#x2F;" rel="noopener" target="_blank">Daniel_yuan</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/lsq147/" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;lsq147&#x2F;" rel="noopener" target="_blank">xiaolilsq</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/imakf/" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;imakf&#x2F;" rel="noopener" target="_blank">Imakf</a>
         </li>
         <li class="links-of-blogroll-item">
           <a href="https://www.cnblogs.com/evenbao" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;evenbao" rel="noopener" target="_blank">Even_bao</a>
@@ -453,7 +462,7 @@ mjx-container[display="true"] + br {
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-11-16 20:29:43" itemprop="dateModified" datetime="2020-11-16T20:29:43+08:00">2020-11-16</time>
+        <time title="修改时间：2021-03-29 16:00:12" itemprop="dateModified" datetime="2021-03-29T16:00:12+08:00">2021-03-29</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -484,7 +493,6 @@ mjx-container[display="true"] + br {
     
     <div class="post-body" itemprop="articleBody">
         <p>没有摘要。</p>
-<a id="more"></a>
 <hr />
 <h2 id="cf1368f-lamps-on-a-circle">cf1368f Lamps on a Circle</h2>
 <p>有一个长为 <span class="math inline">\(n\)</span> 的环，环上每个点是一个开关，Alice Bob 玩游戏，每轮执行以下流程：</p>
@@ -511,6 +519,7 @@ mjx-container[display="true"] + br {
 <p>用上述策略实现 Alice 即可。</p>
 
 </details>
+<a id="more"></a>
 <hr />
 <h2 id="cf1368e-ski-accidents">cf1368e Ski Accidents</h2>
 <p>有一张 <span class="math inline">\(n\)</span> 个点的 DAG ，每个点的出度不超过 2 ，求一个大小不超过 <span class="math inline">\(\frac{4n}{7}\)</span> 的点集使得该点集的补集的导出子图没有一个点同时有出度和入度。</p>
@@ -761,7 +770,7 @@ mjx-container[display="true"] + br {
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E5%A5%BD%E9%A2%98/" rel="tag"><i class="fa fa-tag"></i> 好题</a>
+              <a href="/tags/%E9%A2%98%E8%A7%A3/" rel="tag"><i class="fa fa-tag"></i> 题解</a>
           </div>
 
         

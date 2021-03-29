@@ -40,17 +40,17 @@
 <p>第三批直升生来了，久别后我终于又见到了 lyy 和 yzj （不过 yzj 去搞数学竞赛了）。</p>
 <p>高一正式开学后，一中成立了历史以来第一个信息班，六七十个人全是搞信息学竞赛的。那之前不久，我才得知，NOI2020 将在一中雨花新华都举办，那时我们高二，正是我们学校参赛的主力。</p>
 <p>命运真是有趣，这种事情都能被我碰上。我们信息班六七个人，可新华都过来的，唯独我一个。</p>
-<p>NOIP2018 ，虽然 Day1 AK ，但由于 Day2 考的十分不理想，最终在小机房垫底（非夸张，倒数第一），不过最后还是得到了机会，去参加了 PKUWC 。我第一次来到了北京，见识到了全国其他选手的强大。</p>
+<p>NOIP2018 ，虽然 Day1 AK ，但由于 Day2 考的十分不理想，最终在小机房垫底（非夸张，好像还真就是倒数第一），不过最后还是得到了机会，去参加了 PKUWC 。我第一次来到了北京，见识到了全国其他选手的强大。</p>
 <p>大概也是那段时间，我才真正沉下心来，决定一心学习竞赛，尽量不在竞赛无关的事情上花时间。</p>
 <p>NOIP2018 是我们班第一次刷人，后来每逢大考我们班就会少一批人。</p>
 <h2 id="五">五</h2>
 <p>之后为了准备省选我们部分人去了安徽师大附中参加<a href="/2019/10/01/安徽游记/">联合集训</a>。那算是我第一次见世面，所有人都在一个不大的机房一起考试，成绩一出来，会发现分数超出自己几倍的人就离你几米远。这种强烈的冲击感是未曾有过的。</p>
 <p>令我印象最深刻的是 kcz ，他作为讲师跟着我们考了两天，结果两天都 AK 。而我 Day1 0 分，Day2 30 分。</p>
-<p>老实说才加集训本身带给我在 OI 上的收获不大，因为考试题对那时的我来说实在太难了。但是从各方面综合来讲，还是不虚此行的，至少我认识到了自己的不足。</p>
+<p>老实说参加集训本身带给我在 OI 上的收获不大，因为考试题对那时的我来说实在太难了。但是从各方面综合来讲，还是不虚此行的，至少我认识到了自己的不足。</p>
 <h2 id="六">六</h2>
-<p>参加了臭名昭著的 <a href="/2019/10/01/HNOI2019/">HNOI2019</a> ，我们班没人进省队。考完后周老师问每个小机房的人如果不挂能有多少分，一个个报出来我人都傻了，动不动就两百多分三百多分，要知道省队线只有 150 左右。轮到我的时候，我羞耻的报出我实际的考试分数。我 HNOI2019 不仅没有挂分，反而水到了预料之外的分————110 分就是我当时水平的真实写照。</p>
-<p>NOI2019 有几个人买了 D ，参加了广二的集训，其他人参加网络同步赛。很遗憾包括去了现场的大多数人只有铜牌线，我知道的同步赛进了银牌线的只有 czz 。</p>
-<p>比我们大一届的学长在 NOI2019 有两个集训队：abs 和 yzh ，还有一个银牌 rk1 。后来他们以及其他学长给我们提供了不少帮助。</p>
+<p>参加了臭名昭著的 <a href="/2019/10/01/HNOI2019/">HNOI2019</a> ，我们班没人进省队。考完后周老师问每个小机房的人如果不挂能有多少分，一个个报出来我人都傻了，动不动就两百多分，要知道省队线只有 150 左右。轮到我的时候，我羞耻的报出我实际的考试分数。我 HNOI2019 不仅没有挂分，反而水到了预料之外的分————110 分就是我当时水平的真实写照。</p>
+<p>NOI2019 有几个人买了 D ，参加了广二的集训，其他人参加网络同步赛。很遗憾包括去了现场的大多数人只有铜牌线，同步赛进了银牌线的只有 czz 。</p>
+<p>比我们大一届的学长在 NOI2019 有两个集训队：abs 和 yzh ，还有一个银牌 rk1 fkl（好惨）。后来他们以及其他学长给我们提供了不少帮助。</p>
 <h2 id="七">七</h2>
 <p>高一暑假我们班分两批，一批去成都石室，一批去首都师大附中，我属于后者。在首都师大附中，让我影响深刻的有三个人：<code>OY_Jason</code>, <code>ouuan</code> 和 <code>EternalAlexander</code> 。在那我认识了辽宁的 phy ，每天一起快乐颓废。</p>
 <p>当时还写了游记来着，那篇游记绝对是最与众不同的一篇，专门记录颓废日常，可惜丢失了。</p>
@@ -148,13 +148,13 @@
     <content><![CDATA[<h2 id="part-1-连接-wifi">Part 1 (连接 WIFI)</h2>
 <p>购置了移动硬盘后马上把系统塞进去弄了个 "linux to go" ，回家直接用，美滋滋，然后就发现不会联网。</p>
 <p><del>把联网的手机用 USB 共享网络就好了嘛</del></p>
-<a id="more"></a>
 <p>网上搜了一大堆不靠谱的东西，踩了无数个雷后终于在 Arch-wiki 上发现一个神必软件 NetworkManager<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> 。</p>
 <p>首先安装 <code>yay -S networkmanager</code> （一般会自带）。</p>
 <p>然后执行 <code>nmcli</code> 就可以非常友好的列出各个连接设备以及它们的状态。</p>
 <p>执行 <code>nmcli device wifi</code> 就可以扫描出附近所有无线网络以及测试它们的网速。</p>
 <p>最后执行 <code>nmcli device wifi connect 无线网络名称 password 无线网络密码</code> 就可以连接了。</p>
 <p>就是这么简单，当然如果桌面软件自带连接 wifi 功能就最好了（i3 没人权），拒绝折腾。</p>
+<a id="more"></a>
 <h2 id="part-2-创建热点">Part 2 (创建热点)</h2>
 <p>由于学校机房电脑没有无线网卡，向 <code>CYJian</code> 借了一个 USB 的无线网卡来折腾。</p>
 <p>首先 <code>lsusb</code> 或 <code>lsusb -v</code> 查看无线网卡的芯片型号<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>，例如我借来的那个就是 <code>RTL8188GU</code> 。然后找对应的驱动安装，一般 AUR 都有，不巧的该型号除外。</p>
@@ -167,7 +167,7 @@
 <p>Google 了一下发现在 Linux 上用 RTL8188GU 普遍有类似的问题。</p>
 <p>解决方案：使用钞能力，下单一个新的无线网卡。等用上了再更新。</p>
 <p>update:</p>
-<p>新的无限网卡到了，这次芯片是 8192CU ，不知道为啥默认就有了，直接插上去跑 <code>create_ap</code> 就能用了。。。</p>
+<p>新的无限网卡到了，这次芯片是 8192CU ，不知道为啥驱动默认就有了，直接插上去跑 <code>create_ap</code> 就能用了。。。</p>
 <p>但是发现 <code>nmcli device wifi list</code> 并不能搜索到附近 WiFi ，感到困惑便去调查了一下原因，发现是因为配置文件 <code>/etc/NetworkManager/NetworkManager.conf</code> 里头有这样一行：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">unmanaged-devices&#x3D;interface-name:wlp0s20f0u4</span><br></pre></td></tr></table></figure>
 <p>这个是忽略 wlp0s20f0u4 这个设备的意思，把它注释掉然后通过 <code>systemctl restart NetworkManager</code> 重启即可。</p>
@@ -188,6 +188,9 @@
       <categories>
         <category>折腾</category>
       </categories>
+      <tags>
+        <tag>manjaro</tag>
+      </tags>
   </entry>
   <entry>
     <title>《数学分析》笔记二（极限）</title>
@@ -347,7 +350,7 @@
 <hr />
 <p>如果某个条件在基 <span class="math inline">\(\mathcal B\)</span> 上的某个元素 <span class="math inline">\(B\)</span> 上成立，就称该条件在 <span class="math inline">\(\mathcal B\)</span> 上最终成立。</p>
 <p>对于基 <span class="math inline">\(\mathcal B\)</span> ：记 <span class="math inline">\(f = o(g)\)</span> 当且仅当存在 <span class="math inline">\(\Lim{\mathcal B} \alpha(x) = 0\)</span> 使得 <span class="math inline">\(f(x) = \alpha(x) g(x)\)</span> 最终成立；记 <span class="math inline">\(f = O(g)\)</span> 当且仅当存在最终有界函数 <span class="math inline">\(\beta(x)\)</span> 使得 <span class="math inline">\(f(x) = \beta(x) g(x)\)</span> 最终成立；记 <span class="math inline">\(f \sim g\)</span> 当且仅当存在 <span class="math inline">\(\Lim{\mathcal B} \gamma(x) = 1\)</span> 使得 <span class="math inline">\(f(x) = \gamma(x) g(x)\)</span> 最终成立。</p>
-<h3 id="复合函数的极限">复合函数的极限</h3>
+<h3 id="复合函数极限定理">复合函数极限定理</h3>
 <p><span class="math inline">\(\Lim{\mathcal B_Y} g(y) = \Lim{\mathcal B_X} g(f(x))\)</span> ，如果 <span class="math inline">\(\forall B_Y \in \mathcal B_Y \;\; \exists B_X \in \mathcal B_X \;\; f(B_X) \subset B_Y\)</span> 。</p>
 <p>即如果 <span class="math inline">\(\Lim{E \ni x \to a} f(x) = b\)</span> 则 <span class="math inline">\(\Lim{y \to b} g(y) = \Lim{E \ni x \to a} g(f(x))\)</span> 。</p>
 <h3 id="一些需要牢记的公式">一些需要牢记的公式</h3>
@@ -467,10 +470,10 @@
 </summary>
 <p>注意到 <span class="math inline">\(x \to 0\)</span> 时有 <span class="math inline">\(\ln (1 + x) \sim x\)</span> 和 <span class="math inline">\(e^x - 1 \sim x\)</span> ：</p>
 <p><span class="math display">\[
-    \lim_{x \to 0} \frac{\ln (1 + x)}{x} = \frac{x + o(x)}{x} = 1 + o(1) = 1
+    \lim_{x \to 0} \frac{\ln (1 + x)}{x} = \lim_{x \to 0} \frac{x + o(x)}{x} = \lim_{x \to 0} (1 + o(1)) = 1
 \]</span></p>
 <p><span class="math display">\[
-    \lim_{x \to 0} \frac{e^x - 1}{x} = \frac{1 + x + o(x) - 1}{x} = 1 + o(1) = 1
+    \lim_{x \to 0} \frac{e^x - 1}{x} = \lim_{x \to 0} \frac{1 + x + o(x) - 1}{x} = \lim_{x \to 0} (1 + o(1)) = 1
 \]</span></p>
 <p>若第一个级数绝对收敛，则 <span class="math inline">\(\Lim{n \to \infty} \ln(1 + a_n) = 0\)</span> ，由复合函数极限定理可以知道</p>
 <p><span class="math display">\[
@@ -544,7 +547,6 @@
 <p>那么对于集合 <span class="math inline">\(M\)</span> 和性质 <span class="math inline">\(P\)</span> ，记 <span class="math inline">\(P(M)\)</span> 表示 <span class="math inline">\(M\)</span> 不以其本身为元素。根据直观上的认知，所有集合都应当满足 <span class="math inline">\(P\)</span> ，那么根据第 3 条基本前提，性质 <span class="math inline">\(P\)</span> 确定了一个集合 <span class="math inline">\(K = \{M | P(M)\}\)</span> 。不难发现我们可以同时推导出 <span class="math inline">\(P(K)\)</span> 和 <span class="math inline">\(\lnot P(K)\)</span> 成立，进而得到一个矛盾，这就是罗素悖论。</p>
 <p>ZFC 集合论给出了一组公理严格定义了集合，这些公理更像是一些集合的标准构造方式，使得集合都能通过这些公理被构造出来，而所谓的“所有集合构成的集合”是不能被构造出来的。</p>
 <p>需要注意的是，每个数都有与之对应的集合的模型。</p>
-<a id="more"></a>
 <hr />
 <p>具有自反性，传递性，对称性的关系 <span class="math inline">\(\mathcal{R}\)</span> 称为等价关系，通常用 <span class="math inline">\(\sim\)</span> 表示。</p>
 <p>具有自反性，传递性，反对称性的关系 <span class="math inline">\(\mathcal{R}\)</span> 称为偏序关系，通常用 <span class="math inline">\(\preceq\)</span> 表示。</p>
@@ -555,6 +557,7 @@
 <li><span class="math inline">\(\mathcal{R}\)</span> 具有对称性 <span class="math inline">\(\Leftrightarrow \mathcal{R} = \mathcal{R}&#39;\)</span> 。</li>
 <li><span class="math inline">\(\mathcal{R}\)</span> 具有反对称性 <span class="math inline">\(\Leftrightarrow \mathcal{R} \cap \mathcal{R}&#39; \subset \triangle_X\)</span> 。</li>
 </ul>
+<a id="more"></a>
 <hr />
 <p>对于映射 <span class="math inline">\(f : X \rightarrow Y\)</span> ：</p>
 <ul>
@@ -777,17 +780,17 @@ a \in A \Leftrightarrow a \notin f(a) \Leftrightarrow a \notin A
     <content><![CDATA[<p>北大集训垫底了，虽然对此早有预期。因为至始至终都是以 NOI2020 的金牌为最终目标，达到目标后也没啥冲的必要了。并且我也自知我并没有冲到最后的实力。</p>
 <p>对于最后的结果，其实完全没有感到很失落，更不会感到很满足，相对地倒是比较无感。</p>
 <p>总之就是并不轰烈地退役了。</p>
-<a id="more"></a>
 <h2 id="day-0">Day 0</h2>
 <p>做了一晚上动卧，6:30 就到北京了，教练住北大博雅，我们也跟过去休息，大概到了十一点左右才去报道。</p>
 <p><img src="/images/ctt-1.jpg" /></p>
 <p>一看志愿者，居然是大我三届的一中信息组学姐，说实话我有点小激动，毕竟她的男朋友是我偶像。</p>
+<a id="more"></a>
 <p>上午没看到室友，下午试机，直接自闭，第二题死没调出来，<del>为接下来的垫底埋下伏笔。</del></p>
 <p>晚上见到了室友，上 OIerDB 查了查，NOI 排名和我相近。大部分时间在快乐空洞骑士和快乐死亡细胞。</p>
 <h2 id="day-1">Day 1</h2>
 <p>T1 是这样子的：blablabla 。</p>
 <p>我一看啊，<span class="math inline">\(K=2\)</span> 是个经典线性基板子题，<span class="math inline">\(K\)</span> 为奇数直接反复横跳答案一定是 <span class="math inline">\(0\)</span> ，<span class="math inline">\(M=1\)</span> 就把线性基换成一个 gcd 。</p>
-<p>那一半的情况不就是是个 <span class="math inline">\(K\)</span> 进制线性基嘛？我没听说过啊，就硬想，花了 3h+ yy 了一个 <span class="math inline">\(K\)</span> 进制线性基的维护方式，一直 WA ，原因不明。</p>
+<p>那一般的情况不就是是个 <span class="math inline">\(K\)</span> 进制线性基嘛？我没听说过啊，就硬想，花了 3h+ yy 了一个 <span class="math inline">\(K\)</span> 进制线性基的维护方式，一直 WA ，原因不明。</p>
 <p>T2 是这样子的：blablabla 。</p>
 <p>我一转换发现是个三维数点的模型，我记得数据范围是 7e6 ，那两个 log 麻烦的很，而且必然不能过啊，rush 了一个暴力跑路。</p>
 <p>T3 是这样子的：blablabla 。</p>
@@ -849,14 +852,15 @@ a \in A \Leftrightarrow a \notin f(a) \Leftrightarrow a \notin A
         <category>总结</category>
       </categories>
       <tags>
+        <tag>游记</tag>
         <tag>集训队</tag>
+        <tag>ctt</tag>
       </tags>
   </entry>
   <entry>
     <title>IOI2021 集训队作业（三）</title>
     <url>/2020/11/30/IOI2021-%E9%9B%86%E8%AE%AD%E9%98%9F%E4%BD%9C%E4%B8%9A%EF%BC%88%E4%B8%89%EF%BC%89/</url>
     <content><![CDATA[<p>有生之年。</p>
-<a id="more"></a>
 <hr />
 <h2 id="surveillance">297. Surveillance</h2>
 <p>对于一个长为 <span class="math inline">\(n\)</span> 的环，给定环上 <span class="math inline">\(m\)</span> 个区间，使用最少的区间覆盖整个环。</p>
@@ -872,6 +876,7 @@ f(k, i) = f(k - 1, f(k - 1, i))
 <p>预处理 <span class="math inline">\(f\)</span> 数组后枚举起点就可以 <span class="math inline">\(O(\log n)\)</span> 得到该起点的答案。</p>
 
 </details>
+<a id="more"></a>
 <hr />
 <h2 id="frightful-formula">191. Frightful Formula</h2>
 <p>给出 <span class="math inline">\(f(1,i)\)</span> 和 <span class="math inline">\(f(i,1)\)</span> ，对于 <span class="math inline">\(i &gt; 1, j &gt; 1\)</span> 定义 <span class="math inline">\(f(i,j) = a f(i,j-1) + b f(i-1,j) + c\)</span> ，求 <span class="math inline">\(f(n,n)\)</span> 。</p>
@@ -895,12 +900,18 @@ h(i,j) = a h(i,j-1) + b h(i-1,j)
 
 </details>
 ]]></content>
+      <categories>
+        <category>整理</category>
+      </categories>
+      <tags>
+        <tag>集训队</tag>
+        <tag>题解</tag>
+      </tags>
   </entry>
   <entry>
     <title>好题题解整理（四）</title>
     <url>/2020/11/16/%E5%A5%BD%E9%A2%98%E9%A2%98%E8%A7%A3%E6%95%B4%E7%90%86%EF%BC%88%E5%9B%9B%EF%BC%89/</url>
     <content><![CDATA[<p><del>重操旧业。</del></p>
-<a id="more"></a>
 <hr />
 <h2 id="agc049e-increment-decrement">agc049e Increment Decrement</h2>
 <p>对于一个非负整数序列，我们可以做两个操作：</p>
@@ -962,6 +973,7 @@ f_{i,j} = \min_{k \ge 0} (f_{i-1,k} + C \max(j - k, 0) + |j - A_i|)
 \]</span></p>
 
 </details>
+<a id="more"></a>
 <hr />
 <h2 id="pe214-totient-chains">pe214 Totient Chains</h2>
 <p>定义数论函数 <span class="math inline">\(f\)</span> 满足：</p>
@@ -1066,14 +1078,13 @@ f_{i,j} = \min_{k \ge 0} (f_{i-1,k} + C \max(j - k, 0) + |j - A_i|)
         <category>整理</category>
       </categories>
       <tags>
-        <tag>好题</tag>
+        <tag>题解</tag>
       </tags>
   </entry>
   <entry>
     <title>IOI2021 集训队作业（二）</title>
     <url>/2020/10/20/IOI2021-%E9%9B%86%E8%AE%AD%E9%98%9F%E4%BD%9C%E4%B8%9A%EF%BC%88%E4%BA%8C%EF%BC%89/</url>
     <content><![CDATA[<p>有生之年。</p>
-<a id="more"></a>
 <hr />
 <h2 id="boys-and-girls">103. Boys and Girls</h2>
 <p>求一个长为 <span class="math inline">\(n\)</span> 的由 01 构成的环，满足恰有 <span class="math inline">\(x\)</span> 个点的两侧有 0 ，恰有 <span class="math inline">\(y\)</span> 个点的两侧有 1 。</p>
@@ -1085,6 +1096,7 @@ f_{i,j} = \min_{k \ge 0} (f_{i-1,k} + C \max(j - k, 0) + |j - A_i|)
 <p>那么我们现在要做的就是在环上填 01 使得三种边的数量分别为 <span class="math inline">\(a, b, c\)</span> ，注意到 <span class="math inline">\(c\)</span> 必须是偶数，且 <span class="math inline">\(c\)</span> 为 <span class="math inline">\(0\)</span> 的时候必须有 <span class="math inline">\(ab = 0\)</span> 。假设只有一个环，就很容易构造一个解，两个环的话就把边集分成两个大小相等的部分，只要满足每个部分都合法即可。</p>
 
 </details>
+<a id="more"></a>
 <hr />
 <h2 id="knapsack-cryptosystem">109. Knapsack Cryptosystem</h2>
 <p>Hellman-Knapsack Cryptosystem 这一密码系统的描述如下：</p>
@@ -1309,13 +1321,13 @@ p = \frac{\binom{n}{\frac{n}{2}}}{2^n}
       </categories>
       <tags>
         <tag>集训队</tag>
+        <tag>题解</tag>
       </tags>
   </entry>
   <entry>
     <title>IOI2021 集训队作业（一）</title>
     <url>/2020/10/19/IOI2021-%E9%9B%86%E8%AE%AD%E9%98%9F%E4%BD%9C%E4%B8%9A%EF%BC%88%E4%B8%80%EF%BC%89/</url>
     <content><![CDATA[<p>有生之年。</p>
-<a id="more"></a>
 <hr />
 <h2 id="rubiks-rectangle">233. Rubik's Rectangle</h2>
 <p>给定一个 <span class="math inline">\(H \times W\)</span> 的网格，每个网格有个数字，每次操作可以翻转某行或某列，求一组合法操作使得该网格的数字排好序。</p>
@@ -1334,6 +1346,7 @@ p = \frac{\binom{n}{\frac{n}{2}}}{2^n}
 <p>不难想到如果随机选择一个排列放到网格上，那么极大的概率是无解。采用逆推的方式，从一个排好序的网格随机执行若干次操作得到一个打乱的网格，这样就可以保证数据有解。在此基础上加上一些扰动改变一些代表点的奇偶性即可得到强度较大的无解数据。</p>
 
 </details>
+<a id="more"></a>
 <hr />
 <h2 id="hiking-in-the-hills">234. Hiking in the Hills</h2>
 <p>在三维空间上给定一个曲面，该曲面由 <span class="math inline">\(n\)</span> 个三角形构成，在曲面上给出两个点，求曲面上连接两点的一条折线使得折线上的最高的点的高度最小（高度指 z 轴坐标）。</p>
@@ -1546,13 +1559,13 @@ f(S) = \sum_{x+y=S} \sum_{a,b} [ab = x] \sum_{c,d} [cd = y] = \sum_{x+y=S} d(x) 
       </categories>
       <tags>
         <tag>集训队</tag>
+        <tag>题解</tag>
       </tags>
   </entry>
   <entry>
     <title>CSP 2020 &amp; NOIP 2020</title>
     <url>/2020/10/11/CSP-2020/</url>
     <content><![CDATA[<p>初赛到了考场才真实地认识到一个新的赛季又开始了，不过我已经精神退役了，所以考的比较佛。</p>
-<a id="more"></a>
 <h2 id="初赛">初赛</h2>
 <p>10.09 才知道初赛日期是 10.11 ，没啥感觉，10.11 就跟过去裸考了。</p>
 <p><del>湖南大学好热闹，但是没人和我面基。</del></p>
@@ -1560,6 +1573,7 @@ f(S) = \sum_{x+y=S} \sum_{a,b} [ab = x] \sum_{c,d} [cd = y] = \sum_{x+y=S} d(x) 
 <p>考试的时候那个字符串的题目把我整懵了，猜了几个结论糊弄过去。</p>
 <p>考后发现 <code>nth_element</code> 那题还错了一个，看懂是个 <code>nth_element</code> 后就没仔细看实现了，没注意到它的实现有缺陷。</p>
 <p>update: 膜拜我校高一选手初赛 AK ！</p>
+<a id="more"></a>
 <h2 id="复赛">复赛</h2>
 <p>摸了一个月鱼，又跟过去裸考。</p>
 <p>理论上来说 2:20 就要公布密码了，但是我们考场快到 2:30 才直到正确密码，原因是写密码的老师没分清 k 的大小写，以及 0 和 O 的区别，然后还漏掉了两边的括号。。。</p>
@@ -1614,13 +1628,14 @@ f(S) = \sum_{x+y=S} \sum_{a,b} [ab = x] \sum_{c,d} [cd = y] = \sum_{x+y=S} d(x) 
       <categories>
         <category>折腾</category>
       </categories>
+      <tags>
+        <tag>manjaro</tag>
+      </tags>
   </entry>
   <entry>
     <title>NOI2020 题解报告</title>
     <url>/2020/09/03/NOI2020-%E9%A2%98%E8%A7%A3%E6%8A%A5%E5%91%8A/</url>
-    <content><![CDATA[<p>没有摘要。</p>
-<a id="more"></a>
-<h2 id="美食家">美食家</h2>
+    <content><![CDATA[<h2 id="美食家">美食家</h2>
 <h3 id="题目大意">题目大意</h3>
 <p>给定一张 <span class="math inline">\(n\)</span> 点 <span class="math inline">\(m\)</span> 边的有向图，边有不超过 <span class="math inline">\(w\)</span> 的长度。现要求从点 <span class="math inline">\(1\)</span> 出发经过长度恰为 <span class="math inline">\(T\)</span> 的路径回到点 <span class="math inline">\(1\)</span> ，每到达一个点就会获得等于该点点权的愉悦值。特别地，有 <span class="math inline">\(k\)</span> 个美食节，形如“于时刻 <span class="math inline">\(t\)</span> 到达点 <span class="math inline">\(x\)</span> 会额外获得 <span class="math inline">\(y\)</span> 的愉悦值”。最大化获得的愉悦值总和。</p>
 <h3 id="做法-1">做法 1</h3>
@@ -1630,6 +1645,7 @@ f(S) = \sum_{x+y=S} \sum_{a,b} [ab = x] \sum_{c,d} [cd = y] = \sum_{x+y=S} d(x) 
 <p>做法 1 的 DP 中转移与 <span class="math inline">\(i\)</span> 无关，可以想到把 <span class="math inline">\(f_i\)</span> 看做一个向量，用 max+ 矩阵描述转移，但是由于边有不等的长度，需要把连续 <span class="math inline">\(w\)</span> 个时刻的状态合并为一个向量，这样一来就可以用 max+ 矩阵描述转移，使用矩阵快速幂，复杂度 <span class="math inline">\(O(m + (wn)^3 \log T)\)</span> 。</p>
 <h3 id="做法-3-正解">做法 3 （正解）</h3>
 <p>现在考虑美食节，称有美食节的时刻为关键时刻，两个相邻的关键时刻之间是不受美食节影响的，可以套用矩阵快速幂的做法。那么就以关键时刻把时间轴分为 <span class="math inline">\(k+1\)</span> 段，每段用矩阵快速幂，在关键时刻把美食节的影响加到状态上即可。这里矩阵快速幂不能每次暴力矩阵乘矩阵，需要预处理矩阵乘积的幂次，然后用向量乘矩阵的方式处理每一段。复杂度 <span class="math inline">\(O(m + (wn)^3 \log T + k (wn)^2 \log T)\)</span> 。</p>
+<a id="more"></a>
 <h2 id="命运">命运</h2>
 <h3 id="题目大意-1">题目大意</h3>
 <p>给定一棵 <span class="math inline">\(n\)</span> 个点的有根树和 <span class="math inline">\(m\)</span> 个点对，第 <span class="math inline">\(i\)</span> 个点对 <span class="math inline">\((x, y)\)</span> 满足 <span class="math inline">\(x\)</span> 是 <span class="math inline">\(y\)</span> 的祖先。求有多少把边黑白染色的方案使得任意给定的点对都满足 <span class="math inline">\(x\)</span> 到 <span class="math inline">\(y\)</span> 的路径上存在染黑的边。</p>
@@ -1721,20 +1737,21 @@ f(S) = \sum_{x+y=S} \sum_{a,b} [ab = x] \sum_{c,d} [cd = y] = \sum_{x+y=S} d(x) 
         <category>整理</category>
       </categories>
       <tags>
-        <tag>NOI</tag>
+        <tag>题解</tag>
+        <tag>noi</tag>
       </tags>
   </entry>
   <entry>
     <title>关于积性函数前缀和的一些胡扯</title>
     <url>/2020/08/29/%E5%85%B3%E4%BA%8E%E7%A7%AF%E6%80%A7%E5%87%BD%E6%95%B0%E5%89%8D%E7%BC%80%E5%92%8C%E7%9A%84%E4%B8%80%E4%BA%9B%E8%83%A1%E6%89%AF/</url>
     <content><![CDATA[<p>想出一道不一般的积性函数前缀和的题，题没出出来，倒是发现不少有意思的东西。</p>
-<a id="more"></a>
 <h2 id="一些定义">一些定义</h2>
 <p>有些定义是我胡扯的。</p>
 <p>对于积性函数 <span class="math inline">\(f\)</span> ，称其特征函数 <span class="math inline">\(F\)</span> 为 <span class="math inline">\(f\)</span> 关于质数 <span class="math inline">\(p\)</span> 的函数，准确来说 <span class="math inline">\(F\)</span> 是 <span class="math inline">\(f\)</span> 的特征函数当且仅当对于任意质数 <span class="math inline">\(p\)</span> 有 <span class="math inline">\(F(p) = f(p)\)</span> ，可以发现 <span class="math inline">\(F\)</span> 并不是唯一的，但是我们只考虑最简单的那个，例如对于任意质数 <span class="math inline">\(p\)</span> 有 <span class="math inline">\(f(p) = p + 1\)</span> ，不妨令任意 <span class="math inline">\(x\)</span> 有 <span class="math inline">\(F(x) = x + 1\)</span> ，可以发现 <span class="math inline">\(F\)</span> 并不一定是积性函数。</p>
 <p>记积性函数 <span class="math inline">\(I_m(x) = x^m\)</span> 。</p>
 <p>对于数论函数 <span class="math inline">\(f\)</span> ，其前缀和函数记为 <span class="math inline">\(S_f\)</span> ，满足 <span class="math inline">\(S_f(n) = \sum_{i=1}^n f(i)\)</span> 。</p>
 <p>记 <span class="math inline">\(B(n) = \lfloor \sqrt{n} \rfloor\)</span> ，<span class="math inline">\(n / i = \lfloor \frac{n}{i} \rfloor\)</span> 。</p>
+<a id="more"></a>
 <h3 id="关于特征函数">关于特征函数</h3>
 <p>两个积性函数相乘（狄利克雷卷积），它们的特征函数相加（线性相加）。</p>
 <h2 id="powerful-number">Powerful Number</h2>
@@ -1782,6 +1799,12 @@ f(S) = \sum_{x+y=S} \sum_{a,b} [ab = x] \sum_{c,d} [cd = y] = \sum_{x+y=S} d(x) 
       <categories>
         <category>算法</category>
       </categories>
+      <tags>
+        <tag>数论</tag>
+        <tag>杜教筛</tag>
+        <tag>powerful number</tag>
+        <tag>min25 筛</tag>
+      </tags>
   </entry>
   <entry>
     <title>APIO2020</title>
@@ -1797,7 +1820,15 @@ f(S) = \sum_{x+y=S} \sum_{a,b} [ab = x] \sum_{c,d} [cd = y] = \sum_{x+y=S} d(x) 
 <h3 id="fun-tour">Fun Tour</h3>
 <p>一开始打了一个基于重心的贪心，交上去只过了 <span class="math inline">\(n \le 7\)</span> 的分，<del>疯狂对拍</del> 冷静分析后发现贪心假了。</p>
 <p>然后就打了暴力 dfs 的 26 分，继续想，想了个有理有据的动态换根 DP ，由于 subtask3 的树高是 <span class="math inline">\(O(\log)\)</span> 的，可以暴力修改 DP 值。于是写写写写写写写，越写发现细节越多，写着写着突然发现比赛结束了。。。</p>
+<h2 id="结果">结果</h2>
+<p>226 分垫底水平，居然还有金牌，可喜可贺。</p>
 ]]></content>
+      <categories>
+        <category>游记</category>
+      </categories>
+      <tags>
+        <tag>apio</tag>
+      </tags>
   </entry>
   <entry>
     <title>近期考试总结</title>
@@ -1978,7 +2009,7 @@ f(S) = \sum_{x+y=S} \sum_{a,b} [ab = x] \sum_{c,d} [cd = y] = \sum_{x+y=S} d(x) 
         <category>算法</category>
       </categories>
       <tags>
-        <tag>二分</tag>
+        <tag>带权二分</tag>
       </tags>
   </entry>
   <entry>
@@ -1988,7 +2019,6 @@ f(S) = \sum_{x+y=S} \sum_{a,b} [ab = x] \sum_{c,d} [cd = y] = \sum_{x+y=S} d(x) 
 <p>士别三日，当刮目相待。</p>
 
 </blockquote>
-<a id="more"></a>
 <p><a href="#noi2020">跳过瞎扯，进入正题</a></p>
 <h2 id="备考期">备考期</h2>
 <p>省选一结束就被搞过去准备学考。学考结束后又开始停课。</p>
@@ -2004,6 +2034,7 @@ f(S) = \sum_{x+y=S} \sum_{a,b} [ab = x] \sum_{c,d} [cd = y] = \sum_{x+y=S} d(x) 
 <li>只要能想到就能写出来</li>
 </ul>
 <p>我觉得挺有道理，但一两周感觉太多了，占了整个备考计划近一半的时间，于是列出详细的计划表，在计划里开了六天时间。</p>
+<a id="more"></a>
 <p>前两天用晚上时间拿 XMnid 整理出一张完整的知识点清单，之后照着复习巩固，本来是打算每个不熟练的地方至少做一道题，然而第六天的时候发现还剩一大半没复习，做计划的时候太高估了我的效率，加上三天两场的考试，总之进程相当不理想。于是只能临时做出调整，只做笔记列重点而不打题，刚好这天没有考试，花了一整天的时间算是都完整地过了一遍。</p>
 <p>但是说实话我并不敢保证我的确做到了以上两点，我意识到会和熟练是两码事，学了就能会，但要熟练并不是连续做几道题就行的，要熟练掌握必须积累，得经常用或者经常看。</p>
 <p>因此梳理知识点这个任务应该很早就开始进行的，至少得提前半年，可是我没有时间可以挥霍了。</p>
@@ -2089,7 +2120,7 @@ f(S) = \sum_{x+y=S} \sum_{a,b} [ab = x] \sum_{c,d} [cd = y] = \sum_{x+y=S} d(x) 
       </categories>
       <tags>
         <tag>游记</tag>
-        <tag>NOI</tag>
+        <tag>noi</tag>
       </tags>
   </entry>
   <entry>
@@ -2181,7 +2212,6 @@ f(S) = \sum_{x+y=S} \sum_{a,b} [ab = x] \sum_{c,d} [cd = y] = \sum_{x+y=S} d(x) 
     <title>好题题解整理（三）</title>
     <url>/2020/08/03/%E5%A5%BD%E9%A2%98%E9%A2%98%E8%A7%A3%E6%95%B4%E7%90%86%EF%BC%88%E4%B8%89%EF%BC%89/</url>
     <content><![CDATA[<p>没有摘要。</p>
-<a id="more"></a>
 <hr />
 <h2 id="cf1368f-lamps-on-a-circle">cf1368f Lamps on a Circle</h2>
 <p>有一个长为 <span class="math inline">\(n\)</span> 的环，环上每个点是一个开关，Alice Bob 玩游戏，每轮执行以下流程：</p>
@@ -2208,6 +2238,7 @@ f(S) = \sum_{x+y=S} \sum_{a,b} [ab = x] \sum_{c,d} [cd = y] = \sum_{x+y=S} d(x) 
 <p>用上述策略实现 Alice 即可。</p>
 
 </details>
+<a id="more"></a>
 <hr />
 <h2 id="cf1368e-ski-accidents">cf1368e Ski Accidents</h2>
 <p>有一张 <span class="math inline">\(n\)</span> 个点的 DAG ，每个点的出度不超过 2 ，求一个大小不超过 <span class="math inline">\(\frac{4n}{7}\)</span> 的点集使得该点集的补集的导出子图没有一个点同时有出度和入度。</p>
@@ -2454,7 +2485,7 @@ f(S) = \sum_{x+y=S} \sum_{a,b} [ab = x] \sum_{c,d} [cd = y] = \sum_{x+y=S} d(x) 
         <category>整理</category>
       </categories>
       <tags>
-        <tag>好题</tag>
+        <tag>题解</tag>
       </tags>
   </entry>
   <entry>
@@ -2463,12 +2494,12 @@ f(S) = \sum_{x+y=S} \sum_{a,b} [ab = x] \sum_{c,d} [cd = y] = \sum_{x+y=S} d(x) 
     <content><![CDATA[<p>最近看到一个有意思的博弈问题。</p>
 <p>对于一张无向连通图（不一定是简单图），规定一个点为根，两个玩家轮流操作，每次可以删掉根可以到达的一条边，不能操作者输。</p>
 <p>这类博弈即 Green Hackenbush 。</p>
-<a id="more"></a>
 <h2 id="树">树</h2>
 <p>从简单情况入手，对一棵有根树做 Green Hackenbush ，如何得到一棵树的 SG 值？</p>
 <p>首先，如果树的点数恰为 1 ，SG 值显然为 0 。</p>
 <p>如果根的度数恰为 1 ，设与根相连的点为 <span class="math inline">\(u\)</span> ，设 <span class="math inline">\(u\)</span> 的子树对应的 SG 值为 <span class="math inline">\(k\)</span> ，不难发现原树的 SG 值即 <span class="math inline">\(k+1\)</span> 。</p>
 <p>如果根的度数大于 1 ，那么可以把根“分裂”，把原树拆成一个森林，每个森林的根的度数都恰好为 1 。容易发现这个森林与原树等价，那么应用 SG 定理，原树的 SG 值就是每个子树的 SG 值加一的异或和。</p>
+<a id="more"></a>
 <h2 id="图">图</h2>
 <p>对于一般图的情况如何处理？</p>
 <p>有一个定理，把图缩成边双树，然后对于一个有 <span class="math inline">\(k\)</span> 条边的边双，在对应节点上挂 <span class="math inline">\(k\)</span> 个点（其实也可以挂 <span class="math inline">\(k \bmod 2\)</span> 个点），这样得到的一棵树的 SG 值与原图相同。</p>
@@ -2528,7 +2559,6 @@ f(S) = \sum_{x+y=S} \sum_{a,b} [ab = x] \sum_{c,d} [cd = y] = \sum_{x+y=S} d(x) 
     <title>好题题解整理（二）</title>
     <url>/2020/07/28/%E5%A5%BD%E9%A2%98%E9%A2%98%E8%A7%A3%E6%95%B4%E7%90%86%EF%BC%88%E4%BA%8C%EF%BC%89/</url>
     <content><![CDATA[<p>没有摘要。</p>
-<a id="more"></a>
 <hr />
 <h2 id="loj576-libreoj-noi-round-2签到游戏">loj576 「LibreOJ NOI Round #2」签到游戏</h2>
 <p>有一个长为 <span class="math inline">\(n\)</span> 的序列 <span class="math inline">\(\{B\}\)</span> ，每次可以选一个区间 <span class="math inline">\([l, r]\)</span> ，代价是 <span class="math inline">\(B\)</span> 在该区间的 <span class="math inline">\(\gcd\)</span> ，得到一个方程 <span class="math inline">\(\sum_{i=l}^k x_i = K\)</span> ，要求花费最小的代价得到 <span class="math inline">\(n\)</span> 个线性无关的方程。</p>
@@ -2550,6 +2580,7 @@ f(S) = \sum_{x+y=S} \sum_{a,b} [ab = x] \sum_{c,d} [cd = y] = \sum_{x+y=S} d(x) 
 <p>用线段树维护序列 <span class="math inline">\(B\)</span> ，需要支持 <span class="math inline">\(O(\log)\)</span> 的区间 gcd 查询或者把二分放在线段树上。具体细节不在讨论范围内。</p>
 
 </details>
+<a id="more"></a>
 <hr />
 <h2 id="zr1390-五一省选集训day1a">zr1390 【五一省选集训day1】a</h2>
 <p>给定 <span class="math inline">\(k\)</span> 次多项式 <span class="math inline">\(f(x) = \sum_{i=0}^k a_i x^i\)</span> ，求多项式快速幂 <span class="math inline">\(f(x)^n \bmod x^m\)</span> 的各项系数。</p>
@@ -2827,15 +2858,13 @@ f(S) = \sum_{x+y=S} \sum_{a,b} [ab = x] \sum_{c,d} [cd = y] = \sum_{x+y=S} d(x) 
         <category>整理</category>
       </categories>
       <tags>
-        <tag>好题</tag>
+        <tag>题解</tag>
       </tags>
   </entry>
   <entry>
     <title>好题题解整理（一）</title>
     <url>/2020/07/27/%E5%A5%BD%E9%A2%98%E9%A2%98%E8%A7%A3%E6%95%B4%E7%90%86%EF%BC%88%E4%B8%80%EF%BC%89/</url>
-    <content><![CDATA[<!-- 一场真实的模拟考后意识到自己思维能力严重不足，遂暂停了正在进行的真题训练计划，提前执行思维训练。-->
-<p>没有摘要。</p>
-<a id="more"></a>
+    <content><![CDATA[<p>没有摘要。</p>
 <hr />
 <h2 id="th1690-a">th1690-a</h2>
 <p>给定一个 <span class="math inline">\(n\)</span> 个点的竞赛图，求一个 <span class="math inline">\(m\)</span> 边染色方案。（<span class="math inline">\(n=3000, m=14\)</span> ）</p>
@@ -2848,6 +2877,7 @@ f(S) = \sum_{x+y=S} \sum_{a,b} [ab = x] \sum_{c,d} [cd = y] = \sum_{x+y=S} d(x) 
 <p>这样一来很容易给出一个构造方案：把大小恰为 <span class="math inline">\(\frac{m}{2}\)</span> 的颜色集合任意分配给每个点即可。这样任意一对点 <span class="math inline">\(u, v\)</span> 都存在一个 <span class="math inline">\(u\)</span> 拥有而 <span class="math inline">\(v\)</span> 没有的颜色。并且有 <span class="math inline">\(\dbinom{m}{\frac{m}{2}} \ge n\)</span> 。</p>
 
 </details>
+<a id="more"></a>
 <hr />
 <h2 id="th1690-b">th1690-b</h2>
 <p>有一张 <span class="math inline">\(n\)</span> 个点的无向图满足任意一个导出子图都存在一个度数不超过 <span class="math inline">\(k\)</span> 的点。每次可以询问一个点集是否有边，如果有会给出任意一条，要求用 <span class="math inline">\(n(2k+1)\)</span> 次询问求出边集。其中 <span class="math inline">\(n\)</span> 是已知量，<span class="math inline">\(k\)</span> 是未知量。</p>
@@ -3127,7 +3157,7 @@ f(S) = \sum_{x+y=S} \sum_{a,b} [ab = x] \sum_{c,d} [cd = y] = \sum_{x+y=S} d(x) 
         <category>整理</category>
       </categories>
       <tags>
-        <tag>好题</tag>
+        <tag>题解</tag>
       </tags>
   </entry>
   <entry>
@@ -3135,12 +3165,12 @@ f(S) = \sum_{x+y=S} \sum_{a,b} [ab = x] \sum_{c,d} [cd = y] = \sum_{x+y=S} d(x) 
     <url>/2020/07/26/NOI%E7%9C%9F%E9%A2%98%E8%AE%AD%E7%BB%83/</url>
     <content><![CDATA[<p>真题训练，不依靠外力做题，多写几个部分分，研究高效得分方法。</p>
 <p>以下评测分数以 loj 提交为准（冒泡排序除外）。分数统计仅代表极限水平，并不代表真实水平，不供参考。</p>
-<a id="more"></a>
 <h2 id="noi2017">NOI2017</h2>
 <p>0 + 76 + 100 + 70 + 100 + 88 + 20 = 454</p>
 <p>集训队线 438 。</p>
 <h3 id="整数">整数</h3>
 <p>看完题就有了一个压位的平方暴力的思路，码了码 WA 在了减法的情况，改对后得到了 56 分，本来对照数据表以为只有 30 分左右。</p>
+<a id="more"></a>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n = read;</span><br><span class="line">    read.operator int(), read.operator int(), read.operator int();</span><br><span class="line">    <span class="keyword">int</span> B = <span class="number">32</span>;</span><br><span class="line">    ull FULL = (<span class="number">1llu</span> &lt;&lt; B) - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        <span class="keyword">int</span> o = read;</span><br><span class="line">        <span class="keyword">if</span> (o == <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">int</span> ix = read, k = read;</span><br><span class="line">            <span class="keyword">if</span> (ix &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">                ull x = ull(ix);</span><br><span class="line">                x &lt;&lt;= k % B;</span><br><span class="line">                k /= B;</span><br><span class="line">                <span class="keyword">while</span> (x) &#123;</span><br><span class="line">                    data[k] += x;</span><br><span class="line">                    x = data[k] &gt;&gt; B;</span><br><span class="line">                    data[k] &amp;= FULL;</span><br><span class="line">                    ++k;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                ull x = ull(-ix);</span><br><span class="line">                x &lt;&lt;= k % B;</span><br><span class="line">                k /= B;</span><br><span class="line">                <span class="keyword">while</span> (x) &#123;</span><br><span class="line">                    data[k] -= x;</span><br><span class="line">                    x = data[k] &gt;&gt; B;</span><br><span class="line">                    <span class="keyword">if</span> (x)</span><br><span class="line">                        x = (<span class="number">1llu</span> &lt;&lt; B) - x;</span><br><span class="line">                    data[k] &amp;= FULL;</span><br><span class="line">                    ++k;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (o == <span class="number">2</span>) &#123;</span><br><span class="line">            <span class="keyword">int</span> k = read;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%llu\n&quot;</span>, data[k / B] &gt;&gt; (k % B) &amp; <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>冷静下来后发现可以类似于 odt 维护二进制位相同的连续段，把修改每一位拆开考虑就可以两个 <span class="math inline">\(\log\)</span> 维护，得到了 68 分。</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">auto</span> <span class="title">find</span> <span class="params">(<span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">auto</span> it = -- <span class="built_in">set</span>.upper_bound(k &lt;&lt; <span class="number">1</span> | <span class="number">1</span>);</span><br><span class="line">	<span class="keyword">int</span> k2 = *it &gt;&gt; <span class="number">1</span>, x = *it &amp; <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">if</span> (k == k2) <span class="keyword">return</span> it;</span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">set</span>.insert(k &lt;&lt; <span class="number">1</span> | x).first;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">modi</span> <span class="params">(<span class="keyword">int</span> k, <span class="keyword">int</span> t)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">auto</span> p = find(k), q = p;</span><br><span class="line">	<span class="keyword">while</span> ((*q &amp; <span class="number">1</span>) == t) ++ q;</span><br><span class="line">	<span class="keyword">auto</span> r = find((*q &gt;&gt; <span class="number">1</span>) + <span class="number">1</span>);</span><br><span class="line">	<span class="keyword">int</span> tmp = *p, tmq = *q;</span><br><span class="line">	<span class="built_in">set</span>.erase(p, r);</span><br><span class="line">	<span class="built_in">set</span>.insert(tmp ^ <span class="number">1</span>);</span><br><span class="line">	<span class="built_in">set</span>.insert(tmq ^ <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> n = read;</span><br><span class="line">	read.operator int(), read.operator int(), read.operator int();</span><br><span class="line">	<span class="built_in">set</span>.insert(<span class="number">0</span> &lt;&lt; <span class="number">1</span> | <span class="number">0</span>);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i ++) &#123;</span><br><span class="line">		<span class="keyword">int</span> o = read;</span><br><span class="line">		<span class="keyword">if</span> (o == <span class="number">1</span>) &#123;</span><br><span class="line">			<span class="keyword">int</span> x = read, off = read;</span><br><span class="line">			<span class="keyword">if</span> (x &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">				<span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">0</span>; k &lt; maxk; k ++)</span><br><span class="line">					<span class="keyword">if</span> (x &gt;&gt; k &amp; <span class="number">1</span>)</span><br><span class="line">						modi(off + k, <span class="number">1</span>);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> &#123;</span><br><span class="line">				x = -x;</span><br><span class="line">				<span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">0</span>; k &lt; maxk; k ++)</span><br><span class="line">					<span class="keyword">if</span> (x &gt;&gt; k &amp; <span class="number">1</span>)</span><br><span class="line">						modi(off + k, <span class="number">0</span>);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (o == <span class="number">2</span>) &#123;</span><br><span class="line">			<span class="keyword">auto</span> p = find(read);</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, *p &amp; <span class="number">1</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -3276,7 +3306,7 @@ f(S) = \sum_{x+y=S} \sum_{a,b} [ab = x] \sum_{c,d} [cd = y] = \sum_{x+y=S} d(x) 
         <category>其他</category>
       </categories>
       <tags>
-        <tag>NOI</tag>
+        <tag>noi</tag>
       </tags>
   </entry>
   <entry>
@@ -4187,7 +4217,6 @@ g(i) &amp;= \sum_{j \ge 0} [f(j) \le i] \\\\
       </categories>
       <tags>
         <tag>数论</tag>
-        <tag>筛法</tag>
         <tag>杜教筛</tag>
       </tags>
   </entry>
@@ -4951,10 +4980,9 @@ g(n, i) &amp;= g(n, i - 1) - h(P_i) \sum_{x=1}^{n/P_i} [minp(x) \geq P_i] h(x) \
       </categories>
       <tags>
         <tag>数论</tag>
-        <tag>筛法</tag>
         <tag>杜教筛</tag>
-        <tag>min25</tag>
         <tag>powerful number</tag>
+        <tag>min25 筛</tag>
       </tags>
   </entry>
   <entry>
