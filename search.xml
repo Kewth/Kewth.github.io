@@ -364,7 +364,7 @@
 \]</span></p>
 <p>可以验证</p>
 <p><span class="math display">\[
-    f^{(n)} (x_k) (-1)^k = \frac{f^{(n-1)} (z_k) (-1)^k + f^{(n-1)} (z_{k-1}) (-1)^{k-1}}{z_k - z_{k-1}} &gt; 0
+    f^{(n)} (x_k) (-1)^k = \frac{f^{(n-1)} (z_k) (-1)^k + f^{(n-1)} (z_{k-1}) (-1)^{k-1}}{z_k - z_{k-1}} &lt; 0
 \]</span></p>
 <p>由于 <span class="math inline">\(f^{(n-1)} (z_1) &gt; \alpha N_{n-1} - \sum_{k=1}^{n-2} M_k \dfrac{N_{n-1}}{N_k}\)</span> 而又存在 <span class="math inline">\(\xi \in (\frac{1}{2^{n-1}} - 1, \frac{1}{2^{n-2}} - 1)\)</span> 使得 <span class="math inline">\(\lvert f^{(n-1)}(\xi) \rvert \le M_{n-1}\)</span> ，根据拉格朗日中值定理</p>
 <p><span class="math display">\[
@@ -378,6 +378,7 @@
     f^{(n)} (x_1)
     &gt; \alpha N_n - \sum_{k=1}^{n-2} M_k \frac{N_n}{N_k} - M_{n-1} \frac{N_n}{N_{n-1}}
     = \alpha N_n - \sum_{k=1}^{n-1} M_k \frac{N_n}{N_k}
+    \ge 0
 \]</span></p>
 <p><span class="math inline">\(x_n\)</span> 同理，命题得证，其中系数数列为</p>
 <p><span class="math display">\[
