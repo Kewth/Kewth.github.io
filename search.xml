@@ -331,8 +331,8 @@
 <p><span class="math display">\[
     \exists x_0 \in I \Colon \lvert f^{(k)} (x_0) \rvert \le \frac{2^{k(k+1)/2} k^k}{\lambda^k}
 \]</span></p>
-<p>我们不妨假设 <span class="math inline">\(\lvert f&#39;(0) \rvert \ge 0\)</span> 。</p>
-<p>先考虑 <span class="math inline">\(n = 2\)</span> ，假设 <span class="math inline">\(\lvert f&#39;(0) \rvert = \alpha\)</span> 足够大，那么由于存在 <span class="math inline">\(x_1 \in (-\frac{1}{2}, 0)\)</span>, <span class="math inline">\(x_2 \in (0, \frac{1}{2})\)</span> 使得 <span class="math inline">\(\lvert f&#39;(x_1) \rvert, \lvert f&#39;(x_2) \rvert \le 4\)</span> 。根据拉格朗日中值定理</p>
+<p>我们不妨假设 <span class="math inline">\(f&#39;(0) \ge 0\)</span> 。</p>
+<p>先考虑 <span class="math inline">\(n = 2\)</span> ，假设 <span class="math inline">\(f&#39;(0) = \alpha\)</span> 足够大，那么由于存在 <span class="math inline">\(x_1 \in (-\frac{1}{2}, 0)\)</span>, <span class="math inline">\(x_2 \in (0, \frac{1}{2})\)</span> 使得 <span class="math inline">\(\lvert f&#39;(x_1) \rvert, \lvert f&#39;(x_2) \rvert \le 4\)</span> 。根据拉格朗日中值定理</p>
 <p><span class="math display">\[
     \exists \xi_1 \in (x_1, 0) \subset (-\frac{1}{2}, 0) \Colon f&#39;&#39;(\xi_1)
     = \frac{\alpha - f&#39;(x_1)}{0 - x_1}
