@@ -32,7 +32,7 @@
 <meta property="og:description" content="\(\newcommand{\bbR}{\mathbb{R}}\) \(\newcommand{\Lim}{\lim\limits_}\) \(\newcommand{\Colon}{\colon\;\;}\) \(\newcommand{\eps}{\varepsilon}\) 一些理论 连续函数 对于数集 \(E\) 的满足 \(a \in E\) 的极限点 \(a\) ，函数 \(f \co">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-03-29T12:54:34.000Z">
-<meta property="article:modified_time" content="2021-05-11T12:02:13.750Z">
+<meta property="article:modified_time" content="2021-05-12T09:12:59.835Z">
 <meta property="article:author" content="Kewth">
 <meta property="article:tag" content="数学分析">
 <meta name="twitter:card" content="summary">
@@ -462,7 +462,7 @@ mjx-container[display="true"] + br {
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-05-11 20:02:13" itemprop="dateModified" datetime="2021-05-11T20:02:13+08:00">2021-05-11</time>
+        <time title="修改时间：2021-05-12 17:12:59" itemprop="dateModified" datetime="2021-05-12T17:12:59+08:00">2021-05-12</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -865,6 +865,48 @@ mjx-container[display="true"] + br {
 \]</span></p>
 <p>那么取 <span class="math inline">\(a = \sqrt{2 M_0 / M_2}\)</span> 时就有 <span class="math inline">\(|f&#39;(0)| \le \sqrt{2 M_0 M_2}\)</span> 。</p>
 <p>而由于左右平移不影响 <span class="math inline">\(M_0\)</span> 和 <span class="math inline">\(M_2\)</span> 的值，事实上这里的 <span class="math inline">\(x = 0\)</span> 可以推广到任意 <span class="math inline">\(x = x_0\)</span> ，具体地，令函数 <span class="math inline">\(g\)</span> 满足 <span class="math inline">\(g(x) = f(x + x_0)\)</span> ，有 <span class="math inline">\(f(x_0) = g(0) \le \sqrt{2 M_0 M_2}\)</span> 。</p>
+
+</details>
+<ol start="3" type="a">
+<li><p>b 题中的系数 <span class="math inline">\(2\)</span> 和 <span class="math inline">\(\sqrt{2}\)</span> 不能更小。</p></li>
+<li><p>如果 <span class="math inline">\(f\)</span> 在 <span class="math inline">\(\bbR\)</span> 中 <span class="math inline">\(p\)</span> 阶可微，并且 <span class="math inline">\(M_0\)</span> 和 <span class="math inline">\(M_p = \sup |f^{(p)} (x)|\)</span> 都有限，则当 <span class="math inline">\(1 \le k \le p\)</span> 时，量 <span class="math inline">\(M_k = \sup |f^{(k)} (x)|\)</span> 也有限，并且 <span class="math inline">\(M_k \le 2^{k(p-k)/2} M_0^{1-k/p} M_p^{k/p}\)</span> 。</p></li>
+</ol>
+<details class="note primary"><summary><p>Answer</p>
+</summary>
+<p>首先我们归纳地证明，<span class="math inline">\(M_k \le 2^{k/2} M_0^{1/(k+1)} M_{k+1}^{k/(k+1)}\)</span> 总是成立的。</p>
+<p><span class="math inline">\(k = 0\)</span> 时不等式显然成立，考虑对 <span class="math inline">\(k - 1\)</span> 成立时对 <span class="math inline">\(k\)</span> 是否成立。对于函数 <span class="math inline">\(g = f^{k-1}\)</span> ，根据 b 题的结论可知</p>
+<p><span class="math display">\[
+    M_1&#39; \le \sqrt{2 M_0&#39; M_2&#39;}
+\]</span></p>
+<p>注意到 <span class="math inline">\(M_q&#39; = M_{q+k-1}\)</span> 实际上上式即</p>
+<p><span class="math display">\[
+    M_k \le 2^{1/2} M_{k-1}^{1/2} M_{k+1}^{1/2}
+\]</span></p>
+<p>代入 <span class="math inline">\(M_{k-1} \le 2^{(k-1)/2} M_0^{1/k} M_k^{(k-1)/k}\)</span> 有</p>
+<p><span class="math display">\[
+\begin{aligned}
+    M_k
+    &amp;\le 2^{1/2} \left( 2^{(k-1)/2} M_0^{1/k} M_k^{(k-1)/k} \right)^{1/2} M_{k+1}^{1/2} \\
+    &amp;= 2^{(k+1)/4} M_0^{1/2k} M_k^{(k-1)/2k} M_{k+1}^{1/2} \\
+    M_k^{(k+1)/2k}
+    &amp;\le 2^{(k+1)/4} M_0^{1/2k} M_{k+1}^{1/2} \\
+    M_k
+    &amp;\le 2^{k/2} M_0^{1/(k+1)} M_{k+1}^{k/(k+1)} \\
+\end{aligned}
+\]</span></p>
+<p>接着对于固定的 <span class="math inline">\(p\)</span> ，我们对 <span class="math inline">\(k\)</span> 从大到小进行归纳来证明原命题。</p>
+<p><span class="math inline">\(k = p\)</span> 时原命题显然成立，如果对 <span class="math inline">\(k + 1\)</span> 成立，将</p>
+<p><span class="math display">\[
+    M_{k+1} \le 2^{(k+1)(p-k-1)/2} M_0^{1-(k+1)/p} M_p^{(k+1)/p}
+\]</span></p>
+<p>代入</p>
+<p><span class="math display">\[
+    M_k \le 2^{k/2} M_0^{1/(k+1)} M_{k+1}^{k/(k+1)}
+\]</span></p>
+<p>即可得到</p>
+<p><span class="math display">\[
+    M_k \le 2^{k(p-k)/2} M_0^{1-k/p} M_p^{k/p}
+\]</span></p>
 
 </details>
 

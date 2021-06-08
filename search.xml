@@ -478,6 +478,48 @@
 <p>而由于左右平移不影响 <span class="math inline">\(M_0\)</span> 和 <span class="math inline">\(M_2\)</span> 的值，事实上这里的 <span class="math inline">\(x = 0\)</span> 可以推广到任意 <span class="math inline">\(x = x_0\)</span> ，具体地，令函数 <span class="math inline">\(g\)</span> 满足 <span class="math inline">\(g(x) = f(x + x_0)\)</span> ，有 <span class="math inline">\(f(x_0) = g(0) \le \sqrt{2 M_0 M_2}\)</span> 。</p>
 
 </details>
+<ol start="3" type="a">
+<li><p>b 题中的系数 <span class="math inline">\(2\)</span> 和 <span class="math inline">\(\sqrt{2}\)</span> 不能更小。</p></li>
+<li><p>如果 <span class="math inline">\(f\)</span> 在 <span class="math inline">\(\bbR\)</span> 中 <span class="math inline">\(p\)</span> 阶可微，并且 <span class="math inline">\(M_0\)</span> 和 <span class="math inline">\(M_p = \sup |f^{(p)} (x)|\)</span> 都有限，则当 <span class="math inline">\(1 \le k \le p\)</span> 时，量 <span class="math inline">\(M_k = \sup |f^{(k)} (x)|\)</span> 也有限，并且 <span class="math inline">\(M_k \le 2^{k(p-k)/2} M_0^{1-k/p} M_p^{k/p}\)</span> 。</p></li>
+</ol>
+<details class="note primary"><summary><p>Answer</p>
+</summary>
+<p>首先我们归纳地证明，<span class="math inline">\(M_k \le 2^{k/2} M_0^{1/(k+1)} M_{k+1}^{k/(k+1)}\)</span> 总是成立的。</p>
+<p><span class="math inline">\(k = 0\)</span> 时不等式显然成立，考虑对 <span class="math inline">\(k - 1\)</span> 成立时对 <span class="math inline">\(k\)</span> 是否成立。对于函数 <span class="math inline">\(g = f^{k-1}\)</span> ，根据 b 题的结论可知</p>
+<p><span class="math display">\[
+    M_1&#39; \le \sqrt{2 M_0&#39; M_2&#39;}
+\]</span></p>
+<p>注意到 <span class="math inline">\(M_q&#39; = M_{q+k-1}\)</span> 实际上上式即</p>
+<p><span class="math display">\[
+    M_k \le 2^{1/2} M_{k-1}^{1/2} M_{k+1}^{1/2}
+\]</span></p>
+<p>代入 <span class="math inline">\(M_{k-1} \le 2^{(k-1)/2} M_0^{1/k} M_k^{(k-1)/k}\)</span> 有</p>
+<p><span class="math display">\[
+\begin{aligned}
+    M_k
+    &amp;\le 2^{1/2} \left( 2^{(k-1)/2} M_0^{1/k} M_k^{(k-1)/k} \right)^{1/2} M_{k+1}^{1/2} \\
+    &amp;= 2^{(k+1)/4} M_0^{1/2k} M_k^{(k-1)/2k} M_{k+1}^{1/2} \\
+    M_k^{(k+1)/2k}
+    &amp;\le 2^{(k+1)/4} M_0^{1/2k} M_{k+1}^{1/2} \\
+    M_k
+    &amp;\le 2^{k/2} M_0^{1/(k+1)} M_{k+1}^{k/(k+1)} \\
+\end{aligned}
+\]</span></p>
+<p>接着对于固定的 <span class="math inline">\(p\)</span> ，我们对 <span class="math inline">\(k\)</span> 从大到小进行归纳来证明原命题。</p>
+<p><span class="math inline">\(k = p\)</span> 时原命题显然成立，如果对 <span class="math inline">\(k + 1\)</span> 成立，将</p>
+<p><span class="math display">\[
+    M_{k+1} \le 2^{(k+1)(p-k-1)/2} M_0^{1-(k+1)/p} M_p^{(k+1)/p}
+\]</span></p>
+<p>代入</p>
+<p><span class="math display">\[
+    M_k \le 2^{k/2} M_0^{1/(k+1)} M_{k+1}^{k/(k+1)}
+\]</span></p>
+<p>即可得到</p>
+<p><span class="math display">\[
+    M_k \le 2^{k(p-k)/2} M_0^{1-k/p} M_p^{k/p}
+\]</span></p>
+
+</details>
 ]]></content>
       <categories>
         <category>数学</category>
@@ -2533,6 +2575,7 @@ f(S) = \sum_{x+y=S} \sum_{a,b} [ab = x] \sum_{c,d} [cd = y] = \sum_{x+y=S} d(x) 
 <p><img src="/images/noi2020_1.png" /></p>
 <p><img src="/images/noi2020_2.png" /></p>
 <p>THU 冲冲冲！</p>
+<p>update on 2021.05.18: 今天给以前做过的题造数据的时候下巴惊掉了，居然发现我 19 年就做过一道 D2T1 的加强版本。为啥我考前复习没有注意到这题呀。。。</p>
 ]]></content>
       <categories>
         <category>总结</category>
@@ -3329,8 +3372,8 @@ f(S) = \sum_{x+y=S} \sum_{a,b} [ab = x] \sum_{c,d} [cd = y] = \sum_{x+y=S} d(x) 
 <h3 id="引理-1">引理 1</h3>
 <p><strong>存在 <span class="math inline">\(k\)</span> 次多项式 <span class="math inline">\(G\)</span> 满足 <span class="math inline">\(S(m) = q^m G(m) - G(0)\)</span> 。</strong></p>
 <p>对 <span class="math inline">\(k\)</span> 应用数学归纳法。对于 <span class="math inline">\(k=0\)</span> 不难证明。对于 <span class="math inline">\(k \ge 1\)</span> ，对 <span class="math inline">\(S(m)\)</span> 和 <span class="math inline">\(q S(m)\)</span> 作差，设 <span class="math inline">\(g(i) = f(i) - f(i-1)\)</span> ，显然 <span class="math inline">\(g\)</span> 是 <span class="math inline">\(k-1\)</span> 次多项式。那么根据归纳假设，存在 <span class="math inline">\(k-1\)</span> 次多项式 <span class="math inline">\(P\)</span> 满足 <span class="math inline">\(\sum_{i=0}^{m-1} g(i) q^i = q^m P(m) - P(0)\)</span> ，于是可以得到：</p>
-<p><span class="math display">\[(1-q)S(m) = q^m P(m) - P(0) + f(-1) - q^{m+1} f(m)\]</span></p>
-<p>从中不难得到这样一个 <span class="math inline">\(k\)</span> 次多项式 <span class="math inline">\(G\)</span> 。</p>
+<p><span class="math display">\[(1-q)S(m) = q^m P(m) - P(0) + f(-1) - q^m f(m - 1)\]</span></p>
+<p>从中不难得到这样一个 <span class="math inline">\(k\)</span> 次多项式 <span class="math inline">\(G(m) = \dfrac{P(m) - f(m - 1)}{1 - q}\)</span> 。</p>
 <h3 id="正题">正题</h3>
 <p>根据引理 1 ，我们可以通过求 <span class="math inline">\(G(n+1)\)</span> 和 <span class="math inline">\(G(0)\)</span> 间接求出 <span class="math inline">\(S(n+1)\)</span> 。</p>
 <p>然而对于 <span class="math inline">\(G\)</span> 我们知道的只有它的次数和它与 <span class="math inline">\(S, f\)</span> 的关系，所以求 <span class="math inline">\(G\)</span> 仍然要从 <span class="math inline">\(S, f\)</span> 下手。</p>
