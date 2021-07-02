@@ -4,7 +4,7 @@
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.3.0">
+<meta name="generator" content="Hexo 5.4.0">
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
@@ -17,13 +17,10 @@
 
 
 
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"kewth.github.io","root":"/","images":"/images","scheme":"Muse","version":"8.1.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":3,"unescape":false,"preload":false}};
-  </script>
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;kewth.github.io&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Muse&quot;,&quot;version&quot;:&quot;8.5.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;always&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:true,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜索...&quot;,&quot;empty&quot;:&quot;没有找到任何搜索结果：${query}&quot;,&quot;hits_time&quot;:&quot;找到 ${hits} 个搜索结果（用时 ${time} 毫秒）&quot;,&quot;hits&quot;:&quot;找到 ${hits} 个搜索结果&quot;},&quot;path&quot;:&quot;&#x2F;search.xml&quot;,&quot;localsearch&quot;:{&quot;enable&quot;:true,&quot;trigger&quot;:&quot;auto&quot;,&quot;top_n_per_article&quot;:3,&quot;unescape&quot;:false,&quot;preload&quot;:false}}</script><script src="/js/config.js"></script>
 <meta name="description" content="ncurses 是基于终端的十分强大的图形库。 Vim, screen, sl 等终端程序都用到了这个库（足以见其强大）。 安装 部分系统默认安装了 ncurses ，手动安装的方式是： sudo aptitude install ncurses-dev 。 使用的程序需要 #include &lt;ncurses.h&gt;　。 编译时需要添加 -lncurses 参数进行链接。 开始和结束 调">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ncurses">
@@ -40,173 +37,20 @@
 <link rel="canonical" href="https://kewth.github.io/2019/10/01/ncurses/">
 
 
-<script class="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome : false,
-    isPost : true,
-    lang   : 'zh-CN'
-  };
-</script>
+
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-CN&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;https:&#x2F;&#x2F;kewth.github.io&#x2F;2019&#x2F;10&#x2F;01&#x2F;ncurses&#x2F;&quot;,&quot;path&quot;:&quot;2019&#x2F;10&#x2F;01&#x2F;ncurses&#x2F;&quot;,&quot;title&quot;:&quot;ncurses&quot;}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
 <title>ncurses | KeBlog</title>
   
 
 
 
+
   <noscript>
-  <style>
-  body { margin-top: 2rem; }
-
-  .use-motion .menu-item,
-  .use-motion .sidebar,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header {
-    visibility: visible;
-  }
-
-  .use-motion .header,
-  .use-motion .site-brand-container .toggle,
-  .use-motion .footer { opacity: initial; }
-
-  .use-motion .site-title,
-  .use-motion .site-subtitle,
-  .use-motion .custom-logo-image {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line {
-    transform: scaleX(1);
-  }
-
-  .search-pop-overlay, .sidebar-nav { display: none; }
-  .sidebar-panel { display: block; }
-  </style>
-</noscript>
-
-<style>mjx-container[jax="SVG"] {
-  direction: ltr;
-}
-
-mjx-container[jax="SVG"] > svg {
-  overflow: visible;
-}
-
-mjx-container[jax="SVG"] > svg a {
-  fill: blue;
-  stroke: blue;
-}
-
-mjx-container[jax="SVG"][display="true"] {
-  display: block;
-  text-align: center;
-  margin: 1em 0;
-}
-
-mjx-container[jax="SVG"][justify="left"] {
-  text-align: left;
-}
-
-mjx-container[jax="SVG"][justify="right"] {
-  text-align: right;
-}
-
-g[data-mml-node="merror"] > g {
-  fill: red;
-  stroke: red;
-}
-
-g[data-mml-node="merror"] > rect[data-background] {
-  fill: yellow;
-  stroke: none;
-}
-
-g[data-mml-node="mtable"] > line[data-line] {
-  stroke-width: 70px;
-  fill: none;
-}
-
-g[data-mml-node="mtable"] > rect[data-frame] {
-  stroke-width: 70px;
-  fill: none;
-}
-
-g[data-mml-node="mtable"] > .mjx-dashed {
-  stroke-dasharray: 140;
-}
-
-g[data-mml-node="mtable"] > .mjx-dotted {
-  stroke-linecap: round;
-  stroke-dasharray: 0,140;
-}
-
-g[data-mml-node="mtable"] > svg {
-  overflow: visible;
-}
-
-[jax="SVG"] mjx-tool {
-  display: inline-block;
-  position: relative;
-  width: 0;
-  height: 0;
-}
-
-[jax="SVG"] mjx-tool > mjx-tip {
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-mjx-tool > mjx-tip {
-  display: inline-block;
-  padding: .2em;
-  border: 1px solid #888;
-  font-size: 70%;
-  background-color: #F8F8F8;
-  color: black;
-  box-shadow: 2px 2px 5px #AAAAAA;
-}
-
-g[data-mml-node="maction"][data-toggle] {
-  cursor: pointer;
-}
-
-mjx-status {
-  display: block;
-  position: fixed;
-  left: 1em;
-  bottom: 1em;
-  min-width: 25%;
-  padding: .2em .4em;
-  border: 1px solid #888;
-  font-size: 90%;
-  background-color: #F8F8F8;
-  color: black;
-}
-
-foreignObject[data-mjx-xml] {
-  font-family: initial;
-  line-height: normal;
-  overflow: visible;
-}
-
-.MathJax path {
-  stroke-width: 3;
-}
-
-mjx-container[display="true"] {
-  overflow: auto hidden;
-}
-
-mjx-container[display="true"] + br {
-  display: none;
-}
-</style><link rel="alternate" href="/atom.xml" title="KeBlog" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="KeBlog" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
@@ -216,7 +60,7 @@ mjx-container[display="true"] + br {
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
+    <div class="toggle" aria-label="切换导航栏" role="button">
         <span class="toggle-line"></span>
         <span class="toggle-line"></span>
         <span class="toggle-line"></span>
@@ -244,31 +88,11 @@ mjx-container[display="true"] + br {
 
 <nav class="site-nav">
   <ul class="main-menu menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
-
-  </li>
-        <li class="menu-item menu-item-about">
-
-    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
-
-  </li>
-        <li class="menu-item menu-item-tags">
-
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">68</span></a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">83</span></a>
-
-  </li>
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">68</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">83</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -288,7 +112,7 @@ mjx-container[display="true"] + br {
            placeholder="搜索..." spellcheck="false"
            type="search" class="search-input">
   </div>
-  <span class="popup-btn-close">
+  <span class="popup-btn-close" role="button">
     <i class="fa fa-times-circle"></i>
   </span>
 </div>
@@ -304,7 +128,7 @@ mjx-container[display="true"] + br {
 </div>
         
   
-  <div class="toggle sidebar-toggle">
+  <div class="toggle sidebar-toggle" role="button">
     <span class="toggle-line"></span>
     <span class="toggle-line"></span>
     <span class="toggle-line"></span>
@@ -324,12 +148,12 @@ mjx-container[display="true"] + br {
 
       <div class="sidebar-panel-container">
         <!--noindex-->
-        <section class="post-toc-wrap sidebar-panel">
+        <div class="post-toc-wrap sidebar-panel">
             <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%80%E5%A7%8B%E5%92%8C%E7%BB%93%E6%9D%9F"><span class="nav-number">2.</span> <span class="nav-text">开始和结束</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BE%93%E5%87%BA"><span class="nav-number">3.</span> <span class="nav-text">输出</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%BD%E6%95%B0"><span class="nav-number">3.1.</span> <span class="nav-text">函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BE%93%E5%85%A5"><span class="nav-number">4.</span> <span class="nav-text">输入</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%BD%E6%95%B0-1"><span class="nav-number">4.1.</span> <span class="nav-text">函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%89%E6%A0%87"><span class="nav-number">5.</span> <span class="nav-text">光标</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E5%8F%8A%E7%A4%BA%E4%BE%8B"><span class="nav-number">5.1.</span> <span class="nav-text">函数及示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8C%87%E5%AE%9A%E4%BD%8D%E7%BD%AE%E8%BE%93%E5%87%BA"><span class="nav-number">5.2.</span> <span class="nav-text">指定位置输出</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%9C%E8%89%B2"><span class="nav-number">6.</span> <span class="nav-text">颜色</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-number">6.1.</span> <span class="nav-text">初始化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8"><span class="nav-number">6.2.</span> <span class="nav-text">使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%94%99%E8%AF%AF%E7%A4%BA%E4%BE%8B"><span class="nav-number">6.3.</span> <span class="nav-text">错误示例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AA%97%E5%8F%A3"><span class="nav-number">7.</span> <span class="nav-text">窗口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B0%E5%BB%BA%E7%AA%97%E5%8F%A3"><span class="nav-number">7.1.</span> <span class="nav-text">新建窗口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%9A%E7%94%A8%E8%BE%93%E5%87%BA"><span class="nav-number">7.2.</span> <span class="nav-text">通用输出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%90%E7%AA%97%E5%8F%A3"><span class="nav-number">7.3.</span> <span class="nav-text">子窗口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%94%80%E6%AF%81%E7%AA%97%E5%8F%A3"><span class="nav-number">7.4.</span> <span class="nav-text">销毁窗口</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A6%BB%E5%BC%80"><span class="nav-number">8.</span> <span class="nav-text">离开</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B"><span class="nav-number">8.1.</span> <span class="nav-text">示例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BE%93%E5%87%BA%E4%B8%AD%E6%96%87%E7%AD%89%E9%9D%9E-ascii-%E5%AD%97%E7%AC%A6"><span class="nav-number">9.</span> <span class="nav-text">输出中文等非 ASCII 字符</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E5%BA%93"><span class="nav-number">9.1.</span> <span class="nav-text">安装库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%B4%E6%96%87%E4%BB%B6"><span class="nav-number">9.2.</span> <span class="nav-text">头文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B0%83%E7%94%A8"><span class="nav-number">9.3.</span> <span class="nav-text">调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%96%E8%AF%91"><span class="nav-number">9.4.</span> <span class="nav-text">编译</span></a></li></ol></li></ol></div>
-        </section>
+        </div>
         <!--/noindex-->
 
-        <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview-wrap sidebar-panel">
           <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <img class="site-author-image" itemprop="image" alt="Kewth"
       src="/images/avatar.jpeg">
@@ -398,7 +222,7 @@ mjx-container[display="true"] + br {
     </ul>
   </div>
 
-        </section>
+        </div>
       </div>
     </div>
   </aside>
@@ -408,7 +232,7 @@ mjx-container[display="true"] + br {
     </header>
 
     
-  <div class="back-to-top">
+  <div class="back-to-top" role="button" aria-label="返回顶部">
     <i class="fa fa-arrow-up"></i>
     <span>0%</span>
   </div>
@@ -465,7 +289,7 @@ mjx-container[display="true"] + br {
       </span>
 
   
-    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
       <span class="post-meta-item-icon">
         <i class="far fa-eye"></i>
       </span>
@@ -501,7 +325,7 @@ mjx-container[display="true"] + br {
 <h2 id="光标">光标</h2>
 <p>控制光标。 调用 initscr 后调用 endwin 前，输出终端控制符改变光标是无效的。</p>
 <h3 id="函数及示例">函数及示例</h3>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">move</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>; <span class="comment">// 将光标移动到 [x] 行 [y] 列，左上角为 0 行 0 列</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">curs_set</span><span class="params">(<span class="keyword">int</span> visiblility)</span></span>; <span class="comment">// 参数为 0 表示隐藏光标，1 表示显示光标</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getyx</span><span class="params">(WINDOW* win, <span class="keyword">int</span> &amp;x, <span class="keyword">int</span> &amp;y)</span></span>; <span class="comment">// 获取指定窗口光标位置，示例如下</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">move_up</span><span class="params">()</span> </span>&#123; <span class="comment">// 将光标上移</span></span><br><span class="line">	<span class="keyword">int</span> x, y;</span><br><span class="line">	getyx(stdscr, x, y); <span class="comment">// stdscr 表示标准屏幕</span></span><br><span class="line">	move(x - <span class="number">1</span>, y);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">move</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>; <span class="comment">// 将光标移动到 [x] 行 [y] 列，左上角为 0 行 0 列</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">curs_set</span><span class="params">(<span class="keyword">int</span> visiblility)</span></span>; <span class="comment">// 参数为 0 表示隐藏光标，1 表示显示光标</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getyx</span><span class="params">(WINDOW* win, <span class="keyword">int</span> &amp;x, <span class="keyword">int</span> &amp;y)</span></span>; <span class="comment">// 获取指定窗口光标位置，示例如下</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">move_up</span><span class="params">()</span> </span>&#123; <span class="comment">// 将光标上移</span></span><br><span class="line">	<span class="keyword">int</span> x, y;</span><br><span class="line">	<span class="built_in">getyx</span>(stdscr, x, y); <span class="comment">// stdscr 表示标准屏幕</span></span><br><span class="line">	<span class="built_in">move</span>(x - <span class="number">1</span>, y);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="指定位置输出">指定位置输出</h3>
 <p>在指定位置输出不必先 move 再 printw ， ncurses 提供了 mv 函数前缀在指定位置输出。 例如 <code>mvprintw(1, 2, "%d", 2)</code> 在 1 行 2 列输出 3 。 类似的有 mvaddch, mvaddstr 等。</p>
 <h2 id="颜色">颜色</h2>
@@ -511,10 +335,10 @@ mjx-container[display="true"] + br {
 <p>成功后会初始化全局变量 COLORS 表示终端支持的颜色数量 还会有 COLOT_WHITE, COLOR_RED 等 8 个表示颜色的变量。</p>
 <h3 id="使用">使用</h3>
 <p>例如希望打印白底黑字的信息：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *info)</span> </span>&#123;</span><br><span class="line">	init_pair(<span class="number">1</span>, COLOR_BLACK, COLOR_WHITE);</span><br><span class="line">		<span class="comment">// 的一个参数表示编号，后面两个分别表示字体和背景颜色</span></span><br><span class="line">	attron(COLOR_PAIR(<span class="number">1</span>));</span><br><span class="line">		<span class="comment">// attron 是一个设置函数，COLOR_PAIR 返回指定编号的颜色信息</span></span><br><span class="line">	addstr(info);</span><br><span class="line">	attroff(COLOR_PAIR(<span class="number">1</span>));</span><br><span class="line">		<span class="comment">// attroff 关闭设置（若接下来需要用其他颜色可以不调用 attroff 而直接使用 attron 覆盖设置</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *info)</span> </span>&#123;</span><br><span class="line">	<span class="built_in">init_pair</span>(<span class="number">1</span>, COLOR_BLACK, COLOR_WHITE);</span><br><span class="line">		<span class="comment">// 的一个参数表示编号，后面两个分别表示字体和背景颜色</span></span><br><span class="line">	<span class="built_in">attron</span>(<span class="built_in">COLOR_PAIR</span>(<span class="number">1</span>));</span><br><span class="line">		<span class="comment">// attron 是一个设置函数，COLOR_PAIR 返回指定编号的颜色信息</span></span><br><span class="line">	<span class="built_in">addstr</span>(info);</span><br><span class="line">	<span class="built_in">attroff</span>(<span class="built_in">COLOR_PAIR</span>(<span class="number">1</span>));</span><br><span class="line">		<span class="comment">// attroff 关闭设置（若接下来需要用其他颜色可以不调用 attroff 而直接使用 attron 覆盖设置</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="错误示例">错误示例</h3>
 <p>值得注意的是，必须保证 init_pair 的编号不与其他已初始化的编号重复 一个错误的调用如下：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> *info = <span class="string">&quot;ERROR CODE&quot;</span>;</span><br><span class="line">init_pair(<span class="number">1</span>, COLOR_BLACK, COLOR_WHITE);</span><br><span class="line">attron(COLOR_PAIR(<span class="number">1</span>));</span><br><span class="line">addstr(info); <span class="comment">// 打印白底黑字</span></span><br><span class="line">init_pair(<span class="number">1</span>, COLOR_BLACK, COLOR_RED);</span><br><span class="line">attron(COLOR_PAIR(<span class="number">1</span>));</span><br><span class="line">addstr(info); <span class="comment">// 打印白底红字</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> *info = <span class="string">&quot;ERROR CODE&quot;</span>;</span><br><span class="line"><span class="built_in">init_pair</span>(<span class="number">1</span>, COLOR_BLACK, COLOR_WHITE);</span><br><span class="line"><span class="built_in">attron</span>(<span class="built_in">COLOR_PAIR</span>(<span class="number">1</span>));</span><br><span class="line"><span class="built_in">addstr</span>(info); <span class="comment">// 打印白底黑字</span></span><br><span class="line"><span class="built_in">init_pair</span>(<span class="number">1</span>, COLOR_BLACK, COLOR_RED);</span><br><span class="line"><span class="built_in">attron</span>(<span class="built_in">COLOR_PAIR</span>(<span class="number">1</span>));</span><br><span class="line"><span class="built_in">addstr</span>(info); <span class="comment">// 打印白底红字</span></span><br></pre></td></tr></table></figure>
 <p>上述代码的期望打印出白字和黑字两种不同的颜色， 但事实上只会打印出红色一种。 解决方案便是将白底红字的 pair 编号设为 2 。</p>
 <h2 id="窗口">窗口</h2>
 <p>ncurses 有窗口类 WINDOW 并提供了 stdscr 作为默认窗口。 有时一个窗口无法满足需要，此时需要自己新建窗口。</p>
@@ -537,7 +361,7 @@ mjx-container[display="true"] + br {
 <p>有时候可能需要离开 ncurses 回到行缓冲模式做些事情而且需要在之后回到 ncurses 。 例如 Vim 里面输入 :!ls 就会退出 ncurses 运行 ls 命令，并在用户敲下回车后回到 ncurses。</p>
 <p>调用 def_prog_mode 暂存，调用 reset_prog_mode 恢复。</p>
 <h3 id="示例">示例</h3>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	initscr();</span><br><span class="line">	printw(<span class="string">&quot;Hello World !!!\n&quot;</span>);</span><br><span class="line">	getch(); <span class="comment">// 等待用户输入</span></span><br><span class="line">	def_prog_mode(); <span class="comment">// 存储当前tty 模式</span></span><br><span class="line">	endwin(); <span class="comment">// 退出 ncurses 模式</span></span><br><span class="line">	system(<span class="string">&quot;sh&quot;</span>); <span class="comment">// 返回普通的行缓冲模式</span></span><br><span class="line">	reset_prog_mode(); <span class="comment">// 返回到 def_prog_mode() 存储的 tty 模式</span></span><br><span class="line">	refresh(); <span class="comment">// 刷新屏幕（必须！）</span></span><br><span class="line">	getch(); <span class="comment">// 等待用户输入</span></span><br><span class="line">	endwin(); <span class="comment">// 退出 ncurses 模式</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="built_in">initscr</span>();</span><br><span class="line">	<span class="built_in">printw</span>(<span class="string">&quot;Hello World !!!\n&quot;</span>);</span><br><span class="line">	<span class="built_in">getch</span>(); <span class="comment">// 等待用户输入</span></span><br><span class="line">	<span class="built_in">def_prog_mode</span>(); <span class="comment">// 存储当前tty 模式</span></span><br><span class="line">	<span class="built_in">endwin</span>(); <span class="comment">// 退出 ncurses 模式</span></span><br><span class="line">	<span class="built_in">system</span>(<span class="string">&quot;sh&quot;</span>); <span class="comment">// 返回普通的行缓冲模式</span></span><br><span class="line">	<span class="built_in">reset_prog_mode</span>(); <span class="comment">// 返回到 def_prog_mode() 存储的 tty 模式</span></span><br><span class="line">	<span class="built_in">refresh</span>(); <span class="comment">// 刷新屏幕（必须！）</span></span><br><span class="line">	<span class="built_in">getch</span>(); <span class="comment">// 等待用户输入</span></span><br><span class="line">	<span class="built_in">endwin</span>(); <span class="comment">// 退出 ncurses 模式</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="输出中文等非-ascii-字符">输出中文等非 ASCII 字符</h2>
 <p>事实上 ncurses 并不支持直接输出中文， 这意味着调用 printw("中文") 会是一堆乱码。 解决方案如下：</p>
 <h3 id="安装库">安装库</h3>
@@ -580,29 +404,7 @@ mjx-container[display="true"] + br {
 
 
 
-    <div class="comments" id="gitalk-container"></div>
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      const commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
+    <div class="comments gitalk-container"></div>
 </div>
   </main>
 
@@ -619,7 +421,7 @@ mjx-container[display="true"] + br {
   <span class="author" itemprop="copyrightHolder">Kewth</span>
 </div>
 <div class="busuanzi-count">
-    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
       <span class="post-meta-item-icon">
         <i class="fa fa-user"></i>
       </span>
@@ -627,7 +429,7 @@ mjx-container[display="true"] + br {
         <span id="busuanzi_value_site_uv"></span>
       </span>
     </span>
-    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
       <span class="post-meta-item-icon">
         <i class="fa fa-eye"></i>
       </span>
@@ -636,19 +438,18 @@ mjx-container[display="true"] + br {
       </span>
     </span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
   </div>
 
     </div>
   </footer>
 
   
-  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
 
   
-
-<script src="/js/local-search.js"></script>
+<script src="/js/third-party/search/local-search.js"></script>
 
 
 
@@ -661,71 +462,16 @@ mjx-container[display="true"] + br {
 
 
 
+  
 
-  <script>
-  if (typeof MathJax === 'undefined') {
-    window.MathJax = {
-      tex: {
-        inlineMath: {'[+]': [['$', '$']]},
-        tags: 'ams'
-      },
-      options: {
-        renderActions: {
-          findScript: [10, doc => {
-            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-              const display = !!node.type.match(/; *mode=display/);
-              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-              const text = document.createTextNode('');
-              node.parentNode.replaceChild(text, node);
-              math.start = {node: text, delim: '', n: 0};
-              math.end = {node: text, delim: '', n: 0};
-              doc.math.push(math);
-            });
-          }, '', false],
-          insertedScript: [200, () => {
-            document.querySelectorAll('mjx-container').forEach(node => {
-              const target = node.parentNode;
-              if (target.nodeName.toLowerCase() === 'li') {
-                target.parentNode.classList.add('has-jax');
-              }
-            });
-          }, '', false]
-        }
-      }
-    };
-    const script = document.createElement('script');
-    script.src = '//cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-mml-chtml.js';
-    script.defer = true;
-    document.head.appendChild(script);
-  } else {
-    MathJax.startup.document.state(0);
-    MathJax.typesetClear();
-    MathJax.texReset();
-    MathJax.typeset();
-  }
-</script>
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{&quot;enable&quot;:true,&quot;tags&quot;:&quot;none&quot;,&quot;js&quot;:{&quot;url&quot;:&quot;https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;npm&#x2F;mathjax@3.1.4&#x2F;es5&#x2F;tex-mml-chtml.js&quot;,&quot;integrity&quot;:&quot;sha256-ncNI9OXOS5Ek4tzVYiOMmN&#x2F;KKCPZ6V0Cpv2P&#x2F;zHntiA&#x3D;&quot;}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
 
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
 
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1.7.0/dist/gitalk.css">
-
-<script>
-NexT.utils.loadComments('#gitalk-container', () => {
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1.7.0/dist/gitalk.min.js', () => {
-    var gitalk = new Gitalk({
-      clientID    : '5a2fdd60fe2f91777a6b',
-      clientSecret: '9ddb762244fffc5caff2490a05e53dbca8ae4902',
-      repo        : 'hexo-gitalk',
-      owner       : 'Kewth',
-      admin       : ['Kewth'],
-      id          : '99cd75269776c04804a574c07230ce96',
-        language: 'zh-CN',
-      distractionFreeMode: true
-    });
-    gitalk.render('gitalk-container');
-  }, window.Gitalk);
-});
-</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<script class="next-config" data-name="gitalk" type="application/json">{&quot;enable&quot;:true,&quot;github_id&quot;:&quot;Kewth&quot;,&quot;repo&quot;:&quot;hexo-gitalk&quot;,&quot;client_id&quot;:&quot;5a2fdd60fe2f91777a6b&quot;,&quot;client_secret&quot;:&quot;9ddb762244fffc5caff2490a05e53dbca8ae4902&quot;,&quot;admin_user&quot;:&quot;Kewth&quot;,&quot;distraction_free_mode&quot;:true,&quot;proxy&quot;:&quot;https:&#x2F;&#x2F;cors-anywhere.azm.workers.dev&#x2F;https:&#x2F;&#x2F;github.com&#x2F;login&#x2F;oauth&#x2F;access_token&quot;,&quot;language&quot;:&quot;zh-CN&quot;,&quot;js&quot;:{&quot;url&quot;:&quot;https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;npm&#x2F;gitalk@1.7.2&#x2F;dist&#x2F;gitalk.min.js&quot;,&quot;integrity&quot;:&quot;sha256-Pmj85ojLaPOWwRtlMJwmezB&#x2F;Qg8BzvJp5eTzvXaYAfA&#x3D;&quot;},&quot;path_md5&quot;:&quot;99cd75269776c04804a574c07230ce96&quot;}</script>
+<script src="/js/third-party/comments/gitalk.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 </body>
 </html>

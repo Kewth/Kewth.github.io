@@ -4,7 +4,7 @@
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.3.0">
+<meta name="generator" content="Hexo 5.4.0">
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
@@ -17,13 +17,10 @@
 
 
 
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"kewth.github.io","root":"/","images":"/images","scheme":"Muse","version":"8.1.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":3,"unescape":false,"preload":false}};
-  </script>
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;kewth.github.io&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Muse&quot;,&quot;version&quot;:&quot;8.5.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;always&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:true,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜索...&quot;,&quot;empty&quot;:&quot;没有找到任何搜索结果：${query}&quot;,&quot;hits_time&quot;:&quot;找到 ${hits} 个搜索结果（用时 ${time} 毫秒）&quot;,&quot;hits&quot;:&quot;找到 ${hits} 个搜索结果&quot;},&quot;path&quot;:&quot;&#x2F;search.xml&quot;,&quot;localsearch&quot;:{&quot;enable&quot;:true,&quot;trigger&quot;:&quot;auto&quot;,&quot;top_n_per_article&quot;:3,&quot;unescape&quot;:false,&quot;preload&quot;:false}}</script><script src="/js/config.js"></script>
 <meta name="description" content="美食家 题目大意 给定一张 \(n\) 点 \(m\) 边的有向图，边有不超过 \(w\) 的长度。现要求从点 \(1\) 出发经过长度恰为 \(T\) 的路径回到点 \(1\) ，每到达一个点就会获得等于该点点权的愉悦值。特别地，有 \(k\) 个美食节，形如“于时刻 \(t\) 到达点 \(x\) 会额外获得 \(y\) 的愉悦值”。最大化获得的愉悦值总和。 做法 1 考虑 \(k &#x3D; 0\)">
 <meta property="og:type" content="article">
 <meta property="og:title" content="NOI2020 题解报告">
@@ -42,173 +39,20 @@
 <link rel="canonical" href="https://kewth.github.io/2020/09/03/NOI2020-%E9%A2%98%E8%A7%A3%E6%8A%A5%E5%91%8A/">
 
 
-<script class="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome : false,
-    isPost : true,
-    lang   : 'zh-CN'
-  };
-</script>
+
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-CN&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;https:&#x2F;&#x2F;kewth.github.io&#x2F;2020&#x2F;09&#x2F;03&#x2F;NOI2020-%E9%A2%98%E8%A7%A3%E6%8A%A5%E5%91%8A&#x2F;&quot;,&quot;path&quot;:&quot;2020&#x2F;09&#x2F;03&#x2F;NOI2020-题解报告&#x2F;&quot;,&quot;title&quot;:&quot;NOI2020 题解报告&quot;}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
 <title>NOI2020 题解报告 | KeBlog</title>
   
 
 
 
+
   <noscript>
-  <style>
-  body { margin-top: 2rem; }
-
-  .use-motion .menu-item,
-  .use-motion .sidebar,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header {
-    visibility: visible;
-  }
-
-  .use-motion .header,
-  .use-motion .site-brand-container .toggle,
-  .use-motion .footer { opacity: initial; }
-
-  .use-motion .site-title,
-  .use-motion .site-subtitle,
-  .use-motion .custom-logo-image {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line {
-    transform: scaleX(1);
-  }
-
-  .search-pop-overlay, .sidebar-nav { display: none; }
-  .sidebar-panel { display: block; }
-  </style>
-</noscript>
-
-<style>mjx-container[jax="SVG"] {
-  direction: ltr;
-}
-
-mjx-container[jax="SVG"] > svg {
-  overflow: visible;
-}
-
-mjx-container[jax="SVG"] > svg a {
-  fill: blue;
-  stroke: blue;
-}
-
-mjx-container[jax="SVG"][display="true"] {
-  display: block;
-  text-align: center;
-  margin: 1em 0;
-}
-
-mjx-container[jax="SVG"][justify="left"] {
-  text-align: left;
-}
-
-mjx-container[jax="SVG"][justify="right"] {
-  text-align: right;
-}
-
-g[data-mml-node="merror"] > g {
-  fill: red;
-  stroke: red;
-}
-
-g[data-mml-node="merror"] > rect[data-background] {
-  fill: yellow;
-  stroke: none;
-}
-
-g[data-mml-node="mtable"] > line[data-line] {
-  stroke-width: 70px;
-  fill: none;
-}
-
-g[data-mml-node="mtable"] > rect[data-frame] {
-  stroke-width: 70px;
-  fill: none;
-}
-
-g[data-mml-node="mtable"] > .mjx-dashed {
-  stroke-dasharray: 140;
-}
-
-g[data-mml-node="mtable"] > .mjx-dotted {
-  stroke-linecap: round;
-  stroke-dasharray: 0,140;
-}
-
-g[data-mml-node="mtable"] > svg {
-  overflow: visible;
-}
-
-[jax="SVG"] mjx-tool {
-  display: inline-block;
-  position: relative;
-  width: 0;
-  height: 0;
-}
-
-[jax="SVG"] mjx-tool > mjx-tip {
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-mjx-tool > mjx-tip {
-  display: inline-block;
-  padding: .2em;
-  border: 1px solid #888;
-  font-size: 70%;
-  background-color: #F8F8F8;
-  color: black;
-  box-shadow: 2px 2px 5px #AAAAAA;
-}
-
-g[data-mml-node="maction"][data-toggle] {
-  cursor: pointer;
-}
-
-mjx-status {
-  display: block;
-  position: fixed;
-  left: 1em;
-  bottom: 1em;
-  min-width: 25%;
-  padding: .2em .4em;
-  border: 1px solid #888;
-  font-size: 90%;
-  background-color: #F8F8F8;
-  color: black;
-}
-
-foreignObject[data-mjx-xml] {
-  font-family: initial;
-  line-height: normal;
-  overflow: visible;
-}
-
-.MathJax path {
-  stroke-width: 3;
-}
-
-mjx-container[display="true"] {
-  overflow: auto hidden;
-}
-
-mjx-container[display="true"] + br {
-  display: none;
-}
-</style><link rel="alternate" href="/atom.xml" title="KeBlog" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="KeBlog" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
@@ -218,7 +62,7 @@ mjx-container[display="true"] + br {
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
+    <div class="toggle" aria-label="切换导航栏" role="button">
         <span class="toggle-line"></span>
         <span class="toggle-line"></span>
         <span class="toggle-line"></span>
@@ -246,31 +90,11 @@ mjx-container[display="true"] + br {
 
 <nav class="site-nav">
   <ul class="main-menu menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
-
-  </li>
-        <li class="menu-item menu-item-about">
-
-    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
-
-  </li>
-        <li class="menu-item menu-item-tags">
-
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">68</span></a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">83</span></a>
-
-  </li>
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">68</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">83</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -290,7 +114,7 @@ mjx-container[display="true"] + br {
            placeholder="搜索..." spellcheck="false"
            type="search" class="search-input">
   </div>
-  <span class="popup-btn-close">
+  <span class="popup-btn-close" role="button">
     <i class="fa fa-times-circle"></i>
   </span>
 </div>
@@ -306,7 +130,7 @@ mjx-container[display="true"] + br {
 </div>
         
   
-  <div class="toggle sidebar-toggle">
+  <div class="toggle sidebar-toggle" role="button">
     <span class="toggle-line"></span>
     <span class="toggle-line"></span>
     <span class="toggle-line"></span>
@@ -326,12 +150,12 @@ mjx-container[display="true"] + br {
 
       <div class="sidebar-panel-container">
         <!--noindex-->
-        <section class="post-toc-wrap sidebar-panel">
+        <div class="post-toc-wrap sidebar-panel">
             <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BE%8E%E9%A3%9F%E5%AE%B6"><span class="nav-number">1.</span> <span class="nav-text">美食家</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E5%A4%A7%E6%84%8F"><span class="nav-number">1.1.</span> <span class="nav-text">题目大意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%81%9A%E6%B3%95-1"><span class="nav-number">1.2.</span> <span class="nav-text">做法 1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%81%9A%E6%B3%95-2"><span class="nav-number">1.3.</span> <span class="nav-text">做法 2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%81%9A%E6%B3%95-3-%E6%AD%A3%E8%A7%A3"><span class="nav-number">1.4.</span> <span class="nav-text">做法 3 （正解）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%91%BD%E8%BF%90"><span class="nav-number">2.</span> <span class="nav-text">命运</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E5%A4%A7%E6%84%8F-1"><span class="nav-number">2.1.</span> <span class="nav-text">题目大意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%81%9A%E6%B3%95-1-1"><span class="nav-number">2.2.</span> <span class="nav-text">做法 1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%81%9A%E6%B3%95-2-%E6%AD%A3%E8%A7%A3"><span class="nav-number">2.3.</span> <span class="nav-text">做法 2 （正解）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%B6%E4%BB%A3%E7%9A%84%E7%9C%BC%E6%B3%AA"><span class="nav-number">3.</span> <span class="nav-text">时代的眼泪</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E5%A4%A7%E6%84%8F-2"><span class="nav-number">3.1.</span> <span class="nav-text">题目大意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%81%9A%E6%B3%95-1-2"><span class="nav-number">3.2.</span> <span class="nav-text">做法 1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%81%9A%E6%B3%95-2-1"><span class="nav-number">3.3.</span> <span class="nav-text">做法 2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%81%9A%E6%B3%95-3-%E6%AD%A3%E8%A7%A3-1"><span class="nav-number">3.4.</span> <span class="nav-text">做法 3 （正解）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%B6%E4%BD%9C%E8%8F%9C%E5%93%81"><span class="nav-number">4.</span> <span class="nav-text">制作菜品</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E5%A4%A7%E6%84%8F-3"><span class="nav-number">4.1.</span> <span class="nav-text">题目大意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%81%9A%E6%B3%95-1-3"><span class="nav-number">4.2.</span> <span class="nav-text">做法 1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%81%9A%E6%B3%95-2-%E6%AD%A3%E8%A7%A3-1"><span class="nav-number">4.3.</span> <span class="nav-text">做法 2 （正解）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B6%85%E7%8E%B0%E5%AE%9E%E6%A0%91"><span class="nav-number">5.</span> <span class="nav-text">超现实树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%81%9A%E6%B3%95-1-%E6%AD%A3%E8%A7%A3"><span class="nav-number">5.1.</span> <span class="nav-text">做法 1 （正解）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BF%BB%E4%BF%AE%E9%81%93%E8%B7%AF"><span class="nav-number">6.</span> <span class="nav-text">翻修道路</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%81%9A%E6%B3%95-1-4"><span class="nav-number">6.1.</span> <span class="nav-text">做法 1</span></a></li></ol></li></ol></div>
-        </section>
+        </div>
         <!--/noindex-->
 
-        <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview-wrap sidebar-panel">
           <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <img class="site-author-image" itemprop="image" alt="Kewth"
       src="/images/avatar.jpeg">
@@ -400,7 +224,7 @@ mjx-container[display="true"] + br {
     </ul>
   </div>
 
-        </section>
+        </div>
       </div>
     </div>
   </aside>
@@ -410,7 +234,7 @@ mjx-container[display="true"] + br {
     </header>
 
     
-  <div class="back-to-top">
+  <div class="back-to-top" role="button" aria-label="返回顶部">
     <i class="fa fa-arrow-up"></i>
     <span>0%</span>
   </div>
@@ -476,7 +300,7 @@ mjx-container[display="true"] + br {
     </span>
 
   
-    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
       <span class="post-meta-item-icon">
         <i class="far fa-eye"></i>
       </span>
@@ -503,7 +327,7 @@ mjx-container[display="true"] + br {
 <p>做法 1 的 DP 中转移与 <span class="math inline">\(i\)</span> 无关，可以想到把 <span class="math inline">\(f_i\)</span> 看做一个向量，用 max+ 矩阵描述转移，但是由于边有不等的长度，需要把连续 <span class="math inline">\(w\)</span> 个时刻的状态合并为一个向量，这样一来就可以用 max+ 矩阵描述转移，使用矩阵快速幂，复杂度 <span class="math inline">\(O(m + (wn)^3 \log T)\)</span> 。</p>
 <h3 id="做法-3-正解">做法 3 （正解）</h3>
 <p>现在考虑美食节，称有美食节的时刻为关键时刻，两个相邻的关键时刻之间是不受美食节影响的，可以套用矩阵快速幂的做法。那么就以关键时刻把时间轴分为 <span class="math inline">\(k+1\)</span> 段，每段用矩阵快速幂，在关键时刻把美食节的影响加到状态上即可。这里矩阵快速幂不能每次暴力矩阵乘矩阵，需要预处理矩阵乘积的幂次，然后用向量乘矩阵的方式处理每一段。复杂度 <span class="math inline">\(O(m + (wn)^3 \log T + k (wn)^2 \log T)\)</span> 。</p>
-<a id="more"></a>
+<span id="more"></span>
 <h2 id="命运">命运</h2>
 <h3 id="题目大意-1">题目大意</h3>
 <p>给定一棵 <span class="math inline">\(n\)</span> 个点的有根树和 <span class="math inline">\(m\)</span> 个点对，第 <span class="math inline">\(i\)</span> 个点对 <span class="math inline">\((x, y)\)</span> 满足 <span class="math inline">\(x\)</span> 是 <span class="math inline">\(y\)</span> 的祖先。求有多少把边黑白染色的方案使得任意给定的点对都满足 <span class="math inline">\(x\)</span> 到 <span class="math inline">\(y\)</span> 的路径上存在染黑的边。</p>
@@ -626,29 +450,7 @@ mjx-container[display="true"] + br {
 
 
 
-    <div class="comments" id="gitalk-container"></div>
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      const commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
+    <div class="comments gitalk-container"></div>
 </div>
   </main>
 
@@ -665,7 +467,7 @@ mjx-container[display="true"] + br {
   <span class="author" itemprop="copyrightHolder">Kewth</span>
 </div>
 <div class="busuanzi-count">
-    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
       <span class="post-meta-item-icon">
         <i class="fa fa-user"></i>
       </span>
@@ -673,7 +475,7 @@ mjx-container[display="true"] + br {
         <span id="busuanzi_value_site_uv"></span>
       </span>
     </span>
-    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
       <span class="post-meta-item-icon">
         <i class="fa fa-eye"></i>
       </span>
@@ -682,19 +484,18 @@ mjx-container[display="true"] + br {
       </span>
     </span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
   </div>
 
     </div>
   </footer>
 
   
-  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
 
   
-
-<script src="/js/local-search.js"></script>
+<script src="/js/third-party/search/local-search.js"></script>
 
 
 
@@ -707,71 +508,16 @@ mjx-container[display="true"] + br {
 
 
 
+  
 
-  <script>
-  if (typeof MathJax === 'undefined') {
-    window.MathJax = {
-      tex: {
-        inlineMath: {'[+]': [['$', '$']]},
-        tags: 'ams'
-      },
-      options: {
-        renderActions: {
-          findScript: [10, doc => {
-            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-              const display = !!node.type.match(/; *mode=display/);
-              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-              const text = document.createTextNode('');
-              node.parentNode.replaceChild(text, node);
-              math.start = {node: text, delim: '', n: 0};
-              math.end = {node: text, delim: '', n: 0};
-              doc.math.push(math);
-            });
-          }, '', false],
-          insertedScript: [200, () => {
-            document.querySelectorAll('mjx-container').forEach(node => {
-              const target = node.parentNode;
-              if (target.nodeName.toLowerCase() === 'li') {
-                target.parentNode.classList.add('has-jax');
-              }
-            });
-          }, '', false]
-        }
-      }
-    };
-    const script = document.createElement('script');
-    script.src = '//cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-mml-chtml.js';
-    script.defer = true;
-    document.head.appendChild(script);
-  } else {
-    MathJax.startup.document.state(0);
-    MathJax.typesetClear();
-    MathJax.texReset();
-    MathJax.typeset();
-  }
-</script>
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{&quot;enable&quot;:true,&quot;tags&quot;:&quot;none&quot;,&quot;js&quot;:{&quot;url&quot;:&quot;https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;npm&#x2F;mathjax@3.1.4&#x2F;es5&#x2F;tex-mml-chtml.js&quot;,&quot;integrity&quot;:&quot;sha256-ncNI9OXOS5Ek4tzVYiOMmN&#x2F;KKCPZ6V0Cpv2P&#x2F;zHntiA&#x3D;&quot;}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
 
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
 
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1.7.0/dist/gitalk.css">
-
-<script>
-NexT.utils.loadComments('#gitalk-container', () => {
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1.7.0/dist/gitalk.min.js', () => {
-    var gitalk = new Gitalk({
-      clientID    : '5a2fdd60fe2f91777a6b',
-      clientSecret: '9ddb762244fffc5caff2490a05e53dbca8ae4902',
-      repo        : 'hexo-gitalk',
-      owner       : 'Kewth',
-      admin       : ['Kewth'],
-      id          : 'c9000d109cf615a18456c53c481094e9',
-        language: 'zh-CN',
-      distractionFreeMode: true
-    });
-    gitalk.render('gitalk-container');
-  }, window.Gitalk);
-});
-</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<script class="next-config" data-name="gitalk" type="application/json">{&quot;enable&quot;:true,&quot;github_id&quot;:&quot;Kewth&quot;,&quot;repo&quot;:&quot;hexo-gitalk&quot;,&quot;client_id&quot;:&quot;5a2fdd60fe2f91777a6b&quot;,&quot;client_secret&quot;:&quot;9ddb762244fffc5caff2490a05e53dbca8ae4902&quot;,&quot;admin_user&quot;:&quot;Kewth&quot;,&quot;distraction_free_mode&quot;:true,&quot;proxy&quot;:&quot;https:&#x2F;&#x2F;cors-anywhere.azm.workers.dev&#x2F;https:&#x2F;&#x2F;github.com&#x2F;login&#x2F;oauth&#x2F;access_token&quot;,&quot;language&quot;:&quot;zh-CN&quot;,&quot;js&quot;:{&quot;url&quot;:&quot;https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;npm&#x2F;gitalk@1.7.2&#x2F;dist&#x2F;gitalk.min.js&quot;,&quot;integrity&quot;:&quot;sha256-Pmj85ojLaPOWwRtlMJwmezB&#x2F;Qg8BzvJp5eTzvXaYAfA&#x3D;&quot;},&quot;path_md5&quot;:&quot;c9000d109cf615a18456c53c481094e9&quot;}</script>
+<script src="/js/third-party/comments/gitalk.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 </body>
 </html>
