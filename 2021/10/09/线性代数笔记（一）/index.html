@@ -21,15 +21,15 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;kewth.github.io&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Muse&quot;,&quot;version&quot;:&quot;8.5.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;always&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:true,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜索...&quot;,&quot;empty&quot;:&quot;没有找到任何搜索结果：${query}&quot;,&quot;hits_time&quot;:&quot;找到 ${hits} 个搜索结果（用时 ${time} 毫秒）&quot;,&quot;hits&quot;:&quot;找到 ${hits} 个搜索结果&quot;},&quot;path&quot;:&quot;&#x2F;search.xml&quot;,&quot;localsearch&quot;:{&quot;enable&quot;:true,&quot;trigger&quot;:&quot;auto&quot;,&quot;top_n_per_article&quot;:3,&quot;unescape&quot;:false,&quot;preload&quot;:false}}</script><script src="/js/config.js"></script>
-<meta name="description" content="\(\newcommand{\Span}{\operatorname{span}}\) \(\newcommand{\Nullity}{\operatorname{nullity}}\) \(\newcommand{\Rank}{\operatorname{rank}}\) \(\newcommand{\Colon}{\colon\;\;}\) Cahp. 1 vector spaces 域 (f">
+<meta name="description" content="\(\newcommand{\Span}{\operatorname{span}}\) \(\newcommand{\Nullity}{\operatorname{nullity}}\) \(\newcommand{\Rank}{\operatorname{rank}}\) \(\newcommand{\Colon}{\colon\;\;}\) \(\newcommand{\lA}{\langle">
 <meta property="og:type" content="article">
 <meta property="og:title" content="线性代数笔记（一）">
 <meta property="og:url" content="https://kewth.github.io/2021/10/09/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/index.html">
 <meta property="og:site_name" content="KeBlog">
-<meta property="og:description" content="\(\newcommand{\Span}{\operatorname{span}}\) \(\newcommand{\Nullity}{\operatorname{nullity}}\) \(\newcommand{\Rank}{\operatorname{rank}}\) \(\newcommand{\Colon}{\colon\;\;}\) Cahp. 1 vector spaces 域 (f">
+<meta property="og:description" content="\(\newcommand{\Span}{\operatorname{span}}\) \(\newcommand{\Nullity}{\operatorname{nullity}}\) \(\newcommand{\Rank}{\operatorname{rank}}\) \(\newcommand{\Colon}{\colon\;\;}\) \(\newcommand{\lA}{\langle">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-10-09T03:07:31.000Z">
-<meta property="article:modified_time" content="2021-11-07T16:44:04.131Z">
+<meta property="article:modified_time" content="2021-11-14T10:53:25.432Z">
 <meta property="article:author" content="Kewth">
 <meta property="article:tag" content="线代">
 <meta name="twitter:card" content="summary">
@@ -150,7 +150,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#cahp.-1"><span class="nav-number">1.</span> <span class="nav-text">Cahp. 1</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#vector-spaces"><span class="nav-number">1.1.</span> <span class="nav-text">vector spaces</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#subspaces"><span class="nav-number">1.2.</span> <span class="nav-text">subspaces</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#linear-combinations-and-systems-of-linear-equations"><span class="nav-number">1.3.</span> <span class="nav-text">linear combinations and systems of linear equations</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#linear-dependence-and-linear-independence"><span class="nav-number">1.4.</span> <span class="nav-text">linear dependence and linear independence</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bases-and-dimension"><span class="nav-number">1.5.</span> <span class="nav-text">bases and dimension</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#maximal-linearly-independent-subsets"><span class="nav-number">1.6.</span> <span class="nav-text">maximal linearly independent subsets</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cahp.-2"><span class="nav-number">2.</span> <span class="nav-text">Cahp. 2</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#linear-transformations-null-spaces-and-rages"><span class="nav-number">2.1.</span> <span class="nav-text">linear transformations, null spaces, and rages</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#the-matrix-representation-of-a-linear-transformation"><span class="nav-number">2.2.</span> <span class="nav-text">the matrix representation of a linear transformation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#composition-of-linear-transformations-and-matrix-multiplication"><span class="nav-number">2.3.</span> <span class="nav-text">composition of linear transformations and matrix multiplication</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#invertibility-and-isomorphisms"><span class="nav-number">2.4.</span> <span class="nav-text">invertibility and isomorphisms</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#the-change-of-coordinate-matrix"><span class="nav-number">2.5.</span> <span class="nav-text">the change of coordinate matrix</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dual-spaces"><span class="nav-number">2.6.</span> <span class="nav-text">dual spaces</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#homogeneous-linear-differential-equations-with-constant-coefficients"><span class="nav-number">2.7.</span> <span class="nav-text">homogeneous linear differential equations with constant coefficients</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cahp.-3"><span class="nav-number">3.</span> <span class="nav-text">Cahp. 3</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#elementary-matrix-operations-and-elementary-matrices"><span class="nav-number">3.1.</span> <span class="nav-text">elementary matrix operations and elementary matrices</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#the-rank-of-a-matrix-and-matrix-inverses"><span class="nav-number">3.2.</span> <span class="nav-text">the rank of a matrix and matrix inverses</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#systems-of-linear-equations---theoretical-aspects"><span class="nav-number">3.3.</span> <span class="nav-text">systems of linear equations - theoretical aspects</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#systems-of-linear-equations---computational-aspects"><span class="nav-number">3.4.</span> <span class="nav-text">systems of linear equations - computational aspects</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cahp.-4"><span class="nav-number">4.</span> <span class="nav-text">Cahp. 4</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#determinants-of-order-2"><span class="nav-number">4.1.</span> <span class="nav-text">determinants of order 2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#determinants-of-order-n"><span class="nav-number">4.2.</span> <span class="nav-text">determinants of order \(n\)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#properties-of-determinants"><span class="nav-number">4.3.</span> <span class="nav-text">properties of determinants</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#chap.-5"><span class="nav-number">5.</span> <span class="nav-text">Chap. 5</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#eigenvalues-and-eigenvectors"><span class="nav-number">5.1.</span> <span class="nav-text">eigenvalues and eigenvectors</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#diagonalizability"><span class="nav-number">5.2.</span> <span class="nav-text">diagonalizability</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#cahp.-1"><span class="nav-number">1.</span> <span class="nav-text">Cahp. 1</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#vector-spaces"><span class="nav-number">1.1.</span> <span class="nav-text">vector spaces</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#subspaces"><span class="nav-number">1.2.</span> <span class="nav-text">subspaces</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#linear-combinations-and-systems-of-linear-equations"><span class="nav-number">1.3.</span> <span class="nav-text">linear combinations and systems of linear equations</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#linear-dependence-and-linear-independence"><span class="nav-number">1.4.</span> <span class="nav-text">linear dependence and linear independence</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bases-and-dimension"><span class="nav-number">1.5.</span> <span class="nav-text">bases and dimension</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#maximal-linearly-independent-subsets"><span class="nav-number">1.6.</span> <span class="nav-text">maximal linearly independent subsets</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cahp.-2"><span class="nav-number">2.</span> <span class="nav-text">Cahp. 2</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#linear-transformations-null-spaces-and-rages"><span class="nav-number">2.1.</span> <span class="nav-text">linear transformations, null spaces, and rages</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#the-matrix-representation-of-a-linear-transformation"><span class="nav-number">2.2.</span> <span class="nav-text">the matrix representation of a linear transformation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#composition-of-linear-transformations-and-matrix-multiplication"><span class="nav-number">2.3.</span> <span class="nav-text">composition of linear transformations and matrix multiplication</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#invertibility-and-isomorphisms"><span class="nav-number">2.4.</span> <span class="nav-text">invertibility and isomorphisms</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#the-change-of-coordinate-matrix"><span class="nav-number">2.5.</span> <span class="nav-text">the change of coordinate matrix</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dual-spaces"><span class="nav-number">2.6.</span> <span class="nav-text">dual spaces</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#homogeneous-linear-differential-equations-with-constant-coefficients"><span class="nav-number">2.7.</span> <span class="nav-text">homogeneous linear differential equations with constant coefficients</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cahp.-3"><span class="nav-number">3.</span> <span class="nav-text">Cahp. 3</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#elementary-matrix-operations-and-elementary-matrices"><span class="nav-number">3.1.</span> <span class="nav-text">elementary matrix operations and elementary matrices</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#the-rank-of-a-matrix-and-matrix-inverses"><span class="nav-number">3.2.</span> <span class="nav-text">the rank of a matrix and matrix inverses</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#systems-of-linear-equations---theoretical-aspects"><span class="nav-number">3.3.</span> <span class="nav-text">systems of linear equations - theoretical aspects</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#systems-of-linear-equations---computational-aspects"><span class="nav-number">3.4.</span> <span class="nav-text">systems of linear equations - computational aspects</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cahp.-4"><span class="nav-number">4.</span> <span class="nav-text">Cahp. 4</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#determinants-of-order-2"><span class="nav-number">4.1.</span> <span class="nav-text">determinants of order 2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#determinants-of-order-n"><span class="nav-number">4.2.</span> <span class="nav-text">determinants of order \(n\)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#properties-of-determinants"><span class="nav-number">4.3.</span> <span class="nav-text">properties of determinants</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#chap.-5"><span class="nav-number">5.</span> <span class="nav-text">Chap. 5</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#eigenvalues-and-eigenvectors"><span class="nav-number">5.1.</span> <span class="nav-text">eigenvalues and eigenvectors</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#diagonalizability"><span class="nav-number">5.2.</span> <span class="nav-text">diagonalizability</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#matrix-limits-and-markov-chains"><span class="nav-number">5.3.</span> <span class="nav-text">matrix limits and markov chains</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#invariant-subspaces-and-the-cayley-hamilton-theorem"><span class="nav-number">5.4.</span> <span class="nav-text">invariant subspaces and the cayley-hamilton theorem</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#chap.-6-inner-product-spaces"><span class="nav-number">6.</span> <span class="nav-text">Chap. 6 INNER PRODUCT SPACES</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#inner-products-and-norms"><span class="nav-number">6.1.</span> <span class="nav-text">inner products and norms</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -286,7 +286,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-11-08 00:44:04" itemprop="dateModified" datetime="2021-11-08T00:44:04+08:00">2021-11-08</time>
+        <time title="修改时间：2021-11-14 18:53:25" itemprop="dateModified" datetime="2021-11-14T18:53:25+08:00">2021-11-14</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -316,10 +316,10 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p><span class="math inline">\(\newcommand{\Span}{\operatorname{span}}\)</span> <span class="math inline">\(\newcommand{\Nullity}{\operatorname{nullity}}\)</span> <span class="math inline">\(\newcommand{\Rank}{\operatorname{rank}}\)</span> <span class="math inline">\(\newcommand{\Colon}{\colon\;\;}\)</span></p>
+        <p><span class="math inline">\(\newcommand{\Span}{\operatorname{span}}\)</span> <span class="math inline">\(\newcommand{\Nullity}{\operatorname{nullity}}\)</span> <span class="math inline">\(\newcommand{\Rank}{\operatorname{rank}}\)</span> <span class="math inline">\(\newcommand{\Colon}{\colon\;\;}\)</span> <span class="math inline">\(\newcommand{\lA}{\langle}\)</span> <span class="math inline">\(\newcommand{\rA}{\rangle}\)</span> <span class="math inline">\(\newcommand{\lV}{\lVert}\)</span> <span class="math inline">\(\newcommand{\rV}{\rVert}\)</span></p>
 <h2 id="cahp.-1">Cahp. 1</h2>
 <h3 id="vector-spaces">vector spaces</h3>
-<p>域 (field) <span class="math inline">\(F\)</span> 上的向量空间 (vector space) 或线性空间 (linear space) <span class="math inline">\(V\)</span> 包含一个向量集合和两个运算 (addition and scalar multiplication) 满足：</p>
+<p>域 (field) <span class="math inline">\(F\)</span> 上的向量空间 (vector space over <span class="math inline">\(F\)</span>) 或线性空间 (linear space) <span class="math inline">\(V\)</span> 包含一个向量集合和两个运算 (addition and scalar multiplication) 满足：</p>
 <ol type="1">
 <li>加法交换律 (commutativity of addition) 。</li>
 <li>加法结合律 (associativity of addition) 。</li>
@@ -332,7 +332,7 @@
 <p>其中加法是向量加法，乘法是 <span class="math inline">\(F\)</span> 上的标量乘向量（标乘）。</p>
 <span id="more"></span>
 <h3 id="subspaces">subspaces</h3>
-<p><span class="math inline">\(\{0\}\)</span> 总是向量空间 <span class="math inline">\(V\)</span> 的一个子空间 (subspace) 。<span class="math inline">\(W\)</span> 是 <span class="math inline">\(V\)</span> 的子空间当且仅当</p>
+<p><span class="math inline">\(\{0\}\)</span> 总是向量空间 <span class="math inline">\(V\)</span> 的一个子空间 (subspace of <span class="math inline">\(V\)</span>) 。<span class="math inline">\(W\)</span> 是 <span class="math inline">\(V\)</span> 的子空间当且仅当</p>
 <p><span class="math display">\[
     \forall x, y \in W, c \in F \;\; cx + y \in W
 \]</span></p>
@@ -362,7 +362,7 @@
 <p>线性相关集的父集也线性相关，线性无关集的子集也线性无关。</p>
 <p>对于线性无关集 <span class="math inline">\(S \subset V\)</span> 和 <span class="math inline">\(v \in V\)</span> ，<span class="math inline">\(S \cup \{v\}\)</span> 仍然线性无关当且仅当 <span class="math inline">\(v \in \Span(S)\)</span> 。</p>
 <h3 id="bases-and-dimension">bases and dimension</h3>
-<p>向量空间 <span class="math inline">\(V\)</span> 的基 (basis) 是指线性无关的能生成 <span class="math inline">\(V\)</span> 的子集 <span class="math inline">\(\beta\)</span> 。<span class="math inline">\(V\)</span> 中的每个向量都是 <span class="math inline">\(\beta\)</span> 的线性组合且系数唯一。</p>
+<p>向量空间 <span class="math inline">\(V\)</span> 的基 (basis for <span class="math inline">\(V\)</span>) 是指线性无关的能生成 <span class="math inline">\(V\)</span> 的子集 <span class="math inline">\(\beta\)</span> 。<span class="math inline">\(V\)</span> 中的每个向量都是 <span class="math inline">\(\beta\)</span> 的线性组合且系数唯一。</p>
 <p>对于有限集 <span class="math inline">\(S\)</span> 若 <span class="math inline">\(\Span(S) = V\)</span> 则存在 <span class="math inline">\(\beta \subset S\)</span> 是 <span class="math inline">\(V\)</span> 的一组基。</p>
 <p>对于线性无关集 <span class="math inline">\(S\)</span> 一定存在 <span class="math inline">\(\beta \supset S\)</span> 是 <span class="math inline">\(V\)</span> 的一组基，这也称作 <span class="math inline">\(S\)</span> 可以扩展 (extend) 到 <span class="math inline">\(\beta\)</span> 。</p>
 <hr />
@@ -558,6 +558,71 @@
 <li><p>每个 <span class="math inline">\(W_i\)</span> 总可以找到基 <span class="math inline">\(\beta_i\)</span> 使得 <span class="math inline">\(\beta_1 \cup \beta_2 \cup \ldots \cup \beta_k\)</span> 是 <span class="math inline">\(V\)</span> 的一组基。</p></li>
 </ul>
 <p>线性算子 <span class="math inline">\(T\)</span> 可对角化当且仅当 <span class="math inline">\(V\)</span> 是所有特征空间的直和。</p>
+<h3 id="matrix-limits-and-markov-chains">matrix limits and markov chains</h3>
+<p>略</p>
+<h3 id="invariant-subspaces-and-the-cayley-hamilton-theorem">invariant subspaces and the cayley-hamilton theorem</h3>
+<p>对于 <span class="math inline">\(V\)</span> 上的线性算子 <span class="math inline">\(T\)</span> 。<span class="math inline">\(V\)</span> 的子空间 <span class="math inline">\(W\)</span> 被称为 <span class="math inline">\(T\)</span>-不变子空间 (<span class="math inline">\(T\)</span>-invariant subspace) 当且仅当 <span class="math inline">\(T(W) \subset W\)</span> 。</p>
+<p><span class="math inline">\(\Span(\{x, T(x), T^2(x), \ldots\})\)</span> 称作 <span class="math inline">\(x\)</span> 生成的 <span class="math inline">\(T\)</span>-循环子空间 (<span class="math inline">\(T\)</span>-cyclic subspace generated by <span class="math inline">\(x\)</span>) 。<span class="math inline">\(T\)</span>-循环子空间一定是 <span class="math inline">\(T\)</span>-不变子空间。</p>
+<hr />
+<p>对于 <span class="math inline">\(T\)</span>-不变子空间 <span class="math inline">\(W\)</span> ，<span class="math inline">\(T\)</span> 在 <span class="math inline">\(W\)</span> 上的限制 (restriction of <span class="math inline">\(T\)</span> to <span class="math inline">\(W\)</span>) 是 <span class="math inline">\(W\)</span> 上的线性算子（记作 <span class="math inline">\(T|_{W}\)</span>），且它的特征多项式是 <span class="math inline">\(T\)</span> 的特征多项式的因子。</p>
+<hr />
+<p>对于 <span class="math inline">\(x\)</span> 生成的 <span class="math inline">\(k\)</span> 维的 <span class="math inline">\(T\)</span>-循环子空间 <span class="math inline">\(W\)</span> ：</p>
+<ul>
+<li><span class="math inline">\(\{x, T(x), T^2(x), \ldots, T^{k-1}(x)\}\)</span> 是 <span class="math inline">\(W\)</span> 的一组基。</li>
+<li>对于 <span class="math inline">\(\sum_{i=0}^{k-1} a_i T^{i}(x) + T^k(x) = 0\)</span> ，<span class="math inline">\(T|_W\)</span> 的特征多项式为 <span class="math inline">\(f(t) = (-1)^k (\sum_{i=0}^{k-1} a_i t^i + t^k)\)</span> 。</li>
+</ul>
+<hr />
+<p>Cayley-Hamilton Theorem: 线性算子 <span class="math inline">\(T\)</span> 的特征多项式 <span class="math inline">\(f(t)\)</span> 满足 <span class="math inline">\(f(T) = T_0\)</span> 。方阵 <span class="math inline">\(A\)</span> 的特征多项式 <span class="math inline">\(p_A(t)\)</span> 满足 <span class="math inline">\(p_A(A) = O\)</span> 。</p>
+<hr />
+<p>如果将 <span class="math inline">\(V\)</span> 分解成多个不变子空间的直和 <span class="math inline">\(V = W_1 \oplus W_2 \oplus \ldots \oplus W_k\)</span> ，那么线性算子 <span class="math inline">\(T\)</span> 的特征多项式就是每个分解后的子空间上 <span class="math inline">\(T\)</span> 的限制的特征多项式的乘积。</p>
+<p><span class="math display">\[
+    f_T = f_{T|W_1} f_{T|W_2} \ldots f_{T|W_k}
+\]</span></p>
+<hr />
+<p>方阵 <span class="math inline">\(B_1\)</span> 和 <span class="math inline">\(B_2\)</span> 的直和定义为</p>
+<p><span class="math display">\[
+    B_1 \oplus B_2 = \begin{pmatrix} B_1 &amp; O \\ O &amp; B_2 \end{pmatrix}
+\]</span></p>
+<h2 id="chap.-6-inner-product-spaces">Chap. 6 INNER PRODUCT SPACES</h2>
+<h3 id="inner-products-and-norms">inner products and norms</h3>
+<p>对于标量在 <span class="math inline">\(\mathbb{R}\)</span> 或 <span class="math inline">\(\mathbb{C}\)</span> 上的线性空间 <span class="math inline">\(V\)</span> 。映射 <span class="math inline">\(\lA , \rA \Colon V^2 \to F\)</span> 称作内积 (inner product on <span class="math inline">\(V\)</span>) 当且仅当满足：</p>
+<ul>
+<li>对第一个元素线性：<span class="math inline">\(\lA c x_1 + x_2, y \rA = c \lA x_1, y \rA + \lA x_2, y \rA\)</span> 。</li>
+<li>共轭对称：<span class="math inline">\(\overline{\lA x, y \rA} = \lA y, x \rA\)</span> 。</li>
+<li><span class="math inline">\(x \ne 0 \Rightarrow \lA x, x \rA &gt; 0\)</span> （注意到共轭对称表明 <span class="math inline">\(\lA x, x \rA \in \mathbb{R}\)</span>）</li>
+</ul>
+<p>带有一个内积的线性空间被称为内积空间 (inner product space) 。有复数内积空间和实数内积空间。</p>
+<hr />
+<p><span class="math inline">\(V = F^n\)</span> 的标准内积 (standard inner product) 定义为</p>
+<p><span class="math display">\[
+    \lA x, y \rA = \sum_{i=1}^n x_i \overline{y_i}
+\]</span></p>
+<p><span class="math inline">\(F = \mathbb{R}\)</span> 时也称为点积，记作 <span class="math inline">\(x \cdot y\)</span> 。</p>
+<p><span class="math inline">\(V = M_{n \times n}(F)\)</span> 的弗罗比尼乌斯内积 (Frobenius inner product) 定义为</p>
+<p><span class="math display">\[
+    \lA A, B \rA = \mathrm{tr}(\overline{B^T} A)
+\]</span></p>
+<hr />
+<p>内积还有如下性质：</p>
+<ul>
+<li>对第二个元素有共轭线性 (conjugate linear) ：<span class="math inline">\(\lA x, c y_1 + y_2 \rA = \overline{c} \lA x, y_1 \rA + \lA x, y_2 \rA\)</span> 。</li>
+<li><span class="math inline">\(\lA x, 0 \rA = \lA 0, x \rA = 0\)</span></li>
+<li><span class="math inline">\(\lA x, x \rA = 0 \Leftrightarrow x = 0\)</span></li>
+<li><span class="math inline">\((\forall x \in V \;\; \lA x, y \rA = \lA x, z \rA) \Rightarrow y = z\)</span></li>
+</ul>
+<hr />
+<p><span class="math inline">\(x\)</span> 的范数 (norm) 或长度 (length) 可以定义为 <span class="math inline">\(\lV x \rV = \sqrt{\lA x, x \rA}\)</span> 。</p>
+<p>范数除了满足内积的线性性和非负性外，还满足两个不等式：</p>
+<ul>
+<li>Cauchy-Schwarz Inequality: <span class="math inline">\(\lvert\lA x, y \rA\rvert \le \lV x \rV \lV y \rV\)</span></li>
+<li>Triangle Inequality: <span class="math inline">\(\lV x + y \rV \le \lV x \rV + \lV y \rV\)</span></li>
+</ul>
+<hr />
+<p>如果 <span class="math inline">\(\lA x, y \rA = 0\)</span> 则称 <span class="math inline">\(x\)</span> 和 <span class="math inline">\(y\)</span> 是正交 (orthogonal) 或垂直 (perpendicular) 的。</p>
+<p>集合 <span class="math inline">\(S\)</span> 是正交的当且仅当其中任意两个元素都是正交的。</p>
+<hr />
+<p>满足 <span class="math inline">\(\lV v \rV = 0\)</span> 的向量 <span class="math inline">\(v\)</span> 称作单位向量 (unit vector) 。</p>
+<p>...</p>
 
     </div>
 
