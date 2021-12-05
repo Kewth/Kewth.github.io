@@ -232,7 +232,7 @@ $$
   <entry>
     <title>线性代数笔记（一）</title>
     <url>/2021/10/09/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/</url>
-    <content><![CDATA[<p><span class="math inline">\(\newcommand{\Span}{\operatorname{span}}\)</span> <span class="math inline">\(\newcommand{\Nullity}{\operatorname{nullity}}\)</span> <span class="math inline">\(\newcommand{\Rank}{\operatorname{rank}}\)</span> <span class="math inline">\(\newcommand{\Colon}{\colon\;\;}\)</span> <span class="math inline">\(\newcommand{\lA}{\langle}\)</span> <span class="math inline">\(\newcommand{\rA}{\rangle}\)</span> <span class="math inline">\(\newcommand{\lV}{\lVert}\)</span> <span class="math inline">\(\newcommand{\rV}{\rVert}\)</span></p>
+    <content><![CDATA[<p><span class="math inline">\(\newcommand{\Span}{\operatorname{span}}\)</span> <span class="math inline">\(\newcommand{\Nullity}{\operatorname{nullity}}\)</span> <span class="math inline">\(\newcommand{\Rank}{\operatorname{rank}}\)</span> <span class="math inline">\(\newcommand{\Colon}{\colon\;\;}\)</span> <span class="math inline">\(\newcommand{\Inner}[1]{\langle #1 \rangle}\)</span> <span class="math inline">\(\newcommand{\Norm}[1]{\lVert #1 \rVert}\)</span></p>
 <h2 id="cahp.-1">Cahp. 1</h2>
 <h3 id="vector-spaces">vector spaces</h3>
 <p>域 (field) <span class="math inline">\(F\)</span> 上的向量空间 (vector space over <span class="math inline">\(F\)</span>) 或线性空间 (linear space) <span class="math inline">\(V\)</span> 包含一个向量集合和两个运算 (addition and scalar multiplication) 满足：</p>
@@ -374,16 +374,16 @@ $$
 <h3 id="dual-spaces">dual spaces</h3>
 <p>从线性空间 <span class="math inline">\(V\)</span> 到其标量所在域 <span class="math inline">\(F\)</span> 的线性映射 <span class="math inline">\(T \Colon V \to F\)</span> 称作线性泛函 (linear functional) 。</p>
 <p>对于有序基 <span class="math inline">\(\beta\)</span> ，线性泛函 <span class="math inline">\(f_i(x) = e_i^t [x]_{\beta}\)</span> 称为关于 <span class="math inline">\(\beta\)</span> 的第 <span class="math inline">\(i\)</span> 个坐标函数（？）。<span class="math inline">\(e_i^t\)</span> 表示 <span class="math inline">\(e_i\)</span> 的转置。</p>
-<p><span class="math inline">\(V\)</span> 的对偶空间 (dual space) 定义为 <span class="math inline">\(V^{\star} = \mathcal{L}(V, F)\)</span> 。</p>
-<p><span class="math inline">\(\beta = \{x_1, x_2, \cdots, x_n\}\)</span> 的对偶基 (dual basis) 为 <span class="math inline">\(\beta^{\star} = \{f_1, f_2, \cdots, f_n\}\)</span> 。<span class="math inline">\(\beta^{\star}\)</span> 是 <span class="math inline">\(V^{\star}\)</span> 的一个基。</p>
+<p><span class="math inline">\(V\)</span> 的对偶空间 (dual space) 定义为 <span class="math inline">\(V^* = \mathcal{L}(V, F)\)</span> 。</p>
+<p><span class="math inline">\(\beta = \{x_1, x_2, \cdots, x_n\}\)</span> 的对偶基 (dual basis) 为 <span class="math inline">\(\beta^* = \{f_1, f_2, \cdots, f_n\}\)</span> 。<span class="math inline">\(\beta^*\)</span> 是 <span class="math inline">\(V^*\)</span> 的一个基。</p>
 <hr />
-<p>对于线性映射 <span class="math inline">\(T \Colon V \to W\)</span> 定义其转置 (transpose) <span class="math inline">\(T^t \Colon W^{\star} \to V^{\star}\)</span> 为 <span class="math inline">\(T^t(g) = g \circ T\)</span> 。有</p>
+<p>对于线性映射 <span class="math inline">\(T \Colon V \to W\)</span> 定义其转置 (transpose) <span class="math inline">\(T^t \Colon W^* \to V^*\)</span> 为 <span class="math inline">\(T^t(g) = g \circ T\)</span> 。有</p>
 <p><span class="math display">\[
-    [T^t]_{\gamma^{\star}}^{\beta^{\star}} = ([T]_{\beta}^{\gamma})^t
+    [T^t]_{\gamma^*}^{\beta^*} = ([T]_{\beta}^{\gamma})^t
 \]</span></p>
 <hr />
-<p>对于 <span class="math inline">\(x \in V\)</span> 定义 <span class="math inline">\(\widehat{x} \Colon V^{\star} \to F\)</span> 为 <span class="math inline">\(\widehat{x}(f) = f(x)\)</span> 。事实上 <span class="math inline">\(x\)</span> 与 <span class="math inline">\(\widehat{x}\)</span> 一一对应，构成了 <span class="math inline">\(V\)</span> 到 <span class="math inline">\(V^{\star\star}\)</span> 的一个同构。</p>
-<p><span class="math inline">\(V^{\star}\)</span> 的有序基 <span class="math inline">\(\{f_1, f_2, \cdots, f_n\}\)</span> 的对偶基为 <span class="math inline">\(\{\widehat{x_1}, \widehat{x_2}, \cdots, \widehat{x_n}\}\)</span> 。</p>
+<p>对于 <span class="math inline">\(x \in V\)</span> 定义 <span class="math inline">\(\widehat{x} \Colon V^* \to F\)</span> 为 <span class="math inline">\(\widehat{x}(f) = f(x)\)</span> 。事实上 <span class="math inline">\(x\)</span> 与 <span class="math inline">\(\widehat{x}\)</span> 一一对应，构成了 <span class="math inline">\(V\)</span> 到 <span class="math inline">\(V^{\star\star}\)</span> 的一个同构。</p>
+<p><span class="math inline">\(V^*\)</span> 的有序基 <span class="math inline">\(\{f_1, f_2, \cdots, f_n\}\)</span> 的对偶基为 <span class="math inline">\(\{\widehat{x_1}, \widehat{x_2}, \cdots, \widehat{x_n}\}\)</span> 。</p>
 <h3 id="homogeneous-linear-differential-equations-with-constant-coefficients">homogeneous linear differential equations with constant coefficients</h3>
 <p>略。</p>
 <h2 id="cahp.-3">Cahp. 3</h2>
@@ -500,72 +500,138 @@ $$
     B_1 \oplus B_2 = \begin{pmatrix} B_1 &amp; O \\ O &amp; B_2 \end{pmatrix}
 \]</span></p>
 <h2 id="chap.-6-inner-product-spaces">Chap. 6 INNER PRODUCT SPACES</h2>
+<p>该章节没有特殊说明仅仅讨论 <span class="math inline">\(F = \mathbb{R}\)</span> 和 <span class="math inline">\(F = \mathbb{C}\)</span> 。</p>
 <h3 id="inner-products-and-norms">inner products and norms</h3>
-<p>对于标量在 <span class="math inline">\(\mathbb{R}\)</span> 或 <span class="math inline">\(\mathbb{C}\)</span> 上的线性空间 <span class="math inline">\(V\)</span> 。映射 <span class="math inline">\(\lA , \rA \Colon V^2 \to F\)</span> 称作内积 (inner product on <span class="math inline">\(V\)</span>) 当且仅当满足：</p>
+<p>对于标量在 <span class="math inline">\(\mathbb{R}\)</span> 或 <span class="math inline">\(\mathbb{C}\)</span> 上的线性空间 <span class="math inline">\(V\)</span> 。映射 <span class="math inline">\(\Inner{} \Colon V^2 \to F\)</span> 称作内积 (inner product on <span class="math inline">\(V\)</span>) 当且仅当满足：</p>
 <ul>
-<li>对第一个元素线性：<span class="math inline">\(\lA c x_1 + x_2, y \rA = c \lA x_1, y \rA + \lA x_2, y \rA\)</span> 。</li>
-<li>共轭对称：<span class="math inline">\(\overline{\lA x, y \rA} = \lA y, x \rA\)</span> 。</li>
-<li><span class="math inline">\(x \ne 0 \Rightarrow \lA x, x \rA &gt; 0\)</span> （注意到共轭对称表明 <span class="math inline">\(\lA x, x \rA \in \mathbb{R}\)</span>）</li>
+<li>对第一个元素线性：<span class="math inline">\(\Inner{c x_1 + x_2, y} = c \Inner{x_1, y} + \Inner{x_2, y}\)</span> 。</li>
+<li>共轭对称：<span class="math inline">\(\overline{\Inner{x, y}} = \Inner{y, x}\)</span> 。</li>
+<li><span class="math inline">\(x \ne 0 \Rightarrow \Inner{x, x} &gt; 0\)</span> （注意到共轭对称表明 <span class="math inline">\(\Inner{x, x} \in \mathbb{R}\)</span>）</li>
 </ul>
-<p>带有一个内积的线性空间被称为内积空间 (inner product space) 。有复数内积空间和实数内积空间。</p>
+<p>带有一个内积的线性空间被称为内积空间 (inner product space) 。有复内积空间 (complex inner product space) 和实内积空间 (real inner product space)。</p>
 <hr />
 <p><span class="math inline">\(V = F^n\)</span> 的标准内积 (standard inner product) 定义为</p>
 <p><span class="math display">\[
-    \lA x, y \rA = \sum_{i=1}^n x_i \overline{y_i}
+    \Inner{x, y} = \sum_{i=1}^n x_i \overline{y_i} = y^* x
 \]</span></p>
 <p><span class="math inline">\(F = \mathbb{R}\)</span> 时也称为点积，记作 <span class="math inline">\(x \cdot y\)</span> 。</p>
 <p><span class="math inline">\(V = M_{n \times n}(F)\)</span> 的弗罗比尼乌斯内积 (Frobenius inner product) 定义为</p>
 <p><span class="math display">\[
-    \lA A, B \rA = \mathrm{tr}(\overline{B^T} A)
+    \Inner{A, B} = \mathrm{tr}(B^* A)
 \]</span></p>
+<p>其中 <span class="math inline">\(B^* = \overline{B^T}\)</span> 定义为 <span class="math inline">\(B\)</span> 的共轭转置。</p>
 <hr />
 <p>内积还有如下性质：</p>
 <ul>
-<li>对第二个元素有共轭线性 (conjugate linear) ：<span class="math inline">\(\lA x, c y_1 + y_2 \rA = \overline{c} \lA x, y_1 \rA + \lA x, y_2 \rA\)</span> 。</li>
-<li><span class="math inline">\(\lA x, 0 \rA = \lA 0, x \rA = 0\)</span></li>
-<li><span class="math inline">\(\lA x, x \rA = 0 \Leftrightarrow x = 0\)</span></li>
-<li><span class="math inline">\((\forall x \in V \;\; \lA x, y \rA = \lA x, z \rA) \Rightarrow y = z\)</span></li>
+<li>对第二个元素有共轭线性 (conjugate linear) ：<span class="math inline">\(\Inner{x, c y_1 + y_2} = \overline{c} \Inner{x, y_1} + \Inner{x, y_2}\)</span> 。</li>
+<li><span class="math inline">\(\Inner{x, 0} = \Inner{0, x} = 0\)</span></li>
+<li><span class="math inline">\(\Inner{x, x} = 0 \Leftrightarrow x = 0\)</span></li>
+<li><span class="math inline">\((\forall x \in V \;\; \Inner{x, y} = \Inner{x, z}) \Rightarrow y = z\)</span></li>
 </ul>
 <hr />
-<p><span class="math inline">\(x\)</span> 的范数 (norm) 或长度 (length) 可以定义为 <span class="math inline">\(\lV x \rV = \sqrt{\lA x, x \rA}\)</span> 。</p>
+<p><span class="math inline">\(x\)</span> 的范数 (norm) 或长度 (length) 可以定义为 <span class="math inline">\(\Norm{x} = \sqrt{\Inner{x, x}}\)</span> 。</p>
 <p>范数除了满足内积的线性性和非负性外，还满足两个不等式：</p>
 <ul>
-<li>Cauchy-Schwarz Inequality: <span class="math inline">\(\lvert\lA x, y \rA\rvert \le \lV x \rV \lV y \rV\)</span></li>
-<li>Triangle Inequality: <span class="math inline">\(\lV x + y \rV \le \lV x \rV + \lV y \rV\)</span></li>
+<li>Cauchy-Schwarz Inequality: <span class="math inline">\(\lvert\Inner{x, y}\rvert \le \Norm{x} \Norm{y}\)</span></li>
+<li>Triangle Inequality: <span class="math inline">\(\Norm{x + y} \le \Norm{x} + \Norm{y}\)</span></li>
 </ul>
 <hr />
-<p>如果 <span class="math inline">\(\lA x, y \rA = 0\)</span> 则称 <span class="math inline">\(x\)</span> 和 <span class="math inline">\(y\)</span> 是正交 (orthogonal) 或垂直 (perpendicular) 的。</p>
-<p>满足 <span class="math inline">\(\lV v \rV = 0\)</span> 的向量 <span class="math inline">\(v\)</span> 称作单位向量 (unit vector) 。</p>
+<p>如果 <span class="math inline">\(\Inner{x, y} = 0\)</span> 则称 <span class="math inline">\(x\)</span> 和 <span class="math inline">\(y\)</span> 是正交 (orthogonal) 或垂直 (perpendicular) 的。</p>
+<p>满足 <span class="math inline">\(\Norm{v} = 1\)</span> 的向量 <span class="math inline">\(v\)</span> 称作单位向量 (unit vector) 。</p>
 <p>集合 <span class="math inline">\(S\)</span> 是正交的当且仅当其中任意两个元素都是正交的。由单位向量构成的正交集称为标准正交集 (orthonormal set)。如果集合是基，也叫标准正交基。</p>
+<p>如果 <span class="math inline">\(x\)</span> 和 <span class="math inline">\(y\)</span> 是正交的，那么 <span class="math inline">\(\Norm{x + y}^2 = \Norm{x}^2 + \Norm{y}^2\)</span> 。</p>
 <h3 id="the-gram-schmidt-orthogonalization-process-and-orthogonal-complements">the gram-schmidt orthogonalization process and orthogonal complements</h3>
 <p>如果 <span class="math inline">\(S\)</span> 是 <span class="math inline">\(V \setminus \{0\}\)</span> 的正交子集，那么 <span class="math inline">\(S\)</span> 一定是线性独立的。并且如果 <span class="math inline">\(y \in \Span(S)\)</span> 线性表示的系数由下式给出：</p>
 <p><span class="math display">\[
-    y = \sum_{x \in S} \frac{\lA y, x\rA}{\lA x, x \rA} x
+    y = \sum_{x \in S} \frac{\Inner{y, x}}{\Inner{x, x}} x
 \]</span></p>
 <hr />
 <p>对于任意的线性独立集 <span class="math inline">\(S = \{w_1, w_2, \ldots, w_n\}\)</span> ，都可以通过如下步骤得到正交集 <span class="math inline">\(S&#39; = \{v_1, v_2, \ldots, v_n\}\)</span> ：</p>
 <p><span class="math display">\[
-    v_k = w_k - \sum_{j=1}^{k-1} \frac{\lA w_k, v_j \rA}{\lA v_j, v_j \rA} v_j
+    v_k = w_k - \sum_{j=1}^{k-1} \frac{\Inner{w_k, v_j}}{\Inner{v_j, v_j}} v_j
 \]</span></p>
 <p>其中 <span class="math inline">\(\Span(S) = \Span(S&#39;)\)</span> 。此过程称作格拉姆-施密特正交化 (Gram-Schmidt process) 。</p>
 <hr />
 <p>对于 <span class="math inline">\(V\)</span> 的标准正交基 <span class="math inline">\(\beta = \{v_1, v_2, \ldots, v_n\}\)</span> 和 <span class="math inline">\(x \in V\)</span> ，系数表示就是</p>
 <p><span class="math display">\[
     [x]_{\beta} = \begin{pmatrix}
-        \lA x, v_1 \rA \\
-        \lA x, v_2 \rA \\
+        \Inner{x, v_1} \\
+        \Inner{x, v_2} \\
         \vdots \\
-        \lA x, v_n \rA \\
+        \Inner{x, v_n} \\
     \end{pmatrix}
 \]</span></p>
 <hr />
-<p><span class="math inline">\(S\)</span> 的正交补 (orthogonal complement of <span class="math inline">\(S\)</span>) 定义为 <span class="math inline">\(S^{\perp} = \{x \in V | \forall y \in S \;\; \lA x, y \rA = 0\}\)</span> 。正交补一定是子空间。</p>
+<p><span class="math inline">\(S\)</span> 的正交补 (orthogonal complement of <span class="math inline">\(S\)</span>) 定义为 <span class="math inline">\(S^{\perp} = \{x \in V | \forall y \in S \;\; \Inner{x, y} = 0\}\)</span> 。正交补一定是子空间。</p>
 <p>对于有限维线性空间 <span class="math inline">\(V\)</span> 和子空间 <span class="math inline">\(W\)</span> ，<span class="math inline">\(\beta\)</span> 是 <span class="math inline">\(W\)</span> 的标准正交基，那么：</p>
 <ul>
 <li><span class="math inline">\(\beta\)</span> 可以扩展到 <span class="math inline">\(V\)</span> 的标准正交基 <span class="math inline">\(\gamma\)</span> 使得 <span class="math inline">\(\beta \subset \gamma\)</span> 。</li>
-<li><span class="math inline">\(\dim(W) + \dim(W^{\perp}) = \dim(V)\)</span> 。</li>
 <li><span class="math inline">\(\gamma \setminus \beta\)</span> 是 <span class="math inline">\(W^{\perp}\)</span> 的标准正交基。</li>
+<li><span class="math inline">\(W \oplus W^{\perp} = V\)</span> 。</li>
 </ul>
+<h3 id="the-adjoint-of-a-linear-operator">the adjoint of a linear operator</h3>
+<p>对于有限维内积空间 <span class="math inline">\(V\)</span> ，对于任意的线性泛函 <span class="math inline">\(g \in V^* = \mathcal L(V, F)\)</span> 都可以找到一个 <span class="math inline">\(y \in V\)</span> 使得 <span class="math inline">\(g(x) = \Inner{x, y}\)</span> 。反之对于任意 <span class="math inline">\(y \in V\)</span> 都可以找到这样一个线性泛函 <span class="math inline">\(g \in V^*\)</span> 。</p>
+<p>令 <span class="math inline">\(\phi \Colon V \to V^*\)</span> 满足 <span class="math inline">\((\phi(y))(x) = \Inner{x, y}\)</span> 。定义线性算子 <span class="math inline">\(T\)</span> 的伴随映射 (adjoint) 为 <span class="math inline">\(T^*\)</span> 满足 <span class="math inline">\(T^*(y) = \phi^{-1}(\phi(y) \circ T)\)</span> ，即 <span class="math inline">\(\Inner{T(x), y} = \Inner{x, T^*(y)}\)</span> 。</p>
+<p>更一般地，任意一个线性映射 <span class="math inline">\(T \Colon V_1 \to V_2\)</span> 都有伴随映射 <span class="math inline">\(T^* \Colon V_2 \to V_1\)</span> 满足</p>
+<p><span class="math display">\[
+    \forall x_1 \in V_1, x_2 \in V_2 \;\; \Inner{T(x_1), x_2}_2 = \Inner{x_1, T^*(x_2)}_1
+\]</span></p>
+<p>伴随映射对应于矩阵的共轭转置，对于 <span class="math inline">\(V\)</span> 的一组标准正交基（注意不是任意基！） <span class="math inline">\(\beta\)</span> 总是满足</p>
+<p><span class="math display">\[
+    [T^*]_{\beta} = [T]_{\beta}^*
+\]</span></p>
+<hr />
+<p>对于 <span class="math inline">\(A \in M_{m \times n}(F), y \in F^m\)</span> ，存在 <span class="math inline">\(x_0 \in F^n\)</span> 使得 <span class="math inline">\(\Norm{Ax - y}\)</span> 最小且满足 <span class="math inline">\((A^* A) x_0 = A^* y\)</span> 。</p>
+<p><span class="math inline">\(\Rank(A^* A)\)</span> 总是等于 <span class="math inline">\(\Rank(A)\)</span> ，如果 <span class="math inline">\(\Rank(A) = n\)</span> 则 <span class="math inline">\(x_0 = (A^* A)^{-1} A^* y\)</span> 就可以使 <span class="math inline">\(\Norm{Ax - y}\)</span> 取到最小值。</p>
+<hr />
+<p>线性方程组 <span class="math inline">\(Ax = b\)</span> 的最小解 (minimal solution) 是使得 <span class="math inline">\(\Norm{x}\)</span> 最小的一个解。</p>
+<p>对于任意线性映射 <span class="math inline">\(T\)</span> 总有 <span class="math inline">\(R(T)^{\perp} = N(T^*)\)</span> 。</p>
+<blockquote>
+<p>所以找 <span class="math inline">\(Ax = A(s + y) = b, s \in R(L_{A^*}), y \in N(L_A)\)</span> 的解就是找 <span class="math inline">\(As = b, s \in R(L_{A^*})\)</span> 的解。如果有两个解 <span class="math inline">\(s_1, s_2\)</span> ，那么 <span class="math inline">\(A(s_1 - s_2) = 0\)</span> ，于是 <span class="math inline">\(s_1 - s_2 \in N(L_A)\)</span> 得出矛盾，故解 <span class="math inline">\(s\)</span> 是唯一的。</p>
+</blockquote>
+<p>如果 <span class="math inline">\(Ax = b\)</span> 有解，那么存在唯一的满足 <span class="math inline">\(s \in R(L_{A^*})\)</span> 的解 <span class="math inline">\(s\)</span> ，并且 <span class="math inline">\(s\)</span> 恰是一个最小解。所以得到方程组 <span class="math inline">\((A A^*) x = b\)</span> 的一个任意解 <span class="math inline">\(u\)</span> 就可以得到最小解 <span class="math inline">\(s = A^* u\)</span> 。</p>
+<h3 id="normal-and-self-adjoint-operators">normal and self-adjoint operators</h3>
+<blockquote>
+<p>对于 <span class="math inline">\(T\)</span> 的特征值 <span class="math inline">\(\lambda\)</span> 和特征向量 <span class="math inline">\(v\)</span> 有 <span class="math inline">\(v \in N(T - \lambda I) = R(T^* - \overline{\lambda} I)^{\perp}\)</span> ，故 <span class="math inline">\(T^* - \overline{\lambda} I\)</span> 不是满射，有非零的零空间。</p>
+</blockquote>
+<p>对于内积空间 <span class="math inline">\(V\)</span> 上的线性算子 <span class="math inline">\(T\)</span> ，如果 <span class="math inline">\(\lambda\)</span> 是 <span class="math inline">\(T\)</span> 的特征值那么 <span class="math inline">\(\overline{\lambda}\)</span> 就是 <span class="math inline">\(T^*\)</span> 的特征值。</p>
+<p>如果 <span class="math inline">\(T\)</span> 的特征多项式可分解，存在一个标准正交基使得 <span class="math inline">\([T]_{\beta}\)</span> 是一个上三角矩阵。</p>
+<hr />
+<p>如果 <span class="math inline">\(T T^* = T^* T\)</span> 就称线性算子 <span class="math inline">\(T\)</span> 是正规算子 (normal operator) ，如果 <span class="math inline">\(A A^* = A^* A\)</span> 就称 <span class="math inline">\(A\)</span> 是正规矩阵 (normal matrix) 。</p>
+<p><span class="math inline">\(V\)</span> 上的正规算子 <span class="math inline">\(T\)</span> 有如下性质：</p>
+<ol type="1">
+<li><span class="math inline">\(\Norm{T(x)} = \Norm{T^*(x)}\)</span></li>
+<li><span class="math inline">\(T - c I\)</span> 对任意 <span class="math inline">\(c \in F\)</span> 总是正规的。</li>
+<li><span class="math inline">\(T\)</span> 的特征向量 <span class="math inline">\(x\)</span> 也是 <span class="math inline">\(T^*\)</span> 的特征向量，且特征值互为共轭。</li>
+<li><span class="math inline">\(T\)</span> 的特征值不同的两个特征向量总是正交的。</li>
+</ol>
+<p>有限维复内积空间 <span class="math inline">\(V\)</span> 上的线性算子 <span class="math inline">\(T\)</span> 是正规的当且仅当存在由其特征向量构成的 <span class="math inline">\(V\)</span> 的标准正交基。</p>
+<blockquote>
+<p>由于 <span class="math inline">\(F = C\)</span> 根据代数基本定理 <span class="math inline">\(T\)</span> 的特征多项式总是可分解的，因此存在一个标准正交基 <span class="math inline">\(\beta = {v_1, v_2, \ldots, v_n}\)</span> 使得 <span class="math inline">\(A = [T]_{\beta}\)</span> 是上三角矩阵，可以数学归纳法证明 <span class="math inline">\(v_k\)</span> 总是特征向量因为 <span class="math display">\[
+T(v_k) - A_{kk} v_k
+= \sum_{j=1}^{k-1} \Inner{T(v_k), v_j} v_j
+= \sum_{j=1}^{k-1} \Inner{v_k, T^* (v_j)} v_j
+= \sum_{j=1}^{k-1} \Inner{v_k, \overline{A_{jj}} v_j} v_j
+= 0
+\]</span></p>
+</blockquote>
+<hr />
+<p>如果 <span class="math inline">\(T = T^*\)</span> 就称 <span class="math inline">\(T\)</span> 是自伴算子 (self-adjoint operator) ，如果 <span class="math inline">\(A = A^*\)</span> 就称 <span class="math inline">\(A\)</span> 是自伴矩阵 (self-adjoint matrix) 。显然自伴是比正规更强的限制。</p>
+<p><span class="math inline">\(V\)</span> 上的自伴算子 <span class="math inline">\(T\)</span> 有如下性质：</p>
+<ol type="1">
+<li><span class="math inline">\(T\)</span> 的特征值都是实数。</li>
+<li>即使 <span class="math inline">\(V\)</span> 是实内积空间，<span class="math inline">\(T\)</span> 的特征多项式也总是分解的。</li>
+</ol>
+<p>有限维实内积空间 <span class="math inline">\(V\)</span> 上的线性算子 <span class="math inline">\(T\)</span> 是自伴的当且仅当存在由其特征向量构成的 <span class="math inline">\(V\)</span> 的标准正交基。</p>
+<h3 id="unitary-and-orthogonal-operators-and-their-matrices">unitary and orthogonal operators and their matrices</h3>
+<p>满足 <span class="math inline">\(\Norm{T(x)} = \Norm{x}\)</span> 的线性算子称作等距同构或保距映射 (linear isometry) 。在有限维线性空间上 <span class="math inline">\(T\)</span> 是等距同构当且仅当：</p>
+<ol type="1">
+<li><span class="math inline">\(T T^* = T^* T = I\)</span></li>
+<li><span class="math inline">\(\forall x, y \in V \;\; \Inner{T(x), T(y)} = \Inner{x, y}\)</span></li>
+<li>如果 <span class="math inline">\(\beta\)</span> 是 <span class="math inline">\(V\)</span> 的标准正交基那么 <span class="math inline">\(T(\beta)\)</span> 也会是一个标准正交基。</li>
+<li>存在标准正交基 <span class="math inline">\(\beta\)</span> 使得 <span class="math inline">\(T(\beta)\)</span> 也是标准正交基。</li>
+</ol>
+<p>在有限维复内积空间上称作幺正算子或酉算子 (unitary operator) ，在有限维实内积空间上称作正交算子 (orthogonal operator) 。</p>
 ]]></content>
       <categories>
         <category>笔记</category>
