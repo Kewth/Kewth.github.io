@@ -472,7 +472,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-11-22 22:00:35" itemprop="dateModified" datetime="2021-11-22T22:00:35+08:00">2021-11-22</time>
+        <time title="修改时间：2021-12-07 16:17:52" itemprop="dateModified" datetime="2021-12-07T16:17:52+08:00">2021-12-07</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -517,103 +517,14 @@
 <p><span class="math display">\[
     \int_a^b f(x) dx := \Lim{\lambda(P) \to 0} \phi(P, \xi)
 \]</span></p>
-<h3 id="黎曼可积">黎曼可积</h3>
-<p>用 <span class="math inline">\(\mathcal R[a, b]\)</span> 表示所有在 <span class="math inline">\([a, b]\)</span> 上黎曼可积的函数。</p>
-<p>如果 <span class="math inline">\(f \in \mathcal R[a, b]\)</span> 那么 <span class="math inline">\(f\)</span> 在 <span class="math inline">\([a, b]\)</span> 上一定有界。即可积必有界。</p>
-<p><span class="math inline">\(\mathcal C[a, b] \subset \mathcal R[a, b]\)</span> 。即连续必可积。必区间上的单调函数也一定可积。</p>
-<hr />
-<p>对于 <span class="math inline">\([a, b]\)</span> 上的函数 <span class="math inline">\(f\)</span> ，定义小积分和，大积分和分别为</p>
-<p><span class="math display">\[
-\begin{aligned}
-    &amp; s(P) := \sum_{i=1}^n \inf_{[x_{i-1}, x_i]} f(x) (x_i - x_{i-1}) \\
-    &amp; S(P) := \sum_{i=1}^n \sup_{[x_{i-1}, x_i]} f(x) (x_i - x_{i-1}) \\
-\end{aligned}
-\]</span></p>
-<p>那么 <span class="math inline">\(s(P) = \inf\limits_{\xi} \phi(P, \xi)\)</span> 以及 <span class="math inline">\(S(P) = \sup\limits_{\xi} \phi(P, \xi)\)</span> 。</p>
-<hr />
-<p>下积分和上积分定义为</p>
-<p><span class="math display">\[
-\begin{aligned}
-    &amp; \underline\int_a^b f(x) dx := \lim_{\lambda(P) \to 0} s(P) \\
-    &amp; \overline\int_a^b f(x) dx := \lim_{\lambda(P) \to 0} S(P) \\
-\end{aligned}
-\]</span></p>
-<p>在 <span class="math inline">\([a, b]\)</span> 上有界的函数 <span class="math inline">\(f\)</span> 黎曼可积当且仅当上下积分相等。此时黎曼积分的值也与上下积分相等。</p>
-<hr />
-<p>定义振幅 <span class="math inline">\(\omega(f, E) := \sup\limits_{x_1, x_2 \in E} \lvert f(x_1) - f(x_2) \rvert\)</span> 。</p>
-<p>在 <span class="math inline">\([a, b]\)</span> 上有界的函数 <span class="math inline">\(f\)</span> 黎曼可积当且仅当</p>
-<p><span class="math display">\[
-    \Lim{\lambda(P) \to 0} \sum_{i=1}^n \omega(f, [x_{i-1}, x_i]) (x_i - x_{i-1}) = 0
-\]</span></p>
-<hr />
-<p><span class="math inline">\(\bbR\)</span> 的子集 <span class="math inline">\(E\)</span> 是零测度集当且仅当对于任意小的正数 <span class="math inline">\(\eps\)</span> 都可以找到至多可数个开区间覆盖 <span class="math inline">\(E\)</span> 且这些开区间的长度和不超过 <span class="math inline">\(\eps\)</span> 。</p>
-<ol type="1">
-<li>至多可数的集合是零测度集。</li>
-<li>至多可数的零测度集的并集是零测度集。</li>
-<li>零测度集的子集是零测度集。</li>
-</ol>
-<p>如果某种性质在集合 <span class="math inline">\(X\)</span> 上不成立的点构成零测度集，则称该性质在 <span class="math inline">\(X\)</span> 上几乎处处成立。</p>
-<p>闭区间上的函数黎曼可积当且仅当有界且几乎处处连续（勒贝格准则）。</p>
-<p>闭区间上两个几乎处处相等的函数积分值相同或者同时不可积。</p>
-<h3 id="积分的性质">积分的性质</h3>
-<p>如果 <span class="math inline">\(a &gt; b\)</span> 可以定义 <span class="math inline">\(\int_a^b f(x)dx := -\int_b^a f(x)dx\)</span> 。自然的有 <span class="math inline">\(\int_a^a f(x)dx := 0\)</span> 。</p>
-<p><span class="math display">\[
-    \int_a^b (\alpha f + \beta g)(x) dx = \alpha \int_a^b f(x)dx + \beta \int_a^b g(x)dx
-\]</span></p>
-<p><span class="math display">\[
-    \int_a^b f(x)dx + \int_b^c f(x)dx = \int_a^c f(x)dx
-\]</span></p>
-<hr />
-<p>如果 <span class="math inline">\(f(x) \le g(x)\)</span> 在 <span class="math inline">\([a, b]\)</span> 总是成立那么</p>
-<p><span class="math display">\[
-    \int_a^b f(x)dx \le \int_a^b g(x)dx
-\]</span></p>
-<hr />
-<p>积分第一中值定理：若 <span class="math inline">\(f, g \in \mathcal R[a, b]\)</span> 且 <span class="math inline">\(g\)</span> 在 <span class="math inline">\([a, b]\)</span> 上非负或非正。那么</p>
-<p><span class="math display">\[
-    \int_a^b f(x) g(x) dx = \mu \int_a^b g(x) dx
-\]</span></p>
-<p>其中 <span class="math inline">\(\inf f(x) \le \mu \le \sup f(x)\)</span> ，如果 <span class="math inline">\(f \in C[a, b]\)</span> 那么 <span class="math inline">\(\mu = f(\xi), \xi \in [a, b]\)</span> 。</p>
-<p>取 <span class="math inline">\(g(x) = 1\)</span> 即</p>
-<p><span class="math display">\[
-    \int_a^b f(x) dx = \mu (b - a)
-\]</span></p>
-<hr />
-<p><span class="math inline">\(f\)</span> 在 <span class="math inline">\(x_0\)</span> 处的泰勒展开的余项可以表示为积分形式：</p>
-<p><span class="math display">\[
-    r_n(x_0 ; x) = \frac{1}{n!} \int_a^x f^{(n+1)}(t) (x-t)^n dt
-\]</span></p>
-<h3 id="原函数">原函数</h3>
-<p>在区间 <span class="math inline">\(I\)</span> 上若 <span class="math inline">\(F&#39;(x) = f(x)\)</span> 则称 <span class="math inline">\(F\)</span> 是 <span class="math inline">\(f\)</span> 在 <span class="math inline">\(I\)</span> 上的原函数。</p>
-<p>若 <span class="math inline">\(F_1\)</span> 和 <span class="math inline">\(F_2\)</span> 都是 <span class="math inline">\(f\)</span> 的原函数那么 <span class="math inline">\(F_1 - F_2\)</span> 是常函数。</p>
-<p>求原函数的运算称为不定积分</p>
-<p><span class="math display">\[
-    \int f(x)dx = F(x) + C
-\]</span></p>
-<p>有时也简记为 <span class="math inline">\(\int f\)</span> 。不定积分 <span class="math inline">\(\int\)</span> 是微分 <span class="math inline">\(d\)</span> 的逆运算。</p>
-<hr />
-<p>若 <span class="math inline">\(f \in C[a, b]\)</span> 或者 <span class="math inline">\(f \in C(a, b)\)</span> 那么 <span class="math inline">\(f\)</span> 一定有原函数</p>
-<p><span class="math display">\[
-    F(x) = \int_a^x f(t) dt + C
-\]</span></p>
-<hr />
-<p>微积分学基本定理：</p>
-<p>如果 <span class="math inline">\(f \Colon [a, b] \to \bbR\)</span> 只有有限个间断点并有界，则 <span class="math inline">\(f \in \mathcal R[a, b]\)</span> 且</p>
-<p><span class="math display">\[
-    \int_a^b f(x) dx = F(b) - F(a) = F(x) |_a^b
-\]</span></p>
-<p>其中 <span class="math inline">\(F\)</span> 是 <span class="math inline">\(f\)</span> 在 <span class="math inline">\([a, b]\)</span> 的任意一个原函数。</p>
-<!--
----
-
-分部积分法：
-
-$$
-    \int u(x) dv(x) = u(x) v(x) - \int v(x) du(x) + C
-$$
-
--->
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/11/16/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90-%E5%BE%AE%E7%A7%AF%E5%88%86%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -670,7 +581,7 @@ $$
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-12-05 16:30:27" itemprop="dateModified" datetime="2021-12-05T16:30:27+08:00">2021-12-05</time>
+        <time title="修改时间：2021-12-12 18:04:27" itemprop="dateModified" datetime="2021-12-12T18:04:27+08:00">2021-12-12</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -771,7 +682,7 @@ $$
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-11-08 00:44:31" itemprop="dateModified" datetime="2021-11-08T00:44:31+08:00">2021-11-08</time>
+        <time title="修改时间：2021-12-09 21:00:47" itemprop="dateModified" datetime="2021-12-09T21:00:47+08:00">2021-12-09</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
