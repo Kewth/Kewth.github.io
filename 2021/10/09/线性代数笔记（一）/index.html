@@ -29,7 +29,7 @@
 <meta property="og:description" content="\(\newcommand{\Span}{\operatorname{span}}\) \(\newcommand{\Nullity}{\operatorname{nullity}}\) \(\newcommand{\Rank}{\operatorname{rank}}\) \(\newcommand{\Colon}{\colon\;\;}\) \(\newcommand{\Inner}[1]{\">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-10-09T03:07:31.000Z">
-<meta property="article:modified_time" content="2021-12-12T10:04:27.252Z">
+<meta property="article:modified_time" content="2021-12-14T14:30:48.570Z">
 <meta property="article:author" content="Kewth">
 <meta property="article:tag" content="线代">
 <meta name="twitter:card" content="summary">
@@ -286,7 +286,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-12-12 18:04:27" itemprop="dateModified" datetime="2021-12-12T18:04:27+08:00">2021-12-12</time>
+        <time title="修改时间：2021-12-14 22:30:48" itemprop="dateModified" datetime="2021-12-14T22:30:48+08:00">2021-12-14</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -316,7 +316,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p><span class="math inline">\(\newcommand{\Span}{\operatorname{span}}\)</span> <span class="math inline">\(\newcommand{\Nullity}{\operatorname{nullity}}\)</span> <span class="math inline">\(\newcommand{\Rank}{\operatorname{rank}}\)</span> <span class="math inline">\(\newcommand{\Colon}{\colon\;\;}\)</span> <span class="math inline">\(\newcommand{\Inner}[1]{\langle #1 \rangle}\)</span> <span class="math inline">\(\newcommand{\Norm}[1]{\lVert #1 \rVert}\)</span></p>
+        <p><span class="math inline">\(\newcommand{\Span}{\operatorname{span}}\)</span> <span class="math inline">\(\newcommand{\Nullity}{\operatorname{nullity}}\)</span> <span class="math inline">\(\newcommand{\Rank}{\operatorname{rank}}\)</span> <span class="math inline">\(\newcommand{\Colon}{\colon\;\;}\)</span> <span class="math inline">\(\newcommand{\Inner}[1]{\langle #1 \rangle}\)</span> <span class="math inline">\(\newcommand{\Norm}[1]{\lVert #1 \rVert}\)</span> <span class="math inline">\(\newcommand{\List}[2][n]{\{ #2_1, #2_2, \ldots, #2_#1 \}}\)</span></p>
 <h2 id="cahp.-1">Cahp. 1</h2>
 <h3 id="vector-spaces">vector spaces</h3>
 <p>域 (field) <span class="math inline">\(F\)</span> 上的向量空间 (vector space over <span class="math inline">\(F\)</span>) 或线性空间 (linear space) <span class="math inline">\(V\)</span> 包含一个向量集合和两个运算 (addition and scalar multiplication) 满足：</p>
@@ -660,9 +660,9 @@
 <p><span class="math display">\[
     \forall x_1 \in V_1, x_2 \in V_2 \;\; \Inner{T(x_1), x_2}_2 = \Inner{x_1, T^*(x_2)}_1
 \]</span></p>
-<p>伴随映射对应于矩阵的共轭转置，对于 <span class="math inline">\(V\)</span> 的一组标准正交基（注意不是任意基！） <span class="math inline">\(\beta\)</span> 总是满足</p>
+<p>伴随映射对应于矩阵的共轭转置，对于 <span class="math inline">\(V_1, V_2\)</span> 的标准正交基（注意不是任意基！） <span class="math inline">\(\beta_2, \beta_2\)</span> 总是满足</p>
 <p><span class="math display">\[
-    [T^*]_{\beta} = [T]_{\beta}^*
+    [T^*]_{\beta_2}^{\beta_1} = ([T]_{\beta_1}^{\beta_2})^*
 \]</span></p>
 <hr />
 <p>对于 <span class="math inline">\(A \in M_{m \times n}(F), y \in F^m\)</span> ，存在 <span class="math inline">\(x_0 \in F^n\)</span> 使得 <span class="math inline">\(\Norm{Ax - y}\)</span> 最小且满足 <span class="math inline">\((A^* A) x_0 = A^* y\)</span> 。</p>
@@ -707,6 +707,10 @@ T(v_k) - A_{kk} v_k
 <li>即使 <span class="math inline">\(V\)</span> 是实内积空间，<span class="math inline">\(T\)</span> 的特征多项式也总是分解的。</li>
 </ol>
 <p>有限维实内积空间 <span class="math inline">\(V\)</span> 上的线性算子 <span class="math inline">\(T\)</span> 是自伴的当且仅当存在由其特征向量构成的 <span class="math inline">\(V\)</span> 的标准正交基。在实内积空间上，自伴的定义等价于对称 (symmetric) 。</p>
+<hr />
+<p>如果 <span class="math inline">\(\Inner{T(x), x}\)</span> 总是正数（非负数）且 <span class="math inline">\(T\)</span> 自伴就称线性算子 <span class="math inline">\(T\)</span> 是正定 (positive definite) （半正定 (positive semidefinite)）的。矩阵 <span class="math inline">\(A\)</span> 的定义与 <span class="math inline">\(L_A\)</span> 相同。</p>
+<p>自伴算子 <span class="math inline">\(T\)</span> 是正定（半正定）的当且仅当所有特征向量为正（非负）。</p>
+<p>自伴矩阵 <span class="math inline">\(A\)</span> 是半正定的当且仅当 <span class="math inline">\(A = B^* B\)</span> ，其中 <span class="math inline">\(B\)</span> 是一个同样大小的方阵。</p>
 <h3 id="unitary-and-orthogonal-operators-and-their-matrices">unitary and orthogonal operators and their matrices</h3>
 <p>满足 <span class="math inline">\(\Norm{T(x)} = \Norm{x}\)</span> 的线性算子称作等距同构或保距映射 (linear isometry) 。在有限维线性空间上 <span class="math inline">\(T\)</span> 是等距同构当且仅当：</p>
 <ol type="1">
@@ -733,7 +737,7 @@ T(v_k) - A_{kk} v_k
 <p>若 <span class="math inline">\(A = P^* B P = P^{-1} B P\)</span> 那么 <span class="math inline">\(\sum |A_{jk}|^2 = \mathrm{tr}(A^* A) = \mathrm{tr}(P^{-1} B^* B P) = \mathrm{tr}(B^* B) = \sum |B_{jk}|^2\)</span> 。</p>
 </blockquote>
 <h3 id="orthogonal-projections-and-the-spectral-theorem">orthogonal projections and the spectral theorem</h3>
-<p>对于任意 <span class="math inline">\(x \in V = W_1 \oplus W_2\)</span> 可以表示为 <span class="math inline">\(x = x_1 + x_2\)</span> ，其中 <span class="math inline">\(x_1 \in W_1, x_2 \in W_2\)</span> ，那么 <span class="math inline">\(T(x) = x_1\)</span> 这个线性映射称作 <span class="math inline">\(V\)</span> 的在 <span class="math inline">\(W_1\)</span> 上沿着 W_2$ 的投影 (projection of <span class="math inline">\(V\)</span> on <span class="math inline">\(W_1\)</span> along <span class="math inline">\(W_2\)</span>) 。<span class="math inline">\(W_1 = R(T)\)</span> 且 <span class="math inline">\(W_2 = N(T)\)</span> 。<span class="math inline">\(T\)</span> 是投影当且仅当 <span class="math inline">\(T = T^2\)</span> 。</p>
+<p>对于任意 <span class="math inline">\(x \in V = W_1 \oplus W_2\)</span> 可以表示为 <span class="math inline">\(x = x_1 + x_2\)</span> ，其中 <span class="math inline">\(x_1 \in W_1, x_2 \in W_2\)</span> ，那么 <span class="math inline">\(T(x) = x_1\)</span> 这个线性映射称作 <span class="math inline">\(V\)</span> 的在 <span class="math inline">\(W_1\)</span> 上沿着 <span class="math inline">\(W_2\)</span> 的投影 (projection of <span class="math inline">\(V\)</span> on <span class="math inline">\(W_1\)</span> along <span class="math inline">\(W_2\)</span>) 。<span class="math inline">\(W_1 = R(T)\)</span> 且 <span class="math inline">\(W_2 = N(T)\)</span> 。<span class="math inline">\(T\)</span> 是投影当且仅当 <span class="math inline">\(T = T^2\)</span> 。</p>
 <p>如果 <span class="math inline">\(W_1\)</span> 与 <span class="math inline">\(W_2\)</span> 互为正交补，<span class="math inline">\(T\)</span> 被称为正交投影。如果 <span class="math inline">\(V\)</span> 是内积空间，<span class="math inline">\(T\)</span> 是正交投影当且仅当 <span class="math inline">\(T\)</span> 是一个自伴的投影。</p>
 <hr />
 <p>特征值的集合称为谱 (spectrum) 。</p>
@@ -754,7 +758,51 @@ T(v_k) - A_{kk} v_k
 <li><span class="math inline">\(T_j\)</span> 总可以表示为 <span class="math inline">\(T\)</span> 的多项式。</li>
 </ol>
 <h3 id="the-singular-value-decomposition-and-the-pseudoinverse">the singular value decomposition and the pseudoinverse</h3>
-<p>略。</p>
+<p>奇异值定理 (Singular Value Theorem) ：对于有限维度内积空间 <span class="math inline">\(V\)</span>, <span class="math inline">\(W\)</span> 和线性映射 <span class="math inline">\(T\)</span> ，存在 <span class="math inline">\(V\)</span>, <span class="math inline">\(W\)</span> 的标准正交基 <span class="math inline">\(\List{v}\)</span> 和 <span class="math inline">\(\List[m]{u}\)</span> 和唯一的一组非负数 <span class="math inline">\(\sigma_1 \ge \sigma_2 \ge \ldots \ge \sigma_{\min\{n,m\}}\)</span> 使得：</p>
+<p><span class="math display">\[
+    T(v_k) = \sigma_k u_k
+\]</span></p>
+<p>其中 <span class="math inline">\(\sigma_k\)</span> 便称作奇异值 (singular value) 。<span class="math inline">\(T^*\)</span> 与 <span class="math inline">\(T\)</span> 的奇异值完全相同且 <span class="math inline">\(T^*(u_k) = \sigma_k v_k\)</span> 。</p>
+<blockquote>
+<p><span class="math inline">\(\Inner{T^*(u_j), v_k} = \Inner{u_j, T(v_k)} = \delta_{jk} \sigma_k\)</span> 所以 <span class="math inline">\(T^*(u_j) = \sum \Inner{T^*(u_j), v_k} v_k = \sigma_j v_j\)</span> 。</p>
+</blockquote>
+<p><span class="math inline">\(v_k, u_k\)</span> 分别是 <span class="math inline">\(T^* T, T T^*\)</span> 的特征值为 <span class="math inline">\(\sigma_k^2\)</span> 的特征向量。</p>
+<p><span class="math inline">\(m \times n\)</span> 的矩阵 <span class="math inline">\(A\)</span> 的奇异值就是 <span class="math inline">\(L_A\)</span> 的奇异值，奇异值定理的矩阵版本为 <span class="math inline">\(A\)</span> 可以分解为 <span class="math inline">\(A = U \Sigma V^*\)</span> ，其中 <span class="math inline">\(U, V\)</span> 分别是 <span class="math inline">\(m \times m, n \times n\)</span> 的幺正矩阵且 <span class="math inline">\(\Sigma_{ij} = \delta_{ij} \sigma_i\)</span> 。该分解被称为奇异值分解 (singular value decomposition) 。</p>
+<hr />
+<p>任意方阵 <span class="math inline">\(A\)</span> 都有极分解 (polar decomposition) <span class="math inline">\(A = WP\)</span> ，其中 <span class="math inline">\(W\)</span> 是幺正矩阵且 <span class="math inline">\(P\)</span> 是半正定矩阵。如果 <span class="math inline">\(A\)</span> 可逆，极分解唯一。</p>
+<blockquote>
+<p>奇异值分解后令 <span class="math inline">\(W = U V^*\)</span>, <span class="math inline">\(P = V \Sigma V^*\)</span> 即可。</p>
+</blockquote>
+<hr />
+<p>对于同域上的有限维内积空间 <span class="math inline">\(V, W\)</span> 和其线性映射 <span class="math inline">\(T\)</span> ，令 <span class="math inline">\(L \Colon N(T)^{\perp} \to R(T)\)</span> 是 <span class="math inline">\(T\)</span> 在 <span class="math inline">\(N(T)^{\perp}\)</span> 上的限制。定义 <span class="math inline">\(T\)</span> 的广义逆 (pseudinverse) 为 <span class="math inline">\(T^{\dagger}\)</span> 满足</p>
+<p><span class="math display">\[
+    T^{\dagger}(y) = \left\{\begin{aligned}
+        L^{-1}(y), \;\; &amp; y \in R(T) \\
+        0, \;\; &amp; y \in R(T)^{\perp}
+        \end{aligned}\right.
+\]</span></p>
+<p><span class="math inline">\(T\)</span> 可逆时自然 <span class="math inline">\(T^{\dagger} = T^{-1}\)</span> 。对于奇异值分解的结果有</p>
+<p><span class="math display">\[
+    \forall 1 \le k \le \Rank(T) \;\; T^{\dagger}(u_k) = \frac{1}{\sigma_k} v_k
+\]</span></p>
+<hr />
+<p>矩阵 <span class="math inline">\(B\)</span> 是 <span class="math inline">\(A\)</span> 的广义逆当且仅当 <span class="math inline">\(L_B\)</span> 是 <span class="math inline">\(L_A\)</span> 的广义逆。对于奇异值分解 <span class="math inline">\(A = U \Sigma V^*\)</span> 有 <span class="math inline">\(B = A^{\dagger} = V \Sigma^{\dagger} U^*\)</span> ，其中 <span class="math inline">\(\Sigma\)</span> 的广义逆为</p>
+<p><span class="math display">\[
+    \Sigma^{\dagger}_jk = \left\{\begin{aligned}
+        \frac{1}{\sigma_j}, \;\; &amp; j = k \le \Rank(\Sigma) \\
+        0, \;\; &amp; otherwise \\
+        \end{aligned}\right.
+\]</span></p>
+<hr />
+<p>对于 <span class="math inline">\(T \Colon V \to W\)</span> ，<span class="math inline">\(T^{\dagger} T\)</span> 是 <span class="math inline">\(V\)</span> 的在 <span class="math inline">\(N(T)^{\perp}\)</span> 上的正交投影，<span class="math inline">\(T T^{\dagger}\)</span> 是 <span class="math inline">\(W\)</span> 的在 <span class="math inline">\(R(T)\)</span> 上的正交投影。</p>
+<blockquote>
+<p><span class="math inline">\(x \in N(T)^{\perp} \Rightarrow T^{\dagger} T(x) = L^{-1} L(x) = x\)</span> 且 <span class="math inline">\(x \in N(T) \Rightarrow T^{\dagger} T(x) = 0\)</span> 。</p>
+</blockquote>
+<hr />
+<p>对于线性方程组 <span class="math inline">\(Ax = b\)</span> ，如果有解那么 <span class="math inline">\(z = A^{\dagger} b\)</span> 是唯一的最小解，否则 <span class="math inline">\(z\)</span> 是唯一的最接近的解，也就是使得 <span class="math inline">\(\Norm{Ax - b}\)</span> 最小的唯一解。</p>
+<blockquote>
+<p>如果有解则 <span class="math inline">\(b \in R(L_A)\)</span> 所以 <span class="math inline">\(A^{\dagger} Ax = z\)</span> ，由于 <span class="math inline">\(A^{\dagger} A\)</span> 对应于正交投影自然对于其他解 <span class="math inline">\(x = z + s\)</span> 都有 <span class="math inline">\(\Norm{x}^2 = \Norm{z}^2 + \Norm{s}^2\)</span> 。</p>
+</blockquote>
 <h3 id="bilinear-and-quadratic-forms">bilinear and quadratic forms</h3>
 <p>对于 <span class="math inline">\(F\)</span> 上的线性空间 <span class="math inline">\(V\)</span> 。函数 <span class="math inline">\(H \Colon V \times V \to F\)</span> 是双线性形式 (bilinear form) 当且仅当同时满足</p>
 <ol type="1">
@@ -763,7 +811,7 @@ T(v_k) - A_{kk} v_k
 </ol>
 <p>所有双线性形式构成的集合记作 <span class="math inline">\(\mathcal{B}(V)\)</span> 。<span class="math inline">\(\mathcal{B}(V)\)</span> 也是一个 <span class="math inline">\(F\)</span> 上的线性空间。</p>
 <hr />
-<p>对于 <span class="math inline">\(V\)</span> 的有序基 <span class="math inline">\(\beta = \{v_1, v_2, \ldots, v_n\}\)</span> 。<span class="math inline">\(H \in \mathcal{B}(V)\)</span> 关于 <span class="math inline">\(\beta\)</span> 的矩阵表示 (matrix representation of <span class="math inline">\(H\)</span> with respect to <span class="math inline">\(\beta\)</span>) 记作 <span class="math inline">\(\psi_{\beta}(H)\)</span> ，满足 <span class="math inline">\({\psi_{\beta}(H)}_{ij} = H(v_i, v_j)\)</span> 。</p>
+<p>对于 <span class="math inline">\(V\)</span> 的有序基 <span class="math inline">\(\beta = \List{v}\)</span> 。<span class="math inline">\(H \in \mathcal{B}(V)\)</span> 关于 <span class="math inline">\(\beta\)</span> 的矩阵表示 (matrix representation of <span class="math inline">\(H\)</span> with respect to <span class="math inline">\(\beta\)</span>) 记作 <span class="math inline">\(\psi_{\beta}(H)\)</span> ，满足 <span class="math inline">\({\psi_{\beta}(H)}_{ij} = H(v_i, v_j)\)</span> 。</p>
 <p><span class="math inline">\(\psi_{\beta} \Colon \mathcal{B}(V) \to M_{n \times n} (F)\)</span> 是一个同构。并且有</p>
 <p><span class="math display">\[
     H(x, y) = [x]_{\beta}^T \psi_{\beta}(H) [y]_{\beta}
@@ -775,9 +823,9 @@ T(v_k) - A_{kk} v_k
     \psi_{\gamma}(H) = Q^T \psi_{\beta}(H) Q
 \]</span></p>
 <hr />
-<p><span class="math inline">\(H\)</span> 可对角化定义为存在 <span class="math inline">\(\psi_{\beta}(H) = D\)</span> 是对角矩阵。</p>
+<p><span class="math inline">\(H\)</span> 可对角化定义为存在 <span class="math inline">\(\psi_{\beta}(H) = D\)</span> 是对角矩阵。<span class="math inline">\(H\)</span> 对称定义为 <span class="math inline">\(H(x, y) = H(y, x)\)</span> 。</p>
 <p>域 <span class="math inline">\(F\)</span> 的特征 (characteristic) 定义为最小的正整数 <span class="math inline">\(p\)</span> 使得 <span class="math inline">\(p\)</span> 个 <span class="math inline">\(1_F\)</span> 相加等于 <span class="math inline">\(0_F\)</span> 。特别地，如果不存在这样的 <span class="math inline">\(p\)</span> ，其特征定义为 <span class="math inline">\(0\)</span> 。</p>
-<p>如果 <span class="math inline">\(V\)</span> 的标量域 <span class="math inline">\(F\)</span> 特征不为 <span class="math inline">\(2\)</span> ，则双线性形式 <span class="math inline">\(H\)</span> 可对角化当且仅当 <span class="math inline">\(H\)</span> 对称，即 <span class="math inline">\(H(x, y) = H(y, x)\)</span> 。</p>
+<p>双线性形式 <span class="math inline">\(H\)</span> 可对角化的必要条件是 <span class="math inline">\(H\)</span> 对称。如果 <span class="math inline">\(V\)</span> 的标量域 <span class="math inline">\(F\)</span> 特征不为 <span class="math inline">\(2\)</span> ，则 <span class="math inline">\(H\)</span> 对称是充要条件。</p>
 <hr />
 <p>咕咕咕。</p>
 
@@ -825,7 +873,7 @@ T(v_k) - A_{kk} v_k
 
 <div class="copyright">
   &copy; 2019 – 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-heartbeat"></i>
   </span>
