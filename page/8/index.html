@@ -88,9 +88,9 @@
   <ul class="main-menu menu">
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
         <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
-        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">70</span></a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">71</span></a></li>
         <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">86</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">88</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -162,7 +162,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">86</span>
+          <span class="site-state-item-count">88</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -175,7 +175,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">70</span>
+        <span class="site-state-item-count">71</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -241,6 +241,223 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2019/10/10/%E7%BB%84%E5%90%88%E6%95%B0%E5%85%AC%E5%BC%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Kewth">
+      <meta itemprop="description" content="HNFMS 退役 OIer">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KeBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2019/10/10/%E7%BB%84%E5%90%88%E6%95%B0%E5%85%AC%E5%BC%8F/" class="post-title-link" itemprop="url">组合数公式</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-10-10 10:00:01" itemprop="dateCreated datePublished" datetime="2019-10-10T10:00:01+08:00">2019-10-10</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-05-03 10:23:53" itemprop="dateModified" datetime="2020-05-03T10:23:53+08:00">2020-05-03</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+        </span>
+    </span>
+
+  
+
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>$ C_n^m $ 在组合数学中的意义：在 n 个元素选 m 个元素的方案数。</p>
+<h2 id="公式">公式</h2>
+<h3 id="公式-1">公式 1</h3>
+<p><span class="math display">\[ C_n^m = \frac{n!}{m! * (n-m)!} \]</span></p>
+<p>组合数的通项公式。</p>
+<p><strong>当要求组合数模一般模数时</strong> ，通项公式的分母可能没有逆元导致不可行。</p>
+<h3 id="公式-2">公式 2</h3>
+<p><span class="math display">\[ C_n^m = C_n^{n-m} \]</span></p>
+<p>基本性质，可以由通项公式得出。</p>
+<h3 id="公式-3">公式 3</h3>
+<p><span class="math display">\[ C_n^m * C_m^k = C_n^k * C_{n-k}^{m-k} \]</span></p>
+<h3 id="公式-4">公式 4</h3>
+<p><span class="math display">\[ C_n^m = C_{n-1}^{m-1} + C_{n-1}^m \]</span></p>
+<p>组合数的基本递推式。</p>
+<p><strong>当要求组合数模一般模数时</strong> ，常用这种方法预处理组合数。</p>
+<h3 id="公式-5">公式 5</h3>
+<p><span class="math display">\[ \sum_{i=0}^n C_n^i = 2^n \]</span></p>
+<p>组合意义： n 个元素选任意元素的方案数。 每个数都可以选或不选，所以方案数为 $ 2^n $ 。</p>
+<p>同样可以由二项式定理： $ (x + 1)^n = _{i=0}^n C_n^i * x^i $ 得出。</p>
+<h3 id="公式-6">公式 6</h3>
+<p><span class="math display">\[ \sum_{i=0}^n (C_n^i)^2 = C_{2n}^n \]</span></p>
+<h3 id="公式-7">公式 7</h3>
+<p><span class="math display">\[ C_{n+m}^k = \sum_{i=0}^k C_n^i * C_m^{k-i} \]</span></p>
+<p>从组合数学上的定义出发，在 n + m 个元素中选 k 个， 相当于先在前 n 个元素中选 i 个再在后 m 个元素中选 k - i 个。 枚举这个 i 把方案数相加就能得到最终方案数。</p>
+<h3 id="公式-8">公式 8</h3>
+<p><span class="math display">\[ \sum_{i=0}^n C_{k+i}^k = C_{k+n+1}^n \]</span></p>
+<p>进一步可以得到下式：</p>
+<p><span class="math display">\[ \sum_{i=0}^n \sum_{j=0}^m C_{i+j}^i = C_{n+m+2}^{m+1} - 1 \]</span></p>
+<p>类似的还有：</p>
+<p><span class="math display">\[ \sum_{i=0}^n C_{i}^k = C_{n+1}^{k+1} \]</span></p>
+<h3 id="lucas-定理">Lucas 定理</h3>
+<p><span class="math display">\[ C_n^m \% p = C_{n/p}^{m/p} * C_{n \% p}^{m \% p} \% p \]</span></p>
+<p>常用于模数较小的组合数取模。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2019/10/10/%E8%8E%AB%E6%AF%94%E4%B9%8C%E6%96%AF%E5%8F%8D%E6%BC%94/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Kewth">
+      <meta itemprop="description" content="HNFMS 退役 OIer">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KeBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2019/10/10/%E8%8E%AB%E6%AF%94%E4%B9%8C%E6%96%AF%E5%8F%8D%E6%BC%94/" class="post-title-link" itemprop="url">莫比乌斯反演</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-10-10 10:00:00" itemprop="dateCreated datePublished" datetime="2019-10-10T10:00:00+08:00">2019-10-10</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-05-10 19:01:09" itemprop="dateModified" datetime="2020-05-10T19:01:09+08:00">2020-05-10</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+        </span>
+    </span>
+
+  
+
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>（以下除号皆表示整除）<br />
+对于一些式子复杂度大的数论题，或许用莫比乌斯反演可以高效解决问题。</p>
+<p>前置技能：</p>
+<ul>
+<li><p>基本数论函数</p></li>
+<li><p>狄利克雷卷积</p></li>
+</ul>
+<p>莫比乌斯函数满足 <span class="math inline">\(\mu \times I = \epsilon\)</span></p>
+<p>即 <span class="math inline">\(\sum_{d|n}\mu(d) = [n = 1]\)</span></p>
+<p>表达式为：</p>
+<p><span class="math display">\[ n = 0 : \mu(n) = 1 \]</span> <span class="math display">\[ n = \prod_{p|n\,and\,p\,is\,prime} p : \mu(n)=(-1)^k \]</span> <span class="math display">\[ otherwise : \mu(n)=0 \]</span></p>
+<p>证明：<br />
+<del>暂时不会</del></p>
+<p>莫比乌斯反演：<br />
+对于数论函数 <span class="math inline">\(f(n)\)</span> ，设 <span class="math inline">\(F(n) = \sum_{d|n}f(d)\)</span><br />
+即 <span class="math inline">\(F = f \times I\)</span><br />
+则有 <span class="math inline">\(f(n) = \sum_{d|n}F(d)\cdot\mu(\frac{n}{d})\)</span><br />
+即 <span class="math inline">\(f = F \times \mu\)</span></p>
+<p>证明：</p>
+<p><span class="math display">\[ \because \; F = f\cdot I \]</span> <span class="math display">\[ \therefore \; F\cdot \mu = f\cdot I\cdot \mu \]</span> <span class="math display">\[ \because \; I\cdot \mu = \epsilon \]</span> <span class="math display">\[ \therefore \; F\cdot \mu = f\cdot \epsilon \]</span> <span class="math display">\[ \therefore \; f = F\cdot \mu \]</span></p>
+<p>莫比乌斯反演好像主要是用来推式子，F 比 f 好做的话，就可以试试莫比乌斯反演。</p>
+<p>另外事实上只需要熟知 <span class="math inline">\(\mu\)</span> 函数的性质，直接推式子就行了，<br />
+绝大多数情况下（至少是我遇到的所有情况下）并不需要莫比乌斯反演。</p>
+<p>另外莫比乌斯反演有个很简单的 <span class="math inline">\(O(nlogn)\)</span> 实现，不需要筛 <span class="math inline">\(\mu\)</span> ，直接按定义枚举每个数的倍数去筛即可。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1195,265 +1412,6 @@ bar 的模式有三种：</p>
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2019/10/01/i3lock/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-      <meta itemprop="name" content="Kewth">
-      <meta itemprop="description" content="HNFMS 退役 OIer">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="KeBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2019/10/01/i3lock/" class="post-title-link" itemprop="url">i3lock</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2019-10-01 00:00:00" itemprop="dateCreated datePublished" datetime="2019-10-01T00:00:00+08:00">2019-10-01</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2019-12-08 14:24:00" itemprop="dateModified" datetime="2019-12-08T14:24:00+08:00">2019-12-08</time>
-      </span>
-
-  
-
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <figure>
-<img src="http://kewth.gq/wp-content/uploads/2019/07/2_054-1.png" alt="i3lock-fancy" /><figcaption aria-hidden="true">i3lock-fancy</figcaption>
-</figure>
-<p>折腾了半天 i3lock ，不写篇博客可惜了。</p>
-<p>i3lock 有啥好折腾的？不就是挂个壁纸锁屏嘛。<br />
-就是因为 i3lock 太鸡肋了折腾啊。<br />
-于是我试过了 i3lock 的各种民间 fork 版本，在此总结。</p>
-<h2 id="i3lock"><a target="_blank" rel="noopener" href="https://github.com/i3/i3lock">i3lock</a></h2>
-<p>官方版本 i3lock ，稳定可靠，但是鸡肋。</p>
-<p>安装： <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo aptitude install i3lock</span><br></pre></td></tr></table></figure></p>
-<p>使用： <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">i3lock</span><br></pre></td></tr></table></figure></p>
-<h2 id="i3lock-lixxia"><a target="_blank" rel="noopener" href="https://github.com/Lixxia/i3lock">i3lock-lixxia</a></h2>
-<p>最友好，最简单的一个 i3lock fork ，<br />
-优化了中间显示的圆形框，并支持一些颜色自定义。</p>
-<p>安装： <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sudo aptitude remove i3lock</span><br><span class="line">sudo aptitude install pkg-config libxcb1-dev libxcb1 libgl2ps-dev libx11-dev libglc0 libglc-dev libcairo2-dev libcairo-gobject2 libcairo2-dev libxkbfile-dev libxkbfile1 libxkbcommon-dev libxkbcommon-x11-dev libxcb-xkb-dev libxcb-dpms0-dev libxcb-damage0-dev libpam0g-dev libev-dev libxcb-image0-dev libxcb-util0-dev libxcb-composite0-dev libxcb-xinerama0-dev</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/Lixxia/i3lock.git</span><br><span class="line"><span class="built_in">cd</span> i3lock</span><br><span class="line">autoreconf -<span class="keyword">fi</span></span><br><span class="line">mkdir -p build &amp;&amp; <span class="built_in">cd</span> build</span><br><span class="line">../configure</span><br><span class="line">make &amp;&amp; sudo make install</span><br></pre></td></tr></table></figure></p>
-<p>顺带一提，只有这个 fork 给出了靠谱的源码安装方式，<br />
-其他 fork 甚至 i3lock 本身的安装方式都给得很不靠谱。</p>
-<p>使用： <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">i3lock</span><br></pre></td></tr></table></figure></p>
-<h2 id="i3lock-blur"><a target="_blank" rel="noopener" href="https://github.com/karulont/i3lock-blur">i3lock-blur</a></h2>
-<p>支持模糊背景，毛玻璃特效。</p>
-<p>安装： <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sudo aptitude remove i3lock</span><br><span class="line">sudo aptitude install pkg-config libxcb1-dev libxcb1 libgl2ps-dev libx11-dev libglc0 libglc-dev libcairo2-dev libcairo-gobject2 libcairo2-dev libxkbfile-dev libxkbfile1 libxkbcommon-dev libxkbcommon-x11-dev libxcb-xkb-dev libxcb-dpms0-dev libxcb-damage0-dev libpam0g-dev libev-dev libxcb-image0-dev libxcb-util0-dev libxcb-composite0-dev libxcb-xinerama0-dev</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/karulont/i3lock-blur.git</span><br><span class="line"><span class="built_in">cd</span> i3lock-blur</span><br><span class="line">autoreconf -<span class="keyword">fi</span></span><br><span class="line">mkdir -p build &amp;&amp; <span class="built_in">cd</span> build</span><br><span class="line">../configure</span><br><span class="line">make &amp;&amp; sudo make install</span><br></pre></td></tr></table></figure></p>
-<p>再顺带一提，只有这个 fork 直接给出了需要安装那些库。</p>
-<p>使用： <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">i3lock --fuzzy</span><br></pre></td></tr></table></figure></p>
-<h2 id="i3lockr"><a target="_blank" rel="noopener" href="https://github.com/owenthewizard/i3lockr">i3lockr</a></h2>
-<p>支持模糊背景，毛玻璃特效。</p>
-<p>安装： <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget https://github.com/owenthewizard/i3lockr/releases/download/v1.0.0-final/i3lockr</span><br><span class="line">sudo mv i3lockr /usr/<span class="built_in">local</span>/bin</span><br></pre></td></tr></table></figure></p>
-<p>使用： <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">i3lockr --blur=25</span><br></pre></td></tr></table></figure></p>
-<h2 id="i3lock-color"><a target="_blank" rel="noopener" href="https://github.com/PandorasFox/i3lock-color">i3lock-color</a></h2>
-<p>对于颜色的自定义十分全面。</p>
-<p>安装： <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sudo aptitude remove i3lock</span><br><span class="line">sudo aptitude install pkg-config libxcb1-dev libxcb1 libgl2ps-dev libx11-dev libglc0 libglc-dev libcairo2-dev libcairo-gobject2 libcairo2-dev libxkbfile-dev libxkbfile1 libxkbcommon-dev libxkbcommon-x11-dev libxcb-xkb-dev libxcb-dpms0-dev libxcb-damage0-dev libpam0g-dev libev-dev libxcb-image0-dev libxcb-util0-dev libxcb-composite0-dev libxcb-xinerama0-dev</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/PandorasFox/i3lock-color</span><br><span class="line"><span class="built_in">cd</span> i3lock-color</span><br><span class="line">autoreconf -<span class="keyword">fi</span></span><br><span class="line">mkdir -p build &amp;&amp; <span class="built_in">cd</span> build</span><br><span class="line">../configure</span><br><span class="line">make &amp;&amp; sudo make install</span><br></pre></td></tr></table></figure></p>
-<p>使用： <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">i3lock</span><br></pre></td></tr></table></figure></p>
-<h2 id="i3lock-fancy"><a target="_blank" rel="noopener" href="https://github.com/meskarune/i3lock-fancy">i3lock-fancy</a></h2>
-<p>重头戏，star 最多的 fork ，甚至比 i3lock 本身更多，被广泛使用。</p>
-<p>安装： <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo aptitude install i3lock-fancy</span><br></pre></td></tr></table></figure></p>
-<p>使用： <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">i3lock-fancy</span><br></pre></td></tr></table></figure></p>
-<p>依赖 i3lock ，实际上是产生了背景图片再调用 i3lock 。<br />
-默认使用模糊背景，用起来没什么问题，但是事实上，<br />
-圆形框的颜色并不是最正确的，而是兼容的。</p>
-<p>源码里有这样一条： <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># try to use a forked version of i3lock with prepared parameters</span></span><br><span class="line"><span class="keyword">if</span> ! i3lock -n <span class="string">&quot;<span class="variable">$&#123;PARAM[@]&#125;</span>&quot;</span> -i <span class="string">&quot;<span class="variable">$IMAGE</span>&quot;</span> &gt; /dev/null 2&gt;&amp;1; <span class="keyword">then</span></span><br><span class="line">    <span class="comment"># We have failed, lets get back to stock one</span></span><br><span class="line">    i3lock -n -i <span class="string">&quot;<span class="variable">$IMAGE</span>&quot;</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure></p>
-<p>bash -x i3lock-fancy 就知道，<br />
-if 上的命令往往失败了，执行的是 if 里头的命令。</p>
-<p>事实上这需要 i3lock-color 。<br />
-那么，安装 i3lock-color 代替 i3lock 后，执行 i3lock-fancy ，<br />
-会发现圆形框的颜色与背景更加配了。</p>
-<h2 id="关于模糊背景">关于模糊背景</h2>
-<p>事实上，如果你用了 compton 再用 i3lock ，效果十分差劲。<br />
-解决这个方案，可以在调用 i3lock 前 kill compton ，结束后重新启动 compton 。</p>
-<p>拿 i3lock-fancy 举例，把之前展示的代码改成这样： <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># try to use a forked version of i3lock with prepared parameters</span></span><br><span class="line">pkill compton</span><br><span class="line"><span class="keyword">if</span> ! i3lock -n <span class="string">&quot;<span class="variable">$&#123;PARAM[@]&#125;</span>&quot;</span> -i <span class="string">&quot;<span class="variable">$IMAGE</span>&quot;</span> &gt; /dev/null 2&gt;&amp;1; <span class="keyword">then</span></span><br><span class="line">    <span class="comment"># We have failed, lets get back to stock one</span></span><br><span class="line">    i3lock -n -i <span class="string">&quot;<span class="variable">$IMAGE</span>&quot;</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line">compton -i 0.8 -b</span><br></pre></td></tr></table></figure></p>
-<p>其次，用模糊背景通常会比较慢，尤其是 i3lock-fancy ，需等上 3 秒左右。<br />
-那么如果调用 i3lock-fancy 之后你又做了一些别的操作，比如关闭一个窗口，<br />
-这时锁屏了，你会发现背景和原来的不一样。 :)</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2019/10/01/ncurses/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-      <meta itemprop="name" content="Kewth">
-      <meta itemprop="description" content="HNFMS 退役 OIer">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="KeBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2019/10/01/ncurses/" class="post-title-link" itemprop="url">ncurses</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2019-10-01 00:00:00" itemprop="dateCreated datePublished" datetime="2019-10-01T00:00:00+08:00">2019-10-01</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-01-21 11:57:34" itemprop="dateModified" datetime="2020-01-21T11:57:34+08:00">2020-01-21</time>
-      </span>
-
-  
-
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>ncurses 是基于终端的十分强大的图形库。 Vim, screen, sl 等终端程序都用到了这个库（足以见其强大）。</p>
-<h2 id="安装">安装</h2>
-<p>部分系统默认安装了 ncurses ，手动安装的方式是： <code>sudo aptitude install ncurses-dev</code> 。</p>
-<p>使用的程序需要 <code>#include &lt;ncurses.h&gt;</code>　。 编译时需要添加 <code>-lncurses</code> 参数进行链接。</p>
-<h2 id="开始和结束">开始和结束</h2>
-<p>调用 initscr 初始化窗口，endwin 结束窗口。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;curses.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function">WINDOW *<span class="title">initscr</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">endwin</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br></pre></td></tr></table></figure>
-<h2 id="输出">输出</h2>
-<p>调用 initscr 后调用 endwin 前，printf, std::cout 等标准输出不会显示在屏幕上。 而输出到屏幕上需要 ncurses 提供的相应函数。</p>
-<h3 id="函数">函数</h3>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">addch</span><span class="params">(<span class="keyword">const</span> chtype char_to_add)</span></span>;   <span class="comment">// 当前位置添加字符</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">addstr</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *string_to_add)</span></span>;    <span class="comment">// 当前位置添加字符串</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">printw</span><span class="params">(<span class="keyword">char</span> *format, ...)</span></span>;   <span class="comment">// 类似于 printf</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">refresh</span><span class="params">(<span class="keyword">void</span>)</span></span>;    <span class="comment">// 强制刷新物理屏幕</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">beep</span><span class="params">(<span class="keyword">void</span>)</span></span>;   <span class="comment">// 终端响铃</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">flash</span><span class="params">(<span class="keyword">void</span>)</span></span>;   <span class="comment">// 屏幕闪烁</span></span><br></pre></td></tr></table></figure>
-<h2 id="输入">输入</h2>
-<p>调用 scanf, getchar, cin 等标准输入函数同样无效。</p>
-<h3 id="函数-1">函数</h3>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">cbreak</span><span class="params">()</span></span>;   <span class="comment">// 字符一键入，直接传给程序（不用按下回车）</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">nocbreak</span><span class="params">()</span></span>;  <span class="comment">// 关闭 cbreak</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">echo</span><span class="params">(<span class="keyword">void</span>)</span></span>; <span class="comment">// 开启输入回显</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">noecho</span><span class="params">(<span class="keyword">void</span>)</span></span>; <span class="comment">// 关闭输入回显</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getch</span><span class="params">(<span class="keyword">void</span>)</span></span>; <span class="comment">// 读入一个字符</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">scanw</span><span class="params">(<span class="keyword">char</span> *format, ...)</span></span>; <span class="comment">// 类似于 scanf</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">clear</span><span class="params">(<span class="keyword">void</span>)</span></span>; <span class="comment">// 清屏</span></span><br></pre></td></tr></table></figure>
-<p>输入函数通常是阻塞的，但是通过调用 nodelay(stdscr, TRUE); 可以关闭阻塞。 此时若输入函数未读取到内容会返回 ERR 。</p>
-<h2 id="光标">光标</h2>
-<p>控制光标。 调用 initscr 后调用 endwin 前，输出终端控制符改变光标是无效的。</p>
-<h3 id="函数及示例">函数及示例</h3>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">move</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>; <span class="comment">// 将光标移动到 [x] 行 [y] 列，左上角为 0 行 0 列</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">curs_set</span><span class="params">(<span class="keyword">int</span> visiblility)</span></span>; <span class="comment">// 参数为 0 表示隐藏光标，1 表示显示光标</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getyx</span><span class="params">(WINDOW* win, <span class="keyword">int</span> &amp;x, <span class="keyword">int</span> &amp;y)</span></span>; <span class="comment">// 获取指定窗口光标位置，示例如下</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">move_up</span><span class="params">()</span> </span>&#123; <span class="comment">// 将光标上移</span></span><br><span class="line">	<span class="keyword">int</span> x, y;</span><br><span class="line">	<span class="built_in">getyx</span>(stdscr, x, y); <span class="comment">// stdscr 表示标准屏幕</span></span><br><span class="line">	<span class="built_in">move</span>(x - <span class="number">1</span>, y);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="指定位置输出">指定位置输出</h3>
-<p>在指定位置输出不必先 move 再 printw ， ncurses 提供了 mv 函数前缀在指定位置输出。 例如 <code>mvprintw(1, 2, "%d", 2)</code> 在 1 行 2 列输出 3 。 类似的有 mvaddch, mvaddstr 等。</p>
-<h2 id="颜色">颜色</h2>
-<h3 id="初始化">初始化</h3>
-<p>首先需要调用 has_color() 查看当前运行环境是否支持彩色。 调用 start_color() 初始化颜色，成功则返回 OK 。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">has_colors</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">start_color</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br></pre></td></tr></table></figure>
-<p>成功后会初始化全局变量 COLORS 表示终端支持的颜色数量 还会有 COLOT_WHITE, COLOR_RED 等 8 个表示颜色的变量。</p>
-<h3 id="使用">使用</h3>
-<p>例如希望打印白底黑字的信息：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *info)</span> </span>&#123;</span><br><span class="line">	<span class="built_in">init_pair</span>(<span class="number">1</span>, COLOR_BLACK, COLOR_WHITE);</span><br><span class="line">		<span class="comment">// 的一个参数表示编号，后面两个分别表示字体和背景颜色</span></span><br><span class="line">	<span class="built_in">attron</span>(<span class="built_in">COLOR_PAIR</span>(<span class="number">1</span>));</span><br><span class="line">		<span class="comment">// attron 是一个设置函数，COLOR_PAIR 返回指定编号的颜色信息</span></span><br><span class="line">	<span class="built_in">addstr</span>(info);</span><br><span class="line">	<span class="built_in">attroff</span>(<span class="built_in">COLOR_PAIR</span>(<span class="number">1</span>));</span><br><span class="line">		<span class="comment">// attroff 关闭设置（若接下来需要用其他颜色可以不调用 attroff 而直接使用 attron 覆盖设置</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="错误示例">错误示例</h3>
-<p>值得注意的是，必须保证 init_pair 的编号不与其他已初始化的编号重复 一个错误的调用如下：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> *info = <span class="string">&quot;ERROR CODE&quot;</span>;</span><br><span class="line"><span class="built_in">init_pair</span>(<span class="number">1</span>, COLOR_BLACK, COLOR_WHITE);</span><br><span class="line"><span class="built_in">attron</span>(<span class="built_in">COLOR_PAIR</span>(<span class="number">1</span>));</span><br><span class="line"><span class="built_in">addstr</span>(info); <span class="comment">// 打印白底黑字</span></span><br><span class="line"><span class="built_in">init_pair</span>(<span class="number">1</span>, COLOR_BLACK, COLOR_RED);</span><br><span class="line"><span class="built_in">attron</span>(<span class="built_in">COLOR_PAIR</span>(<span class="number">1</span>));</span><br><span class="line"><span class="built_in">addstr</span>(info); <span class="comment">// 打印白底红字</span></span><br></pre></td></tr></table></figure>
-<p>上述代码的期望打印出白字和黑字两种不同的颜色， 但事实上只会打印出红色一种。 解决方案便是将白底红字的 pair 编号设为 2 。</p>
-<h2 id="窗口">窗口</h2>
-<p>ncurses 有窗口类 WINDOW 并提供了 stdscr 作为默认窗口。 有时一个窗口无法满足需要，此时需要自己新建窗口。</p>
-<h3 id="新建窗口">新建窗口</h3>
-<p>调用 newwin 来新建窗口。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 从 ([x], [y]) 开始新建 [line] 行 [column] 列的窗口。</span></span><br><span class="line"><span class="function">WINDOW *<span class="title">newwin</span><span class="params">(<span class="keyword">int</span> line, <span class="keyword">int</span> column, <span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>;</span><br></pre></td></tr></table></figure>
-<p>新建的窗口</p>
-<h3 id="通用输出">通用输出</h3>
-<p>addch, printw 等输出方式只输出到 stdscr 。 ncurses 提供了 w 前缀来输出到指定窗口。 例如 <code>wprintw(win, "%d", 1)</code> 在 [win] 窗口输出 1 。 但是自己新建的窗口与 stdscr 不同， 若想在屏幕上显示需要调用 <code>wrefresh(win)</code> 刷新窗口。</p>
-<p>若想在窗口中指定位置输出，可以用 mvw 前缀函数。 例如 <code>mvwprintw(win, 1, 2, "%d", 3)</code> 在 [win] 窗口的 1 行 2 列（ <strong>相对位置</strong> ）输出 3 。</p>
-<h3 id="子窗口">子窗口</h3>
-<p>调用 subwin 创建子窗口。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 从 ([x], [y]) 开始新建 [line] 行 [column] 列属于 [parent] 的子窗口。</span></span><br><span class="line"><span class="function">WINDOW *<span class="title">subwin</span><span class="params">(WINDOW *parent, <span class="keyword">int</span> line, <span class="keyword">int</span> column, <span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>;</span><br></pre></td></tr></table></figure>
-<p>子窗口与普通窗口的区别在于它与其父窗口共用屏幕储存空间， 子窗口修改时父窗口会直接受到影响。 比如新建了 stdscr 的子窗口 win ， 那么输出到 win 后想显示在屏幕不调用 wrefresh 而是调用 touchwin(stdscr) 。 touchwin 用于标记一个窗口被修改。</p>
-<h3 id="销毁窗口">销毁窗口</h3>
-<p>调用 delwin 销毁窗口。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">delwin</span><span class="params">(WINDOW *win)</span></span>; <span class="comment">// 销毁 [win] 窗口</span></span><br></pre></td></tr></table></figure>
-<p>窗口销毁后其在屏幕上对应的内容不会改变。</p>
-<h2 id="离开">离开</h2>
-<p>有时候可能需要离开 ncurses 回到行缓冲模式做些事情而且需要在之后回到 ncurses 。 例如 Vim 里面输入 :!ls 就会退出 ncurses 运行 ls 命令，并在用户敲下回车后回到 ncurses。</p>
-<p>调用 def_prog_mode 暂存，调用 reset_prog_mode 恢复。</p>
-<h3 id="示例">示例</h3>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="built_in">initscr</span>();</span><br><span class="line">	<span class="built_in">printw</span>(<span class="string">&quot;Hello World !!!\n&quot;</span>);</span><br><span class="line">	<span class="built_in">getch</span>(); <span class="comment">// 等待用户输入</span></span><br><span class="line">	<span class="built_in">def_prog_mode</span>(); <span class="comment">// 存储当前tty 模式</span></span><br><span class="line">	<span class="built_in">endwin</span>(); <span class="comment">// 退出 ncurses 模式</span></span><br><span class="line">	<span class="built_in">system</span>(<span class="string">&quot;sh&quot;</span>); <span class="comment">// 返回普通的行缓冲模式</span></span><br><span class="line">	<span class="built_in">reset_prog_mode</span>(); <span class="comment">// 返回到 def_prog_mode() 存储的 tty 模式</span></span><br><span class="line">	<span class="built_in">refresh</span>(); <span class="comment">// 刷新屏幕（必须！）</span></span><br><span class="line">	<span class="built_in">getch</span>(); <span class="comment">// 等待用户输入</span></span><br><span class="line">	<span class="built_in">endwin</span>(); <span class="comment">// 退出 ncurses 模式</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="输出中文等非-ascii-字符">输出中文等非 ASCII 字符</h2>
-<p>事实上 ncurses 并不支持直接输出中文， 这意味着调用 printw("中文") 会是一堆乱码。 解决方案如下：</p>
-<h3 id="安装库">安装库</h3>
-<p>这需要另一个库。 通过 <code>sudo aptitude install libncurses5 libncursesw5 libncursesw5-dbg libncursesw5-dev</code> 安装</p>
-<h3 id="头文件">头文件</h3>
-<p>一定是 <code>#include &lt;ncurses.h&gt;</code> 而不是 <code>#include &lt;curses.h&gt;</code> 。 另外在 main.cpp <code>#include &lt;locale.h&gt;</code> 。</p>
-<h3 id="调用">调用</h3>
-<p>在调用 initscr() <strong>之前</strong> 调用 setlocale(LC_ALL, "") 。</p>
-<h3 id="编译">编译</h3>
-<p>将 <code>-lncurses</code> 参数改为 <code>-lncursesw</code> 。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
     <a class="extend prev" rel="prev" href="/page/7/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/9/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
@@ -1506,6 +1464,8 @@ if 上的命令往往失败了，执行的是 if 里头的命令。</p>
 
 
 
+  <script class="next-config" data-name="pdf" type="application/json">{&quot;object_url&quot;:{&quot;url&quot;:&quot;https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;npm&#x2F;pdfobject@2.2.5&#x2F;pdfobject.min.js&quot;,&quot;integrity&quot;:&quot;sha256-YuNlP9i6s&#x2F;WH7EaU2kErloo9Vc85C3WVqhoMDgsEVpY&#x3D;&quot;},&quot;url&quot;:&quot;&#x2F;lib&#x2F;pdf&#x2F;web&#x2F;viewer.html&quot;}</script>
+  <script src="/js/third-party/tags/pdf.js"></script>
 
 
 

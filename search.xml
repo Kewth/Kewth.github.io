@@ -115,6 +115,240 @@
 ]]></content>
   </entry>
   <entry>
+    <title>hexo踩坑</title>
+    <url>/2022/02/27/hexo%E8%B8%A9%E5%9D%91/</url>
+    <content><![CDATA[<h3 id="error-expected-end-of-comment-got-end-of-file">Error: expected end of comment, got end of file</h3>
+<p><code>&#123;#</code> 是 nunjucks 的注释，写 tex 的时候出现了个这个就挂了</p>
+<ul>
+<li><a href="https://github.com/hexojs/hexo/issues/2070">参考页面</a></li>
+</ul>
+]]></content>
+  </entry>
+  <entry>
+    <title>抽象代数学习笔记</title>
+    <url>/2022/02/27/%E6%8A%BD%E8%B1%A1%E4%BB%A3%E6%95%B0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<p><span class="math inline">\(\newcommand{\bbZ}{\mathbb{Z}}\)</span> <span class="math inline">\(\newcommand{\Colon}{\colon\;}\)</span> <span class="math inline">\(\newcommand{\Inner}[1]{\langle #1 \rangle}\)</span> <span class="math inline">\(\newcommand{\List}[2]{ { #2}_{1}, { #2}_{2}, \ldots, { #2}_{ #1} }\)</span></p>
+<h2 id="preliminaries">Preliminaries</h2>
+<h3 id="equivalence-relation">equivalence relation</h3>
+<blockquote>
+<p><em>Definition</em>. A <strong>binary relation</strong> on a set <span class="math inline">\(A\)</span> is a set <span class="math inline">\(R \subseteq A \times A\)</span>. We denote <span class="math inline">\((a, b) \in R\)</span> by <span class="math inline">\(a \sim b\)</span>.</p>
+</blockquote>
+<blockquote>
+<p><em>Definition</em>. A binary relation <span class="math inline">\(R\)</span> is an <strong>Equivalence relation</strong> iif it is</p>
+<ul>
+<li>reflexive: <span class="math inline">\(a \sim a\)</span>.</li>
+<li>symmetric: <span class="math inline">\(a \sim b \Rightarrow b \sim a\)</span>.</li>
+<li>transitive: <span class="math inline">\(a \sim b \land b \sim c \Rightarrow a \sim c\)</span>.</li>
+</ul>
+</blockquote>
+<blockquote>
+<p><em>Definition</em>. For a equivalence relation on <span class="math inline">\(A\)</span>, the <strong>equivalence class</strong> of <span class="math inline">\(a \in A\)</span> is defined to be <span class="math inline">\([a] = \{x \in A \Colon x \sim a\}\)</span>.</p>
+</blockquote>
+<blockquote>
+<p><em>Definition</em>. If <span class="math inline">\(C\)</span> is an equivalence class, any element <span class="math inline">\(c \in C\)</span> is called a <strong>representative</strong> of <span class="math inline">\(C\)</span>.</p>
+</blockquote>
+<blockquote>
+<p><em>Definition</em>. A <strong>partition</strong> of a set <span class="math inline">\(A\)</span> is a collection <span class="math inline">\(P = \{A_i | i \in I\}\)</span> of nonempty subsets of <span class="math inline">\(A\)</span> s.t.</p>
+<ul>
+<li><span class="math inline">\(A = \cup_{i \in I} A_i\)</span></li>
+<li><span class="math inline">\(A_i \cap A_j = \emptyset\)</span> for all <span class="math inline">\(i, j \in I\)</span> with <span class="math inline">\(i \ne j\)</span>.</li>
+</ul>
+</blockquote>
+<p>If <span class="math inline">\(P\)</span> is a partition of <span class="math inline">\(A\)</span> we also say that <span class="math inline">\(P\)</span> partitions <span class="math inline">\(A\)</span>.</p>
+<blockquote>
+<p><em>Proposition</em>. The collection of all equivalence classes is a partition.</p>
+</blockquote>
+<span id="more"></span>
+<h3 id="residue-class">residue class</h3>
+<p>Let <span class="math inline">\(n\)</span> be a fixed positive integer, <span class="math inline">\(R\)</span> is a equivalence relation on <span class="math inline">\(\bbZ\)</span> and <span class="math inline">\(a \sim b\)</span> iif <span class="math inline">\(n | (b - a)\)</span>.</p>
+<blockquote>
+<p><em>Definition</em>. <span class="math inline">\(a\)</span> is <strong>congruent</strong> to <span class="math inline">\(b\)</span> mod <span class="math inline">\(n\)</span> if <span class="math inline">\(a \sim b\)</span>. We write it as <span class="math inline">\(a \equiv b \pmod{n}\)</span>.</p>
+</blockquote>
+<blockquote>
+<p><em>Definition</em>. A equivalence class <span class="math inline">\([a]\)</span> is called a <strong>residue class</strong> of <span class="math inline">\(a\)</span> mod <span class="math inline">\(n\)</span>.</p>
+</blockquote>
+<blockquote>
+<p><em>Definition</em>. The collection of all equivalence classes is denoted by <span class="math inline">\(\bbZ_n\)</span> (or <span class="math inline">\(\bbZ / n \bbZ\)</span>) and called <strong>the integers mod <span class="math inline">\(n\)</span></strong>.</p>
+</blockquote>
+<!-- We can define an addition and a multiplication for the elements of $\bbZ_n$ below. -->
+<blockquote>
+<p><em>Definition</em>. <span class="math inline">\([a] + [b] = [a + b]\)</span>, <span class="math inline">\([a] \times [b] = [ab]\)</span>. They are <strong>modular arithmetic</strong>.</p>
+</blockquote>
+<blockquote>
+<p><em>Definition</em>. <span class="math inline">\(\bbZ_n^{\times} = \{[a] \in \bbZ_n \Colon (a, n) = 1\}\)</span>. It consist the residue classes which have a multiplicative inverse.</p>
+</blockquote>
+<h2 id="introduction-of-group">Introduction of group</h2>
+<h3 id="group">group</h3>
+<blockquote>
+<p><em>Definition</em>. A <strong>binary operation</strong> <span class="math inline">\(\star\)</span> on a set <span class="math inline">\(G\)</span> is a function <span class="math inline">\(\star \Colon G \times G \to G\)</span>. We denote <span class="math inline">\(\star(a, b)\)</span> by <span class="math inline">\(a \star b\)</span>.</p>
+</blockquote>
+<blockquote>
+<p><em>Definition</em>. A <strong>group</strong> is a ordered pair <span class="math inline">\((G, \star)\)</span> where <span class="math inline">\(G\)</span> is a set and <span class="math inline">\(\star\)</span> is a binary operation on <span class="math inline">\(G\)</span> satisfying</p>
+<ul>
+<li><span class="math inline">\(\star\)</span> is associative.</li>
+<li><span class="math inline">\(\exists e \in G\)</span> s.t. <span class="math inline">\(a \star e = e \star a = a\)</span> for all <span class="math inline">\(a \in G\)</span>. <span class="math inline">\(e\)</span> is called an <strong>identity</strong> of <span class="math inline">\(G\)</span> (in fact it is unique).</li>
+<li>For each <span class="math inline">\(a \in G\)</span>, <span class="math inline">\(\exists b \in G\)</span> s.t. <span class="math inline">\(a \star b = b \star a = e\)</span>. <span class="math inline">\(b\)</span> is usually denoted by <span class="math inline">\(a^{-1}\)</span> and called an <strong>inverse</strong> of <span class="math inline">\(a\)</span> (in fact it is unique).</li>
+</ul>
+</blockquote>
+<p>Less formally, we also say <span class="math inline">\(G\)</span> is a group under <span class="math inline">\(\star\)</span> if <span class="math inline">\((G, \star)\)</span> is a group.</p>
+<blockquote>
+<p><em>Example</em>. <span class="math inline">\(\bbZ_n\)</span> is a group under <span class="math inline">\(+\)</span>. <span class="math inline">\(\bbZ_n^{\times}\)</span> is a group under <span class="math inline">\(\times\)</span>.</p>
+</blockquote>
+<p>Since it is tiresome to keep writing the operation <span class="math inline">\(\star\)</span>, by default, the operation is <span class="math inline">\(\cdot\)</span> and <span class="math inline">\(a \cdot b\)</span> is written as <span class="math inline">\(a b\)</span>. And we simply say that <span class="math inline">\(G\)</span> is a group and we denote the identity of <span class="math inline">\(G\)</span> by <span class="math inline">\(1\)</span>.</p>
+<blockquote>
+<p><em>Definition</em>. A group <span class="math inline">\(G\)</span> is called <strong>abelian</strong> (or <strong>commutative</strong>) iif <span class="math inline">\(a b = b a\)</span> for all <span class="math inline">\(a, b \in G\)</span>.</p>
+</blockquote>
+<blockquote>
+<p><em>Definition</em>. For a group <span class="math inline">\(G\)</span>, the <strong>order</strong> of <span class="math inline">\(x \in G\)</span> is the smallest positive integer <span class="math inline">\(n\)</span> s.t. <span class="math inline">\(x^n = 1\)</span>. This integer is denoted by <span class="math inline">\(|x|\)</span>. If such a integer doesn't exsit, the order of <span class="math inline">\(x\)</span> is defined to be infinity.</p>
+</blockquote>
+<h3 id="generators-and-relations">generators and relations</h3>
+<p>Let <span class="math inline">\(G\)</span> be a group.</p>
+<blockquote>
+<p><em>Definition</em>. A subset <span class="math inline">\(S \in G\)</span> is a set of <strong>generators</strong> iif every element <span class="math inline">\(g \in G\)</span> can be written as a finite product of elements of <span class="math inline">\(S\)</span> and their inverses. <!-- In particular, if $S = \{a\}$ then $a$ is a **generator** for $G$. --></p>
+</blockquote>
+<p>If <span class="math inline">\(S\)</span> is a set of generators of <span class="math inline">\(G\)</span>, we say <span class="math inline">\(S\)</span> generates <span class="math inline">\(G\)</span> and denote it by <span class="math inline">\(G = \Inner{S}\)</span>.</p>
+<blockquote>
+<p><em>Definition</em>. If <span class="math inline">\(G = \Inner{S}\)</span>, A <strong>relation</strong> in <span class="math inline">\(G\)</span> is an equation in the elements from <span class="math inline">\(S \cup \{1\}\)</span>.</p>
+</blockquote>
+<blockquote>
+<p><em>Definition</em>. If there is some collection of relations in <span class="math inline">\(G = \Inner{S}\)</span>, say <span class="math inline">\(\{\List{m}{R}\}\)</span>, s.t. any relation in <span class="math inline">\(G\)</span> can be deduced from them, then we call these generators and relations a <strong>presentation</strong> of <span class="math inline">\(G\)</span> and write <span class="math display">\[
+G = \Inner{S | \List{m}{R}}.
+\]</span></p>
+</blockquote>
+<p>Sometimes <span class="math inline">\(S\)</span> can be a multiset.</p>
+<h3 id="some-groups">some groups</h3>
+<h4 id="dihedral-group">dihedral group</h4>
+<p>For a ordered regular <span class="math inline">\(n\)</span>-gon (<span class="math inline">\(n \ge 3\)</span>) let <span class="math inline">\(s\)</span> be the reflection about the line of symmetry through vertex <span class="math inline">\(1\)</span> and the origin, and <span class="math inline">\(r\)</span> be the rotation clockwise about the origin through <span class="math inline">\(\frac{2\pi}{n}\)</span> radian.</p>
+<blockquote>
+<p><em>Definition</em>. <span class="math inline">\(D_{2n} = \Inner{s, r}\)</span> is called a <strong>dihedral group</strong>, which is the set of symmetries of regular <span class="math inline">\(n\)</span>-gon.</p>
+</blockquote>
+<blockquote>
+<p><em>Proposition</em>. <span class="math display">\[
+D_{2n} = \{1, r, \ldots, r^{n-1}, s, sr, \ldots, sr^{n-1}\}
+= \Inner{S | s^2 = r^n = 1, s r = r s}.
+\]</span></p>
+</blockquote>
+<h4 id="symmetric-groups">symmetric groups</h4>
+<p>Let <span class="math inline">\(\Omega_n = \{1, 2, \ldots, n\}\)</span>.</p>
+<blockquote>
+<p><em>Definition</em>. A <strong>permutation</strong> of <span class="math inline">\(A\)</span> is a bijection from <span class="math inline">\(A\)</span> to itself.</p>
+</blockquote>
+<blockquote>
+<p><em>Definition</em>. The set of all permutaions of <span class="math inline">\(\Omega_n\)</span> is the <strong>symmetric group of degree <span class="math inline">\(n\)</span></strong>. we denote it by <span class="math inline">\(S_n\)</span>.</p>
+</blockquote>
+<blockquote>
+<p><em>Definition</em>. A <strong>cycle</strong> <span class="math inline">\((\List{m}{a})\)</span> is a permutaion which maps <span class="math inline">\(a_i\)</span> to <span class="math inline">\(a_{i+1}\)</span> for <span class="math inline">\(1 \le i \le m - 1\)</span> and maps <span class="math inline">\(a_n\)</span> to <span class="math inline">\(a_1\)</span>.</p>
+</blockquote>
+<blockquote>
+<p><em>Proposition</em>. <span class="math inline">\((\List{m}{a})^{-1} = (a_m, a_{m-1}, \ldots, a_1)\)</span>.</p>
+</blockquote>
+<blockquote>
+<p><em>Definition</em>. The <strong>cycle decomposition</strong> of permutation <span class="math inline">\(\sigma\)</span> is the product of some disjoint cycles which equals <span class="math inline">\(\sigma\)</span> like <span class="math display">\[
+\sigma = (a_1, a_2, \ldots, a_{m_1})
+(a_{m_1+1}, a_{m_1+2}, \ldots, a_{m_2})
+\ldots
+(a_{m_{k-1}+1}, a_{m_{k-1}+2}, \ldots, a_{m_k}).
+\]</span></p>
+</blockquote>
+<blockquote>
+<p><em>Definition</em>. A cycle of length <span class="math inline">\(t\)</span> is called a <strong><span class="math inline">\(t\)</span>-cycle</strong>.</p>
+</blockquote>
+<h4 id="matrix-groups">matrix groups</h4>
+<blockquote>
+<p><em>Definition</em>. A <strong>field</strong> is a set <span class="math inline">\(F\)</span> together with two binary operations <span class="math inline">\(+\)</span> and <span class="math inline">\(\cdot\)</span> s.t. both <span class="math inline">\((F, +)\)</span> and <span class="math inline">\((F \setminus \{0\}, \cdot)\)</span> are abelian groups and the following distributive law holds <span class="math display">\[
+a \cdot (b + c) = (a \cdot b) + (a \cdot c).
+\]</span></p>
+</blockquote>
+<blockquote>
+<p><em>Definition</em>. <strong>General linear group of degree <span class="math inline">\(n\)</span></strong> is a group under matrix multiplication defined by <span class="math display">\[
+GL_n(F) = \{A \in M_{n \times n}(F) \Colon \det(A) \ne 0\}.
+\]</span></p>
+</blockquote>
+<h3 id="homomorphisms-and-isomorphisms">homomorphisms and isomorphisms</h3>
+<blockquote>
+<p><em>Definition</em>. If <span class="math inline">\(G\)</span>, <span class="math inline">\(H\)</span> are two groups under two binary operations, a <strong>homomorphism</strong> is a function <span class="math inline">\(\varphi \Colon G \to H\)</span> s.t. <span class="math display">\[
+\forall x, y \in G \Colon \varphi(x y) = \varphi(x) \varphi(y).
+\]</span></p>
+</blockquote>
+<blockquote>
+<p><em>Definition</em>. an <strong>isomorphism</strong> is a bijective homomorphism. <span class="math inline">\(G\)</span> and <span class="math inline">\(H\)</span> are said to be <strong>isomorphic</strong> if there exists a isomorphism from one to another. (written as <span class="math inline">\(G \cong H\)</span>).</p>
+</blockquote>
+<blockquote>
+<p><em>Proposition</em>. (necessary condition) If <span class="math inline">\(\varphi \Colon G \to H\)</span> is an isomorphism, then</p>
+<ul>
+<li><span class="math inline">\(|G| = |H|\)</span>.</li>
+<li><span class="math inline">\(G\)</span> is abelian iif <span class="math inline">\(H\)</span> is abelian.</li>
+<li><span class="math inline">\(|x| = |\varphi(x)|\)</span> for all <span class="math inline">\(x \in G\)</span>.</li>
+</ul>
+</blockquote>
+<p>It is occasionally easy to see two groups are not isomorphic using the necessary condition above.</p>
+<h3 id="group-actions-and-subgroups">group actions and subgroups</h3>
+<blockquote>
+<p><em>Definition</em>. A <strong>group action</strong> of a group <span class="math inline">\(G\)</span> on a set <span class="math inline">\(A\)</span> is a function from <span class="math inline">\(G \times A \to A\)</span> (written as <span class="math inline">\(g \cdot a\)</span>) satisfying:</p>
+<ul>
+<li><span class="math inline">\(g_1 \cdot (g_2 \cdot a) = (g_1 g_2) \cdot a\)</span>.</li>
+<li><span class="math inline">\(1 \cdot a = a\)</span>.</li>
+</ul>
+<p>We say the group <span class="math inline">\(G\)</span> <strong>act</strong> on <span class="math inline">\(A\)</span>.</p>
+</blockquote>
+<blockquote>
+<p><em>Proposition</em>. We define a function <span class="math inline">\(\sigma_g \Colon A \to A\)</span> by <span class="math inline">\(\sigma_g(a) = g \cdot a\)</span>. Then we have</p>
+<ul>
+<li><span class="math inline">\(\sigma_g\)</span> is a permutation of <span class="math inline">\(A\)</span> for all <span class="math inline">\(g \in G\)</span> (the action is <strong>faithful</strong> if <span class="math inline">\(\sigma_g\)</span> are distinct).</li>
+<li>The function from <span class="math inline">\(G\)</span> to <span class="math inline">\(S_A\)</span> defined by <span class="math inline">\(g \mapsto \sigma_g\)</span> is a homomorphism.</li>
+</ul>
+</blockquote>
+<blockquote>
+<p><em>Definition</em>. A group <span class="math inline">\((H, \star)\)</span> is <strong>subgroup</strong> of another group <span class="math inline">\((G, \diamond)\)</span> iif <span class="math inline">\(H \subseteq G\)</span> and <span class="math inline">\(\star = \diamond|_{H \times H}\)</span>. We denote it by <span class="math inline">\((H, \star) \le (G, \star)\)</span> or simply <span class="math inline">\(H \le G\)</span>. If <span class="math inline">\(H \le G\)</span> and <span class="math inline">\(H \ne G\)</span> we say <span class="math inline">\(H &lt; G\)</span>.</p>
+</blockquote>
+<blockquote>
+<p><em>Proposition</em>. If <span class="math inline">\(H \subseteq G\)</span>, <span class="math inline">\(H\)</span> is a subgroup iif</p>
+<ul>
+<li><span class="math inline">\(H \ne \emptyset\)</span></li>
+<li><span class="math inline">\(xy^{-1} \in H\)</span> for all <span class="math inline">\(x, y \in H\)</span>.</li>
+</ul>
+</blockquote>
+<blockquote>
+<p><em>Definition</em>.</p>
+<ul>
+<li><strong>Centralizer</strong> of subset <span class="math inline">\(A\)</span> in group <span class="math inline">\(G\)</span> is defined to be <span class="math display">\[
+C_G(A) = \{g \in G \Colon gag^{-1} = a \;\;\forall a \in A\}.
+\]</span></li>
+<li><strong>Normalizer</strong> of subset <span class="math inline">\(A\)</span> in group <span class="math inline">\(G\)</span> is defined to be <span class="math display">\[
+N_G(A) = \{g \in G \Colon g A g^{-1} = A\},
+\]</span> where <span class="math inline">\(g A g^{-1}\)</span> is defined to be <span class="math inline">\(\{b \in G \Colon \exists a \in A \;\; b = g a g^{-1}\}\)</span>.</li>
+<li><strong>Stabilizer</strong> of <span class="math inline">\(s\)</span> (<span class="math inline">\(s \notin G\)</span> is ok) in group <span class="math inline">\(G\)</span> is defined to be <span class="math display">\[
+G_s = \{g \in G \Colon g \cdot s = s\}.
+\]</span></li>
+<li><strong>Center</strong> of <span class="math inline">\(G\)</span> is defined to be <span class="math inline">\(Z(G) = C_G(G)\)</span>.</li>
+<li><strong>Kernel</strong> of the action of <span class="math inline">\(G\)</span> on <span class="math inline">\(A\)</span> is defined to be <span class="math inline">\(\cap_{a \in A} G_a\)</span> (<span class="math inline">\(= \{g \in G \Colon \sigma_g = I\}\)</span>).</li>
+</ul>
+</blockquote>
+<blockquote>
+<p><em>Proposition</em>. <span class="math inline">\(C_G(A) \le G\)</span>, <span class="math inline">\(G_s \le G\)</span>.</p>
+</blockquote>
+<h3 id="cyclic-group">cyclic group</h3>
+<blockquote>
+<p><em>Definition</em>. A group <span class="math inline">\(G\)</span> is <strong>cyclic</strong> if <span class="math inline">\(G = \Inner{x}\)</span> for some <span class="math inline">\(x\)</span>.</p>
+</blockquote>
+<blockquote>
+<p><em>Proposition</em>.</p>
+<ol type="1">
+<li>Cyclic group is abelian.</li>
+<li><span class="math inline">\(G = \Inner{x}\)</span> implies <span class="math inline">\(|H| = |x|\)</span>.</li>
+<li><span class="math inline">\(x^m = 1\)</span> implies <span class="math inline">\(|x|\)</span> divides <span class="math inline">\(m\)</span>.</li>
+<li>Two cyclic group with the same order are isomorphic.</li>
+</ol>
+</blockquote>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>抽代</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>微积分/数学分析笔记四（积分）</title>
     <url>/2021/11/16/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90-%E5%BE%AE%E7%A7%AF%E5%88%86%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89/</url>
     <content><![CDATA[<p><span class="math inline">\(\newcommand{\bbR}{\mathbb{R}}\)</span> <span class="math inline">\(\newcommand{\bbN}{\mathbb{N}^+}\)</span> <span class="math inline">\(\newcommand{\Lim}{\lim\limits_}\)</span> <span class="math inline">\(\newcommand{\Sum}{\sum\limits_}\)</span> <span class="math inline">\(\newcommand{\eps}{\varepsilon}\)</span> <span class="math inline">\(\newcommand{\Colon}{\colon\;\;}\)</span></p>
@@ -248,7 +482,7 @@ $$
     <title>线性代数笔记（一）</title>
     <url>/2021/10/09/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/</url>
     <content><![CDATA[<p><span class="math inline">\(\newcommand{\Span}{\operatorname{span}}\)</span> <span class="math inline">\(\newcommand{\Nullity}{\operatorname{nullity}}\)</span> <span class="math inline">\(\newcommand{\Rank}{\operatorname{rank}}\)</span> <span class="math inline">\(\newcommand{\Colon}{\colon\;\;}\)</span> <span class="math inline">\(\newcommand{\Inner}[1]{\langle #1 \rangle}\)</span> <span class="math inline">\(\newcommand{\Norm}[1]{\lVert #1 \rVert}\)</span> <span class="math inline">\(\newcommand{\List}[2][n]{\{ #2_1, #2_2, \ldots, #2_#1 \}}\)</span></p>
-<h2 id="cahp.-1">Cahp. 1</h2>
+<h2 id="chap.-1">Chap. 1</h2>
 <h3 id="vector-spaces">vector spaces</h3>
 <p>域 (field) <span class="math inline">\(F\)</span> 上的向量空间 (vector space over <span class="math inline">\(F\)</span>) 或线性空间 (linear space) <span class="math inline">\(V\)</span> 包含一个向量集合和两个运算 (addition and scalar multiplication) 满足：</p>
 <ol type="1">
@@ -304,7 +538,7 @@ $$
 <p>大小等于维度的线性无关集总是一组基。</p>
 <h3 id="maximal-linearly-independent-subsets">maximal linearly independent subsets</h3>
 <p>略。</p>
-<h2 id="cahp.-2">Cahp. 2</h2>
+<h2 id="chap.-2">Chap. 2</h2>
 <h3 id="linear-transformations-null-spaces-and-rages">linear transformations, null spaces, and rages</h3>
 <p>对于线性空间 <span class="math inline">\(V, W\)</span> ，映射 <span class="math inline">\(T \Colon V \to W\)</span> 被称为线性映射 (linear transformation, linear map) 当且仅当</p>
 <p><span class="math display">\[
@@ -401,7 +635,7 @@ $$
 <p><span class="math inline">\(V^*\)</span> 的有序基 <span class="math inline">\(\{f_1, f_2, \cdots, f_n\}\)</span> 的对偶基为 <span class="math inline">\(\{\widehat{x_1}, \widehat{x_2}, \cdots, \widehat{x_n}\}\)</span> 。</p>
 <h3 id="homogeneous-linear-differential-equations-with-constant-coefficients">homogeneous linear differential equations with constant coefficients</h3>
 <p>略。</p>
-<h2 id="cahp.-3">Cahp. 3</h2>
+<h2 id="chap.-3">Chap. 3</h2>
 <h3 id="elementary-matrix-operations-and-elementary-matrices">elementary matrix operations and elementary matrices</h3>
 <p>初等行变换包括：</p>
 <ol type="1">
@@ -434,7 +668,7 @@ $$
 <p>两个方程组等价 (equivalent) 当且仅当解集相同。对于 <span class="math inline">\(m \times m\)</span> 的可逆矩阵 <span class="math inline">\(C\)</span> ，<span class="math inline">\(C A x = C b\)</span> 总是等价的。即 <span class="math inline">\((A | b)\)</span> 和 <span class="math inline">\(C (A | b)\)</span> 表示的方程组等价。</p>
 <hr />
 <p>咕咕咕。</p>
-<h2 id="cahp.-4">Cahp. 4</h2>
+<h2 id="chap.-4">Chap. 4</h2>
 <h3 id="determinants-of-order-2">determinants of order 2</h3>
 <p>略。</p>
 <h3 id="determinants-of-order-n">determinants of order <span class="math inline">\(n\)</span></h3>

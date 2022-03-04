@@ -1105,6 +1105,11 @@ pre code {
   font-weight: 900;
   color: #d9534f;
 }
+.pdfobject-container iframe,
+.pdfobject-container embed {
+  height: 500px;
+  width: 100%;
+}
 .pagination .prev,
 .pagination .next,
 .pagination .page-number,
@@ -2823,7 +2828,7 @@ mjx-container[display="true"] + br {
   vertical-align: middle;
 }
 .links-of-author a::before {
-  background: #39b43c;
+  background: #ffb133;
   display: inline-block;
   margin-right: 3px;
   transform: translateY(-2px);
