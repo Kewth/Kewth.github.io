@@ -351,7 +351,7 @@ D_{2n} = \{1, r, \ldots, r^{n-1}, s, sr, \ldots, sr^{n-1}\}
 <p><em>Definition</em>. The set of all permutaions of <span class="math inline">\(\Omega_n\)</span> is the <strong>symmetric group of degree <span class="math inline">\(n\)</span></strong>. we denote it by <span class="math inline">\(S_n\)</span>.</p>
 </blockquote>
 <blockquote>
-<p><em>Definition</em>. A <strong>cycle</strong> <span class="math inline">\((\List{m}{a})\)</span> is a permutaion which maps <span class="math inline">\(a_i\)</span> to <span class="math inline">\(a_{i+1}\)</span> for <span class="math inline">\(1 \le i \le m - 1\)</span> and maps <span class="math inline">\(a_n\)</span> to <span class="math inline">\(a_1\)</span>.</p>
+<p><em>Definition</em>. A <strong>cycle</strong> <span class="math inline">\((\List{m}{a})\)</span> is a permutaion which maps <span class="math inline">\(a_i\)</span> to <span class="math inline">\(a_{i+1}\)</span> for <span class="math inline">\(1 \le i \le m - 1\)</span> and maps <span class="math inline">\(a_m\)</span> to <span class="math inline">\(a_1\)</span>.</p>
 </blockquote>
 <div class="note "><p><span class="math display">\[
 (\List{m}{a})^{-1} = (a_m, a_{m-1}, \ldots, a_1).
