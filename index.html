@@ -441,7 +441,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2022/02/27/hexo%E8%B8%A9%E5%9D%91/">
+    <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2022/02/27/%E8%B8%A9%E5%9D%91%E6%9D%82%E8%AE%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpeg">
@@ -454,7 +454,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/02/27/hexo%E8%B8%A9%E5%9D%91/" class="post-title-link" itemprop="url">hexo踩坑</a>
+          <a href="/2022/02/27/%E8%B8%A9%E5%9D%91%E6%9D%82%E8%AE%B0/" class="post-title-link" itemprop="url">踩坑杂记</a>
         </h2>
 
         <div class="post-meta-container">
@@ -464,10 +464,16 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2022-02-27 21:48:52 / 修改时间：21:55:17" itemprop="dateCreated datePublished" datetime="2022-02-27T21:48:52+08:00">2022-02-27</time>
+      <time title="创建时间：2022-02-27 21:48:52" itemprop="dateCreated datePublished" datetime="2022-02-27T21:48:52+08:00">2022-02-27</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2022-03-15 20:51:40" itemprop="dateModified" datetime="2022-03-15T20:51:40+08:00">2022-03-15</time>
+      </span>
 
   
 
@@ -480,10 +486,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h3 id="error-expected-end-of-comment-got-end-of-file">Error: expected end of comment, got end of file</h3>
+          <h3 id="hexo-报错expected-end-of-comment-got-end-of-file-2022.02.27">Hexo 报错：expected end of comment, got end of file (2022.02.27)</h3>
 <p><code>&#123;#</code> 是 nunjucks 的注释，写 tex 的时候出现了个这个就挂了</p>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues/2070">参考页面</a></li>
+</ul>
+<h3 id="manjaro-终端输入卡顿延迟-2022.03.15">Manjaro 终端输入卡顿延迟 (2022.03.15)</h3>
+<p><code>compton</code> 的锅，要加 <code>--xrender-sync-fence</code> 参数，之前好过一段时间没管结果更新系统后又出现了。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Picom_%28%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87%29">参考页面</a></li>
 </ul>
 
       
@@ -542,7 +553,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2022-03-10 23:04:27" itemprop="dateModified" datetime="2022-03-10T23:04:27+08:00">2022-03-10</time>
+        <time title="修改时间：2022-03-19 23:12:54" itemprop="dateModified" datetime="2022-03-19T23:12:54+08:00">2022-03-19</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -572,15 +583,15 @@
 <p><em>Definition</em>. A <strong>binary relation</strong> on a set <span class="math inline">\(A\)</span> is a set <span class="math inline">\(R \subseteq A \times A\)</span>. We denote <span class="math inline">\((a, b) \in R\)</span> by <span class="math inline">\(a \sim b\)</span>.</p>
 </blockquote>
 <blockquote>
-<p><em>Definition</em>. A binary relation <span class="math inline">\(R\)</span> is an <strong>Equivalence relation</strong> iif it is</p>
+<p><em>Definition</em>. A binary relation <span class="math inline">\(R\)</span> is an <strong>Equivalence relation</strong> iff it is</p>
 <ul>
 <li>reflexive: <span class="math inline">\(a \sim a\)</span>.</li>
-<li>symmetric: <span class="math inline">\(a \sim b \Rightarrow b \sim a\)</span>.</li>
-<li>transitive: <span class="math inline">\(a \sim b \land b \sim c \Rightarrow a \sim c\)</span>.</li>
+<li>symmetric: <span class="math inline">\(a \sim b \implies b \sim a\)</span>.</li>
+<li>transitive: <span class="math inline">\(a \sim b \land b \sim c \implies a \sim c\)</span>.</li>
 </ul>
 </blockquote>
 <blockquote>
-<p><em>Definition</em>. For a equivalence relation on <span class="math inline">\(A\)</span>, the <strong>equivalence class</strong> of <span class="math inline">\(a \in A\)</span> is defined to be <span class="math inline">\([a] = \{x \in A \Colon x \sim a\}\)</span>.</p>
+<p><em>Definition</em>. For a equivalence relation on <span class="math inline">\(A\)</span>, the <strong>equivalence class</strong> of <span class="math inline">\(a \in A\)</span> is defined to be <span class="math inline">\([a] = \{x \in A \Colon x \sim a\}\)</span> (or denoted by <span class="math inline">\(\bar{a}\)</span>).</p>
 </blockquote>
 <blockquote>
 <p><em>Definition</em>. If <span class="math inline">\(C\)</span> is an equivalence class, any element <span class="math inline">\(c \in C\)</span> is called a <strong>representative</strong> of <span class="math inline">\(C\)</span>.</p>
