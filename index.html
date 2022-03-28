@@ -553,7 +553,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2022-03-19 23:12:54" itemprop="dateModified" datetime="2022-03-19T23:12:54+08:00">2022-03-19</time>
+        <time title="修改时间：2022-03-28 15:04:38" itemprop="dateModified" datetime="2022-03-28T15:04:38+08:00">2022-03-28</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -576,34 +576,64 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p><span class="math inline">\(\newcommand{\bbZ}{\mathbb{Z}}\)</span> <span class="math inline">\(\newcommand{\Colon}{\colon\;}\)</span> <span class="math inline">\(\newcommand{\Inner}[1]{\langle #1 \rangle}\)</span> <span class="math inline">\(\newcommand{\List}[2]{ { #2}_{1}, { #2}_{2}, \ldots, { #2}_{ #1} }\)</span></p>
+          <p><span class="math inline">\(\newcommand{\bbZ}{\mathbb{Z}}\)</span>
+<span class="math inline">\(\newcommand{\Colon}{\colon\;}\)</span> <span
+class="math inline">\(\newcommand{\Inner}[1]{\langle #1
+\rangle}\)</span> <span class="math inline">\(\newcommand{\List}[2]{ {
+#2}_{1}, { #2}_{2}, \ldots, { #2}_{ #1} }\)</span> <span
+class="math inline">\(\newcommand{\Aut}{\mathrm{Aut}}\)</span> <span
+class="math inline">\(\newcommand{\Inn}{\mathrm{Inn}}\)</span> <span
+class="math inline">\(\newcommand{\Char}{\;\mathrm{char}\;}\)</span></p>
 <h2 id="preliminaries">Preliminaries</h2>
 <h3 id="equivalence-relation">equivalence relation</h3>
 <blockquote>
-<p><em>Definition</em>. A <strong>binary relation</strong> on a set <span class="math inline">\(A\)</span> is a set <span class="math inline">\(R \subseteq A \times A\)</span>. We denote <span class="math inline">\((a, b) \in R\)</span> by <span class="math inline">\(a \sim b\)</span>.</p>
+<p><em>Definition</em>. A <strong>binary relation</strong> on a set
+<span class="math inline">\(A\)</span> is a set <span
+class="math inline">\(R \subseteq A \times A\)</span>. We denote <span
+class="math inline">\((a, b) \in R\)</span> by <span
+class="math inline">\(a \sim b\)</span>.</p>
 </blockquote>
 <blockquote>
-<p><em>Definition</em>. A binary relation <span class="math inline">\(R\)</span> is an <strong>Equivalence relation</strong> iff it is</p>
+<p><em>Definition</em>. A binary relation <span
+class="math inline">\(R\)</span> is an <strong>Equivalence
+relation</strong> iff it is</p>
 <ul>
 <li>reflexive: <span class="math inline">\(a \sim a\)</span>.</li>
-<li>symmetric: <span class="math inline">\(a \sim b \implies b \sim a\)</span>.</li>
-<li>transitive: <span class="math inline">\(a \sim b \land b \sim c \implies a \sim c\)</span>.</li>
+<li>symmetric: <span class="math inline">\(a \sim b \implies b \sim
+a\)</span>.</li>
+<li>transitive: <span class="math inline">\(a \sim b \land b \sim c
+\implies a \sim c\)</span>.</li>
 </ul>
 </blockquote>
 <blockquote>
-<p><em>Definition</em>. For a equivalence relation on <span class="math inline">\(A\)</span>, the <strong>equivalence class</strong> of <span class="math inline">\(a \in A\)</span> is defined to be <span class="math inline">\([a] = \{x \in A \Colon x \sim a\}\)</span> (or denoted by <span class="math inline">\(\bar{a}\)</span>).</p>
+<p><em>Definition</em>. For a equivalence relation on <span
+class="math inline">\(A\)</span>, the <strong>equivalence class</strong>
+of <span class="math inline">\(a \in A\)</span> is defined to be <span
+class="math inline">\([a] = \{x \in A \Colon x \sim a\}\)</span> (or
+denoted by <span class="math inline">\(\bar{a}\)</span>).</p>
 </blockquote>
 <blockquote>
-<p><em>Definition</em>. If <span class="math inline">\(C\)</span> is an equivalence class, any element <span class="math inline">\(c \in C\)</span> is called a <strong>representative</strong> of <span class="math inline">\(C\)</span>.</p>
+<p><em>Definition</em>. If <span class="math inline">\(C\)</span> is an
+equivalence class, any element <span class="math inline">\(c \in
+C\)</span> is called a <strong>representative</strong> of <span
+class="math inline">\(C\)</span>.</p>
 </blockquote>
 <blockquote>
-<p><em>Definition</em>. A <strong>partition</strong> of a set <span class="math inline">\(A\)</span> is a collection <span class="math inline">\(P = \{A_i | i \in I\}\)</span> of nonempty subsets of <span class="math inline">\(A\)</span> s.t.</p>
+<p><em>Definition</em>. A <strong>partition</strong> of a set <span
+class="math inline">\(A\)</span> is a collection <span
+class="math inline">\(P = \{A_i | i \in I\}\)</span> of nonempty subsets
+of <span class="math inline">\(A\)</span> s.t.</p>
 <ul>
 <li><span class="math inline">\(A = \cup_{i \in I} A_i\)</span></li>
-<li><span class="math inline">\(A_i \cap A_j = \emptyset\)</span> for all <span class="math inline">\(i, j \in I\)</span> with <span class="math inline">\(i \ne j\)</span>.</li>
+<li><span class="math inline">\(A_i \cap A_j = \emptyset\)</span> for
+all <span class="math inline">\(i, j \in I\)</span> with <span
+class="math inline">\(i \ne j\)</span>.</li>
 </ul>
 </blockquote>
-<p>If <span class="math inline">\(P\)</span> is a partition of <span class="math inline">\(A\)</span> we also say that <span class="math inline">\(P\)</span> partitions <span class="math inline">\(A\)</span>.</p>
+<p>If <span class="math inline">\(P\)</span> is a partition of <span
+class="math inline">\(A\)</span> we also say that <span
+class="math inline">\(P\)</span> partitions <span
+class="math inline">\(A\)</span>.</p>
 <div class="note "><p>The collection of all equivalence classes is a partition.</p>
 </div>
           <!--noindex-->
