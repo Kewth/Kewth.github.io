@@ -133,13 +133,16 @@
     <title>抽象代数学习笔记</title>
     <url>/2022/02/27/%E6%8A%BD%E8%B1%A1%E4%BB%A3%E6%95%B0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
     <content><![CDATA[<p><span class="math inline">\(\newcommand{\bbZ}{\mathbb{Z}}\)</span>
-<span class="math inline">\(\newcommand{\Colon}{\colon\;}\)</span> <span
+<span class="math inline">\(\newcommand{\bbQ}{\mathbb{Q}}\)</span> <span
+class="math inline">\(\newcommand{\bbN}{\mathbb{N}}\)</span> <span
+class="math inline">\(\newcommand{\Colon}{\colon\;}\)</span> <span
 class="math inline">\(\newcommand{\Inner}[1]{\langle #1
 \rangle}\)</span> <span class="math inline">\(\newcommand{\List}[2]{ {
 #2}_{1}, { #2}_{2}, \ldots, { #2}_{ #1} }\)</span> <span
 class="math inline">\(\newcommand{\Aut}{\mathrm{Aut}}\)</span> <span
 class="math inline">\(\newcommand{\Inn}{\mathrm{Inn}}\)</span> <span
-class="math inline">\(\newcommand{\Char}{\;\mathrm{char}\;}\)</span></p>
+class="math inline">\(\newcommand{\Char}{\;\mathrm{char}\;}\)</span>
+<span class="math inline">\(\newcommand{\divide}{\mid}\)</span></p>
 <h2 id="preliminaries">Preliminaries</h2>
 <h3 id="equivalence-relation">equivalence relation</h3>
 <blockquote>
@@ -289,7 +292,7 @@ class="math inline">\(G\)</span>, the <strong>order</strong> of <span
 class="math inline">\(x \in G\)</span> is the smallest positive integer
 <span class="math inline">\(n\)</span> s.t. <span
 class="math inline">\(x^n = 1\)</span>. This integer is denoted by <span
-class="math inline">\(|x|\)</span>. If such a integer doesn't exsit, the
+class="math inline">\(|x|\)</span>. If such a integer doesn't exist, the
 order of <span class="math inline">\(x\)</span> is defined to be
 infinity.</p>
 </blockquote>
@@ -824,7 +827,7 @@ homomorphism with kernel <span class="math inline">\(K / H\)</span>.
 Then we are done from the 1st theorem.
 <!-- Thus we can prove the 3rd theorem by the 1st theorem. --></p>
 <div class="note "><p>(The 4th Isomorphism Theorem) If <span class="math inline">\(N \unlhd
-G\)</span>, then there exsits a bijection from the collection of
+G\)</span>, then there exists a bijection from the collection of
 subgroups <span class="math inline">\(A\)</span> of <span
 class="math inline">\(G\)</span> which contain <span
 class="math inline">\(N\)</span> to the collection of subgroups <span
@@ -1313,14 +1316,23 @@ G}\)</span> is called <strong>commutator subgroup</strong> of <span
 class="math inline">\(G\)</span>.</li>
 </ul>
 </blockquote>
-<div class="note "><p>Let <span class="math inline">\(G\)</span> be a group, <span
-class="math inline">\(x, y \in G\)</span>, and <span
-class="math inline">\(H \le G\)</span>, then</p>
-<ul>
+<div class="note "><ul>
 <li><span class="math inline">\(x y = y x [x, y]\)</span> (in
 particular, <span class="math inline">\(x\)</span> and <span
 class="math inline">\(y\)</span> commute iff <span
 class="math inline">\([x, y] = 1\)</span>).</li>
+<li><span class="math inline">\([x, y]^{-1} = [y, x]\)</span>.</li>
+<li><span class="math inline">\([x, y^{-1}] = y [y, x] y^{-1}\)</span>
+(in particular, <span class="math inline">\([x, y] = 1 \iff [x, y^{-1}]
+= 1\)</span>).</li>
+<li><span class="math inline">\([x^{-1}, y] = x [y, x]
+x^{-1}\)</span>.</li>
+</ul>
+</div>
+<div class="note "><p>Let <span class="math inline">\(G\)</span> be a group, <span
+class="math inline">\(x, y \in G\)</span>, and <span
+class="math inline">\(H \le G\)</span>, then</p>
+<ul>
 <li><span class="math inline">\(H \unlhd G\)</span> iff <span
 class="math inline">\([H, G] \le H\)</span>.</li>
 <li><span class="math inline">\(\sigma([x, y]) = [\sigma(x),
@@ -1433,6 +1445,730 @@ by <span class="math inline">\(k\)</span> on <span
 class="math inline">\(H\)</span>, then <span class="math display">\[
 H K \cong H \rtimes K
 \]</span></p>
+</div>
+<h2 id="rings">Rings</h2>
+<h3 id="definitions-of-rings">definitions of rings</h3>
+<blockquote>
+<p><em>Definition</em>. A <strong>ring</strong> <span
+class="math inline">\(R\)</span> is a set together with two binary
+operation <span class="math inline">\(+\)</span> and <span
+class="math inline">\(\times\)</span> satisfying:</p>
+<ul>
+<li><span class="math inline">\((R, +)\)</span> is an abelian group (the
+identity is denoted by <span class="math inline">\(0\)</span>).</li>
+<li><span class="math inline">\(\times\)</span> is associative.</li>
+<li>The distributive laws hold in <span
+class="math inline">\(R\)</span>: <span class="math display">\[
+(a + b) \times c = (a \times c) + (b \times c)
+\;\;\;\land\;\;\;
+a \times (b + c) = (a \times b) + (a \times c)
+\]</span></li>
+</ul>
+</blockquote>
+<p>If <span class="math inline">\(a \times b = 0\)</span>, then it's a
+trivial ring. We can see that every abelian group forms a ring.</p>
+<blockquote>
+<p><em>Definition</em>. A ring <span class="math inline">\(R\)</span> is
+<strong>commutative</strong> iff multiplication is commutative.</p>
+</blockquote>
+<blockquote>
+<p><em>Definition</em>. A ring <span class="math inline">\(R\)</span>
+has an <strong>identity</strong> iff there exists an element <span
+class="math inline">\(1 \in R\)</span> s.t. <span
+class="math inline">\(1 \times a = a \times 1 = a\)</span>.</p>
+</blockquote>
+<blockquote>
+<p><em>Definition</em>. A ring <span class="math inline">\(R\)</span>
+with identity <span class="math inline">\(1 \ne 0\)</span> is a
+<strong>division ring</strong> (or <strong>skew field</strong>) iff
+every nonzero element <span class="math inline">\(a\)</span> has a
+multiplication inverse <span class="math inline">\(a^{-1}\)</span>.</p>
+</blockquote>
+<!-- > *Definition*. If $(R, \times)$ is a group, then $R$ is a **division ring**. -->
+<div class="note "><p>Let <span class="math inline">\(R\)</span> be a ring.</p>
+<ul>
+<li><span class="math inline">\(0 \times a = a \times 0 =
+0\)</span>.</li>
+<li><span class="math inline">\((-a) \times b = a \times (-b) = - (a
+\times b)\)</span>.</li>
+<li><span class="math inline">\((-a) \times (-b) = a \times
+b\)</span>.</li>
+<li>If <span class="math inline">\(R\)</span> has identity <span
+class="math inline">\(1\)</span>, the identity is unique, and <span
+class="math inline">\(-a = (-1) \times a\)</span>.</li>
+</ul>
+</div>
+<blockquote>
+<p><em>Definition</em>. A nonzero element <span class="math inline">\(a
+\in R\)</span> is a <strong>zero divisor</strong> iff there is a nonzero
+element <span class="math inline">\(b \in R\)</span> s.t. either <span
+class="math inline">\(a b = 0\)</span> or <span class="math inline">\(b
+a = 0\)</span>.</p>
+</blockquote>
+<blockquote>
+<p><em>Definition</em>. Assume <span class="math inline">\(R\)</span>
+has an identity <span class="math inline">\(1 \ne 0\)</span>. An element
+<span class="math inline">\(u \in R\)</span> is a <strong>unit</strong>
+iff there is some <span class="math inline">\(v \in R\)</span> s.t.
+<span class="math inline">\(u v = v u = 1\)</span> (has inverse).</p>
+<p>The set of units is denoted by <span
+class="math inline">\(R^{\times}\)</span>.</p>
+</blockquote>
+<blockquote>
+<p><em>Definition</em>. A commutative ring with identity <span
+class="math inline">\(1 \ne 0\)</span> is called an <strong>integral
+domain</strong> iff it has no zero divisors.</p>
+</blockquote>
+<div class="note "><p>Assume <span class="math inline">\(a, b, c \in R\)</span>, and <span
+class="math inline">\(a\)</span> is not a zero divisor. Then <span
+class="math inline">\(a b = a c \implies a = 0 \lor b = c\)</span>
+(Notice that <span class="math inline">\(a^{-1}\)</span> may not
+exist!).</p>
+<p>In particular, if <span class="math inline">\(R\)</span> is integral
+domain, then <span class="math inline">\(a b = a c \implies a = 0 \lor b
+= c\)</span> always holds.</p>
+<p>Corollary: Finite integral domain is a field.</p>
+</div>
+<h3 id="subrings">subrings</h3>
+<blockquote>
+<p><em>Definition</em>. A <strong>subring</strong> of a ring <span
+class="math inline">\(R\)</span> is a subgroup of <span
+class="math inline">\(R\)</span> closed under multiplication.</p>
+<p>That is, <span class="math inline">\(S\)</span> is a subring of <span
+class="math inline">\(R\)</span> iff <span class="math inline">\(x - y
+\in S\)</span> and <span class="math inline">\(x y \in S\)</span> for
+all <span class="math inline">\(x, y \in S\)</span>.</p>
+</blockquote>
+<div class="note "><p>Let <span class="math inline">\(A, B\)</span> be subrings of <span
+class="math inline">\(R\)</span>, <span class="math inline">\(I,
+J\)</span> be ideals of <span class="math inline">\(R\)</span>.</p>
+<ul>
+<li><span class="math inline">\(A \cap B\)</span> is a subring.</li>
+<li><span class="math inline">\(A \cap I\)</span> is a ideal.</li>
+<li><span class="math inline">\(A + I\)</span> is a subring.</li>
+<li><span class="math inline">\(I + J\)</span> is a ideal.</li>
+<li><span class="math inline">\(I \cdot J\)</span> is a ideal.</li>
+</ul>
+</div>
+<h3 id="homomorphisms-and-isomorphisms">homomorphisms and
+isomorphisms</h3>
+<blockquote>
+<p><em>Definition</em>. Let <span class="math inline">\(R\)</span> and
+<span class="math inline">\(S\)</span> be rings.</p>
+<ul>
+<li>A ring <strong>homomorphism</strong> is a map <span
+class="math inline">\(\varphi \Colon R \to S\)</span> satisfying <span
+class="math inline">\(\varphi(a + b) = \varphi(a) + \varphi(b)\)</span>
+and <span class="math inline">\(\varphi(a b) = \varphi(a)
+\varphi(b)\)</span>.</li>
+<li>Its <strong>kernel</strong> is defined to be <span
+class="math inline">\(\ker\varphi = \varphi^{-1}(0)\)</span>.</li>
+<li>If <span class="math inline">\(\varphi\)</span> is bijection, it's
+called an <strong>isomorphism</strong>.</li>
+<li>If <span class="math inline">\(\varphi\)</span> is an isomorphism,
+we say <span class="math inline">\(R\)</span> is
+<strong>isomorphic</strong> to <span class="math inline">\(S\)</span>
+(written as <span class="math inline">\(R \cong S\)</span>).</li>
+</ul>
+</blockquote>
+<div class="note "><p>Let <span class="math inline">\(\varphi\)</span> be a ring
+homomorphism from <span class="math inline">\(R\)</span> to <span
+class="math inline">\(S\)</span>.</p>
+<ul>
+<li>The image of <span class="math inline">\(\varphi\)</span> is a
+subring of <span class="math inline">\(S\)</span>.</li>
+<li>The kernel of <span class="math inline">\(\varphi\)</span> is a
+subring of <span class="math inline">\(R\)</span>.</li>
+<li><span class="math inline">\(r k \in \ker\varphi\)</span> and <span
+class="math inline">\(k r \in \ker\varphi\)</span> for all <span
+class="math inline">\(k \in \ker\varphi\)</span> and <span
+class="math inline">\(r \in R\)</span>.</li>
+</ul>
+</div>
+<h3 id="quotient-ring">quotient ring</h3>
+<blockquote>
+<p><em>Definition</em>. A subring <span class="math inline">\(I
+\subseteq R\)</span> is a <strong>left ideal</strong> iff <span
+class="math inline">\(r I \subseteq I\)</span> for all <span
+class="math inline">\(r \in R\)</span>. Similarly, it's a <strong>right
+ideal</strong> iff <span class="math inline">\(I r \subseteq I\)</span>
+for all <span class="math inline">\(r \in R\)</span>.</p>
+<p>It's a <strong>ideal</strong> iff it's both a left ideal and a right
+ideal.</p>
+</blockquote>
+<p>Notice that ideal must be subring by definition.</p>
+<blockquote>
+<p><em>Definition</em>. Let <span class="math inline">\(R\)</span> be a
+ring and <span class="math inline">\(I\)</span> be an ideal of <span
+class="math inline">\(R\)</span>. Then we can define a (additive)
+<strong>quotient ring</strong> by <span class="math display">\[
+R / I = \{r + I \mid r \in R\}.
+\]</span> And it's operation is <span class="math display">\[
+(r + I) + (s + I) \mapsto (r + s) + I,
+\]</span> and <span class="math display">\[
+(r + I) \times (s + I) \mapsto (rs) + I.
+\]</span></p>
+</blockquote>
+<div class="note "><p>Let <span class="math inline">\(I\)</span> be a ideal of a ring <span
+class="math inline">\(R\)</span>, then the map from <span
+class="math inline">\(R\)</span> to <span class="math inline">\(R /
+I\)</span> defined by <span class="math inline">\(r \mapsto r +
+I\)</span> is a surjective ring homomorphism with kernel <span
+class="math inline">\(I\)</span>.</p>
+<p>Like group case, the map is called <strong>natural
+projection</strong>. Thus every ideal is the kernel of a ring and vice
+versa.</p>
+</div>
+<h3 id="the-isomorphism-theorem-for-rings">the isomorphism theorem for
+rings</h3>
+<div class="note "><p>(The 1st Isomorphism Theorem for Rings) Let <span
+class="math inline">\(\varphi \Colon R \to S\)</span> be a homomorphism,
+then <span class="math inline">\(\ker\varphi\)</span> is an ideal of
+<span class="math inline">\(R\)</span>, and <span
+class="math inline">\(R / \ker\varphi \cong \varphi(R)\)</span>.</p>
+</div>
+<div class="note "><p>(The 2nd Isomorphism Theorem for Rings) Let <span
+class="math inline">\(A\)</span> be a subring and <span
+class="math inline">\(B\)</span> be an ideal of <span
+class="math inline">\(R\)</span>, then</p>
+<ul>
+<li><span class="math inline">\(A + B = \{a + b \mid a \in A, b \in
+B\}\)</span> is a subring of <span
+class="math inline">\(R\)</span>.</li>
+<li><span class="math inline">\(A \cap B\)</span> is an ideal of <span
+class="math inline">\(A\)</span>.</li>
+<li><span class="math inline">\((A + B) / B \cong A / (A \cap
+B)\)</span>.</li>
+</ul>
+</div>
+<div class="note "><p>(The 3rd Isomorphism Theorem for Rings) Let <span
+class="math inline">\(I\)</span> and <span
+class="math inline">\(J\)</span> be ideals of <span
+class="math inline">\(R\)</span> with <span class="math inline">\(I
+\subseteq J\)</span>. Then <span class="math inline">\(J / I\)</span> is
+an ideal of <span class="math inline">\(R / I\)</span> and <span
+class="math display">\[
+(R / I) / (J / I) \cong R / J
+\]</span></p>
+</div>
+<div class="note "><p>(The 4th Isomorphism Theorem for Rings) Let <span
+class="math inline">\(I\)</span> be an ideal of <span
+class="math inline">\(R\)</span>. The correspondence <span
+class="math inline">\(A \leftrightarrow A / I\)</span> is an inclusion
+preserving bijection between the collection of subrings of <span
+class="math inline">\(R\)</span> containing <span
+class="math inline">\(I\)</span> and the collection of subrings of <span
+class="math inline">\(R / I\)</span>.</p>
+<p>Further, <span class="math inline">\(A\)</span> (a subring containg
+<span class="math inline">\(I\)</span>) is an ideal of <span
+class="math inline">\(R\)</span> iff <span class="math inline">\(A /
+I\)</span> is an ideal of <span class="math inline">\(R /
+I\)</span>.</p>
+</div>
+<h3 id="ideals">ideals</h3>
+<blockquote>
+<p><em>Definition</em>. Let <span class="math inline">\(I\)</span> and
+<span class="math inline">\(J\)</span> be ideals of <span
+class="math inline">\(R\)</span>.</p>
+<ul>
+<li>The <strong>sum</strong> of <span class="math inline">\(I\)</span>
+and <span class="math inline">\(J\)</span> is <span
+class="math display">\[
+I + J = \{a + b \mid a \in I, b \in J\}.
+\]</span></li>
+<li>The <strong>product</strong> of <span
+class="math inline">\(I\)</span> and <span
+class="math inline">\(J\)</span> is <span class="math display">\[
+I \cdot J = \{a_1 b_1 + a_2 b_2 + \cdots + a_n b_n
+\mid a_i \in I, b_i \in J, n \in \mathbb{N}\}
+\]</span>
+<!-- > the set of all finite sums of elements of the form $a b$ -->
+<!-- > with $a \in I$ and $b \in J$. --></li>
+</ul>
+</blockquote>
+<blockquote>
+<p><em>Definition</em>. Let <span class="math inline">\(R\)</span> be a
+ring with identity <span class="math inline">\(1 \ne 0\)</span>, and
+<span class="math inline">\(A\)</span> be an arbitrary subset of <span
+class="math inline">\(R\)</span>.</p>
+<ul>
+<li>The ideal generated by <span class="math inline">\(A\)</span> is the
+smallest ideal of <span class="math inline">\(R\)</span> containing
+<span class="math inline">\(A\)</span>, denoted by <span
+class="math inline">\((A) = \cap_{A \subseteq I} I\)</span>.</li>
+<li><span class="math inline">\((r)\)</span> is called a
+<strong>principal ideal</strong> for any <span class="math inline">\(r
+\in R\)</span>.</li>
+<li><span class="math inline">\((A)\)</span> is called a
+<strong>finitely generated ideal</strong> if <span
+class="math inline">\(A\)</span> is finite.</li>
+</ul>
+</blockquote>
+<div class="note "><p>Let <span class="math inline">\(R\)</span> be a ring with identity
+<span class="math inline">\(1 \ne 0\)</span>. Let <span
+class="math inline">\(I\)</span> be an ideal of <span
+class="math inline">\(R\)</span>.</p>
+<ul>
+<li><span class="math inline">\(I = R\)</span> iff <span
+class="math inline">\(I\)</span> contains a unit (<span
+class="math inline">\(R\)</span> can be generated by any single
+unit).</li>
+<li>Assume <span class="math inline">\(R\)</span> is commutative. Then
+<span class="math inline">\(R\)</span> is a field iff its only ideals
+are <span class="math inline">\(\{0\}\)</span> and <span
+class="math inline">\(R\)</span>.</li>
+</ul>
+<p>Corollary: If <span class="math inline">\(R\)</span> is a field, then
+any nontrivial homomorphism form <span class="math inline">\(R\)</span>
+is an injection.</p>
+</div>
+<blockquote>
+<p><em>Definition</em>. A ideal <span class="math inline">\(M\)</span>
+of <span class="math inline">\(R\)</span> is called a <strong>maximal
+ideal</strong> iff <span class="math inline">\(M \ne R\)</span> and the
+only ideals containing <span class="math inline">\(M\)</span> is <span
+class="math inline">\(R\)</span> and <span
+class="math inline">\(M\)</span>.</p>
+</blockquote>
+<blockquote>
+<p><em>Definition</em>. For a commutative ring <span
+class="math inline">\(R\)</span> with <span
+class="math inline">\(1\)</span>, an ideal <span
+class="math inline">\(P\)</span> is called a <strong>prime
+ideal</strong> iff <span class="math inline">\(P \ne R\)</span> and
+<span class="math inline">\(a, b \in R, a b \in P \implies \{a, b\} \cap
+P \ne \emptyset\)</span>.</p>
+</blockquote>
+<div class="note "><p>Let <span class="math inline">\(R\)</span> be a commutative ring with
+<span class="math inline">\(1\)</span>.</p>
+<ul>
+<li>For a ring with <span class="math inline">\(1\)</span>, every proper
+ideal is contained in a maximal ideal.</li>
+<li>The ideal <span class="math inline">\(M\)</span> is a maximal ideal
+iff <span class="math inline">\(R / M\)</span> is a field.</li>
+<li>The ideal <span class="math inline">\(P\)</span> is a prime ideal
+iff <span class="math inline">\(R / P\)</span> is an integral
+domain.</li>
+<li>Every maximal ideal is prime ideal (the converse is false in
+general).</li>
+</ul>
+</div>
+<h3 id="rings-of-fractions">rings of fractions</h3>
+<!-- ASSUME R IS COMMUTATIVE -->
+<div class="note "><p>Let <span class="math inline">\(R\)</span> be a commutative ring,
+<span class="math inline">\(D \subseteq R\)</span> be a nonempty subset
+s.t. <span class="math inline">\(0 \notin D\)</span> and <span
+class="math inline">\(D\)</span> is closed under multiplication.</p>
+<p>Then there is a commutative ring <span
+class="math inline">\(Q\)</span> with <span
+class="math inline">\(1\)</span> s.t.
+<!-- $Q$ contains $R$ as a subring and every element of $D$ is a unit in $Q$. --></p>
+<!-- The ring $Q$ has the following properties: -->
+<ul>
+<li><span class="math inline">\(R\)</span> is a subring of <span
+class="math inline">\(Q\)</span>.</li>
+<li>Every element of <span class="math inline">\(D\)</span> is a unit in
+<span class="math inline">\(Q\)</span>.</li>
+<li>Every element of <span class="math inline">\(Q\)</span> is of the
+form <span class="math inline">\(\frac{r}{d}\)</span> for some <span
+class="math inline">\(r \in R\)</span> and <span class="math inline">\(d
+\in D\)</span>. In particular, <span class="math inline">\(D = R
+\setminus \{0\}\)</span> implies <span class="math inline">\(Q\)</span>
+is a field.</li>
+<li><span class="math inline">\(Q\)</span> is the "smallest" ring
+containing <span class="math inline">\(R\)</span> in which all elements
+of <span class="math inline">\(D\)</span> becomes units.</li>
+</ul>
+</div>
+<blockquote>
+<p><em>Definition</em>. <span class="math inline">\(Q\)</span> is called
+the <strong>ring of fractions</strong> of <span
+class="math inline">\(D\)</span> with respect to <span
+class="math inline">\(R\)</span>, denoted by <span
+class="math inline">\(D^{-1} R\)</span>. In particular, if <span
+class="math inline">\(R\)</span> is an integral domain and <span
+class="math inline">\(D = R \setminus \{0\}\)</span> then <span
+class="math inline">\(Q\)</span> is called the <strong>field of
+fractions</strong> of <span class="math inline">\(R\)</span>.</p>
+</blockquote>
+<div class="note "><p>Let <span class="math inline">\(Q\)</span> be field of fractions of
+<span class="math inline">\(R\)</span>. Every field containing <span
+class="math inline">\(R\)</span> must contain <span
+class="math inline">\(Q\)</span> (<span class="math inline">\(Q\)</span>
+is the "smallest" field containg <span
+class="math inline">\(R\)</span>).</p>
+</div>
+<p>For example, <span class="math inline">\(\mathbb{Q}\)</span> is the
+smallest field containg <span class="math inline">\(\bbZ\)</span>.</p>
+<h3 id="the-chinese-remainder-theorem">the chinese remainder
+theorem</h3>
+<blockquote>
+<p><em>Definition</em>. The ideals <span
+class="math inline">\(A\)</span> and <span
+class="math inline">\(B\)</span> of the ring <span
+class="math inline">\(R\)</span> are said to be
+<strong>comaximal</strong> iff <span class="math inline">\(A + B =
+R\)</span>.</p>
+</blockquote>
+<div class="note "><p>Let <span class="math inline">\(A_1, A_2, \ldots A_k\)</span> be
+ideals of <span class="math inline">\(R\)</span>. The map <span
+class="math inline">\(R \to R / A_1 \times R / A_2 \times \cdots \times
+R / A_k\)</span> defined by <span class="math inline">\(r \mapsto (r +
+A_1, r + A_2, \ldots, r + A_k)\)</span> is a ring homomorphisms with
+kernel <span class="math inline">\(A_1 \cap A_2 \cap \cdots \cap
+A_k\)</span>.</p>
+<p>If <span class="math inline">\(A_i\)</span> and <span
+class="math inline">\(A_j\)</span> are comaximal for all <span
+class="math inline">\(i \ne j\)</span>, then this map is surjective and
+the kernel equal to <span class="math inline">\(A_1 A_2 \cdots
+A_k\)</span>.</p>
+</div>
+<h2 id="some-rings">Some Rings</h2>
+<h3 id="quadratic-integer-rings">quadratic integer rings</h3>
+<blockquote>
+<p><em>Definition</em>. <span class="math inline">\(\bbZ[\omega] = \{a +
+b \omega \mid a, b \in \bbZ\}\)</span>.</p>
+</blockquote>
+<div class="note "><p>If <span class="math inline">\(D\)</span> is squarefree, then <span
+class="math display">\[
+\bbZ[\sqrt{D}] \cong
+\{\begin{pmatrix}
+a &amp; b \\ Db &amp; a
+\end{pmatrix}\}.
+\]</span> The right-hand side is a subring of <span
+class="math inline">\(M_2(\bbZ)\)</span>.</p>
+<p>If <span class="math inline">\(D = 4k + 1\)</span> is squarefree,
+then <span class="math display">\[
+\bbZ[\frac{1+\sqrt{D}}{2}] \cong
+\{\begin{pmatrix}
+a &amp; b \\ kb &amp; a + b
+\end{pmatrix}\}.
+\]</span> The right-hand side is a subring of <span
+class="math inline">\(M_2(\bbZ)\)</span>.</p>
+</div>
+<h3 id="polynomial-rings">polynomial rings</h3>
+<blockquote>
+<p><em>Definition</em>. Let <span class="math inline">\(R\)</span> be a
+commutative ring <span class="math inline">\(R\)</span> with identity.
+<strong>Polynomial ring</strong> is defined as follows: <span
+class="math display">\[
+R[x] = \{a_n x^n + a_{n-1} x^{n-1} + \ldots + a_1 x + a_0
+\mid a_i \in R, n \in \mathbb{N}\}.
+\]</span></p>
+<p>The formal sum above is called <strong>polynomial</strong> of
+<strong>degree</strong> <span class="math inline">\(n\)</span>.</p>
+</blockquote>
+<div class="note "><p>Let <span class="math inline">\(R\)</span> be an integral domain and
+<span class="math inline">\(0 \ne p(x), q(x) \in R[x]\)</span>.</p>
+<ul>
+<li><span class="math inline">\(\text{degree } p(x) q(x) = \text{degree
+} p(x) + \text{degree } q(x)\)</span>.</li>
+<li>The units of <span class="math inline">\(R[x]\)</span> are just the
+units of <span class="math inline">\(R\)</span>.</li>
+<li><span class="math inline">\(R[x]\)</span> is an integral
+domain.</li>
+</ul>
+</div>
+<h3 id="matrix-rings">matrix rings</h3>
+<blockquote>
+<p><em>Definition</em>. Let <span class="math inline">\(R\)</span> be a
+arbitrary ring, then <span class="math inline">\(M_{n \times n}
+(R)\)</span> is a ring, called <strong>matrix ring</strong>. Sometimes
+we denote it by <span class="math inline">\(M_n(R)\)</span>.</p>
+</blockquote>
+<h3 id="group-rings">group rings</h3>
+<blockquote>
+<p><em>Definition</em>. Let <span class="math inline">\(R\)</span> be a
+commutative ring with identity <span class="math inline">\(1 \ne
+0\)</span>, and <span class="math inline">\(G = \{g_1, g_2, \ldots,
+g_n\}\)</span> be a finite group. Then <span
+class="math inline">\(RG\)</span> is the ring of all following formal
+sums (<span class="math inline">\(a_i \in R\)</span>) <span
+class="math display">\[
+a_1 g_1 + a_2 g_2 + \ldots + a_n g_n
+\]</span> which is called <strong>group ring</strong>.</p>
+</blockquote>
+<h2 id="some-domains">Some Domains</h2>
+<p>Recall that integral domain is commutative with identiy, and has no
+zero divisors.</p>
+<h3 id="euclidean-domains">Euclidean Domains</h3>
+<blockquote>
+<p><em>Definition</em>. Let <span class="math inline">\(R\)</span> be a
+integral domain.</p>
+<ul>
+<li>A function <span class="math inline">\(N \Colon R \to \bbN\)</span>
+with <span class="math inline">\(N(0) = 0\)</span> is called a
+<strong>norm</strong> on <span class="math inline">\(R\)</span>.</li>
+<li>If <span class="math inline">\(N(a) &gt; 0\)</span> for all <span
+class="math inline">\(a \ne 0\)</span> then it's called a
+<strong>positive norm</strong>.</li>
+<li><span class="math inline">\(R\)</span> is said to be a
+<strong>Euclidean Domain</strong> iff there exists a norm <span
+class="math inline">\(N\)</span> s.t. for all <span
+class="math inline">\(a, b \in R\)</span> with <span
+class="math inline">\(b \ne 0\)</span>, there exists <span
+class="math inline">\(q, r \in R\)</span> with <span
+class="math inline">\(a = q b + r\)</span> s.t. <span
+class="math inline">\(r = 0\)</span> or <span class="math inline">\(N(r)
+&lt; N(b)\)</span>.</li>
+<li><span class="math inline">\(q, r\)</span> is called the
+<strong>quotient</strong> and the <strong>remainder</strong> of the
+division.</li>
+<li>If <span class="math inline">\(a = u b\)</span> for some unit <span
+class="math inline">\(u\)</span>, then we say <span
+class="math inline">\(a\)</span> and <span
+class="math inline">\(b\)</span> are <strong>associate</strong>.</li>
+</ul>
+</blockquote>
+<!-- > and $a, b \in R$ with $b \ne 0$. -->
+<blockquote>
+<p><em>Definition</em>. Let <span class="math inline">\(R\)</span> be a
+commutative ring.</p>
+<ul>
+<li><span class="math inline">\(a\)</span> is said to be a
+<strong>multiple</strong> of <span class="math inline">\(b\)</span> (or
+<span class="math inline">\(b\)</span> divides <span
+class="math inline">\(a\)</span>) iff <span
+class="math inline">\(\exists x \in R\)</span> s.t. <span
+class="math inline">\(a = b x\)</span>, written <span
+class="math inline">\(b \divide a\)</span>.</li>
+<li><span class="math inline">\(d\)</span> is a <strong>greatest common
+divisor</strong> of <span class="math inline">\(a\)</span> and <span
+class="math inline">\(b\)</span> iff <span class="math inline">\((d
+\divide a) \land (d \divide b)\)</span> and <span
+class="math inline">\((d&#39; \divide a) \land (d&#39; \divide b)
+\implies d&#39; \divide d\)</span>.</li>
+</ul>
+</blockquote>
+<div class="note "><p>Let <span class="math inline">\(R\)</span> be a commutative ring.</p>
+<ul>
+<li><span class="math inline">\(b \divide a \iff a \in (b) \iff (a)
+\subseteq (b)\)</span>.</li>
+<li>If <span class="math inline">\((d) = (a, b)\)</span>, then <span
+class="math inline">\(d\)</span> is a greatest common divisor.</li>
+</ul>
+</div>
+<div class="note "><p>Let <span class="math inline">\(R\)</span> be an integral domain.</p>
+<ul>
+<li>If <span class="math inline">\((d) = (d&#39;)\)</span>, then <span
+class="math inline">\(d&#39;\)</span> and <span
+class="math inline">\(d\)</span> are associate. In particular, every two
+gcds of <span class="math inline">\(a, b\)</span> are associate.</li>
+<li>If <span class="math inline">\((d) = (a, b)\)</span> then <span
+class="math inline">\(d\)</span> can be written as <span
+class="math inline">\(ax + by\)</span> for some <span
+class="math inline">\(x, y \in R\)</span>.</li>
+</ul>
+</div>
+<blockquote>
+<p><em>Definition</em>. <strong>Euclidean Algorithm</strong> for <span
+class="math inline">\(a, b\)</span> is:</p>
+<ul>
+<li>Let <span class="math inline">\(r_0 = a, r_1 = b\)</span>.</li>
+<li>Take division <span class="math inline">\(r_i = q_{i+2} r_{i+1} +
+r_{i+2}\)</span> for <span class="math inline">\(i\)</span>,</li>
+<li>Until <span class="math inline">\(r_i = 0\)</span>.</li>
+</ul>
+</blockquote>
+<div class="note "><ul>
+<li><span class="math inline">\(F[x]\)</span> is a Euclidean Domain with
+<span class="math inline">\(N\)</span> being the degree of polynomial,
+where <span class="math inline">\(F\)</span> is a field.</li>
+<li><span class="math inline">\(\bbZ[\sqrt{-1}]\)</span> is a Euclidean
+Domain with <span class="math inline">\(N(a + b \sqrt{-1}) = a^2 +
+b^2\)</span>.</li>
+</ul>
+</div>
+<h3 id="principal-ideal-doamins">Principal Ideal Doamins</h3>
+<blockquote>
+<p><em>Definition</em>. A <strong>Principal Ideal Domain</strong> is an
+integral domain in which every ideal is principal.</p>
+</blockquote>
+<p><span class="math inline">\(\bbZ[\sqrt{-5}]\)</span> is not a
+Principal Ideal Domain because <span class="math inline">\((3, 1 +
+\sqrt{-5})\)</span> is not principal.</p>
+<div class="note "><p>Every Euclidean Domain is a Principal Ideal Domain. And <span
+class="math inline">\(I = (d)\)</span> for all <span
+class="math inline">\(d\)</span> having minimum norm in <span
+class="math inline">\(I\)</span>.</p>
+</div>
+<p>In general a Principal Ideal Domain is not a Euclidean Domain. <span
+class="math inline">\(\bbZ[\frac{1 + \sqrt{-19}}{2}]\)</span> is an
+example.</p>
+<div class="note "><p>Let <span class="math inline">\(R\)</span> be a Principal Ideal
+Domain, and <span class="math inline">\(a, b \in R\)</span> are nonzero.
+If <span class="math inline">\((a, b) = (d)\)</span>, then</p>
+<ul>
+<li>(Recall) <span class="math inline">\(d\)</span> is a greatest common
+divisor of <span class="math inline">\(a\)</span> and <span
+class="math inline">\(b\)</span>.</li>
+<li>(Recall) <span class="math inline">\(d\)</span> can be written as
+<span class="math inline">\(d = ax + by\)</span>.</li>
+</ul>
+<p>If <span class="math inline">\(R\)</span> is a Euclidean Domain, and
+<span class="math inline">\(r_n\)</span> is the last nonzero remainder
+in the Euclidean Algorithm for <span class="math inline">\(a\)</span>
+and <span class="math inline">\(b\)</span>, then <span
+class="math inline">\((r_n) = (a, b)\)</span>.</p>
+</div>
+<div class="note "><ul>
+<li>Every nonzero prime ideal in a Principal Ideal Domain is a maximal
+ideal.</li>
+<li>If <span class="math inline">\(R\)</span> is a commutative ring and
+<span class="math inline">\(R[x]\)</span> is a Principal Ideal Domain,
+then <span class="math inline">\(R\)</span> must be a field.</li>
+</ul>
+</div>
+<h3 id="unique-factorization-domains">Unique Factorization Domains</h3>
+<blockquote>
+<p><em>Definition</em>. Let <span class="math inline">\(R\)</span> be an
+integral domain.</p>
+<ul>
+<li>Let <span class="math inline">\(r \in R\)</span> be nonzero and not
+a unit, then <span class="math inline">\(r\)</span> is called
+<strong>reducible</strong> in <span class="math inline">\(R\)</span> iff
+<span class="math inline">\(r = a b\)</span> for some <span
+class="math inline">\(a, b\)</span> which are not units. Otherwise, it's
+called <strong>irreducible</strong>.</li>
+<li>The nonzero element <span class="math inline">\(p \in R\)</span> is
+called <strong>prime</strong> in <span class="math inline">\(R\)</span>
+iff the ideal <span class="math inline">\((p)\)</span> is a prime
+ideal.</li>
+</ul>
+</blockquote>
+<div class="note "><!-- Let $R$ be a integral domain and $p$ is a nonzero element. -->
+<ul>
+<li>If <span class="math inline">\(R\)</span> is an integral domain,
+<span class="math inline">\(p\)</span> is prime <span
+class="math inline">\(\implies\)</span> <span
+class="math inline">\(p\)</span> is irreducible.</li>
+<li>If <span class="math inline">\(R\)</span> is a Principal Ideal
+Domain, <span class="math inline">\(p\)</span> is prime <span
+class="math inline">\(\iff\)</span> <span
+class="math inline">\(p\)</span> is irreducible.</li>
+</ul>
+</div>
+<blockquote>
+<p><em>Definition</em>. A Unique Factorization Domains is an integral
+domain <span class="math inline">\(R\)</span> s.t. every nonzero element
+<span class="math inline">\(r\)</span> which is not a unit obeys:</p>
+<ul>
+<li><span class="math inline">\(r\)</span> can be written as <span
+class="math inline">\(p_1 p_2 \cdots p_n\)</span> (finite), where all
+<span class="math inline">\(p_i\)</span> are irreducible.</li>
+<li>The decomposition above is unique up to associates.</li>
+</ul>
+</blockquote>
+<div class="note "><p>Let <span class="math inline">\(R\)</span> be a Unique Factorization
+Domain, and <span class="math inline">\(a, b \in R\)</span>. Suppose
+<span class="math inline">\(a = u p_1^{f_1} p_2^{f_2} \cdots
+p_n^{f_n}\)</span>, and <span class="math inline">\(b = v p_1^{g_1}
+p_2^{g_2} \cdots p_n^{g_n}\)</span>.</p>
+<p>The greatest common divisor <span class="math inline">\(d\)</span>
+alwasy exists, and <span class="math inline">\(d\)</span> is associated
+to <span class="math inline">\(p_1^{h_1} p_2^{h_2} \cdots
+p_n^{h_n}\)</span> where <span class="math inline">\(h_i = \min(f_i,
+g_i)\)</span>.</p>
+</div>
+<div class="note "><p>Every Principal Prime Ideal is a Unique Factorization Domain.</p>
+</div>
+<h2 id="polynomial-rings-1">Polynomial Rings</h2>
+<h3 id="basic-properties">basic properties</h3>
+<div class="note "><p>Let <span class="math inline">\(I\)</span> be an ideal of the ring
+<span class="math inline">\(R\)</span>, then</p>
+<ul>
+<li><span class="math inline">\((I) = I[x]\)</span> is an ideal of <span
+class="math inline">\(R[x]\)</span>.</li>
+<li><span class="math inline">\(R[x] / I[x] \cong (R /
+I)[x]\)</span>.</li>
+</ul>
+<p>In particular, if <span class="math inline">\(I\)</span> is a prime
+ideal of <span class="math inline">\(R\)</span>, then <span
+class="math inline">\((I) = I[x]\)</span> is a prime ideal of <span
+class="math inline">\(R[x]\)</span>.</p>
+</div>
+<div class="note "><p>(Recall) <span class="math inline">\(F[x]\)</span> is a Euclidean
+Domain when <span class="math inline">\(F\)</span> is a field.</p>
+</div>
+<h3 id="over-unique-factorization-domain">over Unique Factorization
+Domain</h3>
+<blockquote>
+<p><em>Definition</em>. A polynomial is <strong>monic</strong> iff <span
+class="math inline">\(a_n = 1\)</span>.</p>
+</blockquote>
+<div class="note "><p>(Gauss' Lemma) Let <span class="math inline">\(R\)</span> be a Unique
+Factorization Domain, <span class="math inline">\(F\)</span> be a field
+of fractions of <span class="math inline">\(R\)</span>, and let <span
+class="math inline">\(p(x) \in R[x]\)</span>.</p>
+<ul>
+<li><span class="math inline">\(p(x)\)</span> is reducible in <span
+class="math inline">\(F[x]\)</span> <span
+class="math inline">\(\implies\)</span> <span
+class="math inline">\(p(x)\)</span> is reducible in <span
+class="math inline">\(R[x]\)</span>.</li>
+<li>(Corollary) If the greatest common divisor of the coefficients of
+<span class="math inline">\(p(x)\)</span> is <span
+class="math inline">\(1\)</span>, then <span
+class="math inline">\(p(x)\)</span> is irreducible in <span
+class="math inline">\(R[x]\)</span> <span
+class="math inline">\(\iff\)</span> <span
+class="math inline">\(p(x)\)</span> is irreducible in <span
+class="math inline">\(F[x]\)</span>.</li>
+</ul>
+</div>
+<div class="note "><p><span class="math inline">\(R\)</span> is a Unique Factorization
+Domain <span class="math inline">\(\iff\)</span> <span
+class="math inline">\(R[x]\)</span> is a Unique Factorization
+Domain.</p>
+</div>
+<h3 id="irreducible-criteria">irreducible criteria</h3>
+<div class="note "><p>Let <span class="math inline">\(F\)</span> be a field and <span
+class="math inline">\(p(x) \in F[x]\)</span>.</p>
+<ul>
+<li><span class="math inline">\(p(x)\)</span> has a factor of degree one
+<span class="math inline">\(\iff\)</span> <span
+class="math inline">\(p(x)\)</span> has a root in <span
+class="math inline">\(F\)</span>.</li>
+<li>If the degree of <span class="math inline">\(p(x)\)</span> is <span
+class="math inline">\(2\)</span> or <span
+class="math inline">\(3\)</span>, <span
+class="math inline">\(p(x)\)</span> is reducible <span
+class="math inline">\(\iff\)</span> it has a root in <span
+class="math inline">\(F\)</span>.</li>
+</ul>
+<p>Let <span class="math inline">\(p(x) = a_n x^n + a_{n-1} x^{n-1} +
+\cdots + a_0 \in \bbZ[x]\)</span>.</p>
+<p>If <span class="math inline">\(r / s \in \bbQ\)</span> with <span
+class="math inline">\((r, s) = 1\)</span> is a root of <span
+class="math inline">\(p(x)\)</span>, then <span class="math inline">\(r
+\divide a_0\)</span> and <span class="math inline">\(s \divide
+a_n\)</span>.</p>
+</div>
+<div class="note "><p>Let <span class="math inline">\(I\)</span> be a proper ideal in
+integral domain <span class="math inline">\(R\)</span>, and <span
+class="math inline">\(p(x)\)</span> be a nonconstant monic polynomial in
+<span class="math inline">\(R[x]\)</span>. If the image of <span
+class="math inline">\(p(x)\)</span> in <span class="math inline">\((R /
+I)[x]\)</span> cannot be factored in <span class="math inline">\((R /
+I)[x]\)</span>, then <span class="math inline">\(p(x)\)</span> is
+irreducible in <span class="math inline">\(R[x]\)</span>.</p>
+</div>
+<div class="note "><p>(Eisenstein's Criterion) Let <span class="math inline">\(P\)</span>
+be a prime ideal of the integral domain <span
+class="math inline">\(R\)</span>, and <span class="math inline">\(f(x) =
+x^n + a_{n-1} x^{n-1} + \cdots + a_0 \in P[x]\)</span>, and <span
+class="math inline">\(a_0 \notin P^2\)</span>. Then <span
+class="math inline">\(f(x)\)</span> is irreducible in <span
+class="math inline">\(R[x]\)</span>.</p>
+<p>(Corollary when <span class="math inline">\(R = \bbZ\)</span>) Let
+<span class="math inline">\(p\)</span> be a prime integer, and <span
+class="math inline">\(f(x) = x^n + a_{n-1} x^{n-1} + \cdots +
+a_0\)</span> s.t. <span class="math inline">\(p \divide a_i\)</span> but
+<span class="math inline">\(p^2\)</span> doesn't divide <span
+class="math inline">\(a_0\)</span>. Then <span
+class="math inline">\(f(x)\)</span> is irreducible in <span
+class="math inline">\(\bbZ[x]\)</span> and <span
+class="math inline">\(\bbQ[x]\)</span>.</p>
 </div>
 ]]></content>
       <categories>
