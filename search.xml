@@ -115,6 +115,215 @@
 ]]></content>
   </entry>
   <entry>
+    <title>计算机应用数学学习笔记</title>
+    <url>/2022/04/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%BA%94%E7%94%A8%E6%95%B0%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<p>上半期太摸了，没记。</p>
+<span id="more"></span>
+<h2 id="图论">图论</h2>
+<h3 id="欧拉定理">欧拉定理</h3>
+<p>平面图 (planar graph) ：能画在平面上的简单连通图。</p>
+<p>欧拉定理 (Euler's Formula)：平面图上 <span class="math inline">\(n +
+f = m + 2\)</span> 。其中 <span class="math inline">\(n, m, f\)</span>
+分别是点数、边数、面数。</p>
+<p>推论 1：<span class="math inline">\(n\)</span> 个点的树边数为 <span
+class="math inline">\(n - 1\)</span> 。</p>
+<blockquote>
+<p>因为 <span class="math inline">\(f = 1\)</span> 。</p>
+</blockquote>
+<p>推论 2：<span class="math inline">\(n (n \ge 3)\)</span>
+个点的平面图边数不超过 <span class="math inline">\(3n - 6\)</span>
+。</p>
+<blockquote>
+<p>每一个面至少邻接三条边，一条边与至多两个面接触。 故 <span
+class="math inline">\(3f \le 2m\)</span> ，代入欧拉定理得 <span
+class="math inline">\(m \le 3n - 6\)</span> 。</p>
+</blockquote>
+<p>极大平面图 (maximal planar graph)
+：任意加上一条边都不再是平面图的平面图。
+一个平面图是极大的当且仅当每个面邻接恰好 3
+条边，每条边恰好邻接两个面。</p>
+<p>推论 3：<span class="math inline">\(n (n \ge 3)\)</span>
+个点的极大平面图边数恰为 <span class="math inline">\(3n - 6\)</span>
+。</p>
+<p>推论 4：<span class="math inline">\(n (n \ge 4)\)</span>
+个点的极大平面图，每个点的度数不少于 <span
+class="math inline">\(3\)</span> 。</p>
+<p>推论 5：<span class="math inline">\(n (n \ge 4)\)</span>
+个点的平面图至少有 <span class="math inline">\(4\)</span>
+个点的度数不超过 <span class="math inline">\(5\)</span> 。</p>
+<blockquote>
+<p>不妨假设平面图极大。若不成立则 <span class="math inline">\(2m \ge 3
+\times 3 + (n - 3) \times 6 = 6n - 9 &gt; 2m\)</span> ，矛盾。</p>
+</blockquote>
+<p>推论 6：三维空间的封闭凸多边形满足：顶点数 + 面数 = 边数 + 2。</p>
+<h3 id="平面图染色">平面图染色</h3>
+<p>对偶图 (dual graph)
+：平面图的对偶图是将面看作点，两个邻接的面看作有一条连边。 对偶图满足
+<span class="math inline">\(n&#39; = f, m&#39; = m, f&#39; = n\)</span>
+，仍然是平面图。</p>
+<p>染色 (coloring)
+：给每个节点一个颜色标记，使得任意一条边的两个端点颜色不同
+（面的染色问题可以转为对偶图的染色问题）。</p>
+<p><span class="math inline">\(k\)</span> 染色 (<span
+class="math inline">\(k\)</span>-colorable) ：能够用 <span
+class="math inline">\(k\)</span> 种不同的颜色进行染色。</p>
+<p>色数 (chromatic number) ：最小的 <span
+class="math inline">\(k\)</span> 使得图能 <span
+class="math inline">\(k\)</span> 染色。</p>
+<p>引理 1 ：如果图的最大度为 <span class="math inline">\(d\)</span> ，能
+<span class="math inline">\(d + 1\)</span> 染色。</p>
+<blockquote>
+<p>数学归纳法，每次加一个点都可以分配合法的颜色。</p>
+</blockquote>
+<p>引理 2 ：平面图能 <span class="math inline">\(6\)</span> 染色。</p>
+<blockquote>
+<p>不妨假设 <span class="math inline">\(n \ge 4\)</span>
+且极大。数学归纳法，选取一个度数不超过 <span
+class="math inline">\(5\)</span> 的点 <span
+class="math inline">\(u\)</span> ， 在去掉 <span
+class="math inline">\(u\)</span> 点的子图染色后容易确定 <span
+class="math inline">\(u\)</span> 的颜色。</p>
+</blockquote>
+<p>引理 3 ：平面图能 <span class="math inline">\(5\)</span> 染色。</p>
+<blockquote>
+<p>不妨假设 <span class="math inline">\(n \ge 4\)</span>
+且极大。数学归纳法，选取一个度数不超过 <span
+class="math inline">\(5\)</span> 的点 <span
+class="math inline">\(u\)</span> 。 <span
+class="math inline">\(u\)</span> 的度数不超过 <span
+class="math inline">\(4\)</span> 的情况是简单的，考虑度数为 <span
+class="math inline">\(5\)</span> 。</p>
+<p>将 <span class="math inline">\(u\)</span> 相连的 <span
+class="math inline">\(5\)</span> 个点在平面上的位置顺时针排为 <span
+class="math inline">\(a_1, a_2, a_3, a_4, a_5\)</span> 。
+我们一定可以在其中选出两个不相连的点（否则这个完全子图不是平面图），
+设为 <span class="math inline">\(x, y\)</span> 。</p>
+<p>在去掉 <span class="math inline">\(u\)</span> 点的子图 <span
+class="math inline">\(G&#39;\)</span> 中，可以将 <span
+class="math inline">\(x\)</span> 和 <span
+class="math inline">\(y\)</span> 合并为一个点 （因为 <span
+class="math inline">\(x\)</span> 和 <span
+class="math inline">\(y\)</span> 邻接于同一个面且两者之间没有连边），
+得到图 <span class="math inline">\(G&#39;&#39;\)</span> 。</p>
+<p>将 <span class="math inline">\(G&#39;&#39;\)</span> 染色，然后放在
+<span class="math inline">\(G&#39;\)</span> 中得到一个染色方案满足 <span
+class="math inline">\(x\)</span> 和 <span
+class="math inline">\(y\)</span> 的颜色相同！于是可以给 <span
+class="math inline">\(u\)</span> 一个合法的颜色。</p>
+</blockquote>
+<p>四色定理：平面图一定可以被染 <span class="math inline">\(4\)</span>
+个颜色。</p>
+<h3 id="有标号树">有标号树</h3>
+<p><img src="/images/csmath-1.png" /></p>
+<p>有标号树 (labeled tree) ：每个点有一个唯一的标号 (<span
+class="math inline">\(0\)</span> 到 <span
+class="math inline">\(n-1\)</span>) 的树。
+两个有标号树是相同的当且仅当它们的边集相同。</p>
+<p>扩展 Prufer 编码 (extended Prufer code) ： 以 <span
+class="math inline">\(0\)</span>
+作为根将树看作有根树，每次选取编号最小的叶子，列出该叶子和其父亲然后删掉该边。
+如上图编码后（每列代表一条边，第一行和第二行分别是叶子和父亲）为
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1 4 3 5 6 7 8 9 2</span><br><span class="line">6 3 0 6 2 9 9 2 0</span><br></pre></td></tr></table></figure></p>
+<p>引理 1 ：扩展 Prufer 编码中，第一行第 <span
+class="math inline">\(k\)</span> 列的数， 就是第二行的第 <span
+class="math inline">\(k\)</span> 到 <span
+class="math inline">\(n-1\)</span> 列，以及第一行的第 <span
+class="math inline">\(1\)</span> 到 <span
+class="math inline">\(k-1\)</span> 列中， 未出现过的最小正整数 (mex)
+。</p>
+<blockquote>
+<p>每个点的父亲唯一，所以不能在第一行的前面 (<span
+class="math inline">\(1\)</span> 到 <span
+class="math inline">\(k-1\)</span>) 出现过。</p>
+<p>在树上已经删掉前面的边后，我们要找的这个标号是一个最小的叶子，
+叶子不是任何点的父亲，所以不能在第二行的后面 (<span
+class="math inline">\(k\)</span> 到 <span
+class="math inline">\(n-1\)</span>) 出现过。</p>
+<p>同时不是任何点的父亲的点一定是叶子，因此这些未出现过的数都是叶子，
+我们要找的标号必然是其中最小的一个。</p>
+</blockquote>
+<p>引理 2 ：扩展 Prufer 编码中，第二行可以决定第一行。</p>
+<blockquote>
+<p>直接得自引理 1 。</p>
+</blockquote>
+<p>引理 3 ：扩展 Prufer 编码中，第二行最后一列一定是 <span
+class="math inline">\(0\)</span> 。</p>
+<blockquote>
+<p>显然。</p>
+</blockquote>
+<p>Prufer 编码：扩展 Prufer 编码中第二行的前 <span
+class="math inline">\(n-2\)</span> 列。</p>
+<p>引理 4 ：每个长为 <span class="math inline">\(n-2\)</span> 的取值
+<span class="math inline">\(0\)</span> 到 <span
+class="math inline">\(n-1\)</span> 的序列都是某个有标号树的 Prufer
+编码。</p>
+<blockquote>
+<p>展开为扩展 Prufer
+编码后可以得到一个边集，需要证明该边集构成一棵树。</p>
+<p>首先第一行一定是 <span class="math inline">\(1\)</span> 到 <span
+class="math inline">\(n-1\)</span>
+的排列（展开的过程中不会出现重复的数）。 通过重标号，不妨假设第一行恰为
+<span class="math inline">\(1\)</span> 到 <span
+class="math inline">\(n-1\)</span> 。</p>
+<p>此时可以发现每一列都是第一行小于第二行（特别地假设 <span
+class="math inline">\(0\)</span> 最大）， 否则如果第二行第 <span
+class="math inline">\(k\)</span> 列为 <span class="math inline">\(x &lt;
+k\)</span> ，那么在扩展第 <span class="math inline">\(x\)</span>
+列的时候就会出现矛盾。</p>
+<p>所以该边集同时给出了一个拓扑序，于是一定是一棵树。</p>
+</blockquote>
+<p>定理 5 ：<span class="math inline">\(n\)</span>
+个点的有标号树的数量是 <span class="math inline">\(n^{n-2}\)</span>
+。</p>
+<blockquote>
+<p>树和 Prufer 编码是一一对应的，从引理 4 可以看到，后者的数量恰为 <span
+class="math inline">\(n^{n-2}\)</span> 。</p>
+</blockquote>
+<h3 id="无标号树">无标号树</h3>
+<p>无标号树 (unlabeled tree)
+：两个无标号树是相同的当且仅当能够通过标号使得它们成为相同的有标号树。
+记 <span class="math inline">\(n\)</span> 个点的无标号树的数量为 <span
+class="math inline">\(T_n\)</span> 。</p>
+<p>引理 1 ：<span class="math inline">\(T_n \ge
+\dfrac{n^{n-2}}{n!}\)</span> 。</p>
+<blockquote>
+<p>标号的方式有 <span class="math inline">\(n!\)</span>
+种，有标号树的数量是 <span class="math inline">\(n^{n-2}\)</span> 。</p>
+</blockquote>
+<p>无标号树也可以编码，任选一个点为根，遍历（深搜）整棵树，每次远离根记一个
+<span class="math inline">\(1\)</span> ，靠近根记一个 <span
+class="math inline">\(0\)</span> ， 得到的长为 <span
+class="math inline">\(2(n-2)\)</span> 的 01 序列就是一个编码（但不是每个
+01 序列都是合法的编码）。</p>
+<p>引理 2 ：<span class="math inline">\(T_n \le 2^{2(n-1)}\)</span>
+。</p>
+<blockquote>
+<p>即 01 序列的数量。</p>
+</blockquote>
+<p>定理 3 ：若 <span class="math inline">\(n &gt; 30\)</span> 则 <span
+class="math inline">\(2^n \le T_n \le 4^n\)</span> 。</p>
+<blockquote>
+<p>放大引理 1 和引理 2 的界。</p>
+</blockquote>
+<h3 id="生成树">生成树</h3>
+<p>略。</p>
+<h3 id="旅行商问题">旅行商问题</h3>
+<p>假定图 <span class="math inline">\(G\)</span>
+的边权满足三角形不等式，即 <span class="math inline">\(w(i, j) + w(j, k)
+\ge w(i, k)\)</span> 。</p>
+<p>Tree Shortcut Algorithm:
+找到一颗最小生成树，写出欧拉序，只保留每个点第一次出现的位置，得到一个旅行路径。</p>
+<p>定理 1 ：该算法得到的旅行路径的代价不超过最小代价的两倍</p>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>图论</tag>
+        <tag>概率论</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>踩坑杂记</title>
     <url>/2022/02/27/%E8%B8%A9%E5%9D%91%E6%9D%82%E8%AE%B0/</url>
     <content><![CDATA[<h3 id="hexo-报错expected-end-of-comment-got-end-of-file-2022.02.27">Hexo 报错：expected end of comment, got end of file (2022.02.27)</h3>
@@ -142,7 +351,8 @@ class="math inline">\(\newcommand{\Inner}[1]{\langle #1
 class="math inline">\(\newcommand{\Aut}{\mathrm{Aut}}\)</span> <span
 class="math inline">\(\newcommand{\Inn}{\mathrm{Inn}}\)</span> <span
 class="math inline">\(\newcommand{\Char}{\;\mathrm{char}\;}\)</span>
-<span class="math inline">\(\newcommand{\divide}{\mid}\)</span></p>
+<span class="math inline">\(\newcommand{\divide}{\mid}\)</span> <span
+class="math inline">\(\newcommand{\Hom}{\mathrm{Hom}}\)</span></p>
 <h2 id="preliminaries">Preliminaries</h2>
 <h3 id="equivalence-relation">equivalence relation</h3>
 <blockquote>
@@ -2181,7 +2391,7 @@ irreducible polynomials <span class="math inline">\(f(x)\)</span>.</p>
 <h3 id="basic-definitions">basic definitions</h3>
 <blockquote>
 <p><em>Definition</em>. Let <span class="math inline">\(R\)</span> be a
-ring. A <strong>left module</strong> over <span
+ring. A <strong>(left) module</strong> over <span
 class="math inline">\(R\)</span> is a set <span
 class="math inline">\(M\)</span> together with</p>
 <ul>
@@ -2207,17 +2417,19 @@ class="math inline">\(1\)</span>, every module satisfying <span
 class="math inline">\(1 \cdot m = m\)</span> called a <strong>unital
 module</strong>.</p>
 <p>If <span class="math inline">\(N \subseteq M\)</span> and <span
-class="math inline">\(N\)</span> is a left module together with the same
+class="math inline">\(N\)</span> is a module together with the same
 binary operation and the same action, then <span
 class="math inline">\(N\)</span> is a <strong>submodule</strong> of
 <span class="math inline">\(M\)</span>.</p>
 </blockquote>
+<p>Warning! We only consider the unital module.</p>
 <ul>
-<li>Every abelian group <span class="math inline">\(A\)</span> is a left
-module over <span class="math inline">\(\bbZ\)</span>.</li>
+<li>Every abelian group <span class="math inline">\(A\)</span> is a
+module over <span class="math inline">\(\bbZ\)</span> (called <span
+class="math inline">\(\bbZ\)</span>-module).</li>
 </ul>
 <div class="note "><p>Let <span class="math inline">\(R\)</span> be a ring and <span
-class="math inline">\(M\)</span> be an left module. A subset <span
+class="math inline">\(M\)</span> be an module. A subset <span
 class="math inline">\(N \subseteq M\)</span> is a submodule of <span
 class="math inline">\(M\)</span> iff</p>
 <ul>
@@ -2243,10 +2455,23 @@ class="math inline">\(B\)</span> are <span
 class="math inline">\(R\)</span>-algebras, an <span
 class="math inline">\(R\)</span>-algebra homomorphism is a ring
 homomorphism <span class="math inline">\(\varphi \Colon A \to B\)</span>
-s.t. - <span class="math inline">\(\varphi(1_A) = 1_B\)</span>. - <span
-class="math inline">\(\varphi(r a) = r \varphi(a)\)</span>. Also, an
-isomorphism is a bijective homomorphism.</p>
+s.t.</p>
+<ul>
+<li><span class="math inline">\(\varphi(1_A) = 1_B\)</span>.</li>
+<li><span class="math inline">\(\varphi(r a) = r
+\varphi(a)\)</span>.</li>
+</ul>
+<p>Also, an isomorphism is a bijective homomorphism.</p>
 </blockquote>
+<div class="note "><p>Let <span class="math inline">\(A\)</span> be a ring with <span
+class="math inline">\(1_A\)</span> and a <span
+class="math inline">\(R\)</span>-module satisfying <span
+class="math inline">\(r \cdot (a b) = (r \cdot a) b\)</span>. Then <span
+class="math inline">\(f \Colon R \to A\)</span> defined by <span
+class="math inline">\(r \mapsto r \cdot 1_A\)</span> makes <span
+class="math inline">\(A\)</span> be an <span
+class="math inline">\(R\)</span>-algebra.</p>
+</div>
 ]]></content>
       <categories>
         <category>笔记</category>

@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="KIx9DF_OoeyQmEhcVAbjH5vg_i539tmILHmNH8lRDtw">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;kewth.github.io&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Muse&quot;,&quot;version&quot;:&quot;8.5.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;always&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:true,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜索...&quot;,&quot;empty&quot;:&quot;没有找到任何搜索结果：${query}&quot;,&quot;hits_time&quot;:&quot;找到 ${hits} 个搜索结果（用时 ${time} 毫秒）&quot;,&quot;hits&quot;:&quot;找到 ${hits} 个搜索结果&quot;},&quot;path&quot;:&quot;&#x2F;search.xml&quot;,&quot;localsearch&quot;:{&quot;enable&quot;:true,&quot;trigger&quot;:&quot;auto&quot;,&quot;top_n_per_article&quot;:3,&quot;unescape&quot;:false,&quot;preload&quot;:false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="上半期太摸了，没记。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机应用数学学习笔记">
+<meta property="og:url" content="https://kewth.github.io/2022/04/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%BA%94%E7%94%A8%E6%95%B0%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="KeBlog">
+<meta property="og:description" content="上半期太摸了，没记。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://kewth.github.io/images/csmath-1.png">
+<meta property="article:published_time" content="2022-04-26T05:50:44.000Z">
+<meta property="article:modified_time" content="2022-05-07T08:31:11.935Z">
+<meta property="article:author" content="Kewth">
+<meta property="article:tag" content="图论">
+<meta property="article:tag" content="概率论">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://kewth.github.io/images/csmath-1.png">
+
+
+<link rel="canonical" href="https://kewth.github.io/2022/04/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%BA%94%E7%94%A8%E6%95%B0%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-CN&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;https:&#x2F;&#x2F;kewth.github.io&#x2F;2022&#x2F;04&#x2F;26&#x2F;%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%BA%94%E7%94%A8%E6%95%B0%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0&#x2F;&quot;,&quot;path&quot;:&quot;2022&#x2F;04&#x2F;26&#x2F;计算机应用数学学习笔记&#x2F;&quot;,&quot;title&quot;:&quot;计算机应用数学学习笔记&quot;}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title>计算机应用数学学习笔记 | KeBlog</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="KeBlog" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">KeBlog</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">The OI Algorithm Blog of Kewth</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">72</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">89</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E8%AE%BA"><span class="nav-number">1.</span> <span class="nav-text">图论</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AC%A7%E6%8B%89%E5%AE%9A%E7%90%86"><span class="nav-number">1.1.</span> <span class="nav-text">欧拉定理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B9%B3%E9%9D%A2%E5%9B%BE%E6%9F%93%E8%89%B2"><span class="nav-number">1.2.</span> <span class="nav-text">平面图染色</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%89%E6%A0%87%E5%8F%B7%E6%A0%91"><span class="nav-number">1.3.</span> <span class="nav-text">有标号树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A0%E6%A0%87%E5%8F%B7%E6%A0%91"><span class="nav-number">1.4.</span> <span class="nav-text">无标号树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%9F%E6%88%90%E6%A0%91"><span class="nav-number">1.5.</span> <span class="nav-text">生成树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%85%E8%A1%8C%E5%95%86%E9%97%AE%E9%A2%98"><span class="nav-number">1.6.</span> <span class="nav-text">旅行商问题</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Kewth"
+      src="/images/avatar.jpeg">
+  <p class="site-author-name" itemprop="name">Kewth</p>
+  <div class="site-description" itemprop="description">HNFMS 退役 OIer</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">89</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">72</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Kewth" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Kewth" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:Kewth.K.D@outlook.com" title="E-Mail → mailto:Kewth.K.D@outlook.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="qq:1344205350" title="QQ → qq:1344205350" rel="noopener" target="_blank"><i class="fab fa-qq fa-fw"></i>QQ</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.luogu.org/space/show?uid=52232" title="Luogu → https:&#x2F;&#x2F;www.luogu.org&#x2F;space&#x2F;show?uid&#x3D;52232" rel="noopener" target="_blank"><i class="fas fa-code-branch fa-fw"></i>Luogu</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links | 友链
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="/" title="&#x2F;">欢迎互换友链呀</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://daniel-yuan.github.io/" title="https:&#x2F;&#x2F;daniel-yuan.github.io&#x2F;" rel="noopener" target="_blank">Daniel_yuan</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/lsq147/" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;lsq147&#x2F;" rel="noopener" target="_blank">xiaolilsq</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/imakf/" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;imakf&#x2F;" rel="noopener" target="_blank">Imakf</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/evenbao" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;evenbao" rel="noopener" target="_blank">Even_bao</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2022/04/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%BA%94%E7%94%A8%E6%95%B0%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Kewth">
+      <meta itemprop="description" content="HNFMS 退役 OIer">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KeBlog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          计算机应用数学学习笔记
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-04-26 13:50:44" itemprop="dateCreated datePublished" datetime="2022-04-26T13:50:44+08:00">2022-04-26</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2022-05-07 16:31:11" itemprop="dateModified" datetime="2022-05-07T16:31:11+08:00">2022-05-07</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>上半期太摸了，没记。</p>
+<span id="more"></span>
+<h2 id="图论">图论</h2>
+<h3 id="欧拉定理">欧拉定理</h3>
+<p>平面图 (planar graph) ：能画在平面上的简单连通图。</p>
+<p>欧拉定理 (Euler's Formula)：平面图上 <span class="math inline">\(n +
+f = m + 2\)</span> 。其中 <span class="math inline">\(n, m, f\)</span>
+分别是点数、边数、面数。</p>
+<p>推论 1：<span class="math inline">\(n\)</span> 个点的树边数为 <span
+class="math inline">\(n - 1\)</span> 。</p>
+<blockquote>
+<p>因为 <span class="math inline">\(f = 1\)</span> 。</p>
+</blockquote>
+<p>推论 2：<span class="math inline">\(n (n \ge 3)\)</span>
+个点的平面图边数不超过 <span class="math inline">\(3n - 6\)</span>
+。</p>
+<blockquote>
+<p>每一个面至少邻接三条边，一条边与至多两个面接触。 故 <span
+class="math inline">\(3f \le 2m\)</span> ，代入欧拉定理得 <span
+class="math inline">\(m \le 3n - 6\)</span> 。</p>
+</blockquote>
+<p>极大平面图 (maximal planar graph)
+：任意加上一条边都不再是平面图的平面图。
+一个平面图是极大的当且仅当每个面邻接恰好 3
+条边，每条边恰好邻接两个面。</p>
+<p>推论 3：<span class="math inline">\(n (n \ge 3)\)</span>
+个点的极大平面图边数恰为 <span class="math inline">\(3n - 6\)</span>
+。</p>
+<p>推论 4：<span class="math inline">\(n (n \ge 4)\)</span>
+个点的极大平面图，每个点的度数不少于 <span
+class="math inline">\(3\)</span> 。</p>
+<p>推论 5：<span class="math inline">\(n (n \ge 4)\)</span>
+个点的平面图至少有 <span class="math inline">\(4\)</span>
+个点的度数不超过 <span class="math inline">\(5\)</span> 。</p>
+<blockquote>
+<p>不妨假设平面图极大。若不成立则 <span class="math inline">\(2m \ge 3
+\times 3 + (n - 3) \times 6 = 6n - 9 &gt; 2m\)</span> ，矛盾。</p>
+</blockquote>
+<p>推论 6：三维空间的封闭凸多边形满足：顶点数 + 面数 = 边数 + 2。</p>
+<h3 id="平面图染色">平面图染色</h3>
+<p>对偶图 (dual graph)
+：平面图的对偶图是将面看作点，两个邻接的面看作有一条连边。 对偶图满足
+<span class="math inline">\(n&#39; = f, m&#39; = m, f&#39; = n\)</span>
+，仍然是平面图。</p>
+<p>染色 (coloring)
+：给每个节点一个颜色标记，使得任意一条边的两个端点颜色不同
+（面的染色问题可以转为对偶图的染色问题）。</p>
+<p><span class="math inline">\(k\)</span> 染色 (<span
+class="math inline">\(k\)</span>-colorable) ：能够用 <span
+class="math inline">\(k\)</span> 种不同的颜色进行染色。</p>
+<p>色数 (chromatic number) ：最小的 <span
+class="math inline">\(k\)</span> 使得图能 <span
+class="math inline">\(k\)</span> 染色。</p>
+<p>引理 1 ：如果图的最大度为 <span class="math inline">\(d\)</span> ，能
+<span class="math inline">\(d + 1\)</span> 染色。</p>
+<blockquote>
+<p>数学归纳法，每次加一个点都可以分配合法的颜色。</p>
+</blockquote>
+<p>引理 2 ：平面图能 <span class="math inline">\(6\)</span> 染色。</p>
+<blockquote>
+<p>不妨假设 <span class="math inline">\(n \ge 4\)</span>
+且极大。数学归纳法，选取一个度数不超过 <span
+class="math inline">\(5\)</span> 的点 <span
+class="math inline">\(u\)</span> ， 在去掉 <span
+class="math inline">\(u\)</span> 点的子图染色后容易确定 <span
+class="math inline">\(u\)</span> 的颜色。</p>
+</blockquote>
+<p>引理 3 ：平面图能 <span class="math inline">\(5\)</span> 染色。</p>
+<blockquote>
+<p>不妨假设 <span class="math inline">\(n \ge 4\)</span>
+且极大。数学归纳法，选取一个度数不超过 <span
+class="math inline">\(5\)</span> 的点 <span
+class="math inline">\(u\)</span> 。 <span
+class="math inline">\(u\)</span> 的度数不超过 <span
+class="math inline">\(4\)</span> 的情况是简单的，考虑度数为 <span
+class="math inline">\(5\)</span> 。</p>
+<p>将 <span class="math inline">\(u\)</span> 相连的 <span
+class="math inline">\(5\)</span> 个点在平面上的位置顺时针排为 <span
+class="math inline">\(a_1, a_2, a_3, a_4, a_5\)</span> 。
+我们一定可以在其中选出两个不相连的点（否则这个完全子图不是平面图），
+设为 <span class="math inline">\(x, y\)</span> 。</p>
+<p>在去掉 <span class="math inline">\(u\)</span> 点的子图 <span
+class="math inline">\(G&#39;\)</span> 中，可以将 <span
+class="math inline">\(x\)</span> 和 <span
+class="math inline">\(y\)</span> 合并为一个点 （因为 <span
+class="math inline">\(x\)</span> 和 <span
+class="math inline">\(y\)</span> 邻接于同一个面且两者之间没有连边），
+得到图 <span class="math inline">\(G&#39;&#39;\)</span> 。</p>
+<p>将 <span class="math inline">\(G&#39;&#39;\)</span> 染色，然后放在
+<span class="math inline">\(G&#39;\)</span> 中得到一个染色方案满足 <span
+class="math inline">\(x\)</span> 和 <span
+class="math inline">\(y\)</span> 的颜色相同！于是可以给 <span
+class="math inline">\(u\)</span> 一个合法的颜色。</p>
+</blockquote>
+<p>四色定理：平面图一定可以被染 <span class="math inline">\(4\)</span>
+个颜色。</p>
+<h3 id="有标号树">有标号树</h3>
+<p><img src="/images/csmath-1.png" /></p>
+<p>有标号树 (labeled tree) ：每个点有一个唯一的标号 (<span
+class="math inline">\(0\)</span> 到 <span
+class="math inline">\(n-1\)</span>) 的树。
+两个有标号树是相同的当且仅当它们的边集相同。</p>
+<p>扩展 Prufer 编码 (extended Prufer code) ： 以 <span
+class="math inline">\(0\)</span>
+作为根将树看作有根树，每次选取编号最小的叶子，列出该叶子和其父亲然后删掉该边。
+如上图编码后（每列代表一条边，第一行和第二行分别是叶子和父亲）为
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1 4 3 5 6 7 8 9 2</span><br><span class="line">6 3 0 6 2 9 9 2 0</span><br></pre></td></tr></table></figure></p>
+<p>引理 1 ：扩展 Prufer 编码中，第一行第 <span
+class="math inline">\(k\)</span> 列的数， 就是第二行的第 <span
+class="math inline">\(k\)</span> 到 <span
+class="math inline">\(n-1\)</span> 列，以及第一行的第 <span
+class="math inline">\(1\)</span> 到 <span
+class="math inline">\(k-1\)</span> 列中， 未出现过的最小正整数 (mex)
+。</p>
+<blockquote>
+<p>每个点的父亲唯一，所以不能在第一行的前面 (<span
+class="math inline">\(1\)</span> 到 <span
+class="math inline">\(k-1\)</span>) 出现过。</p>
+<p>在树上已经删掉前面的边后，我们要找的这个标号是一个最小的叶子，
+叶子不是任何点的父亲，所以不能在第二行的后面 (<span
+class="math inline">\(k\)</span> 到 <span
+class="math inline">\(n-1\)</span>) 出现过。</p>
+<p>同时不是任何点的父亲的点一定是叶子，因此这些未出现过的数都是叶子，
+我们要找的标号必然是其中最小的一个。</p>
+</blockquote>
+<p>引理 2 ：扩展 Prufer 编码中，第二行可以决定第一行。</p>
+<blockquote>
+<p>直接得自引理 1 。</p>
+</blockquote>
+<p>引理 3 ：扩展 Prufer 编码中，第二行最后一列一定是 <span
+class="math inline">\(0\)</span> 。</p>
+<blockquote>
+<p>显然。</p>
+</blockquote>
+<p>Prufer 编码：扩展 Prufer 编码中第二行的前 <span
+class="math inline">\(n-2\)</span> 列。</p>
+<p>引理 4 ：每个长为 <span class="math inline">\(n-2\)</span> 的取值
+<span class="math inline">\(0\)</span> 到 <span
+class="math inline">\(n-1\)</span> 的序列都是某个有标号树的 Prufer
+编码。</p>
+<blockquote>
+<p>展开为扩展 Prufer
+编码后可以得到一个边集，需要证明该边集构成一棵树。</p>
+<p>首先第一行一定是 <span class="math inline">\(1\)</span> 到 <span
+class="math inline">\(n-1\)</span>
+的排列（展开的过程中不会出现重复的数）。 通过重标号，不妨假设第一行恰为
+<span class="math inline">\(1\)</span> 到 <span
+class="math inline">\(n-1\)</span> 。</p>
+<p>此时可以发现每一列都是第一行小于第二行（特别地假设 <span
+class="math inline">\(0\)</span> 最大）， 否则如果第二行第 <span
+class="math inline">\(k\)</span> 列为 <span class="math inline">\(x &lt;
+k\)</span> ，那么在扩展第 <span class="math inline">\(x\)</span>
+列的时候就会出现矛盾。</p>
+<p>所以该边集同时给出了一个拓扑序，于是一定是一棵树。</p>
+</blockquote>
+<p>定理 5 ：<span class="math inline">\(n\)</span>
+个点的有标号树的数量是 <span class="math inline">\(n^{n-2}\)</span>
+。</p>
+<blockquote>
+<p>树和 Prufer 编码是一一对应的，从引理 4 可以看到，后者的数量恰为 <span
+class="math inline">\(n^{n-2}\)</span> 。</p>
+</blockquote>
+<h3 id="无标号树">无标号树</h3>
+<p>无标号树 (unlabeled tree)
+：两个无标号树是相同的当且仅当能够通过标号使得它们成为相同的有标号树。
+记 <span class="math inline">\(n\)</span> 个点的无标号树的数量为 <span
+class="math inline">\(T_n\)</span> 。</p>
+<p>引理 1 ：<span class="math inline">\(T_n \ge
+\dfrac{n^{n-2}}{n!}\)</span> 。</p>
+<blockquote>
+<p>标号的方式有 <span class="math inline">\(n!\)</span>
+种，有标号树的数量是 <span class="math inline">\(n^{n-2}\)</span> 。</p>
+</blockquote>
+<p>无标号树也可以编码，任选一个点为根，遍历（深搜）整棵树，每次远离根记一个
+<span class="math inline">\(1\)</span> ，靠近根记一个 <span
+class="math inline">\(0\)</span> ， 得到的长为 <span
+class="math inline">\(2(n-2)\)</span> 的 01 序列就是一个编码（但不是每个
+01 序列都是合法的编码）。</p>
+<p>引理 2 ：<span class="math inline">\(T_n \le 2^{2(n-1)}\)</span>
+。</p>
+<blockquote>
+<p>即 01 序列的数量。</p>
+</blockquote>
+<p>定理 3 ：若 <span class="math inline">\(n &gt; 30\)</span> 则 <span
+class="math inline">\(2^n \le T_n \le 4^n\)</span> 。</p>
+<blockquote>
+<p>放大引理 1 和引理 2 的界。</p>
+</blockquote>
+<h3 id="生成树">生成树</h3>
+<p>略。</p>
+<h3 id="旅行商问题">旅行商问题</h3>
+<p>假定图 <span class="math inline">\(G\)</span>
+的边权满足三角形不等式，即 <span class="math inline">\(w(i, j) + w(j, k)
+\ge w(i, k)\)</span> 。</p>
+<p>Tree Shortcut Algorithm:
+找到一颗最小生成树，写出欧拉序，只保留每个点第一次出现的位置，得到一个旅行路径。</p>
+<p>定理 1 ：该算法得到的旅行路径的代价不超过最小代价的两倍</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%9B%BE%E8%AE%BA/" rel="tag"><i class="fa fa-tag"></i> 图论</a>
+              <a href="/tags/%E6%A6%82%E7%8E%87%E8%AE%BA/" rel="tag"><i class="fa fa-tag"></i> 概率论</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/02/27/%E8%B8%A9%E5%9D%91%E6%9D%82%E8%AE%B0/" rel="prev" title="踩坑杂记">
+                  <i class="fa fa-chevron-left"></i> 踩坑杂记
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heartbeat"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Kewth</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+  <script class="next-config" data-name="pdf" type="application/json">{&quot;object_url&quot;:{&quot;url&quot;:&quot;https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;npm&#x2F;pdfobject@2.2.5&#x2F;pdfobject.min.js&quot;,&quot;integrity&quot;:&quot;sha256-YuNlP9i6s&#x2F;WH7EaU2kErloo9Vc85C3WVqhoMDgsEVpY&#x3D;&quot;},&quot;url&quot;:&quot;&#x2F;lib&#x2F;pdf&#x2F;web&#x2F;viewer.html&quot;}</script>
+  <script src="/js/third-party/tags/pdf.js"></script>
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{&quot;enable&quot;:true,&quot;tags&quot;:&quot;none&quot;,&quot;js&quot;:{&quot;url&quot;:&quot;https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;npm&#x2F;mathjax@3.1.4&#x2F;es5&#x2F;tex-mml-chtml.js&quot;,&quot;integrity&quot;:&quot;sha256-ncNI9OXOS5Ek4tzVYiOMmN&#x2F;KKCPZ6V0Cpv2P&#x2F;zHntiA&#x3D;&quot;}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{&quot;enable&quot;:true,&quot;github_id&quot;:&quot;Kewth&quot;,&quot;repo&quot;:&quot;hexo-gitalk&quot;,&quot;client_id&quot;:&quot;5a2fdd60fe2f91777a6b&quot;,&quot;client_secret&quot;:&quot;9ddb762244fffc5caff2490a05e53dbca8ae4902&quot;,&quot;admin_user&quot;:&quot;Kewth&quot;,&quot;distraction_free_mode&quot;:true,&quot;proxy&quot;:&quot;https:&#x2F;&#x2F;cors-anywhere.azm.workers.dev&#x2F;https:&#x2F;&#x2F;github.com&#x2F;login&#x2F;oauth&#x2F;access_token&quot;,&quot;language&quot;:&quot;zh-CN&quot;,&quot;js&quot;:{&quot;url&quot;:&quot;https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;npm&#x2F;gitalk@1.7.2&#x2F;dist&#x2F;gitalk.min.js&quot;,&quot;integrity&quot;:&quot;sha256-Pmj85ojLaPOWwRtlMJwmezB&#x2F;Qg8BzvJp5eTzvXaYAfA&#x3D;&quot;},&quot;path_md5&quot;:&quot;678401def4923eda1164024911ca64c0&quot;}</script>
+<script src="/js/third-party/comments/gitalk.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</body>
+</html>

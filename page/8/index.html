@@ -88,9 +88,9 @@
   <ul class="main-menu menu">
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
         <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
-        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">71</span></a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">72</span></a></li>
         <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">88</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">89</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -162,7 +162,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">88</span>
+          <span class="site-state-item-count">89</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -175,7 +175,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">71</span>
+        <span class="site-state-item-count">72</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -241,6 +241,143 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2019/10/10/%E7%BA%BF%E6%AE%B5%E6%A0%91%E5%88%86%E6%B2%BB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Kewth">
+      <meta itemprop="description" content="HNFMS 退役 OIer">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KeBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2019/10/10/%E7%BA%BF%E6%AE%B5%E6%A0%91%E5%88%86%E6%B2%BB/" class="post-title-link" itemprop="url">线段树分治</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-10-10 10:00:02" itemprop="dateCreated datePublished" datetime="2019-10-10T10:00:02+08:00">2019-10-10</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2019-12-06 20:37:17" itemprop="dateModified" datetime="2019-12-06T20:37:17+08:00">2019-12-06</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+        </span>
+    </span>
+
+  
+
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="作用">作用</h2>
+<p>线段树通过维护序列，可以维护一个承载各种操作的时间轴。</p>
+<p>通常用于辅助一些不支持删除操作的数据结构（线性基，并查集），<br />
+这种情况可以用线段树分治维护操作影响的时间来巧妙地避开删除。</p>
+<h2 id="线段树结构">线段树结构</h2>
+<p>线段树分治用到的线段树（以下简称线段树）是以询问的时间为键值，<br />
+没有权值只有标记的线段树。</p>
+<p>也就是线段树的一段区间对应的是一段询问（一段时间）。</p>
+<p>这样的线段树只需要支持区间修改（打标记）。<br />
+每一个操作都会影响一段时间，对应于线段树的区间修改。</p>
+<h2 id="例题">例题</h2>
+<p>这玩意需要一个例题才讲的清。<br />
+（由于线段树分治用于辅助其他数据结构，再看例题前得先会线性基）</p>
+<p>维护一个集合，每次操作可以加入一个数或删除一个已经存在与集合的数。<br />
+每次操作后要回答这个集合的最大异或和。<br />
+操作次数 1e5 。</p>
+<h3 id="暴力线性基">暴力线性基</h3>
+<p>如果只有插入没有删除，这题就是一遍线性基。</p>
+<p>但是不巧线性基不支持删除，所以只能在每次删除后重构线性基。<br />
+复杂度平方带对数，稳 T 。</p>
+<h3 id="时间轴">时间轴</h3>
+<p>将每次操作看做时间点，假设数 x 在时刻 l 被插入， r 被删除，<br />
+那么 x 只存在于 [l, r) 这段时间，<br />
+假如每个时刻开一个线性基，那么将 x 插入 [l, r) 的每个线性基，<br />
+这样就可以在最后通过线性基询问得到每个时刻的答案，<br />
+复杂度还是平方带对数，稳 T 的离线算法。</p>
+<h3 id="线段树优化">线段树优化</h3>
+<p>比较上述两种算法，<br />
+第一种复杂度瓶颈在于重构线性基，实在是没有什么优化空间，<br />
+但是第二种算法中，复杂度瓶颈在于将 x 插入到 [l, r) 的每个线性基，<br />
+这个操作相当于一个区间修改，可以用线段树优化。</p>
+<p>那么一个优秀的算法就出来了：<br />
+线段树每个节点维护一个 vector （相当于懒标记），插入 x 将直接加在线段树对应区间的 vector　内。<br />
+所有操作过后会得到一个只有懒标记的线段树，<br />
+然后考虑如何通过这样一颗线段树得出所有答案。</p>
+<h4 id="处理懒标记">处理懒标记</h4>
+<p>懒标记下传？<br />
+不存在的，因为懒标记是一个 vector, 下传的复杂度并不是 O(1) ，<br />
+不难验证下传所有懒标记会使复杂度重回 n 方。</p>
+<p>既然不能下传，那就进行 n 次单点查询？<br />
+一个道理，单点查询的复杂度并不是 log(n), 这样做同样对复杂度没有优化。</p>
+<p><del>那就没救了</del></p>
+<h4 id="分治">分治</h4>
+<p>线段树分治，不能只有线段树，还要分治啊。</p>
+<p>现在需要只把每个懒标记访问一遍就得出所有答案。</p>
+<p>dfs 整颗线段树（实际上就是分治），深度是 log 级别的，那么对每一个深度开一个线性基。<br />
+如能能让 dfs 每个节点时该深度线性基维护的是这个节点到根的所有懒标记，<br />
+最后 dfs 到每个叶子节点就可以得到该叶子节点到根的懒标记的线性基，也就可以求出这个叶子节点的答案。</p>
+<p>假设当前 dfs 到 u, 深度为 d, 深度对应的线性基已经是维护其到根的懒标记。<br />
+dfs 到一个新点 v 一定会使深度 + 1 ，将当前深度 d 的线性基拷贝到下个深度 d + 1 中。<br />
+那么 dfs 到 v 后再将 v 的懒标记加到 d + 1 的线性基中，d + 1 的线性基也就满足了要求。<br />
+通过这样的过程就能够做到只访问每个懒标记一遍。</p>
+<p>这就是线段树分治了。</p>
+<h2 id="真---例题">真 - 例题</h2>
+<p>这两道题就没有这么裸了。</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.org/problemnew/show/P3733">洛谷八纵八横</a> （线段树分治 + 线性基）</p>
+<p><a target="_blank" rel="noopener" href="https://www.lydsy.com/JudgeOnline/problem.php?id=4025">BZOJ 二分图</a> （线段树分治 + 并查集）</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1253,147 +1390,6 @@ $ G_n^{k + n/2} = G_n^k G_n^{n/2} = G_n^k(-1) $<br />
 <p>现在唯一的问题是，模数 P 要满足什么条件，以及如何求模 P 意义下的原根 g 。<br />
 然而我并不想深入展开，大多数情况下模数都是 998244353 ，其原根为 3 。<br />
 一般 NTT 只会用这个模数，不会有毒瘤出题人卡这个模数的（我不对这句话负责）。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2019/10/01/i3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-      <meta itemprop="name" content="Kewth">
-      <meta itemprop="description" content="HNFMS 退役 OIer">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="KeBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2019/10/01/i3/" class="post-title-link" itemprop="url">i3</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2019-10-01 00:00:00" itemprop="dateCreated datePublished" datetime="2019-10-01T00:00:00+08:00">2019-10-01</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2019-12-08 14:21:48" itemprop="dateModified" datetime="2019-12-08T14:21:48+08:00">2019-12-08</time>
-      </span>
-
-  
-
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="历程">历程</h2>
-<ul>
-<li>最先用的是 Ubuntu 16.04 自带的 Unity 。</li>
-<li>更新 Ubuntu 后用的 Ubuntu 18.04 自带的 Gnome 。</li>
-<li>用了 Gnome 后学会了折腾，各种配置堆上。</li>
-<li>后来发现 Gnome 太卡太吃内存，并且才知道系统可以换桌面， 于是在 master 安利下换上 xfce 。</li>
-<li>xfce 很稳定很流畅，但是太丑，可玩性太低，于是换上高大上的 KDE 。</li>
-<li>中途还换过 enlightenment ，但是 enlightenment 的稳定性实在不敢恭维。</li>
-<li>最后用上了 i3 ，原因不详。</li>
-</ul>
-<p>WARNING:<br />
-既然你打算尝试 i3 ，本文假设你有一定的动手能力（说白了就是能折腾）。</p>
-<h2 id="安装">安装</h2>
-<p><code>sudo aptitude install i3-wm</code> 后注销重进选择 i3 即可。</p>
-<p>然后你会发现弹出个窗口，接下来黑屏，没有动静。<br />
-WTF ?<br />
-其实 i3 已经开了，只是没背景而已，按 win+Enter 打开终端。</p>
-<h2 id="配置">配置</h2>
-<p>弹出一个菜单给你设置？想多了，要配置就写 ~/.config/i3/config 去吧。</p>
-<p>$mod 是 i3 的灵魂，每一个快捷键最好都以 $mod 开头，<br />
-一般 $mod 被设置成 Mod4 ，也就是 Win 键。<br />
-bindsym 是绑定快捷键，注释很详细，自己看，下面列出一些重要的配置。</p>
-<h3 id="方向">方向</h3>
-<p>i3 默认把 jkl; 做方向键，也许你会更喜欢 hjkl ，自己替换掉就是了。<br />
-另外分号不是 ; 而是 semicolon 。</p>
-<h3 id="壁纸">壁纸</h3>
-<p>i3 默认没有壁纸，因为它是个平铺式的窗口管理器。<br />
-但壁纸是第一生产力啊，不要壁纸怎么行。</p>
-<p>下载 feh: <code>sudo aptitude install feh</code>.<br />
-<code>feh --bg-fill (YOUR_IMG)</code> 就可以设置壁纸了，至于实现原理，你不会想知道的。</p>
-<h3 id="锁屏">锁屏</h3>
-<p>i3 默认没有锁屏，为了防机惨，锁屏还是很有必要的。</p>
-<p>下载 i3lock: <code>sudo aptitude install i3lock</code>.<br />
-直接 <code>i3lcok</code> 就可以锁屏，<code>i3lock -i (YOUR_PNG)</code> 还可以设置锁屏壁纸。<br />
-需要快捷键锁屏的话，加上一句配置就行了：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bindsym $mod+Tab exec i3lock # Win+Tab 锁屏</span><br></pre></td></tr></table></figure>
-<h3 id="工作区">工作区</h3>
-<p>i3 对工作区的数量没有限制，工作区的名字甚至可以有字母。<br />
-i3 默认配置里只提供了切换到 1 至 10 的快捷键，<br />
-但是有时候“切换到下一个工作区”和“切换到上一个工作区”可能更方便。<br />
-加上两句：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bindsym $mod+comma workspace prev # Win+逗号</span><br><span class="line">bindsym $mod+period workspace next # Win+句号</span><br></pre></td></tr></table></figure>
-<p>另外，默认配置里，把一个窗口移动到某工作区的时候仍会停留在原工作区，<br />
-想改变这点， 把 <code>move container to workspace x</code> 后面加上 <code>; workspace x</code> 即可。</p>
-<h3 id="i3bar">i3bar</h3>
-<p>个人超喜欢 i3bar ，因为它可以接受任何一个程序的输出。<br />
-这意味着你可以完全自由地定制 i3bar 。</p>
-<p>找到 <code>bar &#123;</code> 这行。<br />
-bar 的模式有三种：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mode hide # Auto display</span><br><span class="line">mode invisible # Never display</span><br><span class="line">mode dock # Alway display</span><br></pre></td></tr></table></figure>
-<p>位置有两种：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">position top</span><br><span class="line">position bottom</span><br></pre></td></tr></table></figure>
-<p>重点来了，定义处理程序这一项：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">status_command i3status</span><br></pre></td></tr></table></figure>
-<p>可以看到默认使用 i3status 作为处理，i3status 本身也可以配置，<br />
-但是如果想自由配置，你可以写个程序，输出一个 json ，接口比较复杂，<br />
-在此不赘述，你可以在 ~/.config/i3status/config 里加几行：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">general &#123;</span><br><span class="line">	   output_format = &quot;i3bar&quot;</span><br><span class="line">	   colors = true</span><br><span class="line">	   interval = 5</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>再运行 <code>i3status</code> 依葫芦画瓢就是了。</p>
-<h3 id="i3-gaps">i3-gaps</h3>
-<p>如果你希望窗口平铺之间会有间隙，i3-gaps 会满足你。<br />
-如果你用 Debian, Ubuntu ， 去 github 上搜 i3-gaps-deb clone 下来后运行 i3-gaps-deb 就行了。<br />
-如果用 Arch ，软件包管理器里有，直接下。</p>
-<h3 id="透明">透明</h3>
-<p>也许你给终端模拟器设置了透明度，很遗憾，在 i3 上没用。<br />
-解决方案是下载 compton ，运行 <code>compton -b</code> 即可。</p>
-<h2 id="接口">接口</h2>
-<p>你可以很自由地向 i3 发送命令，<code>i3-msg</code> 提供了一系列接口，<br />
-足以帮助完成更复杂的定制。</p>
-<p>使用 <code>i3-input</code> 可以直接向 i3 发送一条命令。</p>
 
       
     </div>

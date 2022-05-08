@@ -88,9 +88,9 @@
   <ul class="main-menu menu">
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
         <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
-        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">71</span></a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">72</span></a></li>
         <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">88</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">89</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -162,7 +162,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">88</span>
+          <span class="site-state-item-count">89</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -175,7 +175,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">71</span>
+        <span class="site-state-item-count">72</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -241,6 +241,102 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2021/03/03/Manjaro-%E8%BF%9E%E6%8E%A5-Wifi/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Kewth">
+      <meta itemprop="description" content="HNFMS 退役 OIer">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KeBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/03/03/Manjaro-%E8%BF%9E%E6%8E%A5-Wifi/" class="post-title-link" itemprop="url">Manjaro Wifi 相关</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-03-03 22:37:29" itemprop="dateCreated datePublished" datetime="2021-03-03T22:37:29+08:00">2021-03-03</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-03-29 15:36:48" itemprop="dateModified" datetime="2021-03-29T15:36:48+08:00">2021-03-29</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%98%E8%85%BE/" itemprop="url" rel="index"><span itemprop="name">折腾</span></a>
+        </span>
+    </span>
+
+  
+
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="part-1-连接-wifi">Part 1 (连接 WIFI)</h2>
+<p>购置了移动硬盘后马上把系统塞进去弄了个 "linux to go" ，回家直接用，美滋滋，然后就发现不会联网。</p>
+<p><del>把联网的手机用 USB 共享网络就好了嘛</del></p>
+<p>网上搜了一大堆不靠谱的东西，踩了无数个雷后终于在 Arch-wiki 上发现一个神必软件 NetworkManager<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> 。</p>
+<p>首先安装 <code>yay -S networkmanager</code> （一般会自带）。</p>
+<p>然后执行 <code>nmcli</code> 就可以非常友好的列出各个连接设备以及它们的状态。</p>
+<p>执行 <code>nmcli device wifi</code> 就可以扫描出附近所有无线网络以及测试它们的网速。</p>
+<p>最后执行 <code>nmcli device wifi connect 无线网络名称 password 无线网络密码</code> 就可以连接了。</p>
+<p>就是这么简单，当然如果桌面软件自带连接 wifi 功能就最好了（i3 没人权），拒绝折腾。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/03/03/Manjaro-%E8%BF%9E%E6%8E%A5-Wifi/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1167,103 +1263,6 @@ f_{i,j} = \min_{k \ge 0} (f_{i-1,k} + C \max(j - k, 0) + |j - A_i|)
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2020/10/09/Manjaro-%E4%BD%BF%E7%94%A8-Deepin-wine-%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2020/09/03/NOI2020-%E9%A2%98%E8%A7%A3%E6%8A%A5%E5%91%8A/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-      <meta itemprop="name" content="Kewth">
-      <meta itemprop="description" content="HNFMS 退役 OIer">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="KeBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/09/03/NOI2020-%E9%A2%98%E8%A7%A3%E6%8A%A5%E5%91%8A/" class="post-title-link" itemprop="url">NOI2020 题解报告</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-09-03 16:56:34" itemprop="dateCreated datePublished" datetime="2020-09-03T16:56:34+08:00">2020-09-03</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-03-29 15:50:09" itemprop="dateModified" datetime="2021-03-29T15:50:09+08:00">2021-03-29</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%95%B4%E7%90%86/" itemprop="url" rel="index"><span itemprop="name">整理</span></a>
-        </span>
-    </span>
-
-  
-
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="美食家">美食家</h2>
-<h3 id="题目大意">题目大意</h3>
-<p>给定一张 <span class="math inline">\(n\)</span> 点 <span class="math inline">\(m\)</span> 边的有向图，边有不超过 <span class="math inline">\(w\)</span> 的长度。现要求从点 <span class="math inline">\(1\)</span> 出发经过长度恰为 <span class="math inline">\(T\)</span> 的路径回到点 <span class="math inline">\(1\)</span> ，每到达一个点就会获得等于该点点权的愉悦值。特别地，有 <span class="math inline">\(k\)</span> 个美食节，形如“于时刻 <span class="math inline">\(t\)</span> 到达点 <span class="math inline">\(x\)</span> 会额外获得 <span class="math inline">\(y\)</span> 的愉悦值”。最大化获得的愉悦值总和。</p>
-<h3 id="做法-1">做法 1</h3>
-<p>考虑 <span class="math inline">\(k = 0\)</span> 的情况，也就是忽略美食节。</p>
-<p>不难得到这样一个 DP ：设 <span class="math inline">\(f_{i,j}\)</span> 表示在时刻 <span class="math inline">\(i\)</span> 到达点 <span class="math inline">\(j\)</span> 的最大愉悦值，转移枚举 <span class="math inline">\(j\)</span> 的出边即可，复杂度 <span class="math inline">\(O(T(n+m))\)</span> 。</p>
-<h3 id="做法-2">做法 2</h3>
-<p>做法 1 的 DP 中转移与 <span class="math inline">\(i\)</span> 无关，可以想到把 <span class="math inline">\(f_i\)</span> 看做一个向量，用 max+ 矩阵描述转移，但是由于边有不等的长度，需要把连续 <span class="math inline">\(w\)</span> 个时刻的状态合并为一个向量，这样一来就可以用 max+ 矩阵描述转移，使用矩阵快速幂，复杂度 <span class="math inline">\(O(m + (wn)^3 \log T)\)</span> 。</p>
-<h3 id="做法-3-正解">做法 3 （正解）</h3>
-<p>现在考虑美食节，称有美食节的时刻为关键时刻，两个相邻的关键时刻之间是不受美食节影响的，可以套用矩阵快速幂的做法。那么就以关键时刻把时间轴分为 <span class="math inline">\(k+1\)</span> 段，每段用矩阵快速幂，在关键时刻把美食节的影响加到状态上即可。这里矩阵快速幂不能每次暴力矩阵乘矩阵，需要预处理矩阵乘积的幂次，然后用向量乘矩阵的方式处理每一段。复杂度 <span class="math inline">\(O(m + (wn)^3 \log T + k (wn)^2 \log T)\)</span> 。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/09/03/NOI2020-%E9%A2%98%E8%A7%A3%E6%8A%A5%E5%91%8A/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>

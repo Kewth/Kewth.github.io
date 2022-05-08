@@ -30,7 +30,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://kewth.github.io/images/abstract-lattice.svg">
 <meta property="article:published_time" content="2022-02-27T01:41:26.000Z">
-<meta property="article:modified_time" content="2022-04-25T07:05:48.253Z">
+<meta property="article:modified_time" content="2022-04-27T12:11:42.216Z">
 <meta property="article:author" content="Kewth">
 <meta property="article:tag" content="抽代">
 <meta name="twitter:card" content="summary">
@@ -93,9 +93,9 @@
   <ul class="main-menu menu">
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
         <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
-        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">71</span></a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">72</span></a></li>
         <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">88</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">89</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -178,7 +178,7 @@ Domain</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href=
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">88</span>
+          <span class="site-state-item-count">89</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -191,7 +191,7 @@ Domain</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href=
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">71</span>
+        <span class="site-state-item-count">72</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -298,7 +298,7 @@ Domain</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href=
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2022-04-25 15:05:48" itemprop="dateModified" datetime="2022-04-25T15:05:48+08:00">2022-04-25</time>
+        <time title="修改时间：2022-04-27 20:11:42" itemprop="dateModified" datetime="2022-04-27T20:11:42+08:00">2022-04-27</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -338,7 +338,8 @@ class="math inline">\(\newcommand{\Inner}[1]{\langle #1
 class="math inline">\(\newcommand{\Aut}{\mathrm{Aut}}\)</span> <span
 class="math inline">\(\newcommand{\Inn}{\mathrm{Inn}}\)</span> <span
 class="math inline">\(\newcommand{\Char}{\;\mathrm{char}\;}\)</span>
-<span class="math inline">\(\newcommand{\divide}{\mid}\)</span></p>
+<span class="math inline">\(\newcommand{\divide}{\mid}\)</span> <span
+class="math inline">\(\newcommand{\Hom}{\mathrm{Hom}}\)</span></p>
 <h2 id="preliminaries">Preliminaries</h2>
 <h3 id="equivalence-relation">equivalence relation</h3>
 <blockquote>
@@ -2377,7 +2378,7 @@ irreducible polynomials <span class="math inline">\(f(x)\)</span>.</p>
 <h3 id="basic-definitions">basic definitions</h3>
 <blockquote>
 <p><em>Definition</em>. Let <span class="math inline">\(R\)</span> be a
-ring. A <strong>left module</strong> over <span
+ring. A <strong>(left) module</strong> over <span
 class="math inline">\(R\)</span> is a set <span
 class="math inline">\(M\)</span> together with</p>
 <ul>
@@ -2403,17 +2404,19 @@ class="math inline">\(1\)</span>, every module satisfying <span
 class="math inline">\(1 \cdot m = m\)</span> called a <strong>unital
 module</strong>.</p>
 <p>If <span class="math inline">\(N \subseteq M\)</span> and <span
-class="math inline">\(N\)</span> is a left module together with the same
+class="math inline">\(N\)</span> is a module together with the same
 binary operation and the same action, then <span
 class="math inline">\(N\)</span> is a <strong>submodule</strong> of
 <span class="math inline">\(M\)</span>.</p>
 </blockquote>
+<p>Warning! We only consider the unital module.</p>
 <ul>
-<li>Every abelian group <span class="math inline">\(A\)</span> is a left
-module over <span class="math inline">\(\bbZ\)</span>.</li>
+<li>Every abelian group <span class="math inline">\(A\)</span> is a
+module over <span class="math inline">\(\bbZ\)</span> (called <span
+class="math inline">\(\bbZ\)</span>-module).</li>
 </ul>
 <div class="note "><p>Let <span class="math inline">\(R\)</span> be a ring and <span
-class="math inline">\(M\)</span> be an left module. A subset <span
+class="math inline">\(M\)</span> be an module. A subset <span
 class="math inline">\(N \subseteq M\)</span> is a submodule of <span
 class="math inline">\(M\)</span> iff</p>
 <ul>
@@ -2439,10 +2442,23 @@ class="math inline">\(B\)</span> are <span
 class="math inline">\(R\)</span>-algebras, an <span
 class="math inline">\(R\)</span>-algebra homomorphism is a ring
 homomorphism <span class="math inline">\(\varphi \Colon A \to B\)</span>
-s.t. - <span class="math inline">\(\varphi(1_A) = 1_B\)</span>. - <span
-class="math inline">\(\varphi(r a) = r \varphi(a)\)</span>. Also, an
-isomorphism is a bijective homomorphism.</p>
+s.t.</p>
+<ul>
+<li><span class="math inline">\(\varphi(1_A) = 1_B\)</span>.</li>
+<li><span class="math inline">\(\varphi(r a) = r
+\varphi(a)\)</span>.</li>
+</ul>
+<p>Also, an isomorphism is a bijective homomorphism.</p>
 </blockquote>
+<div class="note "><p>Let <span class="math inline">\(A\)</span> be a ring with <span
+class="math inline">\(1_A\)</span> and a <span
+class="math inline">\(R\)</span>-module satisfying <span
+class="math inline">\(r \cdot (a b) = (r \cdot a) b\)</span>. Then <span
+class="math inline">\(f \Colon R \to A\)</span> defined by <span
+class="math inline">\(r \mapsto r \cdot 1_A\)</span> makes <span
+class="math inline">\(A\)</span> be an <span
+class="math inline">\(R\)</span>-algebra.</p>
+</div>
 
     </div>
 
