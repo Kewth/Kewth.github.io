@@ -115,6 +115,37 @@
 ]]></content>
   </entry>
   <entry>
+    <title>vim备份文件</title>
+    <url>/2022/05/08/vim%E5%A4%87%E4%BB%BD%E6%96%87%E4%BB%B6/</url>
+    <content><![CDATA[<p>由于我在 linux 的主目录自动挂载一个 tmp
+，然后习惯有啥乱七八糟的文件都在这个 tmp 里面操作。
+坏处之一是这里头的文件断电不保存（tmp
+挂在内存上），而且有些需要保存的文件我也习惯往里头写。
+于是在一次记笔记的时候，在 tmp
+里写完忘记拷贝出去了，之后写作业才发现我笔记不见了。</p>
+<p>第一个想到的是通过 vim 的 undo histroy
+来复原文件，虽然的确可以看到一些文件内容，
+但是是无法还原整个文件的。</p>
+<p>查的时候发现我以前也查过这个问题，然后想起来我之前就遭遇过这样的损失，
+为了避免重蹈覆辙给 vim 加了个备份功能。
+于是翻了我备份的源码，去备份目录找，果然还在，虚惊一场。</p>
+<p>附备份代码 (vim script) ：</p>
+<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">s</span>:<span class="title">Make_Dir</span> <span class="params">()</span></span></span><br><span class="line">	<span class="keyword">if</span> <span class="built_in">strlen</span> (<span class="built_in">finddir</span> (<span class="variable">a:Path</span>)) == <span class="number">0</span></span><br><span class="line">		<span class="keyword">call</span> <span class="built_in">mkdir</span> (<span class="variable">a:Path</span>, <span class="string">&quot;p&quot;</span>)</span><br><span class="line"><span class="keyword">endfunction</span> Make_Dir</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">s</span>:<span class="title">To_Backup_File</span> <span class="params">(Backup_Root, File_Path, File_Name)</span></span></span><br><span class="line">	<span class="keyword">let</span> <span class="variable">l:Backup_Path</span> = <span class="variable">a:Backup_Root</span> . <span class="string">&#x27;/&#x27;</span> . <span class="variable">a:File_Path</span></span><br><span class="line">	<span class="keyword">if</span> <span class="built_in">strlen</span> (<span class="built_in">finddir</span> (<span class="variable">l:Backup_Path</span>)) == <span class="number">0</span></span><br><span class="line">		<span class="keyword">call</span> <span class="built_in">mkdir</span> (<span class="variable">l:Backup_Path</span>, <span class="string">&quot;p&quot;</span>)</span><br><span class="line">	<span class="keyword">endif</span></span><br><span class="line">	<span class="keyword">exe</span> <span class="string">&#x27;write!&#x27;</span> . <span class="variable">l:Backup_Path</span> . <span class="string">&#x27;/&#x27;</span> . <span class="variable">a:File_Name</span></span><br><span class="line"><span class="keyword">endfunction</span> Backup_File</span><br><span class="line"><span class="keyword">autocmd</span> BufWritePre * :<span class="keyword">call</span> <span class="variable">s:To_Backup_File</span> (</span><br><span class="line">	\ <span class="string">&#x27;/home/kewth/.vimbackup&#x27;</span>, <span class="comment">&quot; 备份的目录</span></span><br><span class="line">	\ <span class="built_in">expand</span>(<span class="string">&#x27;&lt;afile&gt;:p:h&#x27;</span>),</span><br><span class="line">	\ <span class="built_in">expand</span>(<span class="string">&#x27;&lt;afile&gt;:p:t&#x27;</span>) )</span><br></pre></td></tr></table></figure>
+<p>参考页面：</p>
+<ul>
+<li><a
+href="https://stackoverflow.com/questions/18630937/recover-a-vim-file-from-the-un-file-without-the-undo-command">Impossible
+to restore file from vim undo histroy</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>折腾</category>
+      </categories>
+      <tags>
+        <tag>vim</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>计算机应用数学学习笔记</title>
     <url>/2022/04/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%BA%94%E7%94%A8%E6%95%B0%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
     <content><![CDATA[<p>上半期太摸了，没记。</p>
@@ -548,7 +579,8 @@ class="math display">\[
 \]</span></p>
 </blockquote>
 <div class="note "><p><span class="math inline">\(\varphi(g^n) = \varphi(g)^n\)</span> for
-all <span class="math inline">\(n \in \bbZ\)</span> (even negative).</p>
+all <span class="math inline">\(n \in \bbZ\)</span> (even negative or
+zero).</p>
 </div>
 <blockquote>
 <p><em>Definition</em>. Let <span class="math inline">\(\varphi \Colon G
@@ -2283,6 +2315,23 @@ g_i)\)</span>.</p>
 </div>
 <div class="note "><p>Every Principal Prime Ideal is a Unique Factorization Domain.</p>
 </div>
+<div class="note "><p>(Factorization in the Gaussian Integers)</p>
+<p>Fermat's Theorem on sums of squares: the prime <span
+class="math inline">\(p\)</span> can be written as <span
+class="math inline">\(a^2 + b^2\)</span> iff <span
+class="math inline">\(p = 2\)</span> or <span class="math inline">\(p
+\bmod 4 = 1\)</span>. And <span class="math inline">\((a, b)\)</span> is
+unique.</p>
+<p>The irreducible elements in <span
+class="math inline">\(\bbZ[i]\)</span> are as follows:</p>
+<ul>
+<li><span class="math inline">\(1 + i\)</span>.</li>
+<li>prime <span class="math inline">\(p\)</span>, where <span
+class="math inline">\(p \bmod 4 = 3\)</span>.</li>
+<li><span class="math inline">\(a \pm bi\)</span>, where <span
+class="math inline">\(a^2 + b^2\)</span> is a prime.</li>
+</ul>
+</div>
 <h2 id="polynomial-rings-1">Polynomial Rings</h2>
 <h3 id="basic-properties">basic properties</h3>
 <div class="note "><p>Let <span class="math inline">\(I\)</span> be an ideal of the ring
@@ -2385,6 +2434,9 @@ class="math inline">\(\bbQ[x]\)</span>.</p>
 <div class="note "><p>The maximal ideals in <span class="math inline">\(F[x]\)</span> are
 the ideals <span class="math inline">\((f(x))\)</span> generated by
 irreducible polynomials <span class="math inline">\(f(x)\)</span>.</p>
+<p>In particular, <span class="math inline">\(F[x] / (f(x))\)</span> is
+a field iff <span class="math inline">\(f(x)\)</span> is
+irreducible.</p>
 </div>
 <p>TODO: write more.</p>
 <h2 id="module-theory">Module Theory</h2>
@@ -2406,8 +2458,8 @@ class="math inline">\(m, n \in M\)</span>:
 <ul>
 <li><span class="math inline">\((r + s) \cdot m = r \cdot m + s \cdot
 m\)</span>.</li>
-<li><span class="math inline">\((rs) \cdot m = r \cdot
-(sm)\)</span>.</li>
+<li><span class="math inline">\((rs) \cdot m = r \cdot (s \cdot
+m)\)</span>.</li>
 <li><span class="math inline">\(r \cdot (m + n) = r \cdot m + r \cdot
 n\)</span>.</li>
 </ul></li>
@@ -2471,7 +2523,135 @@ class="math inline">\(f \Colon R \to A\)</span> defined by <span
 class="math inline">\(r \mapsto r \cdot 1_A\)</span> makes <span
 class="math inline">\(A\)</span> be an <span
 class="math inline">\(R\)</span>-algebra.</p>
+<p><span class="math inline">\(A\)</span> is an <span
+class="math inline">\(R\)</span>-algebra iff</p>
+<ul>
+<li><span class="math inline">\(A\)</span> is a ring with <span
+class="math inline">\(1_A\)</span>.</li>
+<li><span class="math inline">\(A\)</span> is a <span
+class="math inline">\(R\)</span>-module.</li>
+<li><span class="math inline">\(r \cdot (a b) = (r \cdot a) b = a (r
+\cdot b)\)</span> (they're equal to <span class="math inline">\(f(r) a
+b\)</span>).</li>
+</ul>
 </div>
+<h3 id="quotient-modules-and-module-homomorphisms">quotient modules and
+module homomorphisms</h3>
+<blockquote>
+<p><em>Definiton</em>. Let <span class="math inline">\(R\)</span> be a
+ring and <span class="math inline">\(M, N\)</span> be <span
+class="math inline">\(R\)</span>-modules.</p>
+<ul>
+<li>A map <span class="math inline">\(\varphi \Colon M \to N\)</span> is
+an <strong><span class="math inline">\(R\)</span>-module
+homomorphism</strong> satisfying
+<ul>
+<li><span class="math inline">\(\varphi(x + y) = \varphi(x) +
+\varphi(y)\)</span>.</li>
+<li><span class="math inline">\(\varphi(r \cdot x) = r \cdot
+\varphi(x)\)</span>.</li>
+</ul></li>
+<li>An <span class="math inline">\(R\)</span>-module homomorphism is an
+<strong>isomorphism</strong> iff it's bijective.</li>
+<li><span class="math inline">\(\Hom_R(M, N)\)</span> is defined to be
+the set of all <span class="math inline">\(R\)</span>-module
+homomorphisms from <span class="math inline">\(M\)</span> into <span
+class="math inline">\(N\)</span>.</li>
+<li>Let <span class="math inline">\(\varphi, \psi \in \Hom_R(M,
+N)\)</span>, define <span class="math inline">\(\varphi + \psi\)</span>
+by <span class="math inline">\(m \mapsto \varphi(m) +
+\psi(m)\)</span>.</li>
+<li>Let <span class="math inline">\(\varphi \in \Hom_R(M, N)\)</span>,
+define <span class="math inline">\(r \cdot \varphi\)</span> by <span
+class="math inline">\(m \mapsto r \cdot \varphi(m)\)</span>.</li>
+</ul>
+</blockquote>
+<p>If <span class="math inline">\(M = N = R\)</span>, a ring
+homomorphism may not be <span class="math inline">\(R\)</span>-module
+homomorphism, also a <span class="math inline">\(R\)</span>-module
+homomorphism may not be ring homomorphism. For example,</p>
+<ul>
+<li>if <span class="math inline">\(R = \bbZ\)</span> then <span
+class="math inline">\(x \mapsto 2x\)</span> is a <span
+class="math inline">\(R\)</span>-module homomorphism but not a ring
+homomorphism.</li>
+<li>if <span class="math inline">\(R = F[x]\)</span> then <span
+class="math inline">\(f(x) \mapsto f(x^2)\)</span> is a ring
+homomorphism but not a ring homomorphism.</li>
+</ul>
+<div class="note "><ul>
+<li><span class="math inline">\(\varphi \in \Hom_R(M, N) \iff \varphi(r
+x + y) = r \varphi(x) + \varphi(y) \;\;\forall r,x,y\)</span>.</li>
+<li><span class="math inline">\(\varphi + \psi \in \Hom_R(M,
+N)\)</span>, and so <span class="math inline">\(\Hom_R(M, N)\)</span> is
+an abelian group under this addition.</li>
+<li>If <span class="math inline">\(R\)</span> is commutative, then <span
+class="math inline">\(r \cdot \varphi \in \Hom_R(M, N)\)</span>, and so
+<span class="math inline">\(\Hom_R(M, N)\)</span> is an <span
+class="math inline">\(R\)</span>-module.</li>
+<li>If <span class="math inline">\(\varphi \in \Hom_R(L, M)\)</span> and
+<span class="math inline">\(\psi \in \Hom_R(M, N)\)</span>, then <span
+class="math inline">\(\varphi \circ \psi \in \Hom_R(L, N)\)</span>.</li>
+<li>With addition above and multiplication as function composition,
+<span class="math inline">\(\Hom_R(M, M)\)</span> is a ring with <span
+class="math inline">\(1\)</span>, and is a <span
+class="math inline">\(R\)</span>-algebra if <span
+class="math inline">\(R\)</span> is commutative.</li>
+</ul>
+</div>
+<div class="note "><p>Let <span class="math inline">\(R\)</span> be a a ring, <span
+class="math inline">\(M\)</span> be an <span
+class="math inline">\(R\)</span>-module, and <span
+class="math inline">\(N\)</span> be a submodule of <span
+class="math inline">\(M\)</span>.</p>
+<p>The quotient group <span class="math inline">\(M / N\)</span> can be
+made into an <span class="math inline">\(R\)</span>-module by defining
+an action: <span class="math inline">\(r \cdot (x + N) = (r \cdot x) +
+N\)</span>.</p>
+<p>The natrual projection <span class="math inline">\(\pi \Colon M \to M
+/ N\)</span> defined by <span class="math inline">\(\pi(x) = x +
+N\)</span> is an <span class="math inline">\(R\)</span>-module
+homomorphism with kernel <span class="math inline">\(N\)</span>.</p>
+</div>
+<div class="note "><p>(isomorphism theorems)</p>
+<ul>
+<li><span class="math inline">\(M / \ker\varphi \cong
+\varphi(M)\)</span>.</li>
+<li><span class="math inline">\((A + B) / B \cong A / (A \cap
+B)\)</span>.</li>
+<li><span class="math inline">\((M / A) / (B / A) \cong M /
+B\)</span>.</li>
+<li><span class="math inline">\(A \leftrightarrow A / N\)</span>.</li>
+</ul>
+</div>
+<h3 id="generation-of-modules-direct-sums-and-free-modules">generation
+of modules, direct sums, and free modules</h3>
+<blockquote>
+<p><em>Definiton</em>. Let <span class="math inline">\(M\)</span> be an
+<span class="math inline">\(R\)</span>-module, <span
+class="math inline">\(N_1, N_2, \ldots, N_n\)</span> be submodules of
+<span class="math inline">\(M\)</span>, and <span
+class="math inline">\(A\)</span> be a subset of <span
+class="math inline">\(M\)</span>.</p>
+<ul>
+<li><span class="math inline">\(N_1 + N_2 + \cdots + N_n = \{a_1 + a_2 +
+\cdots + a_n \mid a_i \in N_i\}\)</span>.</li>
+<li><span class="math inline">\(R A = \{r_1 a_1 + r_2 a_2 + \cdots + r_m
+a_m \mid r_i \in R, a_i \in A, m \in \bbN\}\)</span>.</li>
+<li>If <span class="math inline">\(R A = N\)</span> we call <span
+class="math inline">\(A\)</span> a <strong>set of generators</strong> or
+<strong>generating set</strong> for <span
+class="math inline">\(N\)</span>, and we say <span
+class="math inline">\(N\)</span> is <strong>generated</strong> by <span
+class="math inline">\(A\)</span>.</li>
+<li><span class="math inline">\(N\)</span> is <strong>finitely
+generated</strong> if there is some finite <span
+class="math inline">\(A\)</span> s.t. <span class="math inline">\(N = R
+A\)</span>.</li>
+<li><span class="math inline">\(N\)</span> is <strong>cyclic</strong> if
+there is some <span class="math inline">\(A = \{a\}\)</span>.</li>
+</ul>
+</blockquote>
 ]]></content>
       <categories>
         <category>笔记</category>

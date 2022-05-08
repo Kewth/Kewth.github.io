@@ -2,16 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://kewth.github.io/2022/04/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%BA%94%E7%94%A8%E6%95%B0%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</loc>
+    <loc>https://kewth.github.io/2022/02/27/%E6%8A%BD%E8%B1%A1%E4%BB%A3%E6%95%B0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</loc>
     
-    <lastmod>2022-05-07</lastmod>
+    <lastmod>2022-05-08</lastmod>
     
   </url>
   
   <url>
-    <loc>https://kewth.github.io/2022/02/27/%E6%8A%BD%E8%B1%A1%E4%BB%A3%E6%95%B0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</loc>
+    <loc>https://kewth.github.io/2022/05/08/vim%E5%A4%87%E4%BB%BD%E6%96%87%E4%BB%B6/</loc>
     
-    <lastmod>2022-04-27</lastmod>
+    <lastmod>2022-05-08</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://kewth.github.io/2022/04/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%BA%94%E7%94%A8%E6%95%B0%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</loc>
+    
+    <lastmod>2022-05-07</lastmod>
     
   </url>
   
@@ -1153,6 +1160,13 @@
   
   <url>
     <loc>https://kewth.github.io/tags/%E6%A6%82%E7%8E%87%E8%AE%BA/</loc>
+    <lastmod>2022-05-08</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://kewth.github.io/tags/vim/</loc>
     <lastmod>2022-05-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
