@@ -30,7 +30,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://kewth.github.io/images/abstract-lattice.svg">
 <meta property="article:published_time" content="2022-02-27T01:41:26.000Z">
-<meta property="article:modified_time" content="2022-05-22T12:42:13.992Z">
+<meta property="article:modified_time" content="2022-05-23T08:00:06.189Z">
 <meta property="article:author" content="Kewth">
 <meta property="article:tag" content="抽代">
 <meta name="twitter:card" content="summary">
@@ -166,7 +166,10 @@ Domain</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href=
 module homomorphisms</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#generation-of-modules-direct-sums-and-free-modules"><span class="nav-number">12.3.</span> <span class="nav-text">generation
 of modules, direct sums, and free modules</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#filed-theory"><span class="nav-number">13.</span> <span class="nav-text">Filed Theory</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#basic-definition"><span class="nav-number">13.1.</span> <span class="nav-text">basic definition</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#algrbraic-extension"><span class="nav-number">13.2.</span> <span class="nav-text">algrbraic extension</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#splitting-fields-and-algebraic-closures"><span class="nav-number">13.3.</span> <span class="nav-text">splitting fields and
 algebraic closures</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cyclotomic-polynomials-and-extensions"><span class="nav-number">13.4.</span> <span class="nav-text">cyclotomic polynomials
-and extensions</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#galois-theory"><span class="nav-number">14.</span> <span class="nav-text">Galois Theory</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#basic-definitions-1"><span class="nav-number">14.1.</span> <span class="nav-text">basic definitions</span></a></li></ol></li></ol></div>
+and extensions</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#galois-theory"><span class="nav-number">14.</span> <span class="nav-text">Galois Theory</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#automorphisms-and-fixed-fields"><span class="nav-number">14.1.</span> <span class="nav-text">automorphisms and fixed
+fields</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#splitting-fields-and-separable-polynomials"><span class="nav-number">14.2.</span> <span class="nav-text">splitting fields and
+separable polynomials</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#the-fundamental-theorem-of-galois-theory"><span class="nav-number">14.3.</span> <span class="nav-text">the fundamental
+theorem of galois theory</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -302,7 +305,7 @@ and extensions</span></a></li></ol></li><li class="nav-item nav-level-2"><a clas
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2022-05-22 20:42:13" itemprop="dateModified" datetime="2022-05-22T20:42:13+08:00">2022-05-22</time>
+        <time title="修改时间：2022-05-23 16:00:06" itemprop="dateModified" datetime="2022-05-23T16:00:06+08:00">2022-05-23</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -2961,7 +2964,8 @@ class="math inline">\(\varphi(n)\)</span>.</p>
 </div>
 <p>TODO</p>
 <h2 id="galois-theory">Galois Theory</h2>
-<h3 id="basic-definitions-1">basic definitions</h3>
+<h3 id="automorphisms-and-fixed-fields">automorphisms and fixed
+fields</h3>
 <p>Let <span class="math inline">\(K\)</span> be a field.</p>
 <blockquote>
 <p><em>Definition</em>.</p>
@@ -3000,7 +3004,8 @@ class="math inline">\(F\)</span>.</li>
 class="math inline">\(\sigma \in \Aut(K / F)\)</span>.</p>
 <ul>
 <li>If <span class="math inline">\(f(x) \in F[x]\)</span>, then <span
-class="math inline">\(f(\sigma \alpha) = f(\alpha)\)</span>.</li>
+class="math inline">\(f(\sigma \alpha) = 0 \iff f(\alpha) =
+0\)</span>.</li>
 <li>In particular, if <span class="math inline">\(\alpha\)</span> is
 algebraic, then <span class="math inline">\(m_{\alpha, F} (\sigma
 \alpha) = 0\)</span>.</li>
@@ -3010,50 +3015,35 @@ algebraic, then <span class="math inline">\(m_{\alpha, F} (\sigma
 F)\)</span> just map the roots of minimal polynomail to the roots and
 fix <span class="math inline">\(F\)</span>.</p>
 <blockquote>
-<p><em>Definition</em>. If <span class="math inline">\(H \le
-\Aut(K)\)</span>, the subfield of <span class="math inline">\(K\)</span>
-fixed by the automorphism in <span class="math inline">\(H\)</span> is
-called the <strong>fixed field</strong> of <span
-class="math inline">\(H\)</span>.</p>
+<p><em>Definition</em>. If <span class="math inline">\(H \subseteq
+\Aut(K)\)</span>, the <strong>fixed field</strong> of <span
+class="math inline">\(H\)</span> is the subset of <span
+class="math inline">\(K\)</span> of elements fixed by the automorphisms
+in <span class="math inline">\(H\)</span></p>
 </blockquote>
 <div class="note "><ul>
 <li><span class="math inline">\(\Aut(K)\)</span> is a group under
 composition and <span class="math inline">\(\Aut(K / F) \le
 \Aut(K)\)</span>.</li>
-<li><span class="math inline">\(F_1 \subseteq F_2 \subseteq K \implies
-\Aut(K / F_2) \le \Aut(K / F_1)\)</span>.</li>
-<li><span class="math inline">\(H_1 \le H_2 \le \Aut(K)
-\implies\)</span> fix field of <span class="math inline">\(H_2
-\subseteq\)</span> fix field of <span
-class="math inline">\(H_1\)</span>.</li>
+<li>The fixed field of <span class="math inline">\(H\)</span> is a
+subfield of <span class="math inline">\(K\)</span>.</li>
 </ul>
-</div>
-<div class="note "><p>Let <span class="math inline">\(E\)</span> be the splitting field
-over <span class="math inline">\(F\)</span> of <span
-class="math inline">\(f(x) \in F[x]\)</span>, then <span
-class="math display">\[
-|\Aut(E / F)| \le [E \colon F]
-\]</span></p>
-<p>with equality if <span class="math inline">\(f(x)\)</span> is
-separable over <span class="math inline">\(F\)</span>.</p>
 </div>
 <blockquote>
 <p><em>Definiton</em>.</p>
-<p>If <span class="math inline">\([K \colon F]\)</span> is finite, then
-<span class="math inline">\(K\)</span> is said to be
-<strong>Galois</strong> over <span class="math inline">\(F\)</span> and
-<span class="math inline">\(K / F\)</span> is a <strong>Galois
-extension</strong> if <span class="math inline">\(|\Aut(E / F)| = [E
-\colon F]\)</span>.</p>
-<p>If <span class="math inline">\(K / F\)</span> is Galois, the group
-<span class="math inline">\(\Aut(K / F)\)</span> is called the
+<p>If <span class="math inline">\([K \colon F]\)</span> is finite and
+<span class="math inline">\(|\Aut(K / F)| = [K \colon F]\)</span>,
+then</p>
+<ul>
+<li><span class="math inline">\(K\)</span> is said to be
+<strong>Galois</strong> over <span class="math inline">\(F\)</span></li>
+<li><span class="math inline">\(K / F\)</span> is a <strong>Galois
+extension</strong>.</li>
+<li><span class="math inline">\(\Aut(K / F)\)</span> is called the
 <strong>Galois group</strong> of <span class="math inline">\(K /
 F\)</span>, denoted <span class="math inline">\(\Gal(K /
-F)\)</span>.</p>
-<p>If <span class="math inline">\(f(x) \in F[x]\)</span> is separable,
-then the <strong>Galois group</strong> of <span
-class="math inline">\(f(x)\)</span> is the Galois group of the splitting
-field of <span class="math inline">\(f(x)\)</span>.</p>
+F)\)</span>.</li>
+</ul>
 </blockquote>
 <p>Example.</p>
 <ul>
@@ -3079,6 +3069,111 @@ class="math inline">\(\bbQ(\sqrt{6})\)</span>.</li>
 \tau\}\)</span> fix <span class="math inline">\(\bbQ\)</span>.</li>
 </ul></li>
 </ul>
+<!-- Let $G = \{\sigma_1 = 1, \sigma_2, \ldots, \sigma_n\} \le \Aut(K)$ -->
+<!-- and $F$ be the fixed field of $G$, then -->
+<!-- $$ -->
+<!-- [K \colon F] = n = |G|. -->
+<!-- $$ -->
+<!-- (Corollary) -->
+<!-- - $|\Aut(K / F)| \le [K \colon F]$, -->
+<!-- with equality iff $F$ is the fixed field of $\Aut(K / F)$. -->
+<!-- - If $G \le \Aut(K)$ is finite and $F$ is the fixed field, -->
+<!-- then $\Aut(K / F) = G$, and $K / F$ is Galois. -->
+<!-- - If $G_1, G_2 \le \Aut(K)$ are distinct, -->
+<!-- then their fixed field are distinct. -->
+<div class="note "><p>Suppose <span class="math inline">\(F \subseteq K\)</span> is
+subfield of finite degree, and <span class="math inline">\(G \le
+\Aut(K)\)</span> is finite subgroup.</p>
+<p>Denote the <span class="math inline">\(\Aut(K / F)\)</span> by <span
+class="math inline">\(F^*\)</span>, the fixed field of <span
+class="math inline">\(G\)</span> by <span
+class="math inline">\(G^*\)</span>, <span class="math inline">\([K
+\colon F]\)</span> by <span class="math inline">\(D(F)\)</span>, and
+<span class="math inline">\(|G|\)</span> by <span
+class="math inline">\(D(G)\)</span>. The relation of subfield and
+automorphism subgroup:</p>
+<ul>
+<li><span class="math inline">\(D(F^*) \le D(F)\)</span>.</li>
+<li><span class="math inline">\(D(G^*) = D(G)\)</span>.</li>
+<li><span class="math inline">\(F \subseteq F^{**}\)</span>.</li>
+<li><span class="math inline">\(G = G^{**}\)</span>.</li>
+<li><span class="math inline">\(F_1 \subseteq F_2 \implies F_2^* \le
+F_1^*\)</span>.</li>
+<li><span class="math inline">\(G_1 \le G_2 \implies G_2^* \subseteq
+G_1^*\)</span>.</li>
+<li><span class="math inline">\(G_1 \ne G_2 \implies G_1^* \ne
+G_2^*\)</span>.</li>
+<li><span class="math inline">\(K / F\)</span> is Galois iff <span
+class="math inline">\(D(F) = D(F^*)\)</span>.</li>
+</ul>
+</div>
+<h3 id="splitting-fields-and-separable-polynomials">splitting fields and
+separable polynomials</h3>
+<div class="note "><p>Let <span class="math inline">\(E\)</span> be the splitting field
+over <span class="math inline">\(F\)</span> for <span
+class="math inline">\(f(x) \in F[x]\)</span>, then <span
+class="math display">\[
+|\Aut(E / F)| \le [E \colon F]
+\]</span> with equality if <span class="math inline">\(f(x)\)</span> is
+separable over <span class="math inline">\(F\)</span>.</p>
+</div>
+<blockquote>
+<p><em>Definiton</em>. If <span class="math inline">\(f(x) \in
+F[x]\)</span> is separable, then the <strong>Galois group</strong> of
+<span class="math inline">\(f(x)\)</span> is the Galois group of the
+splitting field of <span class="math inline">\(f(x)\)</span>.</p>
+</blockquote>
+<div class="note "><ul>
+<li>The extension <span class="math inline">\(K / F\)</span> is Galois
+iff <span class="math inline">\(K\)</span> is the splitting field of
+some separable polynomial over <span
+class="math inline">\(F\)</span>.</li>
+<li>If <span class="math inline">\(K / F\)</span> is Galois, then <span
+class="math inline">\(f(x) \in F[x]\)</span> is irreducible and has root
+in <span class="math inline">\(K\)</span> <span
+class="math inline">\(\implies\)</span> <span
+class="math inline">\(f(x)\)</span> is separable and splits completely
+in <span class="math inline">\(K\)</span>.</li>
+</ul>
+</div>
+<h3 id="the-fundamental-theorem-of-galois-theory">the fundamental
+theorem of galois theory</h3>
+<blockquote>
+<p><em>Definition</em>.</p>
+<ul>
+<li>A <strong>(linear) character</strong> <span
+class="math inline">\(X\)</span> of a group <span
+class="math inline">\(G\)</span> with elements in field <span
+class="math inline">\(L\)</span> is a homomorphism from <span
+class="math inline">\(G\)</span> to the multiplicative group of <span
+class="math inline">\(L\)</span>: <span class="math display">\[
+X \colon G \to L^{\times}.
+\]</span></li>
+<li>An injective homomorphism from field <span
+class="math inline">\(K\)</span> to field <span
+class="math inline">\(L\)</span> is called an <strong>embedding</strong>
+of <span class="math inline">\(K\)</span> into <span
+class="math inline">\(L\)</span>.</li>
+</ul>
+<p>Clearly embdding can be treated as character of <span
+class="math inline">\(K^{\times}\)</span> in <span
+class="math inline">\(L\)</span>.</p>
+</blockquote>
+<div class="note "><p>(Linear Independence of Characters)</p>
+<p>If <span class="math inline">\(X_1, X_2, \ldots, X_n\)</span> are
+distinct characters of <span class="math inline">\(G\)</span> with
+elements in <span class="math inline">\(L\)</span>, then thery're
+linearly independent over <span class="math inline">\(L\)</span>, that
+is, <span class="math display">\[
+a_1 X_1 + a_2 X_2 + \cdots a_n X_n = 0, \;\; a_i \in L
+\]</span> implies all <span class="math inline">\(a_i = 0\)</span>.</p>
+<p>(Corollary)</p>
+<p>If <span class="math inline">\(\sigma_1, \sigma_2, \ldots,
+\sigma_n\)</span> are distinct embeddings of <span
+class="math inline">\(K\)</span> into <span
+class="math inline">\(L\)</span>, then they're linearly independent over
+<span class="math inline">\(L\)</span>.</p>
+</div>
 
     </div>
 
@@ -3100,8 +3195,8 @@ class="math inline">\(\bbQ(\sqrt{6})\)</span>.</li>
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2022/02/27/%E8%B8%A9%E5%9D%91%E6%9D%82%E8%AE%B0/" rel="next" title="踩坑杂记">
-                  踩坑杂记 <i class="fa fa-chevron-right"></i>
+                <a href="/2022/04/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%BA%94%E7%94%A8%E6%95%B0%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="next" title="计算机应用数学学习笔记">
+                  计算机应用数学学习笔记 <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>

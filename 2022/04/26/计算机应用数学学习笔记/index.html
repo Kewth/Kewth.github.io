@@ -30,7 +30,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://kewth.github.io/images/csmath-1.png">
 <meta property="article:published_time" content="2022-04-26T05:50:44.000Z">
-<meta property="article:modified_time" content="2022-05-07T08:31:11.935Z">
+<meta property="article:modified_time" content="2022-05-23T02:56:05.352Z">
 <meta property="article:author" content="Kewth">
 <meta property="article:tag" content="图论">
 <meta property="article:tag" content="概率论">
@@ -153,7 +153,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E8%AE%BA"><span class="nav-number">1.</span> <span class="nav-text">图论</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AC%A7%E6%8B%89%E5%AE%9A%E7%90%86"><span class="nav-number">1.1.</span> <span class="nav-text">欧拉定理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B9%B3%E9%9D%A2%E5%9B%BE%E6%9F%93%E8%89%B2"><span class="nav-number">1.2.</span> <span class="nav-text">平面图染色</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%89%E6%A0%87%E5%8F%B7%E6%A0%91"><span class="nav-number">1.3.</span> <span class="nav-text">有标号树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A0%E6%A0%87%E5%8F%B7%E6%A0%91"><span class="nav-number">1.4.</span> <span class="nav-text">无标号树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%9F%E6%88%90%E6%A0%91"><span class="nav-number">1.5.</span> <span class="nav-text">生成树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%85%E8%A1%8C%E5%95%86%E9%97%AE%E9%A2%98"><span class="nav-number">1.6.</span> <span class="nav-text">旅行商问题</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E8%AE%BA"><span class="nav-number">1.</span> <span class="nav-text">图论</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AC%A7%E6%8B%89%E5%AE%9A%E7%90%86"><span class="nav-number">1.1.</span> <span class="nav-text">欧拉定理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B9%B3%E9%9D%A2%E5%9B%BE%E6%9F%93%E8%89%B2"><span class="nav-number">1.2.</span> <span class="nav-text">平面图染色</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%89%E6%A0%87%E5%8F%B7%E6%A0%91"><span class="nav-number">1.3.</span> <span class="nav-text">有标号树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A0%E6%A0%87%E5%8F%B7%E6%A0%91"><span class="nav-number">1.4.</span> <span class="nav-text">无标号树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%9F%E6%88%90%E6%A0%91"><span class="nav-number">1.5.</span> <span class="nav-text">生成树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%85%E8%A1%8C%E5%95%86%E9%97%AE%E9%A2%98"><span class="nav-number">1.6.</span> <span class="nav-text">旅行商问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E5%A4%A7%E7%8B%AC%E7%AB%8B%E9%9B%86"><span class="nav-number">1.7.</span> <span class="nav-text">最大独立集</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -289,7 +289,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2022-05-07 16:31:11" itemprop="dateModified" datetime="2022-05-07T16:31:11+08:00">2022-05-07</time>
+        <time title="修改时间：2022-05-23 10:56:05" itemprop="dateModified" datetime="2022-05-23T10:56:05+08:00">2022-05-23</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -516,6 +516,31 @@ class="math inline">\(2^n \le T_n \le 4^n\)</span> 。</p>
 <p>Tree Shortcut Algorithm:
 找到一颗最小生成树，写出欧拉序，只保留每个点第一次出现的位置，得到一个旅行路径。</p>
 <p>定理 1 ：该算法得到的旅行路径的代价不超过最小代价的两倍</p>
+<h3 id="最大独立集">最大独立集</h3>
+<p>正交表示：对于无向图 <span class="math inline">\(G = (V, E)\)</span>
+，可以为每个点 <span class="math inline">\(i\)</span> 分配一个 <span
+class="math inline">\(\mathbb{R}^d\)</span> 内的单位向量 <span
+class="math inline">\(u_i\)</span>，使得 <span class="math inline">\((i,
+j) \in E \iff u_i \cdot u_j \ne 0\)</span> 。</p>
+<p>引理 1 ：一定存在分配方式使得正交表示中 <span class="math inline">\(d
+\le n\)</span> 。</p>
+<p>引理 2 ：若 <span class="math inline">\(I \subseteq V\)</span>
+是独立集，<span class="math inline">\(e \in \mathbb{R}^d\)</span>
+是任意单位向量，则 <span class="math display">\[
+\sum_{i \in I} (u_i \cdot e)^2 \le 1
+\]</span></p>
+<blockquote>
+<p>独立集中的 <span class="math inline">\(u_i\)</span>
+是两两正交的，<span class="math inline">\(u_i \cdot e\)</span>
+是正交基上的投影。</p>
+</blockquote>
+<p>引理 3 ：最大独立集的大小不超过 <span class="math inline">\(\max (u_i
+\cdot e)^{-2}\)</span> 。</p>
+<blockquote>
+
+</blockquote>
+<p>Lovasz theta 函数：<span class="math inline">\(\vartheta(G) =
+\min\limits_{u,e} \max\limits_i (u_i \cdot e)^{-2}\)</span> 。</p>
 
     </div>
 
@@ -533,8 +558,8 @@ class="math inline">\(2^n \le T_n \le 4^n\)</span> 。</p>
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2022/02/27/%E8%B8%A9%E5%9D%91%E6%9D%82%E8%AE%B0/" rel="prev" title="踩坑杂记">
-                  <i class="fa fa-chevron-left"></i> 踩坑杂记
+                <a href="/2022/02/27/%E6%8A%BD%E8%B1%A1%E4%BB%A3%E6%95%B0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="prev" title="抽象代数学习笔记">
+                  <i class="fa fa-chevron-left"></i> 抽象代数学习笔记
                 </a>
             </div>
             <div class="post-nav-item">
