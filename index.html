@@ -88,9 +88,9 @@
   <ul class="main-menu menu">
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
         <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
-        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">73</span></a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">75</span></a></li>
         <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">90</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">91</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -162,7 +162,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">90</span>
+          <span class="site-state-item-count">91</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -175,7 +175,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">73</span>
+        <span class="site-state-item-count">75</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -441,7 +441,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2022/05/24/%E8%B8%A9%E5%9D%91%E6%9D%82%E8%AE%B0/">
+    <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2022/06/07/FKT%E7%AE%97%E6%B3%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpeg">
@@ -454,7 +454,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/05/24/%E8%B8%A9%E5%9D%91%E6%9D%82%E8%AE%B0/" class="post-title-link" itemprop="url">踩坑杂记</a>
+          <a href="/2022/06/07/FKT%E7%AE%97%E6%B3%95/" class="post-title-link" itemprop="url">FKT算法</a>
         </h2>
 
         <div class="post-meta-container">
@@ -466,7 +466,16 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2022-05-24 19:24:49 / 修改时间：19:38:04" itemprop="dateCreated datePublished" datetime="2022-05-24T19:24:49+08:00">2022-05-24</time>
+      <time title="创建时间：2022-06-07 11:01:53 / 修改时间：15:54:32" itemprop="dateCreated datePublished" datetime="2022-06-07T11:01:53+08:00">2022-06-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+        </span>
     </span>
 
   
@@ -480,7 +489,316 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h3
+          <p>大一专业课讲的东西，感觉和 OI 沾点边。</p>
+<p>课程资料不方便贴出来，可以参考<a
+target="_blank" rel="noopener" href="https://people.maths.bris.ac.uk/~csxam/presentations/matchings.pdf">这个</a>。</p>
+<p>前置知识：排列和排列的环分解，矩阵和行列式，图论基本概念。</p>
+<p>这篇是介绍一下思想和证明，许多说明性的细节被简要概括了（有空的话再完善细节啥的吧）。</p>
+<h2 id="引入">引入</h2>
+<p>如何求一张图的完美匹配的数量？</p>
+<p>以下仅考虑 <span class="math inline">\(|V|\)</span>
+（点数）为偶数的图 <span class="math inline">\(G = (V, E)\)</span> ，记
+<span class="math inline">\(n = |V|\)</span> 和 <span
+class="math inline">\(m = |E|\)</span> （边数）。</p>
+<p>完美匹配是边集的子集 <span class="math inline">\(M \subseteq
+E\)</span>，满足边的端点不重不漏地覆盖了点集。</p>
+<p><span class="math inline">\(K_n\)</span> 表示 <span
+class="math inline">\(n\)</span> 个点的完全图。</p>
+<p>记 <span class="math inline">\(A\)</span> 为 <span
+class="math inline">\(G\)</span> 的邻接矩阵，即 <span
+class="math inline">\(A_{ij} = 1\)</span> 当且仅当 <span
+class="math inline">\((i, j) \in E\)</span> （<span
+class="math inline">\(i\)</span> 到 <span
+class="math inline">\(j\)</span> 有连边），否则 <span
+class="math inline">\(A_{ij} = 0\)</span> 。</p>
+<p>一个想法是，枚举 <span class="math inline">\(K_n\)</span>
+的所有完美匹配 <span class="math inline">\(M\)</span> ，然后判断 <span
+class="math inline">\(M\)</span> 的边是否都在原来的图 <span
+class="math inline">\(G\)</span> 中，即是否满足 <span
+class="math inline">\(M \subseteq E\)</span> 。 记 <span
+class="math inline">\(K_n\)</span> 的完美匹配的集合为 <span
+class="math inline">\(PM(n)\)</span> ，则 <span
+class="math inline">\(G\)</span> 的完美匹配数量为 <span
+class="math display">\[
+ans = \sum_{M \in PM(n)} [M \subseteq E]
+= \sum_{M \in PM(n)} \prod_{(i, j) \in M} A_{ij}
+\]</span></p>
+<p>举例，如下图。</p>
+<p><img src="/images/fkt_1.png" /></p>
+<p>（当然这玩意直接拿来算是没有意义的）</p>
+<h2 id="pfaffians">Pfaffians</h2>
+<p>判断 <span class="math inline">\(M \subseteq E\)</span> 的依据是计算
+<span class="math inline">\([M \subseteq E] = \prod\limits_{(i,j) \in M}
+A_{ij}\)</span> ，这个值只能是 0 或 1 。</p>
+<!-- 现在稍微放宽一点，让 $A_{ij}$ 在 $(i, j) \in E$ 的时候可以是正负一，定义 $M$ 的权重为 -->
+<!-- $$ -->
+<!-- \mathrm{wt}(M) = \mathrm{sgn}(M) \prod_{(i,j) \in M} A_{ij} -->
+<!-- $$ -->
+<p>如果将 <span class="math inline">\(M\)</span>
+内的边依次写出来，就可以得到一个 <span class="math inline">\(V\)</span>
+的排列 <span class="math inline">\(\sigma\)</span>
+，这个排列的符号（负一的逆序对数次方）记为 <span
+class="math inline">\(\mathrm{sgn}(\sigma)\)</span> ，考虑一个类似的式子
+<span class="math display">\[
+\mathrm{wt}(M, \sigma) = \mathrm{sgn}(\sigma) \prod_{i=1}^{n/2}
+A&#39;_{\sigma(2i-1), \sigma(2i)}
+\]</span></p>
+<p>其中 <span class="math inline">\(A&#39;\)</span> 和 <span
+class="math inline">\(A\)</span> 略有不同，它是将邻接矩阵的部分 <span
+class="math inline">\(1\)</span> 的位置改为 <span
+class="math inline">\(-1\)</span> 使得 <span
+class="math inline">\(A&#39;\)</span> 成为一个反对称矩阵：<span
+class="math inline">\(A&#39;_{ij} = - A&#39;_{ji}\)</span> 。</p>
+<p>那么显然 <span class="math inline">\(|\mathrm{wt}(M, \sigma)| = [M
+\subseteq E]\)</span> ，因为它们在式子上只有符号的差异。</p>
+<p>虽然定义上不仅与 <span class="math inline">\(M\)</span>
+有关，还与选取的排列 <span class="math inline">\(\sigma\)</span>
+有关，但是有趣的是，无论按照什么顺序写边，按照什么顺序写端点得到的 <span
+class="math inline">\(\sigma\)</span> ，算出来的 <span
+class="math inline">\(\mathrm{wt}(M, \sigma)\)</span>
+都是一样的，因此这个值仅仅与 <span class="math inline">\(M\)</span>
+有关，可以记为 <span class="math inline">\(\mathrm{wt}(M)\)</span>
+。</p>
+<blockquote>
+<p>证明：如果交换两条边的顺序，相当于在排列里交换了两个点两次，那么
+<span class="math inline">\(\mathrm{sgn}(\sigma)\)</span>
+不变，同时后边的连乘符号也自然不受顺序影响。</p>
+<p>如果交换一条边内两个端点的顺序，在排列里交换了两个点，排列的符号变化，同时后边的连乘符号有一项变化，由于
+<span class="math inline">\(A&#39;\)</span>
+是反对称矩阵符号又会变一次，因此总的值不变。</p>
+</blockquote>
+<p>假设可以找到一个 <span class="math inline">\(A&#39;\)</span> 使得
+<span class="math inline">\(\mathrm{wt}(M) = [M \subseteq E]\)</span>
+，那么要求的值变成了 <span class="math display">\[
+ans = \sum_{M \in PM(n)} \mathrm{wt}(M)
+\]</span></p>
+<p>上式称为 <span class="math inline">\(A&#39;\)</span> 的 Pfaffian
+，记为 <span class="math inline">\(\mathrm{Pf}(A&#39;)\)</span> 。</p>
+<h2 id="反对称矩阵行列式">反对称矩阵行列式</h2>
+<p>考虑反对称矩阵 <span class="math inline">\(A&#39;\)</span> 的行列式
+<span class="math display">\[
+\det(A&#39;) = \sum_{\sigma \in S_n} \mathrm{sgn}(\sigma) \prod_{i=1}^n
+A&#39;_{i,\sigma(i)}
+\]</span></p>
+<p>如果 <span class="math inline">\(\sigma\)</span> 存在 <span
+class="math inline">\(i\)</span> 使得 <span
+class="math inline">\(\sigma(i) = i\)</span> （环分解有自环），那么
+<span class="math inline">\(A_{i,\sigma(i)} = 0\)</span>
+，这一项是没有贡献的。</p>
+<p>如果 <span class="math inline">\(\sigma\)</span>
+的环分解存在一个非自环的奇环，那么将这个奇环的方向反过来得到 <span
+class="math inline">\(\sigma&#39;\)</span> ，注意到 <span
+class="math inline">\(\mathrm{sgn}(\sigma) =
+\mathrm{sgn}(\sigma&#39;)\)</span> 且连乘符号的值相反，将 <span
+class="math inline">\(\sigma\)</span> 和 <span
+class="math inline">\(\sigma&#39;\)</span>
+两两一组，每组在行列式中的贡献为 <span class="math inline">\(0\)</span>
+。</p>
+<p>综上，我们只需要考虑偶环构成的排列的贡献，记 <span
+class="math inline">\(EC(n)\)</span> 是这些排列，有 <span
+class="math display">\[
+\det(A&#39;) = \sum_{\sigma \in EC(n)} \mathrm{sgn}(\sigma)
+\prod_{i=1}^n A&#39;_{i,\sigma(i)}
+\]</span></p>
+<p>而仅有偶环构成的排列和 <span class="math inline">\(K_n\)</span>
+中完美匹配的二元组 <span class="math inline">\((M_1, M_2)\)</span>
+是一一对应的！</p>
+<p>将 <span class="math inline">\(M_1\)</span> 和 <span
+class="math inline">\(M_2\)</span>
+直接并起来就可以得到一个偶环组成的排列 <span
+class="math inline">\(\sigma\)</span> ，其中每个偶环都是由 <span
+class="math inline">\(M_1\)</span> 和 <span
+class="math inline">\(M_2\)</span>
+的边交替构成。偶环上边的方向怎么确定？每个环选定环上编号最小的点，指向
+<span class="math inline">\(M_1\)</span> 中的连边。</p>
+<p>注意：<span class="math inline">\(M_1\)</span> 和 <span
+class="math inline">\(M_2\)</span> 的公共边在 <span
+class="math inline">\(\sigma\)</span>
+中体现为两个点之间的重边组成的二元环。</p>
+<p>类似地每个偶环组成的排列 <span class="math inline">\(\sigma\)</span>
+也可以拆分成两个完美匹配 <span class="math inline">\(M_1, M_2\)</span>
+。</p>
+<p><img src="/images/fkt_2.png" /></p>
+<p>如上图，找到偶环编号最小的点 <span class="math inline">\(1\)</span>
+，然后其指向 <span class="math inline">\(2\)</span> ，那么 <span
+class="math inline">\((1, 2) \in M\)</span>
+。然后沿着这个方向把边交替加入 <span class="math inline">\(M_1,
+M_2\)</span> 。最终可以知道，这个排列对应的两个匹配为 <span
+class="math display">\[
+M_1 = \{(1, 2), (3, 4), (5, 6)\},
+M_2 = \{(2, 3), (4, 5), (6, 1)\}
+\]</span></p>
+<p>这个一一对应关系告诉我们 <span class="math inline">\(|EC(n)| =
+|PM(n)|^2\)</span> ，并且枚举 <span class="math inline">\(\sigma \in
+EC(n)\)</span> 等价于枚举 <span class="math inline">\(M_1, M_2 \in
+PM(n)\)</span> ，于是 <span class="math display">\[
+\begin{aligned}
+    \det(A&#39;)
+    &amp;= \sum_{M_1 \in PM(n)} \sum_{M_2 \in PM(n)}
+    \mathrm{sgn}(\sigma) \prod_{i=1}^n A&#39;_{i,\sigma(i)} \\
+    &amp;= \sum_{M_1 \in PM(n)} \sum_{M_2 \in PM(n)}
+    \mathrm{sgn}(M_1) \mathrm{sgn}(M_2) \prod_{i=1}^n
+A&#39;_{i,\sigma(i)} \\
+    &amp;= \sum_{M_1 \in PM(n)} \sum_{M_2 \in PM(n)}
+    \mathrm{wt}(M_1) \mathrm{wt}(M_2) \\
+    &amp;= \mathrm{Pf}(A&#39;)^2
+\end{aligned}
+\]</span></p>
+<p>（这个等式可以拿上面的例子写一写就很容易明白）</p>
+<h2 id="pfaffian-orientation-找到反对称矩阵">Pfaffian orientation:
+找到反对称矩阵</h2>
+<p>现在我们知道 <span class="math inline">\(ans = \mathrm{Pf}(A&#39;) =
+\sqrt{\det(A&#39;)}\)</span> ，而求行列式是容易的。</p>
+<p>但不要忘了第一个等号建立在一个假设上：<span
+class="math inline">\(\mathrm{wt}(M) = [M \subseteq E]\)</span>
+。现在我们要关注如何找到满足这个条件的 <span
+class="math inline">\(A&#39;\)</span> 。</p>
+<p>找一个 <span class="math inline">\(A&#39;\)</span> 等于是给 <span
+class="math inline">\(G\)</span> 的边定向，然后把邻接矩阵中正向的定为
+<span class="math inline">\(1\)</span> ，反向的定为 <span
+class="math inline">\(-1\)</span> 。我们的目标是让所有 <span
+class="math inline">\(G\)</span> 中的完美匹配 <span
+class="math inline">\(M\)</span> 满足 <span
+class="math inline">\(\mathrm{wt}(W) = 1\)</span>
+（或全部是负一，这个时候 <span class="math inline">\(ans =
+-\mathrm{Pf}(A&#39;) = \sqrt{\det(A&#39;)}\)</span> ，不影响）。</p>
+<p>那么就是让所有 <span class="math inline">\(G\)</span> 的完美匹配
+<span class="math inline">\(M_1, M_2\)</span> 满足 <span
+class="math inline">\(\mathrm{wt}(M_1) \mathrm{wt}(M_2) = 1\)</span>
+。上一节的推导告诉我们 <span class="math display">\[
+\mathrm{wt}(M_1) \mathrm{wt}(M_2) =
+\mathrm{sgn}(\sigma) \prod_{i=1}^n A&#39;_{i, \sigma(i)}
+\]</span> 其中 <span class="math inline">\(\sigma\)</span> 是 <span
+class="math inline">\(M_1, M_2\)</span> 对应到的那个偶环构成的排列。</p>
+<p>于是我们的要求变为：对于 <span class="math inline">\(G\)</span>
+内任意偶环 <span class="math inline">\(C\)</span>
+，设这个偶环单独构成的排列为 <span class="math inline">\(\sigma\)</span>
+， 如果 <span class="math inline">\(G - C\)</span>
+存在完美匹配，那么就要有 <span class="math display">\[
+\prod_{i=1}^n A&#39;_{i, \sigma(i)} = -1
+\]</span></p>
+<p>（注意到每个偶环的符号恰为 <span
+class="math inline">\(\mathrm{sgn}(\sigma) = -1\)</span> ）。</p>
+<blockquote>
+<p>这个要求是我们目的（<span class="math inline">\(\mathrm{wt}(M_1)
+\mathrm{wt}(M_2) =
+1\)</span>）的充要条件。如果满足了这个要求，那么对于任意偶环构成的排列，将其分解成若干偶环的乘积，从这个要求中可以知道每个偶环的贡献，进而知道偶环构成的排列的贡献恰为
+<span class="math inline">\(1\)</span> 。</p>
+<p>如果满足了我们的目的，那么对于任意偶环 <span
+class="math inline">\(C\)</span> ，如果 <span class="math inline">\(G -
+C\)</span> 存在完美匹配，说明有一个偶环构成的排列包含了 <span
+class="math inline">\(C\)</span> ，让 <span
+class="math inline">\(C\)</span> 以外的部分全是二元环就可以从 <span
+class="math inline">\(\mathrm{wt}(M_1) \mathrm{wt}(M_2) = 1\)</span>
+中推出上式（因为每个二元环的贡献都显然是 <span
+class="math inline">\(1\)</span> ）。</p>
+</blockquote>
+<p>而上式等价于 <span class="math inline">\(C\)</span>
+里面有奇数个顺时针的边和奇数个逆时针的边。</p>
+<hr />
+<p>对于一般图这是 #P-Hard 的问题，我们考虑特殊的情况：平面图。</p>
+<p>平面图上只需要满足每个面都有奇数条顺时针的边即可。</p>
+<blockquote>
+<p>可以归纳出任何简单环 <span class="math inline">\(C\)</span>
+都满足：顺时针的边数 <span class="math inline">\(f\)</span>
+加上环内部的点（平面上被环围起来的点）数 <span
+class="math inline">\(k\)</span> 恰为奇数。</p>
+<p>如果 <span class="math inline">\(C\)</span> 是一个面那么 <span
+class="math inline">\(k = 0\)</span> ，这就是我们需要满足的要求。</p>
+<p>否则在 <span class="math inline">\(C\)</span> 内找一条路径把 <span
+class="math inline">\(C\)</span> 切成两个环 <span
+class="math inline">\(C_1, C_2\)</span> 。<span
+class="math inline">\(C\)</span> 是 <span class="math inline">\(C_1,
+C_2\)</span> 的对称差，根据归纳假设可以知道 <span
+class="math inline">\(f + k\)</span> 为奇数。</p>
+<p>现在考虑偶环 <span class="math inline">\(C\)</span> 。如果 <span
+class="math inline">\(G - C\)</span> 有完美匹配那么 <span
+class="math inline">\(C\)</span>
+的内部必须有偶数个点，于是顺时针的边数必须奇数，证毕。</p>
+</blockquote>
+<p>现在这个问题是相对容易的，任意找一个生成树任意定向，然后就可以逐个确定非树边的方向。</p>
+<hr />
+<p><img src="/images/fkt_3.png" /></p>
+<p>上图找到了一颗生成树 <span class="math inline">\(T_1\)</span>
+并给了一个任意的定向。</p>
+<p><img src="/images/fkt_4.png" /></p>
+<p>上图找了对偶图的一棵与 <span class="math inline">\(T_1\)</span>
+不相交的生成树 <span class="math inline">\(T_2\)</span>
+（这一步在手算定向时可以省略，因为可以肉眼看出哪些非树边可以被定向）。</p>
+<p><img src="/images/fkt_5.png" /></p>
+<p>上图从 <span class="math inline">\(T_2\)</span> 的叶子开始逐步确定
+<span class="math inline">\(G - T_1\)</span>
+的定向，使得每个面上都恰有奇数条顺时针边。</p>
+<!-- ## 例题 -->
+<!-- [51nod 骨牌覆盖](http://www.51nod.com/Challenge/Problem.html#problemId=1034) -->
+<!-- 这题的模型是求网格图的完美匹配数。 -->
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2022/06/04/%E8%B8%A9%E5%9D%91%E6%9D%82%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Kewth">
+      <meta itemprop="description" content="HNFMS 退役 OIer">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KeBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/06/04/%E8%B8%A9%E5%9D%91%E6%9D%82%E8%AE%B0/" class="post-title-link" itemprop="url">踩坑杂记</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2022-06-04 19:19:59 / 修改时间：19:21:11" itemprop="dateCreated datePublished" datetime="2022-06-04T19:19:59+08:00">2022-06-04</time>
+    </span>
+
+  
+
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>总是踩坑，有的时候一个坑或者原理类似的坑还反复踩，踩麻了所以记录一下。</p>
+<h3
 id="hexo-报错expected-end-of-comment-got-end-of-file-2022.02.27">Hexo
 报错：expected end of comment, got end of file (2022.02.27)</h3>
 <p><code>&#123;#</code> 是 nunjucks 的注释，写 tex
@@ -497,14 +815,14 @@ target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues/2070"
 <li><a
 target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Picom_%28%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87%29">参考页面</a></li>
 </ul>
-<h3 id="yay-使用-tuna-源而无法更新-aur">yay 使用 tuna 源而无法更新
-aur</h3>
+<h3 id="yay-使用-tuna-源而无法更新-aur-2022.05.24">yay 使用 tuna
+源而无法更新 aur (2022.05.24)</h3>
 <p>Tuna 很早就<a
 target="_blank" rel="noopener" href="https://mirrors4.tuna.tsinghua.edu.cn/news/remove-aur/">移除了 aur
 镜像</a>， 将 aur 源修改为官方源的方法为：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yay --aururl <span class="string">&quot;https://aur.archlinux.org&quot;</span> --save</span><br></pre></td></tr></table></figure>
 <p>但是切换后更新部分软件包仍会出现报错，如更新 wps-office 时：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(数据已丢失)</span><br></pre></td></tr></table></figure>
 <p>不难发现仍然用到了 tuna 源。我一开始不能理解，后来在<a
 target="_blank" rel="noopener" href="https://github.com/tuna/issues/issues/1424">Github</a>
 上找到了一点线索，原来是 cache 导致的问题。</p>
@@ -512,7 +830,37 @@ target="_blank" rel="noopener" href="https://github.com/tuna/issues/issues/1424"
 <code>git --remote</code> 可以看到远程仓库指向的是 tuna 的地址。</p>
 <p>解决方法：修改远程仓库地址，或者直接清理掉 cache 。前者有人给出了<a
 target="_blank" rel="noopener" href="https://gist.github.com/BenSYZ/c18179a4e97dde32c8f1a10df9a90b1e">批处理脚本</a></p>
-
+<h3 id="pacman-更新报错gpgme-错误无数据-2022.05.29">pacman
+更新报错「GPGME 错误：无数据」 (2022.05.29)</h3>
+<p>原因是下载 <code>.sig</code> 文件的时候被登陆网页劫持了，解决方案为
+<code>sudo rm /var/lib/pacman/sync/*.sig</code> 。</p>
+<ul>
+<li><a
+target="_blank" rel="noopener" href="https://zhul.in/2022/01/01/pacman-gpgme-error-no-data/">参考页面</a></li>
+</ul>
+<h3
+id="编译-grpc-报错fatal-error-killed-signal-terminated-program-cc1plus-2022.06.01">编译
+grpc 报错：fatal error: Killed signal terminated program cc1plus
+(2022.06.01)</h3>
+<p>原因是 <code>make -j</code> 并行编译占用内存过多（直接飙升到十几 G
+吃满内存然后挂了）。
+之前不知道这个参数的含义就用了，所以看到内存崩了心态也崩了。</p>
+<p>解决方法：限制并行数量，如 <code>make -j4</code>
+（根据实际情况调整，不然确实挺慢的）。</p>
+<ul>
+<li><a
+target="_blank" rel="noopener" href="https://stackoverflow.com/questions/62107520/unable-to-build-grpc-v1-28-1-inside-a-container">参考页面</a></li>
+<li><a
+target="_blank" rel="noopener" href="https://github.com/mlpack/mlpack/issues/2775">参考页面</a></li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/06/04/%E8%B8%A9%E5%9D%91%E6%9D%82%E8%AE%B0/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -663,7 +1011,7 @@ to restore file from vim undo histroy</a></li>
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2022-05-23 10:56:05" itemprop="dateModified" datetime="2022-05-23T10:56:05+08:00">2022-05-23</time>
+        <time title="修改时间：2022-06-06 02:26:30" itemprop="dateModified" datetime="2022-06-06T02:26:30+08:00">2022-06-06</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -686,7 +1034,9 @@ to restore file from vim undo histroy</a></li>
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>上半期太摸了，没记。</p>
+          <p><span class="math inline">\(\newcommand{\bR}{\mathbb{R}}\)</span>
+<span class="math inline">\(\newcommand{\OV}{\overline}\)</span></p>
+<p>上半期太摸了，没记。</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2022/04/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%BA%94%E7%94%A8%E6%95%B0%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/#more" rel="contents">
@@ -751,7 +1101,7 @@ to restore file from vim undo histroy</a></li>
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2022-05-23 16:00:06" itemprop="dateModified" datetime="2022-05-23T16:00:06+08:00">2022-05-23</time>
+        <time title="修改时间：2022-06-06 15:28:55" itemprop="dateModified" datetime="2022-06-06T15:28:55+08:00">2022-06-06</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -788,6 +1138,7 @@ class="math inline">\(\newcommand{\Aut}{\mathrm{Aut}}\)</span> <span
 class="math inline">\(\newcommand{\Inn}{\mathrm{Inn}}\)</span> <span
 class="math inline">\(\newcommand{\Char}{\;\mathrm{char}\;}\)</span>
 <span class="math inline">\(\newcommand{\divide}{\mid}\)</span> <span
+class="math inline">\(\newcommand{\ndivide}{\nmid}\)</span> <span
 class="math inline">\(\newcommand{\Hom}{\mathrm{Hom}}\)</span> <span
 class="math inline">\(\newcommand{\ch}{\mathrm{ch}}\)</span> <span
 class="math inline">\(\newcommand{\Up}{\overline}\)</span> <span
@@ -1167,112 +1518,8 @@ class="math inline">\(A\)</span>.</p>
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://kewth.github.io/2021/03/29/%E3%80%8A%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90%E3%80%8B%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-      <meta itemprop="name" content="Kewth">
-      <meta itemprop="description" content="HNFMS 退役 OIer">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="KeBlog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/03/29/%E3%80%8A%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90%E3%80%8B%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89/" class="post-title-link" itemprop="url">《数学分析》笔记三（连续函数和微分学）</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-03-29 20:54:34" itemprop="dateCreated datePublished" datetime="2021-03-29T20:54:34+08:00">2021-03-29</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-11-22 21:40:37" itemprop="dateModified" datetime="2021-11-22T21:40:37+08:00">2021-11-22</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a>
-        </span>
-    </span>
-
-  
-
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><span class="math inline">\(\newcommand{\bbR}{\mathbb{R}}\)</span> <span class="math inline">\(\newcommand{\Lim}{\lim\limits_}\)</span> <span class="math inline">\(\newcommand{\Colon}{\colon\;\;}\)</span> <span class="math inline">\(\newcommand{\eps}{\varepsilon}\)</span></p>
-<h2 id="一些理论">一些理论</h2>
-<h3 id="连续函数">连续函数</h3>
-<p>对于数集 <span class="math inline">\(E\)</span> 的满足 <span class="math inline">\(a \in E\)</span> 的极限点 <span class="math inline">\(a\)</span> ，函数 <span class="math inline">\(f \colon E \to \bbR\)</span> 在 <span class="math inline">\(a\)</span> 处连续当且仅当</p>
-<p><span class="math display">\[
-    \lim_{E \ni x \to a} f(x) = f(a)
-\]</span></p>
-<p>或者令 <span class="math inline">\(\mathcal B_a\)</span> 为 <span class="math inline">\(a\)</span> 的邻域 <span class="math inline">\(U_E(a)\)</span>（注意不是去心邻域）构成的滤子基，<span class="math inline">\(f\)</span> 在 <span class="math inline">\(a\)</span> 处连续当且仅当极限 <span class="math inline">\(\Lim{\mathcal B_a} f(x)\)</span> 存在。</p>
-<p>特别地，虽然是一种退化情形，如果 <span class="math inline">\(a \in E\)</span> 不是极限点，那么认为 <span class="math inline">\(f\)</span> 在 <span class="math inline">\(a\)</span> 处总是连续的。</p>
-<p>在定义域处处连续的函数称为连续函数。</p>
-<hr />
-<p>若 <span class="math inline">\(f\)</span> 在 <span class="math inline">\(a\)</span> 处不连续，则称 <span class="math inline">\(a\)</span> 是 <span class="math inline">\(f\)</span> 的间断点，间断点一定是极限点，间断点可大致分为两类：</p>
-<ol type="1">
-<li>第一类间断点：<span class="math inline">\(f\)</span> 在 <span class="math inline">\(a\)</span> 有左右极限。</li>
-<li>第二类间断点：<span class="math inline">\(f\)</span> 在 <span class="math inline">\(a\)</span> 处的左右极限至少一个不存在。</li>
-</ol>
-<p>特别地，如果 <span class="math inline">\(U_E(a)\)</span> 只在 <span class="math inline">\(a\)</span> 的一侧，那么上述只考虑该侧的极限。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/03/29/%E3%80%8A%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90%E3%80%8B%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 </div>

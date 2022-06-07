@@ -21,16 +21,16 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;kewth.github.io&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Muse&quot;,&quot;version&quot;:&quot;8.5.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;always&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:true,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜索...&quot;,&quot;empty&quot;:&quot;没有找到任何搜索结果：${query}&quot;,&quot;hits_time&quot;:&quot;找到 ${hits} 个搜索结果（用时 ${time} 毫秒）&quot;,&quot;hits&quot;:&quot;找到 ${hits} 个搜索结果&quot;},&quot;path&quot;:&quot;&#x2F;search.xml&quot;,&quot;localsearch&quot;:{&quot;enable&quot;:true,&quot;trigger&quot;:&quot;auto&quot;,&quot;top_n_per_article&quot;:3,&quot;unescape&quot;:false,&quot;preload&quot;:false}}</script><script src="/js/config.js"></script>
-<meta name="description" content="上半期太摸了，没记。">
+<meta name="description" content="\(\newcommand{\bR}{\mathbb{R}}\) \(\newcommand{\OV}{\overline}\) 上半期太摸了，没记。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="计算机应用数学学习笔记">
 <meta property="og:url" content="https://kewth.github.io/2022/04/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%BA%94%E7%94%A8%E6%95%B0%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="KeBlog">
-<meta property="og:description" content="上半期太摸了，没记。">
+<meta property="og:description" content="\(\newcommand{\bR}{\mathbb{R}}\) \(\newcommand{\OV}{\overline}\) 上半期太摸了，没记。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://kewth.github.io/images/csmath-1.png">
 <meta property="article:published_time" content="2022-04-26T05:50:44.000Z">
-<meta property="article:modified_time" content="2022-05-23T02:56:05.352Z">
+<meta property="article:modified_time" content="2022-06-05T18:26:30.241Z">
 <meta property="article:author" content="Kewth">
 <meta property="article:tag" content="图论">
 <meta property="article:tag" content="概率论">
@@ -94,9 +94,9 @@
   <ul class="main-menu menu">
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
         <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
-        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">73</span></a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">75</span></a></li>
         <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">90</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">91</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -153,7 +153,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E8%AE%BA"><span class="nav-number">1.</span> <span class="nav-text">图论</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AC%A7%E6%8B%89%E5%AE%9A%E7%90%86"><span class="nav-number">1.1.</span> <span class="nav-text">欧拉定理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B9%B3%E9%9D%A2%E5%9B%BE%E6%9F%93%E8%89%B2"><span class="nav-number">1.2.</span> <span class="nav-text">平面图染色</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%89%E6%A0%87%E5%8F%B7%E6%A0%91"><span class="nav-number">1.3.</span> <span class="nav-text">有标号树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A0%E6%A0%87%E5%8F%B7%E6%A0%91"><span class="nav-number">1.4.</span> <span class="nav-text">无标号树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%9F%E6%88%90%E6%A0%91"><span class="nav-number">1.5.</span> <span class="nav-text">生成树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%85%E8%A1%8C%E5%95%86%E9%97%AE%E9%A2%98"><span class="nav-number">1.6.</span> <span class="nav-text">旅行商问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E5%A4%A7%E7%8B%AC%E7%AB%8B%E9%9B%86"><span class="nav-number">1.7.</span> <span class="nav-text">最大独立集</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%BE%E5%92%8C%E6%A0%91"><span class="nav-number">1.</span> <span class="nav-text">图和树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#p-np"><span class="nav-number">2.</span> <span class="nav-text">P &#x2F; NP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AC%A7%E6%8B%89%E5%AE%9A%E7%90%86"><span class="nav-number">3.</span> <span class="nav-text">欧拉定理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B9%B3%E9%9D%A2%E5%9B%BE%E6%9F%93%E8%89%B2"><span class="nav-number">4.</span> <span class="nav-text">平面图染色</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%89%E6%A0%87%E5%8F%B7%E6%A0%91"><span class="nav-number">5.</span> <span class="nav-text">有标号树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A0%E6%A0%87%E5%8F%B7%E6%A0%91"><span class="nav-number">6.</span> <span class="nav-text">无标号树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%9F%E6%88%90%E6%A0%91"><span class="nav-number">7.</span> <span class="nav-text">生成树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%85%E8%A1%8C%E5%95%86%E9%97%AE%E9%A2%98"><span class="nav-number">8.</span> <span class="nav-text">旅行商问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92"><span class="nav-number">9.</span> <span class="nav-text">线性规划</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%9A%E5%BC%88"><span class="nav-number">10.</span> <span class="nav-text">博弈</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A6%99%E5%86%9C%E4%BF%A1%E9%81%93%E5%AE%B9%E9%87%8F"><span class="nav-number">11.</span> <span class="nav-text">香农信道容量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8C%B9%E9%85%8D"><span class="nav-number">12.</span> <span class="nav-text">匹配</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -169,7 +169,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">90</span>
+          <span class="site-state-item-count">91</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -182,7 +182,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">73</span>
+        <span class="site-state-item-count">75</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -289,7 +289,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2022-05-23 10:56:05" itemprop="dateModified" datetime="2022-05-23T10:56:05+08:00">2022-05-23</time>
+        <time title="修改时间：2022-06-06 02:26:30" itemprop="dateModified" datetime="2022-06-06T02:26:30+08:00">2022-06-06</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -319,20 +319,34 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>上半期太摸了，没记。</p>
+        <p><span class="math inline">\(\newcommand{\bR}{\mathbb{R}}\)</span>
+<span class="math inline">\(\newcommand{\OV}{\overline}\)</span></p>
+<p>上半期太摸了，没记。</p>
 <span id="more"></span>
-<h2 id="图论">图论</h2>
+<h3 id="图和树">图和树</h3>
+<p>★ 割集 (cut set) ：<span class="math inline">\(C = \{(u, v) \in E
+\colon u \in S, v \in V \setminus S\}\)</span> 。</p>
+<p>★ 引理 1 ：任意割集的最小边一定在最小生成树内。</p>
+<p>★ 引理 2 ：任意环上的最大边一定不在最小生成树内。</p>
+<h3 id="p-np">P / NP</h3>
+<p>★ P: 可以被多项式时间解决的问题。</p>
+<p>★ NP: 可以在多项式时间检查一组解的问题。</p>
+<p>★ 定理 1 ：P 属于 NP 。</p>
+<p>★ NP-Complete: 所有 NP 问题可以规约到的问题，NP
+问题中最难的一部分。</p>
+<p>★ 定理 2 ：如果任何一个 NP-Complete 问题多项式可解，则 P 等于 NP
+。</p>
 <h3 id="欧拉定理">欧拉定理</h3>
-<p>平面图 (planar graph) ：能画在平面上的简单连通图。</p>
-<p>欧拉定理 (Euler's Formula)：平面图上 <span class="math inline">\(n +
-f = m + 2\)</span> 。其中 <span class="math inline">\(n, m, f\)</span>
+<p>★ 平面图 (planar graph) ：能画在平面上的简单连通图。</p>
+<p>★ 欧拉定理 (Euler's Formula)：平面图上 <span class="math inline">\(n
++ f = m + 2\)</span> 。其中 <span class="math inline">\(n, m, f\)</span>
 分别是点数、边数、面数。</p>
-<p>推论 1：<span class="math inline">\(n\)</span> 个点的树边数为 <span
+<p>★ 推论 1：<span class="math inline">\(n\)</span> 个点的树边数为 <span
 class="math inline">\(n - 1\)</span> 。</p>
 <blockquote>
 <p>因为 <span class="math inline">\(f = 1\)</span> 。</p>
 </blockquote>
-<p>推论 2：<span class="math inline">\(n (n \ge 3)\)</span>
+<p>★ 推论 2：<span class="math inline">\(n (n \ge 3)\)</span>
 个点的平面图边数不超过 <span class="math inline">\(3n - 6\)</span>
 。</p>
 <blockquote>
@@ -340,44 +354,45 @@ class="math inline">\(n - 1\)</span> 。</p>
 class="math inline">\(3f \le 2m\)</span> ，代入欧拉定理得 <span
 class="math inline">\(m \le 3n - 6\)</span> 。</p>
 </blockquote>
-<p>极大平面图 (maximal planar graph)
+<p>★ 极大平面图 (maximal planar graph)
 ：任意加上一条边都不再是平面图的平面图。
 一个平面图是极大的当且仅当每个面邻接恰好 3
 条边，每条边恰好邻接两个面。</p>
-<p>推论 3：<span class="math inline">\(n (n \ge 3)\)</span>
+<p>★ 推论 3：<span class="math inline">\(n (n \ge 3)\)</span>
 个点的极大平面图边数恰为 <span class="math inline">\(3n - 6\)</span>
 。</p>
-<p>推论 4：<span class="math inline">\(n (n \ge 4)\)</span>
+<p>★ 推论 4：<span class="math inline">\(n (n \ge 4)\)</span>
 个点的极大平面图，每个点的度数不少于 <span
 class="math inline">\(3\)</span> 。</p>
-<p>推论 5：<span class="math inline">\(n (n \ge 4)\)</span>
+<p>★ 推论 5：<span class="math inline">\(n (n \ge 4)\)</span>
 个点的平面图至少有 <span class="math inline">\(4\)</span>
 个点的度数不超过 <span class="math inline">\(5\)</span> 。</p>
 <blockquote>
 <p>不妨假设平面图极大。若不成立则 <span class="math inline">\(2m \ge 3
 \times 3 + (n - 3) \times 6 = 6n - 9 &gt; 2m\)</span> ，矛盾。</p>
 </blockquote>
-<p>推论 6：三维空间的封闭凸多边形满足：顶点数 + 面数 = 边数 + 2。</p>
+<p>★ 推论 6：三维空间的封闭凸多边形满足：顶点数 + 面数 = 边数 + 2。</p>
 <h3 id="平面图染色">平面图染色</h3>
-<p>对偶图 (dual graph)
+<p>★ 对偶图 (dual graph)
 ：平面图的对偶图是将面看作点，两个邻接的面看作有一条连边。 对偶图满足
-<span class="math inline">\(n&#39; = f, m&#39; = m, f&#39; = n\)</span>
-，仍然是平面图。</p>
-<p>染色 (coloring)
+<span class="math inline">\(n&#39; = f\)</span>, <span
+class="math inline">\(m&#39; = m\)</span>, <span
+class="math inline">\(f&#39; = n\)</span>, 仍然是平面图。</p>
+<p>★ 染色 (coloring)
 ：给每个节点一个颜色标记，使得任意一条边的两个端点颜色不同
 （面的染色问题可以转为对偶图的染色问题）。</p>
-<p><span class="math inline">\(k\)</span> 染色 (<span
+<p>★ <span class="math inline">\(k\)</span> 染色 (<span
 class="math inline">\(k\)</span>-colorable) ：能够用 <span
 class="math inline">\(k\)</span> 种不同的颜色进行染色。</p>
-<p>色数 (chromatic number) ：最小的 <span
+<p>★ 色数 (chromatic number) ：最小的 <span
 class="math inline">\(k\)</span> 使得图能 <span
 class="math inline">\(k\)</span> 染色。</p>
-<p>引理 1 ：如果图的最大度为 <span class="math inline">\(d\)</span> ，能
-<span class="math inline">\(d + 1\)</span> 染色。</p>
+<p>★ 引理 1 ：如果图的最大度为 <span class="math inline">\(d\)</span>
+，能 <span class="math inline">\(d + 1\)</span> 染色。</p>
 <blockquote>
 <p>数学归纳法，每次加一个点都可以分配合法的颜色。</p>
 </blockquote>
-<p>引理 2 ：平面图能 <span class="math inline">\(6\)</span> 染色。</p>
+<p>★ 引理 2 ：平面图能 <span class="math inline">\(6\)</span> 染色。</p>
 <blockquote>
 <p>不妨假设 <span class="math inline">\(n \ge 4\)</span>
 且极大。数学归纳法，选取一个度数不超过 <span
@@ -386,7 +401,7 @@ class="math inline">\(u\)</span> ， 在去掉 <span
 class="math inline">\(u\)</span> 点的子图染色后容易确定 <span
 class="math inline">\(u\)</span> 的颜色。</p>
 </blockquote>
-<p>引理 3 ：平面图能 <span class="math inline">\(5\)</span> 染色。</p>
+<p>★ 引理 3 ：平面图能 <span class="math inline">\(5\)</span> 染色。</p>
 <blockquote>
 <p>不妨假设 <span class="math inline">\(n \ge 4\)</span>
 且极大。数学归纳法，选取一个度数不超过 <span
@@ -413,20 +428,20 @@ class="math inline">\(x\)</span> 和 <span
 class="math inline">\(y\)</span> 的颜色相同！于是可以给 <span
 class="math inline">\(u\)</span> 一个合法的颜色。</p>
 </blockquote>
-<p>四色定理：平面图一定可以被染 <span class="math inline">\(4\)</span>
+<p>★ 四色定理：平面图一定可以被染 <span class="math inline">\(4\)</span>
 个颜色。</p>
 <h3 id="有标号树">有标号树</h3>
 <p><img src="/images/csmath-1.png" /></p>
-<p>有标号树 (labeled tree) ：每个点有一个唯一的标号 (<span
+<p>★ 有标号树 (labeled tree) ：每个点有一个唯一的标号 (<span
 class="math inline">\(0\)</span> 到 <span
 class="math inline">\(n-1\)</span>) 的树。
 两个有标号树是相同的当且仅当它们的边集相同。</p>
-<p>扩展 Prufer 编码 (extended Prufer code) ： 以 <span
+<p>★ 扩展 Prufer 编码 (extended Prufer code) ： 以 <span
 class="math inline">\(0\)</span>
 作为根将树看作有根树，每次选取编号最小的叶子，列出该叶子和其父亲然后删掉该边。
 如上图编码后（每列代表一条边，第一行和第二行分别是叶子和父亲）为
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1 4 3 5 6 7 8 9 2</span><br><span class="line">6 3 0 6 2 9 9 2 0</span><br></pre></td></tr></table></figure></p>
-<p>引理 1 ：扩展 Prufer 编码中，第一行第 <span
+<p>★ 引理 1 ：扩展 Prufer 编码中，第一行第 <span
 class="math inline">\(k\)</span> 列的数， 就是第二行的第 <span
 class="math inline">\(k\)</span> 到 <span
 class="math inline">\(n-1\)</span> 列，以及第一行的第 <span
@@ -444,18 +459,18 @@ class="math inline">\(n-1\)</span>) 出现过。</p>
 <p>同时不是任何点的父亲的点一定是叶子，因此这些未出现过的数都是叶子，
 我们要找的标号必然是其中最小的一个。</p>
 </blockquote>
-<p>引理 2 ：扩展 Prufer 编码中，第二行可以决定第一行。</p>
+<p>★ 引理 2 ：扩展 Prufer 编码中，第二行可以决定第一行。</p>
 <blockquote>
 <p>直接得自引理 1 。</p>
 </blockquote>
-<p>引理 3 ：扩展 Prufer 编码中，第二行最后一列一定是 <span
+<p>★ 引理 3 ：扩展 Prufer 编码中，第二行最后一列一定是 <span
 class="math inline">\(0\)</span> 。</p>
 <blockquote>
 <p>显然。</p>
 </blockquote>
-<p>Prufer 编码：扩展 Prufer 编码中第二行的前 <span
+<p>★ Prufer 编码：扩展 Prufer 编码中第二行的前 <span
 class="math inline">\(n-2\)</span> 列。</p>
-<p>引理 4 ：每个长为 <span class="math inline">\(n-2\)</span> 的取值
+<p>★ 引理 4 ：每个长为 <span class="math inline">\(n-2\)</span> 的取值
 <span class="math inline">\(0\)</span> 到 <span
 class="math inline">\(n-1\)</span> 的序列都是某个有标号树的 Prufer
 编码。</p>
@@ -474,7 +489,7 @@ k\)</span> ，那么在扩展第 <span class="math inline">\(x\)</span>
 列的时候就会出现矛盾。</p>
 <p>所以该边集同时给出了一个拓扑序，于是一定是一棵树。</p>
 </blockquote>
-<p>定理 5 ：<span class="math inline">\(n\)</span>
+<p>★ 定理 5 ：<span class="math inline">\(n\)</span>
 个点的有标号树的数量是 <span class="math inline">\(n^{n-2}\)</span>
 。</p>
 <blockquote>
@@ -482,11 +497,11 @@ k\)</span> ，那么在扩展第 <span class="math inline">\(x\)</span>
 class="math inline">\(n^{n-2}\)</span> 。</p>
 </blockquote>
 <h3 id="无标号树">无标号树</h3>
-<p>无标号树 (unlabeled tree)
+<p>★ 无标号树 (unlabeled tree)
 ：两个无标号树是相同的当且仅当能够通过标号使得它们成为相同的有标号树。
 记 <span class="math inline">\(n\)</span> 个点的无标号树的数量为 <span
 class="math inline">\(T_n\)</span> 。</p>
-<p>引理 1 ：<span class="math inline">\(T_n \ge
+<p>★ 引理 1 ：<span class="math inline">\(T_n \ge
 \dfrac{n^{n-2}}{n!}\)</span> 。</p>
 <blockquote>
 <p>标号的方式有 <span class="math inline">\(n!\)</span>
@@ -497,50 +512,220 @@ class="math inline">\(T_n\)</span> 。</p>
 class="math inline">\(0\)</span> ， 得到的长为 <span
 class="math inline">\(2(n-2)\)</span> 的 01 序列就是一个编码（但不是每个
 01 序列都是合法的编码）。</p>
-<p>引理 2 ：<span class="math inline">\(T_n \le 2^{2(n-1)}\)</span>
+<p>★ 引理 2 ：<span class="math inline">\(T_n \le 2^{2(n-1)}\)</span>
 。</p>
 <blockquote>
 <p>即 01 序列的数量。</p>
 </blockquote>
-<p>定理 3 ：若 <span class="math inline">\(n &gt; 30\)</span> 则 <span
+<p>★ 定理 3 ：若 <span class="math inline">\(n &gt; 30\)</span> 则 <span
 class="math inline">\(2^n \le T_n \le 4^n\)</span> 。</p>
 <blockquote>
 <p>放大引理 1 和引理 2 的界。</p>
 </blockquote>
 <h3 id="生成树">生成树</h3>
-<p>略。</p>
+<p>★ 拉普拉斯矩阵：度数矩阵减去邻接矩阵。记为 <span
+class="math inline">\(L = D - A\)</span> 。</p>
+<p>★ 关联矩阵：大小为 <span class="math inline">\(|V| \times
+|E|\)</span> ，每一条边 <span class="math inline">\((u, v) \in
+E\)</span> 代表一个列向量，第 <span class="math inline">\(u\)</span>
+行为 <span class="math inline">\(1\)</span> 第 <span
+class="math inline">\(v\)</span> 行为 <span
+class="math inline">\(-1\)</span> 。记为 <span
+class="math inline">\(M\)</span> 。</p>
+<p>★ 引理 1 ：<span class="math inline">\(M \cdot M^T = L\)</span>
+。</p>
+<p>★ 引理 2 ：<span class="math inline">\(M\)</span>
+根据选出若干列组成矩阵 <span class="math inline">\(M_0\)</span>
+，若其对应边集是生成树则 <span class="math inline">\(|M_0| = \pm
+1\)</span> 否则 <span class="math inline">\(|M_0| = 0\)</span> 。</p>
+<p>★ 矩阵树定理：有标号无向图的生成树数量等于拉普拉斯矩阵去掉第 <span
+class="math inline">\(i\)</span> 行第 <span
+class="math inline">\(i\)</span> 列的行列式。记为 <span
+class="math inline">\(t(G) = |L^{(i)}|\)</span> 。</p>
+<p>★ 引理 3 ：<span class="math inline">\(L\)</span>
+的特征多项式的一次项系数为 <span class="math inline">\(-|V|
+t(G)\)</span> 。</p>
+<p>★ 定理 4 ：<span class="math inline">\(t(G) = \lambda_2 \lambda_3
+\cdots \lambda_{|V|} / |V|\)</span> ，其中 <span class="math inline">\(0
+\le \lambda_i \le \lambda_{i+1}\)</span> 是 <span
+class="math inline">\(L\)</span> 的特征值。</p>
+<p>★ 定理 5 ：电路图中 <span class="math inline">\(a\)</span> 到 <span
+class="math inline">\(b\)</span> 的电阻为 <span
+class="math inline">\(\dfrac{t(G + (a, b)) - t(G)}{t(G)}\)</span> 。</p>
 <h3 id="旅行商问题">旅行商问题</h3>
 <p>假定图 <span class="math inline">\(G\)</span>
 的边权满足三角形不等式，即 <span class="math inline">\(w(i, j) + w(j, k)
 \ge w(i, k)\)</span> 。</p>
-<p>Tree Shortcut Algorithm:
+<p>★ Tree Shortcut Algorithm:
 找到一颗最小生成树，写出欧拉序，只保留每个点第一次出现的位置，得到一个旅行路径。</p>
-<p>定理 1 ：该算法得到的旅行路径的代价不超过最小代价的两倍</p>
-<h3 id="最大独立集">最大独立集</h3>
-<p>正交表示：对于无向图 <span class="math inline">\(G = (V, E)\)</span>
-，可以为每个点 <span class="math inline">\(i\)</span> 分配一个 <span
-class="math inline">\(\mathbb{R}^d\)</span> 内的单位向量 <span
-class="math inline">\(u_i\)</span>，使得 <span class="math inline">\((i,
-j) \in E \iff u_i \cdot u_j \ne 0\)</span> 。</p>
-<p>引理 1 ：一定存在分配方式使得正交表示中 <span class="math inline">\(d
-\le n\)</span> 。</p>
-<p>引理 2 ：若 <span class="math inline">\(I \subseteq V\)</span>
+<p>★ 定理 1 ：该算法得到的旅行路径的代价不超过最小代价的两倍。</p>
+<h3 id="线性规划">线性规划</h3>
+<p>★ 标准线性规划：给定 <span class="math inline">\(A \in M_{m\times n},
+b \in \bR^m, c \in \bR^n\)</span> ， 求 <span class="math inline">\(x
+\in \bR^n\)</span> 在满足 <span class="math inline">\(A x \le b\)</span>
+和 <span class="math inline">\(x \ge 0\)</span> 的前提下最大化 <span
+class="math inline">\(c^T x\)</span> 。</p>
+<p>★ 松弛线性规划：给定 <span class="math inline">\(A \in M_{m\times n},
+b \in \bR^m, c \in \bR^n\)</span> ， 求 <span class="math inline">\(x
+\in \bR^n\)</span> 在满足 <span class="math inline">\(A x = b\)</span>
+和 <span class="math inline">\(x \ge 0\)</span> 的前提下最大化 <span
+class="math inline">\(c^T x\)</span> 。</p>
+<p>★ 标准线性规划的对偶： 求 <span class="math inline">\(y \in
+\bR^m\)</span> 在满足 <span class="math inline">\(A^T y \ge c\)</span>
+和 <span class="math inline">\(y \ge 0\)</span> 的前提下最小化 <span
+class="math inline">\(b^T x\)</span> 。</p>
+<p>★ 松弛线性规划的单纯形法：</p>
+<ol type="1">
+<li>选定 <span class="math inline">\(m\)</span> 个基础变量，其余的 <span
+class="math inline">\(n - m\)</span>
+个为自由变量，假定自由变量全零即可得到一个解，称为基础解 (basic
+solution) 。</li>
+<li>若基础变量解出来全部非负，则得到了基础可行解 (basic feasible
+solution) 。
+<!-- 3. 通过高斯消元改为（数据已删除）形式。目标函数仅与自由变量有关。 --></li>
+<li>解出基础变量关于自由变量的线性函数，然后代入目标函数。</li>
+<li>如果目标函数的系数全部非负就找到了最优解，否则交换一个自由变量和一个基础变量。</li>
+</ol>
+<p>如何判断松弛线性规划是否可解？ 可以构造另一个松弛线性规划：在 <span
+class="math inline">\(A x + I z = b\)</span> 和 <span
+class="math inline">\(x, z \ge 0\)</span> 的前提下最小化 <span
+class="math inline">\((1, \ldots, 1) z\)</span> 。
+那么原问题可解当且仅当新问题中的最优解恰为 <span
+class="math inline">\(0\)</span> 。并且新问题有平凡解 <span
+class="math inline">\(x = 0, z = b\)</span> 。</p>
+<p>★ 分离定理：对于凸集合和以外的点 <span
+class="math inline">\(x_0\)</span> ，存在向量 <span
+class="math inline">\(w\)</span> 使得 <span class="math inline">\(w
+\cdot x_0 \le w \cdot x\)</span> 对于任意凸集内的点 <span
+class="math inline">\(x\)</span> 成立。</p>
+<p>★ Farkas 引理：以下两个线性系统有且仅有一个成立： <span
+class="math display">\[
+    Ax \le 0, c^T x &gt; 0
+\]</span> 和 <span class="math display">\[
+    A^T y = c, y \ge 0
+\]</span></p>
+<h3 id="博弈">博弈</h3>
+<p>零和游戏：双方的收益和恒为 0 。</p>
+<p>纳什均衡 (Nash equilibrium)
+：如果任一方在知道对方的策略下无法通过改变策略增加期望收益，则双方的策略是纳什均衡的。</p>
+<h3 id="香农信道容量">香农信道容量</h3>
+<p>★ 正交表示：对于无向图 <span class="math inline">\(G = (V,
+E)\)</span> ，可以为每个点 <span class="math inline">\(i\)</span>
+分配一个 <span class="math inline">\(\mathbb{R}^d\)</span> 内的单位向量
+<span class="math inline">\(u_i\)</span>，使得 <span
+class="math inline">\((i, j) \in E \iff u_i \cdot u_j \ne 0\)</span> 。
+更一般地，这个向量可以是一般的内积空间里的元素。</p>
+<p>★ 引理 1 ：一定存在分配方式使得正交表示中 <span
+class="math inline">\(d \le n\)</span> 。</p>
+<p>★ 引理 2 ：若 <span class="math inline">\(I \subseteq V\)</span>
 是独立集，<span class="math inline">\(e \in \mathbb{R}^d\)</span>
 是任意单位向量，则 <span class="math display">\[
 \sum_{i \in I} (u_i \cdot e)^2 \le 1
 \]</span></p>
 <blockquote>
 <p>独立集中的 <span class="math inline">\(u_i\)</span>
-是两两正交的，<span class="math inline">\(u_i \cdot e\)</span>
-是正交基上的投影。</p>
+是两两正交的（反之亦然），<span class="math inline">\(u_i \cdot
+e\)</span> 是正交基上的投影。</p>
 </blockquote>
-<p>引理 3 ：最大独立集的大小不超过 <span class="math inline">\(\max (u_i
-\cdot e)^{-2}\)</span> 。</p>
+<p>★ 引理 3: 最大独立集的大小 <span class="math inline">\(\alpha(G) \le
+\max (u_i \cdot e)^{-2}\)</span> 。</p>
 <blockquote>
-
+<p>引理 2 进一步得到 <span class="math inline">\(|I| \min\limits_{i \in
+I} (u_i \cdot e)^2 \le 1\)</span> ， 两边取逆取 <span
+class="math inline">\(I\)</span> 为最大独立集再放大取点范围即可。</p>
 </blockquote>
-<p>Lovasz theta 函数：<span class="math inline">\(\vartheta(G) =
-\min\limits_{u,e} \max\limits_i (u_i \cdot e)^{-2}\)</span> 。</p>
+<p>★ Lovasz theta 函数： <span class="math inline">\(\vartheta(G) =
+\inf\limits_{u,e} \max\limits_i (u_i \cdot e)^{-2}\)</span> 。</p>
+<p>★ 强乘积 (strong product): 两个图 <span class="math inline">\(G = (V,
+E)\)</span> 和 <span class="math inline">\(H = (V&#39;, E&#39;)\)</span>
+的强乘积记为 <span class="math inline">\(G \boxtimes H\)</span> ，
+点集为 <span class="math inline">\(V \times V&#39;\)</span> ，其中 <span
+class="math inline">\((i, i&#39;)\)</span> 到 <span
+class="math inline">\((j, j&#39;)\)</span> 有边当且仅当
+其中一个维度有边另一个不变，或者两个维度同时有边。</p>
+<p>★ 引理 4 ：<span class="math inline">\(\vartheta(G \boxtimes H) =
+\vartheta(G) \vartheta(H)\)</span> 。</p>
+<blockquote>
+<p><span class="math inline">\(G \boxtimes H\)</span>
+的正交表示可以选张量 <span class="math inline">\(u_i \otimes
+v_j\)</span> ， 其内积为 <span class="math inline">\((a \otimes b) \cdot
+(c \otimes d) = (a \cdot c) (b \cdot d)\)</span> 。
+然后列出定义即可证明。</p>
+</blockquote>
+<p>★ 补图：<span class="math inline">\(G = (V, E)\)</span> 的补图记为
+<span class="math inline">\(\OV{G}\)</span> ，点集不变边集取补。</p>
+<p>★ 定理 5 ：<span class="math inline">\(\alpha(G) \le \vartheta(G) \le
+c(\OV{G})\)</span> ，其中 <span class="math inline">\(c\)</span>
+表示色数。</p>
+<blockquote>
+<p>第一个不等号即引理 3 。</p>
+</blockquote>
+<p>★ 信道容量：传送 <span class="math inline">\(k\)</span>
+个符号的信息的信道容量为 <span class="math inline">\(k\)</span> 个 <span
+class="math inline">\(G\)</span> 的强乘积的最大独立集大小。记为 <span
+class="math inline">\(\alpha(G^{(k)})\)</span> 。</p>
+<p>★ 香农信道容量：<span class="math inline">\(\Theta(G) = \max_k
+\alpha(G^{(k)})^{1/k} = \lim_{k \to \infty}
+\alpha(G^{(k)})^{1/k}\)</span> 。</p>
+<p>★ 定理 6 ：<span class="math inline">\(\alpha(G^{(k)}) \ge
+\alpha(G)^k\)</span> 。</p>
+<h3 id="匹配">匹配</h3>
+<p>★ 定理 1 ： 如果二分图每个点都有相同的度数，那么存在完美匹配。</p>
+<p>★ 霍尔定理 (Hall's Theorem) ：
+一个二分图有完美匹配当且仅当两端点数相同 <span class="math inline">\(|A|
+= |B|\)</span> ， 并且对于 <span class="math inline">\(A\)</span>
+的任意子集 <span class="math inline">\(S \subseteq A\)</span> ，
+其邻接点集 <span class="math inline">\(T \subseteq B\)</span> 满足 <span
+class="math inline">\(|T| \ge |S|\)</span> 。</p>
+<blockquote>
+<p>必要性显然，证充分性，对点数归纳。</p>
+<p>任取相连的 <span class="math inline">\(a \in A, b \in B\)</span> 。
+如果 <span class="math inline">\(A \setminus \{a\}\)</span> 和 <span
+class="math inline">\(B \setminus \{b\}\)</span>
+之间满足条件则根据归纳假设证毕。 否则存在 <span class="math inline">\(S
+\subseteq A \setminus \{a\}\)</span> ，其邻接点集为 <span
+class="math inline">\(T\)</span> ， 然而 <span
+class="math inline">\(T\)</span> 去掉 <span
+class="math inline">\(b\)</span> 后比 <span
+class="math inline">\(S\)</span> 小，也就是说 <span
+class="math inline">\(b \in T\)</span> 且 <span
+class="math inline">\(|T| = |S|\)</span> 。</p>
+<p>注意到 <span class="math inline">\(S\)</span> 到 <span
+class="math inline">\(T\)</span> ，以及 <span class="math inline">\(B
+\setminus T\)</span> 到 <span class="math inline">\(A \setminus
+S\)</span> 都是满足条件，从而根据归纳假设有完美匹配的。</p>
+</blockquote>
+<p>★ 定理 2 ：若 <span class="math inline">\(M, M^*\)</span>
+是极大匹配和最大匹配则 <span class="math inline">\(|M| \ge |M^*| /
+2\)</span> 。</p>
+<p>★ 定理 3 ：二分图中若 <span class="math inline">\(M_1, M_2\)</span>
+是两个匹配则 <span class="math inline">\(M_1 \oplus M_2\)</span>
+由孤立点、交错环、交错路构成。 若 <span class="math inline">\(|M_1| &gt;
+|M_2|\)</span> 则一定有交错路。</p>
+<p>Pfaffian ：对于偶数阶方阵 <span class="math inline">\(A\)</span>
+，定义 <span class="math inline">\(P(A) = \sum_{M} w(M)\)</span> ，其中
+<span class="math inline">\(M\)</span> 是完全图的完美匹配，<span
+class="math inline">\(w(M)\)</span> 定义为 <span
+class="math inline">\(sign(M) A_{M(2i), M(2i+1)}\)</span> 。</p>
+<p>★ 定理 4 ：如果 <span class="math inline">\(A^T = -A\)</span> 则
+<span class="math inline">\(|A| = P(A)^2\)</span> 。</p>
+<p>Pfaffian Orientation ：对于无向图 <span
+class="math inline">\(G\)</span> 找到带符号邻接矩阵（边定向）使得 <span
+class="math inline">\(w(M)\)</span> 对于 <span
+class="math inline">\(G\)</span>
+内的完美匹配都相等。于是完美匹配的数量为 <span
+class="math inline">\(\sqrt{|A|}\)</span> 。</p>
+<p>★ 定理 5 ：存在 Pfaffian Orientation 当且仅当对于任意偶环 <span
+class="math inline">\(C\)</span> ，如果 <span class="math inline">\(G -
+C\)</span> 存在完美匹配则 <span class="math inline">\(C\)</span>
+中同一方向的边数为奇数。</p>
+<p>★ 引理 6
+：平面图中如果定向使得每个内部的面都恰有奇数条顺时针边，则该定向即
+Pfaffian Orientation 。</p>
+<p>★ 定理 7 ：平面图一定存在 Pfaffian Orientation 。</p>
+<blockquote>
+<p>对任一生成树任意定向后根据引理 6 确定其他边的方向即可。</p>
+</blockquote>
 
     </div>
 

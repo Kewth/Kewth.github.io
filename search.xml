@@ -115,9 +115,265 @@
 ]]></content>
   </entry>
   <entry>
+    <title>FKT算法</title>
+    <url>/2022/06/07/FKT%E7%AE%97%E6%B3%95/</url>
+    <content><![CDATA[<p>大一专业课讲的东西，感觉和 OI 沾点边。</p>
+<p>课程资料不方便贴出来，可以参考<a
+href="https://people.maths.bris.ac.uk/~csxam/presentations/matchings.pdf">这个</a>。</p>
+<p>前置知识：排列和排列的环分解，矩阵和行列式，图论基本概念。</p>
+<p>这篇是介绍一下思想和证明，许多说明性的细节被简要概括了（有空的话再完善细节啥的吧）。</p>
+<h2 id="引入">引入</h2>
+<p>如何求一张图的完美匹配的数量？</p>
+<p>以下仅考虑 <span class="math inline">\(|V|\)</span>
+（点数）为偶数的图 <span class="math inline">\(G = (V, E)\)</span> ，记
+<span class="math inline">\(n = |V|\)</span> 和 <span
+class="math inline">\(m = |E|\)</span> （边数）。</p>
+<p>完美匹配是边集的子集 <span class="math inline">\(M \subseteq
+E\)</span>，满足边的端点不重不漏地覆盖了点集。</p>
+<p><span class="math inline">\(K_n\)</span> 表示 <span
+class="math inline">\(n\)</span> 个点的完全图。</p>
+<p>记 <span class="math inline">\(A\)</span> 为 <span
+class="math inline">\(G\)</span> 的邻接矩阵，即 <span
+class="math inline">\(A_{ij} = 1\)</span> 当且仅当 <span
+class="math inline">\((i, j) \in E\)</span> （<span
+class="math inline">\(i\)</span> 到 <span
+class="math inline">\(j\)</span> 有连边），否则 <span
+class="math inline">\(A_{ij} = 0\)</span> 。</p>
+<p>一个想法是，枚举 <span class="math inline">\(K_n\)</span>
+的所有完美匹配 <span class="math inline">\(M\)</span> ，然后判断 <span
+class="math inline">\(M\)</span> 的边是否都在原来的图 <span
+class="math inline">\(G\)</span> 中，即是否满足 <span
+class="math inline">\(M \subseteq E\)</span> 。 记 <span
+class="math inline">\(K_n\)</span> 的完美匹配的集合为 <span
+class="math inline">\(PM(n)\)</span> ，则 <span
+class="math inline">\(G\)</span> 的完美匹配数量为 <span
+class="math display">\[
+ans = \sum_{M \in PM(n)} [M \subseteq E]
+= \sum_{M \in PM(n)} \prod_{(i, j) \in M} A_{ij}
+\]</span></p>
+<p>举例，如下图。</p>
+<p><img src="/images/fkt_1.png" /></p>
+<p>（当然这玩意直接拿来算是没有意义的）</p>
+<h2 id="pfaffians">Pfaffians</h2>
+<p>判断 <span class="math inline">\(M \subseteq E\)</span> 的依据是计算
+<span class="math inline">\([M \subseteq E] = \prod\limits_{(i,j) \in M}
+A_{ij}\)</span> ，这个值只能是 0 或 1 。</p>
+<!-- 现在稍微放宽一点，让 $A_{ij}$ 在 $(i, j) \in E$ 的时候可以是正负一，定义 $M$ 的权重为 -->
+<!-- $$ -->
+<!-- \mathrm{wt}(M) = \mathrm{sgn}(M) \prod_{(i,j) \in M} A_{ij} -->
+<!-- $$ -->
+<p>如果将 <span class="math inline">\(M\)</span>
+内的边依次写出来，就可以得到一个 <span class="math inline">\(V\)</span>
+的排列 <span class="math inline">\(\sigma\)</span>
+，这个排列的符号（负一的逆序对数次方）记为 <span
+class="math inline">\(\mathrm{sgn}(\sigma)\)</span> ，考虑一个类似的式子
+<span class="math display">\[
+\mathrm{wt}(M, \sigma) = \mathrm{sgn}(\sigma) \prod_{i=1}^{n/2}
+A&#39;_{\sigma(2i-1), \sigma(2i)}
+\]</span></p>
+<p>其中 <span class="math inline">\(A&#39;\)</span> 和 <span
+class="math inline">\(A\)</span> 略有不同，它是将邻接矩阵的部分 <span
+class="math inline">\(1\)</span> 的位置改为 <span
+class="math inline">\(-1\)</span> 使得 <span
+class="math inline">\(A&#39;\)</span> 成为一个反对称矩阵：<span
+class="math inline">\(A&#39;_{ij} = - A&#39;_{ji}\)</span> 。</p>
+<p>那么显然 <span class="math inline">\(|\mathrm{wt}(M, \sigma)| = [M
+\subseteq E]\)</span> ，因为它们在式子上只有符号的差异。</p>
+<p>虽然定义上不仅与 <span class="math inline">\(M\)</span>
+有关，还与选取的排列 <span class="math inline">\(\sigma\)</span>
+有关，但是有趣的是，无论按照什么顺序写边，按照什么顺序写端点得到的 <span
+class="math inline">\(\sigma\)</span> ，算出来的 <span
+class="math inline">\(\mathrm{wt}(M, \sigma)\)</span>
+都是一样的，因此这个值仅仅与 <span class="math inline">\(M\)</span>
+有关，可以记为 <span class="math inline">\(\mathrm{wt}(M)\)</span>
+。</p>
+<blockquote>
+<p>证明：如果交换两条边的顺序，相当于在排列里交换了两个点两次，那么
+<span class="math inline">\(\mathrm{sgn}(\sigma)\)</span>
+不变，同时后边的连乘符号也自然不受顺序影响。</p>
+<p>如果交换一条边内两个端点的顺序，在排列里交换了两个点，排列的符号变化，同时后边的连乘符号有一项变化，由于
+<span class="math inline">\(A&#39;\)</span>
+是反对称矩阵符号又会变一次，因此总的值不变。</p>
+</blockquote>
+<p>假设可以找到一个 <span class="math inline">\(A&#39;\)</span> 使得
+<span class="math inline">\(\mathrm{wt}(M) = [M \subseteq E]\)</span>
+，那么要求的值变成了 <span class="math display">\[
+ans = \sum_{M \in PM(n)} \mathrm{wt}(M)
+\]</span></p>
+<p>上式称为 <span class="math inline">\(A&#39;\)</span> 的 Pfaffian
+，记为 <span class="math inline">\(\mathrm{Pf}(A&#39;)\)</span> 。</p>
+<h2 id="反对称矩阵行列式">反对称矩阵行列式</h2>
+<p>考虑反对称矩阵 <span class="math inline">\(A&#39;\)</span> 的行列式
+<span class="math display">\[
+\det(A&#39;) = \sum_{\sigma \in S_n} \mathrm{sgn}(\sigma) \prod_{i=1}^n
+A&#39;_{i,\sigma(i)}
+\]</span></p>
+<p>如果 <span class="math inline">\(\sigma\)</span> 存在 <span
+class="math inline">\(i\)</span> 使得 <span
+class="math inline">\(\sigma(i) = i\)</span> （环分解有自环），那么
+<span class="math inline">\(A_{i,\sigma(i)} = 0\)</span>
+，这一项是没有贡献的。</p>
+<p>如果 <span class="math inline">\(\sigma\)</span>
+的环分解存在一个非自环的奇环，那么将这个奇环的方向反过来得到 <span
+class="math inline">\(\sigma&#39;\)</span> ，注意到 <span
+class="math inline">\(\mathrm{sgn}(\sigma) =
+\mathrm{sgn}(\sigma&#39;)\)</span> 且连乘符号的值相反，将 <span
+class="math inline">\(\sigma\)</span> 和 <span
+class="math inline">\(\sigma&#39;\)</span>
+两两一组，每组在行列式中的贡献为 <span class="math inline">\(0\)</span>
+。</p>
+<p>综上，我们只需要考虑偶环构成的排列的贡献，记 <span
+class="math inline">\(EC(n)\)</span> 是这些排列，有 <span
+class="math display">\[
+\det(A&#39;) = \sum_{\sigma \in EC(n)} \mathrm{sgn}(\sigma)
+\prod_{i=1}^n A&#39;_{i,\sigma(i)}
+\]</span></p>
+<p>而仅有偶环构成的排列和 <span class="math inline">\(K_n\)</span>
+中完美匹配的二元组 <span class="math inline">\((M_1, M_2)\)</span>
+是一一对应的！</p>
+<p>将 <span class="math inline">\(M_1\)</span> 和 <span
+class="math inline">\(M_2\)</span>
+直接并起来就可以得到一个偶环组成的排列 <span
+class="math inline">\(\sigma\)</span> ，其中每个偶环都是由 <span
+class="math inline">\(M_1\)</span> 和 <span
+class="math inline">\(M_2\)</span>
+的边交替构成。偶环上边的方向怎么确定？每个环选定环上编号最小的点，指向
+<span class="math inline">\(M_1\)</span> 中的连边。</p>
+<p>注意：<span class="math inline">\(M_1\)</span> 和 <span
+class="math inline">\(M_2\)</span> 的公共边在 <span
+class="math inline">\(\sigma\)</span>
+中体现为两个点之间的重边组成的二元环。</p>
+<p>类似地每个偶环组成的排列 <span class="math inline">\(\sigma\)</span>
+也可以拆分成两个完美匹配 <span class="math inline">\(M_1, M_2\)</span>
+。</p>
+<p><img src="/images/fkt_2.png" /></p>
+<p>如上图，找到偶环编号最小的点 <span class="math inline">\(1\)</span>
+，然后其指向 <span class="math inline">\(2\)</span> ，那么 <span
+class="math inline">\((1, 2) \in M\)</span>
+。然后沿着这个方向把边交替加入 <span class="math inline">\(M_1,
+M_2\)</span> 。最终可以知道，这个排列对应的两个匹配为 <span
+class="math display">\[
+M_1 = \{(1, 2), (3, 4), (5, 6)\},
+M_2 = \{(2, 3), (4, 5), (6, 1)\}
+\]</span></p>
+<p>这个一一对应关系告诉我们 <span class="math inline">\(|EC(n)| =
+|PM(n)|^2\)</span> ，并且枚举 <span class="math inline">\(\sigma \in
+EC(n)\)</span> 等价于枚举 <span class="math inline">\(M_1, M_2 \in
+PM(n)\)</span> ，于是 <span class="math display">\[
+\begin{aligned}
+    \det(A&#39;)
+    &amp;= \sum_{M_1 \in PM(n)} \sum_{M_2 \in PM(n)}
+    \mathrm{sgn}(\sigma) \prod_{i=1}^n A&#39;_{i,\sigma(i)} \\
+    &amp;= \sum_{M_1 \in PM(n)} \sum_{M_2 \in PM(n)}
+    \mathrm{sgn}(M_1) \mathrm{sgn}(M_2) \prod_{i=1}^n
+A&#39;_{i,\sigma(i)} \\
+    &amp;= \sum_{M_1 \in PM(n)} \sum_{M_2 \in PM(n)}
+    \mathrm{wt}(M_1) \mathrm{wt}(M_2) \\
+    &amp;= \mathrm{Pf}(A&#39;)^2
+\end{aligned}
+\]</span></p>
+<p>（这个等式可以拿上面的例子写一写就很容易明白）</p>
+<h2 id="pfaffian-orientation-找到反对称矩阵">Pfaffian orientation:
+找到反对称矩阵</h2>
+<p>现在我们知道 <span class="math inline">\(ans = \mathrm{Pf}(A&#39;) =
+\sqrt{\det(A&#39;)}\)</span> ，而求行列式是容易的。</p>
+<p>但不要忘了第一个等号建立在一个假设上：<span
+class="math inline">\(\mathrm{wt}(M) = [M \subseteq E]\)</span>
+。现在我们要关注如何找到满足这个条件的 <span
+class="math inline">\(A&#39;\)</span> 。</p>
+<p>找一个 <span class="math inline">\(A&#39;\)</span> 等于是给 <span
+class="math inline">\(G\)</span> 的边定向，然后把邻接矩阵中正向的定为
+<span class="math inline">\(1\)</span> ，反向的定为 <span
+class="math inline">\(-1\)</span> 。我们的目标是让所有 <span
+class="math inline">\(G\)</span> 中的完美匹配 <span
+class="math inline">\(M\)</span> 满足 <span
+class="math inline">\(\mathrm{wt}(W) = 1\)</span>
+（或全部是负一，这个时候 <span class="math inline">\(ans =
+-\mathrm{Pf}(A&#39;) = \sqrt{\det(A&#39;)}\)</span> ，不影响）。</p>
+<p>那么就是让所有 <span class="math inline">\(G\)</span> 的完美匹配
+<span class="math inline">\(M_1, M_2\)</span> 满足 <span
+class="math inline">\(\mathrm{wt}(M_1) \mathrm{wt}(M_2) = 1\)</span>
+。上一节的推导告诉我们 <span class="math display">\[
+\mathrm{wt}(M_1) \mathrm{wt}(M_2) =
+\mathrm{sgn}(\sigma) \prod_{i=1}^n A&#39;_{i, \sigma(i)}
+\]</span> 其中 <span class="math inline">\(\sigma\)</span> 是 <span
+class="math inline">\(M_1, M_2\)</span> 对应到的那个偶环构成的排列。</p>
+<p>于是我们的要求变为：对于 <span class="math inline">\(G\)</span>
+内任意偶环 <span class="math inline">\(C\)</span>
+，设这个偶环单独构成的排列为 <span class="math inline">\(\sigma\)</span>
+， 如果 <span class="math inline">\(G - C\)</span>
+存在完美匹配，那么就要有 <span class="math display">\[
+\prod_{i=1}^n A&#39;_{i, \sigma(i)} = -1
+\]</span></p>
+<p>（注意到每个偶环的符号恰为 <span
+class="math inline">\(\mathrm{sgn}(\sigma) = -1\)</span> ）。</p>
+<blockquote>
+<p>这个要求是我们目的（<span class="math inline">\(\mathrm{wt}(M_1)
+\mathrm{wt}(M_2) =
+1\)</span>）的充要条件。如果满足了这个要求，那么对于任意偶环构成的排列，将其分解成若干偶环的乘积，从这个要求中可以知道每个偶环的贡献，进而知道偶环构成的排列的贡献恰为
+<span class="math inline">\(1\)</span> 。</p>
+<p>如果满足了我们的目的，那么对于任意偶环 <span
+class="math inline">\(C\)</span> ，如果 <span class="math inline">\(G -
+C\)</span> 存在完美匹配，说明有一个偶环构成的排列包含了 <span
+class="math inline">\(C\)</span> ，让 <span
+class="math inline">\(C\)</span> 以外的部分全是二元环就可以从 <span
+class="math inline">\(\mathrm{wt}(M_1) \mathrm{wt}(M_2) = 1\)</span>
+中推出上式（因为每个二元环的贡献都显然是 <span
+class="math inline">\(1\)</span> ）。</p>
+</blockquote>
+<p>而上式等价于 <span class="math inline">\(C\)</span>
+里面有奇数个顺时针的边和奇数个逆时针的边。</p>
+<hr />
+<p>对于一般图这是 #P-Hard 的问题，我们考虑特殊的情况：平面图。</p>
+<p>平面图上只需要满足每个面都有奇数条顺时针的边即可。</p>
+<blockquote>
+<p>可以归纳出任何简单环 <span class="math inline">\(C\)</span>
+都满足：顺时针的边数 <span class="math inline">\(f\)</span>
+加上环内部的点（平面上被环围起来的点）数 <span
+class="math inline">\(k\)</span> 恰为奇数。</p>
+<p>如果 <span class="math inline">\(C\)</span> 是一个面那么 <span
+class="math inline">\(k = 0\)</span> ，这就是我们需要满足的要求。</p>
+<p>否则在 <span class="math inline">\(C\)</span> 内找一条路径把 <span
+class="math inline">\(C\)</span> 切成两个环 <span
+class="math inline">\(C_1, C_2\)</span> 。<span
+class="math inline">\(C\)</span> 是 <span class="math inline">\(C_1,
+C_2\)</span> 的对称差，根据归纳假设可以知道 <span
+class="math inline">\(f + k\)</span> 为奇数。</p>
+<p>现在考虑偶环 <span class="math inline">\(C\)</span> 。如果 <span
+class="math inline">\(G - C\)</span> 有完美匹配那么 <span
+class="math inline">\(C\)</span>
+的内部必须有偶数个点，于是顺时针的边数必须奇数，证毕。</p>
+</blockquote>
+<p>现在这个问题是相对容易的，任意找一个生成树任意定向，然后就可以逐个确定非树边的方向。</p>
+<hr />
+<p><img src="/images/fkt_3.png" /></p>
+<p>上图找到了一颗生成树 <span class="math inline">\(T_1\)</span>
+并给了一个任意的定向。</p>
+<p><img src="/images/fkt_4.png" /></p>
+<p>上图找了对偶图的一棵与 <span class="math inline">\(T_1\)</span>
+不相交的生成树 <span class="math inline">\(T_2\)</span>
+（这一步在手算定向时可以省略，因为可以肉眼看出哪些非树边可以被定向）。</p>
+<p><img src="/images/fkt_5.png" /></p>
+<p>上图从 <span class="math inline">\(T_2\)</span> 的叶子开始逐步确定
+<span class="math inline">\(G - T_1\)</span>
+的定向，使得每个面上都恰有奇数条顺时针边。</p>
+<!-- ## 例题 -->
+<!-- [51nod 骨牌覆盖](http://www.51nod.com/Challenge/Problem.html#problemId=1034) -->
+<!-- 这题的模型是求网格图的完美匹配数。 -->
+]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>匹配</tag>
+        <tag>FKT</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>踩坑杂记</title>
-    <url>/2022/05/24/%E8%B8%A9%E5%9D%91%E6%9D%82%E8%AE%B0/</url>
-    <content><![CDATA[<h3
+    <url>/2022/06/04/%E8%B8%A9%E5%9D%91%E6%9D%82%E8%AE%B0/</url>
+    <content><![CDATA[<p>总是踩坑，有的时候一个坑或者原理类似的坑还反复踩，踩麻了所以记录一下。</p>
+<h3
 id="hexo-报错expected-end-of-comment-got-end-of-file-2022.02.27">Hexo
 报错：expected end of comment, got end of file (2022.02.27)</h3>
 <p><code>&#123;#</code> 是 nunjucks 的注释，写 tex
@@ -134,14 +390,14 @@ href="https://github.com/hexojs/hexo/issues/2070">参考页面</a></li>
 <li><a
 href="https://wiki.archlinux.org/title/Picom_%28%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87%29">参考页面</a></li>
 </ul>
-<h3 id="yay-使用-tuna-源而无法更新-aur">yay 使用 tuna 源而无法更新
-aur</h3>
+<h3 id="yay-使用-tuna-源而无法更新-aur-2022.05.24">yay 使用 tuna
+源而无法更新 aur (2022.05.24)</h3>
 <p>Tuna 很早就<a
 href="https://mirrors4.tuna.tsinghua.edu.cn/news/remove-aur/">移除了 aur
 镜像</a>， 将 aur 源修改为官方源的方法为：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yay --aururl <span class="string">&quot;https://aur.archlinux.org&quot;</span> --save</span><br></pre></td></tr></table></figure>
 <p>但是切换后更新部分软件包仍会出现报错，如更新 wps-office 时：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">(数据已丢失)</span><br></pre></td></tr></table></figure>
 <p>不难发现仍然用到了 tuna 源。我一开始不能理解，后来在<a
 href="https://github.com/tuna/issues/issues/1424">Github</a>
 上找到了一点线索，原来是 cache 导致的问题。</p>
@@ -149,6 +405,41 @@ href="https://github.com/tuna/issues/issues/1424">Github</a>
 <code>git --remote</code> 可以看到远程仓库指向的是 tuna 的地址。</p>
 <p>解决方法：修改远程仓库地址，或者直接清理掉 cache 。前者有人给出了<a
 href="https://gist.github.com/BenSYZ/c18179a4e97dde32c8f1a10df9a90b1e">批处理脚本</a></p>
+<h3 id="pacman-更新报错gpgme-错误无数据-2022.05.29">pacman
+更新报错「GPGME 错误：无数据」 (2022.05.29)</h3>
+<p>原因是下载 <code>.sig</code> 文件的时候被登陆网页劫持了，解决方案为
+<code>sudo rm /var/lib/pacman/sync/*.sig</code> 。</p>
+<ul>
+<li><a
+href="https://zhul.in/2022/01/01/pacman-gpgme-error-no-data/">参考页面</a></li>
+</ul>
+<h3
+id="编译-grpc-报错fatal-error-killed-signal-terminated-program-cc1plus-2022.06.01">编译
+grpc 报错：fatal error: Killed signal terminated program cc1plus
+(2022.06.01)</h3>
+<p>原因是 <code>make -j</code> 并行编译占用内存过多（直接飙升到十几 G
+吃满内存然后挂了）。
+之前不知道这个参数的含义就用了，所以看到内存崩了心态也崩了。</p>
+<p>解决方法：限制并行数量，如 <code>make -j4</code>
+（根据实际情况调整，不然确实挺慢的）。</p>
+<ul>
+<li><a
+href="https://stackoverflow.com/questions/62107520/unable-to-build-grpc-v1-28-1-inside-a-container">参考页面</a></li>
+<li><a
+href="https://github.com/mlpack/mlpack/issues/2775">参考页面</a></li>
+</ul>
+<span id="more"></span>
+<h3
+id="pacman-更新报错could-not-read-db-core-cant-parse-line-1-2022.06.04">pacman
+更新报错：could not read db 'core' (Can't parse line 1)
+(2022.06.04)</h3>
+<p>和 GPGME no data 类似，是下载 <code>.db</code>
+文件的时候被登陆网页劫持，解决方案为
+<code>sudo rm /var/lib/pacman/sync/*.db</code> 。</p>
+<ul>
+<li><a
+href="https://unix.stackexchange.com/questions/561199/error-could-not-read-db-multilib-cant-parse-line-1">参考页面</a></li>
+</ul>
 ]]></content>
   </entry>
   <entry>
@@ -185,20 +476,34 @@ to restore file from vim undo histroy</a></li>
   <entry>
     <title>计算机应用数学学习笔记</title>
     <url>/2022/04/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%BA%94%E7%94%A8%E6%95%B0%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<p>上半期太摸了，没记。</p>
+    <content><![CDATA[<p><span class="math inline">\(\newcommand{\bR}{\mathbb{R}}\)</span>
+<span class="math inline">\(\newcommand{\OV}{\overline}\)</span></p>
+<p>上半期太摸了，没记。</p>
 <span id="more"></span>
-<h2 id="图论">图论</h2>
+<h3 id="图和树">图和树</h3>
+<p>★ 割集 (cut set) ：<span class="math inline">\(C = \{(u, v) \in E
+\colon u \in S, v \in V \setminus S\}\)</span> 。</p>
+<p>★ 引理 1 ：任意割集的最小边一定在最小生成树内。</p>
+<p>★ 引理 2 ：任意环上的最大边一定不在最小生成树内。</p>
+<h3 id="p-np">P / NP</h3>
+<p>★ P: 可以被多项式时间解决的问题。</p>
+<p>★ NP: 可以在多项式时间检查一组解的问题。</p>
+<p>★ 定理 1 ：P 属于 NP 。</p>
+<p>★ NP-Complete: 所有 NP 问题可以规约到的问题，NP
+问题中最难的一部分。</p>
+<p>★ 定理 2 ：如果任何一个 NP-Complete 问题多项式可解，则 P 等于 NP
+。</p>
 <h3 id="欧拉定理">欧拉定理</h3>
-<p>平面图 (planar graph) ：能画在平面上的简单连通图。</p>
-<p>欧拉定理 (Euler's Formula)：平面图上 <span class="math inline">\(n +
-f = m + 2\)</span> 。其中 <span class="math inline">\(n, m, f\)</span>
+<p>★ 平面图 (planar graph) ：能画在平面上的简单连通图。</p>
+<p>★ 欧拉定理 (Euler's Formula)：平面图上 <span class="math inline">\(n
++ f = m + 2\)</span> 。其中 <span class="math inline">\(n, m, f\)</span>
 分别是点数、边数、面数。</p>
-<p>推论 1：<span class="math inline">\(n\)</span> 个点的树边数为 <span
+<p>★ 推论 1：<span class="math inline">\(n\)</span> 个点的树边数为 <span
 class="math inline">\(n - 1\)</span> 。</p>
 <blockquote>
 <p>因为 <span class="math inline">\(f = 1\)</span> 。</p>
 </blockquote>
-<p>推论 2：<span class="math inline">\(n (n \ge 3)\)</span>
+<p>★ 推论 2：<span class="math inline">\(n (n \ge 3)\)</span>
 个点的平面图边数不超过 <span class="math inline">\(3n - 6\)</span>
 。</p>
 <blockquote>
@@ -206,44 +511,45 @@ class="math inline">\(n - 1\)</span> 。</p>
 class="math inline">\(3f \le 2m\)</span> ，代入欧拉定理得 <span
 class="math inline">\(m \le 3n - 6\)</span> 。</p>
 </blockquote>
-<p>极大平面图 (maximal planar graph)
+<p>★ 极大平面图 (maximal planar graph)
 ：任意加上一条边都不再是平面图的平面图。
 一个平面图是极大的当且仅当每个面邻接恰好 3
 条边，每条边恰好邻接两个面。</p>
-<p>推论 3：<span class="math inline">\(n (n \ge 3)\)</span>
+<p>★ 推论 3：<span class="math inline">\(n (n \ge 3)\)</span>
 个点的极大平面图边数恰为 <span class="math inline">\(3n - 6\)</span>
 。</p>
-<p>推论 4：<span class="math inline">\(n (n \ge 4)\)</span>
+<p>★ 推论 4：<span class="math inline">\(n (n \ge 4)\)</span>
 个点的极大平面图，每个点的度数不少于 <span
 class="math inline">\(3\)</span> 。</p>
-<p>推论 5：<span class="math inline">\(n (n \ge 4)\)</span>
+<p>★ 推论 5：<span class="math inline">\(n (n \ge 4)\)</span>
 个点的平面图至少有 <span class="math inline">\(4\)</span>
 个点的度数不超过 <span class="math inline">\(5\)</span> 。</p>
 <blockquote>
 <p>不妨假设平面图极大。若不成立则 <span class="math inline">\(2m \ge 3
 \times 3 + (n - 3) \times 6 = 6n - 9 &gt; 2m\)</span> ，矛盾。</p>
 </blockquote>
-<p>推论 6：三维空间的封闭凸多边形满足：顶点数 + 面数 = 边数 + 2。</p>
+<p>★ 推论 6：三维空间的封闭凸多边形满足：顶点数 + 面数 = 边数 + 2。</p>
 <h3 id="平面图染色">平面图染色</h3>
-<p>对偶图 (dual graph)
+<p>★ 对偶图 (dual graph)
 ：平面图的对偶图是将面看作点，两个邻接的面看作有一条连边。 对偶图满足
-<span class="math inline">\(n&#39; = f, m&#39; = m, f&#39; = n\)</span>
-，仍然是平面图。</p>
-<p>染色 (coloring)
+<span class="math inline">\(n&#39; = f\)</span>, <span
+class="math inline">\(m&#39; = m\)</span>, <span
+class="math inline">\(f&#39; = n\)</span>, 仍然是平面图。</p>
+<p>★ 染色 (coloring)
 ：给每个节点一个颜色标记，使得任意一条边的两个端点颜色不同
 （面的染色问题可以转为对偶图的染色问题）。</p>
-<p><span class="math inline">\(k\)</span> 染色 (<span
+<p>★ <span class="math inline">\(k\)</span> 染色 (<span
 class="math inline">\(k\)</span>-colorable) ：能够用 <span
 class="math inline">\(k\)</span> 种不同的颜色进行染色。</p>
-<p>色数 (chromatic number) ：最小的 <span
+<p>★ 色数 (chromatic number) ：最小的 <span
 class="math inline">\(k\)</span> 使得图能 <span
 class="math inline">\(k\)</span> 染色。</p>
-<p>引理 1 ：如果图的最大度为 <span class="math inline">\(d\)</span> ，能
-<span class="math inline">\(d + 1\)</span> 染色。</p>
+<p>★ 引理 1 ：如果图的最大度为 <span class="math inline">\(d\)</span>
+，能 <span class="math inline">\(d + 1\)</span> 染色。</p>
 <blockquote>
 <p>数学归纳法，每次加一个点都可以分配合法的颜色。</p>
 </blockquote>
-<p>引理 2 ：平面图能 <span class="math inline">\(6\)</span> 染色。</p>
+<p>★ 引理 2 ：平面图能 <span class="math inline">\(6\)</span> 染色。</p>
 <blockquote>
 <p>不妨假设 <span class="math inline">\(n \ge 4\)</span>
 且极大。数学归纳法，选取一个度数不超过 <span
@@ -252,7 +558,7 @@ class="math inline">\(u\)</span> ， 在去掉 <span
 class="math inline">\(u\)</span> 点的子图染色后容易确定 <span
 class="math inline">\(u\)</span> 的颜色。</p>
 </blockquote>
-<p>引理 3 ：平面图能 <span class="math inline">\(5\)</span> 染色。</p>
+<p>★ 引理 3 ：平面图能 <span class="math inline">\(5\)</span> 染色。</p>
 <blockquote>
 <p>不妨假设 <span class="math inline">\(n \ge 4\)</span>
 且极大。数学归纳法，选取一个度数不超过 <span
@@ -279,20 +585,20 @@ class="math inline">\(x\)</span> 和 <span
 class="math inline">\(y\)</span> 的颜色相同！于是可以给 <span
 class="math inline">\(u\)</span> 一个合法的颜色。</p>
 </blockquote>
-<p>四色定理：平面图一定可以被染 <span class="math inline">\(4\)</span>
+<p>★ 四色定理：平面图一定可以被染 <span class="math inline">\(4\)</span>
 个颜色。</p>
 <h3 id="有标号树">有标号树</h3>
 <p><img src="/images/csmath-1.png" /></p>
-<p>有标号树 (labeled tree) ：每个点有一个唯一的标号 (<span
+<p>★ 有标号树 (labeled tree) ：每个点有一个唯一的标号 (<span
 class="math inline">\(0\)</span> 到 <span
 class="math inline">\(n-1\)</span>) 的树。
 两个有标号树是相同的当且仅当它们的边集相同。</p>
-<p>扩展 Prufer 编码 (extended Prufer code) ： 以 <span
+<p>★ 扩展 Prufer 编码 (extended Prufer code) ： 以 <span
 class="math inline">\(0\)</span>
 作为根将树看作有根树，每次选取编号最小的叶子，列出该叶子和其父亲然后删掉该边。
 如上图编码后（每列代表一条边，第一行和第二行分别是叶子和父亲）为
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1 4 3 5 6 7 8 9 2</span><br><span class="line">6 3 0 6 2 9 9 2 0</span><br></pre></td></tr></table></figure></p>
-<p>引理 1 ：扩展 Prufer 编码中，第一行第 <span
+<p>★ 引理 1 ：扩展 Prufer 编码中，第一行第 <span
 class="math inline">\(k\)</span> 列的数， 就是第二行的第 <span
 class="math inline">\(k\)</span> 到 <span
 class="math inline">\(n-1\)</span> 列，以及第一行的第 <span
@@ -310,18 +616,18 @@ class="math inline">\(n-1\)</span>) 出现过。</p>
 <p>同时不是任何点的父亲的点一定是叶子，因此这些未出现过的数都是叶子，
 我们要找的标号必然是其中最小的一个。</p>
 </blockquote>
-<p>引理 2 ：扩展 Prufer 编码中，第二行可以决定第一行。</p>
+<p>★ 引理 2 ：扩展 Prufer 编码中，第二行可以决定第一行。</p>
 <blockquote>
 <p>直接得自引理 1 。</p>
 </blockquote>
-<p>引理 3 ：扩展 Prufer 编码中，第二行最后一列一定是 <span
+<p>★ 引理 3 ：扩展 Prufer 编码中，第二行最后一列一定是 <span
 class="math inline">\(0\)</span> 。</p>
 <blockquote>
 <p>显然。</p>
 </blockquote>
-<p>Prufer 编码：扩展 Prufer 编码中第二行的前 <span
+<p>★ Prufer 编码：扩展 Prufer 编码中第二行的前 <span
 class="math inline">\(n-2\)</span> 列。</p>
-<p>引理 4 ：每个长为 <span class="math inline">\(n-2\)</span> 的取值
+<p>★ 引理 4 ：每个长为 <span class="math inline">\(n-2\)</span> 的取值
 <span class="math inline">\(0\)</span> 到 <span
 class="math inline">\(n-1\)</span> 的序列都是某个有标号树的 Prufer
 编码。</p>
@@ -340,7 +646,7 @@ k\)</span> ，那么在扩展第 <span class="math inline">\(x\)</span>
 列的时候就会出现矛盾。</p>
 <p>所以该边集同时给出了一个拓扑序，于是一定是一棵树。</p>
 </blockquote>
-<p>定理 5 ：<span class="math inline">\(n\)</span>
+<p>★ 定理 5 ：<span class="math inline">\(n\)</span>
 个点的有标号树的数量是 <span class="math inline">\(n^{n-2}\)</span>
 。</p>
 <blockquote>
@@ -348,11 +654,11 @@ k\)</span> ，那么在扩展第 <span class="math inline">\(x\)</span>
 class="math inline">\(n^{n-2}\)</span> 。</p>
 </blockquote>
 <h3 id="无标号树">无标号树</h3>
-<p>无标号树 (unlabeled tree)
+<p>★ 无标号树 (unlabeled tree)
 ：两个无标号树是相同的当且仅当能够通过标号使得它们成为相同的有标号树。
 记 <span class="math inline">\(n\)</span> 个点的无标号树的数量为 <span
 class="math inline">\(T_n\)</span> 。</p>
-<p>引理 1 ：<span class="math inline">\(T_n \ge
+<p>★ 引理 1 ：<span class="math inline">\(T_n \ge
 \dfrac{n^{n-2}}{n!}\)</span> 。</p>
 <blockquote>
 <p>标号的方式有 <span class="math inline">\(n!\)</span>
@@ -363,50 +669,220 @@ class="math inline">\(T_n\)</span> 。</p>
 class="math inline">\(0\)</span> ， 得到的长为 <span
 class="math inline">\(2(n-2)\)</span> 的 01 序列就是一个编码（但不是每个
 01 序列都是合法的编码）。</p>
-<p>引理 2 ：<span class="math inline">\(T_n \le 2^{2(n-1)}\)</span>
+<p>★ 引理 2 ：<span class="math inline">\(T_n \le 2^{2(n-1)}\)</span>
 。</p>
 <blockquote>
 <p>即 01 序列的数量。</p>
 </blockquote>
-<p>定理 3 ：若 <span class="math inline">\(n &gt; 30\)</span> 则 <span
+<p>★ 定理 3 ：若 <span class="math inline">\(n &gt; 30\)</span> 则 <span
 class="math inline">\(2^n \le T_n \le 4^n\)</span> 。</p>
 <blockquote>
 <p>放大引理 1 和引理 2 的界。</p>
 </blockquote>
 <h3 id="生成树">生成树</h3>
-<p>略。</p>
+<p>★ 拉普拉斯矩阵：度数矩阵减去邻接矩阵。记为 <span
+class="math inline">\(L = D - A\)</span> 。</p>
+<p>★ 关联矩阵：大小为 <span class="math inline">\(|V| \times
+|E|\)</span> ，每一条边 <span class="math inline">\((u, v) \in
+E\)</span> 代表一个列向量，第 <span class="math inline">\(u\)</span>
+行为 <span class="math inline">\(1\)</span> 第 <span
+class="math inline">\(v\)</span> 行为 <span
+class="math inline">\(-1\)</span> 。记为 <span
+class="math inline">\(M\)</span> 。</p>
+<p>★ 引理 1 ：<span class="math inline">\(M \cdot M^T = L\)</span>
+。</p>
+<p>★ 引理 2 ：<span class="math inline">\(M\)</span>
+根据选出若干列组成矩阵 <span class="math inline">\(M_0\)</span>
+，若其对应边集是生成树则 <span class="math inline">\(|M_0| = \pm
+1\)</span> 否则 <span class="math inline">\(|M_0| = 0\)</span> 。</p>
+<p>★ 矩阵树定理：有标号无向图的生成树数量等于拉普拉斯矩阵去掉第 <span
+class="math inline">\(i\)</span> 行第 <span
+class="math inline">\(i\)</span> 列的行列式。记为 <span
+class="math inline">\(t(G) = |L^{(i)}|\)</span> 。</p>
+<p>★ 引理 3 ：<span class="math inline">\(L\)</span>
+的特征多项式的一次项系数为 <span class="math inline">\(-|V|
+t(G)\)</span> 。</p>
+<p>★ 定理 4 ：<span class="math inline">\(t(G) = \lambda_2 \lambda_3
+\cdots \lambda_{|V|} / |V|\)</span> ，其中 <span class="math inline">\(0
+\le \lambda_i \le \lambda_{i+1}\)</span> 是 <span
+class="math inline">\(L\)</span> 的特征值。</p>
+<p>★ 定理 5 ：电路图中 <span class="math inline">\(a\)</span> 到 <span
+class="math inline">\(b\)</span> 的电阻为 <span
+class="math inline">\(\dfrac{t(G + (a, b)) - t(G)}{t(G)}\)</span> 。</p>
 <h3 id="旅行商问题">旅行商问题</h3>
 <p>假定图 <span class="math inline">\(G\)</span>
 的边权满足三角形不等式，即 <span class="math inline">\(w(i, j) + w(j, k)
 \ge w(i, k)\)</span> 。</p>
-<p>Tree Shortcut Algorithm:
+<p>★ Tree Shortcut Algorithm:
 找到一颗最小生成树，写出欧拉序，只保留每个点第一次出现的位置，得到一个旅行路径。</p>
-<p>定理 1 ：该算法得到的旅行路径的代价不超过最小代价的两倍</p>
-<h3 id="最大独立集">最大独立集</h3>
-<p>正交表示：对于无向图 <span class="math inline">\(G = (V, E)\)</span>
-，可以为每个点 <span class="math inline">\(i\)</span> 分配一个 <span
-class="math inline">\(\mathbb{R}^d\)</span> 内的单位向量 <span
-class="math inline">\(u_i\)</span>，使得 <span class="math inline">\((i,
-j) \in E \iff u_i \cdot u_j \ne 0\)</span> 。</p>
-<p>引理 1 ：一定存在分配方式使得正交表示中 <span class="math inline">\(d
-\le n\)</span> 。</p>
-<p>引理 2 ：若 <span class="math inline">\(I \subseteq V\)</span>
+<p>★ 定理 1 ：该算法得到的旅行路径的代价不超过最小代价的两倍。</p>
+<h3 id="线性规划">线性规划</h3>
+<p>★ 标准线性规划：给定 <span class="math inline">\(A \in M_{m\times n},
+b \in \bR^m, c \in \bR^n\)</span> ， 求 <span class="math inline">\(x
+\in \bR^n\)</span> 在满足 <span class="math inline">\(A x \le b\)</span>
+和 <span class="math inline">\(x \ge 0\)</span> 的前提下最大化 <span
+class="math inline">\(c^T x\)</span> 。</p>
+<p>★ 松弛线性规划：给定 <span class="math inline">\(A \in M_{m\times n},
+b \in \bR^m, c \in \bR^n\)</span> ， 求 <span class="math inline">\(x
+\in \bR^n\)</span> 在满足 <span class="math inline">\(A x = b\)</span>
+和 <span class="math inline">\(x \ge 0\)</span> 的前提下最大化 <span
+class="math inline">\(c^T x\)</span> 。</p>
+<p>★ 标准线性规划的对偶： 求 <span class="math inline">\(y \in
+\bR^m\)</span> 在满足 <span class="math inline">\(A^T y \ge c\)</span>
+和 <span class="math inline">\(y \ge 0\)</span> 的前提下最小化 <span
+class="math inline">\(b^T x\)</span> 。</p>
+<p>★ 松弛线性规划的单纯形法：</p>
+<ol type="1">
+<li>选定 <span class="math inline">\(m\)</span> 个基础变量，其余的 <span
+class="math inline">\(n - m\)</span>
+个为自由变量，假定自由变量全零即可得到一个解，称为基础解 (basic
+solution) 。</li>
+<li>若基础变量解出来全部非负，则得到了基础可行解 (basic feasible
+solution) 。
+<!-- 3. 通过高斯消元改为（数据已删除）形式。目标函数仅与自由变量有关。 --></li>
+<li>解出基础变量关于自由变量的线性函数，然后代入目标函数。</li>
+<li>如果目标函数的系数全部非负就找到了最优解，否则交换一个自由变量和一个基础变量。</li>
+</ol>
+<p>如何判断松弛线性规划是否可解？ 可以构造另一个松弛线性规划：在 <span
+class="math inline">\(A x + I z = b\)</span> 和 <span
+class="math inline">\(x, z \ge 0\)</span> 的前提下最小化 <span
+class="math inline">\((1, \ldots, 1) z\)</span> 。
+那么原问题可解当且仅当新问题中的最优解恰为 <span
+class="math inline">\(0\)</span> 。并且新问题有平凡解 <span
+class="math inline">\(x = 0, z = b\)</span> 。</p>
+<p>★ 分离定理：对于凸集合和以外的点 <span
+class="math inline">\(x_0\)</span> ，存在向量 <span
+class="math inline">\(w\)</span> 使得 <span class="math inline">\(w
+\cdot x_0 \le w \cdot x\)</span> 对于任意凸集内的点 <span
+class="math inline">\(x\)</span> 成立。</p>
+<p>★ Farkas 引理：以下两个线性系统有且仅有一个成立： <span
+class="math display">\[
+    Ax \le 0, c^T x &gt; 0
+\]</span> 和 <span class="math display">\[
+    A^T y = c, y \ge 0
+\]</span></p>
+<h3 id="博弈">博弈</h3>
+<p>零和游戏：双方的收益和恒为 0 。</p>
+<p>纳什均衡 (Nash equilibrium)
+：如果任一方在知道对方的策略下无法通过改变策略增加期望收益，则双方的策略是纳什均衡的。</p>
+<h3 id="香农信道容量">香农信道容量</h3>
+<p>★ 正交表示：对于无向图 <span class="math inline">\(G = (V,
+E)\)</span> ，可以为每个点 <span class="math inline">\(i\)</span>
+分配一个 <span class="math inline">\(\mathbb{R}^d\)</span> 内的单位向量
+<span class="math inline">\(u_i\)</span>，使得 <span
+class="math inline">\((i, j) \in E \iff u_i \cdot u_j \ne 0\)</span> 。
+更一般地，这个向量可以是一般的内积空间里的元素。</p>
+<p>★ 引理 1 ：一定存在分配方式使得正交表示中 <span
+class="math inline">\(d \le n\)</span> 。</p>
+<p>★ 引理 2 ：若 <span class="math inline">\(I \subseteq V\)</span>
 是独立集，<span class="math inline">\(e \in \mathbb{R}^d\)</span>
 是任意单位向量，则 <span class="math display">\[
 \sum_{i \in I} (u_i \cdot e)^2 \le 1
 \]</span></p>
 <blockquote>
 <p>独立集中的 <span class="math inline">\(u_i\)</span>
-是两两正交的，<span class="math inline">\(u_i \cdot e\)</span>
-是正交基上的投影。</p>
+是两两正交的（反之亦然），<span class="math inline">\(u_i \cdot
+e\)</span> 是正交基上的投影。</p>
 </blockquote>
-<p>引理 3 ：最大独立集的大小不超过 <span class="math inline">\(\max (u_i
-\cdot e)^{-2}\)</span> 。</p>
+<p>★ 引理 3: 最大独立集的大小 <span class="math inline">\(\alpha(G) \le
+\max (u_i \cdot e)^{-2}\)</span> 。</p>
 <blockquote>
-
+<p>引理 2 进一步得到 <span class="math inline">\(|I| \min\limits_{i \in
+I} (u_i \cdot e)^2 \le 1\)</span> ， 两边取逆取 <span
+class="math inline">\(I\)</span> 为最大独立集再放大取点范围即可。</p>
 </blockquote>
-<p>Lovasz theta 函数：<span class="math inline">\(\vartheta(G) =
-\min\limits_{u,e} \max\limits_i (u_i \cdot e)^{-2}\)</span> 。</p>
+<p>★ Lovasz theta 函数： <span class="math inline">\(\vartheta(G) =
+\inf\limits_{u,e} \max\limits_i (u_i \cdot e)^{-2}\)</span> 。</p>
+<p>★ 强乘积 (strong product): 两个图 <span class="math inline">\(G = (V,
+E)\)</span> 和 <span class="math inline">\(H = (V&#39;, E&#39;)\)</span>
+的强乘积记为 <span class="math inline">\(G \boxtimes H\)</span> ，
+点集为 <span class="math inline">\(V \times V&#39;\)</span> ，其中 <span
+class="math inline">\((i, i&#39;)\)</span> 到 <span
+class="math inline">\((j, j&#39;)\)</span> 有边当且仅当
+其中一个维度有边另一个不变，或者两个维度同时有边。</p>
+<p>★ 引理 4 ：<span class="math inline">\(\vartheta(G \boxtimes H) =
+\vartheta(G) \vartheta(H)\)</span> 。</p>
+<blockquote>
+<p><span class="math inline">\(G \boxtimes H\)</span>
+的正交表示可以选张量 <span class="math inline">\(u_i \otimes
+v_j\)</span> ， 其内积为 <span class="math inline">\((a \otimes b) \cdot
+(c \otimes d) = (a \cdot c) (b \cdot d)\)</span> 。
+然后列出定义即可证明。</p>
+</blockquote>
+<p>★ 补图：<span class="math inline">\(G = (V, E)\)</span> 的补图记为
+<span class="math inline">\(\OV{G}\)</span> ，点集不变边集取补。</p>
+<p>★ 定理 5 ：<span class="math inline">\(\alpha(G) \le \vartheta(G) \le
+c(\OV{G})\)</span> ，其中 <span class="math inline">\(c\)</span>
+表示色数。</p>
+<blockquote>
+<p>第一个不等号即引理 3 。</p>
+</blockquote>
+<p>★ 信道容量：传送 <span class="math inline">\(k\)</span>
+个符号的信息的信道容量为 <span class="math inline">\(k\)</span> 个 <span
+class="math inline">\(G\)</span> 的强乘积的最大独立集大小。记为 <span
+class="math inline">\(\alpha(G^{(k)})\)</span> 。</p>
+<p>★ 香农信道容量：<span class="math inline">\(\Theta(G) = \max_k
+\alpha(G^{(k)})^{1/k} = \lim_{k \to \infty}
+\alpha(G^{(k)})^{1/k}\)</span> 。</p>
+<p>★ 定理 6 ：<span class="math inline">\(\alpha(G^{(k)}) \ge
+\alpha(G)^k\)</span> 。</p>
+<h3 id="匹配">匹配</h3>
+<p>★ 定理 1 ： 如果二分图每个点都有相同的度数，那么存在完美匹配。</p>
+<p>★ 霍尔定理 (Hall's Theorem) ：
+一个二分图有完美匹配当且仅当两端点数相同 <span class="math inline">\(|A|
+= |B|\)</span> ， 并且对于 <span class="math inline">\(A\)</span>
+的任意子集 <span class="math inline">\(S \subseteq A\)</span> ，
+其邻接点集 <span class="math inline">\(T \subseteq B\)</span> 满足 <span
+class="math inline">\(|T| \ge |S|\)</span> 。</p>
+<blockquote>
+<p>必要性显然，证充分性，对点数归纳。</p>
+<p>任取相连的 <span class="math inline">\(a \in A, b \in B\)</span> 。
+如果 <span class="math inline">\(A \setminus \{a\}\)</span> 和 <span
+class="math inline">\(B \setminus \{b\}\)</span>
+之间满足条件则根据归纳假设证毕。 否则存在 <span class="math inline">\(S
+\subseteq A \setminus \{a\}\)</span> ，其邻接点集为 <span
+class="math inline">\(T\)</span> ， 然而 <span
+class="math inline">\(T\)</span> 去掉 <span
+class="math inline">\(b\)</span> 后比 <span
+class="math inline">\(S\)</span> 小，也就是说 <span
+class="math inline">\(b \in T\)</span> 且 <span
+class="math inline">\(|T| = |S|\)</span> 。</p>
+<p>注意到 <span class="math inline">\(S\)</span> 到 <span
+class="math inline">\(T\)</span> ，以及 <span class="math inline">\(B
+\setminus T\)</span> 到 <span class="math inline">\(A \setminus
+S\)</span> 都是满足条件，从而根据归纳假设有完美匹配的。</p>
+</blockquote>
+<p>★ 定理 2 ：若 <span class="math inline">\(M, M^*\)</span>
+是极大匹配和最大匹配则 <span class="math inline">\(|M| \ge |M^*| /
+2\)</span> 。</p>
+<p>★ 定理 3 ：二分图中若 <span class="math inline">\(M_1, M_2\)</span>
+是两个匹配则 <span class="math inline">\(M_1 \oplus M_2\)</span>
+由孤立点、交错环、交错路构成。 若 <span class="math inline">\(|M_1| &gt;
+|M_2|\)</span> 则一定有交错路。</p>
+<p>Pfaffian ：对于偶数阶方阵 <span class="math inline">\(A\)</span>
+，定义 <span class="math inline">\(P(A) = \sum_{M} w(M)\)</span> ，其中
+<span class="math inline">\(M\)</span> 是完全图的完美匹配，<span
+class="math inline">\(w(M)\)</span> 定义为 <span
+class="math inline">\(sign(M) A_{M(2i), M(2i+1)}\)</span> 。</p>
+<p>★ 定理 4 ：如果 <span class="math inline">\(A^T = -A\)</span> 则
+<span class="math inline">\(|A| = P(A)^2\)</span> 。</p>
+<p>Pfaffian Orientation ：对于无向图 <span
+class="math inline">\(G\)</span> 找到带符号邻接矩阵（边定向）使得 <span
+class="math inline">\(w(M)\)</span> 对于 <span
+class="math inline">\(G\)</span>
+内的完美匹配都相等。于是完美匹配的数量为 <span
+class="math inline">\(\sqrt{|A|}\)</span> 。</p>
+<p>★ 定理 5 ：存在 Pfaffian Orientation 当且仅当对于任意偶环 <span
+class="math inline">\(C\)</span> ，如果 <span class="math inline">\(G -
+C\)</span> 存在完美匹配则 <span class="math inline">\(C\)</span>
+中同一方向的边数为奇数。</p>
+<p>★ 引理 6
+：平面图中如果定向使得每个内部的面都恰有奇数条顺时针边，则该定向即
+Pfaffian Orientation 。</p>
+<p>★ 定理 7 ：平面图一定存在 Pfaffian Orientation 。</p>
+<blockquote>
+<p>对任一生成树任意定向后根据引理 6 确定其他边的方向即可。</p>
+</blockquote>
 ]]></content>
       <categories>
         <category>笔记</category>
@@ -433,6 +909,7 @@ class="math inline">\(\newcommand{\Aut}{\mathrm{Aut}}\)</span> <span
 class="math inline">\(\newcommand{\Inn}{\mathrm{Inn}}\)</span> <span
 class="math inline">\(\newcommand{\Char}{\;\mathrm{char}\;}\)</span>
 <span class="math inline">\(\newcommand{\divide}{\mid}\)</span> <span
+class="math inline">\(\newcommand{\ndivide}{\nmid}\)</span> <span
 class="math inline">\(\newcommand{\Hom}{\mathrm{Hom}}\)</span> <span
 class="math inline">\(\newcommand{\ch}{\mathrm{ch}}\)</span> <span
 class="math inline">\(\newcommand{\Up}{\overline}\)</span> <span
@@ -2705,7 +3182,7 @@ A\)</span>.</li>
 there is some <span class="math inline">\(A = \{a\}\)</span>.</li>
 </ul>
 </blockquote>
-<h2 id="filed-theory">Filed Theory</h2>
+<h2 id="field-theory">Field Theory</h2>
 <h3 id="basic-definition">basic definition</h3>
 <blockquote>
 <p><em>Definition</em>. The <strong>characteristic</strong> of a field
@@ -3187,8 +3664,10 @@ F_1^*\)</span>.</li>
 G_1^*\)</span>.</li>
 <li><span class="math inline">\(G_1 \ne G_2 \implies G_1^* \ne
 G_2^*\)</span>.</li>
-<li><span class="math inline">\(K / F\)</span> is Galois iff <span
-class="math inline">\(D(F) = D(F^*)\)</span>.</li>
+<li><span class="math inline">\(K / F\)</span> is Galois <span
+class="math inline">\(\iff\)</span> <span class="math inline">\(D(F) =
+D(F^*)\)</span> <span class="math inline">\(\iff\)</span> <span
+class="math inline">\(F = F^{**}\)</span>.</li>
 </ul>
 </div>
 <h3 id="splitting-fields-and-separable-polynomials">splitting fields and
@@ -3257,6 +3736,300 @@ a_1 X_1 + a_2 X_2 + \cdots a_n X_n = 0, \;\; a_i \in L
 class="math inline">\(K\)</span> into <span
 class="math inline">\(L\)</span>, then they're linearly independent over
 <span class="math inline">\(L\)</span>.</p>
+</div>
+<blockquote>
+<p><em>Definition</em>. Let <span class="math inline">\(K / F\)</span>
+be a Galois extension.</p>
+<ul>
+<li>Let <span class="math inline">\(\alpha \in K\)</span>. The elements
+<span class="math inline">\(\sigma \alpha\)</span> for <span
+class="math inline">\(\sigma \in \Gal(K / F)\)</span> are called the
+<strong>conjugates</strong> of <span
+class="math inline">\(\alpha\)</span> over <span
+class="math inline">\(F\)</span>.</li>
+<li>Let <span class="math inline">\(F \subseteq E \subseteq K\)</span>.
+<span class="math inline">\(\sigma(E)\)</span> is called the
+<strong>conjugate field</strong> of <span
+class="math inline">\(E\)</span> over <span
+class="math inline">\(F\)</span>.</li>
+</ul>
+</blockquote>
+<p>Recall if <span class="math inline">\(\alpha\)</span> is a root of
+some polynomial in <span class="math inline">\(F[x]\)</span>, then its
+conjugate must also be a root. Thus we can get the following
+theorem.</p>
+<div class="note "><p>Let <span class="math inline">\(K / F\)</span> be Galois and <span
+class="math inline">\(G = \Aut(K / F)\)</span>.</p>
+<p><span class="math display">\[
+m_{\alpha, F} = \prod_{\sigma \in G} (x - \sigma \alpha).
+\]</span></p>
+</div>
+<div class="note "><p>(Fundamental Theorem of Galois Theory)</p>
+<p>Let <span class="math inline">\(K / F\)</span> be a Galois extension.
+Suppose <span class="math inline">\(E \subseteq K\)</span> is some
+subfield containing <span class="math inline">\(F\)</span>, and <span
+class="math inline">\(H \le G = \Aut(K / F)\)</span> is some
+subgroup.</p>
+<p>Then the map <span class="math inline">\(E \mapsto H = \Aut(K /
+E)\)</span> is a bijection, which inverse is <span
+class="math inline">\(H \mapsto E\)</span>, the fixed field of <span
+class="math inline">\(H\)</span>. We can deduce that</p>
+<ul>
+<li><span class="math inline">\([K \colon E] = |H|\)</span>.</li>
+<li><span class="math inline">\([E \colon F] = [G \colon
+H]\)</span>.</li>
+<li><span class="math inline">\(E_1 \subseteq E_2 \iff H_2 \le
+H_1\)</span>.</li>
+<li><span class="math inline">\(E / F\)</span> is Galois <span
+class="math inline">\(\iff\)</span> <span class="math inline">\(H \unlhd
+G\)</span>.</li>
+<li><span class="math inline">\(E / F\)</span> is Galois <span
+class="math inline">\(\implies\)</span> <span
+class="math inline">\(\Gal(E / F) \cong G / H\)</span>.</li>
+<li><span class="math inline">\(E_1 \cap E_2\)</span> corresponds to
+<span class="math inline">\(\Inner{H_1, H_2}\)</span>.</li>
+<li><span class="math inline">\(E_1 E_2\)</span> corresponds to <span
+class="math inline">\(H_1 \cap H_2\)</span>.</li>
+</ul>
+</div>
+<h3 id="finite-fields">finite fields</h3>
+<div class="note "><ul>
+<li>(Recall) Every finite field has order <span
+class="math inline">\(p^n\)</span>, and is unique up to isomorphism. We
+Denote it by <span class="math inline">\(\bbF_{p^n}\)</span>.</li>
+<li><span class="math inline">\(\bbF_{p^n}\)</span> is the splitting
+field over <span class="math inline">\(\bbF_p\)</span> for <span
+class="math inline">\(x^{p^n} - x\)</span>, the elements are the
+roots.</li>
+<li><span class="math inline">\(\Gal(\bbF_{p^n} / \bbF_p) \cong
+Z_n\)</span>, generated by <span class="math inline">\(\sigma_p \colon
+\alpha \mapsto \alpha^p\)</span>.</li>
+</ul>
+</div>
+<p>We show althought <span class="math inline">\(x^4 + 1\)</span> is
+irreducible in <span class="math inline">\(\bbZ[x]\)</span>, it is
+reducible in every <span class="math inline">\(\bbF_p\)</span>. If <span
+class="math inline">\(p = 2\)</span> we have <span
+class="math inline">\(x^4 + 1 = {(x + 1)}^4\)</span> and otherwise we
+have <span class="math display">\[
+x^4 + 1 \divide x^8 - 1 \divide x^{p^2 - 1} - 1 \divide x^{p^2} - x
+\]</span> Thus all its roots is contained in <span
+class="math inline">\(\bbF_{p^2}\)</span>. Hence the extension generated
+by any root of <span class="math inline">\(x^4 + 1\)</span> is at most
+of degree <span class="math inline">\(2\)</span>, and so <span
+class="math inline">\(x^4 + 1\)</span> cannot be irreducible.</p>
+<div class="note "><p>(Recall) multiplicative group of finite field is always cyclic.</p>
+<p>(Corollary) <span class="math inline">\(\bbF_{p^n}\)</span> is always
+a simple extension of <span class="math inline">\(\bbF_p\)</span>. <span
+class="math inline">\(\bbF_{p^n} = \bbF_p(\theta)\)</span> where <span
+class="math inline">\(\theta\)</span> is an generator of the
+multiplicative group.
+<!-- In particular, there exists an irreducible polynomial of degree $n$ -->
+<!-- over $\bbF_p$. --></p>
+</div>
+<div class="note "><p><span class="math inline">\(x^{p^n} - x\)</span> is the product of
+all the distinct irreducible polynomials in <span
+class="math inline">\(\bbF_p[x]\)</span> of degree <span
+class="math inline">\(d\)</span> where <span
+class="math inline">\(d\)</span> runs through all divisors of <span
+class="math inline">\(n\)</span>.</p>
+</div>
+<h3 id="composite-extensions-and-simple-extensions">composite extensions
+and simple extensions</h3>
+<div class="note "><p>Suppose <span class="math inline">\(K / F\)</span> is Galois and
+<span class="math inline">\(F&#39; / F\)</span> is arbitrary, then <span
+class="math inline">\(K F&#39; / F&#39;\)</span> is Galois, and <span
+class="math inline">\(\Gal(K F&#39; / F&#39;) \cong \Gal(K / K \cap
+F&#39;)\)</span>.</p>
+<p>(Corollary) <span class="math display">\[
+[K F&#39; \colon F] = \frac{[K \colon F] [F&#39; \colon F]}{[K \cap
+F&#39; \colon F]}
+\]</span></p>
+</div>
+<div class="note "><p>Let <span class="math inline">\(K_1, K_2\)</span> be Glaois
+extensions of <span class="math inline">\(F\)</span>.</p>
+<ul>
+<li><span class="math inline">\(K_1 \cap K_2 / F\)</span> is
+Glaois.</li>
+<li><span class="math inline">\(K_1 K_2 / F\)</span> is Glaois.</li>
+</ul>
+<p>If <span class="math inline">\(K_1 \cap K_2 = F\)</span> we have
+<span class="math display">\[
+\Gal(K_1 K_2 / F) \cong \Gal(K_1 / F) \times \Gal(K_2 / F).
+\]</span></p>
+</div>
+<p>Recall <span class="math inline">\(K / F\)</span> is simple if <span
+class="math inline">\(K = F(\theta)\)</span>, in this case <span
+class="math inline">\(\theta\)</span> is called a <strong>primitive
+element</strong> for <span class="math inline">\(K\)</span>.</p>
+<div class="note "><p>(The Primitive Element Theorem) Every finite and separable extension
+is simple.</p>
+<p>(Recall) <span class="math inline">\([K \colon F]\)</span> is finite,
+<span class="math inline">\(F\)</span> is perfect <span
+class="math inline">\(\implies\)</span> <span
+class="math inline">\(K\)</span> is separable over <span
+class="math inline">\(F\)</span>.</p>
+<p>Thus every finite extension of perfect field is simple.</p>
+</div>
+<h3 id="galois-groups-of-polynomials">Galois groups of polynomials</h3>
+<p>Let <span class="math inline">\(x_1, x_2, \ldots, x_n\)</span> be
+indeterminates.</p>
+<blockquote>
+<p><em>Definition</em>.</p>
+<p>The <strong>elementary symmetric</strong> functions <span
+class="math inline">\(s_1, s_2, \ldots, s_n\)</span> are defined by
+<span class="math display">\[
+\begin{aligned}
+s_1 &amp;= x_1 + x_2 + \cdots + x_n \\
+s_2 &amp;= x_1 x_2 + x_1 x_3 + \cdots + x_2 x_3 + x_2 x_4 + \cdots +
+x_{n-1} x_n \\
+&amp;\vdots \\
+s_n &amp;= x_1 x_2 \cdots x_n
+\end{aligned}
+\]</span></p>
+<p>The <strong>general polynomial</strong> of degree <span
+class="math inline">\(n\)</span> is <span class="math display">\[
+(x - x_1) (x - x_2) \cdots (x - x_n)
+\]</span></p>
+<p>A rotional function of <span
+class="math inline">\(\List{n}{x}\)</span> is <strong>symmetric</strong>
+iff is not changed by any permutation of <span
+class="math inline">\(\List{n}{x}\)</span>.</p>
+</blockquote>
+<p>Notice any rotional function of <span
+class="math inline">\(\List{n}{x}\)</span> can be treated as an elements
+in <span class="math inline">\(F(\List{n}{x})\)</span>.</p>
+<div class="note "><ul>
+<li><span class="math inline">\(F(\List{n}{x}) / F(\List{n}{s})\)</span>
+is Galois.</li>
+<li>In <span class="math inline">\(F(\List{n}{x})\)</span>, the fixed
+field of <span class="math inline">\(S_n\)</span> is exactly <span
+class="math inline">\(F(\List{n}{s})\)</span>.</li>
+<li>Every symmetric rotional function of <span
+class="math inline">\(\List{n}{x}\)</span>, is some rotional function of
+<span class="math inline">\(\List{n}{s}\)</span>.</li>
+<li>The general polynomial over <span
+class="math inline">\(F(\List{n}{s})\)</span> is separable with Galois
+group <span class="math inline">\(S_n\)</span>.</li>
+</ul>
+</div>
+<blockquote>
+<p><em>Definition</em>.</p>
+<ul>
+<li>The <strong>discriminant</strong> of <span
+class="math inline">\(\List{n}{x}\)</span> is <span
+class="math display">\[
+D = \prod_{i &lt; j} (x_i - x_j)^2.
+\]</span></li>
+<li>The <strong>discriminant</strong> of polynomial is the discriminant
+of the roots.</li>
+</ul>
+</blockquote>
+<p>We define <span class="math inline">\(\sqrt{D} = \prod_{i&lt;j} (x_i
+- x_j)\)</span>.</p>
+<div class="note "><ul>
+<li>If <span class="math inline">\(\ch(F) \ne 2\)</span> then: <span
+class="math inline">\(\sigma \in A_n\)</span> <span
+class="math inline">\(\iff\)</span> <span
+class="math inline">\(\sigma\)</span> fixed <span
+class="math inline">\(\sqrt{D}\)</span>.</li>
+</ul>
+<p>Suppose <span class="math inline">\(D\)</span> is the discriminant of
+some polynomial <span class="math inline">\(f(x) \in F[x]\)</span>.</p>
+<ul>
+<li><span class="math inline">\(f(x)\)</span> is separable <span
+class="math inline">\(\iff\)</span> <span class="math inline">\(D \ne
+0\)</span>.</li>
+<li><span class="math inline">\(D \in F\)</span>.</li>
+<li>If <span class="math inline">\(D \ne 0\)</span>: the Galois group of
+<span class="math inline">\(f(x)\)</span> is a subgroup of <span
+class="math inline">\(A_n\)</span> iff <span
+class="math inline">\(\sqrt{D} \in F\)</span>.</li>
+</ul>
+</div>
+<h3 id="the-funamental-theorem-of-algebra">the funamental theorem of
+algebra</h3>
+<div class="note "><p>Every polynomial <span class="math inline">\(f(x) \in
+\bbC[x]\)</span> of degree <span class="math inline">\(n\)</span> has
+precisely <span class="math inline">\(n\)</span> roots in <span
+class="math inline">\(\bbC\)</span>.</p>
+</div>
+<p>Two simple facts:</p>
+<ul>
+<li>Every polynomial in <span class="math inline">\(\bbR[x]\)</span> of
+odd degree has a root in <span class="math inline">\(\bbR\)</span>.</li>
+<li>Quadratic polynomials <span class="math inline">\(f(x) \in
+\bbC[x]\)</span> have all roots in <span
+class="math inline">\(\bbC\)</span>.</li>
+</ul>
+<p>Suppose <span class="math inline">\(f(x)\)</span> is of degree <span
+class="math inline">\(n = 2^k m\)</span> where <span
+class="math inline">\(m\)</span> is odd. We prove <span
+class="math inline">\(f(x)\)</span> has a root in <span
+class="math inline">\(\bbC\)</span> by induction on <span
+class="math inline">\(k\)</span>.</p>
+<p>For <span class="math inline">\(k = 0\)</span> it's the simple fact.
+Suppose now <span class="math inline">\(k \ge 1\)</span>. Let <span
+class="math inline">\(\List{n}{\alpha}\)</span> be roots of <span
+class="math inline">\(f(x)\)</span> and <span class="math inline">\(K =
+\bbR(\List{n}{\alpha}\)</span>. Then <span
+class="math inline">\(K\)</span> is a Galois extension of <span
+class="math inline">\(\bbR\)</span> containing <span
+class="math inline">\(\bbC\)</span> and <span
+class="math inline">\(\List{n}{\alpha}\)</span>.</p>
+<p>For any <span class="math inline">\(t \in \bbR\)</span> we define a
+polynomial <span class="math display">\[
+L_t(x) = \prod_{1 \le i &lt; j \le n} (x - l\alpha_i - \alpha_j - t
+\alpha_i \alpha_j)
+\]</span> Then any <span class="math inline">\(\sigma \in \Aut(K /
+\bbR)\)</span> permmute the terms in this product, and so <span
+class="math inline">\(L_t(x)\)</span> is fixed by <span
+class="math inline">\(\Gal(K / \bbR)\)</span>. Hence <span
+class="math inline">\(L_t(x) \in \bbR[x]\)</span> of degree <span
+class="math inline">\(n (n-1) / 2 = 2^{k-1} m&#39;\)</span> for some odd
+integer <span class="math inline">\(m&#39;\)</span>.</p>
+<p>By induction hypothesis <span class="math inline">\(L_t(x)\)</span>
+has a root in <span class="math inline">\(\bbC\)</span>. Hence for any
+<span class="math inline">\(t \in \bbR\)</span> we can find some <span
+class="math inline">\(i, j\)</span> such that <span
+class="math inline">\(\alpha_i + \alpha_j + t \alpha_i \alpha_j \in
+\bbC\)</span>.</p>
+<p>Thus there exists some <span class="math inline">\(i, j\)</span> such
+that we can find two distinct real number <span class="math inline">\(s,
+t \in \bbR\)</span> satisfying <span class="math inline">\(\alpha_i +
+\alpha_j + s \alpha_i \alpha_j \in \bbC\)</span> and <span
+class="math inline">\(\alpha_i + \alpha_j + t \alpha_i \alpha_j \in
+\bbC\)</span>. It follows that <span class="math inline">\(\alpha_i +
+\alpha_j, \alpha_i \alpha_j \in \bbC\)</span>.</p>
+<p>Every polynomial <span class="math inline">\(f(x) \in
+\bbR[x]\)</span> has a root in <span
+class="math inline">\(\bbC\)</span>.</p>
+<h3 id="solvable-and-radical-extensoins">solvable and radical
+extensoins</h3>
+<blockquote>
+<p><em>Definition</em>. The extension <span class="math inline">\(K /
+F\)</span> is said to be <strong>cyclic</strong> if it's Galois with a
+cyclic Galois group.</p>
+</blockquote>
+<div class="note "><p>Suppose <span class="math inline">\(\ch(F) \ndivide n\)</span> and
+<span class="math inline">\(F\)</span> contains the <span
+class="math inline">\(n\)</span>-th roots of unity <span
+class="math inline">\(\zeta\)</span>.</p>
+<ul>
+<li><span class="math inline">\(F(\sqrt[n]{a}) / F\)</span> is cyclic
+for all <span class="math inline">\(a \in F\)</span>.</li>
+<li>Any cyclic extension is <span
+class="math inline">\(F(\sqrt[n]{a})\)</span> for some <span
+class="math inline">\(a \in F\)</span>.</li>
+<li><span class="math inline">\([F(\sqrt[n]{a}) \colon F] \divide
+n\)</span>.</li>
+<li>Define the <strong>Lagrange resolvent</strong> <span
+class="math inline">\((\alpha, \zeta) \in K\)</span> by <span
+class="math display">\[
+(\alpha, \zeta) = \sum_{k=0}^{n-1} \zeta^k \sigma^k (\alpha),
+\]</span> where <span class="math inline">\(\sigma \in \Gal(K /
+F)\)</span> and <span class="math inline">\(\alpha \in K\)</span>.</li>
+</ul>
 </div>
 ]]></content>
       <categories>
