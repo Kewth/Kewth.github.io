@@ -31,7 +31,7 @@
 <meta property="og:image" content="https://s1.ax1x.com/2020/10/12/0WNvPU.png">
 <meta property="og:image" content="https://kewth.github.io/images/ioihomework-3.png">
 <meta property="article:published_time" content="2020-10-20T08:43:36.000Z">
-<meta property="article:modified_time" content="2021-03-29T07:47:13.478Z">
+<meta property="article:modified_time" content="2022-07-08T04:15:21.002Z">
 <meta property="article:author" content="Kewth">
 <meta property="article:tag" content="集训队">
 <meta property="article:tag" content="题解">
@@ -97,7 +97,7 @@
         <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
         <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">75</span></a></li>
         <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">91</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">92</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -170,7 +170,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">91</span>
+          <span class="site-state-item-count">92</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -290,7 +290,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-03-29 15:47:13" itemprop="dateModified" datetime="2021-03-29T15:47:13+08:00">2021-03-29</time>
+        <time title="修改时间：2022-07-08 12:15:21" itemprop="dateModified" datetime="2022-07-08T12:15:21+08:00">2022-07-08</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -323,101 +323,230 @@
         <p>有生之年。</p>
 <hr />
 <h2 id="boys-and-girls">103. Boys and Girls</h2>
-<p>求一个长为 <span class="math inline">\(n\)</span> 的由 01 构成的环，满足恰有 <span class="math inline">\(x\)</span> 个点的两侧有 0 ，恰有 <span class="math inline">\(y\)</span> 个点的两侧有 1 。</p>
+<p>求一个长为 <span class="math inline">\(n\)</span> 的由 01
+构成的环，满足恰有 <span class="math inline">\(x\)</span> 个点的两侧有 0
+，恰有 <span class="math inline">\(y\)</span> 个点的两侧有 1 。</p>
 <p>时间复杂度：<span class="math inline">\(O(n)\)</span> 。</p>
 <details class="note primary"><summary><p>题解</p>
 </summary>
-<p>注意到每个点的两侧有三种情况：全是 0 ，全是 1 ，一边 0 一边 1 ，设上述三种情况的点的数量分别为 <span class="math inline">\(a\)</span>, <span class="math inline">\(b\)</span>, <span class="math inline">\(c\)</span> ，容易知道有 <span class="math inline">\(c = x + y - n\)</span>, <span class="math inline">\(a = x - c\)</span>, <span class="math inline">\(b = y - c\)</span> 。</p>
-<p>我们把距离恰为 <span class="math inline">\(2\)</span> 的点连边，得到一个新的环，准确来说，如果 <span class="math inline">\(n\)</span> 是奇数，得到的是一个长为 <span class="math inline">\(n\)</span> 的环，否则得到的是两个长为 <span class="math inline">\(dfrac{n}{2}\)</span> 的环。</p>
-<p>那么我们现在要做的就是在环上填 01 使得三种边的数量分别为 <span class="math inline">\(a, b, c\)</span> ，注意到 <span class="math inline">\(c\)</span> 必须是偶数，且 <span class="math inline">\(c\)</span> 为 <span class="math inline">\(0\)</span> 的时候必须有 <span class="math inline">\(ab = 0\)</span> 。假设只有一个环，就很容易构造一个解，两个环的话就把边集分成两个大小相等的部分，只要满足每个部分都合法即可。</p>
+<p>注意到每个点的两侧有三种情况：全是 0 ，全是 1 ，一边 0 一边 1
+，设上述三种情况的点的数量分别为 <span class="math inline">\(a\)</span>,
+<span class="math inline">\(b\)</span>, <span
+class="math inline">\(c\)</span> ，容易知道有 <span
+class="math inline">\(c = x + y - n\)</span>, <span
+class="math inline">\(a = x - c\)</span>, <span class="math inline">\(b
+= y - c\)</span> 。</p>
+<p>我们把距离恰为 <span class="math inline">\(2\)</span>
+的点连边，得到一个新的环，准确来说，如果 <span
+class="math inline">\(n\)</span> 是奇数，得到的是一个长为 <span
+class="math inline">\(n\)</span> 的环，否则得到的是两个长为 <span
+class="math inline">\(\dfrac{n}{2}\)</span> 的环。</p>
+<p>那么我们现在要做的就是在环上填 01 使得三种边的数量分别为 <span
+class="math inline">\(a, b, c\)</span> ，注意到 <span
+class="math inline">\(c\)</span> 必须是偶数，且 <span
+class="math inline">\(c\)</span> 为 <span
+class="math inline">\(0\)</span> 的时候必须有 <span
+class="math inline">\(ab = 0\)</span>
+。假设只有一个环，就很容易构造一个解，两个环的话就把边集分成两个大小相等的部分，只要满足每个部分都合法即可。</p>
 
 </details>
 <span id="more"></span>
 <hr />
 <h2 id="knapsack-cryptosystem">109. Knapsack Cryptosystem</h2>
 <p>Hellman-Knapsack Cryptosystem 这一密码系统的描述如下：</p>
-<p>A 的密钥由长为 <span class="math inline">\(n\)</span> 的正整数序列 <span class="math inline">\(a\)</span> 和两个互质的正整数 <span class="math inline">\(r, q\)</span> 组成，满足 <span class="math inline">\(\forall i, a_i &gt; \sum_{j=1}^{i-1} a_j\)</span> 且 <span class="math inline">\(q &gt; \sum_{i=1}^n a_i\)</span> 。</p>
-<p>A 的公钥是一个长为 <span class="math inline">\(n\)</span> 的正整数序列 <span class="math inline">\(b\)</span> ，其中 <span class="math inline">\(b_i = (a_i \cdot r) \bmod q\)</span> 。</p>
-<p>需要传输给 A 的信息是一个长为 <span class="math inline">\(n\)</span> 的 01 序列 <span class="math inline">\(z\)</span> ，加密方式是计算 <span class="math inline">\(s = \sum_{i=1} z_i b_i\)</span> ，然后将 <span class="math inline">\(s\)</span> 传输给 A 。</p>
-<p>（这样一来，仅知道公钥破译 <span class="math inline">\(z\)</span> 的难度远远比通过密钥计算 <span class="math inline">\(z\)</span> 的大）</p>
-<p>现在你窃取到了 <span class="math inline">\(q\)</span> 的值和 <span class="math inline">\(s \bmod q\)</span> 的值，求出 <span class="math inline">\(z\)</span> （公钥也是已知的）。</p>
-<p>时间复杂度：<span class="math inline">\(O(\sqrt[3]{q} \log q)\)</span> 。</p>
+<p>A 的密钥由长为 <span class="math inline">\(n\)</span> 的正整数序列
+<span class="math inline">\(a\)</span> 和两个互质的正整数 <span
+class="math inline">\(r, q\)</span> 组成，满足 <span
+class="math inline">\(\forall i, a_i &gt; \sum_{j=1}^{i-1} a_j\)</span>
+且 <span class="math inline">\(q &gt; \sum_{i=1}^n a_i\)</span> 。</p>
+<p>A 的公钥是一个长为 <span class="math inline">\(n\)</span>
+的正整数序列 <span class="math inline">\(b\)</span> ，其中 <span
+class="math inline">\(b_i = (a_i \cdot r) \bmod q\)</span> 。</p>
+<p>需要传输给 A 的信息是一个长为 <span class="math inline">\(n\)</span>
+的 01 序列 <span class="math inline">\(z\)</span> ，加密方式是计算 <span
+class="math inline">\(s = \sum_{i=1} z_i b_i\)</span> ，然后将 <span
+class="math inline">\(s\)</span> 传输给 A 。</p>
+<p>（这样一来，仅知道公钥破译 <span class="math inline">\(z\)</span>
+的难度远远比通过密钥计算 <span class="math inline">\(z\)</span>
+的大）</p>
+<p>现在你窃取到了 <span class="math inline">\(q\)</span> 的值和 <span
+class="math inline">\(s \bmod q\)</span> 的值，求出 <span
+class="math inline">\(z\)</span> （公钥也是已知的）。</p>
+<p>时间复杂度：<span class="math inline">\(O(\sqrt[3]{q} \log
+q)\)</span> 。</p>
 <details class="note primary"><summary><p>题解</p>
 </summary>
-<p>首先注意到 <span class="math inline">\(n \le \log_2 q\)</span> ，如果 <span class="math inline">\(n\)</span> 非常小，不难想到直接枚举 <span class="math inline">\(z\)</span> 然后加以验证，这样的复杂度是 <span class="math inline">\(O(2^n)\)</span> 的。</p>
-<p>上述做法很好加以优化，不难想到折半搜索，做到 <span class="math inline">\(O(n 2^{n/2})\)</span> 。</p>
-<p>但如果 <span class="math inline">\(n\)</span> 非常大呢？注意到 <span class="math inline">\(n\)</span> 越大对 <span class="math inline">\(a\)</span> 的限制就越强，具体来说，这个限制是 <span class="math inline">\(a_1 2^{n-1} &lt; q\)</span> ，当 <span class="math inline">\(n\)</span> 很大的时候，<span class="math inline">\(a_1\)</span> 的可能的取值会很少，不妨枚举 <span class="math inline">\(a_1\)</span> ，进而通过 <span class="math inline">\(a_1\)</span> 和 <span class="math inline">\(b_1\)</span> 的值确定 <span class="math inline">\(r\)</span> （并不能唯一确定，枚举所有可能的 <span class="math inline">\(r\)</span> 即可）。知道 <span class="math inline">\(r\)</span> 后就可以还原整个密钥，进而得到 <span class="math inline">\(z\)</span> 。</p>
-<p>得到 <span class="math inline">\(z\)</span> 的具体方法是，求出 <span class="math inline">\(t = (s \cdot r^{-1}) \bmod q)\)</span> ，那么 <span class="math inline">\(t = \sum_{i=1} z_i a_i\)</span> ，由于 <span class="math inline">\(a\)</span> 的性质特殊，可以直接确定 <span class="math inline">\(z\)</span> 。</p>
-<p>这一做法的复杂度是 <span class="math inline">\(O(\dfrac{q}{2^n} n)\)</span> 。</p>
-<p>综合两者，总复杂度是 <span class="math inline">\(O(\sqrt[3]q \log q)\)</span> 。</p>
+<p>首先注意到 <span class="math inline">\(n \le \log_2 q\)</span> ，如果
+<span class="math inline">\(n\)</span> 非常小，不难想到直接枚举 <span
+class="math inline">\(z\)</span> 然后加以验证，这样的复杂度是 <span
+class="math inline">\(O(2^n)\)</span> 的。</p>
+<p>上述做法很好加以优化，不难想到折半搜索，做到 <span
+class="math inline">\(O(n 2^{n/2})\)</span> 。</p>
+<p>但如果 <span class="math inline">\(n\)</span> 非常大呢？注意到 <span
+class="math inline">\(n\)</span> 越大对 <span
+class="math inline">\(a\)</span> 的限制就越强，具体来说，这个限制是
+<span class="math inline">\(a_1 2^{n-1} &lt; q\)</span> ，当 <span
+class="math inline">\(n\)</span> 很大的时候，<span
+class="math inline">\(a_1\)</span> 的可能的取值会很少，不妨枚举 <span
+class="math inline">\(a_1\)</span> ，进而通过 <span
+class="math inline">\(a_1\)</span> 和 <span
+class="math inline">\(b_1\)</span> 的值确定 <span
+class="math inline">\(r\)</span> （并不能唯一确定，枚举所有可能的 <span
+class="math inline">\(r\)</span> 即可）。知道 <span
+class="math inline">\(r\)</span> 后就可以还原整个密钥，进而得到 <span
+class="math inline">\(z\)</span> 。</p>
+<p>得到 <span class="math inline">\(z\)</span> 的具体方法是，求出 <span
+class="math inline">\(t = (s \cdot r^{-1}) \bmod q)\)</span> ，那么
+<span class="math inline">\(t = \sum_{i=1} z_i a_i\)</span> ，由于 <span
+class="math inline">\(a\)</span> 的性质特殊，可以直接确定 <span
+class="math inline">\(z\)</span> 。</p>
+<p>这一做法的复杂度是 <span class="math inline">\(O(\dfrac{q}{2^n}
+n)\)</span> 。</p>
+<p>综合两者，总复杂度是 <span class="math inline">\(O(\sqrt[3]q \log
+q)\)</span> 。</p>
 
 </details>
 <hr />
 <h2 id="heavy-chain-clusterization">110. Heavy Chain Clusterization</h2>
-<p>给定 <span class="math inline">\(n\)</span> 个长度至少为 <span class="math inline">\(k\)</span> 的串 <span class="math inline">\(s_i\)</span> ，要求将它们划分成若干集合，使得每个集合的串满足以下至少一个条件：</p>
+<p>给定 <span class="math inline">\(n\)</span> 个长度至少为 <span
+class="math inline">\(k\)</span> 的串 <span
+class="math inline">\(s_i\)</span>
+，要求将它们划分成若干集合，使得每个集合的串满足以下至少一个条件：</p>
 <ol type="1">
-<li>它们的最长公共前缀至少为 <span class="math inline">\(k\)</span> 。</li>
-<li>它们的最长公共后缀至少为 <span class="math inline">\(k\)</span> 。</li>
+<li>它们的最长公共前缀至少为 <span class="math inline">\(k\)</span>
+。</li>
+<li>它们的最长公共后缀至少为 <span class="math inline">\(k\)</span>
+。</li>
 </ol>
 <p>在此基础上，最小化划分的集合的数量。</p>
-<p>时间复杂度：<span class="math inline">\(O(n^2 + \sum_{i=1}^n |s_i|)\)</span> 。</p>
+<p>时间复杂度：<span class="math inline">\(O(n^2 + \sum_{i=1}^n
+|s_i|)\)</span> 。</p>
 <details class="note primary"><summary><p>题解</p>
 </summary>
-<p>每个 <span class="math inline">\(s_i\)</span> 可以抽象为一个二元组 <span class="math inline">\((x_i, y_i)\)</span> ，其中 <span class="math inline">\(x_i\)</span> 和 <span class="math inline">\(y_i\)</span> 分别表示 <span class="math inline">\(s_i\)</span> 长为 <span class="math inline">\(k\)</span> 的前缀和后缀。</p>
-<p>那么一个集合要满足的条件就是集合内二元组的 <span class="math inline">\(x\)</span> 均相同或 <span class="math inline">\(y\)</span> 均相同。</p>
-<p>进一步把二元组抽象为连接两点的边，那么形成一个有 <span class="math inline">\(n\)</span> 条边的二分图，要求对边集进行划分，每个边集要满足的条件即：<strong>该边集存在一个公共点</strong>。</p>
+<p>每个 <span class="math inline">\(s_i\)</span> 可以抽象为一个二元组
+<span class="math inline">\((x_i, y_i)\)</span> ，其中 <span
+class="math inline">\(x_i\)</span> 和 <span
+class="math inline">\(y_i\)</span> 分别表示 <span
+class="math inline">\(s_i\)</span> 长为 <span
+class="math inline">\(k\)</span> 的前缀和后缀。</p>
+<p>那么一个集合要满足的条件就是集合内二元组的 <span
+class="math inline">\(x\)</span> 均相同或 <span
+class="math inline">\(y\)</span> 均相同。</p>
+<p>进一步把二元组抽象为连接两点的边，那么形成一个有 <span
+class="math inline">\(n\)</span>
+条边的二分图，要求对边集进行划分，每个边集要满足的条件即：<strong>该边集存在一个公共点</strong>。</p>
 <p>那么实际上我们可以用公共点来代表该边集，那么最小的边集划分实际上就是最小的点覆盖。对二分图求最小点覆盖是容易的。</p>
 
 </details>
 <hr />
 <h2 id="list-of-primes">117. List of Primes</h2>
-<p>将所有质数组成的数集排序（以总和为第一关键字，数集内部排序后的字典序为第二关键字），然后依次写到纸上组成字符串，求该字符串 <span class="math inline">\([L, R]\)</span> 之间的子串。</p>
-<p>其中一个数集按如下方式书写：<code>[a1, a2, a3, ... an],</code> （每个逗号后面都有一个空格）。</p>
-<p>时间复杂度：<span class="math inline">\(O(X^2 + R - L)\)</span> ，其中 <span class="math inline">\(X\)</span> 是 <span class="math inline">\([1, R]\)</span> 内的子串涉及到的数集的和的最大值。</p>
+<p>将所有质数组成的数集排序（以总和为第一关键字，数集内部排序后的字典序为第二关键字），然后依次写到纸上组成字符串，求该字符串
+<span class="math inline">\([L, R]\)</span> 之间的子串。</p>
+<p>其中一个数集按如下方式书写：<code>[a1, a2, a3, ... an],</code>
+（每个逗号后面都有一个空格）。</p>
+<p>时间复杂度：<span class="math inline">\(O(X^2 + R - L)\)</span>
+，其中 <span class="math inline">\(X\)</span> 是 <span
+class="math inline">\([1, R]\)</span>
+内的子串涉及到的数集的和的最大值。</p>
 <details class="note primary"><summary><p>题解</p>
 </summary>
-<p>先 DP 预处理出 <span class="math inline">\(f_{i,j}\)</span> 表示由编号大于等于 <span class="math inline">\(i\)</span> 的质数组成的总和不超过 <span class="math inline">\(n\)</span> 的数集的数量。类似地处理 <span class="math inline">\(g_{i,j}\)</span> 表示这些数集表示的字符串的长度的和。</p>
-<p>然后就可以直接搜索所有数集，先枚举总和，再枚举字典序，根据 <span class="math inline">\(f, g\)</span> 我们可以时刻知道当前状态对应字符串的下标区间，如果该区间与 <span class="math inline">\([L, R]\)</span> 就剪枝。</p>
-<p>状态构成了一颗多叉有根树，而这个搜索方法类似于线段树的区间操作，那么搜索到的无用节点的数量不超过 <strong>搜索树深度 乘 搜索树节点度数</strong> ，两者都不超过 <span class="math inline">\(X\)</span> 内的质数数量。</p>
-<p>ps: <span class="math inline">\(R = 10^{18}\)</span> 时 <span class="math inline">\(X = 2096\)</span> 。</p>
+<p>先 DP 预处理出 <span class="math inline">\(f_{i,j}\)</span>
+表示由编号大于等于 <span class="math inline">\(i\)</span>
+的质数组成的总和不超过 <span class="math inline">\(n\)</span>
+的数集的数量。类似地处理 <span class="math inline">\(g_{i,j}\)</span>
+表示这些数集表示的字符串的长度的和。</p>
+<p>然后就可以直接搜索所有数集，先枚举总和，再枚举字典序，根据 <span
+class="math inline">\(f, g\)</span>
+我们可以时刻知道当前状态对应字符串的下标区间，如果该区间与 <span
+class="math inline">\([L, R]\)</span> 就剪枝。</p>
+<p>状态构成了一颗多叉有根树，而这个搜索方法类似于线段树的区间操作，那么搜索到的无用节点的数量不超过
+<strong>搜索树深度 乘 搜索树节点度数</strong> ，两者都不超过 <span
+class="math inline">\(X\)</span> 内的质数数量。</p>
+<p>ps: <span class="math inline">\(R = 10^{18}\)</span> 时 <span
+class="math inline">\(X = 2096\)</span> 。</p>
 
 </details>
 <hr />
 <h2 id="binary-vs-decimal">106. Binary vs Decimal</h2>
-<p>求第 <span class="math inline">\(n\)</span> 小的满足十进制表示是二进制表示的后缀的正整数。</p>
-<p>时间复杂度：<span class="math inline">\(O(L f(L) \dfrac{L}{w})\)</span> ，其中 <span class="math inline">\(L\)</span> 是答案的十进制表示的位数，<span class="math inline">\(f(L)\)</span> 是长度为 <span class="math inline">\(L\)</span> 的合法的数的数量。</p>
-<p>ps: <span class="math inline">\(f(L)\)</span> 几乎是线性的，在假定 <span class="math inline">\(f(L) = O(L)\)</span> 的前提下，上述复杂度即 <span class="math inline">\(O(\dfrac{n^{1.5}}{w})\)</span> 。</p>
+<p>求第 <span class="math inline">\(n\)</span>
+小的满足十进制表示是二进制表示的后缀的正整数。</p>
+<p>时间复杂度：<span class="math inline">\(O(L f(L)
+\dfrac{L}{w})\)</span> ，其中 <span class="math inline">\(L\)</span>
+是答案的十进制表示的位数，<span class="math inline">\(f(L)\)</span>
+是长度为 <span class="math inline">\(L\)</span> 的合法的数的数量。</p>
+<p>ps: <span class="math inline">\(f(L)\)</span> 几乎是线性的，在假定
+<span class="math inline">\(f(L) = O(L)\)</span> 的前提下，上述复杂度即
+<span class="math inline">\(O(\dfrac{n^{1.5}}{w})\)</span> 。</p>
 <details class="note primary"><summary><p>题解</p>
 </summary>
-<p>称一个 <span class="math inline">\(01\)</span> 串 <span class="math inline">\(s\)</span> 是合法的，当且仅当 <span class="math inline">\(s\)</span> 是其代表的十进制数的二进制表示的后缀。</p>
-<p>注意到 <span class="math inline">\(s\)</span> 合法的一个必要条件是：<span class="math inline">\(s_{2 ... |s|}\)</span> 是合法的。</p>
-<p>那么我们可以枚举长度 <span class="math inline">\(l\)</span> ，考虑求出所有 <span class="math inline">\(|s| = l\)</span> 的合法 <span class="math inline">\(s\)</span> ，求法就是从每个长为 <span class="math inline">\(l-1\)</span> 的合法串前添加 0 和 1 分别判断是否合法。注意到这个过程是可以从小到大遍历所有合法正整数的，遍历到第 <span class="math inline">\(n\)</span> 个的时候退出即可。</p>
-<p>复杂度分析略，至于 <span class="math inline">\(f\)</span> 的增长速度究竟如何还有待进一步研究，值得一提的是 <span class="math inline">\(f(L)\)</span> 并不是随 <span class="math inline">\(L\)</span> 单调递增的，但 <span class="math inline">\(L \le 1000\)</span> 时总有 <span class="math inline">\(f(L) &lt; 7.2 L\)</span> 。</p>
+<p>称一个 <span class="math inline">\(01\)</span> 串 <span
+class="math inline">\(s\)</span> 是合法的，当且仅当 <span
+class="math inline">\(s\)</span>
+是其代表的十进制数的二进制表示的后缀。</p>
+<p>注意到 <span class="math inline">\(s\)</span>
+合法的一个必要条件是：<span class="math inline">\(s_{2 ... |s|}\)</span>
+是合法的。</p>
+<p>那么我们可以枚举长度 <span class="math inline">\(l\)</span>
+，考虑求出所有 <span class="math inline">\(|s| = l\)</span> 的合法 <span
+class="math inline">\(s\)</span> ，求法就是从每个长为 <span
+class="math inline">\(l-1\)</span> 的合法串前添加 0 和 1
+分别判断是否合法。注意到这个过程是可以从小到大遍历所有合法正整数的，遍历到第
+<span class="math inline">\(n\)</span> 个的时候退出即可。</p>
+<p>复杂度分析略，至于 <span class="math inline">\(f\)</span>
+的增长速度究竟如何还有待进一步研究，值得一提的是 <span
+class="math inline">\(f(L)\)</span> 并不是随 <span
+class="math inline">\(L\)</span> 单调递增的，但 <span
+class="math inline">\(L \le 1000\)</span> 时总有 <span
+class="math inline">\(f(L) &lt; 7.2 L\)</span> 。</p>
 
 </details>
 <hr />
 <h2 id="ice-igloos">175. Ice Igloos</h2>
-<p>给定若干圆心在整点且半径小于 1 的圆。<span class="math inline">\(q\)</span> 次询问，每次询问一个端点为整点的线段与多少圆有交点。保证任意两个圆心的切比雪夫距离不超过 <span class="math inline">\(W\)</span> 且没有同心圆。</p>
+<p>给定若干圆心在整点且半径小于 1 的圆。<span
+class="math inline">\(q\)</span>
+次询问，每次询问一个端点为整点的线段与多少圆有交点。保证任意两个圆心的切比雪夫距离不超过
+<span class="math inline">\(W\)</span> 且没有同心圆。</p>
 <p>时间复杂度：<span class="math inline">\(O(W^2 + qW)\)</span> 。</p>
 <details class="note primary"><summary><p>题解</p>
 </summary>
-<p>事实上，对于一条长为 <span class="math inline">\(l\)</span> 的线段，与其距离小于 <span class="math inline">\(1\)</span> 的整点的数量是 <span class="math inline">\(O(l)\)</span> 的，枚举所有小于 <span class="math inline">\(1\)</span> 的整点即可。</p>
-<p>具体的，先枚举横坐标 <span class="math inline">\(x\)</span> ，然后可以计算出纵坐标 <span class="math inline">\(y\)</span> 的范围，再枚举范围内的纵坐标即可。特别处理线段平行于 y 轴的情况即可。</p>
+<p>事实上，对于一条长为 <span class="math inline">\(l\)</span>
+的线段，与其距离小于 <span class="math inline">\(1\)</span>
+的整点的数量是 <span class="math inline">\(O(l)\)</span>
+的，枚举所有小于 <span class="math inline">\(1\)</span> 的整点即可。</p>
+<p>具体的，先枚举横坐标 <span class="math inline">\(x\)</span>
+，然后可以计算出纵坐标 <span class="math inline">\(y\)</span>
+的范围，再枚举范围内的纵坐标即可。特别处理线段平行于 y
+轴的情况即可。</p>
 
 </details>
 <hr />
 <h2 id="outer-space-invaders">177. Outer space invaders</h2>
-<p>对于一个非负整数数列给定 <span class="math inline">\(n\)</span> 个限制，每个限制形如要求第 <span class="math inline">\(l\)</span> 项到第 <span class="math inline">\(r\)</span> 项必须存在不小于 <span class="math inline">\(k\)</span> 的值。求满足所有限制的前提下，数列的各项和的最小值。</p>
+<p>对于一个非负整数数列给定 <span class="math inline">\(n\)</span>
+个限制，每个限制形如要求第 <span class="math inline">\(l\)</span> 项到第
+<span class="math inline">\(r\)</span> 项必须存在不小于 <span
+class="math inline">\(k\)</span>
+的值。求满足所有限制的前提下，数列的各项和的最小值。</p>
 <p>时间复杂度：<span class="math inline">\(O(n^3)\)</span> 。</p>
 <details class="note primary"><summary><p>题解</p>
 </summary>
-<p>区间 DP ，设 <span class="math inline">\(f_{L, R}\)</span> 表示仅考虑 <span class="math inline">\(L \le l \le r \le R\)</span> 的限制，数列第 <span class="math inline">\(L\)</span> 到 <span class="math inline">\(R\)</span> 项的和的最小值。设这些限制的 <span class="math inline">\(k\)</span> 的最大值为 <span class="math inline">\(x\)</span> ，那么至少要有一个位置填 <span class="math inline">\(x\)</span> ，转移枚举填 <span class="math inline">\(x\)</span> 的位置即可。</p>
-<p>求 <span class="math inline">\(x\)</span> 只需要通过差分预处理 <span class="math inline">\(m_{L, R}\)</span> 表示范围内限制的 <span class="math inline">\(k\)</span> 的最大值。</p>
+<p>区间 DP ，设 <span class="math inline">\(f_{L, R}\)</span> 表示仅考虑
+<span class="math inline">\(L \le l \le r \le R\)</span> 的限制，数列第
+<span class="math inline">\(L\)</span> 到 <span
+class="math inline">\(R\)</span> 项的和的最小值。设这些限制的 <span
+class="math inline">\(k\)</span> 的最大值为 <span
+class="math inline">\(x\)</span> ，那么至少要有一个位置填 <span
+class="math inline">\(x\)</span> ，转移枚举填 <span
+class="math inline">\(x\)</span> 的位置即可。</p>
+<p>求 <span class="math inline">\(x\)</span> 只需要通过差分预处理 <span
+class="math inline">\(m_{L, R}\)</span> 表示范围内限制的 <span
+class="math inline">\(k\)</span> 的最大值。</p>
 
 </details>
 <hr />
 <h2 id="triangles">239. Triangles</h2>
-<p>给定一个形如下面这样的图，求三角形的数量。图的行数和列数分别为 <span class="math inline">\(n\)</span>, <span class="math inline">\(m\)</span> 。</p>
+<p>给定一个形如下面这样的图，求三角形的数量。图的行数和列数分别为 <span
+class="math inline">\(n\)</span>, <span class="math inline">\(m\)</span>
+。</p>
 <p><img src="https://s1.ax1x.com/2020/10/12/0WNvPU.png" /></p>
 <p>时间复杂度：<span class="math inline">\(O(n m \log m)\)</span> 。</p>
 <details class="note primary"><summary><p>题解</p>
@@ -428,127 +557,263 @@
 </details>
 <hr />
 <h2 id="string-theory">170. String Theory</h2>
-<p>定义一个长为 <span class="math inline">\(n\)</span> 的正整数序列 <span class="math inline">\(a\)</span> 是 <span class="math inline">\(k\)</span> 引用的，当且仅当：</p>
+<p>定义一个长为 <span class="math inline">\(n\)</span> 的正整数序列
+<span class="math inline">\(a\)</span> 是 <span
+class="math inline">\(k\)</span> 引用的，当且仅当：</p>
 <ul>
-<li>若 <span class="math inline">\(k=1\)</span> ，则 <span class="math inline">\(n = 2, a_1 = a_2 = 1\)</span> 。</li>
-<li>若 <span class="math inline">\(k&gt;1\)</span> ，则 <span class="math inline">\(a_1 = a_n = k\)</span> 且 <span class="math inline">\(a_{2...n-1}\)</span> 由若干 <span class="math inline">\(k-1\)</span> 引用的序列拼接而成。</li>
+<li>若 <span class="math inline">\(k=1\)</span> ，则 <span
+class="math inline">\(n = 2, a_1 = a_2 = 1\)</span> 。</li>
+<li>若 <span class="math inline">\(k&gt;1\)</span> ，则 <span
+class="math inline">\(a_1 = a_n = k\)</span> 且 <span
+class="math inline">\(a_{2...n-1}\)</span> 由若干 <span
+class="math inline">\(k-1\)</span> 引用的序列拼接而成。</li>
 </ul>
-<p>给定一个序列 <span class="math inline">\(b\)</span> ，每次操作可以将 <span class="math inline">\(b\)</span> 的一项总和不变的若干项，要求操作后 <span class="math inline">\(b\)</span> 是一个 <span class="math inline">\(k\)</span> 引用序列，求最大的 <span class="math inline">\(k\)</span> 。</p>
+<p>给定一个序列 <span class="math inline">\(b\)</span> ，每次操作可以将
+<span class="math inline">\(b\)</span>
+的一项总和不变的若干项，要求操作后 <span
+class="math inline">\(b\)</span> 是一个 <span
+class="math inline">\(k\)</span> 引用序列，求最大的 <span
+class="math inline">\(k\)</span> 。</p>
 <p>时间复杂度：<span class="math inline">\(O(\sum b_i)\)</span> 。</p>
 <details class="note primary"><summary><p>题解</p>
 </summary>
-<p>序列 <span class="math inline">\(a\)</span> 是 <span class="math inline">\(k\)</span> 引用的一个必要条件是，前面 <span class="math inline">\(k\)</span> 项是 <span class="math inline">\(k\)</span> 到 <span class="math inline">\(1\)</span> ，后面 <span class="math inline">\(k\)</span> 项是 <span class="math inline">\(1\)</span> 到 <span class="math inline">\(k\)</span> 。而对于中间的项，不妨全部划分成 <span class="math inline">\(1\)</span> ，是不会影响合法性的。</p>
-<p>这样一来可以知道，<span class="math inline">\(b\)</span> 可以操作为一个 <span class="math inline">\(k (k &gt; 1)\)</span> 引用序列当且仅当可以把前面 <span class="math inline">\(k\)</span> 项操作为 <span class="math inline">\(k\)</span> 到 <span class="math inline">\(1\)</span> ，后面 <span class="math inline">\(k\)</span> 项操作为 <span class="math inline">\(1\)</span> 到 <span class="math inline">\(k\)</span> ，中间的部分和为偶数。对于 <span class="math inline">\(k=1\)</span> 的情况需要特判。</p>
-<p>由于 <span class="math inline">\(k\)</span> 的上界是 <span class="math inline">\(O(\sqrt{\sum b_i})\)</span> 的，那直接枚举 <span class="math inline">\(k\)</span> 并 <span class="math inline">\(O(k)\)</span> 判断的复杂度就是 <span class="math inline">\(O(\sum b_i)\)</span> 的。</p>
+<p>序列 <span class="math inline">\(a\)</span> 是 <span
+class="math inline">\(k\)</span> 引用的一个必要条件是，前面 <span
+class="math inline">\(k\)</span> 项是 <span
+class="math inline">\(k\)</span> 到 <span
+class="math inline">\(1\)</span> ，后面 <span
+class="math inline">\(k\)</span> 项是 <span
+class="math inline">\(1\)</span> 到 <span
+class="math inline">\(k\)</span> 。而对于中间的项，不妨全部划分成 <span
+class="math inline">\(1\)</span> ，是不会影响合法性的。</p>
+<p>这样一来可以知道，<span class="math inline">\(b\)</span>
+可以操作为一个 <span class="math inline">\(k (k &gt; 1)\)</span>
+引用序列当且仅当可以把前面 <span class="math inline">\(k\)</span>
+项操作为 <span class="math inline">\(k\)</span> 到 <span
+class="math inline">\(1\)</span> ，后面 <span
+class="math inline">\(k\)</span> 项操作为 <span
+class="math inline">\(1\)</span> 到 <span
+class="math inline">\(k\)</span> ，中间的部分和为偶数。对于 <span
+class="math inline">\(k=1\)</span> 的情况需要特判。</p>
+<p>由于 <span class="math inline">\(k\)</span> 的上界是 <span
+class="math inline">\(O(\sqrt{\sum b_i})\)</span> 的，那直接枚举 <span
+class="math inline">\(k\)</span> 并 <span
+class="math inline">\(O(k)\)</span> 判断的复杂度就是 <span
+class="math inline">\(O(\sum b_i)\)</span> 的。</p>
 
 </details>
 <hr />
 <h2 id="hack-protection">183. Hack Protection</h2>
-<p>给定一个长为 <span class="math inline">\(n\)</span> 的序列 <span class="math inline">\(a\)</span> 求有多少区间满足按位异或等于按位与。</p>
-<p>时间复杂度：<span class="math inline">\(O(n \log n \log a_i)\)</span> 。</p>
+<p>给定一个长为 <span class="math inline">\(n\)</span> 的序列 <span
+class="math inline">\(a\)</span>
+求有多少区间满足按位异或等于按位与。</p>
+<p>时间复杂度：<span class="math inline">\(O(n \log n \log a_i)\)</span>
+。</p>
 <details class="note primary"><summary><p>题解</p>
 </summary>
-<p>考虑对于固定的区间右端点 <span class="math inline">\(r\)</span> 统计答案，注意到对于任意一个数位，均存在一个分界点 <span class="math inline">\(p\)</span> 满足：</p>
+<p>考虑对于固定的区间右端点 <span class="math inline">\(r\)</span>
+统计答案，注意到对于任意一个数位，均存在一个分界点 <span
+class="math inline">\(p\)</span> 满足：</p>
 <ul>
-<li>左端点落在 <span class="math inline">\([1, p]\)</span> 内时区间按位与为 <span class="math inline">\(0\)</span> 。</li>
-<li>左端点落在 <span class="math inline">\([p + 1, r]\)</span> 内时区间按位与为 <span class="math inline">\(1\)</span> 。</li>
+<li>左端点落在 <span class="math inline">\([1, p]\)</span>
+内时区间按位与为 <span class="math inline">\(0\)</span> 。</li>
+<li>左端点落在 <span class="math inline">\([p + 1, r]\)</span>
+内时区间按位与为 <span class="math inline">\(1\)</span> 。</li>
 </ul>
-<p>由于每个数位都有一个分界点，假设一共有 <span class="math inline">\(k\)</span> 个数位，那么就可以把 <span class="math inline">\([1, r]\)</span> 划分成至多 <span class="math inline">\(k + 1\)</span> 个区间，满足同一区间内左端点落在任何位置按位与都是相同的。</p>
-<p>那么维护每个分界点，然后在每个区间内查询按位异或即可。可以记录异或前缀和，然后对于每个值都开一个 <code>std::vector</code> 记录下标，查询的时候二分。</p>
+<p>由于每个数位都有一个分界点，假设一共有 <span
+class="math inline">\(k\)</span> 个数位，那么就可以把 <span
+class="math inline">\([1, r]\)</span> 划分成至多 <span
+class="math inline">\(k + 1\)</span>
+个区间，满足同一区间内左端点落在任何位置按位与都是相同的。</p>
+<p>那么维护每个分界点，然后在每个区间内查询按位异或即可。可以记录异或前缀和，然后对于每个值都开一个
+<code>std::vector</code> 记录下标，查询的时候二分。</p>
 
 </details>
 <hr />
 <h2 id="sensor-network">210. Sensor Network</h2>
-<p>在平面上给定 <span class="math inline">\(n\)</span> 个点，求一个最大的点集使得任意两个点的距离不超过 <span class="math inline">\(d\)</span> 。</p>
+<p>在平面上给定 <span class="math inline">\(n\)</span>
+个点，求一个最大的点集使得任意两个点的距离不超过 <span
+class="math inline">\(d\)</span> 。</p>
 <p>时间复杂度：<span class="math inline">\(O(n^5)\)</span> 。</p>
 <details class="note primary"><summary><p>题解</p>
 </summary>
-<p>假设固定了点集中距离最远的两个点，它们的距离为 <span class="math inline">\(r\)</span> ，那么其他可以选的点必须离两个点的距离都不超过 <span class="math inline">\(r\)</span> ，容易发现可选的区域构成一个纺锤形，进一步观察可以发现，把该纺锤形平分为 A 和 B 两个区域，那么同一区域内的任意两点距离都不超过 <span class="math inline">\(r\)</span> （如下图所示）。</p>
+<p>假设固定了点集中距离最远的两个点，它们的距离为 <span
+class="math inline">\(r\)</span>
+，那么其他可以选的点必须离两个点的距离都不超过 <span
+class="math inline">\(r\)</span>
+，容易发现可选的区域构成一个纺锤形，进一步观察可以发现，把该纺锤形平分为
+A 和 B 两个区域，那么同一区域内的任意两点距离都不超过 <span
+class="math inline">\(r\)</span> （如下图所示）。</p>
 <p><img src="/images/ioihomework-3.png" /></p>
-<p>那么，如果在纺锤形内把距离超过 <span class="math inline">\(r\)</span> 的两点连边，会构成二分图，而要求的点集事实上就要求是独立集，二分图最大独立集是容易的。</p>
+<p>那么，如果在纺锤形内把距离超过 <span class="math inline">\(r\)</span>
+的两点连边，会构成二分图，而要求的点集事实上就要求是独立集，二分图最大独立集是容易的。</p>
 <p>这个复杂度上界的分析很大但实际上跑的往往不满，不知道有没有更好的复杂度分析。</p>
 
 </details>
 <hr />
 <h2 id="integral-polygons">285. Integral Polygons</h2>
-<p>给定一个由 <span class="math inline">\(n\)</span> 个整点构成的凸多边形，求有多少条连接两个顶点的线段把多边形切割为两个面积均为正整数的部分。</p>
+<p>给定一个由 <span class="math inline">\(n\)</span>
+个整点构成的凸多边形，求有多少条连接两个顶点的线段把多边形切割为两个面积均为正整数的部分。</p>
 <p>时间复杂度：<span class="math inline">\(O(n)\)</span> 。</p>
 <details class="note primary"><summary><p>题解</p>
 </summary>
 <p>首先存在答案的一个必要条件是整个多边形面积为整数。</p>
-<p>由于我们只需要关注面积两倍的奇偶性，不难发现每个点的横纵坐标也只需要关注奇偶性。定义一条连接 <span class="math inline">\((x_1, y_1)\)</span> 和 <span class="math inline">\((x_2, y_2)\)</span> 的线段的权值为 <span class="math inline">\(x_1 y_2 + x_2 y_1\)</span> ，那么一个多边形的面积两倍的奇偶性就是边权和的奇偶性。</p>
-<p>那么一条连接 <span class="math inline">\((x_1, y_1)\)</span> 和 <span class="math inline">\((x_2, y_2)\)</span> 的线段是合法的当且仅当</p>
+<p>由于我们只需要关注面积两倍的奇偶性，不难发现每个点的横纵坐标也只需要关注奇偶性。定义一条连接
+<span class="math inline">\((x_1, y_1)\)</span> 和 <span
+class="math inline">\((x_2, y_2)\)</span> 的线段的权值为 <span
+class="math inline">\(x_1 y_2 + x_2 y_1\)</span>
+，那么一个多边形的面积两倍的奇偶性就是边权和的奇偶性。</p>
+<p>那么一条连接 <span class="math inline">\((x_1, y_1)\)</span> 和 <span
+class="math inline">\((x_2, y_2)\)</span> 的线段是合法的当且仅当</p>
 <p><span class="math display">\[
 (p_1 + p_2 + x_1 y_2 + x_2 y_1) \bmod 2 = 0
 \]</span></p>
-<p>其中 <span class="math inline">\(p_1\)</span> 和 <span class="math inline">\(p_2\)</span> 分别是两个点的边权前缀和。我们只需要关注每个点的 <span class="math inline">\(p, x, y\)</span> 在模 <span class="math inline">\(2\)</span> 意义下的值，一共有 <span class="math inline">\(2^3\)</span> 种情况，记录每种情况的点的数量即可。</p>
+<p>其中 <span class="math inline">\(p_1\)</span> 和 <span
+class="math inline">\(p_2\)</span>
+分别是两个点的边权前缀和。我们只需要关注每个点的 <span
+class="math inline">\(p, x, y\)</span> 在模 <span
+class="math inline">\(2\)</span> 意义下的值，一共有 <span
+class="math inline">\(2^3\)</span>
+种情况，记录每种情况的点的数量即可。</p>
 
 </details>
 <hr />
 <h2 id="binary-code">291. Binary Code</h2>
-<p>有 <span class="math inline">\(n\)</span> 个 01 串，每个串 <span class="math inline">\(s_i\)</span> 至多有一个位置未知。确定未知部分的字符，使得任意两个串相互不是前缀。</p>
+<p>有 <span class="math inline">\(n\)</span> 个 01 串，每个串 <span
+class="math inline">\(s_i\)</span>
+至多有一个位置未知。确定未知部分的字符，使得任意两个串相互不是前缀。</p>
 <p>时间复杂度：<span class="math inline">\(O(\sum |s_i|)\)</span> 。</p>
 <details class="note primary"><summary><p>题解</p>
 </summary>
-<p>由于每个串有两种选择，不难发现该问题可以规约到 2-SAT 问题的模型。其中如果两个串有前后缀关系，那么它们代表的变量就是相互矛盾的。</p>
-<p>但是不难发现矛盾的数量是 <span class="math inline">\(O(n^2)\)</span> 的，因此需要优化建图，把所有串扔到 Trie 上，串之间的前缀关系可以用一棵树描述，前缀关系在树上等价于祖先关系，也就是说两个变量有矛盾当且仅当它们在该树上有祖先关系。在树上优化连边，建图跑 2-SAT 即可。</p>
+<p>由于每个串有两种选择，不难发现该问题可以规约到 2-SAT
+问题的模型。其中如果两个串有前后缀关系，那么它们代表的变量就是相互矛盾的。</p>
+<p>但是不难发现矛盾的数量是 <span class="math inline">\(O(n^2)\)</span>
+的，因此需要优化建图，把所有串扔到 Trie
+上，串之间的前缀关系可以用一棵树描述，前缀关系在树上等价于祖先关系，也就是说两个变量有矛盾当且仅当它们在该树上有祖先关系。在树上优化连边，建图跑
+2-SAT 即可。</p>
 
 </details>
 <hr />
 <h2 id="escape">207. Escape</h2>
-<p>给定一棵 <span class="math inline">\(n\)</span> 个点的树，点有点权。初始时能量为 <span class="math inline">\(0\)</span> ，从点 <span class="math inline">\(s\)</span> 开始游走，首次到达一个点会获得该点点权的能量（可能为负），求在保证能量始终非负的前提下是否能到达点 <span class="math inline">\(t\)</span> 。</p>
+<p>给定一棵 <span class="math inline">\(n\)</span>
+个点的树，点有点权。初始时能量为 <span class="math inline">\(0\)</span>
+，从点 <span class="math inline">\(s\)</span>
+开始游走，首次到达一个点会获得该点点权的能量（可能为负），求在保证能量始终非负的前提下是否能到达点
+<span class="math inline">\(t\)</span> 。</p>
 <p>时间复杂度：<span class="math inline">\(O(n \log n)\)</span> 。</p>
 <details class="note primary"><summary><p>题解</p>
 </summary>
 <h3 id="链">链</h3>
 <p>考虑对于树上的一条链，我们该如何处理它。</p>
-<p>首先，相邻的非负权值点可以合并，相邻的负权值点可以合并。这是显而易见的。因此接下来假设链上的点权的符号是交替的。设第 <span class="math inline">\(i\)</span> 个点的权值为 <span class="math inline">\(a_i\)</span> ，不妨假设有偶数个点且 <span class="math inline">\(a_1 \le 0\)</span> 。</p>
-<p>若 <span class="math inline">\(|a_2| &lt; |a_1|\)</span> ，那么到达前两个点的时候能量会减少，因此如果要经过第一个点，就必然要经过第三个点。据此我们可以将 <span class="math inline">\(a_1, a_2, a_3\)</span> 三个点合并。因此接下来可以假设</p>
+<p>首先，相邻的非负权值点可以合并，相邻的负权值点可以合并。这是显而易见的。因此接下来假设链上的点权的符号是交替的。设第
+<span class="math inline">\(i\)</span> 个点的权值为 <span
+class="math inline">\(a_i\)</span> ，不妨假设有偶数个点且 <span
+class="math inline">\(a_1 \le 0\)</span> 。</p>
+<p>若 <span class="math inline">\(|a_2| &lt; |a_1|\)</span>
+，那么到达前两个点的时候能量会减少，因此如果要经过第一个点，就必然要经过第三个点。据此我们可以将
+<span class="math inline">\(a_1, a_2, a_3\)</span>
+三个点合并。因此接下来可以假设</p>
 <p><span class="math display">\[
 \forall i \ge 1, |a_{2i-1}| \le |a_{2i}|
 \]</span></p>
-<p>若 <span class="math inline">\(|a_2| \ge |a_3|\)</span> ，那么到达第二个点的时候，可以直接前往第四个点，这样一定不劣。据此我们可以将 <span class="math inline">\(a_2, a_3, a_4\)</span> 三个点合并。因此我们可以讲 <span class="math inline">\(a\)</span> 转换为绝对值单调递增的形式。</p>
+<p>若 <span class="math inline">\(|a_2| \ge |a_3|\)</span>
+，那么到达第二个点的时候，可以直接前往第四个点，这样一定不劣。据此我们可以将
+<span class="math inline">\(a_2, a_3, a_4\)</span>
+三个点合并。因此我们可以讲 <span class="math inline">\(a\)</span>
+转换为绝对值单调递增的形式。</p>
 <h3 id="树">树</h3>
 <p>事实上，对于一棵子树，同样可以转换为一条链。</p>
-<p>对于节点 <span class="math inline">\(u\)</span> 的子树，首先将 <span class="math inline">\(u\)</span> 个每个儿子的子树转换为一条链，然后不难想到可以把这些链排序重组为一条新的链。具体的，我们将链上相邻两个点 <span class="math inline">\(a_{2i-1}\)</span> 和 <span class="math inline">\(a_{2i}\)</span> 看做一个整体，然后按 <span class="math inline">\(|a_{2i-1}|\)</span> 排序组成一条新的链。</p>
-<p>但是这样并不能保证 <span class="math inline">\(|a_i|\)</span> 单调递增，但是没关系，只需要让每条链保证：</p>
+<p>对于节点 <span class="math inline">\(u\)</span> 的子树，首先将 <span
+class="math inline">\(u\)</span>
+个每个儿子的子树转换为一条链，然后不难想到可以把这些链排序重组为一条新的链。具体的，我们将链上相邻两个点
+<span class="math inline">\(a_{2i-1}\)</span> 和 <span
+class="math inline">\(a_{2i}\)</span> 看做一个整体，然后按 <span
+class="math inline">\(|a_{2i-1}|\)</span> 排序组成一条新的链。</p>
+<p>但是这样并不能保证 <span class="math inline">\(|a_i|\)</span>
+单调递增，但是没关系，只需要让每条链保证：</p>
 <ul>
-<li><span class="math inline">\(\forall i \ge 1, a_{2i-1} \le 0 \le a_{2i}\)</span></li>
-<li><span class="math inline">\(\forall i \ge 1, |a_{2i-1}| \le |a_{2i}|\)</span></li>
-<li><span class="math inline">\(\forall i \ge 1, |a_{2i-1}| \le |a_{2i+1}|\)</span></li>
+<li><span class="math inline">\(\forall i \ge 1, a_{2i-1} \le 0 \le
+a_{2i}\)</span></li>
+<li><span class="math inline">\(\forall i \ge 1, |a_{2i-1}| \le
+|a_{2i}|\)</span></li>
+<li><span class="math inline">\(\forall i \ge 1, |a_{2i-1}| \le
+|a_{2i+1}|\)</span></li>
 </ul>
 <p>称这样的链为合法链，容易发现多条合法链排序重组仍是合法链。</p>
-<p>接下来，需要在一条合法链的开头加上 <span class="math inline">\(u\)</span> 节点本身（事实上为了保证偶数长度还需要加一个零权点），我们按照“链”部分的讨论使得新链合法即可。</p>
+<p>接下来，需要在一条合法链的开头加上 <span
+class="math inline">\(u\)</span>
+节点本身（事实上为了保证偶数长度还需要加一个零权点），我们按照“链”部分的讨论使得新链合法即可。</p>
 <h3 id="原问题">原问题</h3>
-<p>我们可以以 <span class="math inline">\(s\)</span> 为根把树转换成一条合法链，但是 <span class="math inline">\(t\)</span> 可能并不会出现在链上，这是因为，不是每个子树都能成功转换为合法链，对于这些子树需要删掉，而 <span class="math inline">\(t\)</span> 可能恰好在这样的子树中。</p>
-<p>一个简单的解决方法是建一个新点连向 <span class="math inline">\(t\)</span> ，该点的权值为 <span class="math inline">\(W\)</span> ，<span class="math inline">\(W\)</span> 是一个足够大的正值使得问题可以转换为：判断是否能够使得能量不小于 <span class="math inline">\(W\)</span> 。这样一来就不需要关注终点位置了。</p>
-<p>容易发现合法链实际对应一个可并堆的数据结构，因此总复杂度可以做到 <span class="math inline">\(O(n \log n)\)</span> 。</p>
+<p>我们可以以 <span class="math inline">\(s\)</span>
+为根把树转换成一条合法链，但是 <span class="math inline">\(t\)</span>
+可能并不会出现在链上，这是因为，不是每个子树都能成功转换为合法链，对于这些子树需要删掉，而
+<span class="math inline">\(t\)</span> 可能恰好在这样的子树中。</p>
+<p>一个简单的解决方法是建一个新点连向 <span
+class="math inline">\(t\)</span> ，该点的权值为 <span
+class="math inline">\(W\)</span> ，<span
+class="math inline">\(W\)</span>
+是一个足够大的正值使得问题可以转换为：判断是否能够使得能量不小于 <span
+class="math inline">\(W\)</span> 。这样一来就不需要关注终点位置了。</p>
+<p>容易发现合法链实际对应一个可并堆的数据结构，因此总复杂度可以做到
+<span class="math inline">\(O(n \log n)\)</span> 。</p>
 
 </details>
 <hr />
 <h2 id="jump">143. Jump</h2>
-<p>有一个长度为 <span class="math inline">\(n\)</span> （<span class="math inline">\(n\)</span> 为偶数）的 01 串 <span class="math inline">\(s\)</span> ，每次询问可以给出一个长度为 <span class="math inline">\(n\)</span> 的 01 串 <span class="math inline">\(q\)</span> ，设 <span class="math inline">\(t\)</span> 为 <span class="math inline">\(s \oplus q\)</span> 的 <span class="math inline">\(1\)</span> 的数量，询问的结果为 <span class="math inline">\(t [t = \dfrac{n}{2} \lor t = n]\)</span> 。</p>
+<p>有一个长度为 <span class="math inline">\(n\)</span> （<span
+class="math inline">\(n\)</span> 为偶数）的 01 串 <span
+class="math inline">\(s\)</span> ，每次询问可以给出一个长度为 <span
+class="math inline">\(n\)</span> 的 01 串 <span
+class="math inline">\(q\)</span> ，设 <span
+class="math inline">\(t\)</span> 为 <span class="math inline">\(s \oplus
+q\)</span> 的 <span class="math inline">\(1\)</span>
+的数量，询问的结果为 <span class="math inline">\(t [t = \dfrac{n}{2}
+\lor t = n]\)</span> 。</p>
 <p>询问次数：<span class="math inline">\(n + O(\sqrt{n})\)</span> 。</p>
 <details class="note primary"><summary><p>题解</p>
 </summary>
-<p>不难想到随机串 <span class="math inline">\(q\)</span> 进行询问直到 <span class="math inline">\(t = \dfrac{n}{2}\)</span> ，一个询问的成功概率为</p>
+<p>不难想到随机串 <span class="math inline">\(q\)</span> 进行询问直到
+<span class="math inline">\(t = \dfrac{n}{2}\)</span>
+，一个询问的成功概率为</p>
 <p><span class="math display">\[
 p = \frac{\binom{n}{\frac{n}{2}}}{2^n}
 \]</span></p>
-<p>根据斯特林公式 <span class="math inline">\(n! \thickapprox \sqrt{2 \pi n} (\dfrac{n}{e})^n\)</span> ，可以知道 <span class="math inline">\(p \thickapprox \sqrt{\dfrac{2}{\pi n}}\)</span> ，也就是说通过 <span class="math inline">\(O(\sqrt{n})\)</span> 次随机询问可以得到一个使得 <span class="math inline">\(t = \dfrac{n}{2}\)</span> 的串 <span class="math inline">\(q\)</span> 。</p>
-<p>那么接下来，不妨假设 <span class="math inline">\(s\)</span> 有恰好 <span class="math inline">\(\dfrac{n}{2}\)</span> 个 0 和 <span class="math inline">\(\dfrac{n}{2}\)</span> 个 1 。</p>
-<p>可以发现，如果询问一个 <span class="math inline">\(q\)</span> 满足 <span class="math inline">\(q\)</span> 有恰好两个 <span class="math inline">\(1\)</span> 且分别在 <span class="math inline">\(i, j\)</span> 两个位置，那么 <span class="math inline">\(t = \dfrac{n}{2}\)</span> 当且仅当 <span class="math inline">\(s_i \neq s_j\)</span> 。这样一来一次询问相当于一个连边，只需要 <span class="math inline">\(n-1\)</span> 次询问就可以把所有位置分为两类，每类的值相同。然后对于可能的两种情况均进行一次询问即可。</p>
+<p>根据斯特林公式 <span class="math inline">\(n! \thickapprox \sqrt{2
+\pi n} (\dfrac{n}{e})^n\)</span> ，可以知道 <span
+class="math inline">\(p \thickapprox \sqrt{\dfrac{2}{\pi n}}\)</span>
+，也就是说通过 <span class="math inline">\(O(\sqrt{n})\)</span>
+次随机询问可以得到一个使得 <span class="math inline">\(t =
+\dfrac{n}{2}\)</span> 的串 <span class="math inline">\(q\)</span> 。</p>
+<p>那么接下来，不妨假设 <span class="math inline">\(s\)</span> 有恰好
+<span class="math inline">\(\dfrac{n}{2}\)</span> 个 0 和 <span
+class="math inline">\(\dfrac{n}{2}\)</span> 个 1 。</p>
+<p>可以发现，如果询问一个 <span class="math inline">\(q\)</span> 满足
+<span class="math inline">\(q\)</span> 有恰好两个 <span
+class="math inline">\(1\)</span> 且分别在 <span class="math inline">\(i,
+j\)</span> 两个位置，那么 <span class="math inline">\(t =
+\dfrac{n}{2}\)</span> 当且仅当 <span class="math inline">\(s_i \neq
+s_j\)</span> 。这样一来一次询问相当于一个连边，只需要 <span
+class="math inline">\(n-1\)</span>
+次询问就可以把所有位置分为两类，每类的值相同。然后对于可能的两种情况均进行一次询问即可。</p>
 
 </details>
 <hr />
 <h2 id="kings-inspection">282. King's Inspection</h2>
-<p>给定一张 <span class="math inline">\(n\)</span> 个点 <span class="math inline">\(n + m\)</span> 条边的有向图，求一条哈密顿回路或断言其不存在。</p>
+<p>给定一张 <span class="math inline">\(n\)</span> 个点 <span
+class="math inline">\(n + m\)</span>
+条边的有向图，求一条哈密顿回路或断言其不存在。</p>
 <p>时间复杂度：<span class="math inline">\(O(n + m 2^m)\)</span> 。</p>
 <details class="note primary"><summary><p>题解</p>
 </summary>
 <p>众所周知这是个 NP 问题。</p>
-<p>首先有解的一个必要条件是每个点的出度至少为 <span class="math inline">\(1\)</span> 。那么可以注意到的是，在该条件满足的前提下，出度大于 <span class="math inline">\(1\)</span> 的点至多有 <span class="math inline">\(m\)</span> 个。</p>
-<p>对于出度唯一的点，不妨把它和它连向的点合并，这样最后就只剩不超过 <span class="math inline">\(m\)</span> 个点了，状压 DP 求哈密顿回路即可。</p>
+<p>首先有解的一个必要条件是每个点的出度至少为 <span
+class="math inline">\(1\)</span>
+。那么可以注意到的是，在该条件满足的前提下，出度大于 <span
+class="math inline">\(1\)</span> 的点至多有 <span
+class="math inline">\(m\)</span> 个。</p>
+<p>对于出度唯一的点，不妨把它和它连向的点合并，这样最后就只剩不超过
+<span class="math inline">\(m\)</span> 个点了，状压 DP
+求哈密顿回路即可。</p>
 
 </details>
 
