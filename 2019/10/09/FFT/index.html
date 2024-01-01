@@ -318,20 +318,30 @@
     
     <div class="post-body" itemprop="articleBody">
         <h2 id="前置知识">前置知识</h2>
-<p>首先要知道关于 <a href="https://kewth.github.io/blog/2019/01/24/多项式的运算/">多项式</a> 的一些知识。</p>
+<p>首先要知道关于 <a
+href="https://kewth.github.io/blog/2019/01/24/多项式的运算/">多项式</a>
+的一些知识。</p>
 <p>其次要对复数有一些了解。</p>
 <h2 id="点值表示法">点值表示法</h2>
-<p>从 <a href="https://kewth.github.io/blog/2019/01/24/多项式的运算/">多项式</a> 中， 已经知道了多项式乘法的朴素算法时间复杂度为 $ O(n^2) $ 。 原因在于多项式是用系数表示法定义的。</p>
-<p>重新定义 n 次多项式 a 为满足 $ k (http://blog.miskcoo.com/2015/04/polynomial-multiplication-and-fast-fourier-transform) 。</p>
+<p>从 <a
+href="https://kewth.github.io/blog/2019/01/24/多项式的运算/">多项式</a>
+中， 已经知道了多项式乘法的朴素算法时间复杂度为 $ O(n^2) $ 。
+原因在于多项式是用系数表示法定义的。</p>
+<p>重新定义 n 次多项式 a 为满足 $ k
+(http://blog.miskcoo.com/2015/04/polynomial-multiplication-and-fast-fourier-transform)
+。</p>
 <h2 id="迭代实现">迭代实现</h2>
 <p>上述过程用递归实现常数较大，因而有一个迭代实现 FFT 的快速版本。</p>
 <h3 id="蝴蝶操作">蝴蝶操作</h3>
-<p>FFT 的每个值都是由子问题的两个值转化而来，且这两个值可以转换成两个需要的值（ FFT 复杂度的保证）。 若用一个数组 a 表示多项式。 那么蝴蝶操作形如：</p>
+<p>FFT
+的每个值都是由子问题的两个值转化而来，且这两个值可以转换成两个需要的值（
+FFT 复杂度的保证）。 若用一个数组 a 表示多项式。 那么蝴蝶操作形如：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">complex Wn; <span class="comment">// 单位根的幂</span></span><br><span class="line">complex a0 = a[x], a1 = a[y];</span><br><span class="line">a[x] = a0 + a1 * Wn;</span><br><span class="line">a[y] = a1 + a0 * Wn;</span><br></pre></td></tr></table></figure>
 <p>这样取出了数组中两个值后再修改相应位置的两个值，就是蝴蝶操作。</p>
 <h3 id="rader-排序">Rader 排序</h3>
 <p>Rader 排序的目的是让表示多项式的数组可以进行蝴蝶操作。</p>
-<p>盗图一张： <img src="https://cdn.luogu.org/upload/pic/23926.png" alt="luogu" /></p>
+<p>盗图一张： <img src="https://cdn.luogu.org/upload/pic/23926.png"
+alt="luogu" /></p>
 <p>摘自洛谷：</p>
 <pre><code>剩下的问题就是把初始的数组变成最后一层的样子了。
 先别急着写一个递归函数暴力把位置换过去。
@@ -381,7 +391,7 @@
 
 <div class="copyright">
   &copy; 2019 – 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-heartbeat"></i>
   </span>

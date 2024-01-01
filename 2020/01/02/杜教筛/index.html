@@ -318,12 +318,16 @@
     
     <div class="post-body" itemprop="articleBody">
         <p>杜教筛一般用于求一类数论函数的前缀和。</p>
-<p>假设要求数论函数 <span class="math inline">\(f(x)\)</span> 的前缀和 <span class="math inline">\(S(n) = \sum_{i=1}^n f(i)\)</span> 。</p>
-<p>杜教筛的关键在于构造两个合适的函数 <span class="math inline">\(g, h\)</span> 满足 <span class="math inline">\(h = f \cdot g\)</span> 。</p>
+<p>假设要求数论函数 <span class="math inline">\(f(x)\)</span> 的前缀和
+<span class="math inline">\(S(n) = \sum_{i=1}^n f(i)\)</span> 。</p>
+<p>杜教筛的关键在于构造两个合适的函数 <span class="math inline">\(g,
+h\)</span> 满足 <span class="math inline">\(h = f \cdot g\)</span>
+。</p>
 <p>这里的函数相乘指的是狄利克雷卷积。</p>
 <span id="more"></span>
 <h2 id="理论">理论</h2>
-<p>则由 <span class="math inline">\(h = f \cdot g\)</span> 可得（以下除号表示整除）：</p>
+<p>则由 <span class="math inline">\(h = f \cdot g\)</span>
+可得（以下除号表示整除）：</p>
 <p><span class="math display">\[
 \begin{equation}
 \begin{aligned}
@@ -335,58 +339,118 @@
 \end{aligned}
 \end{equation}
 \]</span></p>
-<p>所以 <span class="math inline">\(S(n) = \sum_{i=1}^n h(i) - \sum_{d=2}^n g(d)S(\frac{n}{d})\)</span> 。</p>
-<p>前提是每个 <span class="math inline">\(\sum_{i=1}^n h(i)\)</span> 很容易求，那么接下来不考虑 <span class="math inline">\(h\)</span> ，<br />
-对于后面的部分可以整除分块，还需要快速求出 <span class="math inline">\(g\)</span> 的一段区间和，<br />
-然后就可以递推，由于形如 <span class="math inline">\(\lfloor\frac{n}{d}\rfloor\)</span> 的数只有 <span class="math inline">\(O(\sqrt{n})\)</span> 个，<br />
-可以只递推这 <span class="math inline">\(O(\sqrt{n})\)</span> 个 <span class="math inline">\(S\)</span> ，不考虑 <span class="math inline">\(g, h\)</span> 的计算复杂度，复杂度为 <span class="math inline">\(O(n^{\frac{2}{3}})\)</span> 。</p>
-<p>update: 根据 16 年的集训队论文，直接计算的复杂度是 <span class="math inline">\(O(n^{\frac{3}{4}})\)</span> ，<br />
-要保证复杂度的话需要线性筛预处理 <span class="math inline">\(n^{\frac{2}{3}}\)</span> 以内的 <span class="math inline">\(S\)</span> 。<br />
+<p>所以 <span class="math inline">\(S(n) = \sum_{i=1}^n h(i) -
+\sum_{d=2}^n g(d)S(\frac{n}{d})\)</span> 。</p>
+<p>前提是每个 <span class="math inline">\(\sum_{i=1}^n h(i)\)</span>
+很容易求，那么接下来不考虑 <span class="math inline">\(h\)</span>
+，<br />
+对于后面的部分可以整除分块，还需要快速求出 <span
+class="math inline">\(g\)</span> 的一段区间和，<br />
+然后就可以递推，由于形如 <span
+class="math inline">\(\lfloor\frac{n}{d}\rfloor\)</span> 的数只有 <span
+class="math inline">\(O(\sqrt{n})\)</span> 个，<br />
+可以只递推这 <span class="math inline">\(O(\sqrt{n})\)</span> 个 <span
+class="math inline">\(S\)</span> ，不考虑 <span class="math inline">\(g,
+h\)</span> 的计算复杂度，复杂度为 <span
+class="math inline">\(O(n^{\frac{2}{3}})\)</span> 。</p>
+<p>update: 根据 16 年的集训队论文，直接计算的复杂度是 <span
+class="math inline">\(O(n^{\frac{3}{4}})\)</span> ，<br />
+要保证复杂度的话需要线性筛预处理 <span
+class="math inline">\(n^{\frac{2}{3}}\)</span> 以内的 <span
+class="math inline">\(S\)</span> 。<br />
 证明后面有提到。</p>
-<p>关于如何存储 <span class="math inline">\(S\)</span> ，直接用数组存需要 <span class="math inline">\(O(n)\)</span> 的空间，开 map 每次取用带一个 log ，<br />
+<p>关于如何存储 <span class="math inline">\(S\)</span>
+，直接用数组存需要 <span class="math inline">\(O(n)\)</span> 的空间，开
+map 每次取用带一个 log ，<br />
 普通的离散化也会带一个 log 。</p>
-<p>观察 <span class="math inline">\(\frac{n}{d}\)</span> 的分布，当 <span class="math inline">\(d \leq \sqrt{n}\)</span> 时， <span class="math inline">\(\frac{n}{d}\)</span> 的值两两不同。<br />
-而当 <span class="math inline">\(d &gt; \sqrt{n}\)</span> 时， <span class="math inline">\(\frac{n}{d}\)</span> 的值都不超过 <span class="math inline">\(\sqrt{n}\)</span> 。<br />
-设 <span class="math inline">\(m\)</span> 是 <span class="math inline">\(\frac{n}{d}\)</span> 的不同取值个数，那么可以用如下的函数对 <span class="math inline">\(x = \frac{n}{d}\)</span> 进行离散化：</p>
+<p>观察 <span class="math inline">\(\frac{n}{d}\)</span> 的分布，当
+<span class="math inline">\(d \leq \sqrt{n}\)</span> 时， <span
+class="math inline">\(\frac{n}{d}\)</span> 的值两两不同。<br />
+而当 <span class="math inline">\(d &gt; \sqrt{n}\)</span> 时， <span
+class="math inline">\(\frac{n}{d}\)</span> 的值都不超过 <span
+class="math inline">\(\sqrt{n}\)</span> 。<br />
+设 <span class="math inline">\(m\)</span> 是 <span
+class="math inline">\(\frac{n}{d}\)</span>
+的不同取值个数，那么可以用如下的函数对 <span class="math inline">\(x =
+\frac{n}{d}\)</span> 进行离散化：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">id</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> x &lt;= sqrt_of_n ? x : m - (n / x) + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="实践">实践</h2>
-<p>举个简单的栗子：求 <span class="math inline">\(\mu\)</span> 的前缀和。</p>
-<p>首先根据 <span class="math inline">\(\mu\)</span> 的性质不难想到 <span class="math inline">\(\mu \cdot I = \epsilon\)</span> 。</p>
-<p>那么就将 <span class="math inline">\(f = \mu, g = I, h = \epsilon\)</span> 代入上去，得到：</p>
-<p><span class="math display">\[S(n) = \sum_{i=1}^n \mu(i) = \sum_{i=1}^n \epsilon(i) - \sum_{d=2}^n I(d) \cdot S(\frac{n}{d})\]</span></p>
+<p>举个简单的栗子：求 <span class="math inline">\(\mu\)</span>
+的前缀和。</p>
+<p>首先根据 <span class="math inline">\(\mu\)</span> 的性质不难想到
+<span class="math inline">\(\mu \cdot I = \epsilon\)</span> 。</p>
+<p>那么就将 <span class="math inline">\(f = \mu, g = I, h =
+\epsilon\)</span> 代入上去，得到：</p>
+<p><span class="math display">\[S(n) = \sum_{i=1}^n \mu(i) =
+\sum_{i=1}^n \epsilon(i) - \sum_{d=2}^n I(d) \cdot
+S(\frac{n}{d})\]</span></p>
 <p>即</p>
-<p><span class="math display">\[S(n) = 1 - \sum_{d=2}^n S(\frac{n}{d})\]</span></p>
+<p><span class="math display">\[S(n) = 1 - \sum_{d=2}^n
+S(\frac{n}{d})\]</span></p>
 <h2 id="扩展">扩展</h2>
-<p>但有时候无法构造合适的 <span class="math inline">\(h = f \cdot g\)</span> 使得 <span class="math inline">\(g, h\)</span> 的前缀和可以 <span class="math inline">\(O(1)\)</span> 算出。<br />
+<p>但有时候无法构造合适的 <span class="math inline">\(h = f \cdot
+g\)</span> 使得 <span class="math inline">\(g, h\)</span> 的前缀和可以
+<span class="math inline">\(O(1)\)</span> 算出。<br />
 这时候杜教筛是否就毫无用武之地呢？不见得。</p>
-<p>观察递推式，利用整除分块，设 <span class="math inline">\(S_f, S_g, S_h\)</span> 分别表示 <span class="math inline">\(f, g, h\)</span> 的前缀和，那么：</p>
-<p><span class="math display">\[S_f(n) = S_h(n) - \sum_{i=2}^m (S_g(r_i) - S_g(r_{i-1})) S_f(\frac{n}{r_i})\]</span></p>
-<p>其中 <span class="math inline">\(m\)</span> 是 <span class="math inline">\(\frac{n}{d}\)</span> 的不同取值个数， <span class="math inline">\(r_i\)</span> 是整除分块后对应第 <span class="math inline">\(i\)</span> 块的右端点。</p>
-<p>首先不难发现需要用到的 <span class="math inline">\(S_h\)</span> 也都是形如 <span class="math inline">\(\frac{n}{d}\)</span> 的数，<br />
-那么只需要如果 <span class="math inline">\(S_h\)</span> 能够杜教筛（或者其他筛）筛出来就行了。</p>
-<p>再考虑 <span class="math inline">\(S_g\)</span> 需要的取值，由整除分块中的 <span class="math inline">\(r = n / (n / l)\)</span> 可知，<span class="math inline">\(r_i\)</span> 的取值也都是形如 <span class="math inline">\(\frac{n}{d}\)</span> 的数，<br />
-同理只要能筛 <span class="math inline">\(S_g\)</span> 就行了，不一定要 <span class="math inline">\(O(1)\)</span> 算。</p>
+<p>观察递推式，利用整除分块，设 <span class="math inline">\(S_f, S_g,
+S_h\)</span> 分别表示 <span class="math inline">\(f, g, h\)</span>
+的前缀和，那么：</p>
+<p><span class="math display">\[S_f(n) = S_h(n) - \sum_{i=2}^m (S_g(r_i)
+- S_g(r_{i-1})) S_f(\frac{n}{r_i})\]</span></p>
+<p>其中 <span class="math inline">\(m\)</span> 是 <span
+class="math inline">\(\frac{n}{d}\)</span> 的不同取值个数， <span
+class="math inline">\(r_i\)</span> 是整除分块后对应第 <span
+class="math inline">\(i\)</span> 块的右端点。</p>
+<p>首先不难发现需要用到的 <span class="math inline">\(S_h\)</span>
+也都是形如 <span class="math inline">\(\frac{n}{d}\)</span> 的数，<br />
+那么只需要如果 <span class="math inline">\(S_h\)</span>
+能够杜教筛（或者其他筛）筛出来就行了。</p>
+<p>再考虑 <span class="math inline">\(S_g\)</span>
+需要的取值，由整除分块中的 <span class="math inline">\(r = n / (n /
+l)\)</span> 可知，<span class="math inline">\(r_i\)</span>
+的取值也都是形如 <span class="math inline">\(\frac{n}{d}\)</span>
+的数，<br />
+同理只要能筛 <span class="math inline">\(S_g\)</span> 就行了，不一定要
+<span class="math inline">\(O(1)\)</span> 算。</p>
 <h2 id="复杂度">复杂度</h2>
 <p>发现之前对杜教筛的复杂度理解有问题。</p>
-<p>假设已经预处理（或者可以 <span class="math inline">\(O(1)\)</span> 计算）需要的 <span class="math inline">\(S_g, S_h\)</span> ，<br />
-那么需要计算的 <span class="math inline">\(S(\frac{n}{d})\)</span> 有 <span class="math inline">\(O(\sqrt{n})\)</span> 个。<br />
+<p>假设已经预处理（或者可以 <span class="math inline">\(O(1)\)</span>
+计算）需要的 <span class="math inline">\(S_g, S_h\)</span> ，<br />
+那么需要计算的 <span class="math inline">\(S(\frac{n}{d})\)</span> 有
+<span class="math inline">\(O(\sqrt{n})\)</span> 个。<br />
 将他们分为两类：</p>
 <ol type="1">
-<li><span class="math inline">\(d \leq \sqrt{n}\)</span>: 这部分有 <span class="math inline">\(\sqrt{n}\)</span> 个。</li>
-<li><span class="math inline">\(d \geq \sqrt{n}, \frac{n}{d} \leq \sqrt{n}\)</span>: 这部分同样有 <span class="math inline">\(\sqrt{n}\)</span> 个。</li>
+<li><span class="math inline">\(d \leq \sqrt{n}\)</span>: 这部分有 <span
+class="math inline">\(\sqrt{n}\)</span> 个。</li>
+<li><span class="math inline">\(d \geq \sqrt{n}, \frac{n}{d} \leq
+\sqrt{n}\)</span>: 这部分同样有 <span
+class="math inline">\(\sqrt{n}\)</span> 个。</li>
 </ol>
-<p>计算单个 <span class="math inline">\(S(x)\)</span> 需要枚举 <span class="math inline">\(\frac{x}{d}\)</span> ，复杂度为 <span class="math inline">\(O(\sqrt{x})\)</span> 。</p>
+<p>计算单个 <span class="math inline">\(S(x)\)</span> 需要枚举 <span
+class="math inline">\(\frac{x}{d}\)</span> ，复杂度为 <span
+class="math inline">\(O(\sqrt{x})\)</span> 。</p>
 <p>对于两部分分别计算复杂度，总复杂度就是：</p>
-<p><span class="math display">\[ \sum_{i=1}^{\sqrt{n}} O(\sqrt{i}) + \sum_{i=1}^{\sqrt{n}} O(\sqrt{\frac{n}{i}}) \]</span></p>
+<p><span class="math display">\[ \sum_{i=1}^{\sqrt{n}} O(\sqrt{i}) +
+\sum_{i=1}^{\sqrt{n}} O(\sqrt{\frac{n}{i}}) \]</span></p>
 <p>对于前者：</p>
-<p><span class="math display">\[ \sum_{i=1}^{\sqrt{n}} O(\sqrt{i}) = O(\int_{0}^{\sqrt{n}}\sqrt{x}dx) = O(n^{\frac{3}{4}}) \]</span></p>
+<p><span class="math display">\[ \sum_{i=1}^{\sqrt{n}} O(\sqrt{i}) =
+O(\int_{0}^{\sqrt{n}}\sqrt{x}dx) = O(n^{\frac{3}{4}}) \]</span></p>
 <p>对于后者：</p>
-<p><span class="math display">\[ \sum_{i=1}^{\sqrt{n}} O(\sqrt{\frac{n}{i}}) = O(\int_{0}^{\sqrt{n}}\sqrt{\frac{n}{x}}dx) = O(n^{\frac{3}{4}}) \]</span></p>
-<p>如果预处理 <span class="math inline">\(k\)</span> 以内的 <span class="math inline">\(S\)</span> 且 <span class="math inline">\(k \geq \sqrt{n}\)</span> ，预处理部分复杂度为 <span class="math inline">\(O(k)\)</span> ，杜教筛部分前者也可以被预处理。</p>
+<p><span class="math display">\[ \sum_{i=1}^{\sqrt{n}}
+O(\sqrt{\frac{n}{i}}) = O(\int_{0}^{\sqrt{n}}\sqrt{\frac{n}{x}}dx) =
+O(n^{\frac{3}{4}}) \]</span></p>
+<p>如果预处理 <span class="math inline">\(k\)</span> 以内的 <span
+class="math inline">\(S\)</span> 且 <span class="math inline">\(k \geq
+\sqrt{n}\)</span> ，预处理部分复杂度为 <span
+class="math inline">\(O(k)\)</span> ，杜教筛部分前者也可以被预处理。</p>
 <p>对于后者：</p>
-<p><span class="math display">\[ \sum_{i=1}^{\frac{n}{k}} O(\sqrt{\frac{n}{i}}) = O(\int_{0}^{\frac{n}{k}}\sqrt{\frac{n}{x}}dx) = O(\frac{n}{\sqrt{k}}) \]</span></p>
-<p>当 <span class="math inline">\(k = \frac{n}{\sqrt{k}}\)</span> 时，总复杂度达到最优，<br />
-此时 <span class="math inline">\(k = n^{\frac{2}{3}}\)</span> ，总复杂度 <span class="math inline">\(O(n^{\frac{2}{3}})\)</span> 。</p>
+<p><span class="math display">\[ \sum_{i=1}^{\frac{n}{k}}
+O(\sqrt{\frac{n}{i}}) = O(\int_{0}^{\frac{n}{k}}\sqrt{\frac{n}{x}}dx) =
+O(\frac{n}{\sqrt{k}}) \]</span></p>
+<p>当 <span class="math inline">\(k = \frac{n}{\sqrt{k}}\)</span>
+时，总复杂度达到最优，<br />
+此时 <span class="math inline">\(k = n^{\frac{2}{3}}\)</span> ，总复杂度
+<span class="math inline">\(O(n^{\frac{2}{3}})\)</span> 。</p>
 
     </div>
 
@@ -433,7 +497,7 @@
 
 <div class="copyright">
   &copy; 2019 – 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-heartbeat"></i>
   </span>

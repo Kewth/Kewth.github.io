@@ -324,73 +324,145 @@
 <p>超现实数完整的理论很复杂，这里不详细给出。</p>
 <span id="more"></span>
 <h2 id="超现实数与游戏">超现实数与游戏</h2>
-<p>一个 SN 可以表示为 <span class="math inline">\(P = \{S_L|S_R\}\)</span> ，其中 <span class="math inline">\(S_L\)</span> 和 <span class="math inline">\(S_R\)</span> 都是 SN 的集合。</p>
-<p>若 <span class="math inline">\(P\)</span> 是 SN ，需要满足一个公理：</p>
-<p><span class="math display">\[\forall X \in S_L, Y \in S_R, X \ngeq Y\]</span></p>
-<p>这样定义 SN 的偏序关系，<span class="math inline">\(P = \{S_L|S_R\} \le Q = \{T_L|T_R\}\)</span> 当且仅当以下两点同时成立：</p>
-<p><span class="math display">\[\forall X \in S_L, X \ngeq Q\]</span> <span class="math display">\[\forall Y \in T_R, Y \nleq P\]</span></p>
-<p>一个游戏 <span class="math inline">\(P\)</span> 可以类似地对应到一个 SN ，其中 <span class="math inline">\(S_L\)</span> 是左玩家能够转移到的游戏的集合，<span class="math inline">\(S_R\)</span> 是右玩家能够转移到的集合。</p>
+<p>一个 SN 可以表示为 <span class="math inline">\(P =
+\{S_L|S_R\}\)</span> ，其中 <span class="math inline">\(S_L\)</span> 和
+<span class="math inline">\(S_R\)</span> 都是 SN 的集合。</p>
+<p>若 <span class="math inline">\(P\)</span> 是 SN
+，需要满足一个公理：</p>
+<p><span class="math display">\[\forall X \in S_L, Y \in S_R, X \ngeq
+Y\]</span></p>
+<p>这样定义 SN 的偏序关系，<span class="math inline">\(P = \{S_L|S_R\}
+\le Q = \{T_L|T_R\}\)</span> 当且仅当以下两点同时成立：</p>
+<p><span class="math display">\[\forall X \in S_L, X \ngeq Q\]</span>
+<span class="math display">\[\forall Y \in T_R, Y \nleq P\]</span></p>
+<p>一个游戏 <span class="math inline">\(P\)</span> 可以类似地对应到一个
+SN ，其中 <span class="math inline">\(S_L\)</span>
+是左玩家能够转移到的游戏的集合，<span class="math inline">\(S_R\)</span>
+是右玩家能够转移到的集合。</p>
 <h2 id="简单的情况">简单的情况</h2>
-<p>不加证明的给出以下重要的性质，实践中往往将 SN 用普通的实数表示，当然不是所有 SN 都能对应到一个实数的，实数域只是超现实数域的一个子集。</p>
+<p>不加证明的给出以下重要的性质，实践中往往将 SN
+用普通的实数表示，当然不是所有 SN
+都能对应到一个实数的，实数域只是超现实数域的一个子集。</p>
 <ul>
-<li>对于 SN <span class="math inline">\(P = \{|\}\)</span> ，有 <span class="math inline">\(P = 0\)</span> ，即加法单位元。</li>
-<li>对于 SN <span class="math inline">\(P = \{S_L | S_R\}\)</span> ，如果集合 <span class="math inline">\(S_L\)</span> 存在最大值 <span class="math inline">\(P_L\)</span> ，则 <span class="math inline">\(P = \{P_L | S_R\}\)</span> 。</li>
-<li>对于 SN <span class="math inline">\(P = \{S_L | S_R\}\)</span> ，如果集合 <span class="math inline">\(S_R\)</span> 存在最小值 <span class="math inline">\(P_R\)</span> ，则 <span class="math inline">\(P = \{S_L | P_R\}\)</span> 。</li>
-<li>对于 SN <span class="math inline">\(P = \{P_L | P_R\}\)</span> ，<span class="math inline">\(P\)</span> 的值可以由一颗特殊的树确定，<span class="math inline">\(P\)</span> 是值在 <span class="math inline">\(P_L\)</span> 和 <span class="math inline">\(P_R\)</span> 之间的最浅的点（不包括 <span class="math inline">\(P_L, P_R\)</span> ），这棵树长这样：</li>
+<li>对于 SN <span class="math inline">\(P = \{|\}\)</span> ，有 <span
+class="math inline">\(P = 0\)</span> ，即加法单位元。</li>
+<li>对于 SN <span class="math inline">\(P = \{S_L | S_R\}\)</span>
+，如果集合 <span class="math inline">\(S_L\)</span> 存在最大值 <span
+class="math inline">\(P_L\)</span> ，则 <span class="math inline">\(P =
+\{P_L | S_R\}\)</span> 。</li>
+<li>对于 SN <span class="math inline">\(P = \{S_L | S_R\}\)</span>
+，如果集合 <span class="math inline">\(S_R\)</span> 存在最小值 <span
+class="math inline">\(P_R\)</span> ，则 <span class="math inline">\(P =
+\{S_L | P_R\}\)</span> 。</li>
+<li>对于 SN <span class="math inline">\(P = \{P_L | P_R\}\)</span>
+，<span class="math inline">\(P\)</span>
+的值可以由一颗特殊的树确定，<span class="math inline">\(P\)</span>
+是值在 <span class="math inline">\(P_L\)</span> 和 <span
+class="math inline">\(P_R\)</span> 之间的最浅的点（不包括 <span
+class="math inline">\(P_L, P_R\)</span> ），这棵树长这样：</li>
 </ul>
 <p><img src="/images/tree.png" /></p>
 <ul>
-<li>对于 SN <span class="math inline">\(P = \{P_L |\}\)</span> ，<span class="math inline">\(P\)</span> 是值大于 <span class="math inline">\(P_L\)</span> 的最浅的点。</li>
-<li>对于 SN <span class="math inline">\(P = \{| P_R\}\)</span> ，<span class="math inline">\(P\)</span> 是值小于 <span class="math inline">\(P_R\)</span> 的最浅的点。</li>
+<li>对于 SN <span class="math inline">\(P = \{P_L |\}\)</span> ，<span
+class="math inline">\(P\)</span> 是值大于 <span
+class="math inline">\(P_L\)</span> 的最浅的点。</li>
+<li>对于 SN <span class="math inline">\(P = \{| P_R\}\)</span> ，<span
+class="math inline">\(P\)</span> 是值小于 <span
+class="math inline">\(P_R\)</span> 的最浅的点。</li>
 </ul>
 <!--而对于两个 SN $\frac{a_1}{2^{k_1}}$ 和 $\frac{a_2}{2^{k_2}}$ 的深度的比较，以 $k$ 为第一关键字 $a$ 的绝对值为第二关键字比较即可，特别的，$0$ 是深度最浅的点。-->
-<p>直观上，可以将一个能对应到实数的 SN 理解为左玩家可以自由操作的次数减去右玩家可以自由操作的次数。</p>
+<p>直观上，可以将一个能对应到实数的 SN
+理解为左玩家可以自由操作的次数减去右玩家可以自由操作的次数。</p>
 <p>一个游戏可以看做一个 SN <span class="math inline">\(P\)</span> ：</p>
 <ul>
-<li>如果 <span class="math inline">\(P &gt; 0\)</span> ，那么左玩家必胜。</li>
-<li>如果 <span class="math inline">\(P &lt; 0\)</span> ，那么右玩家必胜。</li>
-<li>如果 <span class="math inline">\(P = 0\)</span> ，那么先手必败。</li>
-<li>如果 <span class="math inline">\(P\)</span> 和 <span class="math inline">\(0\)</span> 没有偏序关系，那么先手必胜（这个情况稍后讨论）。</li>
+<li>如果 <span class="math inline">\(P &gt; 0\)</span>
+，那么左玩家必胜。</li>
+<li>如果 <span class="math inline">\(P &lt; 0\)</span>
+，那么右玩家必胜。</li>
+<li>如果 <span class="math inline">\(P = 0\)</span>
+，那么先手必败。</li>
+<li>如果 <span class="math inline">\(P\)</span> 和 <span
+class="math inline">\(0\)</span>
+没有偏序关系，那么先手必胜（这个情况稍后讨论）。</li>
 </ul>
 <p>以上四点的逆命题也是成立的。</p>
-<p>如果一个游戏 <span class="math inline">\(P\)</span> 可以划分为若干互不影响的子游戏 <span class="math inline">\(P_1, P_2 ... P_n\)</span> ，那么 <span class="math inline">\(P = P_1 + P_2 + ... + P_n\)</span> 。</p>
-<p>和 0 可以确定偏序关系的 <span class="math inline">\(P\)</span> 可以简单的加起来，但是和 0 没法确定偏序关系的一些 <span class="math inline">\(P\)</span> 的加法比较特殊。</p>
-<p>例如公平博弈下的 SG 定理，子游戏的加是 SG 值的异或，事实上公平博弈的游戏对应的 SN 只能是 0 或者是与 0 没有偏序关系的数。</p>
+<p>如果一个游戏 <span class="math inline">\(P\)</span>
+可以划分为若干互不影响的子游戏 <span class="math inline">\(P_1, P_2 ...
+P_n\)</span> ，那么 <span class="math inline">\(P = P_1 + P_2 + ... +
+P_n\)</span> 。</p>
+<p>和 0 可以确定偏序关系的 <span class="math inline">\(P\)</span>
+可以简单的加起来，但是和 0 没法确定偏序关系的一些 <span
+class="math inline">\(P\)</span> 的加法比较特殊。</p>
+<p>例如公平博弈下的 SG 定理，子游戏的加是 SG
+值的异或，事实上公平博弈的游戏对应的 SN 只能是 0 或者是与 0
+没有偏序关系的数。</p>
 <p>其他的一些性质：</p>
 <ul>
-<li>对于 SN <span class="math inline">\(P = \{P_L|P_R\}\)</span> ，其加法逆（相反数）为 <span class="math inline">\(-P = \{-P_R|-P_L\}\)</span> 。</li>
+<li>对于 SN <span class="math inline">\(P = \{P_L|P_R\}\)</span>
+，其加法逆（相反数）为 <span class="math inline">\(-P =
+\{-P_R|-P_L\}\)</span> 。</li>
 </ul>
 <h2 id="更复杂的情况">更复杂的情况</h2>
-<p>之前提到过，有些游戏状态对应的 <span class="math inline">\(P\)</span> 和 <span class="math inline">\(0\)</span> 没有偏序关系。</p>
-<p>这里要引入三个基本的量：<span class="math inline">\(\star = \{0|0\}, \uparrow = \{0|\star\}, \downarrow = \{\star|0\}\)</span> 。</p>
-<p>不难看出 <span class="math inline">\(\star\)</span> 实际上就不满足 SN 的公理，但是这三个量确实对应于一些游戏的状态，因此为了更好的研究这类特殊的博弈，这些量的引入是必须的。</p>
+<p>之前提到过，有些游戏状态对应的 <span class="math inline">\(P\)</span>
+和 <span class="math inline">\(0\)</span> 没有偏序关系。</p>
+<p>这里要引入三个基本的量：<span class="math inline">\(\star = \{0|0\},
+\uparrow = \{0|\star\}, \downarrow = \{\star|0\}\)</span> 。</p>
+<p>不难看出 <span class="math inline">\(\star\)</span> 实际上就不满足 SN
+的公理，但是这三个量确实对应于一些游戏的状态，因此为了更好的研究这类特殊的博弈，这些量的引入是必须的。</p>
 <p>不加证明的给出以下性质：</p>
 <ul>
-<li><p><span class="math inline">\(\star\)</span> 小于所有正实数且大于所有负实数，与 0 没有偏序关系。</p></li>
-<li><p><span class="math inline">\(\uparrow\)</span> 小于所有正实数且大于 0 。</p></li>
-<li><p><span class="math inline">\(\downarrow\)</span> 大于所有负实数且小于 0 。</p></li>
-<li><p><span class="math inline">\(\star + \star = 0\)</span> ，也就是说 <span class="math inline">\(\star\)</span> 的逆是其本身。</p></li>
-<li><p><span class="math inline">\(\{\uparrow|\downarrow\} = \{\uparrow|0\} = \{0|\downarrow\} = \star\)</span></p></li>
-<li><p><span class="math inline">\(\{\downarrow|\uparrow\} = 0\)</span></p></li>
-<li><p><span class="math inline">\(\forall X \in R, \{X|X\} = X + \star\)</span> ，通常记做 <span class="math inline">\(X\star\)</span> ，<span class="math inline">\(X = 0\)</span> 时与 0 没有偏序关系，否则 <span class="math inline">\(X\star &gt; 0\)</span> 当且仅当 <span class="math inline">\(X &gt; 0\)</span> 。</p></li>
+<li><p><span class="math inline">\(\star\)</span>
+小于所有正实数且大于所有负实数，与 0 没有偏序关系。</p></li>
+<li><p><span class="math inline">\(\uparrow\)</span>
+小于所有正实数且大于 0 。</p></li>
+<li><p><span class="math inline">\(\downarrow\)</span>
+大于所有负实数且小于 0 。</p></li>
+<li><p><span class="math inline">\(\star + \star = 0\)</span> ，也就是说
+<span class="math inline">\(\star\)</span> 的逆是其本身。</p></li>
+<li><p><span class="math inline">\(\{\uparrow|\downarrow\} =
+\{\uparrow|0\} = \{0|\downarrow\} = \star\)</span></p></li>
+<li><p><span class="math inline">\(\{\downarrow|\uparrow\} =
+0\)</span></p></li>
+<li><p><span class="math inline">\(\forall X \in R, \{X|X\} = X +
+\star\)</span> ，通常记做 <span class="math inline">\(X\star\)</span>
+，<span class="math inline">\(X = 0\)</span> 时与 0 没有偏序关系，否则
+<span class="math inline">\(X\star &gt; 0\)</span> 当且仅当 <span
+class="math inline">\(X &gt; 0\)</span> 。</p></li>
 </ul>
-<p>另外，对于 SG 值为 <span class="math inline">\(X\)</span> 的公平博弈，其值可以记做 <span class="math inline">\(\star X\)</span> ，它的加法就是 <span class="math inline">\(X\)</span> 的异或，<span class="math inline">\(X\)</span> 不为 0 时该数与 0 没有偏序关系。</p>
+<p>另外，对于 SG 值为 <span class="math inline">\(X\)</span>
+的公平博弈，其值可以记做 <span class="math inline">\(\star X\)</span>
+，它的加法就是 <span class="math inline">\(X\)</span> 的异或，<span
+class="math inline">\(X\)</span> 不为 0 时该数与 0 没有偏序关系。</p>
 <p>可以从这些量的角度研究博弈，同样可以从博弈的角度研究这些量。</p>
-<p>例如要证明 <span class="math inline">\(\{\uparrow|\downarrow\} = \star\)</span> ，可以证明其等价命题 <span class="math inline">\(\{\uparrow|\downarrow\} + \star = 0\)</span> ，即证明该游戏先手必败，这通过简单的博弈归纳是很容易证明的。</p>
+<p>例如要证明 <span class="math inline">\(\{\uparrow|\downarrow\} =
+\star\)</span> ，可以证明其等价命题 <span
+class="math inline">\(\{\uparrow|\downarrow\} + \star = 0\)</span>
+，即证明该游戏先手必败，这通过简单的博弈归纳是很容易证明的。</p>
 <p>其他的一些性质：</p>
 <ul>
-<li><span class="math inline">\(\{0|\uparrow\} = \uparrow + \uparrow + \star\)</span></li>
-<li><span class="math inline">\(\{\downarrow|0\} = \downarrow + \downarrow + \star\)</span></li>
+<li><span class="math inline">\(\{0|\uparrow\} = \uparrow + \uparrow +
+\star\)</span></li>
+<li><span class="math inline">\(\{\downarrow|0\} = \downarrow +
+\downarrow + \star\)</span></li>
 </ul>
 <h2 id="更更复杂的情况">更更复杂的情况</h2>
-<p>然而即使有了 <span class="math inline">\(\star\)</span> ，许多游戏仍然无法被表示，例如 <span class="math inline">\(\{1|-1\}\)</span> ，它也有一些性质，例如它的加法逆是它本身。</p>
-<p>由于游戏 <span class="math inline">\(P\)</span> 对应的 <span class="math inline">\(\{S_L|S_R\}\)</span> 与超现实数不同，不受公理的限制，这似乎预示了不是无法所有问题都能拿超现实数获得满意的结果的，超现实数能解决的终究是一部分较为特殊的问题。</p>
-<p>例如 Nim 游戏的 mex 规则和 SG 定理，这些东西直接拿超现实数或是 <span class="math inline">\(\star\)</span> 这些东西是无法解释的。</p>
+<p>然而即使有了 <span class="math inline">\(\star\)</span>
+，许多游戏仍然无法被表示，例如 <span
+class="math inline">\(\{1|-1\}\)</span>
+，它也有一些性质，例如它的加法逆是它本身。</p>
+<p>由于游戏 <span class="math inline">\(P\)</span> 对应的 <span
+class="math inline">\(\{S_L|S_R\}\)</span>
+与超现实数不同，不受公理的限制，这似乎预示了不是无法所有问题都能拿超现实数获得满意的结果的，超现实数能解决的终究是一部分较为特殊的问题。</p>
+<p>例如 Nim 游戏的 mex 规则和 SG 定理，这些东西直接拿超现实数或是 <span
+class="math inline">\(\star\)</span> 这些东西是无法解释的。</p>
 <p>因此，还是要具体问题具体分析。</p>
 <h2 id="推荐读物">推荐读物</h2>
 <p>这里只是总结，希望具体了解超现实数和博弈的关系的话可以去看这些东西。</p>
-<p><a href="www.matrix67.com/blog/archives/6333">实数、超实数和博弈游戏：数学的结构之美 -- Matrix</a></p>
-<p><a target="_blank" rel="noopener" href="https://vdisk.weibo.com/s/ujrfywKpDcaZ9">通俗数学名著译丛21-稳操胜券（上册）</a></p>
+<p><a
+href="www.matrix67.com/blog/archives/6333">实数、超实数和博弈游戏：数学的结构之美
+-- Matrix</a></p>
+<p><a
+target="_blank" rel="noopener" href="https://vdisk.weibo.com/s/ujrfywKpDcaZ9">通俗数学名著译丛21-稳操胜券（上册）</a></p>
 
     </div>
 
@@ -438,7 +510,7 @@
 
 <div class="copyright">
   &copy; 2019 – 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-heartbeat"></i>
   </span>

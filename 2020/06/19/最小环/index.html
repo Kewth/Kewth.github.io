@@ -314,18 +314,48 @@
     <div class="post-body" itemprop="articleBody">
         <p>给定一张图，求边权和最小的简单环的大小。</p>
 <p>无向图或者有向图都可以做，需要注意的是无向图直接转成有向图会得到不合法的重边二元环。</p>
-<p>以下讨论用 <span class="math inline">\(n, m\)</span> 分别表示图的点数和边数，为了方便，只讨论简单无向图，其他情况不难扩展。</p>
+<p>以下讨论用 <span class="math inline">\(n, m\)</span>
+分别表示图的点数和边数，为了方便，只讨论简单无向图，其他情况不难扩展。</p>
 <p>并且只考虑边权非负的情况。</p>
 <span id="more"></span>
 <h2 id="一般解法">一般解法</h2>
-<p>对于一般图，可以使用 Floyd 算法。这里要利用到 Floyd 算法的一个性质，最外层循环枚举松弛 点 <span class="math inline">\(K\)</span> 更新后，最短路数组 <span class="math inline">\(dis_{u, v}\)</span> 的值实际上是 <span class="math inline">\(u\)</span> 到 <span class="math inline">\(v\)</span> （不包括 <span class="math inline">\(u, v\)</span> ）仅经过 编号在 <span class="math inline">\([1, k]\)</span> 中的点的最短路。</p>
-<p>根据以上性质，在 Floyd 使用点 <span class="math inline">\(k\)</span> 松弛之前，枚举所有小于 k 的 <span class="math inline">\(dis_{i, j}\)</span> 即可求出以 <span class="math inline">\(k\)</span> 为最大编号节点的最小环大小。</p>
+<p>对于一般图，可以使用 Floyd 算法。这里要利用到 Floyd
+算法的一个性质，最外层循环枚举松弛 点 <span
+class="math inline">\(K\)</span> 更新后，最短路数组 <span
+class="math inline">\(dis_{u, v}\)</span> 的值实际上是 <span
+class="math inline">\(u\)</span> 到 <span
+class="math inline">\(v\)</span> （不包括 <span class="math inline">\(u,
+v\)</span> ）仅经过 编号在 <span class="math inline">\([1, k]\)</span>
+中的点的最短路。</p>
+<p>根据以上性质，在 Floyd 使用点 <span class="math inline">\(k\)</span>
+松弛之前，枚举所有小于 k 的 <span class="math inline">\(dis_{i,
+j}\)</span> 即可求出以 <span class="math inline">\(k\)</span>
+为最大编号节点的最小环大小。</p>
 <h2 id="稀疏图做法">稀疏图做法</h2>
-<p>对于图较为稀疏的情况，即 <span class="math inline">\(O(n) \le O(m) &lt; O(n^2)\)</span> ，存在更优秀的解法，可以求出数组 <span class="math inline">\(f\)</span> ，其中 <span class="math inline">\(f_u\)</span> 表示包含 <span class="math inline">\(u\)</span> 节点的最小的环的长度。</p>
-<p>考虑计算 <span class="math inline">\(f_u\)</span> ，以 <span class="math inline">\(u\)</span> 为根，建出一颗最短路树，然后枚举非树边 <span class="math inline">\((x, y)\)</span> ，满足 <span class="math inline">\(lca(x, y) = u\)</span> ， 对于所有这样的非树边，有 <span class="math inline">\(f_u = min\{dis_x + len_{x, y} + dis_y\}\)</span> 。</p>
-<p>总复杂度 <span class="math inline">\(O(n m \log n)\)</span> ，如果边权很小，最大为 <span class="math inline">\(W\)</span> ，可以 bfs 求短路，复杂度 <span class="math inline">\(O(nmW)\)</span> 。</p>
-<p>如果只要单次求 <span class="math inline">\(f_u\)</span> ，这个做法也很合适，复杂度可以少一个 <span class="math inline">\(n\)</span> 。</p>
-<p>还有一个很有意思的单次求 <span class="math inline">\(f_u\)</span> 的做法，把与 <span class="math inline">\(u\)</span> 相连的点二进制分组，然后对于每一个划分方式跑多源最短路， 复杂度 <span class="math inline">\(O(m \log n \log D)\)</span> 或 <span class="math inline">\(O(m W \log D)\)</span> ，其中 <span class="math inline">\(D\)</span> 是 <span class="math inline">\(u\)</span> 的度数。</p>
+<p>对于图较为稀疏的情况，即 <span class="math inline">\(O(n) \le O(m)
+&lt; O(n^2)\)</span> ，存在更优秀的解法，可以求出数组 <span
+class="math inline">\(f\)</span> ，其中 <span
+class="math inline">\(f_u\)</span> 表示包含 <span
+class="math inline">\(u\)</span> 节点的最小的环的长度。</p>
+<p>考虑计算 <span class="math inline">\(f_u\)</span> ，以 <span
+class="math inline">\(u\)</span> 为根，建出一颗最短路树，然后枚举非树边
+<span class="math inline">\((x, y)\)</span> ，满足 <span
+class="math inline">\(lca(x, y) = u\)</span> ， 对于所有这样的非树边，有
+<span class="math inline">\(f_u = min\{dis_x + len_{x, y} +
+dis_y\}\)</span> 。</p>
+<p>总复杂度 <span class="math inline">\(O(n m \log n)\)</span>
+，如果边权很小，最大为 <span class="math inline">\(W\)</span> ，可以 bfs
+求短路，复杂度 <span class="math inline">\(O(nmW)\)</span> 。</p>
+<p>如果只要单次求 <span class="math inline">\(f_u\)</span>
+，这个做法也很合适，复杂度可以少一个 <span
+class="math inline">\(n\)</span> 。</p>
+<p>还有一个很有意思的单次求 <span class="math inline">\(f_u\)</span>
+的做法，把与 <span class="math inline">\(u\)</span>
+相连的点二进制分组，然后对于每一个划分方式跑多源最短路， 复杂度 <span
+class="math inline">\(O(m \log n \log D)\)</span> 或 <span
+class="math inline">\(O(m W \log D)\)</span> ，其中 <span
+class="math inline">\(D\)</span> 是 <span
+class="math inline">\(u\)</span> 的度数。</p>
 
     </div>
 
@@ -373,7 +403,7 @@
 
 <div class="copyright">
   &copy; 2019 – 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-heartbeat"></i>
   </span>

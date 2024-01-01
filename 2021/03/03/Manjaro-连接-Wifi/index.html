@@ -317,44 +317,100 @@
     
     <div class="post-body" itemprop="articleBody">
         <h2 id="part-1-连接-wifi">Part 1 (连接 WIFI)</h2>
-<p>购置了移动硬盘后马上把系统塞进去弄了个 "linux to go" ，回家直接用，美滋滋，然后就发现不会联网。</p>
+<p>购置了移动硬盘后马上把系统塞进去弄了个 "linux to go"
+，回家直接用，美滋滋，然后就发现不会联网。</p>
 <p><del>把联网的手机用 USB 共享网络就好了嘛</del></p>
-<p>网上搜了一大堆不靠谱的东西，踩了无数个雷后终于在 Arch-wiki 上发现一个神必软件 NetworkManager<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> 。</p>
+<p>网上搜了一大堆不靠谱的东西，踩了无数个雷后终于在 Arch-wiki
+上发现一个神必软件 NetworkManager<a href="#fn1" class="footnote-ref"
+id="fnref1" role="doc-noteref"><sup>1</sup></a> 。</p>
 <p>首先安装 <code>yay -S networkmanager</code> （一般会自带）。</p>
-<p>然后执行 <code>nmcli</code> 就可以非常友好的列出各个连接设备以及它们的状态。</p>
-<p>执行 <code>nmcli device wifi</code> 就可以扫描出附近所有无线网络以及测试它们的网速。</p>
-<p>最后执行 <code>nmcli device wifi connect 无线网络名称 password 无线网络密码</code> 就可以连接了。</p>
-<p>就是这么简单，当然如果桌面软件自带连接 wifi 功能就最好了（i3 没人权），拒绝折腾。</p>
+<p>然后执行 <code>nmcli</code>
+就可以非常友好的列出各个连接设备以及它们的状态。</p>
+<p>执行 <code>nmcli device wifi</code>
+就可以扫描出附近所有无线网络以及测试它们的网速。</p>
+<p>最后执行
+<code>nmcli device wifi connect 无线网络名称 password 无线网络密码</code>
+就可以连接了。</p>
+<p>就是这么简单，当然如果桌面软件自带连接 wifi 功能就最好了（i3
+没人权），拒绝折腾。</p>
 <span id="more"></span>
 <h2 id="part-2-创建热点">Part 2 (创建热点)</h2>
-<p>由于学校机房电脑没有无线网卡，向 <code>CYJian</code> 借了一个 USB 的无线网卡来折腾。</p>
-<p>首先 <code>lsusb</code> 或 <code>lsusb -v</code> 查看无线网卡的芯片型号<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>，例如我借来的那个就是 <code>RTL8188GU</code> 。然后找对应的驱动安装，一般 AUR 都有，不巧的该型号除外。</p>
-<p>所幸我在 Github<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> 上找到了对应的驱动程序，编译安装一通后运行 <code>nmcli</code> 就可以看到新的连接设备了。</p>
-<p>如果出错很有可能是缺少 headers ，需要根据内核的版本然后 <code>yay linux-headers</code> 找到对应的包安装。值得一提的是如果发现版本不对应，很可能是需要更新系统后重启了。</p>
-<p>manjro 有个非常方便的脚本 <code>create_ap</code> ，直接 <code>create_ap 无线网卡名 有线网卡名 热点名 热点密码</code> 即可创建热点<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a><a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>，可能需要管理员权限。</p>
-<p>但是一直报错 <code>Failed to initialize lock error</code> ，最终在 Github Issues<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a> 页面上找到了解决方案：<code>sudo rm /tmp/create_ap.all.lock</code> 。</p>
+<p>由于学校机房电脑没有无线网卡，向 <code>CYJian</code> 借了一个 USB
+的无线网卡来折腾。</p>
+<p>首先 <code>lsusb</code> 或 <code>lsusb -v</code>
+查看无线网卡的芯片型号<a href="#fn2" class="footnote-ref" id="fnref2"
+role="doc-noteref"><sup>2</sup></a>，例如我借来的那个就是
+<code>RTL8188GU</code> 。然后找对应的驱动安装，一般 AUR
+都有，不巧的该型号除外。</p>
+<p>所幸我在 Github<a href="#fn3" class="footnote-ref" id="fnref3"
+role="doc-noteref"><sup>3</sup></a>
+上找到了对应的驱动程序，编译安装一通后运行 <code>nmcli</code>
+就可以看到新的连接设备了。</p>
+<p>如果出错很有可能是缺少 headers ，需要根据内核的版本然后
+<code>yay linux-headers</code>
+找到对应的包安装。值得一提的是如果发现版本不对应，很可能是需要更新系统后重启了。</p>
+<p>manjro 有个非常方便的脚本 <code>create_ap</code> ，直接
+<code>create_ap 无线网卡名 有线网卡名 热点名 热点密码</code>
+即可创建热点<a href="#fn4" class="footnote-ref" id="fnref4"
+role="doc-noteref"><sup>4</sup></a><a href="#fn5" class="footnote-ref"
+id="fnref5"
+role="doc-noteref"><sup>5</sup></a>，可能需要管理员权限。</p>
+<p>但是一直报错 <code>Failed to initialize lock error</code> ，最终在
+Github Issues<a href="#fn6" class="footnote-ref" id="fnref6"
+role="doc-noteref"><sup>6</sup></a>
+页面上找到了解决方案：<code>sudo rm /tmp/create_ap.all.lock</code>
+。</p>
 <p>update:</p>
-<p>用了不到一天网速突然奇慢无比，把网卡拔出来重新插进去，结果突然识别不了了？？费了好大劲重新创建热点但是其他设备连接不上，在使用该网卡的电脑上搜索 wifi 啥也搜不到。</p>
+<p>用了不到一天网速突然奇慢无比，把网卡拔出来重新插进去，结果突然识别不了了？？费了好大劲重新创建热点但是其他设备连接不上，在使用该网卡的电脑上搜索
+wifi 啥也搜不到。</p>
 <p>Google 了一下发现在 Linux 上用 RTL8188GU 普遍有类似的问题。</p>
 <p>解决方案：使用钞能力，下单一个新的无线网卡。等用上了再更新。</p>
 <p>update:</p>
-<p>新的无限网卡到了，这次芯片是 8192CU ，不知道为啥驱动默认就有了，直接插上去跑 <code>create_ap</code> 就能用了。。。</p>
-<p>但是发现 <code>nmcli device wifi list</code> 并不能搜索到附近 WiFi ，感到困惑便去调查了一下原因，发现是因为配置文件 <code>/etc/NetworkManager/NetworkManager.conf</code> 里头有这样一行：</p>
+<p>新的无限网卡到了，这次芯片是 8192CU
+，不知道为啥驱动默认就有了，直接插上去跑 <code>create_ap</code>
+就能用了。。。</p>
+<p>但是发现 <code>nmcli device wifi list</code> 并不能搜索到附近 WiFi
+，感到困惑便去调查了一下原因，发现是因为配置文件
+<code>/etc/NetworkManager/NetworkManager.conf</code>
+里头有这样一行：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">unmanaged-devices=interface-name:wlp0s20f0u4</span><br></pre></td></tr></table></figure>
-<p>这个是忽略 wlp0s20f0u4 这个设备的意思，把它注释掉然后通过 <code>systemctl restart NetworkManager</code> 重启即可。</p>
-<p>然后顺便发现 NetworkManager 本身可以直接创建热点，<code>nmcli device wifi hotspot ssid [ssid] password [password]</code> 就可以了。</p>
-<p>用 <code>nmcli connection down Hotspot</code> 关闭热点。下次创建的时候直接 <code>nmcli device wifi hotspot</code> 就可以了。</p>
-<section class="footnotes" role="doc-endnotes">
+<p>这个是忽略 wlp0s20f0u4 这个设备的意思，把它注释掉然后通过
+<code>systemctl restart NetworkManager</code> 重启即可。</p>
+<p>然后顺便发现 NetworkManager
+本身可以直接创建热点，<code>nmcli device wifi hotspot ssid [ssid] password [password]</code>
+就可以了。</p>
+<p>用 <code>nmcli connection down Hotspot</code>
+关闭热点。下次创建的时候直接 <code>nmcli device wifi hotspot</code>
+就可以了。</p>
+<aside id="footnotes" class="footnotes footnotes-end-of-document"
+role="doc-endnotes">
 <hr />
 <ol>
-<li id="fn1" role="doc-endnote"><p><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/index.php/NetworkManager_%28%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87%29">NetworkManager （简体中文）</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2" role="doc-endnote"><p><a target="_blank" rel="noopener" href="https://blog.huangz.me/2019/manjaro-wifi.html">为 Manjaro 18.1.4 配置无线网卡</a><a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3" role="doc-endnote"><p><a target="_blank" rel="noopener" href="https://github.com/McMCCRU/rtl8188gu">McMCCRU/rtl8188gu</a><a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn4" role="doc-endnote"><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Listener_ri/article/details/46230437">arch 使用 create_ap 创建 wifi 热点</a><a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn5" role="doc-endnote"><p><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/index.php/Software_access_point_%28%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87%29">Software access point （简体中文）</a><a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn6" role="doc-endnote"><p><a target="_blank" rel="noopener" href="https://github.com/oblique/create_ap/issues/384">Failed to initialize lock error</a><a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p><a
+target="_blank" rel="noopener" href="https://wiki.archlinux.org/index.php/NetworkManager_%28%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87%29">NetworkManager
+（简体中文）</a><a href="#fnref1" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p><a
+target="_blank" rel="noopener" href="https://blog.huangz.me/2019/manjaro-wifi.html">为 Manjaro 18.1.4
+配置无线网卡</a><a href="#fnref2" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p><a
+target="_blank" rel="noopener" href="https://github.com/McMCCRU/rtl8188gu">McMCCRU/rtl8188gu</a><a
+href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p><a
+target="_blank" rel="noopener" href="https://blog.csdn.net/Listener_ri/article/details/46230437">arch
+使用 create_ap 创建 wifi 热点</a><a href="#fnref4" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p><a
+target="_blank" rel="noopener" href="https://wiki.archlinux.org/index.php/Software_access_point_%28%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87%29">Software
+access point （简体中文）</a><a href="#fnref5" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p><a
+target="_blank" rel="noopener" href="https://github.com/oblique/create_ap/issues/384">Failed to
+initialize lock error</a><a href="#fnref6" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
 </ol>
-</section>
+</aside>
 
     </div>
 
@@ -400,7 +456,7 @@
 
 <div class="copyright">
   &copy; 2019 – 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-heartbeat"></i>
   </span>

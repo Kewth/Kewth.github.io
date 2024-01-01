@@ -320,23 +320,36 @@
         <p>有生之年。</p>
 <hr />
 <h2 id="surveillance">297. Surveillance</h2>
-<p>对于一个长为 <span class="math inline">\(n\)</span> 的环，给定环上 <span class="math inline">\(m\)</span> 个区间，使用最少的区间覆盖整个环。</p>
-<p>时间复杂度：<span class="math inline">\(O(m + n \log n)\)</span> 。</p>
+<p>对于一个长为 <span class="math inline">\(n\)</span> 的环，给定环上
+<span class="math inline">\(m\)</span>
+个区间，使用最少的区间覆盖整个环。</p>
+<p>时间复杂度：<span class="math inline">\(O(m + n \log n)\)</span>
+。</p>
 <details class="note primary"><summary><p>题解</p>
 </summary>
 <p>如果是链的话，容易得到一个贪心做法。</p>
-<p>把环剖成一个长为 <span class="math inline">\(2n\)</span> 的链，问题转换为用最少的区间覆盖长为 <span class="math inline">\(n\)</span> 的任意一段。</p>
-<p>然后沿用贪心做法，利用倍增，设 <span class="math inline">\(f(k,i)\)</span> 表示从 <span class="math inline">\([1, i]\)</span> 中任意选一个起点，贪心地使用 <span class="math inline">\(2^k\)</span> 个区间能到达的终点位置，有</p>
+<p>把环剖成一个长为 <span class="math inline">\(2n\)</span>
+的链，问题转换为用最少的区间覆盖长为 <span
+class="math inline">\(n\)</span> 的任意一段。</p>
+<p>然后沿用贪心做法，利用倍增，设 <span
+class="math inline">\(f(k,i)\)</span> 表示从 <span
+class="math inline">\([1, i]\)</span> 中任意选一个起点，贪心地使用 <span
+class="math inline">\(2^k\)</span> 个区间能到达的终点位置，有</p>
 <p><span class="math display">\[
 f(k, i) = f(k - 1, f(k - 1, i))
 \]</span></p>
-<p>预处理 <span class="math inline">\(f\)</span> 数组后枚举起点就可以 <span class="math inline">\(O(\log n)\)</span> 得到该起点的答案。</p>
+<p>预处理 <span class="math inline">\(f\)</span> 数组后枚举起点就可以
+<span class="math inline">\(O(\log n)\)</span> 得到该起点的答案。</p>
 
 </details>
 <span id="more"></span>
 <hr />
 <h2 id="frightful-formula">191. Frightful Formula</h2>
-<p>给出 <span class="math inline">\(f(1,i)\)</span> 和 <span class="math inline">\(f(i,1)\)</span> ，对于 <span class="math inline">\(i &gt; 1, j &gt; 1\)</span> 定义 <span class="math inline">\(f(i,j) = a f(i,j-1) + b f(i-1,j) + c\)</span> ，求 <span class="math inline">\(f(n,n)\)</span> 。</p>
+<p>给出 <span class="math inline">\(f(1,i)\)</span> 和 <span
+class="math inline">\(f(i,1)\)</span> ，对于 <span
+class="math inline">\(i &gt; 1, j &gt; 1\)</span> 定义 <span
+class="math inline">\(f(i,j) = a f(i,j-1) + b f(i-1,j) + c\)</span> ，求
+<span class="math inline">\(f(n,n)\)</span> 。</p>
 <p>时间复杂度：<span class="math inline">\(O(n)\)</span> 。</p>
 <details class="note primary"><summary><p>题解</p>
 </summary>
@@ -348,11 +361,18 @@ g(i,j) = a g(i,j-1) + b g(i-1,j) + c
 \]</span> <span class="math display">\[
 h(i,j) = a h(i,j-1) + b h(i-1,j)
 \]</span></p>
-<p>如果 <span class="math inline">\(g(i,j)\)</span> 很好算，那么我们可以由 <span class="math inline">\(h(1,i)\)</span> 和 <span class="math inline">\(h(i,1)\)</span> 简单地算出 <span class="math inline">\(h(n,n)\)</span> ，进而得到 <span class="math inline">\(f(n,n)\)</span> 的值。</p>
-<p>那么问题就是如何构造一个好算的 <span class="math inline">\(g\)</span> ，容易想到：</p>
+<p>如果 <span class="math inline">\(g(i,j)\)</span>
+很好算，那么我们可以由 <span class="math inline">\(h(1,i)\)</span> 和
+<span class="math inline">\(h(i,1)\)</span> 简单地算出 <span
+class="math inline">\(h(n,n)\)</span> ，进而得到 <span
+class="math inline">\(f(n,n)\)</span> 的值。</p>
+<p>那么问题就是如何构造一个好算的 <span class="math inline">\(g\)</span>
+，容易想到：</p>
 <ul>
-<li><span class="math inline">\(a + b \neq 1\)</span> 时，<span class="math inline">\(g(i, j) = \dfrac{c}{1 - a - b}\)</span> 。</li>
-<li><span class="math inline">\(a + b = 1\)</span> 时，<span class="math inline">\(g(i, j) = c (i + j)\)</span> 。</li>
+<li><span class="math inline">\(a + b \neq 1\)</span> 时，<span
+class="math inline">\(g(i, j) = \dfrac{c}{1 - a - b}\)</span> 。</li>
+<li><span class="math inline">\(a + b = 1\)</span> 时，<span
+class="math inline">\(g(i, j) = c (i + j)\)</span> 。</li>
 </ul>
 
 </details>
@@ -402,7 +422,7 @@ h(i,j) = a h(i,j-1) + b h(i-1,j)
 
 <div class="copyright">
   &copy; 2019 – 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-heartbeat"></i>
   </span>

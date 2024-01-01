@@ -316,14 +316,26 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p><span class="math inline">\(\newcommand{\bbR}{\mathbb{R}}\)</span> <span class="math inline">\(\newcommand{\bbN}{\mathbb{N}^+}\)</span> <span class="math inline">\(\newcommand{\Lim}{\lim\limits_}\)</span> <span class="math inline">\(\newcommand{\Sum}{\sum\limits_}\)</span> <span class="math inline">\(\newcommand{\eps}{\varepsilon}\)</span> <span class="math inline">\(\newcommand{\Colon}{\colon\;\;}\)</span></p>
+        <p><span class="math inline">\(\newcommand{\bbR}{\mathbb{R}}\)</span>
+<span class="math inline">\(\newcommand{\bbN}{\mathbb{N}^+}\)</span>
+<span class="math inline">\(\newcommand{\Lim}{\lim\limits_}\)</span>
+<span class="math inline">\(\newcommand{\Sum}{\sum\limits_}\)</span>
+<span class="math inline">\(\newcommand{\eps}{\varepsilon}\)</span>
+<span class="math inline">\(\newcommand{\Colon}{\colon\;\;}\)</span></p>
 <p>以下数列仅讨论实数列。</p>
 <h2 id="一些理论">一些理论</h2>
 <h3 id="数列收敛性">数列收敛性</h3>
-<p>数列 <span class="math inline">\(\{a_n\}\)</span> 收敛于 <span class="math inline">\(A\)</span> ，当且仅当 <span class="math inline">\(\forall \eps &gt; 0 \;\; \exists N \in \bbN \;\; \forall n &gt; N \;\; |a_n - A| &lt; \eps\)</span> 。</p>
-<p>一个显然等价的定义是对于 <span class="math inline">\(A\)</span> 的任何领域，数列中仅有有限项的值不被该领域包含。注意到该定义并不关心数列中的数的排列顺序，因此把数列按任意次序打乱不影响其敛散性。</p>
+<p>数列 <span class="math inline">\(\{a_n\}\)</span> 收敛于 <span
+class="math inline">\(A\)</span> ，当且仅当 <span
+class="math inline">\(\forall \eps &gt; 0 \;\; \exists N \in \bbN \;\;
+\forall n &gt; N \;\; |a_n - A| &lt; \eps\)</span> 。</p>
+<p>一个显然等价的定义是对于 <span class="math inline">\(A\)</span>
+的任何领域，数列中仅有有限项的值不被该领域包含。注意到该定义并不关心数列中的数的排列顺序，因此把数列按任意次序打乱不影响其敛散性。</p>
 <hr />
-<p>数列 <span class="math inline">\(\{a_n\}\)</span> 是柯西数列，当且仅当 <span class="math inline">\(\forall \eps &gt; 0 \;\; \exists N \in \bbN \;\; \forall n, m &gt; N \;\; |a_n - a_m| &lt; \eps\)</span> 。</p>
+<p>数列 <span class="math inline">\(\{a_n\}\)</span>
+是柯西数列，当且仅当 <span class="math inline">\(\forall \eps &gt; 0
+\;\; \exists N \in \bbN \;\; \forall n, m &gt; N \;\; |a_n - a_m| &lt;
+\eps\)</span> 。</p>
 <p>数列收敛当且仅当其是柯西数列，由于柯西数列的定义并不关心数列收敛于何值，常用于判定数列是否收敛。</p>
 <hr />
 <p>单调数列收敛当且仅当其有界。</p>
@@ -335,162 +347,321 @@
 <h3 id="收敛子列">收敛子列</h3>
 <p>由聚点定理可以知道：任意有界数列存在收敛子列。</p>
 <p>另外，任意无界数列存在趋于无穷的子列。</p>
-<p>而数列收敛于 <span class="math inline">\(x\)</span> 当且仅当其任何子列都收敛于 <span class="math inline">\(x\)</span> 。</p>
+<p>而数列收敛于 <span class="math inline">\(x\)</span>
+当且仅当其任何子列都收敛于 <span class="math inline">\(x\)</span> 。</p>
 <hr />
-<p><span class="math inline">\(x\)</span> 是数列 <span class="math inline">\(\{a_n\}\)</span> 的部分极限，当且仅当存在该数列的某个子列收敛于 <span class="math inline">\(x\)</span> 。</p>
-<p>数列 <span class="math inline">\(a\)</span> 的下极限 <span class="math inline">\(\varliminf a_n = \Lim{N \to \infty} \inf \{a_n | n &gt; N\}\)</span> 是 <span class="math inline">\(a\)</span> 的所有部分极限的最小值。</p>
-<p>数列 <span class="math inline">\(a\)</span> 的上极限 <span class="math inline">\(\varlimsup a_n = \Lim{N \to \infty} \sup \{a_n | n &gt; N\}\)</span> 是 <span class="math inline">\(a\)</span> 的所有部分极限的最大值。</p>
+<p><span class="math inline">\(x\)</span> 是数列 <span
+class="math inline">\(\{a_n\}\)</span>
+的部分极限，当且仅当存在该数列的某个子列收敛于 <span
+class="math inline">\(x\)</span> 。</p>
+<p>数列 <span class="math inline">\(a\)</span> 的下极限 <span
+class="math inline">\(\varliminf a_n = \Lim{N \to \infty} \inf \{a_n | n
+&gt; N\}\)</span> 是 <span class="math inline">\(a\)</span>
+的所有部分极限的最小值。</p>
+<p>数列 <span class="math inline">\(a\)</span> 的上极限 <span
+class="math inline">\(\varlimsup a_n = \Lim{N \to \infty} \sup \{a_n | n
+&gt; N\}\)</span> 是 <span class="math inline">\(a\)</span>
+的所有部分极限的最大值。</p>
 <p>那么数列收敛当且仅当上下极限相等。</p>
-<p>如果把趋于正负无穷的数列看作是收敛于 <span class="math inline">\(+\infty\)</span> 或 <span class="math inline">\(-\infty\)</span> ，上述命题仍是成立的。</p>
+<p>如果把趋于正负无穷的数列看作是收敛于 <span
+class="math inline">\(+\infty\)</span> 或 <span
+class="math inline">\(-\infty\)</span> ，上述命题仍是成立的。</p>
 <h3 id="无穷级数">无穷级数</h3>
-<p>数列 <span class="math inline">\(\{a_n\}\)</span> 的无穷级数 <span class="math inline">\(\Sum{n=1}^{\infty} a_n := \Lim{n \to \infty} \Sum{k=1}^n a_k\)</span> ，若后者发散，则该级数发散。</p>
-<p>级数收敛的必要条件是 <span class="math inline">\(\Lim{n \to \infty} a_n = 0\)</span> 。</p>
-<p>如果总有 <span class="math inline">\(|a_n| \le b_n\)</span> 且 <span class="math inline">\(\Sum{n=1}^{\infty} b_n\)</span> 收敛，那么 <span class="math inline">\(\Sum{n=1}^{\infty} |a_n|\)</span> 一定收敛。</p>
-<p><span class="math inline">\(\Sum{n=1}^{\infty} |a_n|\)</span> 收敛蕴含了 <span class="math inline">\(\Sum{n=1}^{\infty} a_n\)</span> 收敛。</p>
+<p>数列 <span class="math inline">\(\{a_n\}\)</span> 的无穷级数 <span
+class="math inline">\(\Sum{n=1}^{\infty} a_n := \Lim{n \to \infty}
+\Sum{k=1}^n a_k\)</span> ，若后者发散，则该级数发散。</p>
+<p>级数收敛的必要条件是 <span class="math inline">\(\Lim{n \to \infty}
+a_n = 0\)</span> 。</p>
+<p>如果总有 <span class="math inline">\(|a_n| \le b_n\)</span> 且 <span
+class="math inline">\(\Sum{n=1}^{\infty} b_n\)</span> 收敛，那么 <span
+class="math inline">\(\Sum{n=1}^{\infty} |a_n|\)</span> 一定收敛。</p>
+<p><span class="math inline">\(\Sum{n=1}^{\infty} |a_n|\)</span>
+收敛蕴含了 <span class="math inline">\(\Sum{n=1}^{\infty} a_n\)</span>
+收敛。</p>
 <hr />
-<p>对于无穷级数 <span class="math inline">\(\Sum{n=1}^{\infty} a_n\)</span> ，令 <span class="math inline">\(A := \varlimsup \sqrt[n]{|a_n|}\)</span> （或 <span class="math inline">\(A := \Lim{n \to \infty} |\dfrac{a_{n+1}}{a_n}|\)</span> ，如果该极限存在）：</p>
+<p>对于无穷级数 <span class="math inline">\(\Sum{n=1}^{\infty}
+a_n\)</span> ，令 <span class="math inline">\(A := \varlimsup
+\sqrt[n]{|a_n|}\)</span> （或 <span class="math inline">\(A := \Lim{n
+\to \infty} |\dfrac{a_{n+1}}{a_n}|\)</span> ，如果该极限存在）：</p>
 <ul>
-<li><span class="math inline">\(A &lt; 1 \Rightarrow \Sum{n=1}^{\infty} a_n\)</span> 绝对收敛。</li>
-<li><span class="math inline">\(A &gt; 1 \Rightarrow \Sum{n=1}^{\infty} a_n\)</span> 发散。</li>
+<li><span class="math inline">\(A &lt; 1 \Rightarrow \Sum{n=1}^{\infty}
+a_n\)</span> 绝对收敛。</li>
+<li><span class="math inline">\(A &gt; 1 \Rightarrow \Sum{n=1}^{\infty}
+a_n\)</span> 发散。</li>
 </ul>
 <h2 id="一些习题">一些习题</h2>
 <h3 id="三.1.4.e">三.1.4.e</h3>
-<p>证明无穷连分数 <span class="math inline">\([a_1, a_2, a_3 \dots]\)</span> <span class="math inline">\((a_i \in \bbN)\)</span> 总是收敛的。</p>
-<p>ps: 渐进分数 <span class="math inline">\([a_1, a_2 \dots a_n]\)</span> 的值可以表示为 <span class="math inline">\(\dfrac{P_n}{Q_n}\)</span> ，并满足 <span class="math inline">\(P_{n+2} = P_{n+1} a_{n+2} + P_n\)</span> 以及 <span class="math inline">\(Q_{n+2} = Q_{n+1} a_{n+2} + Q_n\)</span> 。</p>
+<p>证明无穷连分数 <span class="math inline">\([a_1, a_2, a_3
+\dots]\)</span> <span class="math inline">\((a_i \in \bbN)\)</span>
+总是收敛的。</p>
+<p>ps: 渐进分数 <span class="math inline">\([a_1, a_2 \dots
+a_n]\)</span> 的值可以表示为 <span
+class="math inline">\(\dfrac{P_n}{Q_n}\)</span> ，并满足 <span
+class="math inline">\(P_{n+2} = P_{n+1} a_{n+2} + P_n\)</span> 以及
+<span class="math inline">\(Q_{n+2} = Q_{n+1} a_{n+2} + Q_n\)</span>
+。</p>
 <details class="note primary"><summary><p>Answer</p>
 </summary>
-<p>令 <span class="math inline">\(R_n := \dfrac{P_n}{Q_n}\)</span> ，我们要证明 <span class="math inline">\(\Lim{n \to \infty} R_n\)</span> 存在。</p>
+<p>令 <span class="math inline">\(R_n := \dfrac{P_n}{Q_n}\)</span>
+，我们要证明 <span class="math inline">\(\Lim{n \to \infty} R_n\)</span>
+存在。</p>
 <p>首先注意到</p>
 <p><span class="math display">\[
 \begin{aligned}
-    P_{n+2} Q_{n+1} - P_{n+1} Q_{n+2} &amp;= (P_{n+1} a_{n+2} + P_n) Q_{n+1} - P_{n+1} (Q_{n+1} a_{n+2} + Q_n) \\
+    P_{n+2} Q_{n+1} - P_{n+1} Q_{n+2} &amp;= (P_{n+1} a_{n+2} + P_n)
+Q_{n+1} - P_{n+1} (Q_{n+1} a_{n+2} + Q_n) \\
                                       &amp;= P_n Q_{n+1} - P_{n+1} Q_n
 \end{aligned}
 \]</span></p>
-<p>迭代上式后可以得到 <span class="math inline">\(P_{n+1} Q_n - P_n Q_{n+1} = (-1)^{n-1} (P_2 Q_1 - P_1 Q_2) = (-1)^{n-1}\)</span> 。</p>
+<p>迭代上式后可以得到 <span class="math inline">\(P_{n+1} Q_n - P_n
+Q_{n+1} = (-1)^{n-1} (P_2 Q_1 - P_1 Q_2) = (-1)^{n-1}\)</span> 。</p>
 <p>那么对相邻项作差：</p>
 <p><span class="math display">\[
-    R_{n+1} - R_n = \frac{P_{n+1}}{Q_{n+1}} - \frac{P_n}{Q_n} = \frac{(-1)^{n+1}}{Q_{n+1} Q_n}
+    R_{n+1} - R_n = \frac{P_{n+1}}{Q_{n+1}} - \frac{P_n}{Q_n} =
+\frac{(-1)^{n+1}}{Q_{n+1} Q_n}
 \]</span></p>
 <p>这启发我们按将下标按奇偶性分类，于是</p>
 <p><span class="math display">\[
 \begin{aligned}
-    R_{2k+1} - R_{2k-1} &amp;= \frac{(-1)^{2k+1}}{Q_{2k+1} Q_{2k}} + \frac{(-1)^{2k}}{Q_{2k} Q_{2k-1}} \\
+    R_{2k+1} - R_{2k-1} &amp;= \frac{(-1)^{2k+1}}{Q_{2k+1} Q_{2k}} +
+\frac{(-1)^{2k}}{Q_{2k} Q_{2k-1}} \\
                         &amp;= \frac{a_{2k+1}}{Q_{2k+1} Q_{2k-1}} \\
                         &amp;&gt; 0 \\
-    R_{2k+2} - R_{2k}   &amp;= \frac{(-1)^{2k+2}}{Q_{2k+2} Q_{2k+1}} + \frac{(-1)^{2k+1}}{Q_{2k+1} Q_{2k}} \\
+    R_{2k+2} - R_{2k}   &amp;= \frac{(-1)^{2k+2}}{Q_{2k+2} Q_{2k+1}} +
+\frac{(-1)^{2k+1}}{Q_{2k+1} Q_{2k}} \\
                         &amp;= - \frac{a_{2k+2}}{Q_{2k+2} Q_{2k}} \\
                         &amp;&lt; 0
 \end{aligned}
 \]</span></p>
-<p>故 <span class="math inline">\(R_{2k-1}\)</span> 单调递增，<span class="math inline">\(R_{2k}\)</span> 单调递减。</p>
-<p>且由于 <span class="math inline">\(R_{2k} - R_{2k-1} &gt; 0\)</span> ，所以 <span class="math inline">\(R_{2k-1} &lt; R_{2k} \le R_2\)</span> ，<span class="math inline">\(R_2\)</span> 是 <span class="math inline">\(R_{2k-1}\)</span> 的一个上界。同理 <span class="math inline">\(R_1\)</span> 是 <span class="math inline">\(R_{2k}\)</span> 的一个下界。故 <span class="math inline">\(\Lim{k \to \infty} R_{2k}\)</span> 和 <span class="math inline">\(\Lim{k \to \infty} R_{2k-1}\)</span> 都是存在的。于是</p>
+<p>故 <span class="math inline">\(R_{2k-1}\)</span> 单调递增，<span
+class="math inline">\(R_{2k}\)</span> 单调递减。</p>
+<p>且由于 <span class="math inline">\(R_{2k} - R_{2k-1} &gt; 0\)</span>
+，所以 <span class="math inline">\(R_{2k-1} &lt; R_{2k} \le R_2\)</span>
+，<span class="math inline">\(R_2\)</span> 是 <span
+class="math inline">\(R_{2k-1}\)</span> 的一个上界。同理 <span
+class="math inline">\(R_1\)</span> 是 <span
+class="math inline">\(R_{2k}\)</span> 的一个下界。故 <span
+class="math inline">\(\Lim{k \to \infty} R_{2k}\)</span> 和 <span
+class="math inline">\(\Lim{k \to \infty} R_{2k-1}\)</span>
+都是存在的。于是</p>
 <p><span class="math display">\[
-    \Lim{k \to \infty} R_{2k} - \Lim{k \to \infty} R_{2k-1} = \Lim{k \to \infty} (R_{2k} - R_{2k-1}) = \Lim{k \to \infty} \frac{(-1)^{2k}}{Q_{2k} Q_{2k-1}} = 0
+    \Lim{k \to \infty} R_{2k} - \Lim{k \to \infty} R_{2k-1} = \Lim{k \to
+\infty} (R_{2k} - R_{2k-1}) = \Lim{k \to \infty} \frac{(-1)^{2k}}{Q_{2k}
+Q_{2k-1}} = 0
 \]</span></p>
-<p>所以奇数项和偶数项收敛于同值 <span class="math inline">\(r\)</span> ，这就可以导出 <span class="math inline">\(R_n\)</span> 收敛于 <span class="math inline">\(r\)</span> ：</p>
+<p>所以奇数项和偶数项收敛于同值 <span class="math inline">\(r\)</span>
+，这就可以导出 <span class="math inline">\(R_n\)</span> 收敛于 <span
+class="math inline">\(r\)</span> ：</p>
 <p><span class="math display">\[
 \begin{aligned}
-    &amp; \because \forall \eps &gt; 0 \;\; \exists N, M \;\; \forall n &gt; N, m &gt; M \;\; \max\{|R_{2n-1} - r|, |R_{2m} - r|\} &lt; \eps \\
-    &amp; \therefore \forall \eps &gt; 0 \;\; \exists K = \max\{2N-1, 2M\} \;\; \forall n &gt; K \;\; |R_n - r| &lt; \eps
+    &amp; \because \forall \eps &gt; 0 \;\; \exists N, M \;\; \forall n
+&gt; N, m &gt; M \;\; \max\{|R_{2n-1} - r|, |R_{2m} - r|\} &lt; \eps \\
+    &amp; \therefore \forall \eps &gt; 0 \;\; \exists K = \max\{2N-1,
+2M\} \;\; \forall n &gt; K \;\; |R_n - r| &lt; \eps
 \end{aligned}
 \]</span></p>
 
 </details>
 <h3 id="三.1.6.b">三.1.6.b</h3>
-<p>对于 <span class="math inline">\(0 &lt; a \le b\)</span> 求 <span class="math inline">\(\Lim{n \to \infty} \sqrt[n]{\dfrac{a^n + b^n}{2}}\)</span> 。</p>
+<p>对于 <span class="math inline">\(0 &lt; a \le b\)</span> 求 <span
+class="math inline">\(\Lim{n \to \infty} \sqrt[n]{\dfrac{a^n +
+b^n}{2}}\)</span> 。</p>
 <details class="note primary"><summary><p>Answer</p>
 </summary>
-<p>令 <span class="math inline">\(r_n := \sqrt[n]{\dfrac{a^n + b^n}{2}}\)</span> ，注意到 <span class="math inline">\(\dfrac{r_n}{b} = \sqrt[n]{\dfrac{(a/b)^n + 1}{2}}\)</span> ，令 <span class="math inline">\(q := \dfrac{a}{b}\)</span> ，则 <span class="math inline">\(0 &lt; q \le 1\)</span> 。</p>
-<p>注意到 <span class="math inline">\(1 &lt; q^n + 1 \le 2\)</span> 可以导出以下不等式：</p>
+<p>令 <span class="math inline">\(r_n := \sqrt[n]{\dfrac{a^n +
+b^n}{2}}\)</span> ，注意到 <span class="math inline">\(\dfrac{r_n}{b} =
+\sqrt[n]{\dfrac{(a/b)^n + 1}{2}}\)</span> ，令 <span
+class="math inline">\(q := \dfrac{a}{b}\)</span> ，则 <span
+class="math inline">\(0 &lt; q \le 1\)</span> 。</p>
+<p>注意到 <span class="math inline">\(1 &lt; q^n + 1 \le 2\)</span>
+可以导出以下不等式：</p>
 <p><span class="math display">\[
-    \sqrt[n]{\dfrac{1}{2}} &lt; \sqrt[n]{\dfrac{q^n + 1}{2}} \le \sqrt[n]{\dfrac{2}{2}}
+    \sqrt[n]{\dfrac{1}{2}} &lt; \sqrt[n]{\dfrac{q^n + 1}{2}} \le
+\sqrt[n]{\dfrac{2}{2}}
 \]</span></p>
-<p>而左式和右式的极限都是 <span class="math inline">\(1\)</span> ，故 <span class="math inline">\(\Lim{n \to \infty} \dfrac{r_n}{b} = 1\)</span> ，于是 <span class="math inline">\(\Lim{n \to \infty} r_n = b\)</span> 。</p>
+<p>而左式和右式的极限都是 <span class="math inline">\(1\)</span> ，故
+<span class="math inline">\(\Lim{n \to \infty} \dfrac{r_n}{b} =
+1\)</span> ，于是 <span class="math inline">\(\Lim{n \to \infty} r_n =
+b\)</span> 。</p>
 
 </details>
 <h3 id="三.1.7">三.1.7</h3>
-<p>数列 <span class="math inline">\(\{x_n\}\)</span> 满足 <span class="math inline">\(x_{n+1} = \dfrac{x_n^2 + a}{2 x_n}\)</span> 且 <span class="math inline">\(x_1, a &gt; 0\)</span> ，求 <span class="math inline">\(\Lim{n \to \infty} x_n\)</span> 。</p>
+<p>数列 <span class="math inline">\(\{x_n\}\)</span> 满足 <span
+class="math inline">\(x_{n+1} = \dfrac{x_n^2 + a}{2 x_n}\)</span> 且
+<span class="math inline">\(x_1, a &gt; 0\)</span> ，求 <span
+class="math inline">\(\Lim{n \to \infty} x_n\)</span> 。</p>
 <details class="note primary"><summary><p>Answer</p>
 </summary>
-<p>注意到 <span class="math inline">\(x_{n+1} = \dfrac{1}{2} (\sqrt{x_n} - \sqrt{\dfrac{a}{x_n}})^2 + \sqrt{a} \ge \sqrt{a}\)</span> ，不失一般性地，不妨假定 <span class="math inline">\(x_1 \ge \sqrt{a}\)</span> 。</p>
-<p>而 <span class="math inline">\(x_1 = \sqrt{a}\)</span> 时显然 <span class="math inline">\(\Lim{n \to \infty} x_n = \sqrt{a}\)</span> ，考虑 <span class="math inline">\(x_1 &gt; \sqrt{a}\)</span> 。</p>
-<p>令 <span class="math inline">\(\Delta_n := x_n - \sqrt{a}\)</span> ，那么</p>
+<p>注意到 <span class="math inline">\(x_{n+1} = \dfrac{1}{2} (\sqrt{x_n}
+- \sqrt{\dfrac{a}{x_n}})^2 + \sqrt{a} \ge \sqrt{a}\)</span>
+，不失一般性地，不妨假定 <span class="math inline">\(x_1 \ge
+\sqrt{a}\)</span> 。</p>
+<p>而 <span class="math inline">\(x_1 = \sqrt{a}\)</span> 时显然 <span
+class="math inline">\(\Lim{n \to \infty} x_n = \sqrt{a}\)</span> ，考虑
+<span class="math inline">\(x_1 &gt; \sqrt{a}\)</span> 。</p>
+<p>令 <span class="math inline">\(\Delta_n := x_n - \sqrt{a}\)</span>
+，那么</p>
 <p><span class="math display">\[
-    \Delta_{n+1} = \frac{x_n^2 + a}{2 x_n} - \sqrt{a} = \frac{\Delta_n^2 + 2 \sqrt{a} \Delta_n + 2 a}{2 \Delta_n + 2 \sqrt{a}} - \sqrt{a} = \frac{\Delta_n^2}{2 \Delta_n + 2 \sqrt{a}}
+    \Delta_{n+1} = \frac{x_n^2 + a}{2 x_n} - \sqrt{a} = \frac{\Delta_n^2
++ 2 \sqrt{a} \Delta_n + 2 a}{2 \Delta_n + 2 \sqrt{a}} - \sqrt{a} =
+\frac{\Delta_n^2}{2 \Delta_n + 2 \sqrt{a}}
 \]</span></p>
-<p>可以发现 <span class="math inline">\(\Delta_n &gt; 0\)</span> 恒成立，于是</p>
+<p>可以发现 <span class="math inline">\(\Delta_n &gt; 0\)</span>
+恒成立，于是</p>
 <p><span class="math display">\[
-    \Delta_{n+1}^{-1} = \frac{2 \Delta_n + 2 \sqrt{a}}{\Delta_n^2} = 2 \Delta_n^{-1} + 2 \sqrt{a} \Delta_n^{-2} &gt; 2 \Delta_n^{-1} &gt; 2^n \Delta_1^{-1}
+    \Delta_{n+1}^{-1} = \frac{2 \Delta_n + 2 \sqrt{a}}{\Delta_n^2} = 2
+\Delta_n^{-1} + 2 \sqrt{a} \Delta_n^{-2} &gt; 2 \Delta_n^{-1} &gt; 2^n
+\Delta_1^{-1}
 \]</span></p>
-<p>于是有不等式 <span class="math inline">\(0 &lt; \Delta_{n+1} &lt; \dfrac{\Delta_1}{2^n}\)</span> ，左式和右式的极限均为 <span class="math inline">\(0\)</span> ，故 <span class="math inline">\(\Lim{n \to \infty} \Delta_n = 0\)</span> ，即 <span class="math inline">\(\Lim{n \to \infty} x_n = \sqrt{a}\)</span> 。</p>
-<p>另外，我们顺便求得了 <span class="math inline">\(\{x_n\}\)</span> 的收敛速度，而这个逼近的方法正是牛顿迭代。</p>
+<p>于是有不等式 <span class="math inline">\(0 &lt; \Delta_{n+1} &lt;
+\dfrac{\Delta_1}{2^n}\)</span> ，左式和右式的极限均为 <span
+class="math inline">\(0\)</span> ，故 <span class="math inline">\(\Lim{n
+\to \infty} \Delta_n = 0\)</span> ，即 <span
+class="math inline">\(\Lim{n \to \infty} x_n = \sqrt{a}\)</span> 。</p>
+<p>另外，我们顺便求得了 <span class="math inline">\(\{x_n\}\)</span>
+的收敛速度，而这个逼近的方法正是牛顿迭代。</p>
 
 </details>
 <h3 id="补充狄利克雷检验法">补充：狄利克雷检验法</h3>
-<p>已知单调数列 <span class="math inline">\(\{a_n\}\)</span> 收敛于 <span class="math inline">\(0\)</span> 且级数 <span class="math inline">\(\Sum{n=1}^{\infty} b_n\)</span> 的部分和序列 <span class="math inline">\(\{\Sum{k=1}^n b_k\}\)</span> 有界，证明级数 <span class="math inline">\(\Sum{n=1}^{\infty} a_n b_n\)</span> 收敛。</p>
+<p>已知单调数列 <span class="math inline">\(\{a_n\}\)</span> 收敛于
+<span class="math inline">\(0\)</span> 且级数 <span
+class="math inline">\(\Sum{n=1}^{\infty} b_n\)</span> 的部分和序列 <span
+class="math inline">\(\{\Sum{k=1}^n b_k\}\)</span> 有界，证明级数 <span
+class="math inline">\(\Sum{n=1}^{\infty} a_n b_n\)</span> 收敛。</p>
 <details class="note primary"><summary><p>Answer</p>
 </summary>
-<p>（其实是抄的 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Dirichlet%27s_test">Wikipedia</a> 的证明）</p>
-<p>令 <span class="math inline">\(S_n := \Sum{k=1}^n a_k b_k\)</span> 以及 <span class="math inline">\(B_n := \Sum{k=1}^n b_k\)</span> 。</p>
+<p>（其实是抄的 <a
+target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Dirichlet%27s_test">Wikipedia</a>
+的证明）</p>
+<p>令 <span class="math inline">\(S_n := \Sum{k=1}^n a_k b_k\)</span>
+以及 <span class="math inline">\(B_n := \Sum{k=1}^n b_k\)</span> 。</p>
 <p>注意到</p>
 <p><span class="math display">\[
-    S_n = \sum_{k=1}^n a_k (B_k - B_{k-1}) = \sum_{k=1}^n a_k B_k - \sum_{k=1}^{n-1} a_{k+1} B_k = a_n B_n + \sum_{k=1}^{n-1} (a_k - a_{k+1}) B_k
+    S_n = \sum_{k=1}^n a_k (B_k - B_{k-1}) = \sum_{k=1}^n a_k B_k -
+\sum_{k=1}^{n-1} a_{k+1} B_k = a_n B_n + \sum_{k=1}^{n-1} (a_k -
+a_{k+1}) B_k
 \]</span></p>
-<p>设 <span class="math inline">\(\forall n \in \bbN \Colon |B_n| &lt; L\)</span> ，注意到</p>
+<p>设 <span class="math inline">\(\forall n \in \bbN \Colon |B_n| &lt;
+L\)</span> ，注意到</p>
 <p><span class="math display">\[
-    \sum_{k=1}^n |(a_k - a_{k+1}) L| = L |\sum_{k=1}^n (a_k - a_{k+1})| = L |a_1 - a_{n+1}|
+    \sum_{k=1}^n |(a_k - a_{k+1}) L| = L |\sum_{k=1}^n (a_k - a_{k+1})|
+= L |a_1 - a_{n+1}|
 \]</span></p>
-<p>故级数 <span class="math inline">\(\Sum{n=1}^{\infty} |(a_n - a_{n+1}) L|\)</span> 收敛于 <span class="math inline">\(|L a_1|\)</span> 。而根据比较定理，级数 <span class="math inline">\(\Sum{n=1}^{\infty} |(a_n - a_{n+1}) B_n|\)</span> 也一定收敛。</p>
-<p>那么级数 <span class="math inline">\(\Sum{n=1}^{\infty} (a_n - a_{n+1}) B_n\)</span> 收敛，又因为 <span class="math inline">\(a_n B_n\)</span> 也收敛于 <span class="math inline">\(0\)</span> ，故 <span class="math inline">\(S_n\)</span> 收敛，即原级数收敛。</p>
+<p>故级数 <span class="math inline">\(\Sum{n=1}^{\infty} |(a_n -
+a_{n+1}) L|\)</span> 收敛于 <span class="math inline">\(|L a_1|\)</span>
+。而根据比较定理，级数 <span class="math inline">\(\Sum{n=1}^{\infty}
+|(a_n - a_{n+1}) B_n|\)</span> 也一定收敛。</p>
+<p>那么级数 <span class="math inline">\(\Sum{n=1}^{\infty} (a_n -
+a_{n+1}) B_n\)</span> 收敛，又因为 <span class="math inline">\(a_n
+B_n\)</span> 也收敛于 <span class="math inline">\(0\)</span> ，故 <span
+class="math inline">\(S_n\)</span> 收敛，即原级数收敛。</p>
 
 </details>
 <h2 id="二些理论">二些理论</h2>
 <h3 id="函数的极限">函数的极限</h3>
-<p>对于函数 <span class="math inline">\(f \colon E \to \bbR\)</span> ，称在 <span class="math inline">\(x\)</span> 趋于 <span class="math inline">\(a\)</span> 时函数 <span class="math inline">\(f\)</span> 趋于 <span class="math inline">\(A\)</span> ，当且仅当 <span class="math inline">\(\forall U(A) \;\; \exists \mathring{V}(a) \;\; f(\mathring{V}(a) \cap E) \subset U(A)\)</span> 。记为 <span class="math inline">\(\Lim{E \ni x \to a} f(x) = A\)</span> 。如果存在 <span class="math inline">\(\mathring{V}(a) \subset E\)</span> ，一般简记为 <span class="math inline">\(\Lim{x \to a} f(x) = A\)</span> 。</p>
-<p>注意到满足上述定义的一个必要条件是 <span class="math inline">\(a\)</span> 是 <span class="math inline">\(E\)</span> 的一个极限点。</p>
-<p>另一个等价的定义是，所有满足 <span class="math inline">\(x_n \in E \setminus \{a\}\)</span> 且收敛于 <span class="math inline">\(a\)</span> 的数列 <span class="math inline">\(\{x_n\}\)</span> 都有 <span class="math inline">\(\{f(x_n)\}\)</span> 收敛于 <span class="math inline">\(A\)</span> 。</p>
+<p>对于函数 <span class="math inline">\(f \colon E \to \bbR\)</span>
+，称在 <span class="math inline">\(x\)</span> 趋于 <span
+class="math inline">\(a\)</span> 时函数 <span
+class="math inline">\(f\)</span> 趋于 <span
+class="math inline">\(A\)</span> ，当且仅当 <span
+class="math inline">\(\forall U(A) \;\; \exists \mathring{V}(a) \;\;
+f(\mathring{V}(a) \cap E) \subset U(A)\)</span> 。记为 <span
+class="math inline">\(\Lim{E \ni x \to a} f(x) = A\)</span> 。如果存在
+<span class="math inline">\(\mathring{V}(a) \subset E\)</span>
+，一般简记为 <span class="math inline">\(\Lim{x \to a} f(x) = A\)</span>
+。</p>
+<p>注意到满足上述定义的一个必要条件是 <span
+class="math inline">\(a\)</span> 是 <span
+class="math inline">\(E\)</span> 的一个极限点。</p>
+<p>另一个等价的定义是，所有满足 <span class="math inline">\(x_n \in E
+\setminus \{a\}\)</span> 且收敛于 <span class="math inline">\(a\)</span>
+的数列 <span class="math inline">\(\{x_n\}\)</span> 都有 <span
+class="math inline">\(\{f(x_n)\}\)</span> 收敛于 <span
+class="math inline">\(A\)</span> 。</p>
 <p>根据第二个定义可以很快地将数列极限的部分理论推广到函数极限上（接下来将会看到）。</p>
 <h3 id="滤子基">滤子基</h3>
-<p>由集合 <span class="math inline">\(E\)</span> 的某些子集 <span class="math inline">\(B \subset E\)</span> 组成的集合族 <span class="math inline">\(\mathcal B\)</span> 称为 <span class="math inline">\(E\)</span> 的滤子基（下文简称为基），当且仅当：</p>
+<p>由集合 <span class="math inline">\(E\)</span> 的某些子集 <span
+class="math inline">\(B \subset E\)</span> 组成的集合族 <span
+class="math inline">\(\mathcal B\)</span> 称为 <span
+class="math inline">\(E\)</span>
+的滤子基（下文简称为基），当且仅当：</p>
 <ol type="1">
-<li><span class="math inline">\(\forall B \in \mathcal B \;\; B \neq \varnothing\)</span> 。</li>
-<li><span class="math inline">\(\forall B_1, B_2 \in \mathcal B \;\; \exists B \in \mathcal B \;\; B \subset B_1 \cap B_2\)</span> 。</li>
+<li><span class="math inline">\(\forall B \in \mathcal B \;\; B \neq
+\varnothing\)</span> 。</li>
+<li><span class="math inline">\(\forall B_1, B_2 \in \mathcal B \;\;
+\exists B \in \mathcal B \;\; B \subset B_1 \cap B_2\)</span> 。</li>
 </ol>
 <p>事实上可以直接在基上定义极限：</p>
 <p><span class="math display">\[
-    (\Lim{\mathcal B} f(x) = A) := \forall U(A) \;\; \exists B \in \mathcal B \Colon f(B) \subset U(A)
+    (\Lim{\mathcal B} f(x) = A) := \forall U(A) \;\; \exists B \in
+\mathcal B \Colon f(B) \subset U(A)
 \]</span></p>
-<p>而数列极限和函数极限都可以归约到上述定义。例如对于数列极限 <span class="math inline">\(\Lim{n \to \infty} a_n = A\)</span> 有 <span class="math inline">\(\{n \in \bbN | n &gt; N\} \in \mathcal B, f(n) = a_n\)</span> 。函数极限 <span class="math inline">\(\Lim{E \ni x \to a} f(x) = A\)</span> 有 <span class="math inline">\(\mathring{V}(a) \cap E \in \mathcal B\)</span> 。</p>
+<p>而数列极限和函数极限都可以归约到上述定义。例如对于数列极限 <span
+class="math inline">\(\Lim{n \to \infty} a_n = A\)</span> 有 <span
+class="math inline">\(\{n \in \bbN | n &gt; N\} \in \mathcal B, f(n) =
+a_n\)</span> 。函数极限 <span class="math inline">\(\Lim{E \ni x \to a}
+f(x) = A\)</span> 有 <span class="math inline">\(\mathring{V}(a) \cap E
+\in \mathcal B\)</span> 。</p>
 <hr />
 <p>一些数列极限的相关理论现在可以推广。</p>
 <ul>
-<li><p>对于基 <span class="math inline">\(\mathcal B\)</span> ，<span class="math inline">\(f(x)\)</span> 收敛当且仅当 <span class="math inline">\(\forall \eps &gt; 0 \;\; \exists B \in \mathcal B \;\; \forall x_1, x_2 \in B \Colon |f(x_1) - f(x_2)| &lt; \eps\)</span> 。</p></li>
-<li><p>不减函数 <span class="math inline">\(f \colon E \to \bbR\)</span> 在 <span class="math inline">\(E \ni x \to \sup E\)</span> 收敛当且仅当其值有上界（这里的基不是任意的！）。</p></li>
+<li><p>对于基 <span class="math inline">\(\mathcal B\)</span> ，<span
+class="math inline">\(f(x)\)</span> 收敛当且仅当 <span
+class="math inline">\(\forall \eps &gt; 0 \;\; \exists B \in \mathcal B
+\;\; \forall x_1, x_2 \in B \Colon |f(x_1) - f(x_2)| &lt; \eps\)</span>
+。</p></li>
+<li><p>不减函数 <span class="math inline">\(f \colon E \to \bbR\)</span>
+在 <span class="math inline">\(E \ni x \to \sup E\)</span>
+收敛当且仅当其值有上界（这里的基不是任意的！）。</p></li>
 <li><p>对于一个确定的基，两个函数相加/减/乘/除，新的函数收敛于原来两个函数的极限的和/差/积/商。</p></li>
 </ul>
 <hr />
-<p>如果某个条件在基 <span class="math inline">\(\mathcal B\)</span> 上的某个元素 <span class="math inline">\(B\)</span> 上成立，就称该条件在 <span class="math inline">\(\mathcal B\)</span> 上最终成立。</p>
-<p>对于基 <span class="math inline">\(\mathcal B\)</span> ：记 <span class="math inline">\(f = o(g)\)</span> 当且仅当存在 <span class="math inline">\(\Lim{\mathcal B} \alpha(x) = 0\)</span> 使得 <span class="math inline">\(f(x) = \alpha(x) g(x)\)</span> 最终成立；记 <span class="math inline">\(f = O(g)\)</span> 当且仅当存在最终有界函数 <span class="math inline">\(\beta(x)\)</span> 使得 <span class="math inline">\(f(x) = \beta(x) g(x)\)</span> 最终成立；记 <span class="math inline">\(f \sim g\)</span> 当且仅当存在 <span class="math inline">\(\Lim{\mathcal B} \gamma(x) = 1\)</span> 使得 <span class="math inline">\(f(x) = \gamma(x) g(x)\)</span> 最终成立。</p>
+<p>如果某个条件在基 <span class="math inline">\(\mathcal B\)</span>
+上的某个元素 <span class="math inline">\(B\)</span> 上成立，就称该条件在
+<span class="math inline">\(\mathcal B\)</span> 上最终成立。</p>
+<p>对于基 <span class="math inline">\(\mathcal B\)</span> ：记 <span
+class="math inline">\(f = o(g)\)</span> 当且仅当存在 <span
+class="math inline">\(\Lim{\mathcal B} \alpha(x) = 0\)</span> 使得 <span
+class="math inline">\(f(x) = \alpha(x) g(x)\)</span> 最终成立；记 <span
+class="math inline">\(f = O(g)\)</span> 当且仅当存在最终有界函数 <span
+class="math inline">\(\beta(x)\)</span> 使得 <span
+class="math inline">\(f(x) = \beta(x) g(x)\)</span> 最终成立；记 <span
+class="math inline">\(f \sim g\)</span> 当且仅当存在 <span
+class="math inline">\(\Lim{\mathcal B} \gamma(x) = 1\)</span> 使得 <span
+class="math inline">\(f(x) = \gamma(x) g(x)\)</span> 最终成立。</p>
 <h3 id="复合函数极限定理">复合函数极限定理</h3>
-<p><span class="math inline">\(\Lim{\mathcal B_Y} g(y) = \Lim{\mathcal B_X} g(f(x))\)</span> ，如果 <span class="math inline">\(\forall B_Y \in \mathcal B_Y \;\; \exists B_X \in \mathcal B_X \;\; f(B_X) \subset B_Y\)</span> 。</p>
-<p>即如果 <span class="math inline">\(\Lim{E \ni x \to a} f(x) = b\)</span> 则 <span class="math inline">\(\Lim{y \to b} g(y) = \Lim{E \ni x \to a} g(f(x))\)</span> 。</p>
+<p><span class="math inline">\(\Lim{\mathcal B_Y} g(y) = \Lim{\mathcal
+B_X} g(f(x))\)</span> ，如果 <span class="math inline">\(\forall B_Y \in
+\mathcal B_Y \;\; \exists B_X \in \mathcal B_X \;\; f(B_X) \subset
+B_Y\)</span> 。</p>
+<p>即如果 <span class="math inline">\(\Lim{E \ni x \to a} f(x) =
+b\)</span> 则 <span class="math inline">\(\Lim{y \to b} g(y) = \Lim{E
+\ni x \to a} g(f(x))\)</span> 。</p>
 <h3 id="一些需要牢记的公式">一些需要牢记的公式</h3>
 <p><span class="math display">\[
 \begin{aligned}
     e^x &amp;= \sum_{n=0}^{\infty} \frac{1}{n!} x^n, &amp; x \in \bbR \\
-    \cos x &amp;= \sum_{n=0}^{\infty} \frac{(-1)^n}{(2n)!} x^{2n}, &amp; x \in \bbR \\
-    \sin x &amp;= \sum_{n=0}^{\infty} \frac{(-1)^n}{(2n+1)!} x^{2n+1}, &amp; x \in \bbR \\
-    \ln (1 + x) &amp;= \sum_{n=0}^{\infty} \frac{(-1)^n}{n+1} x^{n+1}, &amp; |x| &lt; 1 \\
-    (1 + x)^{\alpha} &amp;= \sum_{n=0}^{\infty} \frac{\alpha^{\underline n}}{n!} x^n, &amp; |x| &lt; 1 \\
+    \cos x &amp;= \sum_{n=0}^{\infty} \frac{(-1)^n}{(2n)!} x^{2n}, &amp;
+x \in \bbR \\
+    \sin x &amp;= \sum_{n=0}^{\infty} \frac{(-1)^n}{(2n+1)!} x^{2n+1},
+&amp; x \in \bbR \\
+    \ln (1 + x) &amp;= \sum_{n=0}^{\infty} \frac{(-1)^n}{n+1} x^{n+1},
+&amp; |x| &lt; 1 \\
+    (1 + x)^{\alpha} &amp;= \sum_{n=0}^{\infty} \frac{\alpha^{\underline
+n}}{n!} x^n, &amp; |x| &lt; 1 \\
 \end{aligned}
 \]</span></p>
 <h2 id="二些习题">二些习题</h2>
 <h3 id="三.2.4">三.2.4</h3>
-<p>证明在 <span class="math inline">\(\bbN \ni n \to \infty\)</span> 上有 <span class="math inline">\(\Sum{k=1}^n \dfrac{1}{k} = \ln n + c + o(1)\)</span> ，其中 <span class="math inline">\(c \in \bbR\)</span> 是某常数。</p>
+<p>证明在 <span class="math inline">\(\bbN \ni n \to \infty\)</span>
+上有 <span class="math inline">\(\Sum{k=1}^n \dfrac{1}{k} = \ln n + c +
+o(1)\)</span> ，其中 <span class="math inline">\(c \in \bbR\)</span>
+是某常数。</p>
 <details class="note primary"><summary><p>Answer</p>
 </summary>
-<p>令 <span class="math inline">\(a_n := \Sum{k=1}^n \dfrac{1}{k} - \ln n\)</span> ，命题等价于数列 <span class="math inline">\(\{a_n\}\)</span> 收敛。</p>
+<p>令 <span class="math inline">\(a_n := \Sum{k=1}^n \dfrac{1}{k} - \ln
+n\)</span> ，命题等价于数列 <span class="math inline">\(\{a_n\}\)</span>
+收敛。</p>
 <p>令 <span class="math inline">\(b_n := a_{n+1} - a_n\)</span> ，则</p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -503,101 +674,177 @@
     &amp;= \beta_n \frac{1}{n^2}
 \end{aligned}
 \]</span></p>
-<p>其中 <span class="math inline">\(\{\beta_n\}\)</span> 是有界数列。那么</p>
+<p>其中 <span class="math inline">\(\{\beta_n\}\)</span>
+是有界数列。那么</p>
 <p><span class="math display">\[
-    \Lim{n \to \infty} a_n = a_1 + \sum_{n=1}^{\infty} b_n = a_1 + \sum_{n=1}^{\infty} \beta_n \frac{1}{n^2}
+    \Lim{n \to \infty} a_n = a_1 + \sum_{n=1}^{\infty} b_n = a_1 +
+\sum_{n=1}^{\infty} \beta_n \frac{1}{n^2}
 \]</span></p>
-<p>所以命题等价于级数 <span class="math inline">\(\Sum{n=1}^{\infty} \dfrac{\beta_n}{n^2}\)</span> 收敛。</p>
-<p>设 <span class="math inline">\(|\beta_n| &lt; B\)</span> 恒成立，根据比较定理，由于总有 <span class="math inline">\(|\dfrac{\beta_n}{n^2}| &lt; \dfrac{B}{n^2}\)</span> 且后者的无穷级数收敛，那么原级数绝对收敛。</p>
+<p>所以命题等价于级数 <span class="math inline">\(\Sum{n=1}^{\infty}
+\dfrac{\beta_n}{n^2}\)</span> 收敛。</p>
+<p>设 <span class="math inline">\(|\beta_n| &lt; B\)</span>
+恒成立，根据比较定理，由于总有 <span
+class="math inline">\(|\dfrac{\beta_n}{n^2}| &lt;
+\dfrac{B}{n^2}\)</span> 且后者的无穷级数收敛，那么原级数绝对收敛。</p>
 
 </details>
 <h3 id="三.2.5.a">三.2.5.a</h3>
-<p>如果两个级数 <span class="math inline">\(\Sum{n=1}^{\infty} a_n\)</span>, <span class="math inline">\(\Sum{n=1}^{\infty} b_n\)</span> 都是 <strong>正项级数</strong>，并且当 <span class="math inline">\(n \to \infty\)</span> 时 <span class="math inline">\(a_n \sim b_n\)</span> ，则这两个级数同时敛散。</p>
+<p>如果两个级数 <span class="math inline">\(\Sum{n=1}^{\infty}
+a_n\)</span>, <span class="math inline">\(\Sum{n=1}^{\infty}
+b_n\)</span> 都是 <strong>正项级数</strong>，并且当 <span
+class="math inline">\(n \to \infty\)</span> 时 <span
+class="math inline">\(a_n \sim b_n\)</span> ，则这两个级数同时敛散。</p>
 <details class="note primary"><summary><p>Answer</p>
 </summary>
-<p>如果 <span class="math inline">\(a_n \sim b_n\)</span> 则最终有 <span class="math inline">\(a_n \le 2 b_n\)</span> 和 <span class="math inline">\(b_n \le 2 a_n\)</span> 成立，由于它们都是正项级数，根据比较定理可以立刻得出这两个级数同时敛散。</p>
+<p>如果 <span class="math inline">\(a_n \sim b_n\)</span> 则最终有 <span
+class="math inline">\(a_n \le 2 b_n\)</span> 和 <span
+class="math inline">\(b_n \le 2 a_n\)</span>
+成立，由于它们都是正项级数，根据比较定理可以立刻得出这两个级数同时敛散。</p>
 
 </details>
 <hr />
-<p>补充) 构造两个数列 <span class="math inline">\(\{a_n\}\)</span>, <span class="math inline">\(\{b_n\}\)</span> 使得 <span class="math inline">\(n \to \infty\)</span> 时 <span class="math inline">\(a_n \sim b_n\)</span> 且它们的无穷级数敛散性不同。</p>
+<p>补充) 构造两个数列 <span class="math inline">\(\{a_n\}\)</span>,
+<span class="math inline">\(\{b_n\}\)</span> 使得 <span
+class="math inline">\(n \to \infty\)</span> 时 <span
+class="math inline">\(a_n \sim b_n\)</span>
+且它们的无穷级数敛散性不同。</p>
 <details class="note primary"><summary><p>Answer</p>
 </summary>
-<p>令 <span class="math inline">\(\{b_n\}\)</span> 为数列 <span class="math inline">\(1, -1, \sqrt{\frac{1}{2}}, -\sqrt{\frac{1}{2}}, \sqrt{\frac{1}{3}}, -\sqrt{\frac{1}{3}}, \sqrt{\frac{1}{4}}, -\sqrt{\frac{1}{4}} \ldots\)</span> 。</p>
-<p>不难发现 <span class="math inline">\(\Sum{n=1}^{\infty} b_n = 0\)</span> 。并且 <span class="math inline">\(\Lim{n \to \infty} b_n = 0\)</span> 。</p>
-<p>然后令 <span class="math inline">\(a_n := b_n + b_n^2\)</span> ，那么</p>
+<p>令 <span class="math inline">\(\{b_n\}\)</span> 为数列 <span
+class="math inline">\(1, -1, \sqrt{\frac{1}{2}}, -\sqrt{\frac{1}{2}},
+\sqrt{\frac{1}{3}}, -\sqrt{\frac{1}{3}}, \sqrt{\frac{1}{4}},
+-\sqrt{\frac{1}{4}} \ldots\)</span> 。</p>
+<p>不难发现 <span class="math inline">\(\Sum{n=1}^{\infty} b_n =
+0\)</span> 。并且 <span class="math inline">\(\Lim{n \to \infty} b_n =
+0\)</span> 。</p>
+<p>然后令 <span class="math inline">\(a_n := b_n + b_n^2\)</span>
+，那么</p>
 <p><span class="math display">\[
     \lim_{n \to \infty} \frac{a_n}{b_n}
     = \lim_{n \to \infty} (1 + b_n)
     = 1
 \]</span></p>
 <p>故 <span class="math inline">\(a_n \sim b_n\)</span> 。</p>
-<p><span class="math inline">\(\{b_n\}\)</span> 的无穷级数收敛但 <span class="math inline">\(\{b_n^2\}\)</span> 的无穷级数发散（调和级数），故它们的和数列的无穷级数 <span class="math inline">\(\Sum{n=1}^{\infty} a_n\)</span> 发散。</p>
+<p><span class="math inline">\(\{b_n\}\)</span> 的无穷级数收敛但 <span
+class="math inline">\(\{b_n^2\}\)</span>
+的无穷级数发散（调和级数），故它们的和数列的无穷级数 <span
+class="math inline">\(\Sum{n=1}^{\infty} a_n\)</span> 发散。</p>
 <p>这个例子说明了原题中“正项级数”这个条件是不可忽略的。</p>
 
 </details>
 <h3 id="三.2.5.b">三.2.5.b</h3>
-<p>证明级数 <span class="math inline">\(\Sum{n=1}^{\infty} \sin \dfrac{1}{n^p}\)</span> 仅当 <span class="math inline">\(p &gt; 1\)</span> 时收敛。</p>
+<p>证明级数 <span class="math inline">\(\Sum{n=1}^{\infty} \sin
+\dfrac{1}{n^p}\)</span> 仅当 <span class="math inline">\(p &gt;
+1\)</span> 时收敛。</p>
 <details class="note primary"><summary><p>Answer</p>
 </summary>
 <p>当 <span class="math inline">\(p &gt; 0\)</span> 时：</p>
 <p><span class="math display">\[
-    \Lim{n \to \infty} n^p \sin \frac{1}{n^p} = \Lim{x \to 0} \frac{\sin x}{x} = 1 \Rightarrow \sin \frac{1}{n^p} \sim \frac{1}{n^p}
+    \Lim{n \to \infty} n^p \sin \frac{1}{n^p} = \Lim{x \to 0} \frac{\sin
+x}{x} = 1 \Rightarrow \sin \frac{1}{n^p} \sim \frac{1}{n^p}
 \]</span></p>
-<p>此时原级数收敛仅当级数 <span class="math inline">\(\Sum{n=1}^{\infty} \dfrac{1}{n^p}\)</span> 收敛，仅当 <span class="math inline">\(p &gt; 1\)</span> 。</p>
-<p>当 <span class="math inline">\(p = 0\)</span> 时级数 <span class="math inline">\(\Sum{n=1}^{\infty} \sin 1\)</span> 显然不收敛。</p>
-<p>当 <span class="math inline">\(p &lt; 0\)</span> 时数列 <span class="math inline">\(\{\sin n^{-p}\}\)</span> 发散（<a target="_blank" rel="noopener" href="https://chaoli.club/index.php/5544/0">具体证明？</a>），则级数必然不收敛。</p>
+<p>此时原级数收敛仅当级数 <span class="math inline">\(\Sum{n=1}^{\infty}
+\dfrac{1}{n^p}\)</span> 收敛，仅当 <span class="math inline">\(p &gt;
+1\)</span> 。</p>
+<p>当 <span class="math inline">\(p = 0\)</span> 时级数 <span
+class="math inline">\(\Sum{n=1}^{\infty} \sin 1\)</span>
+显然不收敛。</p>
+<p>当 <span class="math inline">\(p &lt; 0\)</span> 时数列 <span
+class="math inline">\(\{\sin n^{-p}\}\)</span> 发散（<a
+target="_blank" rel="noopener" href="https://chaoli.club/index.php/5544/0">具体证明？</a>），则级数必然不收敛。</p>
 
 </details>
 <h3 id="三.2.6.a">三.2.6.a</h3>
-<p>如果 <span class="math inline">\(\forall n \in \bbN \Colon a_n \ge a_{n+1} &gt; 0\)</span> 且级数 <span class="math inline">\(\Sum{n=1}^{\infty} a_n\)</span> 收敛，证明 <span class="math inline">\(n \to \infty\)</span> 时 <span class="math inline">\(a_n = o(\dfrac{1}{n})\)</span> 。</p>
+<p>如果 <span class="math inline">\(\forall n \in \bbN \Colon a_n \ge
+a_{n+1} &gt; 0\)</span> 且级数 <span
+class="math inline">\(\Sum{n=1}^{\infty} a_n\)</span> 收敛，证明 <span
+class="math inline">\(n \to \infty\)</span> 时 <span
+class="math inline">\(a_n = o(\dfrac{1}{n})\)</span> 。</p>
 <details class="note primary"><summary><p>Answer</p>
 </summary>
-<p>命题等价于 <span class="math inline">\(\Lim{n \to \infty} n a_n = 0\)</span> 。</p>
-<p>令 <span class="math inline">\(s_n := \Sum{k=1}^n a_k\)</span> ，由于数列 <span class="math inline">\(\{s_n\}\)</span> 收敛，那么它是一个柯西数列，于是</p>
+<p>命题等价于 <span class="math inline">\(\Lim{n \to \infty} n a_n =
+0\)</span> 。</p>
+<p>令 <span class="math inline">\(s_n := \Sum{k=1}^n a_k\)</span>
+，由于数列 <span class="math inline">\(\{s_n\}\)</span>
+收敛，那么它是一个柯西数列，于是</p>
 <p><span class="math display">\[
-    \forall \eps &gt; 0 \;\; \exists N \in \bbN \;\; \forall n &gt; N \Colon s_{2n} - s_n &lt; \frac{\eps}{2}
+    \forall \eps &gt; 0 \;\; \exists N \in \bbN \;\; \forall n &gt; N
+\Colon s_{2n} - s_n &lt; \frac{\eps}{2}
 \]</span></p>
-<p>而注意到 <span class="math inline">\(s_{2n} - s_n = a_{n+1} + a_{n+2} + \cdots + a_{2n} \ge n a_{2n}\)</span> ，于是</p>
+<p>而注意到 <span class="math inline">\(s_{2n} - s_n = a_{n+1} + a_{n+2}
++ \cdots + a_{2n} \ge n a_{2n}\)</span> ，于是</p>
 <p><span class="math display">\[
-    \forall \eps &gt; 0 \;\; \exists N_1 \in \bbN \;\; \forall n &gt; N_1 \Colon 2 n a_{2n} &lt; \eps
+    \forall \eps &gt; 0 \;\; \exists N_1 \in \bbN \;\; \forall n &gt;
+N_1 \Colon 2 n a_{2n} &lt; \eps
 \]</span></p>
-<p>同理由 <span class="math inline">\(s_{2n+1} - s_n \ge (n + 1) a_{2n+1} &gt; (n + \dfrac{1}{2}) a_{2n+1}\)</span> 可以知道</p>
+<p>同理由 <span class="math inline">\(s_{2n+1} - s_n \ge (n + 1)
+a_{2n+1} &gt; (n + \dfrac{1}{2}) a_{2n+1}\)</span> 可以知道</p>
 <p><span class="math display">\[
-    \forall \eps &gt; 0 \;\; \exists N_2 \in \bbN \;\; \forall n &gt; N_2 \Colon (2n + 1) a_{2n+1} &lt; \eps
+    \forall \eps &gt; 0 \;\; \exists N_2 \in \bbN \;\; \forall n &gt;
+N_2 \Colon (2n + 1) a_{2n+1} &lt; \eps
 \]</span></p>
 <p>整理可得</p>
 <p><span class="math display">\[
-    \forall \eps &gt; 0 \;\; \exists N = \max\{2 N_1, 2 N_2 + 1\} \;\; \forall n &gt; N \Colon n a_n &lt; \eps
+    \forall \eps &gt; 0 \;\; \exists N = \max\{2 N_1, 2 N_2 + 1\} \;\;
+\forall n &gt; N \Colon n a_n &lt; \eps
 \]</span></p>
 
 </details>
 <h3 id="三.2.6.b">三.2.6.b</h3>
-<p>如果 <span class="math inline">\(b_n = o(\dfrac{1}{n})\)</span> ，则总是可以构造出一个收敛级数 <span class="math inline">\(\Sum{n=1}^{\infty} a_n\)</span> ，使得当 <span class="math inline">\(n \to \infty\)</span> 时 <span class="math inline">\(b_n = o(a_n)\)</span> 。</p>
+<p>如果 <span class="math inline">\(b_n = o(\dfrac{1}{n})\)</span>
+，则总是可以构造出一个收敛级数 <span
+class="math inline">\(\Sum{n=1}^{\infty} a_n\)</span> ，使得当 <span
+class="math inline">\(n \to \infty\)</span> 时 <span
+class="math inline">\(b_n = o(a_n)\)</span> 。</p>
 <details class="note primary"><summary><p>Answer</p>
 </summary>
-<p>（不少错误的证法在 <span class="math inline">\(b_n = \dfrac{1}{n \ln n}\)</span> 时都很容易发现问题，因为级数 <span class="math inline">\(\Sum{n=1}^{\infty} \dfrac{1}{n \ln n}\)</span> 发散）</p>
-<p>（我太菜了，看了 <a target="_blank" rel="noopener" href="https://math.stackexchange.com/questions/733946/if-lim-limits-n-to-infty-nb-n-0-construct-a-convergent-series-such-t">stackexchange</a> 才懂）</p>
-<p>令 <span class="math inline">\(B_n := \sup\limits_{k \ge n} |k b_k|\)</span> ，则数列 <span class="math inline">\(\{B_n\}\)</span> 单调不增，且 <span class="math inline">\(\Lim{n \to \infty} B_n = \varlimsup |n b_n| = \Lim{n \to \infty} |n b_n| = 0\)</span> 。</p>
-<p>令 <span class="math inline">\(a_n := (-1)^n B_n\)</span> ，根据狄利克雷检验法可以知道其对应的无穷级数确实收敛，现在我们证明 <span class="math inline">\(b_n = o(a_n)\)</span> 。</p>
+<p>（不少错误的证法在 <span class="math inline">\(b_n = \dfrac{1}{n \ln
+n}\)</span> 时都很容易发现问题，因为级数 <span
+class="math inline">\(\Sum{n=1}^{\infty} \dfrac{1}{n \ln n}\)</span>
+发散）</p>
+<p>（我太菜了，看了 <a
+target="_blank" rel="noopener" href="https://math.stackexchange.com/questions/733946/if-lim-limits-n-to-infty-nb-n-0-construct-a-convergent-series-such-t">stackexchange</a>
+才懂）</p>
+<p>令 <span class="math inline">\(B_n := \sup\limits_{k \ge n} |k
+b_k|\)</span> ，则数列 <span class="math inline">\(\{B_n\}\)</span>
+单调不增，且 <span class="math inline">\(\Lim{n \to \infty} B_n =
+\varlimsup |n b_n| = \Lim{n \to \infty} |n b_n| = 0\)</span> 。</p>
+<p>令 <span class="math inline">\(a_n := (-1)^n B_n\)</span>
+，根据狄利克雷检验法可以知道其对应的无穷级数确实收敛，现在我们证明 <span
+class="math inline">\(b_n = o(a_n)\)</span> 。</p>
 <p><span class="math display">\[
     |a_n| = B_n \ge |n b_n| = n |b_n|
 \]</span></p>
-<p>若数列 <span class="math inline">\(\{b_n\}\)</span> 有无限项非零，则 <span class="math inline">\(- \dfrac{1}{n} \le \dfrac{b_n}{a_n} \le \dfrac{1}{n}\)</span> 于是 <span class="math inline">\(\Lim{n \to \infty} \dfrac{b_n}{a_n} = 0\)</span> ，则 <span class="math inline">\(b_n = o(a_n)\)</span> 。</p>
-<p>若数列 <span class="math inline">\(\{b_n\}\)</span> 仅有有限项非零，则 <span class="math inline">\(a_n = b_n = 0\)</span> 最终成立，则 <span class="math inline">\(b_n = o(a_n)\)</span> 。</p>
+<p>若数列 <span class="math inline">\(\{b_n\}\)</span> 有无限项非零，则
+<span class="math inline">\(- \dfrac{1}{n} \le \dfrac{b_n}{a_n} \le
+\dfrac{1}{n}\)</span> 于是 <span class="math inline">\(\Lim{n \to
+\infty} \dfrac{b_n}{a_n} = 0\)</span> ，则 <span
+class="math inline">\(b_n = o(a_n)\)</span> 。</p>
+<p>若数列 <span class="math inline">\(\{b_n\}\)</span>
+仅有有限项非零，则 <span class="math inline">\(a_n = b_n = 0\)</span>
+最终成立，则 <span class="math inline">\(b_n = o(a_n)\)</span> 。</p>
 
 </details>
 <h3 id="三.2.7.b">三.2.7.b</h3>
-<p>级数 <span class="math inline">\(\Sum{n=1}^{\infty} \ln (1 + a_n)\)</span> (其中 <span class="math inline">\(|a_n| &lt; 1\)</span>) 绝对收敛的充要条件是级数 <span class="math inline">\(\Sum{n=1}^{\infty} a_n\)</span> 绝对收敛。</p>
+<p>级数 <span class="math inline">\(\Sum{n=1}^{\infty} \ln (1 +
+a_n)\)</span> (其中 <span class="math inline">\(|a_n| &lt; 1\)</span>)
+绝对收敛的充要条件是级数 <span class="math inline">\(\Sum{n=1}^{\infty}
+a_n\)</span> 绝对收敛。</p>
 <details class="note primary"><summary><p>Answer</p>
 </summary>
-<p>注意到 <span class="math inline">\(x \to 0\)</span> 时有 <span class="math inline">\(\ln (1 + x) \sim x\)</span> 和 <span class="math inline">\(e^x - 1 \sim x\)</span> ：</p>
+<p>注意到 <span class="math inline">\(x \to 0\)</span> 时有 <span
+class="math inline">\(\ln (1 + x) \sim x\)</span> 和 <span
+class="math inline">\(e^x - 1 \sim x\)</span> ：</p>
 <p><span class="math display">\[
-    \lim_{x \to 0} \frac{\ln (1 + x)}{x} = \lim_{x \to 0} \frac{x + o(x)}{x} = \lim_{x \to 0} (1 + o(1)) = 1
+    \lim_{x \to 0} \frac{\ln (1 + x)}{x} = \lim_{x \to 0} \frac{x +
+o(x)}{x} = \lim_{x \to 0} (1 + o(1)) = 1
 \]</span></p>
 <p><span class="math display">\[
-    \lim_{x \to 0} \frac{e^x - 1}{x} = \lim_{x \to 0} \frac{1 + x + o(x) - 1}{x} = \lim_{x \to 0} (1 + o(1)) = 1
+    \lim_{x \to 0} \frac{e^x - 1}{x} = \lim_{x \to 0} \frac{1 + x + o(x)
+- 1}{x} = \lim_{x \to 0} (1 + o(1)) = 1
 \]</span></p>
-<p>若第一个级数绝对收敛，则 <span class="math inline">\(\Lim{n \to \infty} \ln(1 + a_n) = 0\)</span> ，由复合函数极限定理可以知道</p>
+<p>若第一个级数绝对收敛，则 <span class="math inline">\(\Lim{n \to
+\infty} \ln(1 + a_n) = 0\)</span> ，由复合函数极限定理可以知道</p>
 <p><span class="math display">\[
     \lim_{n \to \infty} \left| \frac{\ln(1 + a_n)}{a_n} \right|
     = \lim_{n \to \infty} \frac{\ln(1 + a_n)}{a_n}
@@ -605,35 +852,53 @@
     = \lim_{x \to 0} \frac{x}{e^x - 1}
     = 1
 \]</span></p>
-<p>故 <span class="math inline">\(|\ln(1 + a_n)| \sim |a_n|\)</span> ，于是第二个级数也绝对收敛。</p>
-<p>同理，若第二个级数绝对收敛，则 <span class="math inline">\(\Lim{n \to \infty} a_n = 0\)</span> ，由复合函数极限定理可以知道</p>
+<p>故 <span class="math inline">\(|\ln(1 + a_n)| \sim |a_n|\)</span>
+，于是第二个级数也绝对收敛。</p>
+<p>同理，若第二个级数绝对收敛，则 <span class="math inline">\(\Lim{n \to
+\infty} a_n = 0\)</span> ，由复合函数极限定理可以知道</p>
 <p><span class="math display">\[
     \lim_{n \to \infty} \left| \frac{\ln(1 + a_n)}{a_n} \right|
     = \lim_{n \to \infty} \frac{\ln(1 + a_n)}{a_n}
     = \lim_{x \to 0} \frac{\ln(1 + x)}{x}
     = 1
 \]</span></p>
-<p>故 <span class="math inline">\(|\ln(1 + a_n)| \sim |a_n|\)</span> ，于是第一个级数也绝对收敛。</p>
+<p>故 <span class="math inline">\(|\ln(1 + a_n)| \sim |a_n|\)</span>
+，于是第一个级数也绝对收敛。</p>
 
 </details>
 <h3 id="三.2.9.b">三.2.9.b</h3>
-<p>数列 <span class="math inline">\(\{a_n\}\)</span> 满足 <span class="math inline">\(a_1 = \sqrt{\frac{1}{2}}\)</span> 和 <span class="math inline">\(a_{n+1} = \sqrt{\frac{1}{2} + \frac{1}{2} a_n}\)</span> ，求 <span class="math inline">\(\prod\limits_{n=1}^{\infty} a_n\)</span> 。</p>
+<p>数列 <span class="math inline">\(\{a_n\}\)</span> 满足 <span
+class="math inline">\(a_1 = \sqrt{\frac{1}{2}}\)</span> 和 <span
+class="math inline">\(a_{n+1} = \sqrt{\frac{1}{2} + \frac{1}{2}
+a_n}\)</span> ，求 <span
+class="math inline">\(\prod\limits_{n=1}^{\infty} a_n\)</span> 。</p>
 <details class="note primary"><summary><p>Answer</p>
 </summary>
-<p>首先通过归纳原理不难得到 <span class="math inline">\(\forall n \in \bbN \Colon 0 &lt; a_n &lt; 1\)</span> 。那么不妨令 <span class="math inline">\(a_n = \cos \theta_n\)</span> ，其中 <span class="math inline">\(0 &lt; \theta_n &lt; \dfrac{\pi}{2}\)</span> 。</p>
-<p>那么首先有 <span class="math inline">\(\cos \theta_1 = \sqrt{\frac{1}{2}} = \dfrac{\pi}{4}\)</span> 。</p>
-<p>然后注意到 <span class="math inline">\(a_n = 2 a_{n+1}^2 - 1\)</span> 而同时有二倍角公式 <span class="math inline">\(\cos 2 \alpha = 2 \cos^2 \alpha - 1\)</span> ，于是可以知道 <span class="math inline">\(\theta_n = 2 \theta_{n+1}\)</span> 。所以</p>
+<p>首先通过归纳原理不难得到 <span class="math inline">\(\forall n \in
+\bbN \Colon 0 &lt; a_n &lt; 1\)</span> 。那么不妨令 <span
+class="math inline">\(a_n = \cos \theta_n\)</span> ，其中 <span
+class="math inline">\(0 &lt; \theta_n &lt; \dfrac{\pi}{2}\)</span>
+。</p>
+<p>那么首先有 <span class="math inline">\(\cos \theta_1 =
+\sqrt{\frac{1}{2}} = \dfrac{\pi}{4}\)</span> 。</p>
+<p>然后注意到 <span class="math inline">\(a_n = 2 a_{n+1}^2 - 1\)</span>
+而同时有二倍角公式 <span class="math inline">\(\cos 2 \alpha = 2 \cos^2
+\alpha - 1\)</span> ，于是可以知道 <span class="math inline">\(\theta_n
+= 2 \theta_{n+1}\)</span> 。所以</p>
 <p><span class="math display">\[
     \Pi_n
     = \prod_{k=1}^n \cos \theta_k
     = \prod_{k=1}^n \cos \frac{\pi}{2^{k+1}}
-    = \prod_{k=1}^n \frac{\sin \frac{\pi}{2^k}}{2 \sin \frac{\pi}{2^{k+1}}}
+    = \prod_{k=1}^n \frac{\sin \frac{\pi}{2^k}}{2 \sin
+\frac{\pi}{2^{k+1}}}
     = \frac{\sin \frac{\pi}{2}}{2^n \sin \frac{\pi}{2^{n+1}}}
 \]</span></p>
-<p>而根据复合函数定理，从 <span class="math inline">\(\Lim{n \to \infty} \dfrac{\pi}{2^{n+1}} = 0\)</span> 可以知道</p>
+<p>而根据复合函数定理，从 <span class="math inline">\(\Lim{n \to \infty}
+\dfrac{\pi}{2^{n+1}} = 0\)</span> 可以知道</p>
 <p><span class="math display">\[
     \lim_{n \to \infty} 2^n \sin \frac{\pi}{2^{n+1}}
-    = \lim_{n \to \infty} \frac{\pi}{2} \frac{\sin \frac{\pi}{2^{n+1}}}{\frac{\pi}{2^{n+1}}}
+    = \lim_{n \to \infty} \frac{\pi}{2} \frac{\sin
+\frac{\pi}{2^{n+1}}}{\frac{\pi}{2^{n+1}}}
     = \lim_{x \to 0} \frac{\pi}{2} \frac{\sin x}{x}
     = \frac{\pi}{2}
 \]</span></p>
@@ -641,7 +906,8 @@
 <p><span class="math display">\[
     \prod_{n=1}^{\infty} a_n
     = \lim_{n \to \infty} \Pi_n
-    = \lim_{n \to \infty} \frac{\sin \frac{\pi}{2}}{2^n \sin \frac{\pi}{2^{n+1}}}
+    = \lim_{n \to \infty} \frac{\sin \frac{\pi}{2}}{2^n \sin
+\frac{\pi}{2^{n+1}}}
     = \frac{\sin \frac{\pi}{2}}{\frac{\pi}{2}}
     = \frac{2}{\pi}
 \]</span></p>
@@ -692,7 +958,7 @@
 
 <div class="copyright">
   &copy; 2019 – 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-heartbeat"></i>
   </span>

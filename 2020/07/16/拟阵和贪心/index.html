@@ -317,19 +317,37 @@
     
     <div class="post-body" itemprop="articleBody">
         <h2 id="理论基础">理论基础</h2>
-<p>一个拟阵是一个二元组 <span class="math inline">\(M = (U, I)\)</span> ，其中 <span class="math inline">\(U\)</span> 是一个<strong>有限</strong>集合，一般是待研究元素的全集，<span class="math inline">\(I\)</span> 是 <span class="math inline">\(U\)</span> 的一些子集的集合，一般是满足给定限制的子集的集合。</p>
+<p>一个拟阵是一个二元组 <span class="math inline">\(M = (U, I)\)</span>
+，其中 <span class="math inline">\(U\)</span>
+是一个<strong>有限</strong>集合，一般是待研究元素的全集，<span
+class="math inline">\(I\)</span> 是 <span
+class="math inline">\(U\)</span>
+的一些子集的集合，一般是满足给定限制的子集的集合。</p>
 <p>另外，拟阵要满足两个性质：</p>
 <ul>
-<li>遗传性： <span class="math inline">\(\forall S \in I, T \subseteq S\)</span> 满足 <span class="math inline">\(T \in I\)</span> 。</li>
-<li>交换性： <span class="math inline">\(\forall A \in I, B \in I, |A| &lt; |B|\)</span> 满足 <span class="math inline">\(\exists x \in B, x \notin A\)</span> 使得 <span class="math inline">\(A \cup \{x\} \in I\)</span> 。</li>
+<li>遗传性： <span class="math inline">\(\forall S \in I, T \subseteq
+S\)</span> 满足 <span class="math inline">\(T \in I\)</span> 。</li>
+<li>交换性： <span class="math inline">\(\forall A \in I, B \in I, |A|
+&lt; |B|\)</span> 满足 <span class="math inline">\(\exists x \in B, x
+\notin A\)</span> 使得 <span class="math inline">\(A \cup \{x\} \in
+I\)</span> 。</li>
 </ul>
-<p>有一部分贪心可以为这样的形式：给定一个映射 <span class="math inline">\(f: U \rightarrow R\)</span> ，要在 <span class="math inline">\(I\)</span> 中找到一个 <span class="math inline">\(S\)</span> 使得 <span class="math inline">\(\sum_{x \in S} f(x)\)</span> 最大。</p>
+<p>有一部分贪心可以为这样的形式：给定一个映射 <span
+class="math inline">\(f: U \rightarrow R\)</span> ，要在 <span
+class="math inline">\(I\)</span> 中找到一个 <span
+class="math inline">\(S\)</span> 使得 <span
+class="math inline">\(\sum_{x \in S} f(x)\)</span> 最大。</p>
 <p>这类贪心都可以用如下流程解决：</p>
 <ol type="1">
-<li>设 <span class="math inline">\(U_0 := U\)</span> 表示可选集合，<span class="math inline">\(S := \varnothing\)</span> 表示要求的集合。</li>
-<li>在集合 <span class="math inline">\(U_0\)</span> 中找出 <span class="math inline">\(f(x)\)</span> 最大的元素 <span class="math inline">\(x\)</span> 。</li>
-<li>如果 <span class="math inline">\(S \cup \{x\} \in I\)</span> ，令 <span class="math inline">\(S := S \cup \{x\}\)</span> 。</li>
-<li>令 <span class="math inline">\(U_0 := U_0 \setminus \{x\}\)</span> ，若 <span class="math inline">\(U_0\)</span> 非空，返回第 2 步。</li>
+<li>设 <span class="math inline">\(U_0 := U\)</span> 表示可选集合，<span
+class="math inline">\(S := \varnothing\)</span> 表示要求的集合。</li>
+<li>在集合 <span class="math inline">\(U_0\)</span> 中找出 <span
+class="math inline">\(f(x)\)</span> 最大的元素 <span
+class="math inline">\(x\)</span> 。</li>
+<li>如果 <span class="math inline">\(S \cup \{x\} \in I\)</span> ，令
+<span class="math inline">\(S := S \cup \{x\}\)</span> 。</li>
+<li>令 <span class="math inline">\(U_0 := U_0 \setminus \{x\}\)</span>
+，若 <span class="math inline">\(U_0\)</span> 非空，返回第 2 步。</li>
 </ol>
 <span id="more"></span>
 <h2 id="证明">证明</h2>
@@ -385,7 +403,7 @@
 
 <div class="copyright">
   &copy; 2019 – 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-heartbeat"></i>
   </span>

@@ -320,47 +320,96 @@
 <span id="more"></span>
 <h2 id="nttfft">NTT/FFT</h2>
 <h3 id="预处理原根">预处理原根</h3>
-<p>普通 NTT 每次长度改变都需要调用若干次快速幂来计算原根，差不多长这样：</p>
+<p>普通 NTT
+每次长度改变都需要调用若干次快速幂来计算原根，差不多长这样：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">DFT</span><span class="params">(ll *a, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">	<span class="comment">// ...</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> m = <span class="number">1</span>; m &lt; n; m &lt;&lt;= <span class="number">1</span>) &#123;</span><br><span class="line">		ll Gn = <span class="built_in">power</span>(<span class="number">3</span>, (mod - <span class="number">1</span>) / (m &lt;&lt; <span class="number">1</span>));</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i += m) &#123;</span><br><span class="line">			ll G = <span class="number">1</span>;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> k = i; k &lt; i + m; k ++) &#123;</span><br><span class="line">				ll a0 = a[k], a1 = a[k + m] * G;</span><br><span class="line">				a[k] = (a0 + a1) % mod;</span><br><span class="line">				a[k + m] = (a0 + mod - a1) % mod;</span><br><span class="line">				(G *= Gn) %= mod;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>事实上可以预处理数组 <span class="math inline">\(G\)</span> 满足当前枚举的 <span class="math inline">\((m, k, i)\)</span> 需要用到的原根就是 <code>G[m + k - i]</code> ，<br />
-每一层需要 <span class="math inline">\(m\)</span> 个位置，由于每次 <span class="math inline">\(m\)</span> 倍长，<span class="math inline">\(O(n)\)</span> 的空间是能存下的。<br />
-而且只需要递推 <span class="math inline">\(m\)</span> 最大的一层，剩下的由于 <span class="math inline">\(W_m^k = W_{2m}^{2k}\)</span> ，可以知道 <code>G[m + k] = G[m * 2 + k * 2]</code> 。</p>
+<p>事实上可以预处理数组 <span class="math inline">\(G\)</span>
+满足当前枚举的 <span class="math inline">\((m, k, i)\)</span>
+需要用到的原根就是 <code>G[m + k - i]</code> ，<br />
+每一层需要 <span class="math inline">\(m\)</span> 个位置，由于每次 <span
+class="math inline">\(m\)</span> 倍长，<span
+class="math inline">\(O(n)\)</span> 的空间是能存下的。<br />
+而且只需要递推 <span class="math inline">\(m\)</span>
+最大的一层，剩下的由于 <span class="math inline">\(W_m^k =
+W_{2m}^{2k}\)</span> ，可以知道 <code>G[m + k] = G[m * 2 + k * 2]</code>
+。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	ll g = <span class="built_in">power</span>(<span class="number">3</span>, (mod - <span class="number">1</span>) / maxl);</span><br><span class="line">	G[maxl &gt;&gt; <span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = (maxl &gt;&gt; <span class="number">1</span>) + <span class="number">1</span>; i &lt;= maxl; i ++)</span><br><span class="line">		G[i] = G[i - <span class="number">1</span>] * g % mod;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = (maxl &gt;&gt; <span class="number">1</span>) - <span class="number">1</span>; i; i --)</span><br><span class="line">		G[i] = G[i &lt;&lt; <span class="number">1</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">DFT</span><span class="params">(ll *a, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">	<span class="comment">// ...</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> m = <span class="number">1</span>; m &lt; n; m &lt;&lt;= <span class="number">1</span>)</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i += m &lt;&lt; <span class="number">1</span>)</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> k = i; k &lt; i + m; k ++) &#123;</span><br><span class="line">				ll a0 = a[k], a1 = a[k + m] * G[m + k - i] % mod;</span><br><span class="line">				a[k] = (a0 + a1) % mod;</span><br><span class="line">				a[k + m] = (a0 + mod - a1) % mod;</span><br><span class="line">			&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>同样的道理 rev 数组也是能预处理的。</p>
 <h3 id="逆变换">逆变换</h3>
-<p>逆变换实际只要 reverse 一遍做正变换然后除以 <span class="math inline">\(n\)</span> 即可。</p>
-<p>除以 <span class="math inline">\(n\)</span> 往往需要计算逆元，但是由于 <span class="math inline">\(n\)</span> 是二的整次幂，且 NTT 模数必须是 <span class="math inline">\(2^k * s + 1\)</span> ，<br />
-除了预处理以外 <span class="math inline">\(n\)</span> 的逆元有更好的 <span class="math inline">\(O(1)\)</span> 计算方法，因为找到一个满足 <span class="math inline">\(nx \equiv -1\)</span> 的数 <span class="math inline">\(x\)</span> 是很容易的。</p>
+<p>逆变换实际只要 reverse 一遍做正变换然后除以 <span
+class="math inline">\(n\)</span> 即可。</p>
+<p>除以 <span class="math inline">\(n\)</span>
+往往需要计算逆元，但是由于 <span class="math inline">\(n\)</span>
+是二的整次幂，且 NTT 模数必须是 <span class="math inline">\(2^k * s +
+1\)</span> ，<br />
+除了预处理以外 <span class="math inline">\(n\)</span> 的逆元有更好的
+<span class="math inline">\(O(1)\)</span> 计算方法，因为找到一个满足
+<span class="math inline">\(nx \equiv -1\)</span> 的数 <span
+class="math inline">\(x\)</span> 是很容易的。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">IDFT</span><span class="params">(ll *a, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">	std::<span class="built_in">reverse</span>(a + <span class="number">1</span>, a + n);</span><br><span class="line">	<span class="built_in">DFT</span>(a, n);</span><br><span class="line">	<span class="keyword">int</span> invn = mod - (mod - <span class="number">1</span>) / n;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i ++)</span><br><span class="line">		(a[i] *= invn) %= mod;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="模数">模数</h3>
-<p>当模数比较小以至于 <span class="math inline">\(p^2\log n\)</span> 不会爆 <code>long long</code> 或者 <code>unsigned long long</code> 的时候，NTT 的蝴蝶变换可以在最后取模，实测会快很多。</p>
-<p>比如一般 <code>167772161</code> 就是这样一个模数。另外 <code>998244353</code> 在长度不超过 <span class="math inline">\(2^{18}\)</span> 可以用 <code>unsigned long long</code> 存来卡这个取模。</p>
+<p>当模数比较小以至于 <span class="math inline">\(p^2\log n\)</span>
+不会爆 <code>long long</code> 或者 <code>unsigned long long</code>
+的时候，NTT 的蝴蝶变换可以在最后取模，实测会快很多。</p>
+<p>比如一般 <code>167772161</code> 就是这样一个模数。另外
+<code>998244353</code> 在长度不超过 <span
+class="math inline">\(2^{18}\)</span> 可以用
+<code>unsigned long long</code> 存来卡这个取模。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">inline</span> <span class="keyword">void</span> __d(ll &amp;x) &#123; <span class="keyword">if</span>(x &lt; <span class="number">0</span>) x += mod; &#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">DFT</span><span class="params">(ll *a, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> m = <span class="number">1</span>; m &lt; n; m &lt;&lt;= <span class="number">1</span>)</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i += m &lt;&lt; <span class="number">1</span>)</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> k = i; k &lt; i + m; k ++) &#123;</span><br><span class="line">				ll a0 = a[k], a1 = a[k + m] * G[m + k - i] % mod;</span><br><span class="line">				a[k] = a0 + a1;</span><br><span class="line">				a[k + m] = a0 - a1;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) __d(a[i] %= mod);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="fft-两次变一次-1">FFT 两次变一次 1</h3>
-<p>这是 myy 提出的一个优秀的 FFT trick ，能够一次 FFT 处理两个多项式，但缺点是精度会进一步降低。</p>
-<p>前提是两个多项式的系数在 FFT 前虚部为 0 ，这个条件在 DFT 中往往是能满足的。</p>
-<p>例如要给两个多项式 <span class="math inline">\(A, B\)</span> 做 FFT ，考虑构造两个多项式：</p>
-<p><span class="math display">\[P(x) = A(x) + i B(x)\]</span> <span class="math display">\[Q(x) = A(x) - i B(x)\]</span></p>
-<p>那么由于 <span class="math inline">\(A, B\)</span> 的虚部都为 0 ，<span class="math inline">\(P, Q\)</span> 的每一项系数都互为共轭，同样 <span class="math inline">\(FFT(P), FFT(Q)\)</span> 的每一项系数都互为共轭。<br />
-那么只需对 <span class="math inline">\(P\)</span> 做一次 FFT ，就可以通过共轭 <span class="math inline">\(O(n)\)</span> 求出 <span class="math inline">\(FFT(Q)\)</span> 的系数。<br />
-然后通过 <span class="math inline">\(FFT(P), FFT(Q)\)</span> 求 <span class="math inline">\(FFT(A), FFT(B)\)</span> 就是解上面的二元一次方程组，也是可以 <span class="math inline">\(O(n)\)</span> 做到的。</p>
+<p>这是 myy 提出的一个优秀的 FFT trick ，能够一次 FFT
+处理两个多项式，但缺点是精度会进一步降低。</p>
+<p>前提是两个多项式的系数在 FFT 前虚部为 0 ，这个条件在 DFT
+中往往是能满足的。</p>
+<p>例如要给两个多项式 <span class="math inline">\(A, B\)</span> 做 FFT
+，考虑构造两个多项式：</p>
+<p><span class="math display">\[P(x) = A(x) + i B(x)\]</span> <span
+class="math display">\[Q(x) = A(x) - i B(x)\]</span></p>
+<p>那么由于 <span class="math inline">\(A, B\)</span> 的虚部都为 0
+，<span class="math inline">\(P, Q\)</span> 的每一项系数都互为共轭，同样
+<span class="math inline">\(FFT(P), FFT(Q)\)</span>
+的每一项系数都互为共轭。<br />
+那么只需对 <span class="math inline">\(P\)</span> 做一次 FFT
+，就可以通过共轭 <span class="math inline">\(O(n)\)</span> 求出 <span
+class="math inline">\(FFT(Q)\)</span> 的系数。<br />
+然后通过 <span class="math inline">\(FFT(P), FFT(Q)\)</span> 求 <span
+class="math inline">\(FFT(A), FFT(B)\)</span>
+就是解上面的二元一次方程组，也是可以 <span
+class="math inline">\(O(n)\)</span> 做到的。</p>
 <h3 id="fft-两次变一次-2">FFT 两次变一次 2</h3>
-<p>这是 myy 提出的一个优秀的 FFT trick ，能够一次 FFT 处理两个多项式，但缺点是精度会进一步降低。</p>
-<p>前提是两个多项式的系数在 FFT 后虚部为 0 ，这个条件在 IDFT 中往往是能满足的。</p>
-<p>例如要给两个多项式 <span class="math inline">\(A, B\)</span> 做 FFT ，构造多项式 <span class="math inline">\(P\)</span> 满足：</p>
+<p>这是 myy 提出的一个优秀的 FFT trick ，能够一次 FFT
+处理两个多项式，但缺点是精度会进一步降低。</p>
+<p>前提是两个多项式的系数在 FFT 后虚部为 0 ，这个条件在 IDFT
+中往往是能满足的。</p>
+<p>例如要给两个多项式 <span class="math inline">\(A, B\)</span> 做 FFT
+，构造多项式 <span class="math inline">\(P\)</span> 满足：</p>
 <p><span class="math display">\[P(x) = A(x) + i B(x)\]</span></p>
-<p>求出 <span class="math inline">\(FFT(P)\)</span> ，同样有 <span class="math inline">\(FFT(P)(x) = FFT(A)(x) + i FFT(B)(x)\)</span> ，而 <span class="math inline">\(FFT(A), FFT(B)\)</span> 系数的虚部都是 0 。</p>
-<p>那么 <span class="math inline">\(FFT(P)\)</span> 的实部就是 <span class="math inline">\(FFT(A)\)</span> ，虚部就是 <span class="math inline">\(FFT(B)\)</span> 。</p>
+<p>求出 <span class="math inline">\(FFT(P)\)</span> ，同样有 <span
+class="math inline">\(FFT(P)(x) = FFT(A)(x) + i FFT(B)(x)\)</span> ，而
+<span class="math inline">\(FFT(A), FFT(B)\)</span> 系数的虚部都是 0
+。</p>
+<p>那么 <span class="math inline">\(FFT(P)\)</span> 的实部就是 <span
+class="math inline">\(FFT(A)\)</span> ，虚部就是 <span
+class="math inline">\(FFT(B)\)</span> 。</p>
 <h2 id="线段树">线段树</h2>
-<p>同时需要记录区间最大值 max 和区间取 min 标记 tag 时，直接用 max 代替掉 tag 即可。<br />
+<p>同时需要记录区间最大值 max 和区间取 min 标记 tag 时，直接用 max
+代替掉 tag 即可。<br />
 比如区间取 min 和区间求和的吉司机线段树（segment tree beats）。</p>
 <h2 id="stl">STL</h2>
-<p>将数组降序排序不需要写 <code>cmp</code> ，只需要 <code>std::sort(a, a + n, std::greater&lt;int&gt;());</code> 即可。<br />
-<code>std::greater</code> 包含在头文件 <code>functional</code> 中，这同样适用于结构体排序。<br />
-另外如果要用小根堆，可以使用 <code>std::priority_queue&lt;int, std::vector&lt;int&gt;, std::greater&lt;int&gt; &gt;</code> 。<br />
+<p>将数组降序排序不需要写 <code>cmp</code> ，只需要
+<code>std::sort(a, a + n, std::greater&lt;int&gt;());</code>
+即可。<br />
+<code>std::greater</code> 包含在头文件 <code>functional</code>
+中，这同样适用于结构体排序。<br />
+另外如果要用小根堆，可以使用
+<code>std::priority_queue&lt;int, std::vector&lt;int&gt;, std::greater&lt;int&gt; &gt;</code>
+。<br />
 与 <code>std::greater</code> 对应的是 <code>std::less</code> 。</p>
-<p><code>std::set</code> 插入后返回的迭代器可以直接获取：<code>auto iter = set.insert(x).second</code> 。</p>
-<p><code>std::valarray</code> 可以很快速并且很方便地进行许多批量操作，使用用来存方程组之类的东西。</p>
+<p><code>std::set</code>
+插入后返回的迭代器可以直接获取：<code>auto iter = set.insert(x).second</code>
+。</p>
+<p><code>std::valarray</code>
+可以很快速并且很方便地进行许多批量操作，使用用来存方程组之类的东西。</p>
 <h2 id="位运算">位运算</h2>
 <h3 id="预处理-bitcount">预处理 bitcount</h3>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i ++)</span><br><span class="line">	bitcount[i] = bitcount[i &amp; (i - <span class="number">1</span>)] + <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
@@ -372,14 +421,24 @@
 <p>它有多种用法：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">foo</span> <span class="params">(<span class="keyword">int</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a = read;</span><br><span class="line"></span><br><span class="line">	ll b = read;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> c;</span><br><span class="line">	<span class="built_in">read</span>(c);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> d;</span><br><span class="line">	ll e, f;</span><br><span class="line">	<span class="built_in">read</span>(d, e, f);</span><br><span class="line"></span><br><span class="line">	<span class="built_in">foo</span>(read);</span><br><span class="line"></span><br><span class="line">	read.<span class="function"><span class="keyword">operator</span> <span class="title">int</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">	ll g = <span class="built_in"><span class="keyword">int</span></span>(read);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>并且可以自定义各种类型的读入，编译器能够根据类型正确调用对应的输入函数（在没有歧义的前提下），或者自己在调用时直接给出类型。</p>
-<p>ps: 这个 trick 不是学的，是我自己原创的，也是我一直在使用的快读模板。:)</p>
+<p>ps: 这个 trick
+不是学的，是我自己原创的，也是我一直在使用的快读模板。:)</p>
 <p>事实上由于大多时候不需要快读，我平时用的输入模板是这样子的（用法完全相同）：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">operator</span> <span class="title">int</span> <span class="params">()</span> </span>&#123; <span class="keyword">int</span> x; <span class="keyword">return</span> <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;x), x; &#125;</span><br><span class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">operator</span> <span class="title">ll</span> <span class="params">()</span> </span>&#123; ll x; <span class="keyword">return</span> <span class="built_in">scanf</span>(<span class="string">&quot;%lld&quot;</span>, &amp;x), x; &#125;</span><br><span class="line">	<span class="function"><span class="keyword">template</span>&lt;class T&gt; <span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">operator</span> <span class="params">()</span> <span class="params">(T &amp;x)</span> </span>&#123; x = *<span class="keyword">this</span>; &#125;</span><br><span class="line">	<span class="function"><span class="keyword">template</span>&lt;class T, class ...A&gt; <span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">operator</span> <span class="params">()</span> <span class="params">(T &amp;x, A &amp;...a)</span></span></span><br><span class="line"><span class="function">	</span>&#123; x = *<span class="keyword">this</span>; <span class="keyword">this</span> -&gt; <span class="built_in"><span class="keyword">operator</span></span> () (a...); &#125;</span><br><span class="line">&#125; read;</span><br></pre></td></tr></table></figure>
 <h2 id="取模优化">取模优化</h2>
 <p>众所周知取模很慢，于是有了各种各样的取模优化。</p>
-<p>当 <span class="math inline">\(P\)</span> 以内的数做减法时，可以判断结果是不是负数，如果是负数就加上 <span class="math inline">\(P\)</span> ，但是众所周知使用 <code>if</code> 分支结构可能会带来一定的惩罚，于是可以用到一个 trick ，对于一个 <code>int</code> 存储的数 <code>x</code> ，它为负数时有 <code>x &gt;&gt; 31 == -1</code> ，非负时有 <code>x &gt;&gt; 31 = 0</code> ，于是可以这样写（加法同理），实测在不开启编译优化时效果显著，开启优化时没有啥用：</p>
+<p>当 <span class="math inline">\(P\)</span>
+以内的数做减法时，可以判断结果是不是负数，如果是负数就加上 <span
+class="math inline">\(P\)</span> ，但是众所周知使用 <code>if</code>
+分支结构可能会带来一定的惩罚，于是可以用到一个 trick ，对于一个
+<code>int</code> 存储的数 <code>x</code> ，它为负数时有
+<code>x &gt;&gt; 31 == -1</code> ，非负时有
+<code>x &gt;&gt; 31 = 0</code>
+，于是可以这样写（加法同理），实测在不开启编译优化时效果显著，开启优化时没有啥用：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> __d (<span class="keyword">int</span> &amp;x) &#123; x += (x &gt;&gt; <span class="number">31</span>) &amp; P; &#125;</span><br><span class="line"><span class="keyword">void</span> __a (<span class="keyword">int</span> &amp;x) &#123; x += -P + (x &gt;&gt; <span class="number">31</span>) &amp; P; &#125;</span><br></pre></td></tr></table></figure>
-<p>当要算多个 <span class="math inline">\(P^2\)</span> 内的数的和时，常规做法每次加都要取模，但事实上可以用 <code>long long</code> 存储，只在最后一次取模，优化效果显著：</p>
+<p>当要算多个 <span class="math inline">\(P^2\)</span>
+内的数的和时，常规做法每次加都要取模，但事实上可以用
+<code>long long</code> 存储，只在最后一次取模，优化效果显著：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ll sum = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i ++)</span><br><span class="line">	__a(sum += <span class="number">1ll</span> * a[i] * b[i]);</span><br><span class="line">sum %= P;</span><br></pre></td></tr></table></figure>
 <p>更高级的取模优化可以参加论文哥的板子，或者 min25 的相关文章。</p>
 <h2 id="零碎">零碎</h2>
@@ -431,7 +490,7 @@
 
 <div class="copyright">
   &copy; 2019 – 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-heartbeat"></i>
   </span>

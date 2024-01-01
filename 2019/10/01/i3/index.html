@@ -311,9 +311,12 @@
 <li>最先用的是 Ubuntu 16.04 自带的 Unity 。</li>
 <li>更新 Ubuntu 后用的 Ubuntu 18.04 自带的 Gnome 。</li>
 <li>用了 Gnome 后学会了折腾，各种配置堆上。</li>
-<li>后来发现 Gnome 太卡太吃内存，并且才知道系统可以换桌面， 于是在 master 安利下换上 xfce 。</li>
-<li>xfce 很稳定很流畅，但是太丑，可玩性太低，于是换上高大上的 KDE 。</li>
-<li>中途还换过 enlightenment ，但是 enlightenment 的稳定性实在不敢恭维。</li>
+<li>后来发现 Gnome 太卡太吃内存，并且才知道系统可以换桌面， 于是在
+master 安利下换上 xfce 。</li>
+<li>xfce 很稳定很流畅，但是太丑，可玩性太低，于是换上高大上的 KDE
+。</li>
+<li>中途还换过 enlightenment ，但是 enlightenment
+的稳定性实在不敢恭维。</li>
 <li>最后用上了 i3 ，原因不详。</li>
 </ul>
 <p>WARNING:<br />
@@ -324,22 +327,26 @@
 WTF ?<br />
 其实 i3 已经开了，只是没背景而已，按 win+Enter 打开终端。</p>
 <h2 id="配置">配置</h2>
-<p>弹出一个菜单给你设置？想多了，要配置就写 ~/.config/i3/config 去吧。</p>
+<p>弹出一个菜单给你设置？想多了，要配置就写 ~/.config/i3/config
+去吧。</p>
 <p>$mod 是 i3 的灵魂，每一个快捷键最好都以 $mod 开头，<br />
 一般 $mod 被设置成 Mod4 ，也就是 Win 键。<br />
 bindsym 是绑定快捷键，注释很详细，自己看，下面列出一些重要的配置。</p>
 <h3 id="方向">方向</h3>
-<p>i3 默认把 jkl; 做方向键，也许你会更喜欢 hjkl ，自己替换掉就是了。<br />
+<p>i3 默认把 jkl; 做方向键，也许你会更喜欢 hjkl
+，自己替换掉就是了。<br />
 另外分号不是 ; 而是 semicolon 。</p>
 <h3 id="壁纸">壁纸</h3>
 <p>i3 默认没有壁纸，因为它是个平铺式的窗口管理器。<br />
 但壁纸是第一生产力啊，不要壁纸怎么行。</p>
 <p>下载 feh: <code>sudo aptitude install feh</code>.<br />
-<code>feh --bg-fill (YOUR_IMG)</code> 就可以设置壁纸了，至于实现原理，你不会想知道的。</p>
+<code>feh --bg-fill (YOUR_IMG)</code>
+就可以设置壁纸了，至于实现原理，你不会想知道的。</p>
 <h3 id="锁屏">锁屏</h3>
 <p>i3 默认没有锁屏，为了防机惨，锁屏还是很有必要的。</p>
 <p>下载 i3lock: <code>sudo aptitude install i3lock</code>.<br />
-直接 <code>i3lcok</code> 就可以锁屏，<code>i3lock -i (YOUR_PNG)</code> 还可以设置锁屏壁纸。<br />
+直接 <code>i3lcok</code> 就可以锁屏，<code>i3lock -i (YOUR_PNG)</code>
+还可以设置锁屏壁纸。<br />
 需要快捷键锁屏的话，加上一句配置就行了：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bindsym $mod+Tab exec i3lock # Win+Tab 锁屏</span><br></pre></td></tr></table></figure>
 <h3 id="工作区">工作区</h3>
@@ -349,7 +356,8 @@ i3 默认配置里只提供了切换到 1 至 10 的快捷键，<br />
 加上两句：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bindsym $mod+comma workspace prev # Win+逗号</span><br><span class="line">bindsym $mod+period workspace next # Win+句号</span><br></pre></td></tr></table></figure>
 <p>另外，默认配置里，把一个窗口移动到某工作区的时候仍会停留在原工作区，<br />
-想改变这点， 把 <code>move container to workspace x</code> 后面加上 <code>; workspace x</code> 即可。</p>
+想改变这点， 把 <code>move container to workspace x</code> 后面加上
+<code>; workspace x</code> 即可。</p>
 <h3 id="i3bar">i3bar</h3>
 <p>个人超喜欢 i3bar ，因为它可以接受任何一个程序的输出。<br />
 这意味着你可以完全自由地定制 i3bar 。</p>
@@ -367,13 +375,15 @@ bar 的模式有三种：</p>
 <p>再运行 <code>i3status</code> 依葫芦画瓢就是了。</p>
 <h3 id="i3-gaps">i3-gaps</h3>
 <p>如果你希望窗口平铺之间会有间隙，i3-gaps 会满足你。<br />
-如果你用 Debian, Ubuntu ， 去 github 上搜 i3-gaps-deb clone 下来后运行 i3-gaps-deb 就行了。<br />
+如果你用 Debian, Ubuntu ， 去 github 上搜 i3-gaps-deb clone 下来后运行
+i3-gaps-deb 就行了。<br />
 如果用 Arch ，软件包管理器里有，直接下。</p>
 <h3 id="透明">透明</h3>
 <p>也许你给终端模拟器设置了透明度，很遗憾，在 i3 上没用。<br />
 解决方案是下载 compton ，运行 <code>compton -b</code> 即可。</p>
 <h2 id="接口">接口</h2>
-<p>你可以很自由地向 i3 发送命令，<code>i3-msg</code> 提供了一系列接口，<br />
+<p>你可以很自由地向 i3 发送命令，<code>i3-msg</code>
+提供了一系列接口，<br />
 足以帮助完成更复杂的定制。</p>
 <p>使用 <code>i3-input</code> 可以直接向 i3 发送一条命令。</p>
 
@@ -418,7 +428,7 @@ bar 的模式有三种：</p>
 
 <div class="copyright">
   &copy; 2019 – 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-heartbeat"></i>
   </span>

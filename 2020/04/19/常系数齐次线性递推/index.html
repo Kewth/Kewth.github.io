@@ -318,27 +318,54 @@
     
     <div class="post-body" itemprop="articleBody">
         <p>问题是这样的：</p>
-<p>对于一个无穷大的递推数列 <span class="math inline">\(\{h_i\}\)</span> 和长度为 <span class="math inline">\(k\)</span> 的已知数列 <span class="math inline">\(\{a_i\}\)</span>，满足<span class="math inline">\(\forall n, h_n = \sum_{i=1}^k a_i h_{n-i}\)</span> 。 已知 <span class="math inline">\(h_i (0 \le i &lt; k)\)</span> 求 <span class="math inline">\(h_n\)</span> 。</p>
-<p>直接递推复杂度 <span class="math inline">\(O(nk)\)</span> ，矩阵快速幂可以做到 <span class="math inline">\(O(k^3 logn)\)</span> 的复杂度，这里介绍一个更优秀的做法。</p>
+<p>对于一个无穷大的递推数列 <span class="math inline">\(\{h_i\}\)</span>
+和长度为 <span class="math inline">\(k\)</span> 的已知数列 <span
+class="math inline">\(\{a_i\}\)</span>，满足<span
+class="math inline">\(\forall n, h_n = \sum_{i=1}^k a_i h_{n-i}\)</span>
+。 已知 <span class="math inline">\(h_i (0 \le i &lt; k)\)</span> 求
+<span class="math inline">\(h_n\)</span> 。</p>
+<p>直接递推复杂度 <span class="math inline">\(O(nk)\)</span>
+，矩阵快速幂可以做到 <span class="math inline">\(O(k^3 logn)\)</span>
+的复杂度，这里介绍一个更优秀的做法。</p>
 <h2 id="结论">结论</h2>
 <p>便于以后复习，先给出结论。</p>
 <ol type="1">
-<li>构造多项式 <span class="math inline">\(F(x) = x^k - \sum_{i=1}^k a_i x^{k-i}\)</span> 。</li>
-<li>求出多项式 <span class="math inline">\(G(x) = \sum_{i=0}^{k-1} c_i x^i = x^n \bmod F(x)\)</span> 。</li>
-<li>有 <span class="math inline">\(h_n = \sum_{i=0}^{k-1} c_i h_i\)</span> 。</li>
+<li>构造多项式 <span class="math inline">\(F(x) = x^k - \sum_{i=1}^k a_i
+x^{k-i}\)</span> 。</li>
+<li>求出多项式 <span class="math inline">\(G(x) = \sum_{i=0}^{k-1} c_i
+x^i = x^n \bmod F(x)\)</span> 。</li>
+<li>有 <span class="math inline">\(h_n = \sum_{i=0}^{k-1} c_i
+h_i\)</span> 。</li>
 </ol>
-<p>第一步和第三步都是 <span class="math inline">\(O(k)\)</span> 的，而第二步通过多项式快速幂和多项式取模可以做到 <span class="math inline">\(O(k\log k\log n)\)</span> 的复杂度。</p>
-<p>当然暴力做多项式快速幂和多项式取模也能做到 <span class="math inline">\(O(k^2 \log n)\)</span> 的复杂度，大多时候这就足够了。</p>
+<p>第一步和第三步都是 <span class="math inline">\(O(k)\)</span>
+的，而第二步通过多项式快速幂和多项式取模可以做到 <span
+class="math inline">\(O(k\log k\log n)\)</span> 的复杂度。</p>
+<p>当然暴力做多项式快速幂和多项式取模也能做到 <span
+class="math inline">\(O(k^2 \log n)\)</span>
+的复杂度，大多时候这就足够了。</p>
 <span id="more"></span>
 <h2 id="直观理解">直观理解</h2>
 <p>不会线性代数也没关系，上面的做法其实有很简单的直观理解。</p>
-<p>上述做法的关键在于第二部分，观察 <span class="math inline">\(H(x) = x^n\)</span> 在对 <span class="math inline">\(F(x)\)</span> 取模时的过程，<br />
-可以发现任意时刻，都有 <span class="math inline">\(h_n = \sum_i [x^i]H(x) h_i\)</span> 。</p>
-<p>也就是说总有以下命题成立，<span class="math inline">\(H(x)\)</span> 的 <span class="math inline">\(i\)</span> 次项系数就是 <span class="math inline">\(h_i\)</span> 对 <span class="math inline">\(h_n\)</span> 的贡献系数。<br />
-这一点不会因减去了若干倍 <span class="math inline">\(F(x)\)</span> 发生改变。<br />
-原因也很简单，每次将 <span class="math inline">\(H(x)\)</span> 减去 <span class="math inline">\(x^i F(x)\)</span> ，就相当于把 <span class="math inline">\(h_{k+i}\)</span> 换成了 <span class="math inline">\(\sum_{j=1}^k a_j h_{k+i-j}\)</span> 。<br />
-本质上是由于 <span class="math inline">\(F(x) \equiv 0 \pmod{F(x)}\)</span> 等价于 <span class="math inline">\(x_k \equiv \sum_{i=1}^k a_i x^{k-i} \pmod{F(x)}\)</span> 。</p>
-<p>其实自己列竖式算一算 <span class="math inline">\(x^n \bmod F(x)\)</span> 就能很容易发现这一点。</p>
+<p>上述做法的关键在于第二部分，观察 <span class="math inline">\(H(x) =
+x^n\)</span> 在对 <span class="math inline">\(F(x)\)</span>
+取模时的过程，<br />
+可以发现任意时刻，都有 <span class="math inline">\(h_n = \sum_i
+[x^i]H(x) h_i\)</span> 。</p>
+<p>也就是说总有以下命题成立，<span class="math inline">\(H(x)\)</span>
+的 <span class="math inline">\(i\)</span> 次项系数就是 <span
+class="math inline">\(h_i\)</span> 对 <span
+class="math inline">\(h_n\)</span> 的贡献系数。<br />
+这一点不会因减去了若干倍 <span class="math inline">\(F(x)\)</span>
+发生改变。<br />
+原因也很简单，每次将 <span class="math inline">\(H(x)\)</span> 减去
+<span class="math inline">\(x^i F(x)\)</span> ，就相当于把 <span
+class="math inline">\(h_{k+i}\)</span> 换成了 <span
+class="math inline">\(\sum_{j=1}^k a_j h_{k+i-j}\)</span> 。<br />
+本质上是由于 <span class="math inline">\(F(x) \equiv 0
+\pmod{F(x)}\)</span> 等价于 <span class="math inline">\(x_k \equiv
+\sum_{i=1}^k a_i x^{k-i} \pmod{F(x)}\)</span> 。</p>
+<p>其实自己列竖式算一算 <span class="math inline">\(x^n \bmod
+F(x)\)</span> 就能很容易发现这一点。</p>
 <h2 id="线代意义">线代意义</h2>
 <p>线代基础不行，只能先行告退。🕊🕊🕊🕊🕊</p>
 
@@ -387,7 +414,7 @@
 
 <div class="copyright">
   &copy; 2019 – 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-heartbeat"></i>
   </span>

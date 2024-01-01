@@ -319,20 +319,34 @@
         <p>以下公式均不给出证明，目的是为了让结论一目了然。</p>
 <span id="more"></span>
 <h2 id="组合数相关">组合数相关</h2>
-<p><span class="math display">\[ C_n^m C_m^k = C_n^k C_{n-k}^{m-k} \]</span></p>
-<p>基本递推式 <span class="math display">\[ C_n^m = C_{n-1}^{m-1} + C_{n-1}^m \]</span></p>
-<p>二项式定理 <span class="math display">\[ (a+b)^n = \sum_{i=0}^n C_n^i a^i b^{n-i} \]</span></p>
-<p><span class="math display">\[ \sum_{i=0}^n (C_n^i)^2 = C_{2n}^n \]</span></p>
-<p><span class="math display">\[ C_{n+m}^k = \sum_{i=0}^k C_n^i C_m^{k-i} \]</span></p>
-<p>卢卡斯定理（要求 <span class="math inline">\(p\)</span> 是质数） <span class="math display">\[ C_n^m \% p = C_{n/p}^{m/p} C_{n \% p}^{m \% p} \% p \]</span></p>
-<p>上指标反转 <span class="math display">\[ \binom{n}{m} = (-1)^m \binom{m-n-1}{m} \]</span></p>
+<p><span class="math display">\[ C_n^m C_m^k = C_n^k C_{n-k}^{m-k}
+\]</span></p>
+<p>基本递推式 <span class="math display">\[ C_n^m = C_{n-1}^{m-1} +
+C_{n-1}^m \]</span></p>
+<p>二项式定理 <span class="math display">\[ (a+b)^n = \sum_{i=0}^n C_n^i
+a^i b^{n-i} \]</span></p>
+<p><span class="math display">\[ \sum_{i=0}^n (C_n^i)^2 = C_{2n}^n
+\]</span></p>
+<p><span class="math display">\[ C_{n+m}^k = \sum_{i=0}^k C_n^i
+C_m^{k-i} \]</span></p>
+<p>卢卡斯定理（要求 <span class="math inline">\(p\)</span> 是质数）
+<span class="math display">\[ C_n^m \% p = C_{n/p}^{m/p} C_{n \% p}^{m
+\% p} \% p \]</span></p>
+<p>上指标反转 <span class="math display">\[ \binom{n}{m} = (-1)^m
+\binom{m-n-1}{m} \]</span></p>
 <h2 id="第一类斯特林数相关">第一类斯特林数相关</h2>
-<p><span class="math display">\[ s_n^m = s_{n-1}^{m-1} + (n-1) s_{n-1}^m \]</span></p>
-<p><span class="math display">\[ x^{\overline{n}} = \sum_{m} s_n^m x^m \]</span></p>
+<p><span class="math display">\[ s_n^m = s_{n-1}^{m-1} + (n-1) s_{n-1}^m
+\]</span></p>
+<p><span class="math display">\[ x^{\overline{n}} = \sum_{m} s_n^m x^m
+\]</span></p>
 <h2 id="第二类斯特林数相关">第二类斯特林数相关</h2>
-<p><span class="math display">\[ S_n^m = S_{n-1}^{m-1} + m S_{n-1}^m \]</span></p>
-<p><span class="math display">\[ n^m = \sum_{k=0}^m S_m^k C_n^k k! \]</span></p>
-<p>上式的二项式反演，组合数拆开后可转换为卷积形式 <span class="math display">\[ S_n^m = \frac{1}{m!} \sum_{k=0}^m (-1)^{m-k} C_m^k k^n \]</span></p>
+<p><span class="math display">\[ S_n^m = S_{n-1}^{m-1} + m S_{n-1}^m
+\]</span></p>
+<p><span class="math display">\[ n^m = \sum_{k=0}^m S_m^k C_n^k k!
+\]</span></p>
+<p>上式的二项式反演，组合数拆开后可转换为卷积形式 <span
+class="math display">\[ S_n^m = \frac{1}{m!} \sum_{k=0}^m (-1)^{m-k}
+C_m^k k^n \]</span></p>
 
     </div>
 
@@ -378,7 +392,7 @@
 
 <div class="copyright">
   &copy; 2019 – 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-heartbeat"></i>
   </span>

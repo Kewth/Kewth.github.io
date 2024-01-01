@@ -312,25 +312,64 @@
     
     <div class="post-body" itemprop="articleBody">
         <h2 id="概念">概念</h2>
-<p>一个有向图 <span class="math inline">\(G = (V, E)\)</span> 的闭合子图是一个导出子图 <span class="math inline">\(G_0 = (V_0, E_0)\)</span> ，满足 <span class="math inline">\(\forall u \in V_0, (u, x) \in E\)</span> 有 <span class="math inline">\(x \in V_0\)</span> 成立。</p>
+<p>一个有向图 <span class="math inline">\(G = (V, E)\)</span>
+的闭合子图是一个导出子图 <span class="math inline">\(G_0 = (V_0,
+E_0)\)</span> ，满足 <span class="math inline">\(\forall u \in V_0, (u,
+x) \in E\)</span> 有 <span class="math inline">\(x \in V_0\)</span>
+成立。</p>
 <p>最大权闭合子图即点权和最大的闭合子图。</p>
 <span id="more"></span>
 <h2 id="网络流模型">网络流模型</h2>
-<p>注意到对于任意两个点 <span class="math inline">\(u, v\)</span> 满足 <span class="math inline">\(u\)</span> 能到达 <span class="math inline">\(v\)</span> ，闭合子图必须满足以下两个限制之一：</p>
+<p>注意到对于任意两个点 <span class="math inline">\(u, v\)</span> 满足
+<span class="math inline">\(u\)</span> 能到达 <span
+class="math inline">\(v\)</span>
+，闭合子图必须满足以下两个限制之一：</p>
 <ul>
 <li><span class="math inline">\(u\)</span> 不在该闭合子图中</li>
 <li><span class="math inline">\(v\)</span> 在该闭合子图中</li>
 </ul>
-<p>容易联想到“割”，建源点 <span class="math inline">\(S\)</span> 连向所有点，所有点连向汇点 <span class="math inline">\(T\)</span> 。割掉 <span class="math inline">\((u, T)\)</span> 表示 <span class="math inline">\(u\)</span> 在闭合子图中，割掉 <span class="math inline">\((S, u)\)</span> 表示 <span class="math inline">\(u\)</span> 不在闭合子图中。那么新图的一组合法割就对应了原图的一个闭合子图。</p>
-<p>求最大权闭合子图就只要给新图定义合适的边权，使得最大权闭合子图的权值等于一个定值 <span class="math inline">\(K\)</span> 减去新图最小割。</p>
-<p>容易想到令原图边边权为 <span class="math inline">\(+\infty\)</span> ，<span class="math inline">\((S, u)\)</span> 的边权为 <span class="math inline">\(u\)</span> 的点权，<span class="math inline">\((u, T)\)</span> 的边权为 <span class="math inline">\(0\)</span> 。那么上述的定值 <span class="math inline">\(K\)</span> 就是点权和。但是 <span class="math inline">\(u\)</span> 的点权可能为负数，这样定权会导致负权边的出现。常规操作，对于点权为 <span class="math inline">\(-X (X &gt; 0)\)</span> 的点 <span class="math inline">\(u\)</span> ，不妨先“预流”一条 <span class="math inline">\(S -&gt; u -&gt; T\)</span> 的流量为 <span class="math inline">\(-X\)</span> 的路径，这样 <span class="math inline">\((S, u)\)</span> 的边权变为 <span class="math inline">\(0\)</span> ，<span class="math inline">\((u, T)\)</span> 的边权变为 <span class="math inline">\(X\)</span> 。算上“预流”的流量，此时 <span class="math inline">\(K\)</span> 是所有正权点的权值和。此时就可以简单地应用网络流解决这个问题。</p>
+<p>容易联想到“割”，建源点 <span class="math inline">\(S\)</span>
+连向所有点，所有点连向汇点 <span class="math inline">\(T\)</span> 。割掉
+<span class="math inline">\((u, T)\)</span> 表示 <span
+class="math inline">\(u\)</span> 在闭合子图中，割掉 <span
+class="math inline">\((S, u)\)</span> 表示 <span
+class="math inline">\(u\)</span>
+不在闭合子图中。那么新图的一组合法割就对应了原图的一个闭合子图。</p>
+<p>求最大权闭合子图就只要给新图定义合适的边权，使得最大权闭合子图的权值等于一个定值
+<span class="math inline">\(K\)</span> 减去新图最小割。</p>
+<p>容易想到令原图边边权为 <span class="math inline">\(+\infty\)</span>
+，<span class="math inline">\((S, u)\)</span> 的边权为 <span
+class="math inline">\(u\)</span> 的点权，<span class="math inline">\((u,
+T)\)</span> 的边权为 <span class="math inline">\(0\)</span>
+。那么上述的定值 <span class="math inline">\(K\)</span> 就是点权和。但是
+<span class="math inline">\(u\)</span>
+的点权可能为负数，这样定权会导致负权边的出现。常规操作，对于点权为 <span
+class="math inline">\(-X (X &gt; 0)\)</span> 的点 <span
+class="math inline">\(u\)</span> ，不妨先“预流”一条 <span
+class="math inline">\(S -&gt; u -&gt; T\)</span> 的流量为 <span
+class="math inline">\(-X\)</span> 的路径，这样 <span
+class="math inline">\((S, u)\)</span> 的边权变为 <span
+class="math inline">\(0\)</span> ，<span class="math inline">\((u,
+T)\)</span> 的边权变为 <span class="math inline">\(X\)</span>
+。算上“预流”的流量，此时 <span class="math inline">\(K\)</span>
+是所有正权点的权值和。此时就可以简单地应用网络流解决这个问题。</p>
 <h2 id="最大密度子图">最大密度子图</h2>
-<p>对于无向图 <span class="math inline">\(G = (V, E)\)</span> ，其非空导出子图 <span class="math inline">\(G_0 = (V_0, E_0)\)</span> 的密度定义为边数与点数的比值，即 <span class="math inline">\(\frac{|E_0|}{|V_0|}\)</span> 。</p>
+<p>对于无向图 <span class="math inline">\(G = (V, E)\)</span>
+，其非空导出子图 <span class="math inline">\(G_0 = (V_0, E_0)\)</span>
+的密度定义为边数与点数的比值，即 <span
+class="math inline">\(\frac{|E_0|}{|V_0|}\)</span> 。</p>
 <p>最大密度子图即密度最大的导出子图。</p>
-<p>问题实际上是一个分数规划，不难想到二分密度 <span class="math inline">\(X\)</span> 然后判断是否存在 <span class="math inline">\(G_0\)</span> 满足 <span class="math inline">\(|E_0| - X |V_0| &gt; 0\)</span> 。</p>
-<p>令每条边的权值为 <span class="math inline">\(1\)</span> ，每个点的权值为 <span class="math inline">\(-X\)</span> ，那么问题就是要求一个点权和加边权和最大的导出子图。</p>
+<p>问题实际上是一个分数规划，不难想到二分密度 <span
+class="math inline">\(X\)</span> 然后判断是否存在 <span
+class="math inline">\(G_0\)</span> 满足 <span
+class="math inline">\(|E_0| - X |V_0| &gt; 0\)</span> 。</p>
+<p>令每条边的权值为 <span class="math inline">\(1\)</span>
+，每个点的权值为 <span class="math inline">\(-X\)</span>
+，那么问题就是要求一个点权和加边权和最大的导出子图。</p>
 <p>注意到一条边出现在导出子图中当且仅当它的两个端点都在该导出子图中，根据这个限制关系可以把原图的边都抽象成点然后建新的有向图。判断新图的最大权导出子图的权值是否为<strong>正数</strong>即可。</p>
-<p>需要注意的是，空集也是一个导出子图，其密度是没有定义的，却始终满足 <span class="math inline">\(|E_0| - X |V_0| = 0\)</span> ，因此二分的判断条件一定是严格大于而不是大于等于。</p>
+<p>需要注意的是，空集也是一个导出子图，其密度是没有定义的，却始终满足
+<span class="math inline">\(|E_0| - X |V_0| = 0\)</span>
+，因此二分的判断条件一定是严格大于而不是大于等于。</p>
 
     </div>
 
@@ -377,7 +416,7 @@
 
 <div class="copyright">
   &copy; 2019 – 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-heartbeat"></i>
   </span>

@@ -318,18 +318,47 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>简单来说就是快速计算 <span class="math inline">\(\binom{n}{m} \bmod p\)</span> 。</p>
+        <p>简单来说就是快速计算 <span class="math inline">\(\binom{n}{m} \bmod
+p\)</span> 。</p>
 <h2 id="卢卡斯定理">卢卡斯定理</h2>
-<p>如果 <span class="math inline">\(p\)</span> 是质数，有 <span class="math inline">\(\binom{n}{m} \equiv \binom{n \bmod p}{m \bmod p} \binom{n/p}{m/p} \pmod{p}\)</span> ，其中 <span class="math inline">\(n/p\)</span> 和 <span class="math inline">\(m/p\)</span> 表示整除。</p>
-<p>直接递归调用，预处理阶乘，单次询问时间复杂度 <span class="math inline">\(O(p + \frac{\log n}{\log p})\)</span> 。</p>
+<p>如果 <span class="math inline">\(p\)</span> 是质数，有 <span
+class="math inline">\(\binom{n}{m} \equiv \binom{n \bmod p}{m \bmod p}
+\binom{n/p}{m/p} \pmod{p}\)</span> ，其中 <span
+class="math inline">\(n/p\)</span> 和 <span
+class="math inline">\(m/p\)</span> 表示整除。</p>
+<p>直接递归调用，预处理阶乘，单次询问时间复杂度 <span
+class="math inline">\(O(p + \frac{\log n}{\log p})\)</span> 。</p>
 <span id="more"></span>
 <h2 id="扩展卢卡斯">扩展卢卡斯</h2>
 <p>这已经不能算定理了，从头到尾就是一个算法。</p>
-<p>对于 <span class="math inline">\(p\)</span> 不是质数的情况，考虑将 <span class="math inline">\(p\)</span> 质因数分解，对于每个质因子 <span class="math inline">\(x^k\)</span> ，求出 <span class="math inline">\(\binom{n}{m} \bmod x^k\)</span> 后扩展中国剩余定理合并。</p>
-<p>那么问题转换为对于质数 <span class="math inline">\(x\)</span> 和指数 <span class="math inline">\(k\)</span> 求 <span class="math inline">\(\binom{n}{m} \bmod x^k\)</span> 。</p>
-<p>考虑组合数的通项公式 <span class="math inline">\(\binom{n}{m} = \frac{n!}{m!(n-m)!}\)</span> ，分别求出 <span class="math inline">\(n!\)</span>, <span class="math inline">\(m!\)</span>, <span class="math inline">\((n-m)!\)</span> ，特别地，由于它们可能是 <span class="math inline">\(x\)</span> 的倍数，需要将 <span class="math inline">\(x\)</span> 单独提出来。 也就是要求 <span class="math inline">\(n! = x^a b\)</span> 中的 <span class="math inline">\(a\)</span> 和 <span class="math inline">\(b\)</span> 。</p>
-<p>将 <span class="math inline">\(n! = 1 \times 2 \times 3 ... \times n\)</span> 中 <span class="math inline">\(x\)</span> 的倍数单独提出来，这些部分都除掉一个 <span class="math inline">\(x\)</span> 就是 <span class="math inline">\(\lfloor \frac{n}{x} \rfloor!\)</span> ，递归计算。 对于其他部分，每 <span class="math inline">\(x^k\)</span> 分为一块，每一个完整的块的乘积相同，算出一个完整的块的乘积（也就是 <span class="math inline">\((x^k-1)!\)</span> ）后再算零散部分的乘积即可。</p>
-<p>预处理阶乘，单次询问时间复杂度 <span class="math inline">\(O(p + \frac{\log n}{\log p})\)</span> 。</p>
+<p>对于 <span class="math inline">\(p\)</span> 不是质数的情况，考虑将
+<span class="math inline">\(p\)</span> 质因数分解，对于每个质因子 <span
+class="math inline">\(x^k\)</span> ，求出 <span
+class="math inline">\(\binom{n}{m} \bmod x^k\)</span>
+后扩展中国剩余定理合并。</p>
+<p>那么问题转换为对于质数 <span class="math inline">\(x\)</span> 和指数
+<span class="math inline">\(k\)</span> 求 <span
+class="math inline">\(\binom{n}{m} \bmod x^k\)</span> 。</p>
+<p>考虑组合数的通项公式 <span class="math inline">\(\binom{n}{m} =
+\frac{n!}{m!(n-m)!}\)</span> ，分别求出 <span
+class="math inline">\(n!\)</span>, <span
+class="math inline">\(m!\)</span>, <span
+class="math inline">\((n-m)!\)</span> ，特别地，由于它们可能是 <span
+class="math inline">\(x\)</span> 的倍数，需要将 <span
+class="math inline">\(x\)</span> 单独提出来。 也就是要求 <span
+class="math inline">\(n! = x^a b\)</span> 中的 <span
+class="math inline">\(a\)</span> 和 <span
+class="math inline">\(b\)</span> 。</p>
+<p>将 <span class="math inline">\(n! = 1 \times 2 \times 3 ... \times
+n\)</span> 中 <span class="math inline">\(x\)</span>
+的倍数单独提出来，这些部分都除掉一个 <span
+class="math inline">\(x\)</span> 就是 <span
+class="math inline">\(\lfloor \frac{n}{x} \rfloor!\)</span> ，递归计算。
+对于其他部分，每 <span class="math inline">\(x^k\)</span>
+分为一块，每一个完整的块的乘积相同，算出一个完整的块的乘积（也就是 <span
+class="math inline">\((x^k-1)!\)</span> ）后再算零散部分的乘积即可。</p>
+<p>预处理阶乘，单次询问时间复杂度 <span class="math inline">\(O(p +
+\frac{\log n}{\log p})\)</span> 。</p>
 
     </div>
 
@@ -377,7 +406,7 @@
 
 <div class="copyright">
   &copy; 2019 – 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-heartbeat"></i>
   </span>

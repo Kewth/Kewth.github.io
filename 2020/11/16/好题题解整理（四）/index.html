@@ -150,7 +150,8 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#agc049e-increment-decrement"><span class="nav-number">1.</span> <span class="nav-text">agc049e Increment Decrement</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%90%E9%97%AE%E9%A2%98%E5%BC%95%E5%85%A5"><span class="nav-number">1.1.</span> <span class="nav-text">子问题引入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%B8%E6%80%A7%E8%AF%81%E6%98%8E"><span class="nav-number">1.2.</span> <span class="nav-text">凸性证明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E7%AE%80%E5%8C%96"><span class="nav-number">1.3.</span> <span class="nav-text">问题简化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dp-%E8%AE%A1%E6%95%B0"><span class="nav-number">1.4.</span> <span class="nav-text">DP 计数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pe214-totient-chains"><span class="nav-number">2.</span> <span class="nav-text">pe214 Totient Chains</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pe219-skew-cost-coding"><span class="nav-number">3.</span> <span class="nav-text">pe219 Skew-cost coding</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cc-hotmeals-hot-meals-and-queues"><span class="nav-number">4.</span> <span class="nav-text">cc-hotmeals Hot Meals and Queues</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#agc049e-increment-decrement"><span class="nav-number">1.</span> <span class="nav-text">agc049e Increment Decrement</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%90%E9%97%AE%E9%A2%98%E5%BC%95%E5%85%A5"><span class="nav-number">1.1.</span> <span class="nav-text">子问题引入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%B8%E6%80%A7%E8%AF%81%E6%98%8E"><span class="nav-number">1.2.</span> <span class="nav-text">凸性证明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E7%AE%80%E5%8C%96"><span class="nav-number">1.3.</span> <span class="nav-text">问题简化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dp-%E8%AE%A1%E6%95%B0"><span class="nav-number">1.4.</span> <span class="nav-text">DP 计数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pe214-totient-chains"><span class="nav-number">2.</span> <span class="nav-text">pe214 Totient Chains</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pe219-skew-cost-coding"><span class="nav-number">3.</span> <span class="nav-text">pe219 Skew-cost coding</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cc-hotmeals-hot-meals-and-queues"><span class="nav-number">4.</span> <span class="nav-text">cc-hotmeals Hot Meals and
+Queues</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -321,56 +322,140 @@
 <h2 id="agc049e-increment-decrement">agc049e Increment Decrement</h2>
 <p>对于一个非负整数序列，我们可以做两个操作：</p>
 <ol type="1">
-<li>选定一项令其加一或减一，代价为 <span class="math inline">\(1\)</span> 。</li>
-<li>选定一个区间令其中每一项同时加一或同时减一，代价为 <span class="math inline">\(C\)</span> 。</li>
+<li>选定一项令其加一或减一，代价为 <span
+class="math inline">\(1\)</span> 。</li>
+<li>选定一个区间令其中每一项同时加一或同时减一，代价为 <span
+class="math inline">\(C\)</span> 。</li>
 </ol>
-<p>定义一个非负整数序列的代价为从一个全 0 序列操作得到该序列所需要花费的最小代价。</p>
-<p>先给定 <span class="math inline">\(N\)</span> 和 <span class="math inline">\(K\)</span> 以及一个 <span class="math inline">\(N \times K\)</span> 的非负整数矩阵 <span class="math inline">\(B\)</span> ，依次将每个 <span class="math inline">\(A_i\)</span> 赋值为 <span class="math inline">\(B_{i,1}, B_{i,2} ... B_{i,K}\)</span> ，求所有 <span class="math inline">\(K^N\)</span> 个可能的 <span class="math inline">\(A\)</span> 序列的代价的和。</p>
-<p>时间复杂度：<span class="math inline">\(O(N^2 K (K + C))\)</span> 。</p>
+<p>定义一个非负整数序列的代价为从一个全 0
+序列操作得到该序列所需要花费的最小代价。</p>
+<p>先给定 <span class="math inline">\(N\)</span> 和 <span
+class="math inline">\(K\)</span> 以及一个 <span class="math inline">\(N
+\times K\)</span> 的非负整数矩阵 <span class="math inline">\(B\)</span>
+，依次将每个 <span class="math inline">\(A_i\)</span> 赋值为 <span
+class="math inline">\(B_{i,1}, B_{i,2} ... B_{i,K}\)</span> ，求所有
+<span class="math inline">\(K^N\)</span> 个可能的 <span
+class="math inline">\(A\)</span> 序列的代价的和。</p>
+<p>时间复杂度：<span class="math inline">\(O(N^2 K (K + C))\)</span>
+。</p>
 <details class="note primary"><summary><p>题解</p>
 </summary>
 <h3 id="子问题引入">子问题引入</h3>
-<p>先来考虑对于给定的长度为 <span class="math inline">\(N\)</span> 的序列 <span class="math inline">\(A\)</span> ，如何求出 <span class="math inline">\(A\)</span> 的代价？</p>
-<p>不妨先进行所有 2 操作得到序列 <span class="math inline">\(D\)</span> ，然后对 <span class="math inline">\(D\)</span> 执行 1 操作得到 <span class="math inline">\(A\)</span> ，如果 <span class="math inline">\(D\)</span> 确定的话两个操作的代价都是容易求的，总代价即（默认 <span class="math inline">\(D_0 = 0\)</span>）：</p>
+<p>先来考虑对于给定的长度为 <span class="math inline">\(N\)</span>
+的序列 <span class="math inline">\(A\)</span> ，如何求出 <span
+class="math inline">\(A\)</span> 的代价？</p>
+<p>不妨先进行所有 2 操作得到序列 <span class="math inline">\(D\)</span>
+，然后对 <span class="math inline">\(D\)</span> 执行 1 操作得到 <span
+class="math inline">\(A\)</span> ，如果 <span
+class="math inline">\(D\)</span>
+确定的话两个操作的代价都是容易求的，总代价即（默认 <span
+class="math inline">\(D_0 = 0\)</span>）：</p>
 <p><span class="math display">\[
 \sum_{i=1}^N C \max(D_i - D_{i-1}, 0) + |A_i - D_i|
 \]</span></p>
-<p>据此不难想到一个 DP ，设 <span class="math inline">\(f_{i,j}\)</span> 表示钦定 <span class="math inline">\(D_i = j\)</span> 的前提下上式前 <span class="math inline">\(i\)</span> 项的最小值，转移有</p>
+<p>据此不难想到一个 DP ，设 <span class="math inline">\(f_{i,j}\)</span>
+表示钦定 <span class="math inline">\(D_i = j\)</span> 的前提下上式前
+<span class="math inline">\(i\)</span> 项的最小值，转移有</p>
 <p><span class="math display">\[
 f_{i,j} = \min_{k \ge 0} (f_{i-1,k} + C \max(j - k, 0) + |j - A_i|)
 \]</span></p>
-<p>设 <span class="math inline">\(F_i(x) = f_{i,x}\)</span> ，接下来我们证明，<span class="math inline">\(F_i(x)\)</span> 总是凸函数（离散意义上）。</p>
+<p>设 <span class="math inline">\(F_i(x) = f_{i,x}\)</span>
+，接下来我们证明，<span class="math inline">\(F_i(x)\)</span>
+总是凸函数（离散意义上）。</p>
 <h3 id="凸性证明">凸性证明</h3>
-<p>采用数学归纳法，对于 <span class="math inline">\(i = 0\)</span> ，我们不妨令 <span class="math inline">\(F_0(x) = (C + 1) x\)</span> 。</p>
-<p>设 <span class="math inline">\(G(x) = F_i(x) - |x - A_i|\)</span> ，如果 <span class="math inline">\(G(x)\)</span> 是凸的，由于 <span class="math inline">\(|x - A_i|\)</span> 也是凸的，就可以证明 <span class="math inline">\(F_i(x)\)</span> 是凸的。</p>
-<p><span class="math inline">\(F_{i-1}(x)\)</span> 最小值取在 <span class="math inline">\(x = k\)</span> 。那么首先显而易见的是：</p>
+<p>采用数学归纳法，对于 <span class="math inline">\(i = 0\)</span>
+，我们不妨令 <span class="math inline">\(F_0(x) = (C + 1) x\)</span>
+。</p>
+<p>设 <span class="math inline">\(G(x) = F_i(x) - |x - A_i|\)</span>
+，如果 <span class="math inline">\(G(x)\)</span> 是凸的，由于 <span
+class="math inline">\(|x - A_i|\)</span> 也是凸的，就可以证明 <span
+class="math inline">\(F_i(x)\)</span> 是凸的。</p>
+<p><span class="math inline">\(F_{i-1}(x)\)</span> 最小值取在 <span
+class="math inline">\(x = k\)</span> 。那么首先显而易见的是：</p>
 <p><span class="math display">\[
 \forall x \in [0, k], G(x) = F_{i-1}(k)
 \]</span></p>
-<p>设 <span class="math inline">\(x_0\)</span> 是最大的满足 <span class="math inline">\(G(x_0) - G(x_0 - 1) &lt; C\)</span> 的值，那么可以发现</p>
+<p>设 <span class="math inline">\(x_0\)</span> 是最大的满足 <span
+class="math inline">\(G(x_0) - G(x_0 - 1) &lt; C\)</span>
+的值，那么可以发现</p>
 <p><span class="math display">\[
 \forall x \in [k + 1, x_0], G(x) = F_{i-1}(x)
 \]</span></p>
-<p>对于 <span class="math inline">\(x &gt; x_0\)</span> 的部分，由于 <span class="math inline">\(F_{i-1}(x)\)</span> 增长过快，最优的转移点就不会变了，因此</p>
+<p>对于 <span class="math inline">\(x &gt; x_0\)</span> 的部分，由于
+<span class="math inline">\(F_{i-1}(x)\)</span>
+增长过快，最优的转移点就不会变了，因此</p>
 <p><span class="math display">\[
 \forall x \ge x_0 + 1, G(x) = F_{i-1}(x_0) + C (x - x_0)
 \]</span></p>
-<p>那么 <span class="math inline">\(G(x)\)</span> 被分为三个部分，第一部分是斜率为 <span class="math inline">\(0\)</span> 的折线，第二部分基于归纳假设是凸的斜率在 <span class="math inline">\([1, C - 1]\)</span> 内的折线，第三部分是斜率为 <span class="math inline">\(C\)</span> 的折线，因此 <span class="math inline">\(G(x)\)</span> 是凸的，<span class="math inline">\(F_i(x)\)</span> 也是凸的。</p>
+<p>那么 <span class="math inline">\(G(x)\)</span>
+被分为三个部分，第一部分是斜率为 <span class="math inline">\(0\)</span>
+的折线，第二部分基于归纳假设是凸的斜率在 <span class="math inline">\([1,
+C - 1]\)</span> 内的折线，第三部分是斜率为 <span
+class="math inline">\(C\)</span> 的折线，因此 <span
+class="math inline">\(G(x)\)</span> 是凸的，<span
+class="math inline">\(F_i(x)\)</span> 也是凸的。</p>
 <h3 id="问题简化">问题简化</h3>
-<p>注意到 <span class="math inline">\(G(x)\)</span> 是一个折线，由斜率从 <span class="math inline">\(0\)</span> 到 <span class="math inline">\(C\)</span> 的线段依次组成，这意味着折线的端点至多有 <span class="math inline">\(C\)</span> 个，不妨设 <span class="math inline">\(X_i\)</span> 表示斜率为 <span class="math inline">\(i\)</span> 的线段的起点横坐标，我们考虑通过维护 <span class="math inline">\(X_i\)</span> 来间接维护 <span class="math inline">\(G(x)\)</span> 所代表的折线。</p>
-<p>首先我们要支持在 <span class="math inline">\(G(x)\)</span> 上加上 <span class="math inline">\(|x - A_i|\)</span> ，可以发现这个操作后，<span class="math inline">\(A_i\)</span> 左侧的直线都减小了 <span class="math inline">\(1\)</span> ，<span class="math inline">\(A_i\)</span> 右侧的直线都增加了 <span class="math inline">\(1\)</span> ，这其实就是在 <span class="math inline">\(X\)</span> 序列里添加两个 <span class="math inline">\(A_i\)</span> 。</p>
-<p>紧跟着我们要把 <span class="math inline">\(G(x)\)</span> 进行一次转移，也就是按照前面所说的分成三段，第一段就是把斜率为 <span class="math inline">\(-1\)</span> 的直线调整为斜率为 <span class="math inline">\(0\)</span> ，第二段不变，第三段是把斜率为 <span class="math inline">\(C+1\)</span> 的直线调整为斜率为 <span class="math inline">\(C\)</span> 。那么事实上，这就是在 <span class="math inline">\(X\)</span> 序列里头删掉最小值和最大值。</p>
-<p>而每次查询 <span class="math inline">\(G(x)\)</span> 的最小值的位置，也就是每次被删掉的最小值。</p>
-<p>综上所述，求一个序列 <span class="math inline">\(A\)</span> 的代价的过程可以被描述为：</p>
+<p>注意到 <span class="math inline">\(G(x)\)</span> 是一个折线，由斜率从
+<span class="math inline">\(0\)</span> 到 <span
+class="math inline">\(C\)</span>
+的线段依次组成，这意味着折线的端点至多有 <span
+class="math inline">\(C\)</span> 个，不妨设 <span
+class="math inline">\(X_i\)</span> 表示斜率为 <span
+class="math inline">\(i\)</span> 的线段的起点横坐标，我们考虑通过维护
+<span class="math inline">\(X_i\)</span> 来间接维护 <span
+class="math inline">\(G(x)\)</span> 所代表的折线。</p>
+<p>首先我们要支持在 <span class="math inline">\(G(x)\)</span> 上加上
+<span class="math inline">\(|x - A_i|\)</span>
+，可以发现这个操作后，<span class="math inline">\(A_i\)</span>
+左侧的直线都减小了 <span class="math inline">\(1\)</span> ，<span
+class="math inline">\(A_i\)</span> 右侧的直线都增加了 <span
+class="math inline">\(1\)</span> ，这其实就是在 <span
+class="math inline">\(X\)</span> 序列里添加两个 <span
+class="math inline">\(A_i\)</span> 。</p>
+<p>紧跟着我们要把 <span class="math inline">\(G(x)\)</span>
+进行一次转移，也就是按照前面所说的分成三段，第一段就是把斜率为 <span
+class="math inline">\(-1\)</span> 的直线调整为斜率为 <span
+class="math inline">\(0\)</span> ，第二段不变，第三段是把斜率为 <span
+class="math inline">\(C+1\)</span> 的直线调整为斜率为 <span
+class="math inline">\(C\)</span> 。那么事实上，这就是在 <span
+class="math inline">\(X\)</span> 序列里头删掉最小值和最大值。</p>
+<p>而每次查询 <span class="math inline">\(G(x)\)</span>
+的最小值的位置，也就是每次被删掉的最小值。</p>
+<p>综上所述，求一个序列 <span class="math inline">\(A\)</span>
+的代价的过程可以被描述为：</p>
 <ol type="1">
-<li>建立一个可重集 <span class="math inline">\(S\)</span> ，包含 <span class="math inline">\(C\)</span> 个 <span class="math inline">\(0\)</span> 。</li>
-<li>从小到大对于每个 <span class="math inline">\(i\)</span> ，将两个 <span class="math inline">\(A_i\)</span> 放入 <span class="math inline">\(S\)</span> 中，将答案加上 <span class="math inline">\(A_i - \min S\)</span> ，然后删除 <span class="math inline">\(S\)</span> 中的最小值和最大值</li>
+<li>建立一个可重集 <span class="math inline">\(S\)</span> ，包含 <span
+class="math inline">\(C\)</span> 个 <span
+class="math inline">\(0\)</span> 。</li>
+<li>从小到大对于每个 <span class="math inline">\(i\)</span> ，将两个
+<span class="math inline">\(A_i\)</span> 放入 <span
+class="math inline">\(S\)</span> 中，将答案加上 <span
+class="math inline">\(A_i - \min S\)</span> ，然后删除 <span
+class="math inline">\(S\)</span> 中的最小值和最大值</li>
 </ol>
 <h3 id="dp-计数">DP 计数</h3>
 <p>现在回到原问题，怎么记数。</p>
-<p>不妨对于每个值 <span class="math inline">\(x\)</span> ，求出它在 <span class="math inline">\(S\)</span> 中作为最小值被删去的次数 <span class="math inline">\(tot(x)\)</span> 。枚举值 <span class="math inline">\(x\)</span> ，由于只关注大小，不妨把小于 <span class="math inline">\(x\)</span> 的数都看做 <span class="math inline">\(0\)</span> ，不小于 <span class="math inline">\(x\)</span> 的数都看做 <span class="math inline">\(1\)</span> ，这样一来 <span class="math inline">\(S\)</span> 中始终只有 <span class="math inline">\(0\)</span> 和 <span class="math inline">\(1\)</span> ，可以用 <span class="math inline">\(1\)</span> 的数量表示 <span class="math inline">\(S\)</span> 。设 <span class="math inline">\(h_{i,j}\)</span> 表示考虑刚加入两个 <span class="math inline">\(A_i\)</span> 时 <span class="math inline">\(S\)</span> 中有恰好 <span class="math inline">\(j\)</span> 个 <span class="math inline">\(1\)</span> 的方案数，然后不难算出</p>
+<p>不妨对于每个值 <span class="math inline">\(x\)</span> ，求出它在
+<span class="math inline">\(S\)</span> 中作为最小值被删去的次数 <span
+class="math inline">\(tot(x)\)</span> 。枚举值 <span
+class="math inline">\(x\)</span> ，由于只关注大小，不妨把小于 <span
+class="math inline">\(x\)</span> 的数都看做 <span
+class="math inline">\(0\)</span> ，不小于 <span
+class="math inline">\(x\)</span> 的数都看做 <span
+class="math inline">\(1\)</span> ，这样一来 <span
+class="math inline">\(S\)</span> 中始终只有 <span
+class="math inline">\(0\)</span> 和 <span
+class="math inline">\(1\)</span> ，可以用 <span
+class="math inline">\(1\)</span> 的数量表示 <span
+class="math inline">\(S\)</span> 。设 <span
+class="math inline">\(h_{i,j}\)</span> 表示考虑刚加入两个 <span
+class="math inline">\(A_i\)</span> 时 <span
+class="math inline">\(S\)</span> 中有恰好 <span
+class="math inline">\(j\)</span> 个 <span
+class="math inline">\(1\)</span> 的方案数，然后不难算出</p>
 <p><span class="math display">\[
-\sum_{i=0}^{x-1} tot(i) = \sum_{i=1}^N \sum_{j=0}^{C+1} h_{i,j} = K^N - \sum_{i=1}^N h_{i,C+2}
+\sum_{i=0}^{x-1} tot(i) = \sum_{i=1}^N \sum_{j=0}^{C+1} h_{i,j} = K^N -
+\sum_{i=1}^N h_{i,C+2}
 \]</span></p>
 <p>最后答案即</p>
 <p><span class="math display">\[
@@ -388,24 +473,54 @@ f_{i,j} = \min_{k \ge 0} (f_{i-1,k} + C \max(j - k, 0) + |j - A_i|)
     f(\varphi(x)) + 1, &amp; x &gt; 1
     \end{cases}
 \]</span></p>
-<p>给定 <span class="math inline">\(n, a\)</span> ，对于 <span class="math inline">\([1, m]\)</span> 内的每个整数 <span class="math inline">\(k\)</span> ，求出有多少个数 <span class="math inline">\(x\)</span> 满足：</p>
+<p>给定 <span class="math inline">\(n, a\)</span> ，对于 <span
+class="math inline">\([1, m]\)</span> 内的每个整数 <span
+class="math inline">\(k\)</span> ，求出有多少个数 <span
+class="math inline">\(x\)</span> 满足：</p>
 <ol type="1">
 <li><span class="math inline">\(f(x) = k\)</span></li>
-<li><span class="math inline">\(x\)</span> 的每个质因子不超过 <span class="math inline">\(n\)</span> 。</li>
-<li><span class="math inline">\(x\)</span> 的标准分解中的每个质因子的指数不超过 <span class="math inline">\(a\)</span> 。</li>
+<li><span class="math inline">\(x\)</span> 的每个质因子不超过 <span
+class="math inline">\(n\)</span> 。</li>
+<li><span class="math inline">\(x\)</span>
+的标准分解中的每个质因子的指数不超过 <span
+class="math inline">\(a\)</span> 。</li>
 </ol>
-<p>时间复杂度：<span class="math inline">\(O(n + m \log m \log n)\)</span> 。</p>
+<p>时间复杂度：<span class="math inline">\(O(n + m \log m \log
+n)\)</span> 。</p>
 <p>主观难度：8 / 12</p>
 <details class="note primary"><summary><p>题解</p>
 </summary>
-<p><span class="math inline">\(f(x)\)</span> 其实就是 <span class="math inline">\(x\)</span> 一直迭代欧拉函数迭代的次数。注意到如果 <span class="math inline">\(x &gt; 2\)</span> ，那么 <span class="math inline">\(\varphi(x)\)</span> 一定是偶数。</p>
+<p><span class="math inline">\(f(x)\)</span> 其实就是 <span
+class="math inline">\(x\)</span> 一直迭代欧拉函数迭代的次数。注意到如果
+<span class="math inline">\(x &gt; 2\)</span> ，那么 <span
+class="math inline">\(\varphi(x)\)</span> 一定是偶数。</p>
 <blockquote>
-<p>证明：设 <span class="math inline">\(x = 2^s t, t \bmod 2 = 1\)</span> 。若 <span class="math inline">\(t = 1\)</span> 则 <span class="math inline">\(s &gt; 1\)</span> 则 <span class="math inline">\(2 \mid \varphi(x) = 2^{s-1}\)</span> ；若 <span class="math inline">\(t &gt; 1\)</span> 则存在奇质数 <span class="math inline">\(p \mid x\)</span> 则 <span class="math inline">\(2 \mid p - 1 \mid \varphi(x)\)</span> 。</p>
+<p>证明：设 <span class="math inline">\(x = 2^s t, t \bmod 2 =
+1\)</span> 。若 <span class="math inline">\(t = 1\)</span> 则 <span
+class="math inline">\(s &gt; 1\)</span> 则 <span class="math inline">\(2
+\mid \varphi(x) = 2^{s-1}\)</span> ；若 <span class="math inline">\(t
+&gt; 1\)</span> 则存在奇质数 <span class="math inline">\(p \mid
+x\)</span> 则 <span class="math inline">\(2 \mid p - 1 \mid
+\varphi(x)\)</span> 。</p>
 </blockquote>
 <p><br></p>
-<p>把迭代欧拉函数的过程抽象到图上，<span class="math inline">\(x\)</span> 每整除一次质数 <span class="math inline">\(p\)</span> ，就在节点 <span class="math inline">\(p\)</span> 上放一个棋子。质数 <span class="math inline">\(p\)</span> 的后继是 <span class="math inline">\(p - 1\)</span> 的每个质因子。那么迭代一次就相当于把每个节点上的一个棋子向每个后继移动。</p>
-<p>由于迭代一次后 <span class="math inline">\(2\)</span> 节点必然有棋子，且迭代的过程中该节点始终有棋子。因此可以认为当 <span class="math inline">\(2\)</span> 节点没有棋子的时候迭代结束。注意到每次迭代 <span class="math inline">\(2\)</span> 节点都只会有一个棋子被删去。也就是说，迭代的次数就是 <span class="math inline">\(2\)</span> 节点曾拥有的棋子数。</p>
-<p>具体地，设 <span class="math inline">\(g(x)\)</span> 表示迭代的过程中有多少棋子经过 <span class="math inline">\(2\)</span> 节点，那么：</p>
+<p>把迭代欧拉函数的过程抽象到图上，<span
+class="math inline">\(x\)</span> 每整除一次质数 <span
+class="math inline">\(p\)</span> ，就在节点 <span
+class="math inline">\(p\)</span> 上放一个棋子。质数 <span
+class="math inline">\(p\)</span> 的后继是 <span class="math inline">\(p
+- 1\)</span>
+的每个质因子。那么迭代一次就相当于把每个节点上的一个棋子向每个后继移动。</p>
+<p>由于迭代一次后 <span class="math inline">\(2\)</span>
+节点必然有棋子，且迭代的过程中该节点始终有棋子。因此可以认为当 <span
+class="math inline">\(2\)</span>
+节点没有棋子的时候迭代结束。注意到每次迭代 <span
+class="math inline">\(2\)</span>
+节点都只会有一个棋子被删去。也就是说，迭代的次数就是 <span
+class="math inline">\(2\)</span> 节点曾拥有的棋子数。</p>
+<p>具体地，设 <span class="math inline">\(g(x)\)</span>
+表示迭代的过程中有多少棋子经过 <span class="math inline">\(2\)</span>
+节点，那么：</p>
 <p><span class="math display">\[
     g(x) = \begin{cases}
     0, &amp; x = 1 \\
@@ -420,85 +535,172 @@ f_{i,j} = \min_{k \ge 0} (f_{i-1,k} + C \max(j - k, 0) + |j - A_i|)
     f(x) = g(x) + 1, &amp; x = 1 \lor x \bmod 2 = 0
 \end{cases}
 \]</span></p>
-<p>那么我们只需要根据奇对奇数和偶数分别计算有多少数满足 <span class="math inline">\(g(x) = k\)</span> 即可。而容易发现，对于标准分解 <span class="math inline">\(x = \prod p_i^{k_i}\)</span> 有</p>
+<p>那么我们只需要根据奇对奇数和偶数分别计算有多少数满足 <span
+class="math inline">\(g(x) = k\)</span> 即可。而容易发现，对于标准分解
+<span class="math inline">\(x = \prod p_i^{k_i}\)</span> 有</p>
 <p><span class="math display">\[
     g(x) = \sum_i k_i g(p_i)
 \]</span></p>
-<p>那么问题就转化为背包问题，设 <span class="math inline">\(d(i, j)\)</span> 表示通过前 <span class="math inline">\(i\)</span> 个质数组成的 <span class="math inline">\(g(x) = j\)</span> 的数有多少，转移为</p>
+<p>那么问题就转化为背包问题，设 <span class="math inline">\(d(i,
+j)\)</span> 表示通过前 <span class="math inline">\(i\)</span>
+个质数组成的 <span class="math inline">\(g(x) = j\)</span>
+的数有多少，转移为</p>
 <p><span class="math display">\[
     d(i, j) = \sum_{k=0}^a d(i - 1, j - k \times g(p_i))
 \]</span></p>
-<p>暴力计算的复杂度为 <span class="math inline">\(O(n m a)\)</span> ，可以前缀和优化做到 <span class="math inline">\(O(n m)\)</span> 。</p>
-<p>构造普通生成函数 <span class="math inline">\(D_i (s) = \sum d(i, j) s^j\)</span> ，那么转移式等价于 <span class="math inline">\(D_i (s) = D_{i-1} (s) \sum_{k=0}^a s^{k g(p_i)}\)</span> 。也就是说我们要计算的实际上是下面这个多项式：</p>
+<p>暴力计算的复杂度为 <span class="math inline">\(O(n m a)\)</span>
+，可以前缀和优化做到 <span class="math inline">\(O(n m)\)</span> 。</p>
+<p>构造普通生成函数 <span class="math inline">\(D_i (s) = \sum d(i, j)
+s^j\)</span> ，那么转移式等价于 <span class="math inline">\(D_i (s) =
+D_{i-1} (s) \sum_{k=0}^a s^{k g(p_i)}\)</span>
+。也就是说我们要计算的实际上是下面这个多项式：</p>
 <p><span class="math display">\[
     D(s) = \prod_i \sum_{k=0}^a s^{k g(p_i)}
 \]</span></p>
-<p>虽然 FFT 优化多项式乘法的复杂度劣于直接前缀和优化，但是根据 <span class="math inline">\(g(x)\)</span> 的定义可以得知 <span class="math inline">\(g(x) \le \log_2 x\)</span> ，不妨把 <span class="math inline">\(g\)</span> 值相同的质数放在一起，设 <span class="math inline">\(t_x\)</span> 表示有多少 <span class="math inline">\(n\)</span> 以内的质数 <span class="math inline">\(p\)</span> 满足 <span class="math inline">\(g(p) = x\)</span> ，那么</p>
+<p>虽然 FFT 优化多项式乘法的复杂度劣于直接前缀和优化，但是根据 <span
+class="math inline">\(g(x)\)</span> 的定义可以得知 <span
+class="math inline">\(g(x) \le \log_2 x\)</span> ，不妨把 <span
+class="math inline">\(g\)</span> 值相同的质数放在一起，设 <span
+class="math inline">\(t_x\)</span> 表示有多少 <span
+class="math inline">\(n\)</span> 以内的质数 <span
+class="math inline">\(p\)</span> 满足 <span class="math inline">\(g(p) =
+x\)</span> ，那么</p>
 <p><span class="math display">\[
-    D(s) = \prod_x (\sum_{k=0}^a s^{k x})^{t_x} = \prod_x (\frac{1 - s^{x (a + 1)}}{1 - s^x})^{t_x}
+    D(s) = \prod_x (\sum_{k=0}^a s^{k x})^{t_x} = \prod_x (\frac{1 -
+s^{x (a + 1)}}{1 - s^x})^{t_x}
 \]</span></p>
-<p>按照上式计算 <span class="math inline">\(D(s) \bmod x^{m+1}\)</span> 的复杂度即 <span class="math inline">\(O(m \log m \log n)\)</span> 。</p>
-<p>另外形如 <span class="math inline">\(\alpha_t (s) = (1 - s)^t\)</span> 的多项式对任意的整数 <span class="math inline">\(t\)</span> （可以为负）都是可以用组合数表示每一项系数的，因此仅仅需要多项式乘法，而不需要求逆和快速幂。</p>
+<p>按照上式计算 <span class="math inline">\(D(s) \bmod x^{m+1}\)</span>
+的复杂度即 <span class="math inline">\(O(m \log m \log n)\)</span>
+。</p>
+<p>另外形如 <span class="math inline">\(\alpha_t (s) = (1 -
+s)^t\)</span> 的多项式对任意的整数 <span
+class="math inline">\(t\)</span>
+（可以为负）都是可以用组合数表示每一项系数的，因此仅仅需要多项式乘法，而不需要求逆和快速幂。</p>
 
 </details>
 <hr />
 <h2 id="pe219-skew-cost-coding">pe219 Skew-cost coding</h2>
-<p>定义一个 01 串的集合 <span class="math inline">\(S\)</span> 是合法的，当且仅当：</p>
+<p>定义一个 01 串的集合 <span class="math inline">\(S\)</span>
+是合法的，当且仅当：</p>
 <ol type="1">
 <li><span class="math inline">\(|S| = n_0\)</span></li>
-<li><span class="math inline">\(\forall a, b \in S, a \neq b\)</span>：<span class="math inline">\(a\)</span> 不是 <span class="math inline">\(b\)</span> 的前缀。</li>
+<li><span class="math inline">\(\forall a, b \in S, a \neq
+b\)</span>：<span class="math inline">\(a\)</span> 不是 <span
+class="math inline">\(b\)</span> 的前缀。</li>
 </ol>
-<p>设 <span class="math inline">\(S\)</span> 内所有串中 <span class="math inline">\(0, 1\)</span> 的个数分别为 <span class="math inline">\(s_0, s_1\)</span> ，则 <span class="math inline">\(S\)</span> 的代价定义为 <span class="math inline">\(a \times s_0 + b \times s_1\)</span> 。求所有合法的集合的最小代价和。</p>
-<p>时间复杂度：<span class="math inline">\(O((a + b)^3 \log n)\)</span> 。</p>
+<p>设 <span class="math inline">\(S\)</span> 内所有串中 <span
+class="math inline">\(0, 1\)</span> 的个数分别为 <span
+class="math inline">\(s_0, s_1\)</span> ，则 <span
+class="math inline">\(S\)</span> 的代价定义为 <span
+class="math inline">\(a \times s_0 + b \times s_1\)</span>
+。求所有合法的集合的最小代价和。</p>
+<p>时间复杂度：<span class="math inline">\(O((a + b)^3 \log n)\)</span>
+。</p>
 <p>主观难度：6 / 12</p>
 <details class="note primary"><summary><p>题解</p>
 </summary>
-<p>首先不难设计出一个 DP ，设 <span class="math inline">\(f(n)\)</span> 表示 <span class="math inline">\(|S| = n\)</span> 的答案，则有</p>
+<p>首先不难设计出一个 DP ，设 <span class="math inline">\(f(n)\)</span>
+表示 <span class="math inline">\(|S| = n\)</span> 的答案，则有</p>
 <p><span class="math display">\[
     f(n) = \min_{k=1}^{n-1} \{f(k) + k a + f(n - k) + (n - k) b\}
 \]</span></p>
-<p>注意到对于 <span class="math inline">\(C(n) = \min \{A(k) + B(n-k)\}\)</span> 如果 <span class="math inline">\(A, B\)</span> 都是凹函数，那么 <span class="math inline">\(C\)</span> 也一定是凹函数，并且可以通过闵科夫斯基和线性计算 <span class="math inline">\(C\)</span> 。这里我们可以归纳地证明，<span class="math inline">\(f\)</span> 恰是一个凹函数：</p>
+<p>注意到对于 <span class="math inline">\(C(n) = \min \{A(k) +
+B(n-k)\}\)</span> 如果 <span class="math inline">\(A, B\)</span>
+都是凹函数，那么 <span class="math inline">\(C\)</span>
+也一定是凹函数，并且可以通过闵科夫斯基和线性计算 <span
+class="math inline">\(C\)</span> 。这里我们可以归纳地证明，<span
+class="math inline">\(f\)</span> 恰是一个凹函数：</p>
 <blockquote>
-<p>假设 <span class="math inline">\(f(n)\)</span> 在 <span class="math inline">\(n \in [1, N]\)</span> 是凹函数，那么 <span class="math inline">\(f_a(n) = f(n) + n a\)</span> 和 <span class="math inline">\(f_b(n) = f(n) + n b\)</span> 在 <span class="math inline">\(n \in [1, N]\)</span> 都是凹函数，由于 <span class="math inline">\(f(N + 1)\)</span> 的值可以由 <span class="math inline">\(f_a(n)\)</span> 和 <span class="math inline">\(f_b(n)\)</span> 在 <span class="math inline">\(n \in [1, N]\)</span> 的取值确定，那么可以知道 <span class="math inline">\(f(n)\)</span> 在 <span class="math inline">\([1, N + 1]\)</span> 也是凹函数。</p>
+<p>假设 <span class="math inline">\(f(n)\)</span> 在 <span
+class="math inline">\(n \in [1, N]\)</span> 是凹函数，那么 <span
+class="math inline">\(f_a(n) = f(n) + n a\)</span> 和 <span
+class="math inline">\(f_b(n) = f(n) + n b\)</span> 在 <span
+class="math inline">\(n \in [1, N]\)</span> 都是凹函数，由于 <span
+class="math inline">\(f(N + 1)\)</span> 的值可以由 <span
+class="math inline">\(f_a(n)\)</span> 和 <span
+class="math inline">\(f_b(n)\)</span> 在 <span class="math inline">\(n
+\in [1, N]\)</span> 的取值确定，那么可以知道 <span
+class="math inline">\(f(n)\)</span> 在 <span class="math inline">\([1, N
++ 1]\)</span> 也是凹函数。</p>
 </blockquote>
 <p><br></p>
-<p>于是利用闵科夫斯基和的方法就可以 <span class="math inline">\(O(n)\)</span> 求出 <span class="math inline">\(f(1)\)</span> 到 <span class="math inline">\(f(n)\)</span> 的值。当然这是不够的。</p>
-<p>考虑计算 <span class="math inline">\(f\)</span> 的差分数组的和。设 <span class="math inline">\(g(x)\)</span> 是满足 <span class="math inline">\(f(n + 1) - f(n) = x\)</span> 的 <span class="math inline">\(n\)</span> 的数量，<span class="math inline">\(S_g(x) = \sum_{y=1}^x g(y)\)</span> 。</p>
-<p>我们可以找到最大的 <span class="math inline">\(m\)</span> 满足 <span class="math inline">\(S_g(m) &lt; n - 1\)</span> ，那么要求的答案即</p>
+<p>于是利用闵科夫斯基和的方法就可以 <span
+class="math inline">\(O(n)\)</span> 求出 <span
+class="math inline">\(f(1)\)</span> 到 <span
+class="math inline">\(f(n)\)</span> 的值。当然这是不够的。</p>
+<p>考虑计算 <span class="math inline">\(f\)</span> 的差分数组的和。设
+<span class="math inline">\(g(x)\)</span> 是满足 <span
+class="math inline">\(f(n + 1) - f(n) = x\)</span> 的 <span
+class="math inline">\(n\)</span> 的数量，<span
+class="math inline">\(S_g(x) = \sum_{y=1}^x g(y)\)</span> 。</p>
+<p>我们可以找到最大的 <span class="math inline">\(m\)</span> 满足 <span
+class="math inline">\(S_g(m) &lt; n - 1\)</span> ，那么要求的答案即</p>
 <p><span class="math display">\[
     (\sum_{x=1}^m x \times g(x)) + (m + 1) (n - 1 - S_g(m))
 \]</span></p>
-<p>设 <span class="math inline">\(h(x) = x g(x), S_h(x) = \sum_{y=1}^x h(y)\)</span> ，上式即 <span class="math inline">\(S_h(m) + (m + 1) (n - 1 - S_g(m))\)</span> ，要计算 <span class="math inline">\(S_h (m)\)</span> 和 <span class="math inline">\(S_g(m)\)</span> ，显然是可以矩阵快速幂的：</p>
+<p>设 <span class="math inline">\(h(x) = x g(x), S_h(x) = \sum_{y=1}^x
+h(y)\)</span> ，上式即 <span class="math inline">\(S_h(m) + (m + 1) (n -
+1 - S_g(m))\)</span> ，要计算 <span class="math inline">\(S_h
+(m)\)</span> 和 <span class="math inline">\(S_g(m)\)</span>
+，显然是可以矩阵快速幂的：</p>
 <p><span class="math display">\[
 \begin{aligned}
     g(x) &amp;= g(x - a) + g(x - b) \\
     S_g(x) &amp;= S_g(x - 1) + g(x) \\
-    h(x) &amp;= h(x - a) + h(x - b) + a \times g(x - a) + b \times g(x - b) \\
+    h(x) &amp;= h(x - a) + h(x - b) + a \times g(x - a) + b \times g(x -
+b) \\
     S_h(x) &amp;= S_h(x - 1) + h(x)
 \end{aligned}
 \]</span></p>
-<p>问题只剩下求 <span class="math inline">\(m\)</span> ，倍增加矩阵乘法即可。</p>
+<p>问题只剩下求 <span class="math inline">\(m\)</span>
+，倍增加矩阵乘法即可。</p>
 
 </details>
-<h2 id="cc-hotmeals-hot-meals-and-queues">cc-hotmeals Hot Meals and Queues</h2>
-<p>如果有 <span class="math inline">\(n\)</span> 个人依次排队，第 <span class="math inline">\(i\)</span> 个人可以选择 <span class="math inline">\(i + 1\)</span> 个位置插入，如果不是插在最后面，则称为插队，插队会使其后面的人的愤怒值加一。<span class="math inline">\(n\)</span> 个人排完队后，按照位置从前到后的顺序的人的愤怒值组成的序列称为愤怒值序列。</p>
-<p>现在维护一个长为 <span class="math inline">\(N\)</span> 的序列 <span class="math inline">\(\{a\}\)</span> ，有 <span class="math inline">\(M\)</span> 次操作：</p>
+<h2 id="cc-hotmeals-hot-meals-and-queues">cc-hotmeals Hot Meals and
+Queues</h2>
+<p>如果有 <span class="math inline">\(n\)</span> 个人依次排队，第 <span
+class="math inline">\(i\)</span> 个人可以选择 <span
+class="math inline">\(i + 1\)</span>
+个位置插入，如果不是插在最后面，则称为插队，插队会使其后面的人的愤怒值加一。<span
+class="math inline">\(n\)</span>
+个人排完队后，按照位置从前到后的顺序的人的愤怒值组成的序列称为愤怒值序列。</p>
+<p>现在维护一个长为 <span class="math inline">\(N\)</span> 的序列 <span
+class="math inline">\(\{a\}\)</span> ，有 <span
+class="math inline">\(M\)</span> 次操作：</p>
 <ol type="1">
 <li>给定一个区间，求以该区间作为愤怒值序列的话，其对应的排队方式中有多少人插队。</li>
-<li>给定一个区间和参数 <span class="math inline">\(x\)</span> ，区间内每个数加上 <span class="math inline">\(x\)</span> 。</li>
+<li>给定一个区间和参数 <span class="math inline">\(x\)</span>
+，区间内每个数加上 <span class="math inline">\(x\)</span> 。</li>
 </ol>
-<p>时间复杂度：<span class="math inline">\(O(N + M \log^2 N)\)</span> 。</p>
+<p>时间复杂度：<span class="math inline">\(O(N + M \log^2 N)\)</span>
+。</p>
 <p>主观难度：6 / 12</p>
 <details class="note primary"><summary><p>题解</p>
 </summary>
-<p>对于愤怒值序列 <span class="math inline">\(\{b\}\)</span> ，考虑最后一个值 <span class="math inline">\(b_n = x\)</span> ，排在最后的人的愤怒值为 <span class="math inline">\(x\)</span> ，说明它是第 <span class="math inline">\(n - x\)</span> 个排队的人，并且后面 <span class="math inline">\(x\)</span> 个人全都插队了。</p>
-<p>那么如果考虑按排队顺序的人的是否插队组成的 01 序列 <span class="math inline">\(\{c\}\)</span> 的话，在 <span class="math inline">\(b\)</span> 的尾端加一个 <span class="math inline">\(x\)</span> ，等价于：</p>
+<p>对于愤怒值序列 <span class="math inline">\(\{b\}\)</span>
+，考虑最后一个值 <span class="math inline">\(b_n = x\)</span>
+，排在最后的人的愤怒值为 <span class="math inline">\(x\)</span>
+，说明它是第 <span class="math inline">\(n - x\)</span>
+个排队的人，并且后面 <span class="math inline">\(x\)</span>
+个人全都插队了。</p>
+<p>那么如果考虑按排队顺序的人的是否插队组成的 01 序列 <span
+class="math inline">\(\{c\}\)</span> 的话，在 <span
+class="math inline">\(b\)</span> 的尾端加一个 <span
+class="math inline">\(x\)</span> ，等价于：</p>
 <ol type="1">
-<li>把 <span class="math inline">\(c\)</span> 分为左右两部分，其中右半部分长为 <span class="math inline">\(x\)</span> 。</li>
+<li>把 <span class="math inline">\(c\)</span>
+分为左右两部分，其中右半部分长为 <span class="math inline">\(x\)</span>
+。</li>
 <li>把右半部分的值都变为 <span class="math inline">\(1\)</span> 。</li>
 <li>在两部分中间插入一个 <span class="math inline">\(0\)</span> 。</li>
 </ol>
-<p>考虑 <span class="math inline">\(c\)</span> 中 <span class="math inline">\(0\)</span> 的个数，容易发现一个位置如果为 <span class="math inline">\(0\)</span> ，当且仅当它插入至 <span class="math inline">\(c\)</span> 后，后来插入的数都在其右边。也就是说，序列 <span class="math inline">\(b\)</span> 的第 <span class="math inline">\(i\)</span> 个数最终是未插队的，当且仅当</p>
+<p>考虑 <span class="math inline">\(c\)</span> 中 <span
+class="math inline">\(0\)</span> 的个数，容易发现一个位置如果为 <span
+class="math inline">\(0\)</span> ，当且仅当它插入至 <span
+class="math inline">\(c\)</span>
+后，后来插入的数都在其右边。也就是说，序列 <span
+class="math inline">\(b\)</span> 的第 <span
+class="math inline">\(i\)</span> 个数最终是未插队的，当且仅当</p>
 <p><span class="math display">\[
     \forall j &gt; i \;\; b_j &lt; b_i + j - i
 \]</span></p>
@@ -506,8 +708,21 @@ f_{i,j} = \min_{k \ge 0} (f_{i-1,k} + C \max(j - k, 0) + |j - A_i|)
 <p><span class="math display">\[
     \forall j &gt; i \;\; b_j - j &lt; b_i - i
 \]</span></p>
-<p>对于序列 <span class="math inline">\(a_i - i\)</span> ，我们要查询的就是区间内后缀最大值的数量。</p>
-<p>用线段树维护，每个节点记录区间内后缀最大值的数量和区间最大值。我们只需要实现函数 <span class="math inline">\(Q(u, x)\)</span> 表示查询 <span class="math inline">\(u\)</span> 节点内大于 <span class="math inline">\(x\)</span> 的后缀最大值的数量，分三种情况讨论，一种是 <span class="math inline">\(u\)</span> 是叶子，一种是大于 <span class="math inline">\(x\)</span> 的后缀最大值全在左儿子区间内，还有一种是有一部分在右儿子区间内。容易发现后两种情况都只需要调用一个儿子的 <span class="math inline">\(Q\)</span> 函数，因此 <span class="math inline">\(Q\)</span> 函数的时间复杂度是 <span class="math inline">\(O(\log N)\)</span> 的。利用 <span class="math inline">\(Q\)</span> 函数即可以实现线段树节点的更新和线段树查询。</p>
+<p>对于序列 <span class="math inline">\(a_i - i\)</span>
+，我们要查询的就是区间内后缀最大值的数量。</p>
+<p>用线段树维护，每个节点记录区间内后缀最大值的数量和区间最大值。我们只需要实现函数
+<span class="math inline">\(Q(u, x)\)</span> 表示查询 <span
+class="math inline">\(u\)</span> 节点内大于 <span
+class="math inline">\(x\)</span>
+的后缀最大值的数量，分三种情况讨论，一种是 <span
+class="math inline">\(u\)</span> 是叶子，一种是大于 <span
+class="math inline">\(x\)</span>
+的后缀最大值全在左儿子区间内，还有一种是有一部分在右儿子区间内。容易发现后两种情况都只需要调用一个儿子的
+<span class="math inline">\(Q\)</span> 函数，因此 <span
+class="math inline">\(Q\)</span> 函数的时间复杂度是 <span
+class="math inline">\(O(\log N)\)</span> 的。利用 <span
+class="math inline">\(Q\)</span>
+函数即可以实现线段树节点的更新和线段树查询。</p>
 
 </details>
 
@@ -555,7 +770,7 @@ f_{i,j} = \min_{k \ge 0} (f_{i-1,k} + C \max(j - k, 0) + |j - A_i|)
 
 <div class="copyright">
   &copy; 2019 – 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-heartbeat"></i>
   </span>

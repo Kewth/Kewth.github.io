@@ -334,31 +334,45 @@
 然后判断每个询问接下来是到 [L, M] 还是 [M + 1, R] 。<br />
 当 L = R 时，就得到了处理到这个区间的询问的答案。</p>
 <p>每个询问还是进行了 O(logV) 次 check ，<br />
-但是和直接二分不同的是，一般在每个区间内进行预处理后 check 可以做到 O(1) 或者 O(logn) 等，<br />
+但是和直接二分不同的是，一般在每个区间内进行预处理后 check 可以做到 O(1)
+或者 O(logn) 等，<br />
 一般需要数据结构维护（常见的有并查集，树状数组，线段树）。</p>
 <h2 id="栗子">栗子</h2>
 <p>就说静态区间第 k 大吧，当然可以用主席树搞，但是此处讨论整体二分。</p>
 <p>对于每个询问 [l, r] ，可以二分答案 x ，<br />
-然后 check 不超过 x 的数量，与 k 进行比较即可得出接下来该询问的答案区间。</p>
-<p>直接 check 是 O(V) 的，当然可以直接用数据结构维护，但是此处讨论整体二分。</p>
-<p>当前的答案区间是 [L, R] ，有若干询问的答案已经确定在这个区间内，<br />
-取中点 M ，维护值在 [L, M] 的每个数，对于每个询问就可以 O(logn) check 了，<br />
-然后如果询问 k 的答案在 [M + 1, R] ，那么 k 要减去当前 check 的值，以消去 [L, M] 的影响。<br />
+然后 check 不超过 x 的数量，与 k
+进行比较即可得出接下来该询问的答案区间。</p>
+<p>直接 check 是 O(V)
+的，当然可以直接用数据结构维护，但是此处讨论整体二分。</p>
+<p>当前的答案区间是 [L, R]
+，有若干询问的答案已经确定在这个区间内，<br />
+取中点 M ，维护值在 [L, M] 的每个数，对于每个询问就可以 O(logn) check
+了，<br />
+然后如果询问 k 的答案在 [M + 1, R] ，那么 k 要减去当前 check
+的值，以消去 [L, M] 的影响。<br />
 另外处理后要清空 [L, M] 的影响。</p>
-<p>这样做复杂度是 <span class="math inline">\(O(q logV logn)\)</span> 的。</p>
+<p>这样做复杂度是 <span class="math inline">\(O(q logV logn)\)</span>
+的。</p>
 <p>另一个实现是维护值在 [1, M] 的每个数，<br />
 二分到 [L, M] 前先把 [L, M] 的影响撤销掉，<br />
-二分到 [M + 1, R] 前只需在二分 [L, M] 时保证算上了 [L, M] 的贡献即可。<br />
+二分到 [M + 1, R] 前只需在二分 [L, M] 时保证算上了 [L, M]
+的贡献即可。<br />
 这样做的好处是避开了删除，有些用并查集的操作就可以实现了。</p>
-<p>这样做复杂度同样是 <span class="math inline">\(O(q logV logn)\)</span> 的。</p>
+<p>这样做复杂度同样是 <span class="math inline">\(O(q logV
+logn)\)</span> 的。</p>
 <h2 id="带修">带修</h2>
 <p>就说带修区间第 k 大。</p>
 <p>将修改和查询统称为操作，只需保证操作在二分中的相对顺序，<br />
-处理答案在 [L, R] 的区间时按顺序做，碰到修改就修改，碰到查询就 check 。<br />
+处理答案在 [L, R] 的区间时按顺序做，碰到修改就修改，碰到查询就 check
+。<br />
 但是修改哪来的答案？对于修改操作，只需将它放到它能影响的答案区间即可。<br />
-例如修改 <span class="math inline">\(a_i = x\)</span> ，分为两个操作：删除 <span class="math inline">\(a_i\)</span> 和添加 <span class="math inline">\(a_i = x\)</span> 。<br />
-前者的影响的区间需要包括 <span class="math inline">\(a_i\)</span> ，后者影响的区间需要包括 <span class="math inline">\(x\)</span> 。</p>
-<p>同样有两个实现，复杂度都是 <span class="math inline">\(O(q logV logn)\)</span> 。</p>
+例如修改 <span class="math inline">\(a_i = x\)</span>
+，分为两个操作：删除 <span class="math inline">\(a_i\)</span> 和添加
+<span class="math inline">\(a_i = x\)</span> 。<br />
+前者的影响的区间需要包括 <span class="math inline">\(a_i\)</span>
+，后者影响的区间需要包括 <span class="math inline">\(x\)</span> 。</p>
+<p>同样有两个实现，复杂度都是 <span class="math inline">\(O(q logV
+logn)\)</span> 。</p>
 <h2 id="在线">在线</h2>
 <p>毒瘤的地方来了，整体二分做强制在线。<br />
 这也是本文的真正讨论重点。</p>
@@ -366,7 +380,8 @@
 <h3 id="实现-1">实现 1</h3>
 <p>单独考虑一个询问 q ，观察它在整体二分中答案区间的移动过程。<br />
 假设当前二分到区间 [L, R] ，<br />
-q 能在整体二分中 O(logn) check 是因为权值在 [L, R] 的数被维护进了一个数据结构。<br />
+q 能在整体二分中 O(logn) check 是因为权值在 [L, R]
+的数被维护进了一个数据结构。<br />
 那如果 q 到达的所有可能答案区间的数据结构都提前构造好了，<br />
 q 就不需要整体二分，而可以直接在线询问。</p>
 <p>而所有可能的答案区间事实上形成了一个线段树的结构。<br />
@@ -375,37 +390,60 @@ q 就不需要整体二分，而可以直接在线询问。</p>
 在本题中就是要权值线段树套区间树状数组，<br />
 而为了节省空间开销，需要换成权值线段树套区间线段树。<br />
 这样把每个数先按取值找到对应的外层线段树，再按位置加到对应的内层线段树，<br />
-每个询问 (l, r, k) 就在外层线段树上二分，在内层线段树查询区间 [l, r] 的数的个数。</p>
-<p>时间复杂度依然是 <span class="math inline">\(O(q logV logn)\)</span> 的，但是空间复杂度为 <span class="math inline">\(O(V + n logV logn)\)</span> 。</p>
-<p>不难推广到更一般的情况，所有不带修的<strong>整体二分实现 1 + 数据结构 A</strong>， 都可以用<strong>线段树套数据结构 A</strong> 做到在线询问。<br />
-时间复杂度不变，但是空间开销会乘上 <span class="math inline">\(O(n)\)</span> ，<br />
-而当<strong>数据结构 A</strong> 支持动态开空间，即空间开销与修改次数 <span class="math inline">\(q\)</span> 成函数关系 <span class="math inline">\(O(qk)\)</span> 时，<br />
-这样就只会带来 <span class="math inline">\(O(n logV k)\)</span> 的额外空间开销。</p>
+每个询问 (l, r, k) 就在外层线段树上二分，在内层线段树查询区间 [l, r]
+的数的个数。</p>
+<p>时间复杂度依然是 <span class="math inline">\(O(q logV logn)\)</span>
+的，但是空间复杂度为 <span class="math inline">\(O(V + n logV
+logn)\)</span> 。</p>
+<p>不难推广到更一般的情况，所有不带修的<strong>整体二分实现 1 + 数据结构
+A</strong>， 都可以用<strong>线段树套数据结构 A</strong>
+做到在线询问。<br />
+时间复杂度不变，但是空间开销会乘上 <span
+class="math inline">\(O(n)\)</span> ，<br />
+而当<strong>数据结构 A</strong> 支持动态开空间，即空间开销与修改次数
+<span class="math inline">\(q\)</span> 成函数关系 <span
+class="math inline">\(O(qk)\)</span> 时，<br />
+这样就只会带来 <span class="math inline">\(O(n logV k)\)</span>
+的额外空间开销。</p>
 <p>另外，这是可以支持带修的，对于修改操作，在线段树上找到影响的节点，<br />
 然后直接去修改节点上的<strong>数据结构 A</strong> 即可。</p>
 <h3 id="实现-2">实现 2</h3>
-<p>还是单独考虑一个询问 q ，此时它在整体二分中答案区间的移动过程固然还是线段树的形式。<br />
-但是不同的是，此时线段树的每个节点 [L, R] 需要保存维护 [1, R] 的数据结构，<br />
+<p>还是单独考虑一个询问 q
+，此时它在整体二分中答案区间的移动过程固然还是线段树的形式。<br />
+但是不同的是，此时线段树的每个节点 [L, R] 需要保存维护 [1, R]
+的数据结构，<br />
 换言之，不同节点之间相互不独立。<br />
 但既然所有需要的数据结构都是维护 [1, K] 这样的前缀形式，<br />
-不难想到可持久化，每个维护 [1, K] 的数据结构在维护 [1, K - 1] 的数据结构上修改即可。</p>
-<p>具体到静态区间第 k 大，按权值递增的顺序建可持久化区间线段树（树状数组难以可持久化）。<br />
-对于每个询问 (l, r, k) 二分答案 x 时只需要在第 x 颗区间线段树上查询 [l, r] 的数的个数。</p>
-<p>时间复杂度自然还是 <span class="math inline">\(O(q logV logn)\)</span> 的，空间复杂度为 <span class="math inline">\(O(V + n logn)\)</span> 。</p>
-<p>同样可以推广到更一般的情况，所有不带修的<strong>整体二分实现 2 + 数据结构 A</strong>， 都可以用<strong>可持久化数据结构 A</strong> 做到在线询问。<br />
+不难想到可持久化，每个维护 [1, K] 的数据结构在维护 [1, K - 1]
+的数据结构上修改即可。</p>
+<p>具体到静态区间第 k
+大，按权值递增的顺序建可持久化区间线段树（树状数组难以可持久化）。<br />
+对于每个询问 (l, r, k) 二分答案 x 时只需要在第 x 颗区间线段树上查询 [l,
+r] 的数的个数。</p>
+<p>时间复杂度自然还是 <span class="math inline">\(O(q logV
+logn)\)</span> 的，空间复杂度为 <span class="math inline">\(O(V + n
+logn)\)</span> 。</p>
+<p>同样可以推广到更一般的情况，所有不带修的<strong>整体二分实现 2 +
+数据结构 A</strong>， 都可以用<strong>可持久化数据结构 A</strong>
+做到在线询问。<br />
 在可持久没有额外时间开销的前提下，时间复杂度不变，<br />
-否则若可持久化会带来 <span class="math inline">\(O(k)\)</span> 的额外时间复杂度，这样做的时间复杂度同样需要乘上 <span class="math inline">\(O(k)\)</span> 。<br />
+否则若可持久化会带来 <span class="math inline">\(O(k)\)</span>
+的额外时间复杂度，这样做的时间复杂度同样需要乘上 <span
+class="math inline">\(O(k)\)</span> 。<br />
 可持久化并查集就是个典型的例子。<br />
 同样空间复杂度也要乘上可持久化带来的额外开销。</p>
-<p>可惜的是，这不能很好的支持修改，因为每个修改影响到的历史版本是 <span class="math inline">\(O(V)\)</span> 级别的。</p>
+<p>可惜的是，这不能很好的支持修改，因为每个修改影响到的历史版本是 <span
+class="math inline">\(O(V)\)</span> 级别的。</p>
 <h2 id="总结">总结</h2>
 <p>事实上做到在线后，干脆抛弃了整体二分的“整体查询”的思想，其实就和整体二分没什么关系了。<br />
 那么整体二分究竟是个什么玩意？<br />
 事实上绝大多数整体二分都无法做到比直接数据结构的时间复杂度优秀，<br />
 而且经过上述的讨论不难发现绝大多数整体二分都能直接被数据结构替代，<br />
 也因此整体二分往往被归在“骗分”，“非正解”一类。</p>
-<p>不过整体二分明显的优势在于空间复杂度和实现难度。 不过有时经过整体二分的转换后，就可以使用无法可持久化，或者空间开销大的数据结构，<br />
-上面的树状数组就是很好的例子，无论是实现 1 还是实现 2 ，做到在线都必须换成线段树。</p>
+<p>不过整体二分明显的优势在于空间复杂度和实现难度。
+不过有时经过整体二分的转换后，就可以使用无法可持久化，或者空间开销大的数据结构，<br />
+上面的树状数组就是很好的例子，无论是实现 1 还是实现 2
+，做到在线都必须换成线段树。</p>
 
     </div>
 
@@ -453,7 +491,7 @@ q 就不需要整体二分，而可以直接在线询问。</p>
 
 <div class="copyright">
   &copy; 2019 – 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-heartbeat"></i>
   </span>

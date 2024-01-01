@@ -319,7 +319,8 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>relearn 了一遍 exCRT ，发现之前学的可能是假的（这种情况出现不止一次了 233 ）。</p>
+        <p>relearn 了一遍 exCRT ，发现之前学的可能是假的（这种情况出现不止一次了
+233 ）。</p>
 <p>简单来说，中国剩余定理（以下简称 CRT ）主要用于解线性同余方程组：</p>
 <p><span class="math display">\[
 \begin{equation}
@@ -335,16 +336,29 @@ x \equiv a_n \pmod{m_n} \\\\
 \]</span></p>
 <span id="more"></span>
 <h2 id="crt">CRT</h2>
-<p>普通的 CRT 用于解决模数两两互质的情况（这个条件比较苛刻，实践中往往需要 exCRT ）。</p>
-<p>CRT 的主要思想是构造，对于每个方程组构造一个 <span class="math inline">\(b_i\)</span> 使得 <span class="math inline">\(b_i\)</span> 在其他所有模数下为 0 ，仅在模 <span class="math inline">\(m_i\)</span> 意义下为 1 。<br />
+<p>普通的 CRT
+用于解决模数两两互质的情况（这个条件比较苛刻，实践中往往需要 exCRT
+）。</p>
+<p>CRT 的主要思想是构造，对于每个方程组构造一个 <span
+class="math inline">\(b_i\)</span> 使得 <span
+class="math inline">\(b_i\)</span> 在其他所有模数下为 0 ，仅在模 <span
+class="math inline">\(m_i\)</span> 意义下为 1 。<br />
 感觉这个构造思路有点想拉格朗日插值法，那么不难得出：</p>
-<p><span class="math display">\[ b_i = \prod_{i \ne j} m_j (\prod_{i \ne j} m_j)_{m_i}^{-1} \]</span></p>
-<p>其中 <span class="math inline">\((\prod_{i \ne j} m_j)_{m_i}^{-1}\)</span> 是 <span class="math inline">\(\prod_{i \ne j} m_j\)</span> 在模 <span class="math inline">\(m_i\)</span> 意义下的逆元。</p>
-<p>那么整个方程组的一个解就是 <span class="math inline">\(\sum_{i=1}^n b_i a_i\)</span> ，通解就是：</p>
-<p><span class="math display">\[ x \equiv \sum_{i=1}^n b_i a_i \pmod{\prod_{i=1}^n m_i} \]</span></p>
+<p><span class="math display">\[ b_i = \prod_{i \ne j} m_j (\prod_{i \ne
+j} m_j)_{m_i}^{-1} \]</span></p>
+<p>其中 <span class="math inline">\((\prod_{i \ne j}
+m_j)_{m_i}^{-1}\)</span> 是 <span class="math inline">\(\prod_{i \ne j}
+m_j\)</span> 在模 <span class="math inline">\(m_i\)</span>
+意义下的逆元。</p>
+<p>那么整个方程组的一个解就是 <span class="math inline">\(\sum_{i=1}^n
+b_i a_i\)</span> ，通解就是：</p>
+<p><span class="math display">\[ x \equiv \sum_{i=1}^n b_i a_i
+\pmod{\prod_{i=1}^n m_i} \]</span></p>
 <h2 id="excrt">exCRT</h2>
-<p>CRT 只适用于模数两两互质的情况，因为用到了模数之间的逆元，而模数不互质是没有逆元的。</p>
-<p>exCRT 的主要思想是两两合并，考虑 <span class="math inline">\(n=2\)</span> 的情况：</p>
+<p>CRT
+只适用于模数两两互质的情况，因为用到了模数之间的逆元，而模数不互质是没有逆元的。</p>
+<p>exCRT 的主要思想是两两合并，考虑 <span
+class="math inline">\(n=2\)</span> 的情况：</p>
 <p><span class="math display">\[
 \begin{equation}
 \left\{
@@ -355,14 +369,24 @@ x \equiv a_2 \pmod{m_2} \\\\
 \right.
 \end{equation}
 \]</span></p>
-<p>那么此时方程组的解 <span class="math inline">\(x\)</span> 需要满足存在 <span class="math inline">\(i, j\)</span> 使得：</p>
-<p><span class="math display">\[ x = a_1 + i m_1 = a_2 + j m_2 \]</span></p>
-<p>对于右边的等式 <span class="math inline">\(a_1 + i m_1 = a_2 + j m_2\)</span> ，是关于 <span class="math inline">\(i, j\)</span> 的二元一次方程，<br />
-那么用扩展欧几里得解出一组解 <span class="math inline">\(i=i_0, j=j_0\)</span> 再回代到等式中即可求得一个 <span class="math inline">\(x = x_0\)</span> 。<br />
-而通解的话，根据 exgcd 的通解 <span class="math inline">\(i \equiv i_0 \pmod{\frac{m_2}{\gcd(m_1, m_2)}}\)</span> ，可以得到 <span class="math inline">\(x\)</span> 的通解：</p>
-<p><span class="math display">\[ x \equiv x_0 \pmod{lcm(m_1, m_2)} \]</span></p>
+<p>那么此时方程组的解 <span class="math inline">\(x\)</span>
+需要满足存在 <span class="math inline">\(i, j\)</span> 使得：</p>
+<p><span class="math display">\[ x = a_1 + i m_1 = a_2 + j m_2
+\]</span></p>
+<p>对于右边的等式 <span class="math inline">\(a_1 + i m_1 = a_2 + j
+m_2\)</span> ，是关于 <span class="math inline">\(i, j\)</span>
+的二元一次方程，<br />
+那么用扩展欧几里得解出一组解 <span class="math inline">\(i=i_0,
+j=j_0\)</span> 再回代到等式中即可求得一个 <span class="math inline">\(x
+= x_0\)</span> 。<br />
+而通解的话，根据 exgcd 的通解 <span class="math inline">\(i \equiv i_0
+\pmod{\frac{m_2}{\gcd(m_1, m_2)}}\)</span> ，可以得到 <span
+class="math inline">\(x\)</span> 的通解：</p>
+<p><span class="math display">\[ x \equiv x_0 \pmod{lcm(m_1, m_2)}
+\]</span></p>
 <p>那么据此可以将任意两个同余方程合并为一个，也就可以通过两两合并的方式将整个同余方程组合并为一个方程。</p>
-<p>无解的话，当且仅当 exgcd 解 <span class="math inline">\(i, j\)</span> 的时候无解，只要有两个方程无法合并那么整个方程组都无法合并。</p>
+<p>无解的话，当且仅当 exgcd 解 <span class="math inline">\(i, j\)</span>
+的时候无解，只要有两个方程无法合并那么整个方程组都无法合并。</p>
 
     </div>
 
@@ -411,7 +435,7 @@ x \equiv a_2 \pmod{m_2} \\\\
 
 <div class="copyright">
   &copy; 2019 – 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-heartbeat"></i>
   </span>

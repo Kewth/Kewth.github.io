@@ -315,41 +315,81 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>对于两个集合幂级数 <span class="math inline">\(f\)</span> 和 <span class="math inline">\(g\)</span> ，定义其和 <span class="math inline">\(h\)</span> ：</p>
+        <p>对于两个集合幂级数 <span class="math inline">\(f\)</span> 和 <span
+class="math inline">\(g\)</span> ，定义其和 <span
+class="math inline">\(h\)</span> ：</p>
 <p><span class="math display">\[ h_S = f_S + g_S \]</span></p>
-<p>对于两个集合幂级数 <span class="math inline">\(f\)</span> 和 <span class="math inline">\(g\)</span> ，定义其乘积 <span class="math inline">\(h\)</span> ：</p>
-<p><span class="math display">\[ h_S = \sum_{T \subseteq S} f_T \times g_{S \setminus T} \]</span></p>
+<p>对于两个集合幂级数 <span class="math inline">\(f\)</span> 和 <span
+class="math inline">\(g\)</span> ，定义其乘积 <span
+class="math inline">\(h\)</span> ：</p>
+<p><span class="math display">\[ h_S = \sum_{T \subseteq S} f_T \times
+g_{S \setminus T} \]</span></p>
 <p>即常说的子集卷积。</p>
 <span id="more"></span>
 <p>那么定义了乘法和加法，就能进一步定义更多运算。</p>
 <p>在这之前先引入集合占位幂级数。</p>
 <h2 id="集合占位幂级数">集合占位幂级数</h2>
-<p>对于集合幂级数 <span class="math inline">\(f\)</span> ，其占位幂级数 <span class="math inline">\(P(f)\)</span> 的每一位实际是一个多项式，满足：</p>
-<p><span class="math display">\[ P(f)_S = f_S x^{|S|} \pmod{x^{|S|+1}} \]</span></p>
+<p>对于集合幂级数 <span class="math inline">\(f\)</span> ，其占位幂级数
+<span class="math inline">\(P(f)\)</span>
+的每一位实际是一个多项式，满足：</p>
+<p><span class="math display">\[ P(f)_S = f_S x^{|S|} \pmod{x^{|S|+1}}
+\]</span></p>
 <p>有了占位幂级数，就可以很容易地把集合幂级数的乘法转换为并卷积，即通过莫比乌斯变换可以很好处理两个集合幂级数的乘法。</p>
-<p>具体的，对于集合幂级数 <span class="math inline">\(f\)</span> 和 <span class="math inline">\(g\)</span> ，求出幂级数 <span class="math inline">\(p\)</span> 满足：</p>
-<p><span class="math display">\[ P(h)_S = \sum_{A \cup B = S} P(f)_A \times P(g)_B \]</span></p>
-<p>其中 <span class="math inline">\(P(f)_A \times P(g)_B\)</span> 就是多项式卷积。</p>
+<p>具体的，对于集合幂级数 <span class="math inline">\(f\)</span> 和
+<span class="math inline">\(g\)</span> ，求出幂级数 <span
+class="math inline">\(p\)</span> 满足：</p>
+<p><span class="math display">\[ P(h)_S = \sum_{A \cup B = S} P(f)_A
+\times P(g)_B \]</span></p>
+<p>其中 <span class="math inline">\(P(f)_A \times P(g)_B\)</span>
+就是多项式卷积。</p>
 <p>那么根据集合并卷积的性质可以知道：</p>
-<p><span class="math display">\[ FMT(P(h))_S = FMT(P(f))_S \times FMT(P(g))_S \]</span></p>
-<p>update: 这里的“等于”并不是严格意义上的等于，而是一种整体上的等价。</p>
-<p>暴力进行多项式卷积，一次乘法的复杂度为 <span class="math inline">\(O(2^n n^2)\)</span> ，其中 <span class="math inline">\(n\)</span> 是全集的大小。</p>
+<p><span class="math display">\[ FMT(P(h))_S = FMT(P(f))_S \times
+FMT(P(g))_S \]</span></p>
+<p>update:
+这里的“等于”并不是严格意义上的等于，而是一种整体上的等价。</p>
+<p>暴力进行多项式卷积，一次乘法的复杂度为 <span
+class="math inline">\(O(2^n n^2)\)</span> ，其中 <span
+class="math inline">\(n\)</span> 是全集的大小。</p>
 <h2 id="求逆">求逆</h2>
-<p>对于集合幂级数 <span class="math inline">\(f\)</span> ，定义其逆元 <span class="math inline">\(g\)</span> 为满足 <span class="math inline">\(f \times g = e\)</span> 的集合幂级数。</p>
-<p>其中 <span class="math inline">\(e\)</span> 是集合幂级数的单位元，满足 <span class="math inline">\(\forall f, f \times e = f\)</span> 。</p>
-<p>可以知道 <span class="math inline">\(\forall S, FMT(P(e))_S = 1\)</span> 。</p>
-<p>那么就有 <span class="math inline">\(\forall S, FMT(P(g))_S = FMT(P(f))_S^{-1} \pmod{x^{|S|+1}}\)</span> 。</p>
-<p>暴力多项式求逆，复杂度 <span class="math inline">\(O(2^n n^2)\)</span> ，其中 <span class="math inline">\(n\)</span> 是全集的大小。</p>
+<p>对于集合幂级数 <span class="math inline">\(f\)</span> ，定义其逆元
+<span class="math inline">\(g\)</span> 为满足 <span
+class="math inline">\(f \times g = e\)</span> 的集合幂级数。</p>
+<p>其中 <span class="math inline">\(e\)</span>
+是集合幂级数的单位元，满足 <span class="math inline">\(\forall f, f
+\times e = f\)</span> 。</p>
+<p>可以知道 <span class="math inline">\(\forall S, FMT(P(e))_S =
+1\)</span> 。</p>
+<p>那么就有 <span class="math inline">\(\forall S, FMT(P(g))_S =
+FMT(P(f))_S^{-1} \pmod{x^{|S|+1}}\)</span> 。</p>
+<p>暴力多项式求逆，复杂度 <span class="math inline">\(O(2^n
+n^2)\)</span> ，其中 <span class="math inline">\(n\)</span>
+是全集的大小。</p>
 <h2 id="开根">开根</h2>
-<p>对于集合幂级数 <span class="math inline">\(f\)</span> ，定义其平方根 <span class="math inline">\(g\)</span> 为满足 <span class="math inline">\(g \times g = f\)</span> 的集合幂级数。</p>
-<p>可以知道 <span class="math inline">\(\forall S, FMT(P(g))_S^2 = FMT(P(f))_S \pmod{x^{|S|+1}}\)</span> 。</p>
-<p>暴力多项式开根，复杂度 <span class="math inline">\(O(2^n n^2)\)</span> ，其中 <span class="math inline">\(n\)</span> 是全集的大小。</p>
+<p>对于集合幂级数 <span class="math inline">\(f\)</span> ，定义其平方根
+<span class="math inline">\(g\)</span> 为满足 <span
+class="math inline">\(g \times g = f\)</span> 的集合幂级数。</p>
+<p>可以知道 <span class="math inline">\(\forall S, FMT(P(g))_S^2 =
+FMT(P(f))_S \pmod{x^{|S|+1}}\)</span> 。</p>
+<p>暴力多项式开根，复杂度 <span class="math inline">\(O(2^n
+n^2)\)</span> ，其中 <span class="math inline">\(n\)</span>
+是全集的大小。</p>
 <h2 id="其他">其他</h2>
-<p>类似的也可以定义 <span class="math inline">\(\exp\)</span> 和 <span class="math inline">\(\ln\)</span> 。</p>
-<p>update: exp 的定义可以利用泰勒展开式：<span class="math inline">\(e^A = \sum_{i\ge{0}} \frac{A^i}{i!}\)</span> ，对应的可以定义 ln 。</p>
+<p>类似的也可以定义 <span class="math inline">\(\exp\)</span> 和 <span
+class="math inline">\(\ln\)</span> 。</p>
+<p>update: exp 的定义可以利用泰勒展开式：<span class="math inline">\(e^A
+= \sum_{i\ge{0}} \frac{A^i}{i!}\)</span> ，对应的可以定义 ln 。</p>
 <p>不难发现所有集合幂级数的运算都可以转换莫比乌斯变换后占位幂级数的多项式运算。</p>
-<p>暴力做多项式运算，复杂度都是 <span class="math inline">\(O(2^n n^2)\)</span> ，理论上可以做到 <span class="math inline">\(O(2^n n \log n)\)</span> 。</p>
-<p>但是考虑到对占位幂级数做莫比乌斯变换的复杂度就要 <span class="math inline">\(O(2^n n^2)\)</span> 。 且由于集合幂级数运算的运算的瓶颈主要在于 <span class="math inline">\(O(2^n)\)</span> ，<span class="math inline">\(n\)</span> 往往很小。 此时 <span class="math inline">\(O(n \log n)\)</span> 的多项式运算带来的常数因子影响是很大的，因此集合幂级数的运算往往使用 <span class="math inline">\(O(n^2)\)</span> 的暴力运算。</p>
+<p>暴力做多项式运算，复杂度都是 <span class="math inline">\(O(2^n
+n^2)\)</span> ，理论上可以做到 <span class="math inline">\(O(2^n n \log
+n)\)</span> 。</p>
+<p>但是考虑到对占位幂级数做莫比乌斯变换的复杂度就要 <span
+class="math inline">\(O(2^n n^2)\)</span> 。
+且由于集合幂级数运算的运算的瓶颈主要在于 <span
+class="math inline">\(O(2^n)\)</span> ，<span
+class="math inline">\(n\)</span> 往往很小。 此时 <span
+class="math inline">\(O(n \log n)\)</span>
+的多项式运算带来的常数因子影响是很大的，因此集合幂级数的运算往往使用
+<span class="math inline">\(O(n^2)\)</span> 的暴力运算。</p>
 
     </div>
 
@@ -392,7 +432,7 @@
 
 <div class="copyright">
   &copy; 2019 – 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-heartbeat"></i>
   </span>

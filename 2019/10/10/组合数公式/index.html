@@ -318,35 +318,50 @@
         <p>$ C_n^m $ 在组合数学中的意义：在 n 个元素选 m 个元素的方案数。</p>
 <h2 id="公式">公式</h2>
 <h3 id="公式-1">公式 1</h3>
-<p><span class="math display">\[ C_n^m = \frac{n!}{m! * (n-m)!} \]</span></p>
+<p><span class="math display">\[ C_n^m = \frac{n!}{m! * (n-m)!}
+\]</span></p>
 <p>组合数的通项公式。</p>
-<p><strong>当要求组合数模一般模数时</strong> ，通项公式的分母可能没有逆元导致不可行。</p>
+<p><strong>当要求组合数模一般模数时</strong>
+，通项公式的分母可能没有逆元导致不可行。</p>
 <h3 id="公式-2">公式 2</h3>
 <p><span class="math display">\[ C_n^m = C_n^{n-m} \]</span></p>
 <p>基本性质，可以由通项公式得出。</p>
 <h3 id="公式-3">公式 3</h3>
-<p><span class="math display">\[ C_n^m * C_m^k = C_n^k * C_{n-k}^{m-k} \]</span></p>
+<p><span class="math display">\[ C_n^m * C_m^k = C_n^k * C_{n-k}^{m-k}
+\]</span></p>
 <h3 id="公式-4">公式 4</h3>
-<p><span class="math display">\[ C_n^m = C_{n-1}^{m-1} + C_{n-1}^m \]</span></p>
+<p><span class="math display">\[ C_n^m = C_{n-1}^{m-1} + C_{n-1}^m
+\]</span></p>
 <p>组合数的基本递推式。</p>
-<p><strong>当要求组合数模一般模数时</strong> ，常用这种方法预处理组合数。</p>
+<p><strong>当要求组合数模一般模数时</strong>
+，常用这种方法预处理组合数。</p>
 <h3 id="公式-5">公式 5</h3>
 <p><span class="math display">\[ \sum_{i=0}^n C_n^i = 2^n \]</span></p>
-<p>组合意义： n 个元素选任意元素的方案数。 每个数都可以选或不选，所以方案数为 $ 2^n $ 。</p>
-<p>同样可以由二项式定理： $ (x + 1)^n = _{i=0}^n C_n^i * x^i $ 得出。</p>
+<p>组合意义： n 个元素选任意元素的方案数。
+每个数都可以选或不选，所以方案数为 $ 2^n $ 。</p>
+<p>同样可以由二项式定理： $ (x + 1)^n = _{i=0}^n C_n^i * x^i $
+得出。</p>
 <h3 id="公式-6">公式 6</h3>
-<p><span class="math display">\[ \sum_{i=0}^n (C_n^i)^2 = C_{2n}^n \]</span></p>
+<p><span class="math display">\[ \sum_{i=0}^n (C_n^i)^2 = C_{2n}^n
+\]</span></p>
 <h3 id="公式-7">公式 7</h3>
-<p><span class="math display">\[ C_{n+m}^k = \sum_{i=0}^k C_n^i * C_m^{k-i} \]</span></p>
-<p>从组合数学上的定义出发，在 n + m 个元素中选 k 个， 相当于先在前 n 个元素中选 i 个再在后 m 个元素中选 k - i 个。 枚举这个 i 把方案数相加就能得到最终方案数。</p>
+<p><span class="math display">\[ C_{n+m}^k = \sum_{i=0}^k C_n^i *
+C_m^{k-i} \]</span></p>
+<p>从组合数学上的定义出发，在 n + m 个元素中选 k 个， 相当于先在前 n
+个元素中选 i 个再在后 m 个元素中选 k - i 个。 枚举这个 i
+把方案数相加就能得到最终方案数。</p>
 <h3 id="公式-8">公式 8</h3>
-<p><span class="math display">\[ \sum_{i=0}^n C_{k+i}^k = C_{k+n+1}^n \]</span></p>
+<p><span class="math display">\[ \sum_{i=0}^n C_{k+i}^k = C_{k+n+1}^n
+\]</span></p>
 <p>进一步可以得到下式：</p>
-<p><span class="math display">\[ \sum_{i=0}^n \sum_{j=0}^m C_{i+j}^i = C_{n+m+2}^{m+1} - 1 \]</span></p>
+<p><span class="math display">\[ \sum_{i=0}^n \sum_{j=0}^m C_{i+j}^i =
+C_{n+m+2}^{m+1} - 1 \]</span></p>
 <p>类似的还有：</p>
-<p><span class="math display">\[ \sum_{i=0}^n C_{i}^k = C_{n+1}^{k+1} \]</span></p>
+<p><span class="math display">\[ \sum_{i=0}^n C_{i}^k = C_{n+1}^{k+1}
+\]</span></p>
 <h3 id="lucas-定理">Lucas 定理</h3>
-<p><span class="math display">\[ C_n^m \% p = C_{n/p}^{m/p} * C_{n \% p}^{m \% p} \% p \]</span></p>
+<p><span class="math display">\[ C_n^m \% p = C_{n/p}^{m/p} * C_{n \%
+p}^{m \% p} \% p \]</span></p>
 <p>常用于模数较小的组合数取模。</p>
 
     </div>
@@ -390,7 +405,7 @@
 
 <div class="copyright">
   &copy; 2019 – 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-heartbeat"></i>
   </span>

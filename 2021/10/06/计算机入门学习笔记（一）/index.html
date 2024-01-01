@@ -150,7 +150,8 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#lecture-1"><span class="nav-number">1.</span> <span class="nav-text">Lecture 1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lecture-2"><span class="nav-number">2.</span> <span class="nav-text">Lecture 2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lecture-11.-fourier-transform-and-dct"><span class="nav-number">3.</span> <span class="nav-text">Lecture 11. Fourier Transform and DCT</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#lecture-1"><span class="nav-number">1.</span> <span class="nav-text">Lecture 1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lecture-2"><span class="nav-number">2.</span> <span class="nav-text">Lecture 2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lecture-11.-fourier-transform-and-dct"><span class="nav-number">3.</span> <span class="nav-text">Lecture 11. Fourier
+Transform and DCT</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -328,7 +329,11 @@
 <hr />
 <p>逻辑门</p>
 <hr />
-<p>与，或，非可以表示出所有的布尔函数。也就是说对于函数 <span class="math inline">\(f \colon \;\; \{0, 1\}^n \to \{0, 1\}\)</span> ，总存在仅使用与或非三个运算的关于 <span class="math inline">\(a_1, a_2, \ldots, a_n\)</span> 的有限的表达式可以表示出函数 <span class="math inline">\(f\)</span> 。</p>
+<p>与，或，非可以表示出所有的布尔函数。也就是说对于函数 <span
+class="math inline">\(f \colon \;\; \{0, 1\}^n \to \{0, 1\}\)</span>
+，总存在仅使用与或非三个运算的关于 <span class="math inline">\(a_1, a_2,
+\ldots, a_n\)</span> 的有限的表达式可以表示出函数 <span
+class="math inline">\(f\)</span> 。</p>
 <p>具体构造方式略。</p>
 <p>更简单地，NAND 和 NOR 两个运算就可以表示出所有的布尔函数。</p>
 <hr />
@@ -351,28 +356,39 @@
 <hr />
 <p>multiplexer</p>
 <p>demultiplexer</p>
-<h2 id="lecture-11.-fourier-transform-and-dct">Lecture 11. Fourier Transform and DCT</h2>
-<p>傅立叶变换是时域上的信号函数 (time domain) 到频域上的信号函数 (frequency domain) 的转换。</p>
-<p>信号函数 <span class="math inline">\(f\)</span> 周期为 <span class="math inline">\(T\)</span> 且每个周期黎曼可积，其写作傅立叶级数 (Fourier series) 的形式为</p>
+<h2 id="lecture-11.-fourier-transform-and-dct">Lecture 11. Fourier
+Transform and DCT</h2>
+<p>傅立叶变换是时域上的信号函数 (time domain) 到频域上的信号函数
+(frequency domain) 的转换。</p>
+<p>信号函数 <span class="math inline">\(f\)</span> 周期为 <span
+class="math inline">\(T\)</span> 且每个周期黎曼可积，其写作傅立叶级数
+(Fourier series) 的形式为</p>
 <p><span class="math display">\[
-    f(t) = \frac{a_0}{2} + \sum_{n=1}^{\infty}(a_n \cos(n \omega t) + b_n \sin(n \omega t))
+    f(t) = \frac{a_0}{2} + \sum_{n=1}^{\infty}(a_n \cos(n \omega t) +
+b_n \sin(n \omega t))
 \]</span></p>
-<p>其中角速度 <span class="math inline">\(\omega = \frac{2\pi}{T}\)</span> 。</p>
+<p>其中角速度 <span class="math inline">\(\omega =
+\frac{2\pi}{T}\)</span> 。</p>
 <hr />
 <p>对于 <span class="math inline">\(n, m \in \mathbb{N}\)</span> ：</p>
 <p><span class="math display">\[
     \int_0^T \cos(n \omega t) dt = \int_0^T \sin(n \omega t) dt = 0
 \]</span></p>
 <p><span class="math display">\[
-    \int_0^T \cos^2(n \omega t) dt = \int_0^T \sin^2(n \omega t) dt = \frac{T}{2}
+    \int_0^T \cos^2(n \omega t) dt = \int_0^T \sin^2(n \omega t) dt =
+\frac{T}{2}
 \]</span></p>
 <p><span class="math display">\[
     \int_0^T \cos(n \omega t) \sin(m \omega t) dt = 0
 \]</span></p>
 <p><span class="math display">\[
-    \int_0^T \cos(n \omega t) \cos(m \omega t) dt = \int_0^T \sin(n \omega t) \sin(m \omega t) dt = \delta_{nm} \frac{T}{2}
+    \int_0^T \cos(n \omega t) \cos(m \omega t) dt = \int_0^T \sin(n
+\omega t) \sin(m \omega t) dt = \delta_{nm} \frac{T}{2}
 \]</span></p>
-<p>即 <span class="math inline">\(\{1, \cos(n \omega t), \sin(n \omega t)\}\)</span> 构成了一个正交基。由此计算 <span class="math inline">\(\int_0^T f(t) dt, \int_0^T f(t) \cos(n \omega t) dt, \int_0^T f(t) \sin(n \omega t) dt\)</span> 可以最终得到</p>
+<p>即 <span class="math inline">\(\{1, \cos(n \omega t), \sin(n \omega
+t)\}\)</span> 构成了一个正交基。由此计算 <span
+class="math inline">\(\int_0^T f(t) dt, \int_0^T f(t) \cos(n \omega t)
+dt, \int_0^T f(t) \sin(n \omega t) dt\)</span> 可以最终得到</p>
 <p><span class="math display">\[
     a_0 = \frac{2}{T} \int_0^T f(t) dt
 \]</span></p>
@@ -385,37 +401,50 @@
 <hr />
 <p>傅立叶级数的另一个形式是</p>
 <p><span class="math display">\[
-    f(t) = \frac{a_0}{2} + \sum_{n=1}^{\infty} c_n \cos(n \omega t + \varphi_n)
+    f(t) = \frac{a_0}{2} + \sum_{n=1}^{\infty} c_n \cos(n \omega t +
+\varphi_n)
 \]</span></p>
-<p>其中 <span class="math inline">\(c_n = \sqrt{a_n^2 + b_n^2}, \varphi_n = \arctan(-\frac{b_n}{a_n})\)</span> 。</p>
+<p>其中 <span class="math inline">\(c_n = \sqrt{a_n^2 + b_n^2},
+\varphi_n = \arctan(-\frac{b_n}{a_n})\)</span> 。</p>
 <hr />
-<p>根据欧拉公式 (Euler's formula) 有 <span class="math inline">\(e^{ix} = \cos x + i \sin x\)</span> 。同时 <span class="math inline">\(z = x + i y = |z| \exp(i \arctan(\frac{y}{x}))\)</span> 。</p>
+<p>根据欧拉公式 (Euler's formula) 有 <span class="math inline">\(e^{ix}
+= \cos x + i \sin x\)</span> 。同时 <span class="math inline">\(z = x +
+i y = |z| \exp(i \arctan(\frac{y}{x}))\)</span> 。</p>
 <p>傅立叶级数的另一个形式是</p>
 <p><span class="math display">\[
-    f(t) = \sum_{n=-\infty}^{\infty} (F_n \cos(n \omega t) + i F_n \sin(n \omega t)) = \sum_{n=-\infty}^{\infty} F_n \exp(i n \omega t)
+    f(t) = \sum_{n=-\infty}^{\infty} (F_n \cos(n \omega t) + i F_n
+\sin(n \omega t)) = \sum_{n=-\infty}^{\infty} F_n \exp(i n \omega t)
 \]</span></p>
-<p>其中 <span class="math inline">\(F_n = \frac{a_n}{2} - i \frac{b_n}{2}, F_{-n} = \overline{F_n}\)</span> ，进一步地有</p>
+<p>其中 <span class="math inline">\(F_n = \frac{a_n}{2} - i
+\frac{b_n}{2}, F_{-n} = \overline{F_n}\)</span> ，进一步地有</p>
 <p><span class="math display">\[
     F_n = \frac{1}{T} \int_0^T f(t) \exp(-i n \omega t) dt
 \]</span></p>
 <p>根据周期性还可以得到</p>
 <p><span class="math display">\[
-    F_n = \frac{1}{T} \int_{-\frac{T}{2}}^{\frac{T}{2}} f(t) \exp(-i n \omega t) dt
+    F_n = \frac{1}{T} \int_{-\frac{T}{2}}^{\frac{T}{2}} f(t) \exp(-i n
+\omega t) dt
 \]</span></p>
 <hr />
-<p>上面给出了频域离散的情况，在 <span class="math inline">\(T \to +\infty, \omega \to 0\)</span> 上便可以推广到连续的频域，</p>
+<p>上面给出了频域离散的情况，在 <span class="math inline">\(T \to
++\infty, \omega \to 0\)</span> 上便可以推广到连续的频域，</p>
 <p><span class="math display">\[
-    F(\omega&#39;) = F(n \omega) = \lim \frac{F_n}{\omega} = \frac{1}{2\pi} \int_{-\infty}^{+\infty} f(t) \exp(-i \omega&#39; t) dt
+    F(\omega&#39;) = F(n \omega) = \lim \frac{F_n}{\omega} =
+\frac{1}{2\pi} \int_{-\infty}^{+\infty} f(t) \exp(-i \omega&#39; t) dt
 \]</span></p>
 <p><span class="math display">\[
-    f(t) = \lim \sum_{n=-\infty}^{\infty} \omega F(\omega&#39;) \exp(i n \omega t) = \int_{-\infty}^{+\infty} F(\omega&#39;) \exp(i \omega&#39; t) d\omega
+    f(t) = \lim \sum_{n=-\infty}^{\infty} \omega F(\omega&#39;) \exp(i n
+\omega t) = \int_{-\infty}^{+\infty} F(\omega&#39;) \exp(i \omega&#39;
+t) d\omega
 \]</span></p>
 <p>另一种形式为</p>
 <p><span class="math display">\[
-    F(\omega) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{+\infty} f(t) \exp(- i \omega t) dt
+    F(\omega) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{+\infty} f(t)
+\exp(- i \omega t) dt
 \]</span></p>
 <p><span class="math display">\[
-    f(t) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{+\infty} F(\omega) \exp(i \omega t) d\omega
+    f(t) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{+\infty} F(\omega)
+\exp(i \omega t) d\omega
 \]</span></p>
 <hr />
 <p>离散傅立叶变换 (discrete Fourier transform, DFT) 的形式为</p>
@@ -425,7 +454,10 @@
     x_n &amp;= \frac{1}{N} \sum_{k=0}^{N-1} X_k e^{i 2 \pi n k / N} \\
 \end{aligned}
 \]</span></p>
-<p>令 <span class="math inline">\(\omega = \exp(i 2 \pi / N)\)</span> ，可知傅立叶矩阵 <span class="math inline">\((M_N)_{jk} = \omega^{-jk}\)</span> 的逆为 <span class="math inline">\((M_N^{-1})_{jk} = \frac{1}{N} \omega^{jk}\)</span> 。</p>
+<p>令 <span class="math inline">\(\omega = \exp(i 2 \pi / N)\)</span>
+，可知傅立叶矩阵 <span class="math inline">\((M_N)_{jk} =
+\omega^{-jk}\)</span> 的逆为 <span class="math inline">\((M_N^{-1})_{jk}
+= \frac{1}{N} \omega^{jk}\)</span> 。</p>
 <hr />
 <p>离散余弦变换 (discrete cosine transform, DCT) ，略。</p>
 
@@ -473,7 +505,7 @@
 
 <div class="copyright">
   &copy; 2019 – 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-heartbeat"></i>
   </span>

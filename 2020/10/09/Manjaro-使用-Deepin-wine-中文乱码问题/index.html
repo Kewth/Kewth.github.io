@@ -315,13 +315,20 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>本来装好 deepin.com.qq.im 后就可以愉快使用了，但是在某次滚动更新后突然发现 QQ/TIM 都中文乱码，困惑了很久都没找到解决方案。</p>
+        <p>本来装好 deepin.com.qq.im
+后就可以愉快使用了，但是在某次滚动更新后突然发现 QQ/TIM
+都中文乱码，困惑了很久都没找到解决方案。</p>
 <p>在失败和重新尝试的断断续续的反复循环中，今天终于解决了。</p>
-<p>其实就是下载 simsun.ttc 和 simsun.ttf 放到 .deepinwine/Deepin-QQ/drive_c/windows/Fonts 里头。</p>
-<p>可能还要写个 zh.reg ，像下面这样，然而 deepin-wine 自带的 deepin-regedit 用不了，把 /usr/lib/deepin-wine/wine 拷贝到 /usr/lib/i386-linux-gnu/deepin-wine/wine 后似乎就好一点，但还是用不了，因此我并没有注册，但好像也还可以。</p>
+<p>其实就是下载 simsun.ttc 和 simsun.ttf 放到
+.deepinwine/Deepin-QQ/drive_c/windows/Fonts 里头。</p>
+<p>可能还要写个 zh.reg ，像下面这样，然而 deepin-wine 自带的
+deepin-regedit 用不了，把 /usr/lib/deepin-wine/wine 拷贝到
+/usr/lib/i386-linux-gnu/deepin-wine/wine
+后似乎就好一点，但还是用不了，因此我并没有注册，但好像也还可以。</p>
 <span id="more"></span>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">REGEDIT4</span><br><span class="line">[HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\FontSubstitutes]</span><br><span class="line">&quot;Arial&quot;=&quot;simsun&quot;</span><br><span class="line">&quot;Arial CE,238&quot;=&quot;simsun&quot;</span><br><span class="line">&quot;Arial CYR,204&quot;=&quot;simsun&quot;</span><br><span class="line">&quot;Arial Greek,161&quot;=&quot;simsun&quot;</span><br><span class="line">&quot;Arial TUR,162&quot;=&quot;simsun&quot;</span><br><span class="line">&quot;Courier New&quot;=&quot;simsun&quot;</span><br><span class="line">&quot;Courier New CE,238&quot;=&quot;simsun&quot;</span><br><span class="line">&quot;Courier New CYR,204&quot;=&quot;simsun&quot;</span><br><span class="line">&quot;Courier New Greek,161&quot;=&quot;simsun&quot;</span><br><span class="line">&quot;Courier New TUR,162&quot;=&quot;simsun&quot;</span><br><span class="line">&quot;FixedSys&quot;=&quot;simsun&quot;</span><br><span class="line">&quot;Helv&quot;=&quot;simsun&quot;</span><br><span class="line">&quot;Helvetica&quot;=&quot;simsun&quot;</span><br><span class="line">&quot;MS Sans Serif&quot;=&quot;simsun&quot;</span><br><span class="line">&quot;MS Shell Dlg&quot;=&quot;simsun&quot;</span><br><span class="line">&quot;MS Shell Dlg 2&quot;=&quot;simsun&quot;</span><br><span class="line">&quot;System&quot;=&quot;simsun&quot;</span><br><span class="line">&quot;Tahoma&quot;=&quot;simsun&quot;</span><br><span class="line">&quot;Times&quot;=&quot;simsun&quot;</span><br><span class="line">&quot;Times New Roman CE,238&quot;=&quot;simsun&quot;</span><br><span class="line">&quot;Times New Roman CYR,204&quot;=&quot;simsun&quot;</span><br><span class="line">&quot;Times New Roman Greek,161&quot;=&quot;simsun&quot;</span><br><span class="line">&quot;Times New Roman TUR,162&quot;=&quot;simsun&quot;</span><br><span class="line">&quot;Tms Rmn&quot;=&quot;simsun&quot;</span><br></pre></td></tr></table></figure>
-<p>不过还是有一点点小问题，某些地方仍然乱码（如个性签名），TIM 的效果要好很多。</p>
+<p>不过还是有一点点小问题，某些地方仍然乱码（如个性签名），TIM
+的效果要好很多。</p>
 <p>回过头来看这不是蛮简单的嘛？为啥我搞了这么久？</p>
 
     </div>
@@ -368,7 +375,7 @@
 
 <div class="copyright">
   &copy; 2019 – 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-heartbeat"></i>
   </span>

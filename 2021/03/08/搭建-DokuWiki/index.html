@@ -316,37 +316,69 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>教练最近想搭建一个校内分享套路知识的 Wiki ，找我帮忙，正好我对此比较感兴趣，就折腾了一下。</p>
-<p>我先是了解了各种不同的 wiki ，著名的 OI-Wiki 使用的是 MkDocs ，它的搭建十分简单，但并不是我想要的：我认为它更适合于个人站点搭建，因为普通用户无法直接地修改 Wiki 页面，要达到自由修改的目的就不得不借助 Git 等工具，即使如此编辑起来也较为麻烦，这无疑增加了操作难度和管理难度。</p>
-<p>维基百科使用的是 MediaWiki ，但用 MediaWiki 搭建校内分享的网站似乎有些许“大材小用”，其过于重量级了。</p>
-<p>总之最后我看中了 DokuWiki ，虽然我仍然认为其不够轻量，但它似乎至少能满足我的预期。</p>
+        <p>教练最近想搭建一个校内分享套路知识的 Wiki
+，找我帮忙，正好我对此比较感兴趣，就折腾了一下。</p>
+<p>我先是了解了各种不同的 wiki ，著名的 OI-Wiki 使用的是 MkDocs
+，它的搭建十分简单，但并不是我想要的：我认为它更适合于个人站点搭建，因为普通用户无法直接地修改
+Wiki 页面，要达到自由修改的目的就不得不借助 Git
+等工具，即使如此编辑起来也较为麻烦，这无疑增加了操作难度和管理难度。</p>
+<p>维基百科使用的是 MediaWiki ，但用 MediaWiki
+搭建校内分享的网站似乎有些许“大材小用”，其过于重量级了。</p>
+<p>总之最后我看中了 DokuWiki
+，虽然我仍然认为其不够轻量，但它似乎至少能满足我的预期。</p>
 <span id="more"></span>
 <h2 id="安装">安装</h2>
-<p>最推荐的教程自然是官网<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>。笔者因为从野鸡教程开始学习搭建而走了不少弯路（话说本教程也算是野鸡教程吧）。</p>
+<p>最推荐的教程自然是官网<a href="#fn1" class="footnote-ref" id="fnref1"
+role="doc-noteref"><sup>1</sup></a>。笔者因为从野鸡教程开始学习搭建而走了不少弯路（话说本教程也算是野鸡教程吧）。</p>
 <p>首先需要 php ，特别需要注意的是目前 DokuWiki 并不支持 PHP8 。</p>
-<p>然后需要一个 web 服务的软件，我使用的是 apache<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> ，然后配置好 PHP 。</p>
-<p>笔者最初使用的是 php-fpm ，但后来遇到了一些问题（似乎是 <code>php-fpm.conf</code> 的问题），换成 libphp 就好了。</p>
-<p>如果你的 php 版本是 8.x.x 且不愿意降级（比如我这种版本更新强迫症），那就需要额外下载 php7 相关软件，并时刻注意区分 php 和 php7 。</p>
-<p>一般的安装方式是下载官网提供的压缩包并解压到指定目录（比如 /srv/http ），我最开始也的确是尝试的这个方法。但是看了官网发现 Manjaro 自带 DokuWiki 的包<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>后就果断放弃了。</p>
-<p>首先 <code>yay -S dokuwiki</code> ，然后在 apache 的配置文件里添加 <code>Include conf/extra/dokuwiki.conf</code> 。</p>
-<p>然后需要 <code>chown -R http:http /var/lib/dokuwiki/</code> 和 <code>chown -R http:http /usr/share/webapps/dokuwiki</code> 更改目录权限。</p>
+<p>然后需要一个 web 服务的软件，我使用的是 apache<a href="#fn2"
+class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>
+，然后配置好 PHP 。</p>
+<p>笔者最初使用的是 php-fpm ，但后来遇到了一些问题（似乎是
+<code>php-fpm.conf</code> 的问题），换成 libphp 就好了。</p>
+<p>如果你的 php 版本是 8.x.x
+且不愿意降级（比如我这种版本更新强迫症），那就需要额外下载 php7
+相关软件，并时刻注意区分 php 和 php7 。</p>
+<p>一般的安装方式是下载官网提供的压缩包并解压到指定目录（比如 /srv/http
+），我最开始也的确是尝试的这个方法。但是看了官网发现 Manjaro 自带
+DokuWiki 的包<a href="#fn3" class="footnote-ref" id="fnref3"
+role="doc-noteref"><sup>3</sup></a>后就果断放弃了。</p>
+<p>首先 <code>yay -S dokuwiki</code> ，然后在 apache 的配置文件里添加
+<code>Include conf/extra/dokuwiki.conf</code> 。</p>
+<p>然后需要 <code>chown -R http:http /var/lib/dokuwiki/</code> 和
+<code>chown -R http:http /usr/share/webapps/dokuwiki</code>
+更改目录权限。</p>
 <p>最后打开 http://localhost/dokuwiki/install.php 即可安装。</p>
 <h2 id="插件">插件</h2>
 <p>登录管理员帐号，点击右上角管理，进入扩展管理器即可安装插件。</p>
-<p>有趣的是 DokuWiki 的每个大版本都有一个对应的英文名<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>，比如最新版本是 "Hogfather" ，其次是 "Greebo" ，如果碰到这些词汇请注意。</p>
+<p>有趣的是 DokuWiki 的每个大版本都有一个对应的英文名<a href="#fn4"
+class="footnote-ref" id="fnref4"
+role="doc-noteref"><sup>4</sup></a>，比如最新版本是 "Hogfather" ，其次是
+"Greebo" ，如果碰到这些词汇请注意。</p>
 <ul>
 <li>Markdowku: 使得编辑器支持 Markdown 语法。</li>
 <li>MathJax: 使得编辑器支持数学公式。</li>
 </ul>
-<section class="footnotes" role="doc-endnotes">
+<aside id="footnotes" class="footnotes footnotes-end-of-document"
+role="doc-endnotes">
 <hr />
 <ol>
-<li id="fn1" role="doc-endnote"><p><a target="_blank" rel="noopener" href="https://www.dokuwiki.org/install">install (DokuWiki)</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2" role="doc-endnote"><p><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/index.php/Apache_HTTP_Server_%28%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87%29#PHP">Apache HTTP Server - ArchWiki</a><a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3" role="doc-endnote"><p><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/index.php/DokuWiki">DokuWiki - ArchWiki</a><a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn4" role="doc-endnote"><p><a target="_blank" rel="noopener" href="https://www.dokuwiki.org/changes">changes (DokuWiki)</a><a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p><a target="_blank" rel="noopener" href="https://www.dokuwiki.org/install">install
+(DokuWiki)</a><a href="#fnref1" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p><a
+target="_blank" rel="noopener" href="https://wiki.archlinux.org/index.php/Apache_HTTP_Server_%28%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87%29#PHP">Apache
+HTTP Server - ArchWiki</a><a href="#fnref2" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p><a
+target="_blank" rel="noopener" href="https://wiki.archlinux.org/index.php/DokuWiki">DokuWiki -
+ArchWiki</a><a href="#fnref3" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p><a target="_blank" rel="noopener" href="https://www.dokuwiki.org/changes">changes
+(DokuWiki)</a><a href="#fnref4" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
 </ol>
-</section>
+</aside>
 
     </div>
 
@@ -392,7 +424,7 @@
 
 <div class="copyright">
   &copy; 2019 – 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-heartbeat"></i>
   </span>

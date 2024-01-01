@@ -321,206 +321,501 @@
         <p>没有摘要。</p>
 <hr />
 <h2 id="th1690-a">th1690-a</h2>
-<p>给定一个 <span class="math inline">\(n\)</span> 个点的竞赛图，求一个 <span class="math inline">\(m\)</span> 边染色方案。（<span class="math inline">\(n=3000, m=14\)</span> ）</p>
+<p>给定一个 <span class="math inline">\(n\)</span> 个点的竞赛图，求一个
+<span class="math inline">\(m\)</span> 边染色方案。（<span
+class="math inline">\(n=3000, m=14\)</span> ）</p>
 <blockquote>
 <p>竞赛图是任意一对点都有恰好一条有向边的有向图。</p>
 </blockquote>
 <details class="note primary"><summary><p>题解</p>
 </summary>
-<p>这样转换问题：允许边染上多种颜色，给每个点 <span class="math inline">\(u\)</span> 一个颜色集合 <span class="math inline">\(S_u\)</span> ，对于一条边 <span class="math inline">\((u, v)\)</span> ，它染上颜色 <span class="math inline">\(c\)</span> 当且仅当 <span class="math inline">\(c \in S_u \wedge c \notin S_v\)</span> 。</p>
-<p>这样一来很容易给出一个构造方案：把大小恰为 <span class="math inline">\(\frac{m}{2}\)</span> 的颜色集合任意分配给每个点即可。这样任意一对点 <span class="math inline">\(u, v\)</span> 都存在一个 <span class="math inline">\(u\)</span> 拥有而 <span class="math inline">\(v\)</span> 没有的颜色。并且有 <span class="math inline">\(\dbinom{m}{\frac{m}{2}} \ge n\)</span> 。</p>
+<p>这样转换问题：允许边染上多种颜色，给每个点 <span
+class="math inline">\(u\)</span> 一个颜色集合 <span
+class="math inline">\(S_u\)</span> ，对于一条边 <span
+class="math inline">\((u, v)\)</span> ，它染上颜色 <span
+class="math inline">\(c\)</span> 当且仅当 <span class="math inline">\(c
+\in S_u \wedge c \notin S_v\)</span> 。</p>
+<p>这样一来很容易给出一个构造方案：把大小恰为 <span
+class="math inline">\(\frac{m}{2}\)</span>
+的颜色集合任意分配给每个点即可。这样任意一对点 <span
+class="math inline">\(u, v\)</span> 都存在一个 <span
+class="math inline">\(u\)</span> 拥有而 <span
+class="math inline">\(v\)</span> 没有的颜色。并且有 <span
+class="math inline">\(\dbinom{m}{\frac{m}{2}} \ge n\)</span> 。</p>
 
 </details>
 <span id="more"></span>
 <hr />
 <h2 id="th1690-b">th1690-b</h2>
-<p>有一张 <span class="math inline">\(n\)</span> 个点的无向图满足任意一个导出子图都存在一个度数不超过 <span class="math inline">\(k\)</span> 的点。每次可以询问一个点集是否有边，如果有会给出任意一条，要求用 <span class="math inline">\(n(2k+1)\)</span> 次询问求出边集。其中 <span class="math inline">\(n\)</span> 是已知量，<span class="math inline">\(k\)</span> 是未知量。</p>
+<p>有一张 <span class="math inline">\(n\)</span>
+个点的无向图满足任意一个导出子图都存在一个度数不超过 <span
+class="math inline">\(k\)</span>
+的点。每次可以询问一个点集是否有边，如果有会给出任意一条，要求用 <span
+class="math inline">\(n(2k+1)\)</span> 次询问求出边集。其中 <span
+class="math inline">\(n\)</span> 是已知量，<span
+class="math inline">\(k\)</span> 是未知量。</p>
 <details class="note primary"><summary><p>题解</p>
 </summary>
-<p>这个 <span class="math inline">\(k\)</span> 的限制很奇怪，很难得到直接有效的性质，需要敏锐的观察力。</p>
+<p>这个 <span class="math inline">\(k\)</span>
+的限制很奇怪，很难得到直接有效的性质，需要敏锐的观察力。</p>
 <h3 id="引理-1">引理 1</h3>
-<p><strong>每次在图中找到度数最小的点删除，删除的点按顺序构成一个序列，在该序列中从前向后连边得到新图，新图中每个点的出度不超过 <span class="math inline">\(k\)</span> 。</strong></p>
-<p>应用反证法，如果新图存在一个度数大于 <span class="math inline">\(k\)</span> 的点，设该点的闭合子图的点集为 <span class="math inline">\(S\)</span> ，可以发现 <span class="math inline">\(S\)</span> 在原图中是一个每个度数都超过 <span class="math inline">\(k\)</span> 的导出子图，矛盾。</p>
+<p><strong>每次在图中找到度数最小的点删除，删除的点按顺序构成一个序列，在该序列中从前向后连边得到新图，新图中每个点的出度不超过
+<span class="math inline">\(k\)</span> 。</strong></p>
+<p>应用反证法，如果新图存在一个度数大于 <span
+class="math inline">\(k\)</span> 的点，设该点的闭合子图的点集为 <span
+class="math inline">\(S\)</span> ，可以发现 <span
+class="math inline">\(S\)</span> 在原图中是一个每个度数都超过 <span
+class="math inline">\(k\)</span> 的导出子图，矛盾。</p>
 <h3 id="引理-2">引理 2</h3>
-<p><strong>这张图可以 <span class="math inline">\(k+1\)</span> 染色。</strong></p>
-<p>根据引理 1 提到的序列，把该序列从后往前染色，由于每个点出度不超过 <span class="math inline">\(k\)</span> ，染色数不会超过 <span class="math inline">\(k+1\)</span> 。</p>
+<p><strong>这张图可以 <span class="math inline">\(k+1\)</span>
+染色。</strong></p>
+<p>根据引理 1 提到的序列，把该序列从后往前染色，由于每个点出度不超过
+<span class="math inline">\(k\)</span> ，染色数不会超过 <span
+class="math inline">\(k+1\)</span> 。</p>
 <h3 id="引理-3">引理 3</h3>
-<p><strong>图的边数不超过 <span class="math inline">\(nk\)</span> 。</strong></p>
-<p>根据引理 1 提到的序列可以简单得出，注意引理 1 提到的新图和原图边数相等。</p>
+<p><strong>图的边数不超过 <span class="math inline">\(nk\)</span>
+。</strong></p>
+<p>根据引理 1 提到的序列可以简单得出，注意引理 1
+提到的新图和原图边数相等。</p>
 <h3 id="正题">正题</h3>
 <p>有了三个强大的引理就可以做题了。</p>
-<p>维护染色集合，逐个加入每个点 <span class="math inline">\(u\)</span> 并求出 <span class="math inline">\(u\)</span> 与已加入的点之间的边。加入点 <span class="math inline">\(u\)</span> 时和每个染色集合放一起询问。如果询问得到了一条边，该边一定包含 <span class="math inline">\(u\)</span> ，因为一个染色集合是一个独立集，这时候把该边另外一个点在询问集合里去掉继续询问，直到询问出来没有边。</p>
-<p>然后就得到了当前已经加入的点的导出子图，每次求出引理 1 提到的序列并用引理 2 的方法重新染色，复杂度 <span class="math inline">\(O(n^2k)\)</span> 。</p>
-<p>询问的次数不超过 <span class="math inline">\(n|C| + |E|\)</span> ，其中 <span class="math inline">\(|C|, |E|\)</span> 分别是染色数和边数。根据引理 2 和引理 3 ，询问次数不超过 <span class="math inline">\(n(2k+1)\)</span> 。</p>
+<p>维护染色集合，逐个加入每个点 <span class="math inline">\(u\)</span>
+并求出 <span class="math inline">\(u\)</span>
+与已加入的点之间的边。加入点 <span class="math inline">\(u\)</span>
+时和每个染色集合放一起询问。如果询问得到了一条边，该边一定包含 <span
+class="math inline">\(u\)</span>
+，因为一个染色集合是一个独立集，这时候把该边另外一个点在询问集合里去掉继续询问，直到询问出来没有边。</p>
+<p>然后就得到了当前已经加入的点的导出子图，每次求出引理 1
+提到的序列并用引理 2 的方法重新染色，复杂度 <span
+class="math inline">\(O(n^2k)\)</span> 。</p>
+<p>询问的次数不超过 <span class="math inline">\(n|C| + |E|\)</span>
+，其中 <span class="math inline">\(|C|, |E|\)</span>
+分别是染色数和边数。根据引理 2 和引理 3 ，询问次数不超过 <span
+class="math inline">\(n(2k+1)\)</span> 。</p>
 
 </details>
 <hr />
 <h2 id="th1689-b">th1689-b</h2>
-<p>给定 <span class="math inline">\(k\)</span> 次多项式的 <span class="math inline">\(k+1\)</span> 个点值 <span class="math inline">\(f(0)\)</span> 到 <span class="math inline">\(f(k)\)</span> ，对于正整数 <span class="math inline">\(q, n\)</span> 求 <span class="math inline">\(\sum_{i=1}^n f(i)q^i\)</span> <span class="math inline">\((q\neq{1})\)</span> 。</p>
+<p>给定 <span class="math inline">\(k\)</span> 次多项式的 <span
+class="math inline">\(k+1\)</span> 个点值 <span
+class="math inline">\(f(0)\)</span> 到 <span
+class="math inline">\(f(k)\)</span> ，对于正整数 <span
+class="math inline">\(q, n\)</span> 求 <span
+class="math inline">\(\sum_{i=1}^n f(i)q^i\)</span> <span
+class="math inline">\((q\neq{1})\)</span> 。</p>
 <p>时间复杂度：<span class="math inline">\(O(k+\log{n})\)</span> 。</p>
 <details class="note primary"><summary><p>题解</p>
 </summary>
-<p>设 <span class="math inline">\(S(m) = \sum_{i=0}^{m-1} f(i) q^i\)</span> 。</p>
+<p>设 <span class="math inline">\(S(m) = \sum_{i=0}^{m-1} f(i)
+q^i\)</span> 。</p>
 <h3 id="引理-1">引理 1</h3>
-<p><strong>存在 <span class="math inline">\(k\)</span> 次多项式 <span class="math inline">\(G\)</span> 满足 <span class="math inline">\(S(m) = q^m G(m) - G(0)\)</span> 。</strong></p>
-<p>对 <span class="math inline">\(k\)</span> 应用数学归纳法。对于 <span class="math inline">\(k=0\)</span> 不难证明。对于 <span class="math inline">\(k \ge 1\)</span> ，对 <span class="math inline">\(S(m)\)</span> 和 <span class="math inline">\(q S(m)\)</span> 作差，设 <span class="math inline">\(g(i) = f(i) - f(i-1)\)</span> ，显然 <span class="math inline">\(g\)</span> 是 <span class="math inline">\(k-1\)</span> 次多项式。那么根据归纳假设，存在 <span class="math inline">\(k-1\)</span> 次多项式 <span class="math inline">\(P\)</span> 满足 <span class="math inline">\(\sum_{i=0}^{m-1} g(i) q^i = q^m P(m) - P(0)\)</span> ，于是可以得到：</p>
-<p><span class="math display">\[(1-q)S(m) = q^m P(m) - P(0) + f(-1) - q^m f(m - 1)\]</span></p>
-<p>从中不难得到这样一个 <span class="math inline">\(k\)</span> 次多项式 <span class="math inline">\(G(m) = \dfrac{P(m) - f(m - 1)}{1 - q}\)</span> 。</p>
+<p><strong>存在 <span class="math inline">\(k\)</span> 次多项式 <span
+class="math inline">\(G\)</span> 满足 <span class="math inline">\(S(m) =
+q^m G(m) - G(0)\)</span> 。</strong></p>
+<p>对 <span class="math inline">\(k\)</span> 应用数学归纳法。对于 <span
+class="math inline">\(k=0\)</span> 不难证明。对于 <span
+class="math inline">\(k \ge 1\)</span> ，对 <span
+class="math inline">\(S(m)\)</span> 和 <span class="math inline">\(q
+S(m)\)</span> 作差，设 <span class="math inline">\(g(i) = f(i) -
+f(i-1)\)</span> ，显然 <span class="math inline">\(g\)</span> 是 <span
+class="math inline">\(k-1\)</span> 次多项式。那么根据归纳假设，存在
+<span class="math inline">\(k-1\)</span> 次多项式 <span
+class="math inline">\(P\)</span> 满足 <span
+class="math inline">\(\sum_{i=0}^{m-1} g(i) q^i = q^m P(m) -
+P(0)\)</span> ，于是可以得到：</p>
+<p><span class="math display">\[(1-q)S(m) = q^m P(m) - P(0) + f(-1) -
+q^m f(m - 1)\]</span></p>
+<p>从中不难得到这样一个 <span class="math inline">\(k\)</span> 次多项式
+<span class="math inline">\(G(m) = \dfrac{P(m) - f(m - 1)}{1 -
+q}\)</span> 。</p>
 <h3 id="正题">正题</h3>
-<p>根据引理 1 ，我们可以通过求 <span class="math inline">\(G(n+1)\)</span> 和 <span class="math inline">\(G(0)\)</span> 间接求出 <span class="math inline">\(S(n+1)\)</span> 。</p>
-<p>然而对于 <span class="math inline">\(G\)</span> 我们知道的只有它的次数和它与 <span class="math inline">\(S, f\)</span> 的关系，所以求 <span class="math inline">\(G\)</span> 仍然要从 <span class="math inline">\(S, f\)</span> 下手。</p>
-<p>比如对 <span class="math inline">\(S\)</span> 作差可以间接对 <span class="math inline">\(G\)</span> 作差，得到 <span class="math inline">\(qG(m+1) - G(m) = f(m)\)</span> ，这是个递推关系。</p>
-<p>那么通过已知的 <span class="math inline">\(f\)</span> 的点值和这个递推关系可以得到 <span class="math inline">\(k+1\)</span> 个方程和 <span class="math inline">\(k+2\)</span> 个变量，还差一个就可以解方程。</p>
-<p>我们还没有用到 <span class="math inline">\(G\)</span> 的多项式次数为 <span class="math inline">\(k\)</span> 这个性质，把 <span class="math inline">\(G\)</span> 做 <span class="math inline">\(k+1\)</span> 次差分便可再得到一个方程：</p>
-<p><span class="math display">\[\sum_{i=0}^{k+1} G(i) \binom{k+1}{i} (-1)^i = 0\]</span></p>
-<p>线性消元即可解出 <span class="math inline">\(G(0)\)</span> 到 <span class="math inline">\(G(k+1)\)</span> ，然后线性拉格朗日插值即可得到 <span class="math inline">\(G(n+1)\)</span> 。</p>
+<p>根据引理 1 ，我们可以通过求 <span
+class="math inline">\(G(n+1)\)</span> 和 <span
+class="math inline">\(G(0)\)</span> 间接求出 <span
+class="math inline">\(S(n+1)\)</span> 。</p>
+<p>然而对于 <span class="math inline">\(G\)</span>
+我们知道的只有它的次数和它与 <span class="math inline">\(S, f\)</span>
+的关系，所以求 <span class="math inline">\(G\)</span> 仍然要从 <span
+class="math inline">\(S, f\)</span> 下手。</p>
+<p>比如对 <span class="math inline">\(S\)</span> 作差可以间接对 <span
+class="math inline">\(G\)</span> 作差，得到 <span
+class="math inline">\(qG(m+1) - G(m) = f(m)\)</span>
+，这是个递推关系。</p>
+<p>那么通过已知的 <span class="math inline">\(f\)</span>
+的点值和这个递推关系可以得到 <span class="math inline">\(k+1\)</span>
+个方程和 <span class="math inline">\(k+2\)</span>
+个变量，还差一个就可以解方程。</p>
+<p>我们还没有用到 <span class="math inline">\(G\)</span> 的多项式次数为
+<span class="math inline">\(k\)</span> 这个性质，把 <span
+class="math inline">\(G\)</span> 做 <span
+class="math inline">\(k+1\)</span> 次差分便可再得到一个方程：</p>
+<p><span class="math display">\[\sum_{i=0}^{k+1} G(i) \binom{k+1}{i}
+(-1)^i = 0\]</span></p>
+<p>线性消元即可解出 <span class="math inline">\(G(0)\)</span> 到 <span
+class="math inline">\(G(k+1)\)</span> ，然后线性拉格朗日插值即可得到
+<span class="math inline">\(G(n+1)\)</span> 。</p>
 
 </details>
 <hr />
 <h2 id="lg4548">lg4548</h2>
-<p>按如下方式随机生成一个序列：每次等概率在序列末尾添加一个 <span class="math inline">\(1\)</span> 到 <span class="math inline">\(n\)</span> 的正整数，当长为 <span class="math inline">\(m\)</span> 的给定序列 <span class="math inline">\(\{a\}\)</span> 成为随机序列的子串时停止。求该随机序列的期望长度。</p>
+<p>按如下方式随机生成一个序列：每次等概率在序列末尾添加一个 <span
+class="math inline">\(1\)</span> 到 <span
+class="math inline">\(n\)</span> 的正整数，当长为 <span
+class="math inline">\(m\)</span> 的给定序列 <span
+class="math inline">\(\{a\}\)</span>
+成为随机序列的子串时停止。求该随机序列的期望长度。</p>
 <p>时间复杂度：<span class="math inline">\(O(m)\)</span> 。</p>
 <details class="note primary"><summary><p>题解</p>
 </summary>
 <p>似乎是道论文题，比较偏数学，代码没几行。</p>
-<p>设 <span class="math inline">\(X\)</span> 表示随机序列的期望长度，其 PGF 为 <span class="math inline">\(F(x)\)</span> 。</p>
+<p>设 <span class="math inline">\(X\)</span> 表示随机序列的期望长度，其
+PGF 为 <span class="math inline">\(F(x)\)</span> 。</p>
 <blockquote>
 <p>常识：<span class="math inline">\(E(X) = F&#39;(1)\)</span> 。</p>
 </blockquote>
-<p>设 <span class="math inline">\(g_k\)</span> 表示序列长度为 <span class="math inline">\(k\)</span> 时仍然没有停止的概率，即 <span class="math inline">\(P(X&gt;k)\)</span> ，其 OGF 为 <span class="math inline">\(G(x)\)</span> 。</p>
+<p>设 <span class="math inline">\(g_k\)</span> 表示序列长度为 <span
+class="math inline">\(k\)</span> 时仍然没有停止的概率，即 <span
+class="math inline">\(P(X&gt;k)\)</span> ，其 OGF 为 <span
+class="math inline">\(G(x)\)</span> 。</p>
 <blockquote>
 <p>常识：<span class="math inline">\(F&#39;(1) = G(1)\)</span> 。</p>
 </blockquote>
 <!-- 由于 $1 - [x^k]G(x) = \sum_{j=0}^k [x^j]F(x)$ ，即 $\frac{1}{1-x} - G(x) = \frac{F(x)}{1-x}$ ，整理后得到 $(1-x)G(x) = 1-F(x)$ ，两边求导并代入 $x=1$ 得到 $F'(1) = G(1)$ 。当然直接从定义上更好证。 -->
-<p>如果序列长 <span class="math inline">\(k\)</span> 时仍未停止，考虑如果直接在后面添加序列 <span class="math inline">\(\{a\}\)</span> ，一定会结束，但最后的长度未必恰好是 <span class="math inline">\(k+m\)</span> ，可能是任意的 <span class="math inline">\(k+i\)</span> ，其中 <span class="math inline">\(i\)</span> 是序列 <span class="math inline">\(\{a\}\)</span> 的一个 border 长度。</p>
-<p>于是可以得到 <span class="math inline">\(G(x) (\frac{x}{n})^m = \sum_{i\in{S}} F(x) (\frac{x}{n})^{m-i}\)</span> ，其中 <span class="math inline">\(S\)</span> 是 border 长度集合。</p>
-<p>代入 <span class="math inline">\(x=1\)</span> ，有 <span class="math inline">\(G(1) = \sum_{i\in{S}}F(1) n^i\)</span> ，<span class="math inline">\(F(1)=1\)</span> 也是常识，于是 KMP 求出 <span class="math inline">\(S\)</span> 后就可以算出 <span class="math inline">\(G(1)\)</span> 。</p>
+<p>如果序列长 <span class="math inline">\(k\)</span>
+时仍未停止，考虑如果直接在后面添加序列 <span
+class="math inline">\(\{a\}\)</span>
+，一定会结束，但最后的长度未必恰好是 <span
+class="math inline">\(k+m\)</span> ，可能是任意的 <span
+class="math inline">\(k+i\)</span> ，其中 <span
+class="math inline">\(i\)</span> 是序列 <span
+class="math inline">\(\{a\}\)</span> 的一个 border 长度。</p>
+<p>于是可以得到 <span class="math inline">\(G(x) (\frac{x}{n})^m =
+\sum_{i\in{S}} F(x) (\frac{x}{n})^{m-i}\)</span> ，其中 <span
+class="math inline">\(S\)</span> 是 border 长度集合。</p>
+<p>代入 <span class="math inline">\(x=1\)</span> ，有 <span
+class="math inline">\(G(1) = \sum_{i\in{S}}F(1) n^i\)</span> ，<span
+class="math inline">\(F(1)=1\)</span> 也是常识，于是 KMP 求出 <span
+class="math inline">\(S\)</span> 后就可以算出 <span
+class="math inline">\(G(1)\)</span> 。</p>
 
 </details>
 <hr />
 <h2 id="cf643f">cf643f</h2>
-<p>有 <span class="math inline">\(n\)</span> 个人和若干个桶，每一天每个人会选一个桶的集合并品尝。有恰好一个桶有毒，品到毒的人立即晕倒，人们以身试毒，确定哪个桶有毒，同时希望晕倒人数不超过 <span class="math inline">\(p\)</span> 。</p>
-<p>设 <span class="math inline">\(R_i\)</span> 表示试毒进行 <span class="math inline">\(i\)</span> 天，最坏情况下人们最多能在多少桶中找到毒，求出 <span class="math inline">\(R_1\)</span> 到 <span class="math inline">\(R_m\)</span> 。</p>
+<p>有 <span class="math inline">\(n\)</span>
+个人和若干个桶，每一天每个人会选一个桶的集合并品尝。有恰好一个桶有毒，品到毒的人立即晕倒，人们以身试毒，确定哪个桶有毒，同时希望晕倒人数不超过
+<span class="math inline">\(p\)</span> 。</p>
+<p>设 <span class="math inline">\(R_i\)</span> 表示试毒进行 <span
+class="math inline">\(i\)</span>
+天，最坏情况下人们最多能在多少桶中找到毒，求出 <span
+class="math inline">\(R_1\)</span> 到 <span
+class="math inline">\(R_m\)</span> 。</p>
 <p>时间复杂度：<span class="math inline">\(O(pm)\)</span> 。</p>
 <details class="note primary"><summary><p>题解</p>
 </summary>
 <p>（未实现）</p>
-<p>给每个人选一个桶的集合不好处理，不妨给每个桶选一个被品尝的集合 <span class="math inline">\(S\)</span> ，首先必须满足 <span class="math inline">\(|S| \le p\)</span> ，否则该桶有毒会直接导致失败。</p>
-<p>那么 <span class="math inline">\(R_1\)</span> 的值就呼之欲出了，由于只进行一天，必须给每个桶分配一个不同的集合，否则无法区分集合相同的桶，那么答案就是集合的数量： <span class="math inline">\(\sum_{i=0}^p \binom{n}{i}\)</span> 。</p>
-<p>推广到更一般的情况，试毒假设进行 <span class="math inline">\(t\)</span> 天，对于一个集合为 <span class="math inline">\(S\)</span> 的桶，如果该桶是毒，那么第一天过后人们就只需要在集合恰为 <span class="math inline">\(S\)</span> 的所有桶中尝试，并且会增加 <span class="math inline">\(|S|\)</span> 名晕倒人数。</p>
-<p>于是可以设计 DP ，设 <span class="math inline">\(f_{i,t}\)</span> 表示已经晕倒 <span class="math inline">\(i\)</span> 人，试毒还剩 <span class="math inline">\(t\)</span> 天的情况下人么最多能从多少桶中找到毒，可以得到转移：</p>
-<p><span class="math display">\[f_{i,t} = \sum_{j=0}^{p-i} \binom{n-i}{j} f_{i+j,t-1}\]</span></p>
-<p>初值是 <span class="math inline">\(f_{i,0}=1\)</span> 。这个 DP 的复杂度是 <span class="math inline">\(O(p^2m)\)</span> 的，不难发现是卷积形式，可以优化到 <span class="math inline">\(O(mp\log{p})\)</span> ，但还是不够。</p>
-<p>从组合意义的角度考虑这个 DP ，需要关心的只是 <span class="math inline">\(f_{0,t}\)</span> ，其转移代表选 <span class="math inline">\(t\)</span> 个数组成序列 <span class="math inline">\(\{a\}\)</span> ，有 <span class="math inline">\(f_{0,t} = \sum \binom{n}{a_1} \binom{n-a_1}{a_2} \binom{n-a_1-a_2}{a_3} ...\)</span> ，这其实就是在 <span class="math inline">\(n\)</span> 个数里面依次选数，选数总数不超过 <span class="math inline">\(p\)</span> 的方案数。不妨先选出所有要选的数，然后再把这些数分为 <span class="math inline">\(t\)</span> 个可区分的集合。注意到 <span class="math inline">\(t\)</span> 个集合之间是两两独立的，那么每个数可以自由放进 <span class="math inline">\(t\)</span> 个集合中的任意一个集合，集合的划分方案数就是 <span class="math inline">\(t\)</span> 的总数次方。最终可以得到：</p>
-<p><span class="math display">\[R_t = f_{0,t} = \sum_{i=0}^p \binom{n}{i} t^i\]</span></p>
+<p>给每个人选一个桶的集合不好处理，不妨给每个桶选一个被品尝的集合 <span
+class="math inline">\(S\)</span> ，首先必须满足 <span
+class="math inline">\(|S| \le p\)</span>
+，否则该桶有毒会直接导致失败。</p>
+<p>那么 <span class="math inline">\(R_1\)</span>
+的值就呼之欲出了，由于只进行一天，必须给每个桶分配一个不同的集合，否则无法区分集合相同的桶，那么答案就是集合的数量：
+<span class="math inline">\(\sum_{i=0}^p \binom{n}{i}\)</span> 。</p>
+<p>推广到更一般的情况，试毒假设进行 <span
+class="math inline">\(t\)</span> 天，对于一个集合为 <span
+class="math inline">\(S\)</span>
+的桶，如果该桶是毒，那么第一天过后人们就只需要在集合恰为 <span
+class="math inline">\(S\)</span> 的所有桶中尝试，并且会增加 <span
+class="math inline">\(|S|\)</span> 名晕倒人数。</p>
+<p>于是可以设计 DP ，设 <span class="math inline">\(f_{i,t}\)</span>
+表示已经晕倒 <span class="math inline">\(i\)</span> 人，试毒还剩 <span
+class="math inline">\(t\)</span>
+天的情况下人么最多能从多少桶中找到毒，可以得到转移：</p>
+<p><span class="math display">\[f_{i,t} = \sum_{j=0}^{p-i}
+\binom{n-i}{j} f_{i+j,t-1}\]</span></p>
+<p>初值是 <span class="math inline">\(f_{i,0}=1\)</span> 。这个 DP
+的复杂度是 <span class="math inline">\(O(p^2m)\)</span>
+的，不难发现是卷积形式，可以优化到 <span
+class="math inline">\(O(mp\log{p})\)</span> ，但还是不够。</p>
+<p>从组合意义的角度考虑这个 DP ，需要关心的只是 <span
+class="math inline">\(f_{0,t}\)</span> ，其转移代表选 <span
+class="math inline">\(t\)</span> 个数组成序列 <span
+class="math inline">\(\{a\}\)</span> ，有 <span
+class="math inline">\(f_{0,t} = \sum \binom{n}{a_1} \binom{n-a_1}{a_2}
+\binom{n-a_1-a_2}{a_3} ...\)</span> ，这其实就是在 <span
+class="math inline">\(n\)</span> 个数里面依次选数，选数总数不超过 <span
+class="math inline">\(p\)</span>
+的方案数。不妨先选出所有要选的数，然后再把这些数分为 <span
+class="math inline">\(t\)</span> 个可区分的集合。注意到 <span
+class="math inline">\(t\)</span>
+个集合之间是两两独立的，那么每个数可以自由放进 <span
+class="math inline">\(t\)</span>
+个集合中的任意一个集合，集合的划分方案数就是 <span
+class="math inline">\(t\)</span> 的总数次方。最终可以得到：</p>
+<p><span class="math display">\[R_t = f_{0,t} = \sum_{i=0}^p
+\binom{n}{i} t^i\]</span></p>
 
 </details>
 <hr />
 <h2 id="cf700e">cf700e</h2>
-<p>给定串 <span class="math inline">\(S\)</span> ，找到长度为 <span class="math inline">\(k\)</span> 的串的序列 <span class="math inline">\(\{s_i\}\)</span> 满足 <span class="math inline">\(\forall i \in [2, k]\)</span> ，<span class="math inline">\(s_i\)</span> 在 <span class="math inline">\(s_{i-1}\)</span> 中出现至少两次，且 <span class="math inline">\(s_0\)</span> 是 <span class="math inline">\(S\)</span> 的子串。求最大的 <span class="math inline">\(k\)</span> 。</p>
+<p>给定串 <span class="math inline">\(S\)</span> ，找到长度为 <span
+class="math inline">\(k\)</span> 的串的序列 <span
+class="math inline">\(\{s_i\}\)</span> 满足 <span
+class="math inline">\(\forall i \in [2, k]\)</span> ，<span
+class="math inline">\(s_i\)</span> 在 <span
+class="math inline">\(s_{i-1}\)</span> 中出现至少两次，且 <span
+class="math inline">\(s_0\)</span> 是 <span
+class="math inline">\(S\)</span> 的子串。求最大的 <span
+class="math inline">\(k\)</span> 。</p>
 <p>时间复杂度：<span class="math inline">\(O(|S|\log)\)</span> 。</p>
 <details class="note primary"><summary><p>题解</p>
 </summary>
 <p>（未实现）</p>
 <h3 id="引理-1">引理 1</h3>
-<p><strong>存在一个最优解，满足 <span class="math inline">\(s_i\)</span> 是 <span class="math inline">\(s_{i-1}\)</span> 的后缀。</strong></p>
-<p>对满足条件的序列前缀长度 <span class="math inline">\(k\)</span> 应用数学归纳，<span class="math inline">\(k=1\)</span> 显然成立。对于 <span class="math inline">\(k\le{2}\)</span> 如果 <span class="math inline">\(s_k\)</span> 不是 <span class="math inline">\(s_{k-1}\)</span> 的后缀，不妨把 <span class="math inline">\(s_{k-1}\)</span> 后面的若干字符删除，直到 <span class="math inline">\(s_k\)</span> 成为 <span class="math inline">\(s_{k-1}\)</span> 后缀。注意到任意 <span class="math inline">\(s_i\)</span> 删除末尾的若干字符后仍然会在 <span class="math inline">\(s_{i-1}\)</span> 出现至少 2 次。因此可以从 <span class="math inline">\(k\)</span> 到 <span class="math inline">\(2\)</span> 不断删除后面末尾若干字符直到满足条件，而 <span class="math inline">\(s_k\)</span> 不会发生改变，不会影响后面的部分。</p>
+<p><strong>存在一个最优解，满足 <span class="math inline">\(s_i\)</span>
+是 <span class="math inline">\(s_{i-1}\)</span> 的后缀。</strong></p>
+<p>对满足条件的序列前缀长度 <span class="math inline">\(k\)</span>
+应用数学归纳，<span class="math inline">\(k=1\)</span> 显然成立。对于
+<span class="math inline">\(k\le{2}\)</span> 如果 <span
+class="math inline">\(s_k\)</span> 不是 <span
+class="math inline">\(s_{k-1}\)</span> 的后缀，不妨把 <span
+class="math inline">\(s_{k-1}\)</span> 后面的若干字符删除，直到 <span
+class="math inline">\(s_k\)</span> 成为 <span
+class="math inline">\(s_{k-1}\)</span> 后缀。注意到任意 <span
+class="math inline">\(s_i\)</span> 删除末尾的若干字符后仍然会在 <span
+class="math inline">\(s_{i-1}\)</span> 出现至少 2 次。因此可以从 <span
+class="math inline">\(k\)</span> 到 <span
+class="math inline">\(2\)</span>
+不断删除后面末尾若干字符直到满足条件，而 <span
+class="math inline">\(s_k\)</span>
+不会发生改变，不会影响后面的部分。</p>
 <h3 id="引理-2">引理 2</h3>
-<p><strong>对于 SAM 上的任一节点 u ，其后缀链接为 v ，v 的任一串在 u 的任一串的出现位置集合都相同。</strong></p>
-<p>可以反证。如果有不相同，可以发现对于任意 u 的最长串 <span class="math inline">\([l, r]\)</span> ，字符 <span class="math inline">\(l-1\)</span> 是可以唯一确定的，换言之存在更长的串与 u 节点的最长串 right 集合相同，这与 SAM 的性质矛盾。</p>
+<p><strong>对于 SAM 上的任一节点 u ，其后缀链接为 v ，v 的任一串在 u
+的任一串的出现位置集合都相同。</strong></p>
+<p>可以反证。如果有不相同，可以发现对于任意 u 的最长串 <span
+class="math inline">\([l, r]\)</span> ，字符 <span
+class="math inline">\(l-1\)</span>
+是可以唯一确定的，换言之存在更长的串与 u 节点的最长串 right
+集合相同，这与 SAM 的性质矛盾。</p>
 <h3 id="正题">正题</h3>
-<p>有了这两个引理，就可以在 SAM 上 DP ，并且只需要考虑从每个节点的后缀链接的转移，如果其后缀链接节点的任一子串在该节点的任一子串中出现至少两次，转移的时候就加一，否则不变。</p>
-<p>问题转换为判断一个节点的后缀链接是否在该节点出现至少两次。没有想到什么巧妙的做法，可以线段树维护 right 集合，然后随便从 right 集合拿一个点查询指定区间是否有后缀链接的 right 集合元素。</p>
+<p>有了这两个引理，就可以在 SAM 上 DP
+，并且只需要考虑从每个节点的后缀链接的转移，如果其后缀链接节点的任一子串在该节点的任一子串中出现至少两次，转移的时候就加一，否则不变。</p>
+<p>问题转换为判断一个节点的后缀链接是否在该节点出现至少两次。没有想到什么巧妙的做法，可以线段树维护
+right 集合，然后随便从 right 集合拿一个点查询指定区间是否有后缀链接的
+right 集合元素。</p>
 
 </details>
 <hr />
 <h2 id="cf1285f">cf1285f</h2>
-<p>给定一个值不超过 <span class="math inline">\(m\)</span> 的正整数集合 <span class="math inline">\(S\)</span> ，对于所有 <span class="math inline">\(x, y \in S\)</span> 求 <span class="math inline">\(\max(\mathrm{lcm}(x, y))\)</span> 。</p>
+<p>给定一个值不超过 <span class="math inline">\(m\)</span> 的正整数集合
+<span class="math inline">\(S\)</span> ，对于所有 <span
+class="math inline">\(x, y \in S\)</span> 求 <span
+class="math inline">\(\max(\mathrm{lcm}(x, y))\)</span> 。</p>
 <p>时间复杂度：<span class="math inline">\(O(m^{1.5})\)</span> 。</p>
 <details class="note primary"><summary><p>题解</p>
 </summary>
-<p>设集合 <span class="math inline">\(T\)</span> 满足 <span class="math inline">\(T = \{d | \exists x \in S, d | x\}\)</span> ，那么答案等于对于所有 <span class="math inline">\(x, y \in T, x \bot y\)</span> 求 <span class="math inline">\(\max(\mathrm{lcm}(x, y))\)</span> 。</p>
-<p>从大到小考虑 <span class="math inline">\(T\)</span> 的每个数，对于当前数 <span class="math inline">\(x\)</span> ，设 <span class="math inline">\(y\)</span> 是与 <span class="math inline">\(x\)</span> 互质的最大的“可能有用”的值。可以发现一个性质，由于 <span class="math inline">\(x\)</span> 此时是未考虑的数的最大值，那么 <span class="math inline">\(\forall x &lt; k &lt; y\)</span> ，<span class="math inline">\(k\)</span> 在考虑完 <span class="math inline">\(x\)</span> 之后都不会对答案产生贡献，可以把这样的 <span class="math inline">\(k\)</span> 从“可能有用”的范畴删去。</p>
-<p>那么可以用一个栈 <span class="math inline">\(R\)</span> 维护所有“可能有用”的值，在普通的栈的基础上还要支持查询是否存在一个与 <span class="math inline">\(x\)</span> 互质的数从而确定是否需要弹栈，弹完栈后的栈顶就是对应的 <span class="math inline">\(y\)</span> 。</p>
+<p>设集合 <span class="math inline">\(T\)</span> 满足 <span
+class="math inline">\(T = \{d | \exists x \in S, d | x\}\)</span>
+，那么答案等于对于所有 <span class="math inline">\(x, y \in T, x \bot
+y\)</span> 求 <span class="math inline">\(\max(\mathrm{lcm}(x,
+y))\)</span> 。</p>
+<p>从大到小考虑 <span class="math inline">\(T\)</span>
+的每个数，对于当前数 <span class="math inline">\(x\)</span> ，设 <span
+class="math inline">\(y\)</span> 是与 <span
+class="math inline">\(x\)</span>
+互质的最大的“可能有用”的值。可以发现一个性质，由于 <span
+class="math inline">\(x\)</span> 此时是未考虑的数的最大值，那么 <span
+class="math inline">\(\forall x &lt; k &lt; y\)</span> ，<span
+class="math inline">\(k\)</span> 在考虑完 <span
+class="math inline">\(x\)</span> 之后都不会对答案产生贡献，可以把这样的
+<span class="math inline">\(k\)</span> 从“可能有用”的范畴删去。</p>
+<p>那么可以用一个栈 <span class="math inline">\(R\)</span>
+维护所有“可能有用”的值，在普通的栈的基础上还要支持查询是否存在一个与
+<span class="math inline">\(x\)</span>
+互质的数从而确定是否需要弹栈，弹完栈后的栈顶就是对应的 <span
+class="math inline">\(y\)</span> 。</p>
 <p>众所周知互质的条件很好用莫比乌斯函数表示，于是接下来要做的就是套路了：</p>
-<p><span class="math display">\[\sum_{y\in{R}} [x\bot{y}] = \sum_{d|x} \sum_{d|y,y\in{R}} \mu(d)\]</span></p>
-<p>维护 <span class="math inline">\(f(d) = \sum_{d|y,y\in{R}} \mu(d)\)</span> 即可。</p>
+<p><span class="math display">\[\sum_{y\in{R}} [x\bot{y}] = \sum_{d|x}
+\sum_{d|y,y\in{R}} \mu(d)\]</span></p>
+<p>维护 <span class="math inline">\(f(d) = \sum_{d|y,y\in{R}}
+\mu(d)\)</span> 即可。</p>
 
 </details>
 <hr />
 <h2 id="at_agc035_f">at_agc035_f</h2>
-<p>有一个 <span class="math inline">\(n \times m\)</span> 的网格，依次执行两个操作：</p>
+<p>有一个 <span class="math inline">\(n \times m\)</span>
+的网格，依次执行两个操作：</p>
 <ol type="1">
-<li>对每一行选择非负数 <span class="math inline">\(a_i\)</span> ，把该行左边 <span class="math inline">\(a_i\)</span> 个格子加一。</li>
-<li>对每一列选择非负数 <span class="math inline">\(b_i\)</span> ，把该列上边 <span class="math inline">\(b_i\)</span> 个格子加一。</li>
+<li>对每一行选择非负数 <span class="math inline">\(a_i\)</span>
+，把该行左边 <span class="math inline">\(a_i\)</span> 个格子加一。</li>
+<li>对每一列选择非负数 <span class="math inline">\(b_i\)</span>
+，把该列上边 <span class="math inline">\(b_i\)</span> 个格子加一。</li>
 </ol>
-<p>形式化的，合法网格的格子 <span class="math inline">\((i, j)\)</span> 的权值为 <span class="math inline">\([j \le a_i] + [i \le b_j]\)</span> ，求有多少不同的合法网格。</p>
+<p>形式化的，合法网格的格子 <span class="math inline">\((i, j)\)</span>
+的权值为 <span class="math inline">\([j \le a_i] + [i \le b_j]\)</span>
+，求有多少不同的合法网格。</p>
 <p>时间复杂度：<span class="math inline">\(O(n+m)\)</span> 。</p>
 <details class="note primary"><summary><p>题解</p>
 </summary>
 <p>（未实现）</p>
-<p>每个 <span class="math inline">\(a_i, b_i\)</span> 随便选的方案数很好算，但是一种合法网格对应多个选取方案。</p>
-<p>例如 <span class="math inline">\(a_i = j, b_j = i - 1\)</span> 和 <span class="math inline">\(a_i = j - 1, b_j = i\)</span> 对网格的影响是相同的。</p>
+<p>每个 <span class="math inline">\(a_i, b_i\)</span>
+随便选的方案数很好算，但是一种合法网格对应多个选取方案。</p>
+<p>例如 <span class="math inline">\(a_i = j, b_j = i - 1\)</span> 和
+<span class="math inline">\(a_i = j - 1, b_j = i\)</span>
+对网格的影响是相同的。</p>
 <h3 id="引理-1">引理 1</h3>
-<p><strong>称一个满足 <span class="math inline">\(\forall b_j &gt; 0, a_{b_j} \neq j-1\)</span> 的选取方案选取方案是优秀的，所有优秀的选取方案和所有不同的合法网格一一对应。</strong></p>
+<p><strong>称一个满足 <span class="math inline">\(\forall b_j &gt; 0,
+a_{b_j} \neq j-1\)</span>
+的选取方案选取方案是优秀的，所有优秀的选取方案和所有不同的合法网格一一对应。</strong></p>
 <h4 id="part1">Part1</h4>
 <p>每个优秀方案对应的网格不同。</p>
-<p>反证法。设两个不同的优秀的选取方案分别为 <span class="math inline">\(\{a\}, \{b\}\)</span> 和 <span class="math inline">\(\{c\}, \{d\}\)</span> ，它们对应的网格相同。设 <span class="math inline">\(j\)</span> 是最小的满足 <span class="math inline">\(b_j \neq d_j\)</span> 的数，如果不存在这样的 <span class="math inline">\(j\)</span> ，那么 <span class="math inline">\(b, d\)</span> 相同，<span class="math inline">\(a, c\)</span> 不同，对应的网格显然不会相同，矛盾。不妨假设 <span class="math inline">\(b_j &lt; d_j = i\)</span> ，考虑格子 <span class="math inline">\((i, j)\)</span> 的权值，必须是 1 ，那么有 <span class="math inline">\(c_i &lt; j\)</span> 且 <span class="math inline">\(a_i \ge j\)</span> 。</p>
-<p>由 <span class="math inline">\(c_{d_j} \neq j-1\)</span> 可以得到 <span class="math inline">\(c_i &lt; j-1\)</span> ，如果 <span class="math inline">\(j=1\)</span> 显然不存在合法 <span class="math inline">\(c_i\)</span> 。如果 <span class="math inline">\(j\ge{2}\)</span> ，由于 <span class="math inline">\(j\)</span> 是最小的满足 <span class="math inline">\(b_j \neq d_j\)</span> 的数，有 <span class="math inline">\(b_{j-1}=d_{j-1}\)</span> ，考虑格子 <span class="math inline">\((i,j-1)\)</span> 的权值，可以发现并不相等，矛盾。</p>
+<p>反证法。设两个不同的优秀的选取方案分别为 <span
+class="math inline">\(\{a\}, \{b\}\)</span> 和 <span
+class="math inline">\(\{c\}, \{d\}\)</span> ，它们对应的网格相同。设
+<span class="math inline">\(j\)</span> 是最小的满足 <span
+class="math inline">\(b_j \neq d_j\)</span> 的数，如果不存在这样的 <span
+class="math inline">\(j\)</span> ，那么 <span class="math inline">\(b,
+d\)</span> 相同，<span class="math inline">\(a, c\)</span>
+不同，对应的网格显然不会相同，矛盾。不妨假设 <span
+class="math inline">\(b_j &lt; d_j = i\)</span> ，考虑格子 <span
+class="math inline">\((i, j)\)</span> 的权值，必须是 1 ，那么有 <span
+class="math inline">\(c_i &lt; j\)</span> 且 <span
+class="math inline">\(a_i \ge j\)</span> 。</p>
+<p>由 <span class="math inline">\(c_{d_j} \neq j-1\)</span> 可以得到
+<span class="math inline">\(c_i &lt; j-1\)</span> ，如果 <span
+class="math inline">\(j=1\)</span> 显然不存在合法 <span
+class="math inline">\(c_i\)</span> 。如果 <span
+class="math inline">\(j\ge{2}\)</span> ，由于 <span
+class="math inline">\(j\)</span> 是最小的满足 <span
+class="math inline">\(b_j \neq d_j\)</span> 的数，有 <span
+class="math inline">\(b_{j-1}=d_{j-1}\)</span> ，考虑格子 <span
+class="math inline">\((i,j-1)\)</span>
+的权值，可以发现并不相等，矛盾。</p>
 <h4 id="part2">Part2</h4>
 <p>每个合法网格存在优秀的选取方案对应。</p>
-<p>合法网格对应若干任意选取方案，对于一个不优秀的选取方案，把所有 <span class="math inline">\(a_i=j-1, b_j=i\)</span> 替换为 <span class="math inline">\(a_i=j, b_j=i-1\)</span> 即可得到优秀方案。</p>
+<p>合法网格对应若干任意选取方案，对于一个不优秀的选取方案，把所有 <span
+class="math inline">\(a_i=j-1, b_j=i\)</span> 替换为 <span
+class="math inline">\(a_i=j, b_j=i-1\)</span> 即可得到优秀方案。</p>
 <h3 id="正题">正题</h3>
-<p>通过引理 1 ，问题转换为求优秀的选取方案数，直接做比较困难，考虑容斥/反演。对于一个选区方案，称一个 <span class="math inline">\(j\)</span> 是不优秀位置，当且仅当 <span class="math inline">\(a_{b_j}=j-1\)</span> 。设 <span class="math inline">\(f_r\)</span> 表示恰好有 <span class="math inline">\(r\)</span> 个不优秀位置的方案数，答案就是 <span class="math inline">\(f_0\)</span> 。</p>
-<p>设 <span class="math inline">\(g_r\)</span> 表示钦定了 <span class="math inline">\(r\)</span> 个不优秀位置的计算方案数，于是有：</p>
-<p><span class="math display">\[\frac{n^{\underline{r}}m^{\underline{r}}}{r!} (m+1)^{n-r} (n+1)^{n-r} = g_r = \sum_{i\ge{r}} f_i \binom{i}{r}\]</span></p>
-<p>二项式反演即可得到 <span class="math inline">\(f_0\)</span> 的表达式。</p>
+<p>通过引理 1
+，问题转换为求优秀的选取方案数，直接做比较困难，考虑容斥/反演。对于一个选区方案，称一个
+<span class="math inline">\(j\)</span> 是不优秀位置，当且仅当 <span
+class="math inline">\(a_{b_j}=j-1\)</span> 。设 <span
+class="math inline">\(f_r\)</span> 表示恰好有 <span
+class="math inline">\(r\)</span> 个不优秀位置的方案数，答案就是 <span
+class="math inline">\(f_0\)</span> 。</p>
+<p>设 <span class="math inline">\(g_r\)</span> 表示钦定了 <span
+class="math inline">\(r\)</span> 个不优秀位置的计算方案数，于是有：</p>
+<p><span
+class="math display">\[\frac{n^{\underline{r}}m^{\underline{r}}}{r!}
+(m+1)^{n-r} (n+1)^{n-r} = g_r = \sum_{i\ge{r}} f_i
+\binom{i}{r}\]</span></p>
+<p>二项式反演即可得到 <span class="math inline">\(f_0\)</span>
+的表达式。</p>
 
 </details>
 <hr />
 <h2 id="lg6596">lg6596</h2>
-<p>求 <span class="math inline">\(n\)</span> 个点的割边不超过 <span class="math inline">\(m\)</span> 的简单连通图数目，点是可区分的。</p>
+<p>求 <span class="math inline">\(n\)</span> 个点的割边不超过 <span
+class="math inline">\(m\)</span> 的简单连通图数目，点是可区分的。</p>
 <p>时间复杂度：<span class="math inline">\(O(n^3)\)</span> 。</p>
 <details class="note primary"><summary><p>题解</p>
 </summary>
-<p>设 <span class="math inline">\(f_i\)</span> 表示恰有 <span class="math inline">\(i\)</span> 条割边的方案数，可以发现如果钦定 <span class="math inline">\(i\)</span> 个割边，还要保证剩下的 <span class="math inline">\(i+1\)</span> 个连通块是边双。设 <span class="math inline">\(g_i\)</span> 表示钦定 <span class="math inline">\(i\)</span> 条割边的计数方案数，根据 <span class="math inline">\(g\)</span> 的定义，钦定 <span class="math inline">\(i\)</span> 条割边后只需要保证剩下 <span class="math inline">\(i+1\)</span> 个连通块是连通的。而 <span class="math inline">\(f, g\)</span> 的关系显然是二项式反演。</p>
-<p>钦定割边的过程可以转换为先把点划分为 <span class="math inline">\(i+1\)</span> 个集合，然后它们各自独立，都形成连通块，再在这些点集里连割边。设这些点集的大小组成大小序列 <span class="math inline">\(\{a\}\)</span> ，那么有：</p>
-<p><span class="math display">\[g_i = \sum_{\{a\}} (\prod_k h_{a_k}) (\prod_k a_k) n^{|a|-2}\]</span></p>
-<p>其中 <span class="math inline">\(h_x\)</span> 表示 <span class="math inline">\(x\)</span> 个点的连通图数目，<span class="math inline">\((\prod_k a_k) n^{|a|-2}\)</span> 是连割边的方案数，这个划分集合的过程显然可以用 <span class="math inline">\(O(n^3)\)</span> 的 DP 描述。</p>
+<p>设 <span class="math inline">\(f_i\)</span> 表示恰有 <span
+class="math inline">\(i\)</span> 条割边的方案数，可以发现如果钦定 <span
+class="math inline">\(i\)</span> 个割边，还要保证剩下的 <span
+class="math inline">\(i+1\)</span> 个连通块是边双。设 <span
+class="math inline">\(g_i\)</span> 表示钦定 <span
+class="math inline">\(i\)</span> 条割边的计数方案数，根据 <span
+class="math inline">\(g\)</span> 的定义，钦定 <span
+class="math inline">\(i\)</span> 条割边后只需要保证剩下 <span
+class="math inline">\(i+1\)</span> 个连通块是连通的。而 <span
+class="math inline">\(f, g\)</span> 的关系显然是二项式反演。</p>
+<p>钦定割边的过程可以转换为先把点划分为 <span
+class="math inline">\(i+1\)</span>
+个集合，然后它们各自独立，都形成连通块，再在这些点集里连割边。设这些点集的大小组成大小序列
+<span class="math inline">\(\{a\}\)</span> ，那么有：</p>
+<p><span class="math display">\[g_i = \sum_{\{a\}} (\prod_k h_{a_k})
+(\prod_k a_k) n^{|a|-2}\]</span></p>
+<p>其中 <span class="math inline">\(h_x\)</span> 表示 <span
+class="math inline">\(x\)</span> 个点的连通图数目，<span
+class="math inline">\((\prod_k a_k) n^{|a|-2}\)</span>
+是连割边的方案数，这个划分集合的过程显然可以用 <span
+class="math inline">\(O(n^3)\)</span> 的 DP 描述。</p>
 <ul>
 <li>求 <span class="math inline">\(h\)</span> ：</li>
 </ul>
 <blockquote>
-<p>设 <span class="math inline">\(H_x\)</span> 表示 <span class="math inline">\(x\)</span> 个点的无向图数目，每条边独立，有 <span class="math inline">\(H_x = 2^{\binom{x}{2}}\)</span> ，枚举一号点的连通块大小，有 <span class="math inline">\(H_x = \sum_{i=1}^x \binom{x-1}{i-1} h_i H_{x-i}\)</span> 。于是可以 <span class="math inline">\(O(n^2)\)</span> 求出 <span class="math inline">\(h\)</span> 。不难发现可以利用多项式科技做到 <span class="math inline">\(O(n\log)\)</span> ，不在讨论范围内。</p>
+<p>设 <span class="math inline">\(H_x\)</span> 表示 <span
+class="math inline">\(x\)</span> 个点的无向图数目，每条边独立，有 <span
+class="math inline">\(H_x = 2^{\binom{x}{2}}\)</span>
+，枚举一号点的连通块大小，有 <span class="math inline">\(H_x =
+\sum_{i=1}^x \binom{x-1}{i-1} h_i H_{x-i}\)</span> 。于是可以 <span
+class="math inline">\(O(n^2)\)</span> 求出 <span
+class="math inline">\(h\)</span> 。不难发现可以利用多项式科技做到 <span
+class="math inline">\(O(n\log)\)</span> ，不在讨论范围内。</p>
 </blockquote>
 <ul>
 <li>连割边的方案数：</li>
 </ul>
 <blockquote>
-<p>把每个连通块抽象成一个点，<span class="math inline">\((i, j)\)</span> 之间连 <span class="math inline">\(a_i a_j\)</span> 条边，该图的生成树个数就是连割边的方案数，应用矩阵树定理，归纳一下行列式即可得到答案就是 <span class="math inline">\(n^{|a|-2} \prod_k a_k\)</span> ，过程繁琐，略去。</p>
+<p>把每个连通块抽象成一个点，<span class="math inline">\((i, j)\)</span>
+之间连 <span class="math inline">\(a_i a_j\)</span>
+条边，该图的生成树个数就是连割边的方案数，应用矩阵树定理，归纳一下行列式即可得到答案就是
+<span class="math inline">\(n^{|a|-2} \prod_k a_k\)</span>
+，过程繁琐，略去。</p>
 </blockquote>
 
 </details>
 <hr />
 <h2 id="at_agc023_d">at_agc023_d</h2>
-<p>有 <span class="math inline">\(n\)</span> 个人，第 <span class="math inline">\(i\)</span> 的人住在数轴的 <span class="math inline">\(a_i\)</span> 处。所有人在一辆处于 <span class="math inline">\(S\)</span> 处的车上，人们会投票决定车的移动方向，第 <span class="math inline">\(i\)</span> 个人可以投出 <span class="math inline">\(p_i\)</span> 票，司机会为负方向投出半票，每次人数改变后重新投票。每个人会用最优的投票策略最小化到自己的坐车距离，求车的总行驶距离。</p>
+<p>有 <span class="math inline">\(n\)</span> 个人，第 <span
+class="math inline">\(i\)</span> 的人住在数轴的 <span
+class="math inline">\(a_i\)</span> 处。所有人在一辆处于 <span
+class="math inline">\(S\)</span>
+处的车上，人们会投票决定车的移动方向，第 <span
+class="math inline">\(i\)</span> 个人可以投出 <span
+class="math inline">\(p_i\)</span>
+票，司机会为负方向投出半票，每次人数改变后重新投票。每个人会用最优的投票策略最小化到自己的坐车距离，求车的总行驶距离。</p>
 <p>时间复杂度：<span class="math inline">\(O(n)\)</span> 。</p>
 <details class="note primary"><summary><p>题解</p>
 </summary>
-<p>不妨假设 <span class="math inline">\(p_1 \le S \le p_n\)</span> ，<span class="math inline">\(\{a\}\)</span> 严格单调递增。</p>
+<p>不妨假设 <span class="math inline">\(p_1 \le S \le p_n\)</span>
+，<span class="math inline">\(\{a\}\)</span> 严格单调递增。</p>
 <h3 id="引理-1">引理 1</h3>
-<p><strong>若 <span class="math inline">\(p_1 \ge p_n \land S \ge a_{n-1}\)</span> ，车会一直向负方向开直到到达 <span class="math inline">\(a_1\)</span> 。</strong></p>
-<p><del>对 <span class="math inline">\(n\)</span> 应用数学归纳法。</del>显然成立，好像负方向的人没有任何理由投正方向的票，而且一定能投赢。</p>
+<p><strong>若 <span class="math inline">\(p_1 \ge p_n \land S \ge
+a_{n-1}\)</span> ，车会一直向负方向开直到到达 <span
+class="math inline">\(a_1\)</span> 。</strong></p>
+<p><del>对 <span class="math inline">\(n\)</span>
+应用数学归纳法。</del>显然成立，好像负方向的人没有任何理由投正方向的票，而且一定能投赢。</p>
 <h3 id="引理-2">引理 2</h3>
-<p><strong>若 <span class="math inline">\(p_1 \ge p_n\)</span> ，车在到达 <span class="math inline">\(a_n\)</span> 前先到达 <span class="math inline">\(a_1\)</span> 。</strong></p>
-<p>当车在行驶过程中若一直没有到达 <span class="math inline">\(a_1\)</span> 且正方向只剩下 <span class="math inline">\(a_n\)</span> 没有到达的时候，根据引理 1 ，此时车会一直往负方向开，先到达 <span class="math inline">\(a_1\)</span> 。</p>
+<p><strong>若 <span class="math inline">\(p_1 \ge p_n\)</span>
+，车在到达 <span class="math inline">\(a_n\)</span> 前先到达 <span
+class="math inline">\(a_1\)</span> 。</strong></p>
+<p>当车在行驶过程中若一直没有到达 <span
+class="math inline">\(a_1\)</span> 且正方向只剩下 <span
+class="math inline">\(a_n\)</span> 没有到达的时候，根据引理 1
+，此时车会一直往负方向开，先到达 <span
+class="math inline">\(a_1\)</span> 。</p>
 <h3 id="正题">正题</h3>
-<p>那么如果 <span class="math inline">\(p_1\ge{p_n}\)</span> ，第 <span class="math inline">\(n\)</span> 个人的坐车距离总是第 <span class="math inline">\(1\)</span> 个人的坐车距离加上一个定值，那么他可以把选票都给第 <span class="math inline">\(1\)</span> 个人。<del>打不过就抱大腿</del>。反之同理第 <span class="math inline">\(1\)</span> 个人会把选票给第 <span class="math inline">\(n\)</span> 个人。于是就可以住转换到 <span class="math inline">\(n-1\)</span> 的子问题，递归求解直到 <span class="math inline">\(n=2 \lor S &lt; p_1 \lor S &gt; p_n\)</span> 即可。</p>
+<p>那么如果 <span class="math inline">\(p_1\ge{p_n}\)</span> ，第 <span
+class="math inline">\(n\)</span> 个人的坐车距离总是第 <span
+class="math inline">\(1\)</span>
+个人的坐车距离加上一个定值，那么他可以把选票都给第 <span
+class="math inline">\(1\)</span>
+个人。<del>打不过就抱大腿</del>。反之同理第 <span
+class="math inline">\(1\)</span> 个人会把选票给第 <span
+class="math inline">\(n\)</span> 个人。于是就可以住转换到 <span
+class="math inline">\(n-1\)</span> 的子问题，递归求解直到 <span
+class="math inline">\(n=2 \lor S &lt; p_1 \lor S &gt; p_n\)</span>
+即可。</p>
 
 </details>
 <hr />
 <h2 id="at_agc023_f">at_agc023_f</h2>
-<p>给定一颗 <span class="math inline">\(n\)</span> 个点的有根树，每个点有取值在 <span class="math inline">\(\{0,1\}\)</span> 的点权，求树上拓扑序对应点权序列的最小逆序对数。</p>
+<p>给定一颗 <span class="math inline">\(n\)</span>
+个点的有根树，每个点有取值在 <span
+class="math inline">\(\{0,1\}\)</span>
+的点权，求树上拓扑序对应点权序列的最小逆序对数。</p>
 <p>时间复杂度：<span class="math inline">\(O(n\log{n})\)</span> 。</p>
 <details class="note primary"><summary><p>题解</p>
 </summary>
@@ -528,81 +823,180 @@
 <p>树上拓扑序的问题除了子树合并外，还有另一种考虑方式。</p>
 <p>每个点有一个拓扑序列，初始时是其本身。每次选一个非根点，把该点合并到其父亲节点并把其拓扑序列接在父亲节点的拓扑序列后，直到只剩根节点。容易发现此时根节点的拓扑序列和树上拓扑序列一一对应。</p>
 <p>这样做的好处是避免了两个子树合并时拓扑序列的相互插入的处理。</p>
-<p>定义一个点的重量是其拓扑序列中 0 的数量与 1 的数量的比值。事实上按照重量选点合并就是最优答案。不会证明，证明不会。</p>
+<p>定义一个点的重量是其拓扑序列中 0 的数量与 1
+的数量的比值。事实上按照重量选点合并就是最优答案。不会证明，证明不会。</p>
 
 </details>
 <hr />
 <h2 id="cf685c">cf685c</h2>
-<p>给定三维空间 <span class="math inline">\(n\)</span> 个整点 <span class="math inline">\(P_i\)</span> ，找一个整点 <span class="math inline">\(Q\)</span> 使得 <span class="math inline">\(P_iQ\)</span> 的曼哈顿距离的最大值最小，求这个曼哈顿距离。</p>
+<p>给定三维空间 <span class="math inline">\(n\)</span> 个整点 <span
+class="math inline">\(P_i\)</span> ，找一个整点 <span
+class="math inline">\(Q\)</span> 使得 <span
+class="math inline">\(P_iQ\)</span>
+的曼哈顿距离的最大值最小，求这个曼哈顿距离。</p>
 <p>时间复杂度：<span class="math inline">\(O(n\log)\)</span> 。</p>
 <details class="note primary"><summary><p>题解</p>
 </summary>
-<p>二分答案 <span class="math inline">\(K\)</span> ，判断是否存在点 <span class="math inline">\(Q\)</span> 到所有点的曼哈顿距离不超过 <span class="math inline">\(K\)</span> 。</p>
+<p>二分答案 <span class="math inline">\(K\)</span> ，判断是否存在点
+<span class="math inline">\(Q\)</span> 到所有点的曼哈顿距离不超过 <span
+class="math inline">\(K\)</span> 。</p>
 <p>如果空间是二维，曼哈顿距离转切比雪夫距离后每个维度就独立了。</p>
-<p>三维的话 <span class="math inline">\(Q\)</span> 的覆盖范围是一个正八面体，而切比雪夫距离的覆盖范围在三维是正方体。</p>
-<p>加一个维度，把点 <span class="math inline">\((x, y, z)\)</span> 转换为四维点 <span class="math inline">\((a, b, c, d) = (x+y+z, x+y-z, x-y+z, -x+y+z)\)</span> ，容易发现两个三维点的曼哈顿距离等于对应四维点的切比雪夫距离。</p>
-<p>然后就可以解出 <span class="math inline">\(Q\)</span> 对应的四维点在每个维度的取值范围，进而判断是否存在三维整点 <span class="math inline">\(Q\)</span> 。</p>
+<p>三维的话 <span class="math inline">\(Q\)</span>
+的覆盖范围是一个正八面体，而切比雪夫距离的覆盖范围在三维是正方体。</p>
+<p>加一个维度，把点 <span class="math inline">\((x, y, z)\)</span>
+转换为四维点 <span class="math inline">\((a, b, c, d) = (x+y+z, x+y-z,
+x-y+z, -x+y+z)\)</span>
+，容易发现两个三维点的曼哈顿距离等于对应四维点的切比雪夫距离。</p>
+<p>然后就可以解出 <span class="math inline">\(Q\)</span>
+对应的四维点在每个维度的取值范围，进而判断是否存在三维整点 <span
+class="math inline">\(Q\)</span> 。</p>
 
 </details>
 <hr />
 <h2 id="lg4258">lg4258</h2>
-<p>有 <span class="math inline">\(n\)</span> 个球和 <span class="math inline">\(m\)</span> 个盒子，每个盒子至多装三个球，每个球必须装进一个盒子里，且每个球有一个集合 <span class="math inline">\(S_i\)</span> ，第 <span class="math inline">\(i\)</span> 个球只能放进 <span class="math inline">\(S_i\)</span> 中的盒子里。</p>
+<p>有 <span class="math inline">\(n\)</span> 个球和 <span
+class="math inline">\(m\)</span>
+个盒子，每个盒子至多装三个球，每个球必须装进一个盒子里，且每个球有一个集合
+<span class="math inline">\(S_i\)</span> ，第 <span
+class="math inline">\(i\)</span> 个球只能放进 <span
+class="math inline">\(S_i\)</span> 中的盒子里。</p>
 <p>称一个放了不超过一个球的盒子是半空的，求一组方案使得半空的盒子最多。</p>
-<p>时间复杂度：<span class="math inline">\(O((n+m)(m+\sum_{i=1}^n|S_i|)\)</span> 。</p>
+<p>时间复杂度：<span
+class="math inline">\(O((n+m)(m+\sum_{i=1}^n|S_i|)\)</span> 。</p>
 <details class="note primary"><summary><p>题解</p>
 </summary>
 <p>（未实现）</p>
 <p>容易想到把球和盒子连边转换为图论问题。考虑转换为匹配，每个球必须是匹配点，其匹配的边代表其选的盒子。</p>
 <p>盒子就很诡异了，首先一个盒子至多放三个球，那么一个盒子事实上要拆成三个点，其次“半空”的盒子要对答案产生贡献，不妨考虑能否使得半空的盒子增加一条匹配。当然是可以的，一个盒子“半空”意味着三个点中有至少两个非匹配点，那么把这三个点任意连一条边即可。</p>
-<p>那么该图的最大匹配数减去 <span class="math inline">\(n\)</span> 就是答案。特别的是，要保证每个球是匹配点，那么从球开始找增广路即可，如果某个球不存在增广路，说明问题无解。</p>
-<p>该图点数 <span class="math inline">\(n+3m\)</span> ，边数 <span class="math inline">\(m+\sum_{i=1}^n|S_i|\)</span> 。</p>
+<p>那么该图的最大匹配数减去 <span class="math inline">\(n\)</span>
+就是答案。特别的是，要保证每个球是匹配点，那么从球开始找增广路即可，如果某个球不存在增广路，说明问题无解。</p>
+<p>该图点数 <span class="math inline">\(n+3m\)</span> ，边数 <span
+class="math inline">\(m+\sum_{i=1}^n|S_i|\)</span> 。</p>
 
 </details>
 <hr />
 <h2 id="th1688-c">th1688-c</h2>
-<p>有 <span class="math inline">\(n\)</span> 个球和 <span class="math inline">\(m\)</span> 个盒子，每个盒子有一个集合 <span class="math inline">\(S_i\)</span> ，第 <span class="math inline">\(i\)</span> 个盒子只能放 <span class="math inline">\(S_i\)</span> 中的球。</p>
-<p>定义一个盒子的权值为 <span class="math inline">\(\lfloor\frac{x}{2}\rfloor\)</span> ，其中 <span class="math inline">\(x\)</span> 是该盒子内放的球数，求一组方案使得盒子的权值和最大。</p>
-<p>时间复杂度：<span class="math inline">\(O((n+m+\sum_{i=1}^m|S_i|)(m+\sum_{i=1}^m|S_i|))\)</span> 。</p>
+<p>有 <span class="math inline">\(n\)</span> 个球和 <span
+class="math inline">\(m\)</span> 个盒子，每个盒子有一个集合 <span
+class="math inline">\(S_i\)</span> ，第 <span
+class="math inline">\(i\)</span> 个盒子只能放 <span
+class="math inline">\(S_i\)</span> 中的球。</p>
+<p>定义一个盒子的权值为 <span
+class="math inline">\(\lfloor\frac{x}{2}\rfloor\)</span> ，其中 <span
+class="math inline">\(x\)</span>
+是该盒子内放的球数，求一组方案使得盒子的权值和最大。</p>
+<p>时间复杂度：<span
+class="math inline">\(O((n+m+\sum_{i=1}^m|S_i|)(m+\sum_{i=1}^m|S_i|))\)</span>
+。</p>
 <details class="note primary"><summary><p>题解</p>
 </summary>
-<p><span class="math inline">\(\lfloor\frac{x}{2}\rfloor\)</span> 实际上就是将该盒子内的点两个分为一组能组成的组数。那么不难想到把一个盒子的 <span class="math inline">\(S_i\)</span> 中的球两两连边建图，图的最大匹配数就是答案。</p>
+<p><span class="math inline">\(\lfloor\frac{x}{2}\rfloor\)</span>
+实际上就是将该盒子内的点两个分为一组能组成的组数。那么不难想到把一个盒子的
+<span class="math inline">\(S_i\)</span>
+中的球两两连边建图，图的最大匹配数就是答案。</p>
 <p>但是这样边数会到平方级别，不能接受。需要优化建图。</p>
 <p><img src="/images/1.png" /></p>
-<p>如上图，对应一个 <span class="math inline">\(|S_i|=6\)</span> 的盒子的连边。紫色点表示球，红色点表示辅助节点，容易发现任意两个紫色点都可以通过辅助点间接匹配，其效果等价于两两连边。</p>
-<p>注意要保证红色点数量为偶数，<span class="math inline">\(|S_i|\)</span> 为奇数的盒子就额外加一个红色点即可。</p>
-<p>该图点数不超过 <span class="math inline">\(n+m+\sum_{i=1}^m|S_i|\)</span> ，边数不超过 <span class="math inline">\(m+\sum_{i=1}^m|S_i|\)</span> 。</p>
+<p>如上图，对应一个 <span class="math inline">\(|S_i|=6\)</span>
+的盒子的连边。紫色点表示球，红色点表示辅助节点，容易发现任意两个紫色点都可以通过辅助点间接匹配，其效果等价于两两连边。</p>
+<p>注意要保证红色点数量为偶数，<span
+class="math inline">\(|S_i|\)</span>
+为奇数的盒子就额外加一个红色点即可。</p>
+<p>该图点数不超过 <span
+class="math inline">\(n+m+\sum_{i=1}^m|S_i|\)</span> ，边数不超过 <span
+class="math inline">\(m+\sum_{i=1}^m|S_i|\)</span> 。</p>
 
 </details>
 <hr />
 <h2 id="cf1326f2">cf1326f2</h2>
-<p>给定一个长 <span class="math inline">\(n\)</span> 宽 <span class="math inline">\(n\)</span> 的 01 矩阵 <span class="math inline">\(M\)</span> 。</p>
-<p>对于一个 <span class="math inline">\(1\)</span> 到 <span class="math inline">\(n\)</span> 的排列 <span class="math inline">\(\{p_i\}\)</span> 和一个长为 <span class="math inline">\(n-1\)</span> 的 01 序列 <span class="math inline">\(\{a_i\}\)</span> ，称 <span class="math inline">\(p\)</span> 在 <span class="math inline">\(a\)</span> 上合法，当且仅当 <span class="math inline">\(\forall i \in [1, n - 1], M_{p_i, p_{i+1}} = a_i\)</span> 。</p>
-<p>对于所有可能的 <span class="math inline">\(a\)</span> 求出有多少 <span class="math inline">\(p\)</span> 在 <span class="math inline">\(a\)</span> 上合法。</p>
-<p>时间复杂度：<span class="math inline">\(O(p(n) 2^n n + 2^n n^2)\)</span> ，其中 <span class="math inline">\(p(n)\)</span> 是 <span class="math inline">\(n\)</span> 的划分数。</p>
+<p>给定一个长 <span class="math inline">\(n\)</span> 宽 <span
+class="math inline">\(n\)</span> 的 01 矩阵 <span
+class="math inline">\(M\)</span> 。</p>
+<p>对于一个 <span class="math inline">\(1\)</span> 到 <span
+class="math inline">\(n\)</span> 的排列 <span
+class="math inline">\(\{p_i\}\)</span> 和一个长为 <span
+class="math inline">\(n-1\)</span> 的 01 序列 <span
+class="math inline">\(\{a_i\}\)</span> ，称 <span
+class="math inline">\(p\)</span> 在 <span
+class="math inline">\(a\)</span> 上合法，当且仅当 <span
+class="math inline">\(\forall i \in [1, n - 1], M_{p_i, p_{i+1}} =
+a_i\)</span> 。</p>
+<p>对于所有可能的 <span class="math inline">\(a\)</span> 求出有多少
+<span class="math inline">\(p\)</span> 在 <span
+class="math inline">\(a\)</span> 上合法。</p>
+<p>时间复杂度：<span class="math inline">\(O(p(n) 2^n n + 2^n
+n^2)\)</span> ，其中 <span class="math inline">\(p(n)\)</span> 是 <span
+class="math inline">\(n\)</span> 的划分数。</p>
 <details class="note primary"><summary><p>题解</p>
 </summary>
 <p>既有 1 的限制又有 0 的限制难以直接处理。</p>
-<p><strong>这类题有一个套路：忽略一类限制。</strong>这里我们忽略 0 的限制。</p>
-<p>记 <span class="math inline">\(A(S)\)</span> 表示 <span class="math inline">\(a\)</span> 压缩为 <span class="math inline">\(S\)</span> 时的答案。考虑计算 <span class="math inline">\(A\)</span> 的父集和 <span class="math inline">\(B\)</span> ，即 <span class="math inline">\(B(T) = \sum_{T \subseteq S} A(S)\)</span> ，然后通过反演还原 <span class="math inline">\(A\)</span> 。那么这样就只有 1 的限制，<span class="math inline">\(B(S)\)</span> 的意义就是钦定排列一些相邻位置 <span class="math inline">\(p_i, p_{i+1}\)</span> 满足 <span class="math inline">\(M_{p_i,p_{i+1}} = 1\)</span> ，而未被钦定的位置没有任何限制。</p>
-<p>可以发现，如果将 <span class="math inline">\(M_{i,j} = 1\)</span> 看作连边 <span class="math inline">\((i, j)\)</span> ，<span class="math inline">\(B(S)\)</span> 相当于将排列划分为若干连续段，要求每个段内必须连成一条链。那么对于 <span class="math inline">\(B(S), B(T)\)</span> ，如果 <span class="math inline">\(S, T\)</span> 代表的划分本质相同，就一定有 <span class="math inline">\(B(S) = B(T)\)</span> 。也就是说只需要对于所有 <span class="math inline">\(n\)</span> 的划分计算 <span class="math inline">\(B(S)\)</span> 即可。</p>
-<p>预处理出 <span class="math inline">\(f(S)\)</span> 表示用集合 <span class="math inline">\(S\)</span> 内的点能组成多少条链。那么对于一个划分的答案，就是所有对应长度的点集划分的 <span class="math inline">\(f\)</span> 的乘积和。枚举点集划分是不可取的，事实上，将对应的 <span class="math inline">\(f\)</span> 做一个并卷积，最终序列的全集位置的值就是答案。因为确定了长度划分，如果若干集合存在一对有交，它们的并的长度就会小于 <span class="math inline">\(n\)</span> ，不可能是全集。</p>
-<p>具体的，设 <span class="math inline">\(F_k(S) = [|S| = k] f(S)\)</span> ，那么一个划分的答案就是对应的 <span class="math inline">\(F_k\)</span> 的并卷积的末项。</p>
+<p><strong>这类题有一个套路：忽略一类限制。</strong>这里我们忽略 0
+的限制。</p>
+<p>记 <span class="math inline">\(A(S)\)</span> 表示 <span
+class="math inline">\(a\)</span> 压缩为 <span
+class="math inline">\(S\)</span> 时的答案。考虑计算 <span
+class="math inline">\(A\)</span> 的父集和 <span
+class="math inline">\(B\)</span> ，即 <span class="math inline">\(B(T) =
+\sum_{T \subseteq S} A(S)\)</span> ，然后通过反演还原 <span
+class="math inline">\(A\)</span> 。那么这样就只有 1 的限制，<span
+class="math inline">\(B(S)\)</span> 的意义就是钦定排列一些相邻位置 <span
+class="math inline">\(p_i, p_{i+1}\)</span> 满足 <span
+class="math inline">\(M_{p_i,p_{i+1}} = 1\)</span>
+，而未被钦定的位置没有任何限制。</p>
+<p>可以发现，如果将 <span class="math inline">\(M_{i,j} = 1\)</span>
+看作连边 <span class="math inline">\((i, j)\)</span> ，<span
+class="math inline">\(B(S)\)</span>
+相当于将排列划分为若干连续段，要求每个段内必须连成一条链。那么对于 <span
+class="math inline">\(B(S), B(T)\)</span> ，如果 <span
+class="math inline">\(S, T\)</span> 代表的划分本质相同，就一定有 <span
+class="math inline">\(B(S) = B(T)\)</span> 。也就是说只需要对于所有
+<span class="math inline">\(n\)</span> 的划分计算 <span
+class="math inline">\(B(S)\)</span> 即可。</p>
+<p>预处理出 <span class="math inline">\(f(S)\)</span> 表示用集合 <span
+class="math inline">\(S\)</span>
+内的点能组成多少条链。那么对于一个划分的答案，就是所有对应长度的点集划分的
+<span class="math inline">\(f\)</span>
+的乘积和。枚举点集划分是不可取的，事实上，将对应的 <span
+class="math inline">\(f\)</span>
+做一个并卷积，最终序列的全集位置的值就是答案。因为确定了长度划分，如果若干集合存在一对有交，它们的并的长度就会小于
+<span class="math inline">\(n\)</span> ，不可能是全集。</p>
+<p>具体的，设 <span class="math inline">\(F_k(S) = [|S| = k]
+f(S)\)</span> ，那么一个划分的答案就是对应的 <span
+class="math inline">\(F_k\)</span> 的并卷积的末项。</p>
 
 </details>
 <hr />
 <h2 id="loj575">loj575</h2>
-<p>给定一个字符串 <span class="math inline">\(s_1, s_2, \dots, s_n\)</span> ，仅包含 <code>&lt;</code> 和 <code>&gt;</code> 两种字符。求「使得 <span class="math inline">\(p_i &lt; p_{i+1}\)</span> <strong>当且仅当</strong> <span class="math inline">\(s_i\)</span> 为 <code>&lt;</code> 的排列 <span class="math inline">\(p_1, p_2, \ldots, p_{n+1}\)</span>」的数量。</p>
+<p>给定一个字符串 <span class="math inline">\(s_1, s_2, \dots,
+s_n\)</span> ，仅包含 <code>&lt;</code> 和 <code>&gt;</code>
+两种字符。求「使得 <span class="math inline">\(p_i &lt; p_{i+1}\)</span>
+<strong>当且仅当</strong> <span class="math inline">\(s_i\)</span> 为
+<code>&lt;</code> 的排列 <span class="math inline">\(p_1, p_2, \ldots,
+p_{n+1}\)</span>」的数量。</p>
 <p>时间复杂度：<span class="math inline">\(O(n\log^2)\)</span> 。</p>
 <details class="note primary"><summary><p>题解</p>
 </summary>
 <p>（未实现）</p>
 <p>既有小于号的限制又有大于号的限制难以直接处理。</p>
-<p><strong>这类题有一个套路：忽略一类限制。</strong>这里我们忽略 <code>&gt;</code> 的限制。</p>
-<p>把 <code>&gt;</code> 看做隔板，忽略 <code>&gt;</code> 的限制后唯一的限制是隔板之间的一段数必须单调递增，也就是把 <span class="math inline">\(n\)</span> 个数填入每一段，设有 <span class="math inline">\(m\)</span> 段，长度组成序列 <span class="math inline">\(\{a\}\)</span> ，那么方案数就是</p>
-<p><span class="math display">\[\frac{n!}{\prod_{i=1}^m a_i}\]</span></p>
-<p>考虑怎么反演回去，直接一波子集反演的复杂度太大，无法接受。不同于 <code>cf1326f2</code> 的是，这里只需要对于给定的 <span class="math inline">\(s\)</span> 计算答案。可以应用另一个不知道叫啥的容斥，设 <span class="math inline">\(f_i\)</span> 表示考虑前 <span class="math inline">\(i\)</span> 段，每个隔板的左边严格大于右边的所有方案的分母贡献，转移钦定一段后缀合并，有</p>
-<p><span class="math inline">\(f_i = \sum_{j=0}^{i-1} f_j (-1)^{i-j} \frac{1}{(i-j)!}\)</span> 。</p>
-<p>卷积形式，分治 NTT ，答案就是 <span class="math inline">\(f_m n!\)</span> 。</p>
+<p><strong>这类题有一个套路：忽略一类限制。</strong>这里我们忽略
+<code>&gt;</code> 的限制。</p>
+<p>把 <code>&gt;</code> 看做隔板，忽略 <code>&gt;</code>
+的限制后唯一的限制是隔板之间的一段数必须单调递增，也就是把 <span
+class="math inline">\(n\)</span> 个数填入每一段，设有 <span
+class="math inline">\(m\)</span> 段，长度组成序列 <span
+class="math inline">\(\{a\}\)</span> ，那么方案数就是</p>
+<p><span class="math display">\[\frac{n!}{\prod_{i=1}^m
+a_i}\]</span></p>
+<p>考虑怎么反演回去，直接一波子集反演的复杂度太大，无法接受。不同于
+<code>cf1326f2</code> 的是，这里只需要对于给定的 <span
+class="math inline">\(s\)</span>
+计算答案。可以应用另一个不知道叫啥的容斥，设 <span
+class="math inline">\(f_i\)</span> 表示考虑前 <span
+class="math inline">\(i\)</span>
+段，每个隔板的左边严格大于右边的所有方案的分母贡献，转移钦定一段后缀合并，有</p>
+<p><span class="math inline">\(f_i = \sum_{j=0}^{i-1} f_j (-1)^{i-j}
+\frac{1}{(i-j)!}\)</span> 。</p>
+<p>卷积形式，分治 NTT ，答案就是 <span class="math inline">\(f_m
+n!\)</span> 。</p>
 
 </details>
 <hr />
@@ -651,7 +1045,7 @@
 
 <div class="copyright">
   &copy; 2019 – 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-heartbeat"></i>
   </span>

@@ -321,12 +321,27 @@
 <span id="more"></span>
 <h2 id="考试">考试</h2>
 <h3 id="painting-walls">Painting Walls</h3>
-<p>被题意卡了一小会，搞懂题目后发现就只要对于每个位置暴力枚举如果从该位置开始染色，第一个工人是谁，然后 DP 一下。一开始用了 map 去 DP ，被卡了。然后换滚动数组去 DP ，结果发现还是被卡了。查了好久才发现我用了一个 <code>set</code> 在每次更新 DP 值后都会执行 <code>insert</code> 操作。。。我因为它的大小是 <span class="math inline">\(O(n)\)</span> 就莫名其妙的地以为这个 <code>set</code> 带来的时间复杂度始终是 <span class="math inline">\(O(n\log n)\)</span> 。。。</p>
+<p>被题意卡了一小会，搞懂题目后发现就只要对于每个位置暴力枚举如果从该位置开始染色，第一个工人是谁，然后
+DP 一下。一开始用了 map 去 DP ，被卡了。然后换滚动数组去 DP
+，结果发现还是被卡了。查了好久才发现我用了一个 <code>set</code>
+在每次更新 DP 值后都会执行 <code>insert</code>
+操作。。。我因为它的大小是 <span class="math inline">\(O(n)\)</span>
+就莫名其妙的地以为这个 <code>set</code> 带来的时间复杂度始终是 <span
+class="math inline">\(O(n\log n)\)</span> 。。。</p>
 <h3 id="swapping-cities">Swapping Cities</h3>
-<p>有理有据的分析可以发现一个子图中 <span class="math inline">\(x\)</span> 到 <span class="math inline">\(y\)</span> 是合法的当且仅当有度数为三的点或者有环。<del>然后这就是大家所熟知的 Kruskal 重构树了</del>。</p>
+<p>有理有据的分析可以发现一个子图中 <span
+class="math inline">\(x\)</span> 到 <span
+class="math inline">\(y\)</span>
+是合法的当且仅当有度数为三的点或者有环。<del>然后这就是大家所熟知的
+Kruskal 重构树了</del>。</p>
 <h3 id="fun-tour">Fun Tour</h3>
-<p>一开始打了一个基于重心的贪心，交上去只过了 <span class="math inline">\(n \le 7\)</span> 的分，<del>疯狂对拍</del> 冷静分析后发现贪心假了。</p>
-<p>然后就打了暴力 dfs 的 26 分，继续想，想了个有理有据的动态换根 DP ，由于 subtask3 的树高是 <span class="math inline">\(O(\log)\)</span> 的，可以暴力修改 DP 值。于是写写写写写写写，越写发现细节越多，写着写着突然发现比赛结束了。。。</p>
+<p>一开始打了一个基于重心的贪心，交上去只过了 <span
+class="math inline">\(n \le 7\)</span> 的分，<del>疯狂对拍</del>
+冷静分析后发现贪心假了。</p>
+<p>然后就打了暴力 dfs 的 26 分，继续想，想了个有理有据的动态换根 DP
+，由于 subtask3 的树高是 <span class="math inline">\(O(\log)\)</span>
+的，可以暴力修改 DP
+值。于是写写写写写写写，越写发现细节越多，写着写着突然发现比赛结束了。。。</p>
 <h2 id="结果">结果</h2>
 <p>226 分垫底水平，居然还有金牌，可喜可贺。</p>
 
@@ -374,7 +389,7 @@
 
 <div class="copyright">
   &copy; 2019 – 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-heartbeat"></i>
   </span>

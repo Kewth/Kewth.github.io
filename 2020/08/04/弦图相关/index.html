@@ -321,14 +321,22 @@
 </blockquote>
 <p>团：任意两点都有边的无向图。</p>
 <p>单纯点：与其相邻的点集的导出子图是团。</p>
-<p>完美消除序列：点集的一个排列 <span class="math inline">\(\{p\}\)</span> ，满足每个点 <span class="math inline">\(p_i\)</span> 在 <span class="math inline">\(p_j (j &gt; i)\)</span> 的导出子图中都是单纯点。</p>
+<p>完美消除序列：点集的一个排列 <span
+class="math inline">\(\{p\}\)</span> ，满足每个点 <span
+class="math inline">\(p_i\)</span> 在 <span class="math inline">\(p_j (j
+&gt; i)\)</span> 的导出子图中都是单纯点。</p>
 
 </details>
 <span id="more"></span>
 <h3 id="弦图判定">弦图判定</h3>
 <p><strong>定理：一个无向图是弦图当且仅当它有一个完美消除序列。</strong></p>
 <p>对于一个弦图，可以从后往前确定完美消除序列，定义一个点的势为与当前已经确定的点有边的点的数量。每次选择势最大的未加入的点加入完美消除序列即可。</p>
-<p>但是如果不是弦图，求出来的序列就不会是完美消除序列，因此弦图判定等价于判定该序列是否为完美消除序列。 从后往前枚举每个点按定义判定即可，需要注意如果当前判定到了点 <span class="math inline">\(x\)</span> ，说明在其后的点 <span class="math inline">\(y\)</span> 都是满足完美消除序列的性质的，据此可以在判定的时候优化，复杂度 <span class="math inline">\(O(n+m)\)</span> 。</p>
+<p>但是如果不是弦图，求出来的序列就不会是完美消除序列，因此弦图判定等价于判定该序列是否为完美消除序列。
+从后往前枚举每个点按定义判定即可，需要注意如果当前判定到了点 <span
+class="math inline">\(x\)</span> ，说明在其后的点 <span
+class="math inline">\(y\)</span>
+都是满足完美消除序列的性质的，据此可以在判定的时候优化，复杂度 <span
+class="math inline">\(O(n+m)\)</span> 。</p>
 <h3 id="最小色数">最小色数</h3>
 <p>等于最小团数，等于所有点在加入前的势的最大值加一。</p>
 <p>事实上最优方案就是从完美消除序列从后往前染色。</p>
@@ -381,7 +389,7 @@
 
 <div class="copyright">
   &copy; 2019 – 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-heartbeat"></i>
   </span>

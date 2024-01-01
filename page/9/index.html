@@ -306,13 +306,15 @@
 <h2 id="apache">apache</h2>
 <p>这里用 apache(httpd) 搭建服务器：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S apache2</span><br></pre></td></tr></table></figure>
-<p>执行 <code>sudo httpd</code> 后打开 localhost ，就有一个东西了（虽然是空的）。<br />
+<p>执行 <code>sudo httpd</code> 后打开 localhost
+，就有一个东西了（虽然是空的）。<br />
 在 /srv/http/ 下新建 index.html 随便写点东西，是可以显示的。<br />
 路径具体查看 <code>httpd -S</code> 。</p>
 <p>启动服务：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl start httpd</span><br></pre></td></tr></table></figure>
 <h2 id="php">php</h2>
-<p>安装 php （ manjaro18.x 预装了 php7.x ，但还是要一些其他的东西）：</p>
+<p>安装 php （ manjaro18.x 预装了 php7.x
+，但还是要一些其他的东西）：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S php php-apache php-fpm</span><br></pre></td></tr></table></figure>
 <p>这时 apache 还是不支持 php 的，需要在配置里加上几行。<br />
 打开 /etc/httpd/conf/httpd.conf ，加入：</p>
@@ -334,12 +336,14 @@
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl start mysqld</span><br></pre></td></tr></table></figure>
 <p>试试能不能登上：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u&lt;用户名&gt; -p</span><br></pre></td></tr></table></figure>
-<p>让 php 支持 mysql 的调用，在 /etc/php/php.ini 找到 ;extension=mysqli 把分号去掉就行了。</p>
+<p>让 php 支持 mysql 的调用，在 /etc/php/php.ini 找到 ;extension=mysqli
+把分号去掉就行了。</p>
 <h2 id="使用-wordpress">使用 wordpress</h2>
 <p>Typecho 用 php7.2 似乎安装会出问题，<br />
 还是建议用 wordpress ，更加成熟，<br />
 安装方式在 wordpress 官网上把包下下来解压到 /srv/http/ ，<br />
-回了正常运行，需要改变 /srv/http 的权限，让 wordpress 能够对其做出修改。<br />
+回了正常运行，需要改变 /srv/http 的权限，让 wordpress
+能够对其做出修改。<br />
 这里不赘述，嫌麻烦可以 <code>chmod 777 -R /srv/http</code> 。</p>
 <p>然后进入 localhost 按照步骤来就行了。</p>
 
@@ -417,35 +421,62 @@
 <p>一天普及一天省选，弄到一起就出成了一套提高组试题。</p>
 <h2 id="day1">Day1</h2>
 <p>原题大作战。 然而我一题都没做过。</p>
-<p>总的来说 Day1 比去年好像容易点（不然我也不会留出一个多小时给每道题造数据对拍）。</p>
+<p>总的来说 Day1
+比去年好像容易点（不然我也不会留出一个多小时给每道题造数据对拍）。</p>
 <h3 id="t1">T1</h3>
 <p>CCF 直接把 2013 的题原封不动搬到了 Day1T1 。</p>
-<p>一开始想着递归，发现会被卡成 <span class="math inline">\(O(n^2)\)</span> ， 再想 DP 的时候简化一下式子就直接可以扫一遍出结果。</p>
+<p>一开始想着递归，发现会被卡成 <span
+class="math inline">\(O(n^2)\)</span> ， 再想 DP
+的时候简化一下式子就直接可以扫一遍出结果。</p>
 <h3 id="t2">T2</h3>
 <p>bzoj 权限题。</p>
-<p>如果一种货币能被其它若干货币代替，就扔掉。 设 f[i] 表示价值为 i 的货币是否会被代替，做一遍完全背包就好了。</p>
+<p>如果一种货币能被其它若干货币代替，就扔掉。 设 f[i] 表示价值为 i
+的货币是否会被代替，做一遍完全背包就好了。</p>
 <h3 id="t3">T3</h3>
 <p>bzoj 权限题。</p>
-<p>听说可以二分加贪心，不过我考场想的比较复杂 <del>是二分答案再 DP ，DP 转移再套一层用链表维护的 DP</del> 。</p>
-<p>首先容易想到二分答案，二分一个答案 mid 后求最多可以有多少条赛道满足长度不小于 mid ， 若有不少于 m 条，则答案可行。</p>
-<p>求赛道数量可以 DP ，设 f[u] 为 u 的子树中满足条件的赛道的数量， g[u] 表示在满足 f[u] 最大的前提下 u 向下不经过赛道的最长路径长。</p>
-<p>转移的时候先把 u 的儿子 v 的 f[v] 累加，同时将所有 g[v]+w 存起来（w 表示 u 到 v 的长度）。</p>
-<p>对于 g[v]+w 大于等于 mid 的直接把 f[u]++ 然后扔掉，于是只需要考虑小于 mid 的 g[v]+w 的贡献。</p>
-<p>两个不同的 g[v]+w 若大于等于 mid 就同样可以作为一条赛道让 f[u]++ ，先排序然后再次 DP 统计这样的赛道数量， 然后若所有的 g[v]+w 都有另外一个构成赛道， g[u]=0 ，否则 g[u] 等于剩下的最大的 g[v]+w 。</p>
+<p>听说可以二分加贪心，不过我考场想的比较复杂 <del>是二分答案再 DP ，DP
+转移再套一层用链表维护的 DP</del> 。</p>
+<p>首先容易想到二分答案，二分一个答案 mid
+后求最多可以有多少条赛道满足长度不小于 mid ， 若有不少于 m
+条，则答案可行。</p>
+<p>求赛道数量可以 DP ，设 f[u] 为 u 的子树中满足条件的赛道的数量， g[u]
+表示在满足 f[u] 最大的前提下 u 向下不经过赛道的最长路径长。</p>
+<p>转移的时候先把 u 的儿子 v 的 f[v] 累加，同时将所有 g[v]+w 存起来（w
+表示 u 到 v 的长度）。</p>
+<p>对于 g[v]+w 大于等于 mid 的直接把 f[u]++ 然后扔掉，于是只需要考虑小于
+mid 的 g[v]+w 的贡献。</p>
+<p>两个不同的 g[v]+w 若大于等于 mid 就同样可以作为一条赛道让 f[u]++
+，先排序然后再次 DP 统计这样的赛道数量， 然后若所有的 g[v]+w
+都有另外一个构成赛道， g[u]=0 ，否则 g[u] 等于剩下的最大的 g[v]+w 。</p>
 <h2 id="day2">Day2</h2>
-<p>Day1 的比赛对我造成了巨大的影响，Day1 考完后信心爆棚， <del>以 AKIOI 的自信</del> 走进 Day2 考场。</p>
+<p>Day1 的比赛对我造成了巨大的影响，Day1 考完后信心爆棚， <del>以 AKIOI
+的自信</del> 走进 Day2 考场。</p>
 <p>结果什么题都死磕正解，到最后连暴力都没打全。</p>
 <p>看题，WTF?</p>
-<p>看完 T1 我以为是个稠密无向图，想了好久感觉是要求一种特殊的生成树，感觉巨不可做。 顿时有点小慌，突然想到考前教练提醒要看完题，说不定后面的题反而简单。</p>
+<p>看完 T1
+我以为是个稠密无向图，想了好久感觉是要求一种特殊的生成树，感觉巨不可做。
+顿时有点小慌，突然想到考前教练提醒要看完题，说不定后面的题反而简单。</p>
 <p>嗯，有道理，直接翻到 T2 ，推了波结论认定是一道状压 DP，松了口气。</p>
 <p>不急，再看 T3 ，哦，好像树形 DP ，但是 m 个询问难住了我。</p>
-<p>于是认定 T2 比较容易，开始死磕 T2 ，打完状压后跑了遍 2,2 的样例，诶过了。 再跑一遍 3,3 ，输出 144 ，于是手推了 3,3 的样例发现还是 144 , 意识到推的结论有误，瞬间慌的一批。 推了好久才发现了问题，得到正确的结论后发现对于新结论状压 DP 似乎变得不可行。</p>
+<p>于是认定 T2 比较容易，开始死磕 T2 ，打完状压后跑了遍 2,2
+的样例，诶过了。 再跑一遍 3,3 ，输出 144 ，于是手推了 3,3 的样例发现还是
+144 , 意识到推的结论有误，瞬间慌的一批。
+推了好久才发现了问题，得到正确的结论后发现对于新结论状压 DP
+似乎变得不可行。</p>
 <p>这个时候考试已经过了一个小时多了。慌。</p>
-<p>换换思路吧，于是去做 T3 , 想了很久 DP 最后写了个平方复杂度的， 跑过了所有样例就没管了，没多少时间了，又回去看 T1 。</p>
-<p>往回看了看 T1 里 m 的数据范围我才发现只有树和换套树两种情况。 那还求个鬼生成树，迅速打掉树的 60 部分分，n 看都没看只知道 <span class="math inline">\(O(n)\)</span> 稳了。 再去想换套树，感觉差不多，继续 <span class="math inline">\(O(n)\)</span>做。</p>
-<p>结果？一直死磕 T1 的 <span class="math inline">\(O(n)\)</span> 做法，直到最后考试结束都没写出来。</p>
-<p>考试听别人说直接枚举删边 <span class="math inline">\(O(n^2)\)</span> 就可以过的时候我才意识到 n 只有 5000 ，整个人懵的。</p>
-<p>结果 T1 还是 60' ，T3 不晓得哪里炸掉了爆零， 有意思的是 T2 我错误的打法样例都没过在 ccf 的数据里水到了 45' 。</p>
+<p>换换思路吧，于是去做 T3 , 想了很久 DP 最后写了个平方复杂度的，
+跑过了所有样例就没管了，没多少时间了，又回去看 T1 。</p>
+<p>往回看了看 T1 里 m 的数据范围我才发现只有树和换套树两种情况。
+那还求个鬼生成树，迅速打掉树的 60 部分分，n 看都没看只知道 <span
+class="math inline">\(O(n)\)</span> 稳了。
+再去想换套树，感觉差不多，继续 <span
+class="math inline">\(O(n)\)</span>做。</p>
+<p>结果？一直死磕 T1 的 <span class="math inline">\(O(n)\)</span>
+做法，直到最后考试结束都没写出来。</p>
+<p>考试听别人说直接枚举删边 <span class="math inline">\(O(n^2)\)</span>
+就可以过的时候我才意识到 n 只有 5000 ，整个人懵的。</p>
+<p>结果 T1 还是 60' ，T3 不晓得哪里炸掉了爆零， 有意思的是 T2
+我错误的打法样例都没过在 ccf 的数据里水到了 45' 。</p>
 
       
     </div>
@@ -517,25 +548,32 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>NTT ，快速数论变换，功能与 <a href="">FFT</a> 完全一致，用来求多项式卷积。<br />
+          <p>NTT ，快速数论变换，功能与 <a href="">FFT</a>
+完全一致，用来求多项式卷积。<br />
 NTT 优点在于常数稍微小一点，没有精度误差。<br />
 但是 NTT 系数必须是取模意义下的整数，且对模数有特殊要求。</p>
 <h2 id="fft-的单位根">FFT 的单位根</h2>
 <p>建议前置 <a href="">FFT</a> 。</p>
 <p>FFT 可以分治优化复杂度的原因是用到了单位根的如下性质：<br />
-<span class="math display">\[ W_{2n}^{2k} = W_n^k \]</span> <span class="math display">\[ W_n^n = 1 \]</span> <span class="math display">\[ W_n^{k + n/2} + W_n^k = 0 \]</span></p>
-<p>可是用单位根做 FFT ，需要用到复数和浮点数，常数大而且有精度误差。<br />
+<span class="math display">\[ W_{2n}^{2k} = W_n^k \]</span> <span
+class="math display">\[ W_n^n = 1 \]</span> <span
+class="math display">\[ W_n^{k + n/2} + W_n^k = 0 \]</span></p>
+<p>可是用单位根做 FFT
+，需要用到复数和浮点数，常数大而且有精度误差。<br />
 还有别的数有这样的性质来替换单位根吗？<br />
 遗憾的是，可以证明复数域下只有单位根有这样的性质。</p>
 <h2 id="取模">取模</h2>
 <p>实际计算多项式卷积时，常常要求对系数取模以避免不必要的麻烦。<br />
-那么这时候系数实际上是在模意义下的， FFT 将它转到复数域上运算，似乎没有必要。<br />
+那么这时候系数实际上是在模意义下的， FFT
+将它转到复数域上运算，似乎没有必要。<br />
 模意义下什么数可以有单位根那样的性质？<br />
 有的，那就是原根。</p>
 <h2 id="原根">原根</h2>
 <p>对于某些模数 P ，模 P 意义下的原根 g 满足：<br />
-对任意 $ 0 k P - 2 $ ， $ g^k $ 互不相同。 有些模数可能不存在原根，这里先假设模数都有原根。</p>
-<p>假设系数是模 P 意义下的，P 是形如 $ 2^k + 1 $ 的质数，其原根为 g ，<br />
+对任意 $ 0 k P - 2 $ ， $ g^k $ 互不相同。
+有些模数可能不存在原根，这里先假设模数都有原根。</p>
+<p>假设系数是模 P 意义下的，P 是形如 $ 2^k + 1 $ 的质数，其原根为 g
+，<br />
 设 $ G_n = g^{} mod P $ ，其中 n 是小于 P 的 2 的整次幂 。<br />
 那么在模 P 意义下， G 满足：</p>
 <p><span class="math display">\[ G_{2n}^{2k} = G_n^k \]</span></p>
@@ -557,12 +595,16 @@ $ g^{} g^{P-1} $<br />
 $ G_n^{k + n/2} = G_n^k G_n^{n/2} = G_n^k(-1) $<br />
 于是 $ G_n^{k + n/2} + G_n^k = 0 $</p>
 <h2 id="ntt">NTT</h2>
-<p>于是 NTT 的算法思路就呼之欲出了：把 $ W_n $ 全部替换为 $ G_n $ 即可。<br />
+<p>于是 NTT 的算法思路就呼之欲出了：把 $ W_n $ 全部替换为 $ G_n $
+即可。<br />
 这样就可以算出模 P 意义下的多项式卷积了。<br />
 其中 n 必须是 2 的整次幂，不足的补零即可。</p>
-<p>现在唯一的问题是，模数 P 要满足什么条件，以及如何求模 P 意义下的原根 g 。<br />
-然而我并不想深入展开，大多数情况下模数都是 998244353 ，其原根为 3 。<br />
-一般 NTT 只会用这个模数，不会有毒瘤出题人卡这个模数的（我不对这句话负责）。</p>
+<p>现在唯一的问题是，模数 P 要满足什么条件，以及如何求模 P 意义下的原根
+g 。<br />
+然而我并不想深入展开，大多数情况下模数都是 998244353 ，其原根为 3
+。<br />
+一般 NTT
+只会用这个模数，不会有毒瘤出题人卡这个模数的（我不对这句话负责）。</p>
 
       
     </div>
@@ -639,9 +681,12 @@ $ G_n^{k + n/2} = G_n^k G_n^{n/2} = G_n^k(-1) $<br />
 <li>最先用的是 Ubuntu 16.04 自带的 Unity 。</li>
 <li>更新 Ubuntu 后用的 Ubuntu 18.04 自带的 Gnome 。</li>
 <li>用了 Gnome 后学会了折腾，各种配置堆上。</li>
-<li>后来发现 Gnome 太卡太吃内存，并且才知道系统可以换桌面， 于是在 master 安利下换上 xfce 。</li>
-<li>xfce 很稳定很流畅，但是太丑，可玩性太低，于是换上高大上的 KDE 。</li>
-<li>中途还换过 enlightenment ，但是 enlightenment 的稳定性实在不敢恭维。</li>
+<li>后来发现 Gnome 太卡太吃内存，并且才知道系统可以换桌面， 于是在
+master 安利下换上 xfce 。</li>
+<li>xfce 很稳定很流畅，但是太丑，可玩性太低，于是换上高大上的 KDE
+。</li>
+<li>中途还换过 enlightenment ，但是 enlightenment
+的稳定性实在不敢恭维。</li>
 <li>最后用上了 i3 ，原因不详。</li>
 </ul>
 <p>WARNING:<br />
@@ -652,22 +697,26 @@ $ G_n^{k + n/2} = G_n^k G_n^{n/2} = G_n^k(-1) $<br />
 WTF ?<br />
 其实 i3 已经开了，只是没背景而已，按 win+Enter 打开终端。</p>
 <h2 id="配置">配置</h2>
-<p>弹出一个菜单给你设置？想多了，要配置就写 ~/.config/i3/config 去吧。</p>
+<p>弹出一个菜单给你设置？想多了，要配置就写 ~/.config/i3/config
+去吧。</p>
 <p>$mod 是 i3 的灵魂，每一个快捷键最好都以 $mod 开头，<br />
 一般 $mod 被设置成 Mod4 ，也就是 Win 键。<br />
 bindsym 是绑定快捷键，注释很详细，自己看，下面列出一些重要的配置。</p>
 <h3 id="方向">方向</h3>
-<p>i3 默认把 jkl; 做方向键，也许你会更喜欢 hjkl ，自己替换掉就是了。<br />
+<p>i3 默认把 jkl; 做方向键，也许你会更喜欢 hjkl
+，自己替换掉就是了。<br />
 另外分号不是 ; 而是 semicolon 。</p>
 <h3 id="壁纸">壁纸</h3>
 <p>i3 默认没有壁纸，因为它是个平铺式的窗口管理器。<br />
 但壁纸是第一生产力啊，不要壁纸怎么行。</p>
 <p>下载 feh: <code>sudo aptitude install feh</code>.<br />
-<code>feh --bg-fill (YOUR_IMG)</code> 就可以设置壁纸了，至于实现原理，你不会想知道的。</p>
+<code>feh --bg-fill (YOUR_IMG)</code>
+就可以设置壁纸了，至于实现原理，你不会想知道的。</p>
 <h3 id="锁屏">锁屏</h3>
 <p>i3 默认没有锁屏，为了防机惨，锁屏还是很有必要的。</p>
 <p>下载 i3lock: <code>sudo aptitude install i3lock</code>.<br />
-直接 <code>i3lcok</code> 就可以锁屏，<code>i3lock -i (YOUR_PNG)</code> 还可以设置锁屏壁纸。<br />
+直接 <code>i3lcok</code> 就可以锁屏，<code>i3lock -i (YOUR_PNG)</code>
+还可以设置锁屏壁纸。<br />
 需要快捷键锁屏的话，加上一句配置就行了：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bindsym $mod+Tab exec i3lock # Win+Tab 锁屏</span><br></pre></td></tr></table></figure>
 <h3 id="工作区">工作区</h3>
@@ -677,7 +726,8 @@ i3 默认配置里只提供了切换到 1 至 10 的快捷键，<br />
 加上两句：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bindsym $mod+comma workspace prev # Win+逗号</span><br><span class="line">bindsym $mod+period workspace next # Win+句号</span><br></pre></td></tr></table></figure>
 <p>另外，默认配置里，把一个窗口移动到某工作区的时候仍会停留在原工作区，<br />
-想改变这点， 把 <code>move container to workspace x</code> 后面加上 <code>; workspace x</code> 即可。</p>
+想改变这点， 把 <code>move container to workspace x</code> 后面加上
+<code>; workspace x</code> 即可。</p>
 <h3 id="i3bar">i3bar</h3>
 <p>个人超喜欢 i3bar ，因为它可以接受任何一个程序的输出。<br />
 这意味着你可以完全自由地定制 i3bar 。</p>
@@ -695,13 +745,15 @@ bar 的模式有三种：</p>
 <p>再运行 <code>i3status</code> 依葫芦画瓢就是了。</p>
 <h3 id="i3-gaps">i3-gaps</h3>
 <p>如果你希望窗口平铺之间会有间隙，i3-gaps 会满足你。<br />
-如果你用 Debian, Ubuntu ， 去 github 上搜 i3-gaps-deb clone 下来后运行 i3-gaps-deb 就行了。<br />
+如果你用 Debian, Ubuntu ， 去 github 上搜 i3-gaps-deb clone 下来后运行
+i3-gaps-deb 就行了。<br />
 如果用 Arch ，软件包管理器里有，直接下。</p>
 <h3 id="透明">透明</h3>
 <p>也许你给终端模拟器设置了透明度，很遗憾，在 i3 上没用。<br />
 解决方案是下载 compton ，运行 <code>compton -b</code> 即可。</p>
 <h2 id="接口">接口</h2>
-<p>你可以很自由地向 i3 发送命令，<code>i3-msg</code> 提供了一系列接口，<br />
+<p>你可以很自由地向 i3 发送命令，<code>i3-msg</code>
+提供了一系列接口，<br />
 足以帮助完成更复杂的定制。</p>
 <p>使用 <code>i3-input</code> 可以直接向 i3 发送一条命令。</p>
 
@@ -776,7 +828,9 @@ bar 的模式有三种：</p>
     
     <div class="post-body" itemprop="articleBody">
           <figure>
-<img src="http://kewth.gq/wp-content/uploads/2019/07/2_054-1.png" alt="i3lock-fancy" /><figcaption aria-hidden="true">i3lock-fancy</figcaption>
+<img src="http://kewth.gq/wp-content/uploads/2019/07/2_054-1.png"
+alt="i3lock-fancy" />
+<figcaption aria-hidden="true">i3lock-fancy</figcaption>
 </figure>
 <p>折腾了半天 i3lock ，不写篇博客可惜了。</p>
 <p>i3lock 有啥好折腾的？不就是挂个壁纸锁屏嘛。<br />
@@ -786,27 +840,32 @@ bar 的模式有三种：</p>
 <p>官方版本 i3lock ，稳定可靠，但是鸡肋。</p>
 <p>安装： <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo aptitude install i3lock</span><br></pre></td></tr></table></figure></p>
 <p>使用： <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">i3lock</span><br></pre></td></tr></table></figure></p>
-<h2 id="i3lock-lixxia"><a target="_blank" rel="noopener" href="https://github.com/Lixxia/i3lock">i3lock-lixxia</a></h2>
+<h2 id="i3lock-lixxia"><a
+target="_blank" rel="noopener" href="https://github.com/Lixxia/i3lock">i3lock-lixxia</a></h2>
 <p>最友好，最简单的一个 i3lock fork ，<br />
 优化了中间显示的圆形框，并支持一些颜色自定义。</p>
 <p>安装： <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sudo aptitude remove i3lock</span><br><span class="line">sudo aptitude install pkg-config libxcb1-dev libxcb1 libgl2ps-dev libx11-dev libglc0 libglc-dev libcairo2-dev libcairo-gobject2 libcairo2-dev libxkbfile-dev libxkbfile1 libxkbcommon-dev libxkbcommon-x11-dev libxcb-xkb-dev libxcb-dpms0-dev libxcb-damage0-dev libpam0g-dev libev-dev libxcb-image0-dev libxcb-util0-dev libxcb-composite0-dev libxcb-xinerama0-dev</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/Lixxia/i3lock.git</span><br><span class="line"><span class="built_in">cd</span> i3lock</span><br><span class="line">autoreconf -<span class="keyword">fi</span></span><br><span class="line">mkdir -p build &amp;&amp; <span class="built_in">cd</span> build</span><br><span class="line">../configure</span><br><span class="line">make &amp;&amp; sudo make install</span><br></pre></td></tr></table></figure></p>
 <p>顺带一提，只有这个 fork 给出了靠谱的源码安装方式，<br />
 其他 fork 甚至 i3lock 本身的安装方式都给得很不靠谱。</p>
 <p>使用： <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">i3lock</span><br></pre></td></tr></table></figure></p>
-<h2 id="i3lock-blur"><a target="_blank" rel="noopener" href="https://github.com/karulont/i3lock-blur">i3lock-blur</a></h2>
+<h2 id="i3lock-blur"><a
+target="_blank" rel="noopener" href="https://github.com/karulont/i3lock-blur">i3lock-blur</a></h2>
 <p>支持模糊背景，毛玻璃特效。</p>
 <p>安装： <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sudo aptitude remove i3lock</span><br><span class="line">sudo aptitude install pkg-config libxcb1-dev libxcb1 libgl2ps-dev libx11-dev libglc0 libglc-dev libcairo2-dev libcairo-gobject2 libcairo2-dev libxkbfile-dev libxkbfile1 libxkbcommon-dev libxkbcommon-x11-dev libxcb-xkb-dev libxcb-dpms0-dev libxcb-damage0-dev libpam0g-dev libev-dev libxcb-image0-dev libxcb-util0-dev libxcb-composite0-dev libxcb-xinerama0-dev</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/karulont/i3lock-blur.git</span><br><span class="line"><span class="built_in">cd</span> i3lock-blur</span><br><span class="line">autoreconf -<span class="keyword">fi</span></span><br><span class="line">mkdir -p build &amp;&amp; <span class="built_in">cd</span> build</span><br><span class="line">../configure</span><br><span class="line">make &amp;&amp; sudo make install</span><br></pre></td></tr></table></figure></p>
 <p>再顺带一提，只有这个 fork 直接给出了需要安装那些库。</p>
 <p>使用： <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">i3lock --fuzzy</span><br></pre></td></tr></table></figure></p>
-<h2 id="i3lockr"><a target="_blank" rel="noopener" href="https://github.com/owenthewizard/i3lockr">i3lockr</a></h2>
+<h2 id="i3lockr"><a
+target="_blank" rel="noopener" href="https://github.com/owenthewizard/i3lockr">i3lockr</a></h2>
 <p>支持模糊背景，毛玻璃特效。</p>
 <p>安装： <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget https://github.com/owenthewizard/i3lockr/releases/download/v1.0.0-final/i3lockr</span><br><span class="line">sudo mv i3lockr /usr/<span class="built_in">local</span>/bin</span><br></pre></td></tr></table></figure></p>
 <p>使用： <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">i3lockr --blur=25</span><br></pre></td></tr></table></figure></p>
-<h2 id="i3lock-color"><a target="_blank" rel="noopener" href="https://github.com/PandorasFox/i3lock-color">i3lock-color</a></h2>
+<h2 id="i3lock-color"><a
+target="_blank" rel="noopener" href="https://github.com/PandorasFox/i3lock-color">i3lock-color</a></h2>
 <p>对于颜色的自定义十分全面。</p>
 <p>安装： <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sudo aptitude remove i3lock</span><br><span class="line">sudo aptitude install pkg-config libxcb1-dev libxcb1 libgl2ps-dev libx11-dev libglc0 libglc-dev libcairo2-dev libcairo-gobject2 libcairo2-dev libxkbfile-dev libxkbfile1 libxkbcommon-dev libxkbcommon-x11-dev libxcb-xkb-dev libxcb-dpms0-dev libxcb-damage0-dev libpam0g-dev libev-dev libxcb-image0-dev libxcb-util0-dev libxcb-composite0-dev libxcb-xinerama0-dev</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/PandorasFox/i3lock-color</span><br><span class="line"><span class="built_in">cd</span> i3lock-color</span><br><span class="line">autoreconf -<span class="keyword">fi</span></span><br><span class="line">mkdir -p build &amp;&amp; <span class="built_in">cd</span> build</span><br><span class="line">../configure</span><br><span class="line">make &amp;&amp; sudo make install</span><br></pre></td></tr></table></figure></p>
 <p>使用： <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">i3lock</span><br></pre></td></tr></table></figure></p>
-<h2 id="i3lock-fancy"><a target="_blank" rel="noopener" href="https://github.com/meskarune/i3lock-fancy">i3lock-fancy</a></h2>
+<h2 id="i3lock-fancy"><a
+target="_blank" rel="noopener" href="https://github.com/meskarune/i3lock-fancy">i3lock-fancy</a></h2>
 <p>重头戏，star 最多的 fork ，甚至比 i3lock 本身更多，被广泛使用。</p>
 <p>安装： <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo aptitude install i3lock-fancy</span><br></pre></td></tr></table></figure></p>
 <p>使用： <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">i3lock-fancy</span><br></pre></td></tr></table></figure></p>
@@ -821,10 +880,13 @@ if 上的命令往往失败了，执行的是 if 里头的命令。</p>
 会发现圆形框的颜色与背景更加配了。</p>
 <h2 id="关于模糊背景">关于模糊背景</h2>
 <p>事实上，如果你用了 compton 再用 i3lock ，效果十分差劲。<br />
-解决这个方案，可以在调用 i3lock 前 kill compton ，结束后重新启动 compton 。</p>
+解决这个方案，可以在调用 i3lock 前 kill compton ，结束后重新启动 compton
+。</p>
 <p>拿 i3lock-fancy 举例，把之前展示的代码改成这样： <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># try to use a forked version of i3lock with prepared parameters</span></span><br><span class="line">pkill compton</span><br><span class="line"><span class="keyword">if</span> ! i3lock -n <span class="string">&quot;<span class="variable">$&#123;PARAM[@]&#125;</span>&quot;</span> -i <span class="string">&quot;<span class="variable">$IMAGE</span>&quot;</span> &gt; /dev/null 2&gt;&amp;1; <span class="keyword">then</span></span><br><span class="line">    <span class="comment"># We have failed, lets get back to stock one</span></span><br><span class="line">    i3lock -n -i <span class="string">&quot;<span class="variable">$IMAGE</span>&quot;</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line">compton -i 0.8 -b</span><br></pre></td></tr></table></figure></p>
-<p>其次，用模糊背景通常会比较慢，尤其是 i3lock-fancy ，需等上 3 秒左右。<br />
-那么如果调用 i3lock-fancy 之后你又做了一些别的操作，比如关闭一个窗口，<br />
+<p>其次，用模糊背景通常会比较慢，尤其是 i3lock-fancy ，需等上 3
+秒左右。<br />
+那么如果调用 i3lock-fancy
+之后你又做了一些别的操作，比如关闭一个窗口，<br />
 这时锁屏了，你会发现背景和原来的不一样。 :)</p>
 
       
@@ -897,70 +959,101 @@ if 上的命令往往失败了，执行的是 if 里头的命令。</p>
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>ncurses 是基于终端的十分强大的图形库。 Vim, screen, sl 等终端程序都用到了这个库（足以见其强大）。</p>
+          <p>ncurses 是基于终端的十分强大的图形库。 Vim, screen, sl
+等终端程序都用到了这个库（足以见其强大）。</p>
 <h2 id="安装">安装</h2>
-<p>部分系统默认安装了 ncurses ，手动安装的方式是： <code>sudo aptitude install ncurses-dev</code> 。</p>
-<p>使用的程序需要 <code>#include &lt;ncurses.h&gt;</code>　。 编译时需要添加 <code>-lncurses</code> 参数进行链接。</p>
+<p>部分系统默认安装了 ncurses ，手动安装的方式是：
+<code>sudo aptitude install ncurses-dev</code> 。</p>
+<p>使用的程序需要 <code>#include &lt;ncurses.h&gt;</code>　。
+编译时需要添加 <code>-lncurses</code> 参数进行链接。</p>
 <h2 id="开始和结束">开始和结束</h2>
 <p>调用 initscr 初始化窗口，endwin 结束窗口。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;curses.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function">WINDOW *<span class="title">initscr</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">endwin</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br></pre></td></tr></table></figure>
 <h2 id="输出">输出</h2>
-<p>调用 initscr 后调用 endwin 前，printf, std::cout 等标准输出不会显示在屏幕上。 而输出到屏幕上需要 ncurses 提供的相应函数。</p>
+<p>调用 initscr 后调用 endwin 前，printf, std::cout
+等标准输出不会显示在屏幕上。 而输出到屏幕上需要 ncurses
+提供的相应函数。</p>
 <h3 id="函数">函数</h3>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">addch</span><span class="params">(<span class="keyword">const</span> chtype char_to_add)</span></span>;   <span class="comment">// 当前位置添加字符</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">addstr</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *string_to_add)</span></span>;    <span class="comment">// 当前位置添加字符串</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">printw</span><span class="params">(<span class="keyword">char</span> *format, ...)</span></span>;   <span class="comment">// 类似于 printf</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">refresh</span><span class="params">(<span class="keyword">void</span>)</span></span>;    <span class="comment">// 强制刷新物理屏幕</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">beep</span><span class="params">(<span class="keyword">void</span>)</span></span>;   <span class="comment">// 终端响铃</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">flash</span><span class="params">(<span class="keyword">void</span>)</span></span>;   <span class="comment">// 屏幕闪烁</span></span><br></pre></td></tr></table></figure>
 <h2 id="输入">输入</h2>
 <p>调用 scanf, getchar, cin 等标准输入函数同样无效。</p>
 <h3 id="函数-1">函数</h3>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">cbreak</span><span class="params">()</span></span>;   <span class="comment">// 字符一键入，直接传给程序（不用按下回车）</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">nocbreak</span><span class="params">()</span></span>;  <span class="comment">// 关闭 cbreak</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">echo</span><span class="params">(<span class="keyword">void</span>)</span></span>; <span class="comment">// 开启输入回显</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">noecho</span><span class="params">(<span class="keyword">void</span>)</span></span>; <span class="comment">// 关闭输入回显</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getch</span><span class="params">(<span class="keyword">void</span>)</span></span>; <span class="comment">// 读入一个字符</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">scanw</span><span class="params">(<span class="keyword">char</span> *format, ...)</span></span>; <span class="comment">// 类似于 scanf</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">clear</span><span class="params">(<span class="keyword">void</span>)</span></span>; <span class="comment">// 清屏</span></span><br></pre></td></tr></table></figure>
-<p>输入函数通常是阻塞的，但是通过调用 nodelay(stdscr, TRUE); 可以关闭阻塞。 此时若输入函数未读取到内容会返回 ERR 。</p>
+<p>输入函数通常是阻塞的，但是通过调用 nodelay(stdscr, TRUE);
+可以关闭阻塞。 此时若输入函数未读取到内容会返回 ERR 。</p>
 <h2 id="光标">光标</h2>
-<p>控制光标。 调用 initscr 后调用 endwin 前，输出终端控制符改变光标是无效的。</p>
+<p>控制光标。 调用 initscr 后调用 endwin
+前，输出终端控制符改变光标是无效的。</p>
 <h3 id="函数及示例">函数及示例</h3>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">move</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>; <span class="comment">// 将光标移动到 [x] 行 [y] 列，左上角为 0 行 0 列</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">curs_set</span><span class="params">(<span class="keyword">int</span> visiblility)</span></span>; <span class="comment">// 参数为 0 表示隐藏光标，1 表示显示光标</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getyx</span><span class="params">(WINDOW* win, <span class="keyword">int</span> &amp;x, <span class="keyword">int</span> &amp;y)</span></span>; <span class="comment">// 获取指定窗口光标位置，示例如下</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">move_up</span><span class="params">()</span> </span>&#123; <span class="comment">// 将光标上移</span></span><br><span class="line">	<span class="keyword">int</span> x, y;</span><br><span class="line">	<span class="built_in">getyx</span>(stdscr, x, y); <span class="comment">// stdscr 表示标准屏幕</span></span><br><span class="line">	<span class="built_in">move</span>(x - <span class="number">1</span>, y);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="指定位置输出">指定位置输出</h3>
-<p>在指定位置输出不必先 move 再 printw ， ncurses 提供了 mv 函数前缀在指定位置输出。 例如 <code>mvprintw(1, 2, "%d", 2)</code> 在 1 行 2 列输出 3 。 类似的有 mvaddch, mvaddstr 等。</p>
+<p>在指定位置输出不必先 move 再 printw ， ncurses 提供了 mv
+函数前缀在指定位置输出。 例如 <code>mvprintw(1, 2, "%d", 2)</code> 在 1
+行 2 列输出 3 。 类似的有 mvaddch, mvaddstr 等。</p>
 <h2 id="颜色">颜色</h2>
 <h3 id="初始化">初始化</h3>
-<p>首先需要调用 has_color() 查看当前运行环境是否支持彩色。 调用 start_color() 初始化颜色，成功则返回 OK 。</p>
+<p>首先需要调用 has_color() 查看当前运行环境是否支持彩色。 调用
+start_color() 初始化颜色，成功则返回 OK 。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">has_colors</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">start_color</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br></pre></td></tr></table></figure>
-<p>成功后会初始化全局变量 COLORS 表示终端支持的颜色数量 还会有 COLOT_WHITE, COLOR_RED 等 8 个表示颜色的变量。</p>
+<p>成功后会初始化全局变量 COLORS 表示终端支持的颜色数量 还会有
+COLOT_WHITE, COLOR_RED 等 8 个表示颜色的变量。</p>
 <h3 id="使用">使用</h3>
 <p>例如希望打印白底黑字的信息：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *info)</span> </span>&#123;</span><br><span class="line">	<span class="built_in">init_pair</span>(<span class="number">1</span>, COLOR_BLACK, COLOR_WHITE);</span><br><span class="line">		<span class="comment">// 的一个参数表示编号，后面两个分别表示字体和背景颜色</span></span><br><span class="line">	<span class="built_in">attron</span>(<span class="built_in">COLOR_PAIR</span>(<span class="number">1</span>));</span><br><span class="line">		<span class="comment">// attron 是一个设置函数，COLOR_PAIR 返回指定编号的颜色信息</span></span><br><span class="line">	<span class="built_in">addstr</span>(info);</span><br><span class="line">	<span class="built_in">attroff</span>(<span class="built_in">COLOR_PAIR</span>(<span class="number">1</span>));</span><br><span class="line">		<span class="comment">// attroff 关闭设置（若接下来需要用其他颜色可以不调用 attroff 而直接使用 attron 覆盖设置</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="错误示例">错误示例</h3>
-<p>值得注意的是，必须保证 init_pair 的编号不与其他已初始化的编号重复 一个错误的调用如下：</p>
+<p>值得注意的是，必须保证 init_pair 的编号不与其他已初始化的编号重复
+一个错误的调用如下：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> *info = <span class="string">&quot;ERROR CODE&quot;</span>;</span><br><span class="line"><span class="built_in">init_pair</span>(<span class="number">1</span>, COLOR_BLACK, COLOR_WHITE);</span><br><span class="line"><span class="built_in">attron</span>(<span class="built_in">COLOR_PAIR</span>(<span class="number">1</span>));</span><br><span class="line"><span class="built_in">addstr</span>(info); <span class="comment">// 打印白底黑字</span></span><br><span class="line"><span class="built_in">init_pair</span>(<span class="number">1</span>, COLOR_BLACK, COLOR_RED);</span><br><span class="line"><span class="built_in">attron</span>(<span class="built_in">COLOR_PAIR</span>(<span class="number">1</span>));</span><br><span class="line"><span class="built_in">addstr</span>(info); <span class="comment">// 打印白底红字</span></span><br></pre></td></tr></table></figure>
-<p>上述代码的期望打印出白字和黑字两种不同的颜色， 但事实上只会打印出红色一种。 解决方案便是将白底红字的 pair 编号设为 2 。</p>
+<p>上述代码的期望打印出白字和黑字两种不同的颜色，
+但事实上只会打印出红色一种。 解决方案便是将白底红字的 pair 编号设为 2
+。</p>
 <h2 id="窗口">窗口</h2>
-<p>ncurses 有窗口类 WINDOW 并提供了 stdscr 作为默认窗口。 有时一个窗口无法满足需要，此时需要自己新建窗口。</p>
+<p>ncurses 有窗口类 WINDOW 并提供了 stdscr 作为默认窗口。
+有时一个窗口无法满足需要，此时需要自己新建窗口。</p>
 <h3 id="新建窗口">新建窗口</h3>
 <p>调用 newwin 来新建窗口。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 从 ([x], [y]) 开始新建 [line] 行 [column] 列的窗口。</span></span><br><span class="line"><span class="function">WINDOW *<span class="title">newwin</span><span class="params">(<span class="keyword">int</span> line, <span class="keyword">int</span> column, <span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>;</span><br></pre></td></tr></table></figure>
 <p>新建的窗口</p>
 <h3 id="通用输出">通用输出</h3>
-<p>addch, printw 等输出方式只输出到 stdscr 。 ncurses 提供了 w 前缀来输出到指定窗口。 例如 <code>wprintw(win, "%d", 1)</code> 在 [win] 窗口输出 1 。 但是自己新建的窗口与 stdscr 不同， 若想在屏幕上显示需要调用 <code>wrefresh(win)</code> 刷新窗口。</p>
-<p>若想在窗口中指定位置输出，可以用 mvw 前缀函数。 例如 <code>mvwprintw(win, 1, 2, "%d", 3)</code> 在 [win] 窗口的 1 行 2 列（ <strong>相对位置</strong> ）输出 3 。</p>
+<p>addch, printw 等输出方式只输出到 stdscr 。 ncurses 提供了 w
+前缀来输出到指定窗口。 例如 <code>wprintw(win, "%d", 1)</code> 在 [win]
+窗口输出 1 。 但是自己新建的窗口与 stdscr 不同，
+若想在屏幕上显示需要调用 <code>wrefresh(win)</code> 刷新窗口。</p>
+<p>若想在窗口中指定位置输出，可以用 mvw 前缀函数。 例如
+<code>mvwprintw(win, 1, 2, "%d", 3)</code> 在 [win] 窗口的 1 行 2 列（
+<strong>相对位置</strong> ）输出 3 。</p>
 <h3 id="子窗口">子窗口</h3>
 <p>调用 subwin 创建子窗口。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 从 ([x], [y]) 开始新建 [line] 行 [column] 列属于 [parent] 的子窗口。</span></span><br><span class="line"><span class="function">WINDOW *<span class="title">subwin</span><span class="params">(WINDOW *parent, <span class="keyword">int</span> line, <span class="keyword">int</span> column, <span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>;</span><br></pre></td></tr></table></figure>
-<p>子窗口与普通窗口的区别在于它与其父窗口共用屏幕储存空间， 子窗口修改时父窗口会直接受到影响。 比如新建了 stdscr 的子窗口 win ， 那么输出到 win 后想显示在屏幕不调用 wrefresh 而是调用 touchwin(stdscr) 。 touchwin 用于标记一个窗口被修改。</p>
+<p>子窗口与普通窗口的区别在于它与其父窗口共用屏幕储存空间，
+子窗口修改时父窗口会直接受到影响。 比如新建了 stdscr 的子窗口 win ，
+那么输出到 win 后想显示在屏幕不调用 wrefresh 而是调用 touchwin(stdscr)
+。 touchwin 用于标记一个窗口被修改。</p>
 <h3 id="销毁窗口">销毁窗口</h3>
 <p>调用 delwin 销毁窗口。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">delwin</span><span class="params">(WINDOW *win)</span></span>; <span class="comment">// 销毁 [win] 窗口</span></span><br></pre></td></tr></table></figure>
 <p>窗口销毁后其在屏幕上对应的内容不会改变。</p>
 <h2 id="离开">离开</h2>
-<p>有时候可能需要离开 ncurses 回到行缓冲模式做些事情而且需要在之后回到 ncurses 。 例如 Vim 里面输入 :!ls 就会退出 ncurses 运行 ls 命令，并在用户敲下回车后回到 ncurses。</p>
+<p>有时候可能需要离开 ncurses 回到行缓冲模式做些事情而且需要在之后回到
+ncurses 。 例如 Vim 里面输入 :!ls 就会退出 ncurses 运行 ls
+命令，并在用户敲下回车后回到 ncurses。</p>
 <p>调用 def_prog_mode 暂存，调用 reset_prog_mode 恢复。</p>
 <h3 id="示例">示例</h3>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="built_in">initscr</span>();</span><br><span class="line">	<span class="built_in">printw</span>(<span class="string">&quot;Hello World !!!\n&quot;</span>);</span><br><span class="line">	<span class="built_in">getch</span>(); <span class="comment">// 等待用户输入</span></span><br><span class="line">	<span class="built_in">def_prog_mode</span>(); <span class="comment">// 存储当前tty 模式</span></span><br><span class="line">	<span class="built_in">endwin</span>(); <span class="comment">// 退出 ncurses 模式</span></span><br><span class="line">	<span class="built_in">system</span>(<span class="string">&quot;sh&quot;</span>); <span class="comment">// 返回普通的行缓冲模式</span></span><br><span class="line">	<span class="built_in">reset_prog_mode</span>(); <span class="comment">// 返回到 def_prog_mode() 存储的 tty 模式</span></span><br><span class="line">	<span class="built_in">refresh</span>(); <span class="comment">// 刷新屏幕（必须！）</span></span><br><span class="line">	<span class="built_in">getch</span>(); <span class="comment">// 等待用户输入</span></span><br><span class="line">	<span class="built_in">endwin</span>(); <span class="comment">// 退出 ncurses 模式</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="输出中文等非-ascii-字符">输出中文等非 ASCII 字符</h2>
-<p>事实上 ncurses 并不支持直接输出中文， 这意味着调用 printw("中文") 会是一堆乱码。 解决方案如下：</p>
+<p>事实上 ncurses 并不支持直接输出中文， 这意味着调用 printw("中文")
+会是一堆乱码。 解决方案如下：</p>
 <h3 id="安装库">安装库</h3>
-<p>这需要另一个库。 通过 <code>sudo aptitude install libncurses5 libncursesw5 libncursesw5-dbg libncursesw5-dev</code> 安装</p>
+<p>这需要另一个库。 通过
+<code>sudo aptitude install libncurses5 libncursesw5 libncursesw5-dbg libncursesw5-dev</code>
+安装</p>
 <h3 id="头文件">头文件</h3>
-<p>一定是 <code>#include &lt;ncurses.h&gt;</code> 而不是 <code>#include &lt;curses.h&gt;</code> 。 另外在 main.cpp <code>#include &lt;locale.h&gt;</code> 。</p>
+<p>一定是 <code>#include &lt;ncurses.h&gt;</code> 而不是
+<code>#include &lt;curses.h&gt;</code> 。 另外在 main.cpp
+<code>#include &lt;locale.h&gt;</code> 。</p>
 <h3 id="调用">调用</h3>
-<p>在调用 initscr() <strong>之前</strong> 调用 setlocale(LC_ALL, "") 。</p>
+<p>在调用 initscr() <strong>之前</strong> 调用 setlocale(LC_ALL, "")
+。</p>
 <h3 id="编译">编译</h3>
 <p>将 <code>-lncurses</code> 参数改为 <code>-lncursesw</code> 。</p>
 
@@ -1042,12 +1135,16 @@ if 上的命令往往失败了，执行的是 if 里头的命令。</p>
 <p>用彩虹为输出着色！</p>
 <h3 id="示例">示例</h3>
 <figure>
-<img src="https://pic4.zhimg.com/v2-3bf6b7552162441dd638ac6d5fb3717b_r.jpg" alt="lolcat" /><figcaption aria-hidden="true">lolcat</figcaption>
+<img
+src="https://pic4.zhimg.com/v2-3bf6b7552162441dd638ac6d5fb3717b_r.jpg"
+alt="lolcat" />
+<figcaption aria-hidden="true">lolcat</figcaption>
 </figure>
 <h3 id="安装方式-1">安装方式</h3>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo aptitude install rubygems</span><br><span class="line">gem install lolcat</span><br></pre></td></tr></table></figure>
 <h3 id="管道处理">管道处理</h3>
-<p>非常有意思的是，将大多数 ncurses 程序的输出通过管道用 lolcat 后仍然可以正常运行！</p>
+<p>非常有意思的是，将大多数 ncurses 程序的输出通过管道用 lolcat
+后仍然可以正常运行！</p>
 <p>比如 <code>nano | lolcat</code> 可以打开一个彩虹编辑器；<br />
 <code>ncdu | lolcat</code> 可以打开一个彩虹文件查看器；<br />
 <code>sl | lolcat</code> 可以开彩虹火车；<br />
@@ -1072,30 +1169,43 @@ if 上的命令往往失败了，执行的是 if 里头的命令。</p>
 <p>在终端里面打印图片或者视频！</p>
 <h3 id="示例-2">示例</h3>
 <figure>
-<img src="https://pic4.zhimg.com/v2-91254499e2880bbe3068ce2a3e086977_b.gif" alt="chafa" /><figcaption aria-hidden="true">chafa</figcaption>
+<img
+src="https://pic4.zhimg.com/v2-91254499e2880bbe3068ce2a3e086977_b.gif"
+alt="chafa" />
+<figcaption aria-hidden="true">chafa</figcaption>
 </figure>
 <p>小诀窍：把终端字体调小并开全屏可以让图片更清晰（但是更慢）。<br />
 给你一图片自行意会（记住这张图是在终端上打印的！！！）：</p>
 <figure>
-<img src="http://kewth.gq/wp-content/uploads/2019/03/选区_017.png" alt="chafabig" /><figcaption aria-hidden="true">chafabig</figcaption>
+<img src="http://kewth.gq/wp-content/uploads/2019/03/选区_017.png"
+alt="chafabig" />
+<figcaption aria-hidden="true">chafabig</figcaption>
 </figure>
 <h3 id="安装">安装</h3>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/hpjansson/chafa.git &amp;&amp; <span class="built_in">cd</span> chafa</span><br><span class="line">sudo aptitude install libmagickwand-dev</span><br><span class="line">./autogen.sh</span><br><span class="line">make</span><br><span class="line">sudo make install</span><br></pre></td></tr></table></figure>
-<p>这个安装过程相对比较麻烦，详细过程见 <a target="_blank" rel="noopener" href="https://github.com/hpjansson/chafa">Github</a> 。</p>
+<p>这个安装过程相对比较麻烦，详细过程见 <a
+target="_blank" rel="noopener" href="https://github.com/hpjansson/chafa">Github</a> 。</p>
 <h2 id="img2txt-cacaview">img2txt / cacaview</h2>
 <p>在终端里用 ASCII 打印图片！</p>
 <p>或者用 cacaview 打开一个窗口查看。</p>
-<p>upd: 后来我才知道 w3m 也可以查看图片，和 cacaview 的效果一模一样。</p>
+<p>upd: 后来我才知道 w3m 也可以查看图片，和 cacaview
+的效果一模一样。</p>
 <h3 id="安装-1">安装</h3>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo aptitude install caca-utils</span><br></pre></td></tr></table></figure>
 <h2 id="w3m-lynx-browsh">w3m / lynx / browsh</h2>
 <p>在终端浏览网页！</p>
 <h3 id="示例-3">示例</h3>
-<p>w3m 和 lynx 大同小异，没有什么本质上的区别。 （别喷我，我这么说是拿 browsh 作参照）</p>
-<p>但是， browsh 不同，它内部调用 Firefox 渲染网页并处理后打印在终端， 因此 browsh 几乎能 <strong>在终端</strong> 支持任何现代浏览器支持的！</p>
+<p>w3m 和 lynx 大同小异，没有什么本质上的区别。 （别喷我，我这么说是拿
+browsh 作参照）</p>
+<p>但是， browsh 不同，它内部调用 Firefox 渲染网页并处理后打印在终端，
+因此 browsh 几乎能 <strong>在终端</strong>
+支持任何现代浏览器支持的！</p>
 <p>只给出一张 browsh 浏览 youtubu 的图片：</p>
 <figure>
-<img src="https://oscimg.oschina.net/oscnet/cc8d81d3c93d858a0a3f39e08293e4b6535.jpg" alt="browsh" /><figcaption aria-hidden="true">browsh</figcaption>
+<img
+src="https://oscimg.oschina.net/oscnet/cc8d81d3c93d858a0a3f39e08293e4b6535.jpg"
+alt="browsh" />
+<figcaption aria-hidden="true">browsh</figcaption>
 </figure>
 <h3 id="安装-2">安装</h3>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># w3m</span></span><br><span class="line">sudo aptitude install w3m</span><br><span class="line"><span class="comment"># lynx</span></span><br><span class="line">sudo aptitude install lynx</span><br><span class="line"><span class="comment"># browsh</span></span><br><span class="line">wget https://github.com/browsh-org/browsh/releases/download/v1.5.0/browsh_1.5.0_linux_amd64.deb</span><br><span class="line">sudo dpkg -i ./browsh_1.5.0_linux_amd64.deb</span><br></pre></td></tr></table></figure>
@@ -1108,18 +1218,26 @@ if 上的命令往往失败了，执行的是 if 里头的命令。</p>
 <p>在终端 <del>玩打字游戏</del> 测试打字速度！</p>
 <h3 id="示例-4">示例</h3>
 <figure>
-<img src="http://kewth.gq/wp-content/uploads/2019/03/选区_027.png" alt="typespeed" /><figcaption aria-hidden="true">typespeed</figcaption>
+<img src="http://kewth.gq/wp-content/uploads/2019/03/选区_027.png"
+alt="typespeed" />
+<figcaption aria-hidden="true">typespeed</figcaption>
 </figure>
 <h3 id="安装-4">安装</h3>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo aptitude install typespeed</span><br></pre></td></tr></table></figure>
 <h3 id="自定义词库">自定义词库</h3>
-<p>我是真的爱折腾，竟然自己找出了 typespeed 的词库位置并且自己加了词库。。。</p>
-<p>顺便夸一下 typespeed 的扩展性真的好，它考虑到了用户的自定义词库需求。</p>
-<p>只需要在 /usr/share/typespeed/words/ 目录下添加 words.xxx 文件（ xxx 随意填），<br />
+<p>我是真的爱折腾，竟然自己找出了 typespeed
+的词库位置并且自己加了词库。。。</p>
+<p>顺便夸一下 typespeed
+的扩展性真的好，它考虑到了用户的自定义词库需求。</p>
+<p>只需要在 /usr/share/typespeed/words/ 目录下添加 words.xxx 文件（ xxx
+随意填），<br />
 文件第一行是这个词库的名称，接下来每行一个单词就可以了。</p>
-<p>然后进入 typespeed 就能看到你自己的词库啦（ kewth's xxx 就是我自己加的）：</p>
+<p>然后进入 typespeed 就能看到你自己的词库啦（ kewth's xxx
+就是我自己加的）：</p>
 <figure>
-<img src="http://kewth.gq/wp-content/uploads/2019/03/选区_028.png" alt="mywords" /><figcaption aria-hidden="true">mywords</figcaption>
+<img src="http://kewth.gq/wp-content/uploads/2019/03/选区_028.png"
+alt="mywords" />
+<figcaption aria-hidden="true">mywords</figcaption>
 </figure>
 <h2 id="nethack">nethack</h2>
 <p>世界上最棒的终端游戏（绝无夸大）！<br />
@@ -1137,7 +1255,8 @@ nethack 太博大精深了，玩法不赘述。</p>
 <h3 id="简单上手">简单上手</h3>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">task add test1</span><br><span class="line">task add test2</span><br><span class="line">task start 1</span><br><span class="line">task long</span><br><span class="line">task <span class="keyword">done</span> 1</span><br><span class="line">task <span class="keyword">done</span> 2</span><br></pre></td></tr></table></figure>
 <h3 id="tasksh">tasksh</h3>
-<p>整合 taskwarrior 的交互命令行，里面可以直接敲 <code>add ...</code> 或 <code>list</code> 等命令。</p>
+<p>整合 taskwarrior 的交互命令行，里面可以直接敲 <code>add ...</code> 或
+<code>list</code> 等命令。</p>
 
       
     </div>
@@ -1227,7 +1346,8 @@ emm 还有大半个小时才检票，果断拿起颓书开始颓废，<br />
 地理菜狗还以为北京纬度高就会比较凉快来着。</p>
 <p>至于住的酒店，我敢说这是我住过最差的酒店了，<br />
 整一偏僻平房（有点像四合院？），里面要啥没啥，<br />
-卫生条件极差，听隔壁德拉说他们床头粘了 10+ *** ，部分带红，估计是 **** 。<br />
+卫生条件极差，听隔壁德拉说他们床头粘了 10+ *** ，部分带红，估计是 ****
+。<br />
 水龙头都 tm 生锈了，淋浴喷头竟然对着马桶。<br />
 之前住安徽时还喷了那宾馆来着，现在感觉那简直是天堂。</p>
 <p>晚上还是很 nice 的，上一届北大的信息组学长们请我们吃饭，<br />
@@ -1239,17 +1359,21 @@ emm 还有大半个小时才检票，果断拿起颓书开始颓废，<br />
 <p>上午的开幕式已经忘了讲了什么了，<br />
 大概是大谈信息学发展，北大的优势和竞赛生在北大的学习方向。</p>
 <p>北大食堂贼多，不过我们可以吃的只有三个，农园最近，大家就都去了农园，<br />
-还不错，至于消费我跟本没注意，反正看到还行的就拿了。。。发的 100 元的卡应该够用的。</p>
+还不错，至于消费我跟本没注意，反正看到还行的就拿了。。。发的 100
+元的卡应该够用的。</p>
 <p>下午的考试，萎出天际，可能是没有找到状态吧，<br />
 三道题目一点思路都没有，真的就是只想得到暴力，还是最暴力的暴力，<br />
-结果暴力还打挂了，明明过了样例过了自测数据，但是就上去就是使劲 WA 。<br />
+结果暴力还打挂了，明明过了样例过了自测数据，但是就上去就是使劲 WA
+。<br />
 正常考试处于崩溃和半放弃的状态，最后得到了 18' 的好成绩。</p>
 <p>本来挺乐观的，以为和省选一样，大众分就是几十分，<br />
 然而问了一波成绩发现某 Jian 200+ 。。。<br />
 好吧是我凉了。</p>
-<p>于是颓了一晚上，打 generals ，看敖厂长，本来想打饥荒然而被我的 XP 折服了。</p>
+<p>于是颓了一晚上，打 generals ，看敖厂长，本来想打饥荒然而被我的 XP
+折服了。</p>
 <h2 id="day2">Day2</h2>
-<p>上午大师讲座 <del>master 牛逼</del> ，请的外国的一位教授，图灵奖获得者。<br />
+<p>上午大师讲座 <del>master 牛逼</del>
+，请的外国的一位教授，图灵奖获得者。<br />
 这次讲座我感触很深，受益匪浅，得到了一个教训和今后的一个小目标：<br />
 好好学英语。<br />
 woc 英语菜狗全程懵逼啊，除了黑板上画的图什么都搞不懂。<br />
@@ -1263,12 +1387,16 @@ woc 英语菜狗全程懵逼啊，除了黑板上画的图什么都搞不懂。<
 <p>一个维度在树上只能管一条链，题目可以转换为最小链覆盖。<br />
 然而我考场上的转换方式不太一样，更复杂，每条链要去掉 lca,<br />
 于是我就搞了个 dfs 去求这玩意，交上去过了 subtask1 和 subtask3 。<br />
-woc? subtask3 是没有限制的，讲道理过了 subtask3 就一定可以过 subtask2 。<br />
-仔细分析发现 dfs 儿子的顺序会有影响，没想出来怎么去掉这个影响，于是开始操作。<br />
+woc? subtask3 是没有限制的，讲道理过了 subtask3 就一定可以过 subtask2
+。<br />
+仔细分析发现 dfs
+儿子的顺序会有影响，没想出来怎么去掉这个影响，于是开始操作。<br />
 我 dfs 的时候选择 size 最大的一个儿子去递归，再交，还是一样。<br />
 我 dfs 的时候选择叶子数最大的一个儿子去递归，再交，还是一样。<br />
-我 dfs 的时候随机选择一个儿子去递归，再交，过了 subtask1 和 subtask2 。<br />
-Nice 啊综合一下呗，根据输入数据特判一下，如果是 subtask2 就随机递归，subtask3 就自然递归。<br />
+我 dfs 的时候随机选择一个儿子去递归，再交，过了 subtask1 和 subtask2
+。<br />
+Nice 啊综合一下呗，根据输入数据特判一下，如果是 subtask2
+就随机递归，subtask3 就自然递归。<br />
 成功 AC ，最后 122' 。</p>
 <p>晚上贼颓，因为明天不用考试嘛，于是爆肝小游戏，都是颓过的人，细节自己想都想得出。</p>
 <h2 id="day3">Day3</h2>
@@ -1356,33 +1484,65 @@ Nice 啊综合一下呗，根据输入数据特判一下，如果是 subtask2 �
     
     <div class="post-body" itemprop="articleBody">
           <h2 id="定义">定义</h2>
-<p>简单来说，形如 $ a_0 + a_1X + a_2X^2 + ... + a_nX^n $ 的代数表达式叫做多项式， 可以记作 $ P(X) = a_0 + a_1X + a_2X^2 + ... + a_nX^n $ （系数表示法）， a 叫做多项式的系数，X 是一个不定元，不表示任何值， 不定元在多项式中最大项的次数称作多项式的次数。</p>
+<p>简单来说，形如 $ a_0 + a_1X + a_2X^2 + ... + a_nX^n $
+的代数表达式叫做多项式， 可以记作 $ P(X) = a_0 + a_1X + a_2X^2 + ... +
+a_nX^n $ （系数表示法）， a 叫做多项式的系数，X
+是一个不定元，不表示任何值，
+不定元在多项式中最大项的次数称作多项式的次数。</p>
 <h2 id="加减">加减</h2>
-<p>两个多项式 a, b 的和 a + b 是一个多项式 c ，满足： $ x, c(x) = a(x) + b(x) $</p>
-<p>两个多项式 a, b 的差 a - b 是一个多项式 c ，满足： $ x, c(x) = a(x) - b(x) $</p>
+<p>两个多项式 a, b 的和 a + b 是一个多项式 c ，满足： $ x, c(x) = a(x) +
+b(x) $</p>
+<p>两个多项式 a, b 的差 a - b 是一个多项式 c ，满足： $ x, c(x) = a(x) -
+b(x) $</p>
 <p>多项式的加减十分自然，实际运算中也只需要按定义 O(n) 枚举即可。</p>
 <h2 id="乘">乘</h2>
-<p>两个多项式 a, b 的积 a * b 是一个多项式 c ，满足： $ x, c(x) = a(x) b(x) $</p>
-<p>此时将 a, b 的系数按分配率展开求 c 的时间复杂度为 O(n * m) ， n, m 分别为 a, b 的次数，不难得出 c 的次数为 n + m 。</p>
-<p>快速求多项式乘积的方法是 $ O(n log_2n) $ 的 <a href="">FFT</a> 或 NTT 。</p>
+<p>两个多项式 a, b 的积 a * b 是一个多项式 c ，满足： $ x, c(x) = a(x)
+b(x) $</p>
+<p>此时将 a, b 的系数按分配率展开求 c 的时间复杂度为 O(n * m) ， n, m
+分别为 a, b 的次数，不难得出 c 的次数为 n + m 。</p>
+<p>快速求多项式乘积的方法是 $ O(n log_2n) $ 的 <a href="">FFT</a> 或 NTT
+。</p>
 <h2 id="除">除</h2>
-<p>两个多项式 a, b 的商 a / b 是一个多项式 c ，满足： $ x, c(x) = a(x) / b(x) $</p>
-<p>众所周知多项式除法可以列竖式求解， 这样做与乘法一样复杂度为 O(n * m) 。</p>
+<p>两个多项式 a, b 的商 a / b 是一个多项式 c ，满足： $ x, c(x) = a(x) /
+b(x) $</p>
+<p>众所周知多项式除法可以列竖式求解， 这样做与乘法一样复杂度为 O(n * m)
+。</p>
 <h2 id="取模">取模</h2>
-<p>正如整数除法会有余数，多项式除法也不一定整除， 此时 a / b 会余一个多项式 c ， 正如整数除法中余数小于除数， 此处也要满足 c 的次数小于 b 的次数以保证唯一性。</p>
-<p>具体来说，对于多项式 a, b 存在唯一的多项式 c, d 满足： a = b * d + c 且 c 的次数小于 b 的次数， 便称 c 是 b 除 a 的余数，即 a 模 b 的结果， d 是 b 除 a 的商。</p>
-<p>值得注意的是，当模数 b 可表示为 $ b(x) = x^k $ 时， a 模 b 相当于将 a 舍弃所有次数大于等于 k 的单项式的结果。</p>
+<p>正如整数除法会有余数，多项式除法也不一定整除， 此时 a / b
+会余一个多项式 c ， 正如整数除法中余数小于除数， 此处也要满足 c
+的次数小于 b 的次数以保证唯一性。</p>
+<p>具体来说，对于多项式 a, b 存在唯一的多项式 c, d 满足： a = b * d + c
+且 c 的次数小于 b 的次数， 便称 c 是 b 除 a 的余数，即 a 模 b 的结果， d
+是 b 除 a 的商。</p>
+<p>值得注意的是，当模数 b 可表示为 $ b(x) = x^k $ 时， a 模 b 相当于将 a
+舍弃所有次数大于等于 k 的单项式的结果。</p>
 <h2 id="逆元">逆元</h2>
-<p>对于多项式 a ，其在 mod p 意义下的逆元 b 满足： a * b mod p = 1 且 b 的次数不比 a 大 （此处的 1 实际上是指只有常数项为 1 而次数为 0 的多项式）， a 的逆元通常记为 $ a^{-1} $ 或 inv(a) 。</p>
+<p>对于多项式 a ，其在 mod p 意义下的逆元 b 满足： a * b mod p = 1 且 b
+的次数不比 a 大 （此处的 1 实际上是指只有常数项为 1 而次数为 0
+的多项式）， a 的逆元通常记为 $ a^{-1} $ 或 inv(a) 。</p>
 <p>那么在 mod p 意义下，有 $ a / b = a b^{-1} $ 。</p>
 <h2 id="逆元的求解">逆元的求解</h2>
 <p>事实上模数一般是 $ x^n $ 。</p>
 <p>此时可以用分治求多项式 a 的逆元 b。</p>
-<p>假设已经分治求得了 a 模 $ x^{n/2} $ （此处及以下除法表示向上取整）的逆元 c 。 那么有： <span class="math display">\[ a  \cdot  c \equiv 1 (mod \; x^{n/2}) \;\;\;\;\; (1)\]</span> 由 b 的定义可知： <span class="math display">\[ a  \cdot  b \equiv 1 (mod \; x^n) \;\;\;\;\; (2)\]</span> 转换为： <span class="math display">\[ a  \cdot  b \equiv 1 (mod \; x^{n/2}) \;\;\;\;\; (3)\]</span> (3) - (1) 得： <span class="math display">\[ b - c \equiv 0 (mod \; x^{n/2}) \;\;\;\;\; (4)\]</span> 两边同时平方得： <span class="math display">\[ b^2 - 2bc + c^2 \equiv 0 (mod \; x^n) \;\;\;\;\; (5)\]</span> 两边同时乘 a 得： <span class="math display">\[ b - 2c + c^2a \equiv 0 (mod \; x^n) \;\;\;\;\; (6)\]</span> 移项，整理： <span class="math display">\[ b = (2c - c^2a) \; mod \; x^n \]</span></p>
+<p>假设已经分治求得了 a 模 $ x^{n/2} $
+（此处及以下除法表示向上取整）的逆元 c 。 那么有： <span
+class="math display">\[ a  \cdot  c \equiv 1 (mod \; x^{n/2}) \;\;\;\;\;
+(1)\]</span> 由 b 的定义可知： <span class="math display">\[ a  \cdot  b
+\equiv 1 (mod \; x^n) \;\;\;\;\; (2)\]</span> 转换为： <span
+class="math display">\[ a  \cdot  b \equiv 1 (mod \; x^{n/2}) \;\;\;\;\;
+(3)\]</span> (3) - (1) 得： <span class="math display">\[ b - c \equiv 0
+(mod \; x^{n/2}) \;\;\;\;\; (4)\]</span> 两边同时平方得： <span
+class="math display">\[ b^2 - 2bc + c^2 \equiv 0 (mod \; x^n) \;\;\;\;\;
+(5)\]</span> 两边同时乘 a 得： <span class="math display">\[ b - 2c +
+c^2a \equiv 0 (mod \; x^n) \;\;\;\;\; (6)\]</span> 移项，整理： <span
+class="math display">\[ b = (2c - c^2a) \; mod \; x^n \]</span></p>
 <ol start="4" type="1">
-<li>-&gt; (5) 中模数平方的原因： 左边多项式模 $ x^{n/2} $ 为 0 代表该多项式每一项最低次数为 n / 2 + 1 。 那么该多项平方后最低次数会是 n + 1 或 n + 2 ， 模 $ x^n $ 后仍为 0 。</li>
+<li>-&gt; (5) 中模数平方的原因： 左边多项式模 $ x^{n/2} $ 为 0
+代表该多项式每一项最低次数为 n / 2 + 1 。 那么该多项平方后最低次数会是 n
++ 1 或 n + 2 ， 模 $ x^n $ 后仍为 0 。</li>
 </ol>
-<p>于是乎分治，直到 n == 1 ，此时多项式的取模为一个常数，逆元也就是整数的逆元。</p>
+<p>于是乎分治，直到 n == 1
+，此时多项式的取模为一个常数，逆元也就是整数的逆元。</p>
 <p>其中乘法使用 FFT ，则最终时间复杂度为 $ O(n log_2n) $ 。</p>
 
       
@@ -1464,66 +1624,92 @@ Nice 啊综合一下呗，根据输入数据特判一下，如果是 subtask2 �
 %%% 在高铁上一餐吃 70rmb 的 lzk 。</p>
 <p>到了南京还得等 1 小时转到芜湖，期间 UNO 现学现玩，<br />
 第一把就赢了，一定是传说中的新手的欧气附体，<br />
-但是这欧气来得快去的也飞快，后面再也没赢过 ，并且一度成为全场最富（一次拿了 20 张牌也是没谁了）。</p>
+但是这欧气来得快去的也飞快，后面再也没赢过
+，并且一度成为全场最富（一次拿了 20 张牌也是没谁了）。</p>
 <p>再到动车上就累了，睡了一觉。</p>
 <p>宾馆感觉一般但也还行，位置不错，旁边就是美食街，<br />
 逛一遍发现芜湖的物价似乎比长沙要便宜得多？<br />
-这里奶茶只有长沙一半多的价格还巨好喝，还有木桶饭最便宜 8rmb, 最贵也 16rmb, 吃得相当饱，提供的辣椒酱好评。</p>
-<p>晚上宾馆自习，我的笔记本实在实在实在是太 tm 旧了 windows xp 实在实在实在是忍不了啊。<br />
-宾馆的 wifi 都连不上去我怎么怎么打（kan）代（dian）码（ying）啊？？？<br />
+这里奶茶只有长沙一半多的价格还巨好喝，还有木桶饭最便宜 8rmb, 最贵也
+16rmb, 吃得相当饱，提供的辣椒酱好评。</p>
+<p>晚上宾馆自习，我的笔记本实在实在实在是太 tm 旧了 windows xp
+实在实在实在是忍不了啊。<br />
+宾馆的 wifi
+都连不上去我怎么怎么打（kan）代（dian）码（ying）啊？？？<br />
 还有我早已练就一身折腾本领，小事，关掉 XP 的沙雕代理轻松解决。<br />
-但是网络实在是 suo （也许是我电脑不行？），努力了一晚上都没能成功看上电影。</p>
+但是网络实在是 suo
+（也许是我电脑不行？），努力了一晚上都没能成功看上电影。</p>
 <h2 id="day1">Day1</h2>
 <p>第一天考试，凄惨爆 0 。<br />
 考试的时候想不出题啊（<del>我太菜了</del>），比较心不在焉，<br />
 才发现打满暴力都是一种困难，水平不够。<br />
 %　一 % 成功拿满暴力的 CZZ, orz 。</p>
-<p>第一题维护区间历史最小和，玄学转换到二维平面 KD-Tree, 这玩意前几天刚考但是没去学，<br />
+<p>第一题维护区间历史最小和，玄学转换到二维平面 KD-Tree,
+这玩意前几天刚考但是没去学，<br />
 <del>我发现冷门算法一考就会连续考几次</del>。</p>
 <p>第二题一脸不可做，题目名叫因式分解，我也就真的只会因式分解了。<br />
 讲题的时候满分做法爆搜？？？好吧正解还是要个 DP 的。</p>
-<p>第三题式子题妙啊妙啊，这什么用 $ _{i=0}^{n-1} A^i =  $ 把 $ A^n $ 换掉的清奇思路谁想得到啊。<br />
-还有把 f(i) O(1) 一路推到 f(n) 再用组合数的奇技淫巧把 k 到 n 的枚举换成 1 到 k 谁想得到啊。</p>
+<p>第三题式子题妙啊妙啊，这什么用 $ _{i=0}^{n-1} A^i = $ 把 $ A^n $
+换掉的清奇思路谁想得到啊。<br />
+还有把 f(i) O(1) 一路推到 f(n) 再用组合数的奇技淫巧把 k 到 n 的枚举换成
+1 到 k 谁想得到啊。</p>
 <p>还有吐槽一下这套题部分分好少，几乎只有两档：暴力 -&gt; 正解。</p>
 <p>然后就是晚上的 <del>自由欢乐时光</del> 认真自习。<br />
 终于成功把昨天的电影看了一半。<br />
-然后颓了一晚上也是没救了，没办法 T3 被卡常心态爆炸（这就是你颓废的理由？）。</p>
+然后颓了一晚上也是没救了，没办法 T3
+被卡常心态爆炸（这就是你颓废的理由？）。</p>
 <h2 id="day2">Day2</h2>
 <p><del>成功拿到预期的暴力分 30，一大进步。</del></p>
-<p>第一题图染色，考场上脑子不清醒，很快想到 $ O(n^2) $ 的建图方式后，<br />
+<p>第一题图染色，考场上脑子不清醒，很快想到 $ O(n^2) $
+的建图方式后，<br />
 竟然完全没有想到怎么计数，最后 $ O(n^n) $ 枚举染色方案可还行。<br />
 于是 40' -&gt; 10'</p>
 <p>第二题又是一个计数，AC 自动机？我完全没想到，<br />
-我还以为是容斥，但是发现有有 5 种情况，容斥起来要 5 + 10 + 10 + 5 种情况加加减减，<br />
-没敢打，不过这次这题部分分给的挺全的，分了 10 个 subtask 还是不错的 ~~虽然我只拿了 20 ~~ 。</p>
-<p>第三题玄学最短路，要用最短路树（我想到了但是没啥用），这玩意前几天 czz 才讲，<br />
+我还以为是容斥，但是发现有有 5 种情况，容斥起来要 5 + 10 + 10 + 5
+种情况加加减减，<br />
+没敢打，不过这次这题部分分给的挺全的，分了 10 个 subtask 还是不错的
+~~虽然我只拿了 20 ~~ 。</p>
+<p>第三题玄学最短路，要用最短路树（我想到了但是没啥用），这玩意前几天
+czz 才讲，<br />
 <del>果然又应验了我昨天说的，一考就连续考几次</del><br />
-暴力都很难打啊这题，到最后只能 <code>puts("-1")</code> 了，然而 subtask 数据捆绑。</p>
-<p>一考完就被 *** 拉去吃什么网红烤冷面（然而是热的），very nice but 量有点少。<br />
-然后 *** 就拉了一堆人去星巴克 666 ，讲真这是我第一次在星巴克喝咖啡，忍痛剁手。<br />
+暴力都很难打啊这题，到最后只能 <code>puts("-1")</code> 了，然而 subtask
+数据捆绑。</p>
+<p>一考完就被 *** 拉去吃什么网红烤冷面（然而是热的），very nice but
+量有点少。<br />
+然后 *** 就拉了一堆人去星巴克 666
+，讲真这是我第一次在星巴克喝咖啡，忍痛剁手。<br />
 晚上到宾馆就开始颓，终于看完了昨天的电影 <del>壮哉我大火影</del> 。</p>
 <h2 id="day3">Day3</h2>
-<p>今天的题目巨难，听出题人说是因为他明天赶时间所以把明天的 <del>毒瘤</del> 题全放今天就有更多时间讲。</p>
-<p>第一题在 2 * n 的网格图上求一个生成树，我想到有个类似的题（求 2n 的网格图上放一颗树的方案数），<br />
+<p>今天的题目巨难，听出题人说是因为他明天赶时间所以把明天的
+<del>毒瘤</del> 题全放今天就有更多时间讲。</p>
+<p>第一题在 2 * n 的网格图上求一个生成树，我想到有个类似的题（求 2n
+的网格图上放一颗树的方案数），<br />
 但是那道题我已经忘记怎么做了，而且那是计数，而这题是要求一个最优方案，<br />
-反正就是以为可做然而 Naive, 浪费了很多时间最后打了枚举生成树的大暴力。<br />
-考场上有一个线性计算当前方案的算法，枚举的时候加一点小剪枝，总复杂度应该是 $ O(6^n n) $ ， 预计 20' ，但是实际上还是只有 10' 。</p>
+反正就是以为可做然而 Naive,
+浪费了很多时间最后打了枚举生成树的大暴力。<br />
+考场上有一个线性计算当前方案的算法，枚举的时候加一点小剪枝，总复杂度应该是
+$ O(6^n n) $ ， 预计 20' ，但是实际上还是只有 10' 。</p>
 <p>第二题感觉是什么数据结构题，我按照一种贪心思路敲了线段树，<br />
-估摸着有 23' 就没管了，后来出题人放了三个大样例，我一测，第一个就 WA 了，改了一点细节后过掉了，<br />
-再测第二个，又 WA 了，然后 debug 了好久才意识到贪心的思路不对，这个时候离考试结束只有 5min, 弃疗。<br />
+估摸着有 23' 就没管了，后来出题人放了三个大样例，我一测，第一个就 WA
+了，改了一点细节后过掉了，<br />
+再测第二个，又 WA 了，然后 debug
+了好久才意识到贪心的思路不对，这个时候离考试结束只有 5min, 弃疗。<br />
 然后和预计的一样，3' 。</p>
-<p>第三题是在一个很奇怪的图上面求最短路为 x 的点对（怎么又是最短路），<br />
+<p>第三题是在一个很奇怪的图上面求最短路为 x
+的点对（怎么又是最短路），<br />
 大暴力就是跑出每个点对的最短路再统计嘛，这个图发现了一些性质，但是还是不会做，<br />
-想着应该不难打就去打 T2 了，然后 T2 打到结束前 5min 所以这题的暴力也没打， 0' 。</p>
+想着应该不难打就去打 T2 了，然后 T2 打到结束前 5min
+所以这题的暴力也没打， 0' 。</p>
 <p>今天的部分分还是很少，T2 T3 的暴力都只有 3' ，难受。</p>
 <p>中午去一个东北菜馆吃饭，菜上的k慢但是挺好吃，很有特色，<br />
 最抢眼的是收银台前面的冰箱，里面一条<strong>巨大</strong>的鱼（完整一条的可能比我还大？）。</p>
 <p>下午有洛谷月赛，于是冠冕堂皇地不改题打月赛，洛谷月赛一如既往，除了签到题都只能打暴力。</p>
 <p>晚上险些被查水表，我正在听歌教练突然敲门，我当时就以迅雷不及掩耳盗铃儿响叮当仁不让世界感受痛楚汉相争之势拔掉了耳机。<br />
-没错，拔掉了耳机，然后 tm 就变成外放了声音贼大，当时就感觉自己真是沙雕了我去，<br />
+没错，拔掉了耳机，然后 tm
+就变成外放了声音贼大，当时就感觉自己真是沙雕了我去，<br />
 然后我又以迅雷不及掩耳盗铃儿响叮当仁不让世界感受痛楚汉相争之势插上了耳机（被自己秀死了），这个时候教练已经差不多进来了，然后交代一些事，我耳机就插在笔记本上光明正大地摆桌上，有点小可怕，还好教练没有说什么。。。</p>
 <p>从今天开始教练晚上要强制收电脑，于是 10:30 电脑被收后无所事事，<br />
-这时候大家都要睡了（比如柠檬 9:30 就交电脑睡了），可是<del>万恶的</del> *** 以睡不着的名义把我拉过去打 UNO,<br />
+这时候大家都要睡了（比如柠檬 9:30 就交电脑睡了），可是<del>万恶的</del>
+*** 以睡不着的名义把我拉过去打 UNO,<br />
 然后我<del>只能被逼无奈地</del>去打 UNO, 到 11:30 才睡可还行。</p>
 <h2 id="day4">Day4</h2>
 <p>今天终于 A 了一题，今天终于 A 了一题，今天终于 A 了一题。<br />
@@ -1537,21 +1723,27 @@ Nice 啊综合一下呗，根据输入数据特判一下，如果是 subtask2 �
 但是看到可能有一面墙回塌后就不这么觉得了。<br />
 而且我还看错了样例，这直接导致我误解题意，本来是先选点再有墙塌（考虑方案的时候不知道哪个墙会塌），<br />
 我看样例这样跑出来不对（其实是我手玩玩错了），就以为是先塌墙再选点（提前知道哪面墙会塌后考虑方案），<br />
-于是 blablabla 后交上去，预计至少有个二三十来分，结果只有大暴力 3' （还好大暴力的数据没卡掉我）。</p>
+于是 blablabla 后交上去，预计至少有个二三十来分，结果只有大暴力 3'
+（还好大暴力的数据没卡掉我）。</p>
 <p>第三题就感觉完全不可做了，最后暴力都没打， 0' 。<br />
 下午讲题的时候才发现这题 25' 的部分分贼容易，就是个排序加贪心。<br />
-另外 75' 正解好像是用 dp 做前面 25' 在对后面 75' 的求和用 dp 套 dp, 好巧啊之前朱哥才讲过。</p>
-<p>A 了一题心里比较舒服，于是下午就颓了好久，打 Nazo 自力更生到 level 8 就不会了，<br />
+另外 75' 正解好像是用 dp 做前面 25' 在对后面 75' 的求和用 dp 套 dp,
+好巧啊之前朱哥才讲过。</p>
+<p>A 了一题心里比较舒服，于是下午就颓了好久，打 Nazo 自力更生到 level 8
+就不会了，<br />
 在网上找提示后玩到 level 11 后再次卡关。</p>
 <p>另外碰到一件玄学的事，我那显示器一碰就断电，然后要不断地调那根线，<br />
 直到调到某个位置才可以打开，大概是因为接触不良，<br />
 然后一次又黑了，我调了贼久试遍了各种姿势还是然并卵，<br />
 没法子了，去找老师实在不行换个位置，<br />
-老师了解状况后过来随手一拨，真的是 <strong>随手一拨</strong> ，那显示屏就开了，就开了，开了，了，<br />
+老师了解状况后过来随手一拨，真的是 <strong>随手一拨</strong>
+，那显示屏就开了，就开了，开了，了，<br />
 emm 不愧是金牌教练，真的 6 。</p>
 <p>晚上本来去吃必胜客的，但是没注意到今天周日，人巨多，排队等座位都要半个小时，<br />
 几经周折最后去了 KFC ，也还不错。<br />
-旁边一家奶茶店搞活动，把一个计时器按到刚好 10s 就能领两大杯奶茶，然而大概是我脸黑，按了 3 次都差的蛮远。 晚上又是 UNO, 和 tyr 无意间相互精准放炮，<br />
+旁边一家奶茶店搞活动，把一个计时器按到刚好 10s
+就能领两大杯奶茶，然而大概是我脸黑，按了 3 次都差的蛮远。 晚上又是 UNO,
+和 tyr 无意间相互精准放炮，<br />
 连续两次 tyr （下家）只剩一张牌，我掐指一算，猜到了那张牌的颜色，<br />
 自信地打出一张其它颜色牌，结果和他数字相同。。。</p>
 <h2 id="next">NEXT</h2>
@@ -1587,7 +1779,7 @@ emm 不愧是金牌教练，真的 6 。</p>
 
 <div class="copyright">
   &copy; 2019 – 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-heartbeat"></i>
   </span>

@@ -320,21 +320,39 @@
 <p>对于一张无向连通图（不一定是简单图），规定一个点为根，两个玩家轮流操作，每次可以删掉根可以到达的一条边，不能操作者输。</p>
 <p>这类博弈即 Green Hackenbush 。</p>
 <h2 id="树">树</h2>
-<p>从简单情况入手，对一棵有根树做 Green Hackenbush ，如何得到一棵树的 SG 值？</p>
+<p>从简单情况入手，对一棵有根树做 Green Hackenbush ，如何得到一棵树的 SG
+值？</p>
 <p>首先，如果树的点数恰为 1 ，SG 值显然为 0 。</p>
-<p>如果根的度数恰为 1 ，设与根相连的点为 <span class="math inline">\(u\)</span> ，设 <span class="math inline">\(u\)</span> 的子树对应的 SG 值为 <span class="math inline">\(k\)</span> ，不难发现原树的 SG 值即 <span class="math inline">\(k+1\)</span> 。</p>
-<p>如果根的度数大于 1 ，那么可以把根“分裂”，把原树拆成一个森林，每个森林的根的度数都恰好为 1 。容易发现这个森林与原树等价，那么应用 SG 定理，原树的 SG 值就是每个子树的 SG 值加一的异或和。</p>
+<p>如果根的度数恰为 1 ，设与根相连的点为 <span
+class="math inline">\(u\)</span> ，设 <span
+class="math inline">\(u\)</span> 的子树对应的 SG 值为 <span
+class="math inline">\(k\)</span> ，不难发现原树的 SG 值即 <span
+class="math inline">\(k+1\)</span> 。</p>
+<p>如果根的度数大于 1
+，那么可以把根“分裂”，把原树拆成一个森林，每个森林的根的度数都恰好为 1
+。容易发现这个森林与原树等价，那么应用 SG 定理，原树的 SG
+值就是每个子树的 SG 值加一的异或和。</p>
 <span id="more"></span>
 <h2 id="图">图</h2>
 <p>对于一般图的情况如何处理？</p>
-<p>有一个定理，把图缩成边双树，然后对于一个有 <span class="math inline">\(k\)</span> 条边的边双，在对应节点上挂 <span class="math inline">\(k\)</span> 个点（其实也可以挂 <span class="math inline">\(k \bmod 2\)</span> 个点），这样得到的一棵树的 SG 值与原图相同。</p>
+<p>有一个定理，把图缩成边双树，然后对于一个有 <span
+class="math inline">\(k\)</span> 条边的边双，在对应节点上挂 <span
+class="math inline">\(k\)</span> 个点（其实也可以挂 <span
+class="math inline">\(k \bmod 2\)</span> 个点），这样得到的一棵树的 SG
+值与原图相同。</p>
 <h2 id="证明">证明</h2>
 <p>这篇博客写得好水啊，补个证明算了。</p>
 <h3 id="融合">融合</h3>
-<p>等价于把所有形如 <span class="math inline">\((y, z)\)</span> 的边替换为 <span class="math inline">\((x, z)\)</span> 然后删去点 <span class="math inline">\(y\)</span> ，然后如果 <span class="math inline">\(y\)</span> 是根，把根换成 <span class="math inline">\(x\)</span> 。</p>
-<p>这样的操作称为在图中融合两个点 <span class="math inline">\(x, y\)</span> 。</p>
+<p>等价于把所有形如 <span class="math inline">\((y, z)\)</span>
+的边替换为 <span class="math inline">\((x, z)\)</span> 然后删去点 <span
+class="math inline">\(y\)</span> ，然后如果 <span
+class="math inline">\(y\)</span> 是根，把根换成 <span
+class="math inline">\(x\)</span> 。</p>
+<p>这样的操作称为在图中融合两个点 <span class="math inline">\(x,
+y\)</span> 。</p>
 <h3 id="引理-1">引理 1</h3>
-<p>对于一张只有恰好一个点数至少为 2 的环且该环包含根的图，融合该环上任意两点，游戏的值不变。</p>
+<p>对于一张只有恰好一个点数至少为 2
+的环且该环包含根的图，融合该环上任意两点，游戏的值不变。</p>
 <details class="note primary"><summary><p>证明</p>
 </summary>
 <p>咕咕咕。</p>
@@ -344,7 +362,9 @@
 <p>对于仙人掌图，融合同一环上的任意两点，游戏的值不变。</p>
 <details class="note primary"><summary><p>证明</p>
 </summary>
-<p>考虑边双树，从叶子开始逐个考虑，对于一个点数至少为 2 的环，考虑其子树，根据引理 1 该环上任意两点是可以融合的。把该环上所有点融合继续归纳，可以证明所有环都是可以把任意两点融合的。</p>
+<p>考虑边双树，从叶子开始逐个考虑，对于一个点数至少为 2
+的环，考虑其子树，根据引理 1
+该环上任意两点是可以融合的。把该环上所有点融合继续归纳，可以证明所有环都是可以把任意两点融合的。</p>
 
 </details>
 <h3 id="定理-2">定理 2</h3>
@@ -357,21 +377,44 @@
 <li>存在一对在同一个边双联通分量的点，融合后游戏的值不变。</li>
 </ol>
 <p>（只要证明存在性是因为，如果一个点对是不满足定理的，那么融合其他点后该点对始终不会满足定理，因此只要把满足定理的点对不断融合即可）</p>
-<p>对图的边数应用数学归纳。边数为 <span class="math inline">\(0\)</span> 的时候显然满足条件 1 。假设边数不超过 <span class="math inline">\(n\)</span> 时都成立，考虑一个边数为 <span class="math inline">\(n+1\)</span> 的图。分类讨论。</p>
+<p>对图的边数应用数学归纳。边数为 <span class="math inline">\(0\)</span>
+的时候显然满足条件 1 。假设边数不超过 <span
+class="math inline">\(n\)</span> 时都成立，考虑一个边数为 <span
+class="math inline">\(n+1\)</span> 的图。分类讨论。</p>
 <h4 id="情况-1">情况 1</h4>
 <p>没有边双联通分量，满足条件 1 。</p>
 <h4 id="情况-2">情况 2</h4>
-<p>存在两个点 <span class="math inline">\(x, y\)</span> ，它们之间有至少三条边不重复的路径。</p>
-<p>这时候融合 <span class="math inline">\(x, y\)</span> ，游戏的值是一定不变的。设原图为 <span class="math inline">\(G\)</span> ，融合后的图为 <span class="math inline">\(H\)</span> ，考虑游戏 <span class="math inline">\(G + H\)</span> 。先手进行一次操作后，后手在另一张图上进行同样的操作，注意到一次操作至少删掉一条边，因此双方操作后两张图的边数都不超过 <span class="math inline">\(n\)</span> 。这个时候可以把两个图不断进行融合，可以发现融合后两张图完全一致，因此 <span class="math inline">\(G + H\)</span> 是一个值为 <span class="math inline">\(0\)</span> 的游戏，这意味着 <span class="math inline">\(G\)</span> 和 <span class="math inline">\(H\)</span> 相等，融合不影响游戏的值，满足条件 2 。</p>
-<p>需要注意的是，由于 <span class="math inline">\(x, y\)</span> 之间有至少三条边不重复的路径，在双方操作后 <span class="math inline">\(x, y\)</span> 之间有至少两条边不重复的路径，因此总是可以融合的。</p>
+<p>存在两个点 <span class="math inline">\(x, y\)</span>
+，它们之间有至少三条边不重复的路径。</p>
+<p>这时候融合 <span class="math inline">\(x, y\)</span>
+，游戏的值是一定不变的。设原图为 <span class="math inline">\(G\)</span>
+，融合后的图为 <span class="math inline">\(H\)</span> ，考虑游戏 <span
+class="math inline">\(G + H\)</span>
+。先手进行一次操作后，后手在另一张图上进行同样的操作，注意到一次操作至少删掉一条边，因此双方操作后两张图的边数都不超过
+<span class="math inline">\(n\)</span>
+。这个时候可以把两个图不断进行融合，可以发现融合后两张图完全一致，因此
+<span class="math inline">\(G + H\)</span> 是一个值为 <span
+class="math inline">\(0\)</span> 的游戏，这意味着 <span
+class="math inline">\(G\)</span> 和 <span
+class="math inline">\(H\)</span> 相等，融合不影响游戏的值，满足条件 2
+。</p>
+<p>需要注意的是，由于 <span class="math inline">\(x, y\)</span>
+之间有至少三条边不重复的路径，在双方操作后 <span
+class="math inline">\(x, y\)</span>
+之间有至少两条边不重复的路径，因此总是可以融合的。</p>
 <h4 id="情况-3">情况 3</h4>
-<p>如果图既不满足情况 1 也不情况 2 ，这样的图一定是仙人掌图。应用定理 1 即可，满足条件 2 。</p>
+<p>如果图既不满足情况 1 也不情况 2 ，这样的图一定是仙人掌图。应用定理 1
+即可，满足条件 2 。</p>
 
 </details>
 <h2 id="参考文献">参考文献</h2>
 <p>论文有点看吐了，咕咕咕的地方到时候再补吧。</p>
-<p><a target="_blank" rel="noopener" href="https://yhx-12243.github.io/OI-transit/records/hdu3094%3Bpoj3710%3Bsoj366%3Bac2667%3Bagc017D.html">yhx-12243 的博客</a></p>
-<p><a target="_blank" rel="noopener" href="http://www.math.uchicago.edu/~may/VIGRE/VIGRE2006/PAPERS/Bartlett.pdf">A Short Guide to Hackenbush</a></p>
+<p><a
+target="_blank" rel="noopener" href="https://yhx-12243.github.io/OI-transit/records/hdu3094%3Bpoj3710%3Bsoj366%3Bac2667%3Bagc017D.html">yhx-12243
+的博客</a></p>
+<p><a
+target="_blank" rel="noopener" href="http://www.math.uchicago.edu/~may/VIGRE/VIGRE2006/PAPERS/Bartlett.pdf">A
+Short Guide to Hackenbush</a></p>
 
     </div>
 
@@ -417,7 +460,7 @@
 
 <div class="copyright">
   &copy; 2019 – 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-heartbeat"></i>
   </span>

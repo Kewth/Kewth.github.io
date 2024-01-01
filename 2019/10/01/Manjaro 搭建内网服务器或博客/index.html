@@ -317,13 +317,15 @@
 <h2 id="apache">apache</h2>
 <p>这里用 apache(httpd) 搭建服务器：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S apache2</span><br></pre></td></tr></table></figure>
-<p>执行 <code>sudo httpd</code> 后打开 localhost ，就有一个东西了（虽然是空的）。<br />
+<p>执行 <code>sudo httpd</code> 后打开 localhost
+，就有一个东西了（虽然是空的）。<br />
 在 /srv/http/ 下新建 index.html 随便写点东西，是可以显示的。<br />
 路径具体查看 <code>httpd -S</code> 。</p>
 <p>启动服务：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl start httpd</span><br></pre></td></tr></table></figure>
 <h2 id="php">php</h2>
-<p>安装 php （ manjaro18.x 预装了 php7.x ，但还是要一些其他的东西）：</p>
+<p>安装 php （ manjaro18.x 预装了 php7.x
+，但还是要一些其他的东西）：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S php php-apache php-fpm</span><br></pre></td></tr></table></figure>
 <p>这时 apache 还是不支持 php 的，需要在配置里加上几行。<br />
 打开 /etc/httpd/conf/httpd.conf ，加入：</p>
@@ -345,12 +347,14 @@
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl start mysqld</span><br></pre></td></tr></table></figure>
 <p>试试能不能登上：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u&lt;用户名&gt; -p</span><br></pre></td></tr></table></figure>
-<p>让 php 支持 mysql 的调用，在 /etc/php/php.ini 找到 ;extension=mysqli 把分号去掉就行了。</p>
+<p>让 php 支持 mysql 的调用，在 /etc/php/php.ini 找到 ;extension=mysqli
+把分号去掉就行了。</p>
 <h2 id="使用-wordpress">使用 wordpress</h2>
 <p>Typecho 用 php7.2 似乎安装会出问题，<br />
 还是建议用 wordpress ，更加成熟，<br />
 安装方式在 wordpress 官网上把包下下来解压到 /srv/http/ ，<br />
-回了正常运行，需要改变 /srv/http 的权限，让 wordpress 能够对其做出修改。<br />
+回了正常运行，需要改变 /srv/http 的权限，让 wordpress
+能够对其做出修改。<br />
 这里不赘述，嫌麻烦可以 <code>chmod 777 -R /srv/http</code> 。</p>
 <p>然后进入 localhost 按照步骤来就行了。</p>
 
@@ -395,7 +399,7 @@
 
 <div class="copyright">
   &copy; 2019 – 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-heartbeat"></i>
   </span>

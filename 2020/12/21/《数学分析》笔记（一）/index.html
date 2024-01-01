@@ -324,68 +324,143 @@
 <li>集合由其组成对象整体唯一确定。</li>
 <li>任何性质都确定一个具有该性质的对象的集合。</li>
 </ol>
-<p>那么对于集合 <span class="math inline">\(M\)</span> 和性质 <span class="math inline">\(P\)</span> ，记 <span class="math inline">\(P(M)\)</span> 表示 <span class="math inline">\(M\)</span> 不以其本身为元素。根据直观上的认知，所有集合都应当满足 <span class="math inline">\(P\)</span> ，那么根据第 3 条基本前提，性质 <span class="math inline">\(P\)</span> 确定了一个集合 <span class="math inline">\(K = \{M | P(M)\}\)</span> 。不难发现我们可以同时推导出 <span class="math inline">\(P(K)\)</span> 和 <span class="math inline">\(\lnot P(K)\)</span> 成立，进而得到一个矛盾，这就是罗素悖论。</p>
-<p>ZFC 集合论给出了一组公理严格定义了集合，这些公理更像是一些集合的标准构造方式，使得集合都能通过这些公理被构造出来，而所谓的“所有集合构成的集合”是不能被构造出来的。</p>
+<p>那么对于集合 <span class="math inline">\(M\)</span> 和性质 <span
+class="math inline">\(P\)</span> ，记 <span
+class="math inline">\(P(M)\)</span> 表示 <span
+class="math inline">\(M\)</span>
+不以其本身为元素。根据直观上的认知，所有集合都应当满足 <span
+class="math inline">\(P\)</span> ，那么根据第 3 条基本前提，性质 <span
+class="math inline">\(P\)</span> 确定了一个集合 <span
+class="math inline">\(K = \{M | P(M)\}\)</span>
+。不难发现我们可以同时推导出 <span class="math inline">\(P(K)\)</span>
+和 <span class="math inline">\(\lnot P(K)\)</span>
+成立，进而得到一个矛盾，这就是罗素悖论。</p>
+<p>ZFC
+集合论给出了一组公理严格定义了集合，这些公理更像是一些集合的标准构造方式，使得集合都能通过这些公理被构造出来，而所谓的“所有集合构成的集合”是不能被构造出来的。</p>
 <p>需要注意的是，每个数都有与之对应的集合的模型。</p>
 <hr />
-<p>具有自反性，传递性，对称性的关系 <span class="math inline">\(\mathcal{R}\)</span> 称为等价关系，通常用 <span class="math inline">\(\sim\)</span> 表示。</p>
-<p>具有自反性，传递性，反对称性的关系 <span class="math inline">\(\mathcal{R}\)</span> 称为偏序关系，通常用 <span class="math inline">\(\preceq\)</span> 表示。</p>
-<p>对于关系 <span class="math inline">\(\mathcal{R} \subset X^2\)</span> 和其转置 <span class="math inline">\(\mathcal{R}&#39;\)</span> ：</p>
+<p>具有自反性，传递性，对称性的关系 <span
+class="math inline">\(\mathcal{R}\)</span> 称为等价关系，通常用 <span
+class="math inline">\(\sim\)</span> 表示。</p>
+<p>具有自反性，传递性，反对称性的关系 <span
+class="math inline">\(\mathcal{R}\)</span> 称为偏序关系，通常用 <span
+class="math inline">\(\preceq\)</span> 表示。</p>
+<p>对于关系 <span class="math inline">\(\mathcal{R} \subset X^2\)</span>
+和其转置 <span class="math inline">\(\mathcal{R}&#39;\)</span> ：</p>
 <ul>
-<li><span class="math inline">\(\mathcal{R}\)</span> 具有自反性 <span class="math inline">\(\Leftrightarrow \triangle_X \subset \mathcal{R}\)</span> 。</li>
-<li><span class="math inline">\(\mathcal{R}\)</span> 具有传递性 <span class="math inline">\(\Leftrightarrow \mathcal{R} \circ \mathcal{R} \subset \mathcal{R}\)</span> 。</li>
-<li><span class="math inline">\(\mathcal{R}\)</span> 具有对称性 <span class="math inline">\(\Leftrightarrow \mathcal{R} = \mathcal{R}&#39;\)</span> 。</li>
-<li><span class="math inline">\(\mathcal{R}\)</span> 具有反对称性 <span class="math inline">\(\Leftrightarrow \mathcal{R} \cap \mathcal{R}&#39; \subset \triangle_X\)</span> 。</li>
+<li><span class="math inline">\(\mathcal{R}\)</span> 具有自反性 <span
+class="math inline">\(\Leftrightarrow \triangle_X \subset
+\mathcal{R}\)</span> 。</li>
+<li><span class="math inline">\(\mathcal{R}\)</span> 具有传递性 <span
+class="math inline">\(\Leftrightarrow \mathcal{R} \circ \mathcal{R}
+\subset \mathcal{R}\)</span> 。</li>
+<li><span class="math inline">\(\mathcal{R}\)</span> 具有对称性 <span
+class="math inline">\(\Leftrightarrow \mathcal{R} =
+\mathcal{R}&#39;\)</span> 。</li>
+<li><span class="math inline">\(\mathcal{R}\)</span> 具有反对称性 <span
+class="math inline">\(\Leftrightarrow \mathcal{R} \cap \mathcal{R}&#39;
+\subset \triangle_X\)</span> 。</li>
 </ul>
 <span id="more"></span>
 <hr />
-<p>对于映射 <span class="math inline">\(f : X \rightarrow Y\)</span> ：</p>
+<p>对于映射 <span class="math inline">\(f : X \rightarrow Y\)</span>
+：</p>
 <ul>
-<li><span class="math inline">\(f\)</span> 是满射当且仅当 <span class="math inline">\(f(X) = Y\)</span></li>
-<li><span class="math inline">\(f\)</span> 是单射当且仅当 <span class="math inline">\(\forall x_1, x_2 \in X, f(x_1) = f(x_2) \Rightarrow x_1 = x_2\)</span> 。</li>
-<li><span class="math inline">\(f\)</span> 是双射当且仅当 <span class="math inline">\(f\)</span> 同时是满射和单射。</li>
+<li><span class="math inline">\(f\)</span> 是满射当且仅当 <span
+class="math inline">\(f(X) = Y\)</span></li>
+<li><span class="math inline">\(f\)</span> 是单射当且仅当 <span
+class="math inline">\(\forall x_1, x_2 \in X, f(x_1) = f(x_2)
+\Rightarrow x_1 = x_2\)</span> 。</li>
+<li><span class="math inline">\(f\)</span> 是双射当且仅当 <span
+class="math inline">\(f\)</span> 同时是满射和单射。</li>
 </ul>
 <p>单射具有左逆映射（不一定唯一），满射具有右逆映射（不一定唯一），双射具有唯一的逆映射。</p>
 <hr />
-<p>对于两个集合 <span class="math inline">\(X, Y\)</span> ，记它们的势分别为 <span class="math inline">\(|X|, |Y|\)</span> ：</p>
+<p>对于两个集合 <span class="math inline">\(X, Y\)</span>
+，记它们的势分别为 <span class="math inline">\(|X|, |Y|\)</span> ：</p>
 <ul>
-<li><span class="math inline">\(|X| = |Y| \Leftrightarrow \exists f : X \rightarrow Y\)</span> 使得 <span class="math inline">\(f\)</span> 是一个双射。</li>
-<li><span class="math inline">\(|X| \le |Y| \Leftrightarrow \exists Z \subset Y \;\; |X| = |Z|\)</span> 。</li>
+<li><span class="math inline">\(|X| = |Y| \Leftrightarrow \exists f : X
+\rightarrow Y\)</span> 使得 <span class="math inline">\(f\)</span>
+是一个双射。</li>
+<li><span class="math inline">\(|X| \le |Y| \Leftrightarrow \exists Z
+\subset Y \;\; |X| = |Z|\)</span> 。</li>
 </ul>
-<p>容易证明这里的 <span class="math inline">\(|X| \le |Y|\)</span> 是一个偏序关系，而选择公理的推论指出任意两个集合都是可比的，即</p>
+<p>容易证明这里的 <span class="math inline">\(|X| \le |Y|\)</span>
+是一个偏序关系，而选择公理的推论指出任意两个集合都是可比的，即</p>
 <p><span class="math display">\[
 \forall X, Y \;\; |X| \le |Y| \lor |Y| \le |X|
 \]</span></p>
-<p>因此这事实上这个关系是 <strong>线性序</strong> ，可以定义 <span class="math inline">\(|X| &lt; |Y| \Leftrightarrow |X| \le |Y| \land |X| \ne |Y|\)</span> 。</p>
-<p>有限集的势严格小于 <span class="math inline">\(|\mathbb{N}|\)</span> ，可数集的势恰好等于 <span class="math inline">\(|\mathbb{N}|\)</span> ，不可数集的势严格大于 <span class="math inline">\(|\mathbb{N}|\)</span> 。</p>
+<p>因此这事实上这个关系是 <strong>线性序</strong> ，可以定义 <span
+class="math inline">\(|X| &lt; |Y| \Leftrightarrow |X| \le |Y| \land |X|
+\ne |Y|\)</span> 。</p>
+<p>有限集的势严格小于 <span class="math inline">\(|\mathbb{N}|\)</span>
+，可数集的势恰好等于 <span class="math inline">\(|\mathbb{N}|\)</span>
+，不可数集的势严格大于 <span class="math inline">\(|\mathbb{N}|\)</span>
+。</p>
 <hr />
-<p>完备性公理等价于上（下）确界引理：实数 <span class="math inline">\(\mathbb{R}\)</span> 的任意有上界（有下界）的非空子集都存在唯一的上确界（下确界）。</p>
-<p>完备性公理可导出阿基米德原理：对任意正数 <span class="math inline">\(a\)</span> 总存在正整数 <span class="math inline">\(n\)</span> 使得 <span class="math inline">\(\frac{1}{n} &lt; a\)</span> 。</p>
+<p>完备性公理等价于上（下）确界引理：实数 <span
+class="math inline">\(\mathbb{R}\)</span>
+的任意有上界（有下界）的非空子集都存在唯一的上确界（下确界）。</p>
+<p>完备性公理可导出阿基米德原理：对任意正数 <span
+class="math inline">\(a\)</span> 总存在正整数 <span
+class="math inline">\(n\)</span> 使得 <span
+class="math inline">\(\frac{1}{n} &lt; a\)</span> 。</p>
 <p>需要注意的是阿基米德原理等价于自然数集无上界。而不满足完备性公理的有理数集是满足阿基米德原理的，因为“自然数集无有理数上界”这个命题并不依赖于完备性公理。</p>
-<p>完备性公理等价于聚点定理：任意无穷有界实数集存在至少一个极限点。其中实数 <span class="math inline">\(p\)</span> 是集合 <span class="math inline">\(S\)</span> 的极限点当且仅当 <span class="math inline">\(p\)</span> 的任意邻域与 <span class="math inline">\(S\)</span> 的交都是无穷集。</p>
+<p>完备性公理等价于聚点定理：任意无穷有界实数集存在至少一个极限点。其中实数
+<span class="math inline">\(p\)</span> 是集合 <span
+class="math inline">\(S\)</span> 的极限点当且仅当 <span
+class="math inline">\(p\)</span> 的任意邻域与 <span
+class="math inline">\(S\)</span> 的交都是无穷集。</p>
 <p>完备性公理等价于闭区间套原理：任意闭区间套组成的序列存在至少一个公共点。</p>
 <h2 id="一些习题">一些习题</h2>
-<p>定义有序对 <span class="math inline">\((a, b) = \{\{a\}, \{a, b\}\}\)</span> ，证明对于任意两个有序对 <span class="math inline">\((a, b)\)</span> 和 <span class="math inline">\((c, d)\)</span> ：</p>
+<p>定义有序对 <span class="math inline">\((a, b) = \{\{a\}, \{a,
+b\}\}\)</span> ，证明对于任意两个有序对 <span class="math inline">\((a,
+b)\)</span> 和 <span class="math inline">\((c, d)\)</span> ：</p>
 <p><span class="math display">\[
 (a, b) = (c, d) \Leftrightarrow a = c \land b = d
 \]</span></p>
 <details class="note primary"><summary><p>Answer</p>
 </summary>
 <p>充分性：</p>
-<p>由 <span class="math inline">\(\{a\} \in (a, b) \Rightarrow \{a\} \in (c, d)\)</span> 可知 <span class="math inline">\(\{a\} = \{c\} \lor \{a\} = \{c, d\}\)</span> ，即 <span class="math inline">\(a = c\)</span> 。</p>
-<p>由 <span class="math inline">\(\{a, b\} \in (a, b) \Rightarrow \{a, b\} \in (c, d)\)</span> 可知 <span class="math inline">\(\{a, b\} = \{c\} \lor \{a, b\} = \{c, d\}\)</span> ，即 <span class="math inline">\(a = b \lor b = d\)</span> 。</p>
-<p>进一步可以知道 <span class="math inline">\((a = b \lor b = d) \land (c = d \lor b = d)\)</span> ，即 <span class="math inline">\((a = b \land c = d) \lor b = d\)</span> ，由于 <span class="math inline">\(a = c\)</span> ，前后两者都等价于 <span class="math inline">\(b = d\)</span> 。</p>
+<p>由 <span class="math inline">\(\{a\} \in (a, b) \Rightarrow \{a\} \in
+(c, d)\)</span> 可知 <span class="math inline">\(\{a\} = \{c\} \lor
+\{a\} = \{c, d\}\)</span> ，即 <span class="math inline">\(a =
+c\)</span> 。</p>
+<p>由 <span class="math inline">\(\{a, b\} \in (a, b) \Rightarrow \{a,
+b\} \in (c, d)\)</span> 可知 <span class="math inline">\(\{a, b\} =
+\{c\} \lor \{a, b\} = \{c, d\}\)</span> ，即 <span
+class="math inline">\(a = b \lor b = d\)</span> 。</p>
+<p>进一步可以知道 <span class="math inline">\((a = b \lor b = d) \land
+(c = d \lor b = d)\)</span> ，即 <span class="math inline">\((a = b
+\land c = d) \lor b = d\)</span> ，由于 <span class="math inline">\(a =
+c\)</span> ，前后两者都等价于 <span class="math inline">\(b = d\)</span>
+。</p>
 <p>必要性：</p>
-<p><span class="math inline">\((a, b) = \{\{a\}, \{a, b\}\} = \{\{c\}, \{c, d\}\} = (c, d)\)</span></p>
+<p><span class="math inline">\((a, b) = \{\{a\}, \{a, b\}\} = \{\{c\},
+\{c, d\}\} = (c, d)\)</span></p>
 
 </details>
 <hr />
-<p>用集合表示自然数，<span class="math inline">\(0 = \varnothing, \forall x \;\; x + 1 = x \cup \{x\}\)</span> ，证明 <span class="math inline">\(\forall x \;\; |x| &lt; |x + 1|\)</span> ，这里 <span class="math inline">\(|x|\)</span> 指的是集合的势。</p>
+<p>用集合表示自然数，<span class="math inline">\(0 = \varnothing,
+\forall x \;\; x + 1 = x \cup \{x\}\)</span> ，证明 <span
+class="math inline">\(\forall x \;\; |x| &lt; |x + 1|\)</span> ，这里
+<span class="math inline">\(|x|\)</span> 指的是集合的势。</p>
 <details class="note primary"><summary><p>Answer</p>
 </summary>
-<p>利用数学归纳法，<span class="math inline">\(x = 0\)</span> 时 <span class="math inline">\(|\varnothing| &lt; |\{\varnothing\}|\)</span> 显然成立，对于 <span class="math inline">\(x \ge 1\)</span> ，假设 <span class="math inline">\(\forall y &lt; x\)</span> 命题都成立。</p>
-<p>设 <span class="math inline">\(A = x - 1\)</span> ，那么 <span class="math inline">\(x = A \cup \{A\}, x + 1 = A \cup \{A\} \cup \{A \cup \{A\}\}\)</span> ，由于 <span class="math inline">\(x \subset x + 1\)</span> ，<span class="math inline">\(|x| \le |x + 1|\)</span> 成立，只需要证明 <span class="math inline">\(x\)</span> 和 <span class="math inline">\(x + 1\)</span> 不等势。</p>
-<p>利用反证法，假设存在双射 <span class="math inline">\(f : A \cup \{A\} \rightarrow A \cup \{A\} \cup \{A \cup \{A\}\}\)</span> ，设 <span class="math inline">\(f(b) = A \cup \{A\}\)</span> ，构造映射 <span class="math inline">\(g : A \rightarrow A \cup \{A\}\)</span> 使得</p>
+<p>利用数学归纳法，<span class="math inline">\(x = 0\)</span> 时 <span
+class="math inline">\(|\varnothing| &lt; |\{\varnothing\}|\)</span>
+显然成立，对于 <span class="math inline">\(x \ge 1\)</span> ，假设 <span
+class="math inline">\(\forall y &lt; x\)</span> 命题都成立。</p>
+<p>设 <span class="math inline">\(A = x - 1\)</span> ，那么 <span
+class="math inline">\(x = A \cup \{A\}, x + 1 = A \cup \{A\} \cup \{A
+\cup \{A\}\}\)</span> ，由于 <span class="math inline">\(x \subset x +
+1\)</span> ，<span class="math inline">\(|x| \le |x + 1|\)</span>
+成立，只需要证明 <span class="math inline">\(x\)</span> 和 <span
+class="math inline">\(x + 1\)</span> 不等势。</p>
+<p>利用反证法，假设存在双射 <span class="math inline">\(f : A \cup \{A\}
+\rightarrow A \cup \{A\} \cup \{A \cup \{A\}\}\)</span> ，设 <span
+class="math inline">\(f(b) = A \cup \{A\}\)</span> ，构造映射 <span
+class="math inline">\(g : A \rightarrow A \cup \{A\}\)</span> 使得</p>
 <p><span class="math display">\[
 g(a) = \left\{
 \begin{aligned}
@@ -394,48 +469,78 @@ g(a) = \left\{
 \end{aligned}
 \right.
 \]</span></p>
-<p>容易发现，<span class="math inline">\(g\)</span> 是双射，这与 <span class="math inline">\(|A| &lt; |A \cup \{A\}|\)</span> 矛盾，因此不存在满足条件的双射 <span class="math inline">\(f\)</span> 。</p>
+<p>容易发现，<span class="math inline">\(g\)</span> 是双射，这与 <span
+class="math inline">\(|A| &lt; |A \cup \{A\}|\)</span>
+矛盾，因此不存在满足条件的双射 <span class="math inline">\(f\)</span>
+。</p>
 
 </details>
 <hr />
-<p>设非空实数集 <span class="math inline">\(X, Y\)</span> 满足 <span class="math inline">\(X \cup Y = \mathbb{R} \land (\forall x \in X, y \in Y \;\;\; x \le y)\)</span> ，证明 <span class="math inline">\(\sup X = \inf Y\)</span> 。</p>
+<p>设非空实数集 <span class="math inline">\(X, Y\)</span> 满足 <span
+class="math inline">\(X \cup Y = \mathbb{R} \land (\forall x \in X, y
+\in Y \;\;\; x \le y)\)</span> ，证明 <span class="math inline">\(\sup X
+= \inf Y\)</span> 。</p>
 <details class="note primary"><summary><p>Answer</p>
 </summary>
-<p>根据完备性公理，存在 <span class="math inline">\(k\)</span> 使得 <span class="math inline">\(\forall x \in X, y \in Y \;\;\; x \le k \le y\)</span> ，那么 <span class="math inline">\(\sup X \le k \le \inf Y\)</span> 。</p>
-<p><span class="math inline">\((y \in Y \Rightarrow y \ge k) \Rightarrow (x &lt; k \Rightarrow x \notin Y \Rightarrow x \in X) \Rightarrow ((-\infty, k) \subset X) \Rightarrow \sup X \ge k \Rightarrow \sup X = k\)</span> 。</p>
-<p>同理可以得到 <span class="math inline">\(\inf Y = k\)</span> ，于是 <span class="math inline">\(\sup X = \inf Y = k\)</span> 。</p>
+<p>根据完备性公理，存在 <span class="math inline">\(k\)</span> 使得
+<span class="math inline">\(\forall x \in X, y \in Y \;\;\; x \le k \le
+y\)</span> ，那么 <span class="math inline">\(\sup X \le k \le \inf
+Y\)</span> 。</p>
+<p><span class="math inline">\((y \in Y \Rightarrow y \ge k) \Rightarrow
+(x &lt; k \Rightarrow x \notin Y \Rightarrow x \in X) \Rightarrow
+((-\infty, k) \subset X) \Rightarrow \sup X \ge k \Rightarrow \sup X =
+k\)</span> 。</p>
+<p>同理可以得到 <span class="math inline">\(\inf Y = k\)</span> ，于是
+<span class="math inline">\(\sup X = \inf Y = k\)</span> 。</p>
 
 </details>
 <hr />
-<p>证明对任意 <span class="math inline">\(n \in \mathbb{N}^{+}, a \in \mathbb{R}^{+}\)</span> ，存在 <span class="math inline">\(x \in \mathbb{R}^{+}\)</span> 使得 <span class="math inline">\(x^n = a\)</span> 。</p>
+<p>证明对任意 <span class="math inline">\(n \in \mathbb{N}^{+}, a \in
+\mathbb{R}^{+}\)</span> ，存在 <span class="math inline">\(x \in
+\mathbb{R}^{+}\)</span> 使得 <span class="math inline">\(x^n =
+a\)</span> 。</p>
 <details class="note primary"><summary><p>Answer</p>
 </summary>
-<p>设 <span class="math inline">\(S := \{x \in R^{+} | x^n &lt; a\}\)</span> 。</p>
+<p>设 <span class="math inline">\(S := \{x \in R^{+} | x^n &lt;
+a\}\)</span> 。</p>
 <p>根据阿基米德原理：</p>
 <p><span class="math display">\[
-\exists m \in \mathbb{N}^{+}: \frac{1}{m} &lt; a \Rightarrow \frac{1}{m^n} &lt; a \Rightarrow \frac{1}{m} \in S \Rightarrow S \neq \varnothing
+\exists m \in \mathbb{N}^{+}: \frac{1}{m} &lt; a \Rightarrow
+\frac{1}{m^n} &lt; a \Rightarrow \frac{1}{m} \in S \Rightarrow S \neq
+\varnothing
 \]</span></p>
-<p>设 <span class="math inline">\(k := \sup S\)</span> ，若 <span class="math inline">\(k^n &lt; a\)</span> ，根据阿基米德原理：</p>
+<p>设 <span class="math inline">\(k := \sup S\)</span> ，若 <span
+class="math inline">\(k^n &lt; a\)</span> ，根据阿基米德原理：</p>
 <p><span class="math display">\[
 \begin{aligned}
-&amp; \exists m \in \mathbb{N}^{+}: \frac{1}{m} &lt; \frac{a - k^n}{(k+1)^n - k^n} \\
-&amp; \Rightarrow a - k^n &gt; \frac{1}{m} ((k+1)^n - k^n) = \sum_{i=1}^n \binom{n}{i} \frac{k^{n-i}}{m} \ge \sum_{i=1}^n \binom{n}{i} \frac{k^{n-i}}{m^i} = (k + \frac{1}{m})^n - k^n \\
+&amp; \exists m \in \mathbb{N}^{+}: \frac{1}{m} &lt; \frac{a -
+k^n}{(k+1)^n - k^n} \\
+&amp; \Rightarrow a - k^n &gt; \frac{1}{m} ((k+1)^n - k^n) =
+\sum_{i=1}^n \binom{n}{i} \frac{k^{n-i}}{m} \ge \sum_{i=1}^n
+\binom{n}{i} \frac{k^{n-i}}{m^i} = (k + \frac{1}{m})^n - k^n \\
 &amp; \Rightarrow a &gt; (k + \frac{1}{m})^n \\
-&amp; \Rightarrow k + \frac{1}{m} \in S \land k + \frac{1}{m} &gt; \sup S \\
+&amp; \Rightarrow k + \frac{1}{m} \in S \land k + \frac{1}{m} &gt; \sup
+S \\
 \end{aligned}
 \]</span></p>
 <p>产生矛盾，因此 <span class="math inline">\(k^n \ge a\)</span> 。</p>
-<p>若 <span class="math inline">\(k^n &gt; a\)</span> ，根据阿基米德原理：</p>
+<p>若 <span class="math inline">\(k^n &gt; a\)</span>
+，根据阿基米德原理：</p>
 <p><span class="math display">\[
 \begin{aligned}
-&amp; \exists m \in \mathbb{N}^{+}: \frac{1}{m} &lt; \frac{k^n - a}{(2^n - 1)a} \\
-&amp; \Rightarrow \frac{k^n - a}{a} &gt; \frac{1}{m} (2^n - 1) = \sum_{i=1}^n \binom{n}{i} \frac{1}{m} \ge \sum_{i=1}^n \binom{n}{i} \frac{1}{m^i} = (1 + \frac{1}{m})^n - 1 \\
+&amp; \exists m \in \mathbb{N}^{+}: \frac{1}{m} &lt; \frac{k^n - a}{(2^n
+- 1)a} \\
+&amp; \Rightarrow \frac{k^n - a}{a} &gt; \frac{1}{m} (2^n - 1) =
+\sum_{i=1}^n \binom{n}{i} \frac{1}{m} \ge \sum_{i=1}^n \binom{n}{i}
+\frac{1}{m^i} = (1 + \frac{1}{m})^n - 1 \\
 &amp; \Rightarrow \frac{k^n}{a} &gt; (1 + \frac{1}{m})^n \\
 &amp; \Rightarrow (\frac{k}{1 + \frac{1}{m}})^n &gt; a \\
-&amp; \Rightarrow \frac{k}{1 + \frac{1}{m}} &lt; \sup S \land \forall x \in S \;\; x &lt; \frac{k}{1 + \frac{1}{m}} \\
+&amp; \Rightarrow \frac{k}{1 + \frac{1}{m}} &lt; \sup S \land \forall x
+\in S \;\; x &lt; \frac{k}{1 + \frac{1}{m}} \\
 \end{aligned}
 \]</span></p>
-<p>产生矛盾，因此 <span class="math inline">\(k^n \le a\)</span> ，综上 <span class="math inline">\(k^n = a\)</span> 。</p>
+<p>产生矛盾，因此 <span class="math inline">\(k^n \le a\)</span> ，综上
+<span class="math inline">\(k^n = a\)</span> 。</p>
 
 </details>
 <hr />
@@ -443,71 +548,149 @@ g(a) = \left\{
 <p>（需要注意的是很多看似显而易见的结论都是完备性公理的推论，在证明中需要避开直接使用这些推论。）</p>
 <details class="note primary"><summary><p>Answer</p>
 </summary>
-<p>对于非空集合 <span class="math inline">\(X, Y \subset \mathbb{R}\)</span> 满足 <span class="math inline">\(\forall x \in X, y \in Y \;\; x \le y\)</span> ，任取 <span class="math inline">\(x_0 \in X, y_0 \in Y\)</span> 。</p>
-<p>定义闭区间套 <span class="math inline">\(\{[a_i, b_i]\}\)</span> 满足：</p>
+<p>对于非空集合 <span class="math inline">\(X, Y \subset
+\mathbb{R}\)</span> 满足 <span class="math inline">\(\forall x \in X, y
+\in Y \;\; x \le y\)</span> ，任取 <span class="math inline">\(x_0 \in
+X, y_0 \in Y\)</span> 。</p>
+<p>定义闭区间套 <span class="math inline">\(\{[a_i, b_i]\}\)</span>
+满足：</p>
 <p><span class="math display">\[
 \forall i \in \mathbb{N}^{+} \;\; [a_i, b_i] := \left\{
 \begin{aligned}
 &amp; [x_0, y_0], i = 1 \\
-&amp; [a_{i-1}, m_{i-1}], i \ge 2 \land \forall x \in X \;\; x \le m_{i-1} \\
+&amp; [a_{i-1}, m_{i-1}], i \ge 2 \land \forall x \in X \;\; x \le
+m_{i-1} \\
 &amp; [m_{i-1}, b_{i-1}], \text{otherwise} \\
 \end{aligned}
 \right.
 \]</span></p>
-<p>其中 <span class="math inline">\(m_i := \frac{a_i + b_i}{2}\)</span> 。那么根据定义，任意 <span class="math inline">\(b_i\)</span> 都是 <span class="math inline">\(X\)</span> 的上界。</p>
+<p>其中 <span class="math inline">\(m_i := \frac{a_i + b_i}{2}\)</span>
+。那么根据定义，任意 <span class="math inline">\(b_i\)</span> 都是 <span
+class="math inline">\(X\)</span> 的上界。</p>
 <ul>
-<li>引理一：任意 <span class="math inline">\(a_i\)</span> 都是 <span class="math inline">\(Y\)</span> 的下界。</li>
+<li>引理一：任意 <span class="math inline">\(a_i\)</span> 都是 <span
+class="math inline">\(Y\)</span> 的下界。</li>
 </ul>
 <blockquote>
-<p>若 <span class="math inline">\(x_0 = y_0\)</span> 命题显然成立，不妨假设 <span class="math inline">\(x_0 &lt; y_0\)</span> ，此时对任意 <span class="math inline">\(i\)</span> 都有 <span class="math inline">\(a_i &lt; m_i &lt; b_i\)</span> 。</p>
-<p>定义自然数集 <span class="math inline">\(S\)</span> 是不满足条件的 <span class="math inline">\(i\)</span> 的集合，假设 <span class="math inline">\(S\)</span> 非空。自然数集的非空子集一定存在最小值，考察 <span class="math inline">\(i := \min S\)</span> 。</p>
-<p><span class="math inline">\(i = 1 \Rightarrow a_i = x_0 \in X \Rightarrow \forall y \in Y \;\; a_i \le y\)</span> ，矛盾，因此 <span class="math inline">\(i \ge 2\)</span> 。</p>
-<p><span class="math inline">\(a_{i-1} = a_i\)</span> 与 <span class="math inline">\(i\)</span> 的最小性矛盾，因此 <span class="math inline">\([a_i, b_i] = [m_{i-1}, b_{i-1}]\)</span> 。</p>
-<p>根据该闭区间套的定义，<span class="math inline">\(\exists k \in X \;\; k &gt; m_{i-1}\)</span> ，那么 <span class="math inline">\(\forall y \in Y \;\; y \ge k &gt; m_{i-1}\)</span> 。</p>
-<p>因此 <span class="math inline">\(a_i = m_{i-1}\)</span> 是 <span class="math inline">\(Y\)</span> 的一个下界，矛盾。综上所述 <span class="math inline">\(S = \varnothing\)</span> ，因此原命题成立。</p>
+<p>若 <span class="math inline">\(x_0 = y_0\)</span>
+命题显然成立，不妨假设 <span class="math inline">\(x_0 &lt; y_0\)</span>
+，此时对任意 <span class="math inline">\(i\)</span> 都有 <span
+class="math inline">\(a_i &lt; m_i &lt; b_i\)</span> 。</p>
+<p>定义自然数集 <span class="math inline">\(S\)</span> 是不满足条件的
+<span class="math inline">\(i\)</span> 的集合，假设 <span
+class="math inline">\(S\)</span>
+非空。自然数集的非空子集一定存在最小值，考察 <span
+class="math inline">\(i := \min S\)</span> 。</p>
+<p><span class="math inline">\(i = 1 \Rightarrow a_i = x_0 \in X
+\Rightarrow \forall y \in Y \;\; a_i \le y\)</span> ，矛盾，因此 <span
+class="math inline">\(i \ge 2\)</span> 。</p>
+<p><span class="math inline">\(a_{i-1} = a_i\)</span> 与 <span
+class="math inline">\(i\)</span> 的最小性矛盾，因此 <span
+class="math inline">\([a_i, b_i] = [m_{i-1}, b_{i-1}]\)</span> 。</p>
+<p>根据该闭区间套的定义，<span class="math inline">\(\exists k \in X
+\;\; k &gt; m_{i-1}\)</span> ，那么 <span class="math inline">\(\forall
+y \in Y \;\; y \ge k &gt; m_{i-1}\)</span> 。</p>
+<p>因此 <span class="math inline">\(a_i = m_{i-1}\)</span> 是 <span
+class="math inline">\(Y\)</span> 的一个下界，矛盾。综上所述 <span
+class="math inline">\(S = \varnothing\)</span> ，因此原命题成立。</p>
 </blockquote>
 <p><br></p>
 <ul>
-<li>引理二：<span class="math inline">\(\mathbb{N}^{+}\)</span> 不存在上界。</li>
+<li>引理二：<span class="math inline">\(\mathbb{N}^{+}\)</span>
+不存在上界。</li>
 </ul>
 <blockquote>
-<p>由于 <span class="math inline">\(\mathbb{N}^{+}\)</span> 有下界 <span class="math inline">\(1\)</span> ，假设 <span class="math inline">\(\mathbb{N}^{+}\)</span> 存在上界，那么就一定存在极限点 <span class="math inline">\(x\)</span> 。</p>
-<p>考察其邻域 <span class="math inline">\((x - \frac{1}{2}, x + \frac{1}{2})\)</span> ，定义 <span class="math inline">\(S := (x - \frac{1}{2}, x + \frac{1}{2}) \cap \mathbb{N}^{+}\)</span> 。</p>
-<p>根据极限点的定义 <span class="math inline">\(S\)</span> 是无穷集。自然数集的非空子集一定存在最小值，考察 <span class="math inline">\(n := \min S\)</span> ，那么 <span class="math inline">\(n + 1 &gt; x + \frac{1}{2}\)</span> 。</p>
-<p>由于 <span class="math inline">\(n\)</span> 和 <span class="math inline">\(n + 1\)</span> 之间不存在其他自然数，<span class="math inline">\(S\)</span> 除了 <span class="math inline">\(n\)</span> 以外不包含其他自然数，与其无穷性矛盾。</p>
+<p>由于 <span class="math inline">\(\mathbb{N}^{+}\)</span> 有下界 <span
+class="math inline">\(1\)</span> ，假设 <span
+class="math inline">\(\mathbb{N}^{+}\)</span>
+存在上界，那么就一定存在极限点 <span class="math inline">\(x\)</span>
+。</p>
+<p>考察其邻域 <span class="math inline">\((x - \frac{1}{2}, x +
+\frac{1}{2})\)</span> ，定义 <span class="math inline">\(S := (x -
+\frac{1}{2}, x + \frac{1}{2}) \cap \mathbb{N}^{+}\)</span> 。</p>
+<p>根据极限点的定义 <span class="math inline">\(S\)</span>
+是无穷集。自然数集的非空子集一定存在最小值，考察 <span
+class="math inline">\(n := \min S\)</span> ，那么 <span
+class="math inline">\(n + 1 &gt; x + \frac{1}{2}\)</span> 。</p>
+<p>由于 <span class="math inline">\(n\)</span> 和 <span
+class="math inline">\(n + 1\)</span> 之间不存在其他自然数，<span
+class="math inline">\(S\)</span> 除了 <span
+class="math inline">\(n\)</span>
+以外不包含其他自然数，与其无穷性矛盾。</p>
 </blockquote>
 <p><br></p>
 <ul>
-<li>引理三：<span class="math inline">\(\forall a \in \mathbb{R}^{+} \;\; \exists k \in \mathbb{N}^{+} \;\; \frac{1}{2^k} &lt; a\)</span> 。</li>
+<li>引理三：<span class="math inline">\(\forall a \in \mathbb{R}^{+}
+\;\; \exists k \in \mathbb{N}^{+} \;\; \frac{1}{2^k} &lt; a\)</span>
+。</li>
 </ul>
 <blockquote>
-<p>若存在不满足条件的 <span class="math inline">\(a\)</span> ，则 <span class="math inline">\(\forall k \in \mathbb{N}^{+} \;\; 2^k \le \frac{1}{a}\)</span> 。</p>
-<p>不难归纳证明对任意自然数 <span class="math inline">\(k\)</span> 有 <span class="math inline">\(2^k &gt; k\)</span> 成立。根据引理而二</p>
+<p>若存在不满足条件的 <span class="math inline">\(a\)</span> ，则 <span
+class="math inline">\(\forall k \in \mathbb{N}^{+} \;\; 2^k \le
+\frac{1}{a}\)</span> 。</p>
+<p>不难归纳证明对任意自然数 <span class="math inline">\(k\)</span> 有
+<span class="math inline">\(2^k &gt; k\)</span> 成立。根据引理而二</p>
 <p><span class="math display">\[
 \exists k \in \mathbb{N}^{+} \;\; 2^k &gt; k &gt; \frac{1}{a}
 \]</span></p>
-<p>产生矛盾，因此所有 <span class="math inline">\(a\)</span> 都满足条件。</p>
+<p>产生矛盾，因此所有 <span class="math inline">\(a\)</span>
+都满足条件。</p>
 </blockquote>
 <p><br></p>
-<p>定义集合 <span class="math inline">\(A\)</span> 是所有 <span class="math inline">\(a_i\)</span> 的集合，<span class="math inline">\(B\)</span> 是所有 <span class="math inline">\(b_i\)</span> 的集合。</p>
-<p>考虑 <span class="math inline">\(A\)</span> 是有限集，考察 <span class="math inline">\(c := \max A\)</span> 。根据引理一 <span class="math inline">\(\forall y \in Y \;\; c \le y\)</span> 。</p>
-<p>假设 <span class="math inline">\(\exists x \in X \;\; x &gt; c\)</span> 。根据引理三 <span class="math inline">\(\exists k \in \mathbb{N}^{+} \;\; \frac{1}{2^k} &lt; \frac{x - c}{y_0 - x_0}\)</span> 。设 <span class="math inline">\(i\)</span> 是满足 <span class="math inline">\(a_i = c\)</span> 的集合的最小值。</p>
-<p>那么闭区间套中存在 <span class="math inline">\([c, c + \frac{y_0 - x_0}{2^{\max(i, k)}}]\)</span> ，且该区间的右端点不是 <span class="math inline">\(X\)</span> 的上界，矛盾。因此 <span class="math inline">\(\forall x \in X \;\; x \le c\)</span> 。完备性公理成立。</p>
-<p>考虑 <span class="math inline">\(A\)</span> 是无穷集，考察其中一个极限点 <span class="math inline">\(c\)</span> 。</p>
+<p>定义集合 <span class="math inline">\(A\)</span> 是所有 <span
+class="math inline">\(a_i\)</span> 的集合，<span
+class="math inline">\(B\)</span> 是所有 <span
+class="math inline">\(b_i\)</span> 的集合。</p>
+<p>考虑 <span class="math inline">\(A\)</span> 是有限集，考察 <span
+class="math inline">\(c := \max A\)</span> 。根据引理一 <span
+class="math inline">\(\forall y \in Y \;\; c \le y\)</span> 。</p>
+<p>假设 <span class="math inline">\(\exists x \in X \;\; x &gt;
+c\)</span> 。根据引理三 <span class="math inline">\(\exists k \in
+\mathbb{N}^{+} \;\; \frac{1}{2^k} &lt; \frac{x - c}{y_0 - x_0}\)</span>
+。设 <span class="math inline">\(i\)</span> 是满足 <span
+class="math inline">\(a_i = c\)</span> 的集合的最小值。</p>
+<p>那么闭区间套中存在 <span class="math inline">\([c, c + \frac{y_0 -
+x_0}{2^{\max(i, k)}}]\)</span> ，且该区间的右端点不是 <span
+class="math inline">\(X\)</span> 的上界，矛盾。因此 <span
+class="math inline">\(\forall x \in X \;\; x \le c\)</span>
+。完备性公理成立。</p>
+<p>考虑 <span class="math inline">\(A\)</span>
+是无穷集，考察其中一个极限点 <span class="math inline">\(c\)</span>
+。</p>
 <ul>
-<li>引理：<span class="math inline">\(\forall i \in \mathbb{N}^{+} \;\; c \in [a_i, b_i]\)</span> 。</li>
+<li>引理：<span class="math inline">\(\forall i \in \mathbb{N}^{+} \;\;
+c \in [a_i, b_i]\)</span> 。</li>
 </ul>
 <blockquote>
-<p>若 <span class="math inline">\(c = a_1\)</span> ，对于 <span class="math inline">\(i := \min \{i \in \mathbb{N}^{+} | a_i &gt; c\}\)</span> ，邻域 <span class="math inline">\((c - 1, \frac{c + a_i}{2})\)</span> 不满足极限点定义。</p>
-<p>若 <span class="math inline">\(c = a_j &gt; a_1\)</span> ，对于 <span class="math inline">\(i := \min \{i \in \mathbb{N}^{+} | a_i &gt; c\}\)</span> ，邻域 <span class="math inline">\((a_1, \frac{c + a_i}{2})\)</span> 不满足极限点定义。</p>
-<p>因此 <span class="math inline">\(c \notin A\)</span> 。定义 <span class="math inline">\(S := \{i \in \mathbb{N}^{+} | a_i &gt; c\}\)</span> ，若 <span class="math inline">\(S\)</span> 非空，存在 <span class="math inline">\(i := \min S\)</span> 。</p>
-<p>若 <span class="math inline">\(i = 1\)</span> ，邻域 <span class="math inline">\((c - 1, a_1)\)</span> 不满足极限点定义。</p>
-<p>若 <span class="math inline">\(i \ge 2\)</span> ，邻域 <span class="math inline">\((a_{i-1}, a_i)\)</span> 不满足极限点定义。</p>
-<p>因此 <span class="math inline">\(S = \varnothing\)</span> ，即 <span class="math inline">\(c\)</span> 是 <span class="math inline">\(A\)</span> 的上界。</p>
-<p>若 <span class="math inline">\(\exists b \in B \;\; b &lt; c\)</span> ，邻域 <span class="math inline">\((b, c + 1)\)</span> 不满足极限点定义，因此 <span class="math inline">\(c\)</span> 是 <span class="math inline">\(B\)</span> 的下界。</p>
+<p>若 <span class="math inline">\(c = a_1\)</span> ，对于 <span
+class="math inline">\(i := \min \{i \in \mathbb{N}^{+} | a_i &gt;
+c\}\)</span> ，邻域 <span class="math inline">\((c - 1, \frac{c +
+a_i}{2})\)</span> 不满足极限点定义。</p>
+<p>若 <span class="math inline">\(c = a_j &gt; a_1\)</span> ，对于 <span
+class="math inline">\(i := \min \{i \in \mathbb{N}^{+} | a_i &gt;
+c\}\)</span> ，邻域 <span class="math inline">\((a_1, \frac{c +
+a_i}{2})\)</span> 不满足极限点定义。</p>
+<p>因此 <span class="math inline">\(c \notin A\)</span> 。定义 <span
+class="math inline">\(S := \{i \in \mathbb{N}^{+} | a_i &gt;
+c\}\)</span> ，若 <span class="math inline">\(S\)</span> 非空，存在
+<span class="math inline">\(i := \min S\)</span> 。</p>
+<p>若 <span class="math inline">\(i = 1\)</span> ，邻域 <span
+class="math inline">\((c - 1, a_1)\)</span> 不满足极限点定义。</p>
+<p>若 <span class="math inline">\(i \ge 2\)</span> ，邻域 <span
+class="math inline">\((a_{i-1}, a_i)\)</span> 不满足极限点定义。</p>
+<p>因此 <span class="math inline">\(S = \varnothing\)</span> ，即 <span
+class="math inline">\(c\)</span> 是 <span
+class="math inline">\(A\)</span> 的上界。</p>
+<p>若 <span class="math inline">\(\exists b \in B \;\; b &lt; c\)</span>
+，邻域 <span class="math inline">\((b, c + 1)\)</span>
+不满足极限点定义，因此 <span class="math inline">\(c\)</span> 是 <span
+class="math inline">\(B\)</span> 的下界。</p>
 </blockquote>
 <p><br></p>
-<p>假设 <span class="math inline">\(\exists x \in X \;\; x &gt; c\)</span> ，根据引理三 <span class="math inline">\(\exists k \in \mathbb{N}^{+} \;\; \frac{1}{2^k} &lt; \frac{x - c}{y_0 - x_0}\)</span> 。考察 <span class="math inline">\([a_{k+1}, b_{k+1}]\)</span> ：</p>
+<p>假设 <span class="math inline">\(\exists x \in X \;\; x &gt;
+c\)</span> ，根据引理三 <span class="math inline">\(\exists k \in
+\mathbb{N}^{+} \;\; \frac{1}{2^k} &lt; \frac{x - c}{y_0 - x_0}\)</span>
+。考察 <span class="math inline">\([a_{k+1}, b_{k+1}]\)</span> ：</p>
 <p><span class="math display">\[
 \begin{aligned}
 &amp; b_{k+1} - a_{k+1} = \frac{y_0 - x_0}{2^k} &lt; x - c \\
@@ -515,32 +698,60 @@ g(a) = \left\{
 &amp; \therefore b_{k+1} &lt; x \\
 \end{aligned}
 \]</span></p>
-<p>这与 <span class="math inline">\(b_{k+1}\)</span> 是 <span class="math inline">\(X\)</span> 的上界矛盾，因此 <span class="math inline">\(\forall x \in X \;\; x \le c\)</span> 。同理可以得到 <span class="math inline">\(\forall y \in Y \;\; c \le y\)</span> ，完备性公理成立。</p>
+<p>这与 <span class="math inline">\(b_{k+1}\)</span> 是 <span
+class="math inline">\(X\)</span> 的上界矛盾，因此 <span
+class="math inline">\(\forall x \in X \;\; x \le c\)</span>
+。同理可以得到 <span class="math inline">\(\forall y \in Y \;\; c \le
+y\)</span> ，完备性公理成立。</p>
 
 </details>
 <hr />
 <p>证明任意无穷集合存在可数子集。</p>
 <details class="note primary"><summary><p>Answer</p>
 </summary>
-<p>对于无穷集合 <span class="math inline">\(A\)</span> ，任取 <span class="math inline">\(a_1 \in A\)</span> ，对于 <span class="math inline">\(i \ge 2\)</span> 定义 <span class="math inline">\(a_i\)</span> 是集合 <span class="math inline">\(A \setminus \{a_1 \ldots a_{i-1}\}\)</span> 中的任一元素。</p>
-<p>由于 <span class="math inline">\(A\)</span> 无穷，<span class="math inline">\(a_i\)</span> 总是存在的。定义集合 <span class="math inline">\(E\)</span> 是所有 <span class="math inline">\(a_i\)</span> 组成的集合，根据数学归纳原理 <span class="math inline">\(E\)</span> 是可数集，且据定义 <span class="math inline">\(E \subset A\)</span> 。</p>
+<p>对于无穷集合 <span class="math inline">\(A\)</span> ，任取 <span
+class="math inline">\(a_1 \in A\)</span> ，对于 <span
+class="math inline">\(i \ge 2\)</span> 定义 <span
+class="math inline">\(a_i\)</span> 是集合 <span class="math inline">\(A
+\setminus \{a_1 \ldots a_{i-1}\}\)</span> 中的任一元素。</p>
+<p>由于 <span class="math inline">\(A\)</span> 无穷，<span
+class="math inline">\(a_i\)</span> 总是存在的。定义集合 <span
+class="math inline">\(E\)</span> 是所有 <span
+class="math inline">\(a_i\)</span> 组成的集合，根据数学归纳原理 <span
+class="math inline">\(E\)</span> 是可数集，且据定义 <span
+class="math inline">\(E \subset A\)</span> 。</p>
 
 </details>
 <hr />
 <p>证明任意无穷集合与可数集合的并集与原集合等势。</p>
 <details class="note primary"><summary><p>Answer</p>
 </summary>
-<p>对于无穷集合 <span class="math inline">\(A\)</span> 和可数集合 <span class="math inline">\(B\)</span> ，定义集合 <span class="math inline">\(C\)</span> 是 <span class="math inline">\(A\)</span> 的任一可数子集（上题指出此集合一定存在），<span class="math inline">\(B&#39; := B \setminus A\)</span> 。</p>
-<p>由于 <span class="math inline">\(B&#39; \subset B\)</span> ，<span class="math inline">\(B&#39;\)</span> 是至多可数集。</p>
-<p>可数集与至多可数集的并集为可数集（教材原定理，证略），即存在双射 <span class="math inline">\(f : B&#39; \cup C \rightarrow C\)</span> 。</p>
-<p>另外显然存在双射 <span class="math inline">\(g : A \setminus C \rightarrow A \setminus C\)</span> 。由于 <span class="math inline">\(f, g\)</span> 的定义域和值域都是不交的，双射 <span class="math inline">\(f \cup g : A \cup B&#39; \rightarrow A\)</span> 存在。而 <span class="math inline">\(A \cup B&#39; = A \cup B\)</span> 。</p>
+<p>对于无穷集合 <span class="math inline">\(A\)</span> 和可数集合 <span
+class="math inline">\(B\)</span> ，定义集合 <span
+class="math inline">\(C\)</span> 是 <span
+class="math inline">\(A\)</span>
+的任一可数子集（上题指出此集合一定存在），<span
+class="math inline">\(B&#39; := B \setminus A\)</span> 。</p>
+<p>由于 <span class="math inline">\(B&#39; \subset B\)</span> ，<span
+class="math inline">\(B&#39;\)</span> 是至多可数集。</p>
+<p>可数集与至多可数集的并集为可数集（教材原定理，证略），即存在双射
+<span class="math inline">\(f : B&#39; \cup C \rightarrow C\)</span>
+。</p>
+<p>另外显然存在双射 <span class="math inline">\(g : A \setminus C
+\rightarrow A \setminus C\)</span> 。由于 <span class="math inline">\(f,
+g\)</span> 的定义域和值域都是不交的，双射 <span class="math inline">\(f
+\cup g : A \cup B&#39; \rightarrow A\)</span> 存在。而 <span
+class="math inline">\(A \cup B&#39; = A \cup B\)</span> 。</p>
 
 </details>
 <hr />
-<p>证明对任意集合 <span class="math inline">\(S\)</span> 有 <span class="math inline">\(|S| &lt; |\mathcal{P}(S)|\)</span> 。</p>
+<p>证明对任意集合 <span class="math inline">\(S\)</span> 有 <span
+class="math inline">\(|S| &lt; |\mathcal{P}(S)|\)</span> 。</p>
 <details class="note primary"><summary><p>Answer</p>
 </summary>
-<p>若存在双射 <span class="math inline">\(f : S \rightarrow \mathcal{P}(S)\)</span> ，定义 <span class="math inline">\(A := \{x \in S | x \notin f(x)\}, a := f^{-1}(A)\)</span> ，有</p>
+<p>若存在双射 <span class="math inline">\(f : S \rightarrow
+\mathcal{P}(S)\)</span> ，定义 <span class="math inline">\(A := \{x \in
+S | x \notin f(x)\}, a := f^{-1}(A)\)</span> ，有</p>
 <p><span class="math display">\[
 a \in A \Leftrightarrow a \notin f(a) \Leftrightarrow a \notin A
 \]</span></p>
@@ -591,7 +802,7 @@ a \in A \Leftrightarrow a \notin f(a) \Leftrightarrow a \notin A
 
 <div class="copyright">
   &copy; 2019 – 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-heartbeat"></i>
   </span>

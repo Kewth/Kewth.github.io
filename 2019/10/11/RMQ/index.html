@@ -326,109 +326,209 @@
 RMQ 真是流皮，每次深入思考都会有新的发现，所以有了新的发现会更新。</p>
 <p>以下 n 表示数列的大小，q 表示询问的次数，均以最大值为例。</p>
 <h2 id="一般性普通做法">一般性普通做法</h2>
-<p>线段树当然是可以在线维护的，复杂度 <span class="math inline">\(O(n + qlogn)\)</span> 。<br />
+<p>线段树当然是可以在线维护的，复杂度 <span class="math inline">\(O(n +
+qlogn)\)</span> 。<br />
 甚至还可以支持单点修改或区间修改。</p>
-<p>但是如果只是静态询问的话，可以用 ST 表预处理后 <span class="math inline">\(O(1)\)</span> 在线处理询问，<br />
+<p>但是如果只是静态询问的话，可以用 ST 表预处理后 <span
+class="math inline">\(O(1)\)</span> 在线处理询问，<br />
 复杂度 <span class="math inline">\(O(nlogn + q)\)</span> 。</p>
 <p>这两个做法烂大街了，是基础中的基础，不是本文讨论重点。</p>
 <span id="more"></span>
 <h2 id="区间定长特殊做法">区间定长特殊做法</h2>
-<p>即所有的询问区间的长度都为与询问无关的定值 <span class="math inline">\(len\)</span> 。<br />
-直接当做任意区间做，可以做到 <span class="math inline">\(O(n + qlogn)\)</span> 或 <span class="math inline">\(O(nloglen + q)\)</span> 。</p>
+<p>即所有的询问区间的长度都为与询问无关的定值 <span
+class="math inline">\(len\)</span> 。<br />
+直接当做任意区间做，可以做到 <span class="math inline">\(O(n +
+qlogn)\)</span> 或 <span class="math inline">\(O(nloglen + q)\)</span>
+。</p>
 <p>这种情况下有更好理解的预处理方法，只需优先队列。<br />
-先把 <span class="math inline">\([1, l]\)</span> 的数扔进优先队列里，之后不断把区间右移，<br />
-<span class="math inline">\([l, r]\)</span> 右移的过程相当于加一个点 <span class="math inline">\(r + 1\)</span> 并删掉点 <span class="math inline">\(l\)</span> ，用优先队列维护即可。<br />
+先把 <span class="math inline">\([1, l]\)</span>
+的数扔进优先队列里，之后不断把区间右移，<br />
+<span class="math inline">\([l, r]\)</span> 右移的过程相当于加一个点
+<span class="math inline">\(r + 1\)</span> 并删掉点 <span
+class="math inline">\(l\)</span> ，用优先队列维护即可。<br />
 复杂度 <span class="math inline">\(O(nlogn + q)\)</span> 。</p>
 <p>但这还不够，还有线性的预处理方法，用单调双端队列代替上面的优先队列。<br />
-同样是让区间不断右移，单调双端队列中的值是单调不增的， 那么最左边的值一定是最大值。<br />
-加点 <span class="math inline">\(r + 1\)</span> 前维护单调性，删点 <span class="math inline">\(l\)</span> 时判断是不是删的最大值， 如果是就删点最左边的点即可。<br />
+同样是让区间不断右移，单调双端队列中的值是单调不增的，
+那么最左边的值一定是最大值。<br />
+加点 <span class="math inline">\(r + 1\)</span> 前维护单调性，删点 <span
+class="math inline">\(l\)</span> 时判断是不是删的最大值，
+如果是就删点最左边的点即可。<br />
 复杂度 <span class="math inline">\(O(n + q)\)</span> 。</p>
 <h2 id="随机询问期望做法">随机询问期望做法</h2>
-<p>这种情况下有个 <span class="math inline">\(O(n + q)\)</span> 的在线做法。</p>
-<p>考虑分块，设块的大小为 <span class="math inline">\(b\)</span> ， <span class="math inline">\(O(n)\)</span> 预处理每个块的最大值。</p>
-<p>那么对于询问 <span class="math inline">\([l, r]\)</span> ，若该区间跨过了多个块，问题就分为两个部分：</p>
+<p>这种情况下有个 <span class="math inline">\(O(n + q)\)</span>
+的在线做法。</p>
+<p>考虑分块，设块的大小为 <span class="math inline">\(b\)</span> ，
+<span class="math inline">\(O(n)\)</span> 预处理每个块的最大值。</p>
+<p>那么对于询问 <span class="math inline">\([l, r]\)</span>
+，若该区间跨过了多个块，问题就分为两个部分：</p>
 <ol type="1">
 <li>求跨过的块区间的最大值。</li>
 <li>求两端点所在零散的块的最大值。</li>
 </ol>
-<p>第一个问题就是个子问题，并且数据规模减小到了 <span class="math inline">\(O(\frac{n}{b})\)</span> ，<br />
-为了保证询问 <span class="math inline">\(O(1)\)</span> ，可以用上面一般性的普通做法提到的 ST 表，<br />
-就可以 <span class="math inline">\(O(\frac{n}{b} log\frac{n}{b})\)</span> 进行预处理然后 <span class="math inline">\(O(1)\)</span> 询问。</p>
+<p>第一个问题就是个子问题，并且数据规模减小到了 <span
+class="math inline">\(O(\frac{n}{b})\)</span> ，<br />
+为了保证询问 <span class="math inline">\(O(1)\)</span>
+，可以用上面一般性的普通做法提到的 ST 表，<br />
+就可以 <span class="math inline">\(O(\frac{n}{b}
+log\frac{n}{b})\)</span> 进行预处理然后 <span
+class="math inline">\(O(1)\)</span> 询问。</p>
 <p>第二个问题端点所在零散的块是该块的一段前缀或者后缀，<br />
-只需 <span class="math inline">\(O(n)\)</span> 对于每个块预处理前缀最大值和后缀最大值即可 <span class="math inline">\(O(1)\)</span> 询问。</p>
+只需 <span class="math inline">\(O(n)\)</span>
+对于每个块预处理前缀最大值和后缀最大值即可 <span
+class="math inline">\(O(1)\)</span> 询问。</p>
 <p>那么若询问区间在同一个块内呢？<br />
-自然是暴力扫，但是这样的复杂度是 <span class="math inline">\(O(b)\)</span> 的。<br />
-但询问区间随机的情况下，不难得出两个端点在同一个块内的概率是 <span class="math inline">\(\frac{b}{n}\)</span> 。<br />
-那么这种情况询问的期望复杂度是 <span class="math inline">\(O(\frac{b^2}{n})\)</span> 的。</p>
-<p>总复杂度 <span class="math inline">\(O(n + \frac{n}{b} log\frac{n}{b} + q + q \frac{b^2}{n})\)</span> 。<br />
-当 <span class="math inline">\(b\)</span> 至少为 <span class="math inline">\(O(logn)\)</span> 时，预处理的 <span class="math inline">\(O(\frac{n}{b} log\frac{n}{b})\)</span> 不超过 <span class="math inline">\(O(n)\)</span> 。<br />
-当 <span class="math inline">\(b\)</span> 至多为 <span class="math inline">\(O(\sqrt{n})\)</span> 时，询问的 <span class="math inline">\(O(q \frac{b^2}{n})\)</span> 不超过 <span class="math inline">\(O(q)\)</span> 。<br />
-因此 <span class="math inline">\(b\)</span> 的大小取 <span class="math inline">\(O(logn)\)</span> 到 <span class="math inline">\(O(\sqrt{n})\)</span> 之间即可。</p>
-<p>另外，当 <span class="math inline">\(b = \sqrt{n}\)</span> 时，块的个数也是 <span class="math inline">\(O(\sqrt{n})\)</span> 的，<br />
-此时根本不需要 ST 表，直接 <span class="math inline">\(O(\sqrt{n}^2)\)</span> 暴力预处理处理所有可能区间的最大值即可。<br />
+自然是暴力扫，但是这样的复杂度是 <span
+class="math inline">\(O(b)\)</span> 的。<br />
+但询问区间随机的情况下，不难得出两个端点在同一个块内的概率是 <span
+class="math inline">\(\frac{b}{n}\)</span> 。<br />
+那么这种情况询问的期望复杂度是 <span
+class="math inline">\(O(\frac{b^2}{n})\)</span> 的。</p>
+<p>总复杂度 <span class="math inline">\(O(n + \frac{n}{b} log\frac{n}{b}
++ q + q \frac{b^2}{n})\)</span> 。<br />
+当 <span class="math inline">\(b\)</span> 至少为 <span
+class="math inline">\(O(logn)\)</span> 时，预处理的 <span
+class="math inline">\(O(\frac{n}{b} log\frac{n}{b})\)</span> 不超过
+<span class="math inline">\(O(n)\)</span> 。<br />
+当 <span class="math inline">\(b\)</span> 至多为 <span
+class="math inline">\(O(\sqrt{n})\)</span> 时，询问的 <span
+class="math inline">\(O(q \frac{b^2}{n})\)</span> 不超过 <span
+class="math inline">\(O(q)\)</span> 。<br />
+因此 <span class="math inline">\(b\)</span> 的大小取 <span
+class="math inline">\(O(logn)\)</span> 到 <span
+class="math inline">\(O(\sqrt{n})\)</span> 之间即可。</p>
+<p>另外，当 <span class="math inline">\(b = \sqrt{n}\)</span>
+时，块的个数也是 <span class="math inline">\(O(\sqrt{n})\)</span>
+的，<br />
+此时根本不需要 ST 表，直接 <span
+class="math inline">\(O(\sqrt{n}^2)\)</span>
+暴力预处理处理所有可能区间的最大值即可。<br />
 这样复杂度不变，常数可能还能小一点。</p>
 <h4 id="毒瘤活动">毒瘤活动</h4>
 <p>值得注意的是，虽然这个做法的复杂度仅适用于询问区间随机的情况，但是一般不会卡。</p>
 <p>来点有意思的娱乐活动，考虑怎么卡掉它，以及怎么防止被出题人卡。</p>
-<p>想要卡这个做法就要尽量让询问区间在一个块内，卡成 <span class="math inline">\(O(b)\)</span> 的询问复杂度。<br />
-但在不知道块的大小的情况下，假设给一个区间长 <span class="math inline">\(len\)</span> 的询问，实际块的大小为 <span class="math inline">\(b\)</span> ，<br />
-那么两个端点在同一个块内的概率大概是 <span class="math inline">\(\frac{b-len+1}{b}\)</span> ，期望复杂度就是 <span class="math inline">\(O(\frac{(b-len+1)len}{b})\)</span> 。</p>
-<p>现在出题人要在不知道 <span class="math inline">\(b\)</span> 的情况下希望上面的复杂度尽量大，选手要在不知道 <span class="math inline">\(len\)</span> 的情况下希望上面复杂度尽量小。<br />
+<p>想要卡这个做法就要尽量让询问区间在一个块内，卡成 <span
+class="math inline">\(O(b)\)</span> 的询问复杂度。<br />
+但在不知道块的大小的情况下，假设给一个区间长 <span
+class="math inline">\(len\)</span> 的询问，实际块的大小为 <span
+class="math inline">\(b\)</span> ，<br />
+那么两个端点在同一个块内的概率大概是 <span
+class="math inline">\(\frac{b-len+1}{b}\)</span> ，期望复杂度就是 <span
+class="math inline">\(O(\frac{(b-len+1)len}{b})\)</span> 。</p>
+<p>现在出题人要在不知道 <span class="math inline">\(b\)</span>
+的情况下希望上面的复杂度尽量大，选手要在不知道 <span
+class="math inline">\(len\)</span> 的情况下希望上面复杂度尽量小。<br />
 <del>怎么感觉像博弈论</del></p>
-<p>最坏的情况是 <span class="math inline">\(len = \frac{b}{2}\)</span> 的时候，此时询问的期望复杂度为 <span class="math inline">\(O(\frac{b}{4})\)</span> 。<br />
-选手希望预处理和询问的复杂度最大值最小，也就是让它们相等，此时 <span class="math inline">\(b\)</span> 的最优取值大致为 <span class="math inline">\(2\sqrt{\frac{n}{q} logn}\)</span> ，<br />
-这里说是“大致”，是因为为了方便计算将 <span class="math inline">\(O(log \frac{n}{b})\)</span> 看做了 <span class="math inline">\(O(logn)\)</span> 。<br />
-将 <span class="math inline">\(n, q\)</span> 看做同阶的话，上述取值为 <span class="math inline">\(2\sqrt{logn}\)</span> ，此时复杂度为 <span class="math inline">\(O(\frac{n\sqrt{logn}}{2})\)</span> ，<br />
-也就是 <span class="math inline">\(O(n\sqrt{logn})\)</span> ，得出结论，在询问区间非随机的情况下，该算法最优可以做到严格 <span class="math inline">\(O(n\sqrt{logn})\)</span> 。</p>
-<p>关键这算法常数小，还好写，取 b 为 <span class="math inline">\(O(\sqrt{logn})\)</span> 的话，复杂度 <span class="math inline">\(O((n + q)\sqrt{logn})\)</span> 在绝大多数情况都足够了。</p>
+<p>最坏的情况是 <span class="math inline">\(len = \frac{b}{2}\)</span>
+的时候，此时询问的期望复杂度为 <span
+class="math inline">\(O(\frac{b}{4})\)</span> 。<br />
+选手希望预处理和询问的复杂度最大值最小，也就是让它们相等，此时 <span
+class="math inline">\(b\)</span> 的最优取值大致为 <span
+class="math inline">\(2\sqrt{\frac{n}{q} logn}\)</span> ，<br />
+这里说是“大致”，是因为为了方便计算将 <span class="math inline">\(O(log
+\frac{n}{b})\)</span> 看做了 <span
+class="math inline">\(O(logn)\)</span> 。<br />
+将 <span class="math inline">\(n, q\)</span> 看做同阶的话，上述取值为
+<span class="math inline">\(2\sqrt{logn}\)</span> ，此时复杂度为 <span
+class="math inline">\(O(\frac{n\sqrt{logn}}{2})\)</span> ，<br />
+也就是 <span class="math inline">\(O(n\sqrt{logn})\)</span>
+，得出结论，在询问区间非随机的情况下，该算法最优可以做到严格 <span
+class="math inline">\(O(n\sqrt{logn})\)</span> 。</p>
+<p>关键这算法常数小，还好写，取 b 为 <span
+class="math inline">\(O(\sqrt{logn})\)</span> 的话，复杂度 <span
+class="math inline">\(O((n + q)\sqrt{logn})\)</span>
+在绝大多数情况都足够了。</p>
 <p>另外，此时没必要维护块内前缀后缀最大值，因为块足够小，询问的时候对零散的块暴力扫就好了，复杂度不变。</p>
 <h2 id="一般性较优做法">一般性较优做法</h2>
 <p>自己 yy 出来的，权当过渡吧。</p>
-<p>上面提到的 <span class="math inline">\(O((n + q)\sqrt{logn})\)</span> 算法中，通过分块将问题规模缩小到了 <span class="math inline">\(\frac{n}{b}\)</span> ，<br />
-然后对于这个规模的问题使用 ST 表，预处理复杂度近似看做 <span class="math inline">\(O(\frac{n}{b}logn)\)</span> 。<br />
-而既然这是个子问题，为什么还要用 ST 表？能不能继续分块直到 ST 表的预处理复杂度在 <span class="math inline">\(O(n)\)</span> 以内？</p>
+<p>上面提到的 <span class="math inline">\(O((n + q)\sqrt{logn})\)</span>
+算法中，通过分块将问题规模缩小到了 <span
+class="math inline">\(\frac{n}{b}\)</span> ，<br />
+然后对于这个规模的问题使用 ST 表，预处理复杂度近似看做 <span
+class="math inline">\(O(\frac{n}{b}logn)\)</span> 。<br />
+而既然这是个子问题，为什么还要用 ST 表？能不能继续分块直到 ST
+表的预处理复杂度在 <span class="math inline">\(O(n)\)</span> 以内？</p>
 <p>当然是可以的，这个时候块的大小又要取多少呢？<br />
-取 <span class="math inline">\(b = 2\)</span> 就够了，这个时候，相当于从底层向上建线段树，<br />
-第一层有 <span class="math inline">\(n\)</span> 个节点，第二层有 <span class="math inline">\(\frac{n}{2}\)</span> 个节点，第三层有 <span class="math inline">\(\frac{n}{4}\)</span> 个节点，<br />
-直到某一层只有 <span class="math inline">\(\frac{n}{logn}\)</span> 个节点时，不再向上建线段树，而是用 ST 表维护这 <span class="math inline">\(\frac{n}{logn}\)</span> 个点，<br />
-这样 ST 表的预处理就是 <span class="math inline">\(O(n)\)</span> 的，而此时这个线段树的树高是 <span class="math inline">\(O(loglogn)\)</span> 的。</p>
-<p>总时间复杂度 <span class="math inline">\(O(n + qloglogn)\)</span> ，事实上层数可以再少点，使得 ST 表预处理不严格 <span class="math inline">\(O(n)\)</span> 而是与询问复杂度相当，<br />
+取 <span class="math inline">\(b = 2\)</span>
+就够了，这个时候，相当于从底层向上建线段树，<br />
+第一层有 <span class="math inline">\(n\)</span> 个节点，第二层有 <span
+class="math inline">\(\frac{n}{2}\)</span> 个节点，第三层有 <span
+class="math inline">\(\frac{n}{4}\)</span> 个节点，<br />
+直到某一层只有 <span class="math inline">\(\frac{n}{logn}\)</span>
+个节点时，不再向上建线段树，而是用 ST 表维护这 <span
+class="math inline">\(\frac{n}{logn}\)</span> 个点，<br />
+这样 ST 表的预处理就是 <span class="math inline">\(O(n)\)</span>
+的，而此时这个线段树的树高是 <span
+class="math inline">\(O(loglogn)\)</span> 的。</p>
+<p>总时间复杂度 <span class="math inline">\(O(n + qloglogn)\)</span>
+，事实上层数可以再少点，使得 ST 表预处理不严格 <span
+class="math inline">\(O(n)\)</span> 而是与询问复杂度相当，<br />
 但这样的话最优的层数难以计算，在此不讨论。</p>
 <h4 id="毒瘤活动-1">毒瘤活动</h4>
 <p>从下向上建线段树太麻烦了，怕不是要写 zkw ，考虑从上向下建。<br />
-由于最上面一层有 <span class="math inline">\(\frac{n}{logn}\)</span> 个节点，每个节点管辖的区间大小为 <span class="math inline">\(logn\)</span> ，<br />
-继续考虑分块，以 <span class="math inline">\(b = logn\)</span> 为块大小分块，那么就是块内直接建满的线段树，块间维护 ST 表。</p>
+由于最上面一层有 <span class="math inline">\(\frac{n}{logn}\)</span>
+个节点，每个节点管辖的区间大小为 <span
+class="math inline">\(logn\)</span> ，<br />
+继续考虑分块，以 <span class="math inline">\(b = logn\)</span>
+为块大小分块，那么就是块内直接建满的线段树，块间维护 ST 表。</p>
 <p><del>卧槽怎么又回到前面的做法了</del></p>
-<p>那么这个算法事实上就是通过线段树保证了块间查询严格 <span class="math inline">\(logb\)</span> ，也就是 <span class="math inline">\(loglogn\)</span> 。</p>
-<p>既然这样，为什么一定要用线段树呢？在每个块内依然维护 ST 表，复杂度就是 <span class="math inline">\(O(nloglogn + q)\)</span> 。</p>
-<p>通过上面的各种讨论，相信读者已经明白分块 RMQ 的强大，以及线段树和 ST 表（尤其是后者）在 RMQ 的重要性。<br />
-分块什么这么多东西目的基本就是去平衡 ST 表 / 线段树的询问和预处理的复杂度。</p>
+<p>那么这个算法事实上就是通过线段树保证了块间查询严格 <span
+class="math inline">\(logb\)</span> ，也就是 <span
+class="math inline">\(loglogn\)</span> 。</p>
+<p>既然这样，为什么一定要用线段树呢？在每个块内依然维护 ST
+表，复杂度就是 <span class="math inline">\(O(nloglogn + q)\)</span>
+。</p>
+<p>通过上面的各种讨论，相信读者已经明白分块 RMQ 的强大，以及线段树和 ST
+表（尤其是后者）在 RMQ 的重要性。<br />
+分块什么这么多东西目的基本就是去平衡 ST 表 /
+线段树的询问和预处理的复杂度。</p>
 <p>update: 后来知道这玩意叫四个俄罗斯人算法 (Four Russian) 。</p>
 <h2 id="一般性标准做法">一般性标准做法</h2>
 <p>标准的 <span class="math inline">\(O(n + q)\)</span> RMQ 。</p>
 <p>离线的话可以建笛卡尔树将 RMQ 转换为 LCA ，然后用 Tarjan 处理。<br />
 明显的缺点是离线，并且空间开销较大。</p>
-<p>在线的话，有一个经典的常用做法，还是建笛卡尔树转 LCA ，然后求出树的欧拉序转为 +-1 RMQ 。<br />
-而 +-1 RMQ 也是通过分块实现 <span class="math inline">\(O(n + q)\)</span> 复杂度的，<br />
-利用的是 +-1 RMQ 的差分数组在每个块内只有 <span class="math inline">\(2^b\)</span> 中可能，其中 <span class="math inline">\(b\)</span> 是块大小，取 <span class="math inline">\(logn\)</span> 。<br />
+<p>在线的话，有一个经典的常用做法，还是建笛卡尔树转 LCA
+，然后求出树的欧拉序转为 +-1 RMQ 。<br />
+而 +-1 RMQ 也是通过分块实现 <span class="math inline">\(O(n +
+q)\)</span> 复杂度的，<br />
+利用的是 +-1 RMQ 的差分数组在每个块内只有 <span
+class="math inline">\(2^b\)</span> 中可能，其中 <span
+class="math inline">\(b\)</span> 是块大小，取 <span
+class="math inline">\(logn\)</span> 。<br />
 整个过程较为复杂，在 OI 中实用性较低，具体做法留个坑，到时候再补。</p>
-<p>这里重点介绍另一个同样能做到在线 + 线性的 RMQ 算法，并且相对于上面的做法更简单，常数也更优秀。</p>
+<p>这里重点介绍另一个同样能做到在线 + 线性的 RMQ
+算法，并且相对于上面的做法更简单，常数也更优秀。</p>
 <h4 id="线性-rmq">线性 RMQ</h4>
 <p>该算法改进自之前在随机数据下的分块 RMQ ，<br />
-注意到当块大小为 <span class="math inline">\(O(logn)\)</span> 时，该算法唯一的瓶颈在于询问端点在同一个块内时需要暴力 <span class="math inline">\(O(logn)\)</span> 扫。<br />
+注意到当块大小为 <span class="math inline">\(O(logn)\)</span>
+时，该算法唯一的瓶颈在于询问端点在同一个块内时需要暴力 <span
+class="math inline">\(O(logn)\)</span> 扫。<br />
 单独考虑每个块，考虑优化询问端点在该块的情况。<br />
 其中块大小为 <span class="math inline">\(b = O(logn)\)</span> 。</p>
 <p>利用之前提到的单调队列做法，如果对于每个点暴力存下块的左端点到该点的单调递减队列，<br />
-那么对于询问 [l, r] ，拿出 r 上的单调队列，在单调队列上找到第一个不小于 l 的位置，该位置上的值即区间最大值。<br />
-由于单调队列的大小是 <span class="math inline">\(O(b)\)</span> 即 <span class="math inline">\(O(logn)\)</span> 的，该做法复杂度 <span class="math inline">\(O((n + q)logn)\)</span> 。</p>
-<p>但是该做法有很大优化空间，由于 <span class="math inline">\(b\)</span> 足够小（一般认为它不超过字长 <span class="math inline">\(w\)</span> ），完全可以将每个点的单调队列状压，<br />
-这样预处理的时空复杂度就降到了 <span class="math inline">\(O(n)\)</span> 。<br />
-然后对于询问一个单调队列上第一个不小于 l 的位置，就是在一个二进制数 <span class="math inline">\(x\)</span> 上询问第一个位数不小于 l 的 1 的位数。<br />
-这通过位运算和内置函数可以很好实现，只需将 <span class="math inline">\(x\)</span> 右移 <span class="math inline">\(l mod b\)</span> 位来去掉单调队列上小于 l 的位置，<br />
-然后通过 <code>__builtin_ctz</code> <span class="math inline">\(O(1)\)</span> 找到第一个 1 的位置即可。<br />
-这样询问的复杂度就降到了 <span class="math inline">\(O(1)\)</span> ，总复杂度 <span class="math inline">\(O(n + q)\)</span> ，常数非常优秀。</p>
+那么对于询问 [l, r] ，拿出 r 上的单调队列，在单调队列上找到第一个不小于
+l 的位置，该位置上的值即区间最大值。<br />
+由于单调队列的大小是 <span class="math inline">\(O(b)\)</span> 即 <span
+class="math inline">\(O(logn)\)</span> 的，该做法复杂度 <span
+class="math inline">\(O((n + q)logn)\)</span> 。</p>
+<p>但是该做法有很大优化空间，由于 <span class="math inline">\(b\)</span>
+足够小（一般认为它不超过字长 <span class="math inline">\(w\)</span>
+），完全可以将每个点的单调队列状压，<br />
+这样预处理的时空复杂度就降到了 <span class="math inline">\(O(n)\)</span>
+。<br />
+然后对于询问一个单调队列上第一个不小于 l 的位置，就是在一个二进制数
+<span class="math inline">\(x\)</span> 上询问第一个位数不小于 l 的 1
+的位数。<br />
+这通过位运算和内置函数可以很好实现，只需将 <span
+class="math inline">\(x\)</span> 右移 <span class="math inline">\(l mod
+b\)</span> 位来去掉单调队列上小于 l 的位置，<br />
+然后通过 <code>__builtin_ctz</code> <span
+class="math inline">\(O(1)\)</span> 找到第一个 1 的位置即可。<br />
+这样询问的复杂度就降到了 <span class="math inline">\(O(1)\)</span>
+，总复杂度 <span class="math inline">\(O(n + q)\)</span>
+，常数非常优秀。</p>
 <h4 id="完整实现">完整实现</h4>
-<p>以 bzoj1699 为例，该题的 rank1 就是用了这个线性 RMQ 做法，本人常数大，但还是狗到了 rank6 。</p>
+<p>以 bzoj1699 为例，该题的 rank1 就是用了这个线性 RMQ
+做法，本人常数大，但还是狗到了 rank6 。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> debug(...) fprintf(stderr, __VA_ARGS__)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> io &#123;</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">int</span> SIZE = (<span class="number">1</span> &lt;&lt; <span class="number">21</span>) + <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">char</span> ibuf[SIZE], *iS, *iT, obuf[SIZE], *oS = obuf, *oT = oS + SIZE - <span class="number">1</span>, c, qu[<span class="number">55</span>]; <span class="keyword">int</span> f, qr, flg;</span><br><span class="line">	<span class="meta">#<span class="meta-keyword">define</span> gc() (iS == iT ? (iT = (iS = ibuf) + fread (ibuf, 1, SIZE, stdin), (iS == iT ? EOF : *iS ++)) : *iS ++)</span></span><br><span class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">flush</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="built_in">fwrite</span> (obuf, <span class="number">1</span>, <span class="built_in">size_t</span>(oS - obuf), stdout);</span><br><span class="line">		oS = obuf;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">pc</span> <span class="params">(<span class="keyword">char</span> x)</span> </span>&#123;</span><br><span class="line">		*oS ++ = x;</span><br><span class="line">		<span class="keyword">if</span> (oS == oT) <span class="built_in">flush</span> ();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">I</span>&gt;</span></span><br><span class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">gi</span> <span class="params">(I &amp;x)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">for</span> (f = <span class="number">1</span>, c = <span class="built_in">gc</span>(); c != EOF &amp;&amp; (c &lt; <span class="string">&#x27;0&#x27;</span> || c &gt; <span class="string">&#x27;9&#x27;</span>); c = <span class="built_in">gc</span>()) <span class="keyword">if</span> (c == <span class="string">&#x27;-&#x27;</span>) f = <span class="number">-1</span>;</span><br><span class="line">		<span class="keyword">for</span> (flg = x = <span class="number">0</span>; c != EOF &amp;&amp; c &lt;= <span class="string">&#x27;9&#x27;</span> &amp;&amp; c &gt;= <span class="string">&#x27;0&#x27;</span>; c = <span class="built_in">gc</span>()) flg = <span class="number">1</span>, x = x * <span class="number">10</span> + (c &amp; <span class="number">15</span>); x *= f;</span><br><span class="line">		<span class="keyword">return</span> flg || c != EOF;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">I</span>&gt;</span></span><br><span class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">print</span> <span class="params">(I x)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (!x) <span class="built_in">pc</span> (<span class="string">&#x27;0&#x27;</span>); <span class="keyword">if</span> (x &lt; <span class="number">0</span>) <span class="built_in">pc</span> (<span class="string">&#x27;-&#x27;</span>), x = -x;</span><br><span class="line">		<span class="keyword">while</span> (x) qu[++ qr] = x % <span class="number">10</span> + <span class="string">&#x27;0&#x27;</span>,  x /= <span class="number">10</span>;</span><br><span class="line">		<span class="keyword">while</span> (qr) <span class="built_in">pc</span> (qu[qr --]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">Flusher_</span> &#123;</span>~<span class="built_in">Flusher_</span>()&#123;<span class="built_in">flush</span>();&#125;&#125;io_flusher_;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">operator</span> <span class="title">int</span> <span class="params">()</span> </span>&#123; <span class="keyword">int</span> x; <span class="keyword">return</span> io::<span class="built_in">gi</span>(x), x; &#125;</span><br><span class="line">&#125; read;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">50005</span>, maxs = <span class="number">20005</span>, maxb = <span class="number">80</span>;</span><br><span class="line"><span class="keyword">int</span> a[maxn + maxb];</span><br><span class="line"><span class="keyword">int</span> highbit[maxs];</span><br><span class="line"><span class="keyword">int</span> stmax[maxs][maxb], stmin[maxs][maxb];</span><br><span class="line"><span class="keyword">int</span> premax[maxs][maxb], premin[maxs][maxb];</span><br><span class="line"><span class="keyword">int</span> sufmax[maxs][maxb], sufmin[maxs][maxb];</span><br><span class="line"><span class="keyword">int</span> quemax[maxs][maxb], quemin[maxs][maxb];</span><br><span class="line"><span class="keyword">int</span> stackmax[maxb], stackmin[maxb];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">chkmax</span><span class="params">(<span class="keyword">int</span> &amp;x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(y &gt; x) x = y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">chkmin</span><span class="params">(<span class="keyword">int</span> &amp;x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(y &lt; x) x = y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">min</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123; <span class="keyword">return</span> x &lt; y ? x : y; &#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">max</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123; <span class="keyword">return</span> x &gt; y ? x : y; &#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> n = read, q = read;</span><br><span class="line">	<span class="keyword">int</span> B = <span class="built_in"><span class="keyword">int</span></span>(<span class="built_in">log2</span>(n));</span><br><span class="line">	<span class="keyword">int</span> S = (n - <span class="number">1</span>) / B + <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> b = <span class="number">0</span>; b &lt; S; b ++)</span><br><span class="line">		stmin[b][<span class="number">0</span>] = <span class="number">1000000000</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i ++) &#123;</span><br><span class="line">		a[i] = read;</span><br><span class="line">		<span class="built_in">chkmin</span>(stmin[i / B][<span class="number">0</span>], a[i]);</span><br><span class="line">		<span class="built_in">chkmax</span>(stmax[i / B][<span class="number">0</span>], a[i]);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> b = S - <span class="number">1</span>; b &gt;= <span class="number">0</span>; b --)</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> k = <span class="number">1</span>; b + (<span class="number">1</span> &lt;&lt; k) - <span class="number">1</span> &lt; S; k ++) &#123;</span><br><span class="line">			stmin[b][k] = <span class="built_in">min</span>(stmin[b][k - <span class="number">1</span>], stmin[b + (<span class="number">1</span> &lt;&lt; (k - <span class="number">1</span>))][k - <span class="number">1</span>]);</span><br><span class="line">			stmax[b][k] = <span class="built_in">max</span>(stmax[b][k - <span class="number">1</span>], stmax[b + (<span class="number">1</span> &lt;&lt; (k - <span class="number">1</span>))][k - <span class="number">1</span>]);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> b = <span class="number">0</span>; b &lt; S; b ++) &#123;</span><br><span class="line">		<span class="keyword">int</span> be = b * B;</span><br><span class="line">		premin[b][<span class="number">0</span>] = premax[b][<span class="number">0</span>] = a[be];</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> k = <span class="number">1</span>; k &lt; B; k ++) &#123;</span><br><span class="line">			premin[b][k] = <span class="built_in">min</span>(premin[b][k - <span class="number">1</span>], a[be + k]);</span><br><span class="line">			premax[b][k] = <span class="built_in">max</span>(premax[b][k - <span class="number">1</span>], a[be + k]);</span><br><span class="line">		&#125;</span><br><span class="line">		sufmin[b][B - <span class="number">1</span>] = sufmax[b][B - <span class="number">1</span>] = a[be + B - <span class="number">1</span>];</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> k = B - <span class="number">2</span>; k &gt;= <span class="number">0</span>; k --) &#123;</span><br><span class="line">			sufmin[b][k] = <span class="built_in">min</span>(sufmin[b][k + <span class="number">1</span>], a[be + k]);</span><br><span class="line">			sufmax[b][k] = <span class="built_in">max</span>(sufmax[b][k + <span class="number">1</span>], a[be + k]);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> b = <span class="number">0</span>; b &lt; S; b ++) &#123;</span><br><span class="line">		<span class="keyword">int</span> be = b * B;</span><br><span class="line">		<span class="keyword">int</span> spmin = <span class="number">0</span>, nowmin = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">int</span> spmax = <span class="number">0</span>, nowmax = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; B; i ++) &#123;</span><br><span class="line">			<span class="keyword">while</span>(spmin <span class="keyword">and</span> a[be + stackmin[spmin]] &gt; a[be + i])</span><br><span class="line">				nowmin ^= <span class="number">1</span> &lt;&lt; stackmin[spmin --];</span><br><span class="line">			<span class="keyword">while</span>(spmax <span class="keyword">and</span> a[be + stackmax[spmax]] &lt; a[be + i])</span><br><span class="line">				nowmax ^= <span class="number">1</span> &lt;&lt; stackmax[spmax --];</span><br><span class="line">			quemin[b][i] = (nowmin ^= <span class="number">1</span> &lt;&lt; (stackmin[++ spmin] = i));</span><br><span class="line">			quemax[b][i] = (nowmax ^= <span class="number">1</span> &lt;&lt; (stackmax[++ spmax] = i));</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= S; i ++)</span><br><span class="line">		highbit[i] = highbit[i &gt;&gt; <span class="number">1</span>] + <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">while</span>(q --) &#123;</span><br><span class="line">		<span class="keyword">int</span> l = read - <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">int</span> r = read - <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">int</span> L = l / B, R = r / B;</span><br><span class="line">		<span class="keyword">int</span> li = l % B, ri = r % B;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">int</span> min = <span class="number">1000000000</span>, max = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">if</span>(L == R) &#123;</span><br><span class="line">			<span class="built_in">chkmin</span>(min, a[l + __builtin_ctz(quemin[R][ri] &gt;&gt; li)]);</span><br><span class="line">			<span class="built_in">chkmax</span>(max, a[l + __builtin_ctz(quemax[R][ri] &gt;&gt; li)]);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="built_in">chkmin</span>(min, sufmin[L][li]);</span><br><span class="line">			<span class="built_in">chkmin</span>(min, premin[R][ri]);</span><br><span class="line">			<span class="built_in">chkmax</span>(max, sufmax[L][li]);</span><br><span class="line">			<span class="built_in">chkmax</span>(max, premax[R][ri]);</span><br><span class="line">			<span class="keyword">int</span> len = R - L - <span class="number">1</span>;</span><br><span class="line">			<span class="keyword">int</span> k = highbit[len];</span><br><span class="line">			<span class="keyword">if</span>(len) &#123;</span><br><span class="line">				<span class="built_in">chkmin</span>(min, stmin[L + <span class="number">1</span>][k]);</span><br><span class="line">				<span class="built_in">chkmin</span>(min, stmin[R - (<span class="number">1</span> &lt;&lt; k)][k]);</span><br><span class="line">				<span class="built_in">chkmax</span>(max, stmax[L + <span class="number">1</span>][k]);</span><br><span class="line">				<span class="built_in">chkmax</span>(max, stmax[R - (<span class="number">1</span> &lt;&lt; k)][k]);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="comment">/* printf(&quot;%d\n&quot;, max - min); */</span></span><br><span class="line">		io::<span class="built_in">print</span>(max - min);</span><br><span class="line">		io::<span class="built_in">pc</span>(<span class="string">&#x27;\n&#x27;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
     </div>
@@ -481,7 +581,7 @@ RMQ 真是流皮，每次深入思考都会有新的发现，所以有了新的�
 
 <div class="copyright">
   &copy; 2019 – 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-heartbeat"></i>
   </span>

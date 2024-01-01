@@ -311,14 +311,26 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>拉格朗日反演常用于提取一个幂级数 <span class="math inline">\(A(x)\)</span> 的 <span class="math inline">\(n\)</span> 次项系数。</p>
-<p>对于常数项为 0 ，一次项非零的幂级数 <span class="math inline">\(A(x)\)</span> ，设其复合逆为 <span class="math inline">\(F(x)\)</span> ，有</p>
-<p><span class="math display">\[[x^n] A(x) = \frac{1}{n} [x^{n-1}] (\frac{x}{F(x)})^n\]</span></p>
+        <p>拉格朗日反演常用于提取一个幂级数 <span
+class="math inline">\(A(x)\)</span> 的 <span
+class="math inline">\(n\)</span> 次项系数。</p>
+<p>对于常数项为 0 ，一次项非零的幂级数 <span
+class="math inline">\(A(x)\)</span> ，设其复合逆为 <span
+class="math inline">\(F(x)\)</span> ，有</p>
+<p><span class="math display">\[[x^n] A(x) = \frac{1}{n} [x^{n-1}]
+(\frac{x}{F(x)})^n\]</span></p>
 <span id="more"></span>
-<p>举例，对于 <span class="math inline">\(A(x) = x e^{A(x)}\)</span> 求 <span class="math inline">\([x^n]A(x)\)</span> ，直接从等式下手解 <span class="math inline">\(A(x)\)</span> 比较麻烦，试试拉格朗日反演。</p>
-<p>将其复合逆 <span class="math inline">\(F(x)\)</span> 代入等式，得到 <span class="math inline">\(x = F(x) e^x\)</span> ，因此 <span class="math inline">\(F(x) = \frac{x}{e^x}\)</span> 。</p>
-<p>于是 <span class="math inline">\([x^n] A(x) = \frac{1}{n} [x^{n-1}] e^{nx} = \frac{n^{n-1}}{n!}\)</span> 。</p>
-<p>另外如果 <span class="math inline">\(A(x)\)</span> 常数项不为 0 或者一次项为 0 等等，乘个 <span class="math inline">\(x\)</span> 的整次幂总能转换到一般的情况。</p>
+<p>举例，对于 <span class="math inline">\(A(x) = x e^{A(x)}\)</span> 求
+<span class="math inline">\([x^n]A(x)\)</span> ，直接从等式下手解 <span
+class="math inline">\(A(x)\)</span> 比较麻烦，试试拉格朗日反演。</p>
+<p>将其复合逆 <span class="math inline">\(F(x)\)</span> 代入等式，得到
+<span class="math inline">\(x = F(x) e^x\)</span> ，因此 <span
+class="math inline">\(F(x) = \frac{x}{e^x}\)</span> 。</p>
+<p>于是 <span class="math inline">\([x^n] A(x) = \frac{1}{n} [x^{n-1}]
+e^{nx} = \frac{n^{n-1}}{n!}\)</span> 。</p>
+<p>另外如果 <span class="math inline">\(A(x)\)</span> 常数项不为 0
+或者一次项为 0 等等，乘个 <span class="math inline">\(x\)</span>
+的整次幂总能转换到一般的情况。</p>
 <h2 id="证明">证明</h2>
 <p>咕咕咕。</p>
 <h2 id="扩展">扩展</h2>
@@ -369,7 +381,7 @@
 
 <div class="copyright">
   &copy; 2019 – 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-heartbeat"></i>
   </span>

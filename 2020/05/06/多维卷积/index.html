@@ -316,19 +316,38 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p><del>异或卷积的本质就是 <span class="math inline">\(n\)</span> 维循环卷积。</del></p>
+        <p><del>异或卷积的本质就是 <span class="math inline">\(n\)</span>
+维循环卷积。</del></p>
 <h2 id="二维卷积">二维卷积</h2>
-<p>可以理解为对于二维数组 <span class="math inline">\(f\)</span> 和二维数组 <span class="math inline">\(g\)</span> 求二维数组 <span class="math inline">\(h\)</span> ：</p>
-<p><span class="math display">\[h_{i,j} = \sum_{a+b=i} \sum_{c+d=j} f_{a,c} \times g_{b,d}\]</span></p>
-<p>这个 <span class="math inline">\(h\)</span> 就是 <span class="math inline">\(f\)</span> 和 <span class="math inline">\(g\)</span> 的二维卷积。</p>
-<p>构造生成函数数组 <span class="math inline">\({F_i}, {G_i}, {H_i}\)</span> ，满足 <span class="math inline">\(F_i = \sum_{j} f_{i,j} x^j\)</span> ，类似地定义 <span class="math inline">\({G_i}\)</span> 和 <span class="math inline">\({H_i}\)</span> ，那么有：</p>
-<p><span class="math display">\[H_i = \sum_{a+b=i} F_a \times G_b\]</span></p>
+<p>可以理解为对于二维数组 <span class="math inline">\(f\)</span>
+和二维数组 <span class="math inline">\(g\)</span> 求二维数组 <span
+class="math inline">\(h\)</span> ：</p>
+<p><span class="math display">\[h_{i,j} = \sum_{a+b=i} \sum_{c+d=j}
+f_{a,c} \times g_{b,d}\]</span></p>
+<p>这个 <span class="math inline">\(h\)</span> 就是 <span
+class="math inline">\(f\)</span> 和 <span
+class="math inline">\(g\)</span> 的二维卷积。</p>
+<p>构造生成函数数组 <span class="math inline">\({F_i}, {G_i},
+{H_i}\)</span> ，满足 <span class="math inline">\(F_i = \sum_{j} f_{i,j}
+x^j\)</span> ，类似地定义 <span class="math inline">\({G_i}\)</span> 和
+<span class="math inline">\({H_i}\)</span> ，那么有：</p>
+<p><span class="math display">\[H_i = \sum_{a+b=i} F_a \times
+G_b\]</span></p>
 <span id="more"></span>
-<p>其中 <span class="math inline">\(F_a \times G_b\)</span> 就是多项式卷积。</p>
-<p>不妨把 <span class="math inline">\(F, G, H\)</span> 的每一位所对应的多项式看做普通的元素，那么 <span class="math inline">\(H\)</span> 就是 <span class="math inline">\(F\)</span> 和 <span class="math inline">\(G\)</span> 的卷积，傅里叶变换在这里仍然是可以定义的。</p>
+<p>其中 <span class="math inline">\(F_a \times G_b\)</span>
+就是多项式卷积。</p>
+<p>不妨把 <span class="math inline">\(F, G, H\)</span>
+的每一位所对应的多项式看做普通的元素，那么 <span
+class="math inline">\(H\)</span> 就是 <span
+class="math inline">\(F\)</span> 和 <span
+class="math inline">\(G\)</span>
+的卷积，傅里叶变换在这里仍然是可以定义的。</p>
 <h2 id="高维卷积">高维卷积</h2>
-<p>二维卷积的做法完全可以推广到高维卷积，对于两个从向量到数的映射 <span class="math inline">\(F, G\)</span> ，定义其卷积 <span class="math inline">\(H\)</span> 满足：</p>
-<p><span class="math display">\[H_c = \sum_{a+b=c} F_a \times G_b\]</span></p>
+<p>二维卷积的做法完全可以推广到高维卷积，对于两个从向量到数的映射 <span
+class="math inline">\(F, G\)</span> ，定义其卷积 <span
+class="math inline">\(H\)</span> 满足：</p>
+<p><span class="math display">\[H_c = \sum_{a+b=c} F_a \times
+G_b\]</span></p>
 <p>其中 <span class="math inline">\(a, b, c\)</span> 都是高维向量。</p>
 <p>事实上异或卷积就是一个高维卷积（循环卷积），每一维的长度都是二，根据异或卷积的实现不难推广到所有高维卷积的实现。</p>
 
@@ -376,7 +395,7 @@
 
 <div class="copyright">
   &copy; 2019 – 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-heartbeat"></i>
   </span>

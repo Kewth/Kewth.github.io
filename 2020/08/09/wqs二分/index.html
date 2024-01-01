@@ -317,21 +317,66 @@
     
     <div class="post-body" itemprop="articleBody">
         <h2 id="直奔主题">直奔主题</h2>
-<p>直接举例子吧，考虑这样一个问题：给定一个长为 <span class="math inline">\(n\)</span> 的数列，要选<strong>恰好</strong> <span class="math inline">\(k\)</span> 个不交的子段使得选择的子段总和最大。</p>
+<p>直接举例子吧，考虑这样一个问题：给定一个长为 <span
+class="math inline">\(n\)</span> 的数列，要选<strong>恰好</strong> <span
+class="math inline">\(k\)</span>
+个不交的子段使得选择的子段总和最大。</p>
 <h3 id="朴素-dp">朴素 DP</h3>
-<p>朴素 DP 是设 <span class="math inline">\(f_{i,j,0/1}\)</span> 表示考虑前 <span class="math inline">\(i\)</span> 个选择 <span class="math inline">\(j\)</span> 段最后一个有没有选的最大收益，时间复杂度 <span class="math inline">\(O(n^2)\)</span> ，必须有一维 <span class="math inline">\(j\)</span> 处理“恰好”这个限制。</p>
+<p>朴素 DP 是设 <span class="math inline">\(f_{i,j,0/1}\)</span>
+表示考虑前 <span class="math inline">\(i\)</span> 个选择 <span
+class="math inline">\(j\)</span>
+段最后一个有没有选的最大收益，时间复杂度 <span
+class="math inline">\(O(n^2)\)</span> ，必须有一维 <span
+class="math inline">\(j\)</span> 处理“恰好”这个限制。</p>
 <p>有没有更优秀的复杂度呢？</p>
 <span id="more"></span>
 <h3 id="带权二分">带权二分</h3>
-<p>设 <span class="math inline">\(F(x) = \max \{ f_{n,x,0}, f_{n,x,1} \}\)</span> ，也就是选择恰好 <span class="math inline">\(x\)</span> 个不交子段的最大收益。注意到虽然不能直接求出 <span class="math inline">\(F(k)\)</span> ，但是求出 <span class="math inline">\(\max\{F(x)|1 \le x \le n\}\)</span> ，也就是函数的最值（以及函数取最值的位置）是不难的（可以直接去掉上述 DP 的第二维）。如果取最值的位置恰为 <span class="math inline">\(k\)</span> 就能得到答案。</p>
-<p>可惜最值并不一定取在 <span class="math inline">\(x = k\)</span> ，但是可以考虑做一个调整，如果魔改问题，钦定每选一个子段就可以得到 <span class="math inline">\(p\)</span> 的额外收益，那么此时恰好选 <span class="math inline">\(x\)</span> 个子段的最大收益就是 <span class="math inline">\(F(x) + px\)</span> ，如果 <span class="math inline">\(p\)</span> 选取合适，就能让 <span class="math inline">\(G(x) = F(x) + px\)</span> 的最值恰好取在 <span class="math inline">\(x = k\)</span> ，此时 <span class="math inline">\(F(k) = G(k) - pk\)</span> 就是答案。</p>
-<p>如何选择这样一个 <span class="math inline">\(p\)</span> 呢？把这个问题抽象到二维平面，可以发现 <span class="math inline">\((x, F(x))\)</span> 构成了一个凸包，而 <span class="math inline">\(F(x) + px\)</span> 的意义就是斜率为 <span class="math inline">\(-p\)</span> 的直线在该点上的截距。这样以来不难发现这个 <span class="math inline">\(p\)</span> 是可二分的，这个二分过程就是 wqs 二分。</p>
+<p>设 <span class="math inline">\(F(x) = \max \{ f_{n,x,0}, f_{n,x,1}
+\}\)</span> ，也就是选择恰好 <span class="math inline">\(x\)</span>
+个不交子段的最大收益。注意到虽然不能直接求出 <span
+class="math inline">\(F(k)\)</span> ，但是求出 <span
+class="math inline">\(\max\{F(x)|1 \le x \le n\}\)</span>
+，也就是函数的最值（以及函数取最值的位置）是不难的（可以直接去掉上述 DP
+的第二维）。如果取最值的位置恰为 <span class="math inline">\(k\)</span>
+就能得到答案。</p>
+<p>可惜最值并不一定取在 <span class="math inline">\(x = k\)</span>
+，但是可以考虑做一个调整，如果魔改问题，钦定每选一个子段就可以得到 <span
+class="math inline">\(p\)</span> 的额外收益，那么此时恰好选 <span
+class="math inline">\(x\)</span> 个子段的最大收益就是 <span
+class="math inline">\(F(x) + px\)</span> ，如果 <span
+class="math inline">\(p\)</span> 选取合适，就能让 <span
+class="math inline">\(G(x) = F(x) + px\)</span> 的最值恰好取在 <span
+class="math inline">\(x = k\)</span> ，此时 <span
+class="math inline">\(F(k) = G(k) - pk\)</span> 就是答案。</p>
+<p>如何选择这样一个 <span class="math inline">\(p\)</span>
+呢？把这个问题抽象到二维平面，可以发现 <span class="math inline">\((x,
+F(x))\)</span> 构成了一个凸包，而 <span class="math inline">\(F(x) +
+px\)</span> 的意义就是斜率为 <span class="math inline">\(-p\)</span>
+的直线在该点上的截距。这样以来不难发现这个 <span
+class="math inline">\(p\)</span> 是可二分的，这个二分过程就是 wqs
+二分。</p>
 <p><del>懒得画图，不配图了。</del></p>
 <h2 id="扩展">扩展</h2>
-<p>wqs 二分也可以嵌套，比如 CF739E 一题中，有两个不同的数列，要分别选取 <span class="math inline">\(a, b\)</span> 个元素并最大化收益，其中如果有一个位置在两个数列中同时被选会有一定的代价。</p>
-<p>朴素 DP 是设 <span class="math inline">\(f_{i,j,k}\)</span> 表示考虑前 <span class="math inline">\(i\)</span> 个位置在两个部分分别选 <span class="math inline">\(j, k\)</span> 个元素的最大收益，复杂度 <span class="math inline">\(O(n^3)\)</span> 。</p>
-<p>设 <span class="math inline">\(F(j,k) = f_{n,j,k}\)</span> ，抽象到三维空间上就是点 <span class="math inline">\((j, k, F(j, k))\)</span> 构成的三维凸包！于是可以拿一个平面去截这个三维凸包。也就是确定两个附加代价 <span class="math inline">\(p, q\)</span> ，使得 <span class="math inline">\(G(j,k) = F(j,k) - jp - kq\)</span> ，那就可以求出也就是平面 <span class="math inline">\(z = px + qy + K\)</span> 截出来的截距 <span class="math inline">\(K\)</span> 。二分套二分即可求解，复杂度 <span class="math inline">\(O(n log^2 n)\)</span> 。</p>
-<p>三维空间可能有点抽象，也不一定要从这个角度理解，从二分套二分（也就是先来个 wqs 二分，然后对于新的问题继续 wqs 二分）的角度可能更容易理解，也更接近实现。</p>
+<p>wqs 二分也可以嵌套，比如 CF739E 一题中，有两个不同的数列，要分别选取
+<span class="math inline">\(a, b\)</span>
+个元素并最大化收益，其中如果有一个位置在两个数列中同时被选会有一定的代价。</p>
+<p>朴素 DP 是设 <span class="math inline">\(f_{i,j,k}\)</span>
+表示考虑前 <span class="math inline">\(i\)</span> 个位置在两个部分分别选
+<span class="math inline">\(j, k\)</span> 个元素的最大收益，复杂度 <span
+class="math inline">\(O(n^3)\)</span> 。</p>
+<p>设 <span class="math inline">\(F(j,k) = f_{n,j,k}\)</span>
+，抽象到三维空间上就是点 <span class="math inline">\((j, k, F(j,
+k))\)</span>
+构成的三维凸包！于是可以拿一个平面去截这个三维凸包。也就是确定两个附加代价
+<span class="math inline">\(p, q\)</span> ，使得 <span
+class="math inline">\(G(j,k) = F(j,k) - jp - kq\)</span>
+，那就可以求出也就是平面 <span class="math inline">\(z = px + qy +
+K\)</span> 截出来的截距 <span class="math inline">\(K\)</span>
+。二分套二分即可求解，复杂度 <span class="math inline">\(O(n log^2
+n)\)</span> 。</p>
+<p>三维空间可能有点抽象，也不一定要从这个角度理解，从二分套二分（也就是先来个
+wqs 二分，然后对于新的问题继续 wqs
+二分）的角度可能更容易理解，也更接近实现。</p>
 
     </div>
 
@@ -377,7 +422,7 @@
 
 <div class="copyright">
   &copy; 2019 – 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-heartbeat"></i>
   </span>

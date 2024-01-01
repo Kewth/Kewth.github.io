@@ -315,27 +315,45 @@
     
     <div class="post-body" itemprop="articleBody">
         <p>（以下的除号皆表示整除）</p>
-<p>用数论函数计算的时候，总会遇到这样一种问题： <span class="math inline">\(\sum_{i=1}^n f(\frac{n}{i})\)</span> 。 <span class="math inline">\(O(n)\)</span> 求往往无法满足需要。</p>
-<p>但是<del>打表</del>可以发现， n/i 的取值对于一段连续的 i 是一致的， 那么可以考虑一块一块求。</p>
-<p>设已知当前块的左端点为 l ，如果知道右端点 r（左闭右开），意味着 <span class="math inline">\(\forall l&lt;=i&lt;r, \frac{n}{i} = \frac{n}{l}\)</span> ， 这一块对答案的贡献就是 <span class="math inline">\((r-l) \times f(\frac{n}{l})\)</span> 。</p>
-<p>结论是 <span class="math inline">\(r = n / (n / l) + 1\)</span> 。</p>
+<p>用数论函数计算的时候，总会遇到这样一种问题： <span
+class="math inline">\(\sum_{i=1}^n f(\frac{n}{i})\)</span> 。 <span
+class="math inline">\(O(n)\)</span> 求往往无法满足需要。</p>
+<p>但是<del>打表</del>可以发现， n/i 的取值对于一段连续的 i 是一致的，
+那么可以考虑一块一块求。</p>
+<p>设已知当前块的左端点为 l ，如果知道右端点 r（左闭右开），意味着 <span
+class="math inline">\(\forall l&lt;=i&lt;r, \frac{n}{i} =
+\frac{n}{l}\)</span> ， 这一块对答案的贡献就是 <span
+class="math inline">\((r-l) \times f(\frac{n}{l})\)</span> 。</p>
+<p>结论是 <span class="math inline">\(r = n / (n / l) + 1\)</span>
+。</p>
 <p>证明：</p>
 <ul>
 <li>对于 l 设 <span class="math inline">\(n / l = x\)</span></li>
-<li>那么由 <span class="math inline">\(n \bmod l = n - n / l \cdot l = n - l \cdot x\)</span> 可知 $ n - l x  $</li>
-<li>那么若 <span class="math inline">\(l + 1\)</span> 满足 <span class="math inline">\(n / (l + 1) = n / l\)</span> ，可知也有 <span class="math inline">\(n - (l + 1) \cdot x \geq 0\)</span></li>
+<li>那么由 <span class="math inline">\(n \bmod l = n - n / l \cdot l = n
+- l \cdot x\)</span> 可知 $ n - l x $</li>
+<li>那么若 <span class="math inline">\(l + 1\)</span> 满足 <span
+class="math inline">\(n / (l + 1) = n / l\)</span> ，可知也有 <span
+class="math inline">\(n - (l + 1) \cdot x \geq 0\)</span></li>
 <li>即 <span class="math inline">\(n - l \cdot x \geq x\)</span></li>
-<li>对于 k 若 <span class="math inline">\(n / k = n / l\)</span> 而 <span class="math inline">\(n / (k + 1) != n / l\)</span></li>
+<li>对于 k 若 <span class="math inline">\(n / k = n / l\)</span> 而
+<span class="math inline">\(n / (k + 1) != n / l\)</span></li>
 <li>那么根据上式可得 k 满足 $ 0 n - k x &lt; x$</li>
-<li>所以 <span class="math inline">\(n - k \cdot x = n \bmod x = n - n / x \cdot x\)</span></li>
-<li>所以 <span class="math inline">\(k = n / x = n / (n / l)\)</span></li>
-<li>由 k 的定义 <span class="math inline">\(n / k = n / l \&amp; n / (k + 1) != n / l\)</span> 可知 k+1 即是要求的 r</li>
+<li>所以 <span class="math inline">\(n - k \cdot x = n \bmod x = n - n /
+x \cdot x\)</span></li>
+<li>所以 <span class="math inline">\(k = n / x = n / (n /
+l)\)</span></li>
+<li>由 k 的定义 <span class="math inline">\(n / k = n / l \&amp; n / (k
++ 1) != n / l\)</span> 可知 k+1 即是要求的 r</li>
 </ul>
 <p>那么可以枚举块，当前 l,r 可以求得，下一个块的 l 显然是当前 r。</p>
 <p>有时候会有点变化：</p>
-<p>要求 <span class="math inline">\(\sum_{i=1}^{min(n, m)} f(\frac{n}{i}) \cdot f(\frac{m}{i})\)</span> 。</p>
-<p>还是会存在 <span class="math inline">\(\forall l \le i &lt; r, \frac{n}{i} = \frac{n}{l} \&amp; \frac{m}{i} = \frac{m}{l}\)</span> 。</p>
-<p>所以这样的区间的右端点为：<span class="math inline">\(r = min(n / (n / l), m / (m / l)) + 1\)</span> 。</p>
+<p>要求 <span class="math inline">\(\sum_{i=1}^{min(n, m)}
+f(\frac{n}{i}) \cdot f(\frac{m}{i})\)</span> 。</p>
+<p>还是会存在 <span class="math inline">\(\forall l \le i &lt; r,
+\frac{n}{i} = \frac{n}{l} \&amp; \frac{m}{i} = \frac{m}{l}\)</span>
+。</p>
+<p>所以这样的区间的右端点为：<span class="math inline">\(r = min(n / (n
+/ l), m / (m / l)) + 1\)</span> 。</p>
 <p>所以还是可以一块一块的枚举求和。</p>
 
     </div>
@@ -379,7 +397,7 @@
 
 <div class="copyright">
   &copy; 2019 – 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-heartbeat"></i>
   </span>
