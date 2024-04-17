@@ -1,6 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>trace-trick</title>
+    <url>/2024/04/17/trace-trick/</url>
+    <content><![CDATA[<p>将一个类似 <span class="math inline">\(x^T A y\)</span> 的标量看作
+1x1 trace 然后利用 trace 的性质可以得到 <span class="math display">\[
+x^T A y = tr(x^T A y) = tr(y x^T A).
+\]</span></p>
+<p>例题：计算两个多元高斯分布的 KL 散度。</p>
+<span id="more"></span>
+<p>做法：照搬一下作业。</p>
+<p><img src="/images/trace-trick-example.png" /></p>
+]]></content>
+      <categories>
+        <category>数学</category>
+      </categories>
+      <tags>
+        <tag>数学</tag>
+        <tag>线性代数</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>vim备份文件（续）</title>
     <url>/2022/11/02/vim%E5%A4%87%E4%BB%BD%E6%96%87%E4%BB%B6%EF%BC%88%E7%BB%AD%EF%BC%89/</url>
     <content><![CDATA[<p>想不到啊，这学期因为突然断电两次导致写的作业丢了（不过还好丢了 tex
@@ -523,6 +543,33 @@ id="code-oss-无法安装或使用-remote-sshpylance-插件-2023.10.26">code-oss
 href="https://www.reddit.com/r/archlinux/comments/mkiokm/vscode_you_can_consider_switch_back_to_code_oss/">参考页面</a></li>
 <li><a
 href="https://aur.archlinux.org/packages/code-features">参考页面</a></li>
+</ul>
+<h3 id="pacman-无法安装最新版-yay-2024.03.26">pacman 无法安装最新版 yay
+(2024.03.26)</h3>
+<p>原因是 extra 和 archlinuxcn 都有 yay 并且 archlinuxcn
+里面的版本更新。而它们的优先级是由 pacman.conf
+文件中的位置顺序决定的。可以通过 <code>pacman -Si yay</code>
+查看所有的可用来源。</p>
+<p>摘自 ArchWiki:</p>
+<pre><code>repositories listed first will take precedence over those listed later in the file when packages in two repositories have identical names, regardless of version number.</code></pre>
+<p>另外不同的 Server 也是根据在文件中的位置排序的。</p>
+<ul>
+<li><a href="https://wiki.archlinux.org/title/pacman">参考页面</a></li>
+</ul>
+<h3
+id="torch.cuda.is_available-返回-false-2024.03.27">torch.cuda.is_available()
+返回 False (2024.03.27)</h3>
+<p>安装的 pytorch 是 cpu 版本的。。。用 pacman 安装的话应该安装
+<code>python-pytorch-cuda</code> 而不是 <code>python-pytorch</code>
+。</p>
+<h3 id="fcitx-在-vscode-中无法使用-2024.03.28">fcitx 在 vscode
+中无法使用 (2024.03.28)</h3>
+<p>解决方案：命令行运行
+<code>gsettings set org.gnome.settings-daemon.plugins.xsettings overrides "&#123;'Gtk/IMModule':&lt;'fcitx'&gt;&#125;"</code></p>
+<ul>
+<li><a href="https://zhuanlan.zhihu.com/p/468426138">参考页面</a></li>
+<li><a
+href="https://manjaro.org.cn/bbs/topic/%E6%B1%82%E5%8A%A9-manjaro%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8fcitx%E8%BE%93%E5%85%A5%E6%B3%95">参考页面</a></li>
 </ul>
 ]]></content>
   </entry>
